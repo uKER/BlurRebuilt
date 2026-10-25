@@ -47,3 +47,8 @@ T264 menu vignette coverage (2026-10-23, continued explicit user scope): extend 
 
 
 T264 commit and propagation (2026-10-23, accepted by explicit user instruction): user approved the delivered result and said "Commit and propagate." This supersedes the earlier BlurRebuilt-only propagation restriction for these overlay fixes. Reuse the exact source already committed and merged under T265 (f1f2ba55); commit T264 verification/approval notes only in BlurRebuilt, whose phase docs have no higher descendant. No push requested.
+
+T269 audio compatibility proposal (2026-10-25, proposed; not accepted): external v1.5 audio repeats at the exact T255 High ring period. Corrected native 128-sample tests reproduce this with delayed polling and avoid it with retail's 32-block ring. Preserve accepted base D32 until user direction changes. Proposed next step is an A/B using the existing retail-size override, then consider an independent compatibility/latency option or measured underrun recovery in the owning phase. No default, engine, quality or released executable has changed. See phase analysis T269 for limitations and evidence.
+
+
+T269 direction (2026-10-25, accepted by explicit user approval and commit/propagate instruction): use owning base T270 high-resolution writer waits, preserving D32 latency counts. The earlier compatibility-setting proposal was not accepted or implemented; it is superseded by this tested scheduling correction. User reports the result seems fine, with slightly higher perceived latency accepted. No measured latency equality is claimed.

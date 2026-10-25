@@ -42,3 +42,5 @@ Claim a task before working on it. One task per agent. Keep rows short; details 
 
 | T266 | x64 | Deliver inherited viewport-sized in-race Esc DarkBG in BlurRebuilt. Source fix belongs to Blur1PC; binary delivery belongs here. | session Codex pause-coverage | done (source inherited; x64 Release delivered; 32:9 actual Esc verified) | inherited Paused.lua; docs/blur1pcdx11/{BOARD,analysis,LEDGER}.md; _work/t266 | none; verification _work/t266/verify32/approval.jpg |
 | T268 | x64 | Full-width cinematic, countdown and initial loading purple panes | session Codex race-intro coverage | done | Found in BlurRebuilt / Belongs to Blur1PC; inherited e9e556f0; standard x64 build delivered; natural loading zoom verified; _work/t268/loading-verified32 | none |
+
+| T269 | audio | Investigate external v1.5 audio regression from T255 latency reduction | session Codex audio-report | done (T270 inherited, x64 Release delivered and Observatory verified) | Found in external v1.5 report / Belongs to Blur1PC for reproduced shared-writer timing fault; current-phase docs only | Reporter retest remains; separate pre-existing Brighton particle breakpoint recorded in analysis |

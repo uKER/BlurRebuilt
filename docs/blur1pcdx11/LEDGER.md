@@ -1057,3 +1057,28 @@ Did: inherited base correction e9e556f0, rebuilt standard x64 Release, delivered
 Verified: errsum 0; matching canonical delivery hashes; loading-verified32 run exits 0 with both loading bounds checks and all cinematic/countdown checks passing. Inspected _work/t268/loading-verified32/approval.jpg and intro.mp4: full-width plaque, preserved preview cutout and zoom.
 Blocked: none for BlurRebuilt delivery.
 Next: user review from the normal launcher. Approval screenshot: _work/t268/loading-verified32/approval.jpg.
+
+## 2026-10-25 - session Codex audio-report - T269 investigation
+Did: inspected supplied M4A and settings screenshot; incorporated user confirmation that reporter uses latest-code v1.5. Claimed external investigation, analyzed ring repetition, inspected inherited T255 implementation and built scratch native DirectSound timing/virtual-loopback probes. No engine changes, game launches, build, delivery, commit or propagation.
+Verified: 359/369 seconds peak at 26.667 ms, the High five-block ring period. Corrected 128-sample standalone loopback tests reproduce it with delayed 16 ms polling (correlation .780), while five/5 ms and retail32/16 ms controls are near .002. Initial 256-sample exploratory probe was corrected and is explicitly excluded from engine conclusions. Inspected _work/t269/repetition-evidence.png; inherited engine matches base SHA256. Exact commands/scripts/results and limitations recorded in analysis T269.
+Blocked: no remaining blocker to investigation; reporter's actual device/timing and owning-phase executable reproduction remain unknown. No fix claimed; accepted D32 remains unchanged.
+Next: controlled affected-system A/B of v1.5/current code using High/stereo with retail 32-block override; instrument poll/frame waits and timer request if needed. Any inherited-engine fix belongs to Blur1PC after reproduction. Compatibility option/underrun recovery remains proposed.
+Files touched: docs/blur1pcdx11/{BOARD,analysis,decisions,LEDGER}.md and ignored _work/t269. Verification image: _work/t269/repetition-evidence.png.
+
+
+## 2026-10-25 - session Codex audio-writer - T269/T270 base follow-up
+Did: moved controlled writer timing investigation to Blur1PC T270; no current-phase engine edits/build/delivery.
+Verified: base five-block delayed polling ~17% realtime; retail32 delayed control ~100%; standalone no-timer-request high-resolution5ms wait ~99.8% versus Sleep5 ~4.7%. Source diagnostics removed and canonical executable restored; see base ledger for full limits and runs.
+Blocked: reporter natural timing trigger unknown; no fix claimed.
+Next: in-game high-resolution wait prototype in base, preserving ring/default and verifying output continuity and latency.
+
+
+## 2026-10-25 - session Codex audio-report - T269 base correction ready for propagation
+Base T270 reproduced the shared-writer timing fault on retail PC data and implemented a high-resolution polling wait preserving accepted D32 ring sizes. Standard base build errsum0 and base canonical EXE/PDB delivered. Actual-game isolated capture shows sustained ring-period repetition strongly reduced; the reporter's exact OS/device trigger remains unconfirmed. See owning base docs/analysis.md T270 for metrics, limits and verification. No current-phase engine edits or new executable delivery: AGENTS.md requires base commit plus merges, and commit authorization has been requested. T269 waits on that propagation, then current standard build/delivery and reporter retest. Existing phase edits preserved; no commit/push.
+
+
+## 2026-10-25 - session Codex audio-report - T269 propagation complete
+Did: inherited base T270 source02eb10f7 through merge955b550d after user explicit commit/propagate authorization; all upper phase merges/builds/canonical deliveries completed. No current-phase audio source patch and no push.
+Verified: documented standard x64 build and final localized Release rebuild errsum0. Canonical EXE/PDB hash-match standard outputs, recorded _work/t270/delivery.json. Final Observatory DebugRb race exits0 in39s, about144fps render/60Hz updates; approval still inspected _work/t270/verify/approval.jpg. Two Brighton patched failures match a privately rebuilt pre-audio baseline breakpoint in particle cache; evidence and attribution limits in phase analysis. Patched sources restored and final patched executable delivered after baseline experiment.
+Blocked: no T269 implementation, commit or delivery blocker; reporter-specific retest remains. Separate Brighton particle failure is pre-existing and unresolved.
+Next: reporter retest. If pursuing Brighton particle failure, identify its owning phase by standalone reproduction before editing. T269 complete; no further audio change pending.
