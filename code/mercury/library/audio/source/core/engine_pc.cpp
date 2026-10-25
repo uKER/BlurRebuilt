@@ -103,7 +103,8 @@ Audio::Core::Engine::Engine() :
 	m_hThread(NULL),
 	m_uDeviceIndex(0),
 	m_dwSpeakerConfig(0),
-	m_bTimerPeriodSet(false)	// [Blur2PC] T255
+	m_bTimerPeriodSet(false),	// [Blur2PC] T255
+	m_hWriterTimer(NULL)	// [Blur2PC] T270
 {
 	memset(&m_Caps, 0, sizeof(m_Caps));
 	memset(&m_BufferDesc, 0, sizeof(m_BufferDesc));
@@ -212,8 +213,17 @@ bool Audio::Core::Engine::StartDevice(U32 uDeviceIndex)
 				{
 					// [Blur2PC] T255: the writer polls the play cursor with Sleep(AudioSleep); at Windows' default
 					// 15.6 ms timer it cannot keep a 27-32 ms ring fed (D32), so ask for 1 ms while the engine runs
-					timeBeginPeriod(1);
-					m_bTimerPeriodSet = true;
+					m_bTimerPeriodSet = (timeBeginPeriod(1) == TIMERR_NOERROR);
+
+					// [Blur2PC] T270: a high-resolution wait does not depend on Windows honoring
+					// timeBeginPeriod (e.g. an occluded process). Resolve dynamically for older Windows;
+					// retain T255's timer-period request and coarse wait fallback when unavailable.
+					typedef HANDLE (WINAPI *CreateTimerProc)(LPSECURITY_ATTRIBUTES, LPCWSTR, DWORD, DWORD);
+					CreateTimerProc createTimer = (CreateTimerProc)GetProcAddress(
+						GetModuleHandleW(L"kernel32.dll"), "CreateWaitableTimerExW");
+					if (createTimer)
+						m_hWriterTimer = createTimer(NULL, NULL, 0x2 /* CREATE_WAITABLE_TIMER_HIGH_RESOLUTION */,
+							TIMER_MODIFY_STATE | SYNCHRONIZE);
 
 					ResetEvent(m_hThreadStop);
 					ResetEvent(m_hThreadDone);
@@ -239,6 +249,13 @@ bool Audio::Core::Engine::Shutdown()
 		// retail does not close the thread handle
 		SignalObjectAndWait(m_hThreadStop, m_hThreadDone, INFINITE, FALSE);
 		m_hThread = NULL;
+	}
+
+	// [Blur2PC] T270: only the writer uses this timer; join it before closing the handle.
+	if (m_hWriterTimer)
+	{
+		CloseHandle(m_hWriterTimer);
+		m_hWriterTimer = NULL;
 	}
 
 	if (m_pBuffer)
@@ -384,6 +401,25 @@ HRESULT Audio::Core::Engine::CreateBuffer(IDirectSound8* pDS, IDirectSoundBuffer
 ////////////////////////////////////////////////////////////////////////////////
 //	WriteToBuffer (0x00546d00)
 ////////////////////////////////////////////////////////////////////////////////
+// [Blur2PC] T270: preserve the retail polling interval without coarse Sleep rounding.
+// The stop event interrupts either wait, including when a device stops advancing its cursor.
+bool Audio::Core::Engine::WaitForWriter(U32 uMilliseconds)
+{
+	if (m_hWriterTimer)
+	{
+		LARGE_INTEGER due;
+		due.QuadPart = -(LONGLONG)uMilliseconds * 10000;
+		if (SetWaitableTimer(m_hWriterTimer, &due, 0, NULL, NULL, FALSE))
+		{
+			HANDLE waits[] = { m_hThreadStop, m_hWriterTimer };
+			DWORD result = WaitForMultipleObjects(2, waits, FALSE, INFINITE);
+			if (result != WAIT_FAILED)
+				return result == WAIT_OBJECT_0 + 1;
+		}
+	}
+	return WaitForSingleObject(m_hThreadStop, uMilliseconds) == WAIT_TIMEOUT;
+}
+
 bool Audio::Core::Engine::WriteToBuffer(const void* pData, U32 uSize)
 {
 	if (m_pBuffer == NULL)
@@ -407,6 +443,9 @@ bool Audio::Core::Engine::WriteToBuffer(const void* pData, U32 uSize)
 	{
 		for (;;)
 		{
+			// [Blur2PC] T270: allow shutdown even if the device keeps failing locks.
+			if (WaitForSingleObject(m_hThreadStop, 0) == WAIT_OBJECT_0)
+				return false;
 			// room between the write position and the play cursor
 			DWORD dwPlay, dwWrite;
 			U32 uFree = 0;
@@ -415,10 +454,15 @@ bool Audio::Core::Engine::WriteToBuffer(const void* pData, U32 uSize)
 
 			while (uFree < uSize)
 			{
+				// [Blur2PC] T270: keep the accepted small ring fed under coarse process timers.
 				if (g_PCEngineAudioSleep == 0)
+				{
+					if (WaitForSingleObject(m_hThreadStop, 0) == WAIT_OBJECT_0)
+						return false;
 					SwitchToThread();
-				else
-					Sleep(g_PCEngineAudioSleep);
+				}
+				else if (!WaitForWriter(g_PCEngineAudioSleep))
+					return false;
 
 				uFree = 0;
 				if (m_pBuffer->GetCurrentPosition(&dwPlay, &dwWrite) == DS_OK)

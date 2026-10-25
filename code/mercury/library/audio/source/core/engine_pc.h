@@ -83,6 +83,9 @@ namespace Audio
 			//! 0x00546d00: waits until the play cursor has freed uSize bytes, then copies them in.
 			bool WriteToBuffer(const void* pData, U32 uSize);
 
+			// [Blur2PC] T270: interruptible high-resolution polling, with legacy fallback.
+			bool WaitForWriter(U32 uMilliseconds);
+
 			//! 0x00547250: one renderer frame mixed down to m_uChannels interleaved floats, clamped to [-1, 1].
 			void RenderFrameFloat(F32* pfOut);
 			//! 0x00547500
@@ -125,6 +128,8 @@ namespace Audio
 			U32						m_uChannels;		// +0xc0
 			DWORD					m_dwSpeakerConfig;	// +0xc4
 			bool					m_bTimerPeriodSet;	// [Blur2PC] T255: timeBeginPeriod(1) held while the engine runs
+
+			HANDLE m_hWriterTimer; // [Blur2PC] T270: owned until the writer has stopped
 
 			static Engine*			s_pInstance;		// 0x0113f7e4
 		};
