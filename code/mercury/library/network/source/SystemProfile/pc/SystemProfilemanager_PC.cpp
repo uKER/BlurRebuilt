@@ -353,7 +353,7 @@ namespace SysProfile
 				outProfileData.m_ViewUserContentFriendsOnlyPrivilege	=	false;		
 				outProfileData.m_PurchaseContentPrivilege				=	false;				
 					
-				_snwprintf_s(outProfileData.m_Name, lengthof(outProfileData.m_Name), _TRUNCATE, m_DemonwareUser.m_Name);
+				_snwprintf_s(outProfileData.m_Name, lengthof(outProfileData.m_Name), _TRUNCATE, L"%s", m_DemonwareUser.m_Name); // [Blur2PC] names are data, not format strings
 				outProfileData.m_Uid = m_DemonwareUser.m_Uid;
 			}
 			else
@@ -422,7 +422,7 @@ namespace SysProfile
 
 		// player name
 		if (pDefaultName && wcslen(pDefaultName) > 0)
-			_snwprintf_s(outProfileData.m_Name, lengthof(outProfileData.m_Name), _TRUNCATE, pDefaultName );
+			_snwprintf_s(outProfileData.m_Name, lengthof(outProfileData.m_Name), _TRUNCATE, L"%s", pDefaultName ); // [Blur2PC] preserve literal percent characters
 		else
 			_snwprintf_s(outProfileData.m_Name, lengthof(outProfileData.m_Name), _TRUNCATE, L"P(%d)",userIndex+1);
 		return true;
@@ -740,7 +740,7 @@ namespace SysProfile
 
 		if (NULL != pName)
 		{
-			assert(strlen(pName) < SYSTEM_PROFILE_NAME_LENGTH-1);
+			assert(strlen(pName) < SYSTEM_PROFILE_NAME_LENGTH); // [Blur2PC] 16 characters plus terminator fit
 
 			_snwprintf_s(m_DemonwareUser.m_Name, lengthof(m_DemonwareUser.m_Name), _TRUNCATE, L"%S", pName);
 			m_DemonwareUser.m_Name[SYSTEM_PROFILE_NAME_LENGTH-1] = 0;

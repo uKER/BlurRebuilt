@@ -814,3 +814,9 @@ Review screenshots: _work/t268/exit-fades-fixed32/approval.jpg; _work/t268/finis
 
 ## 2026-10-24 - session Codex race-intro coverage - T268 accepted for propagation
 User explicitly requested commit and propagation after the uncommitted base review. Committing only the five verified Lua changes and task documentation. Base canonical build already contains this exact implementation; exit32, successful finish32 and failed finish16 recordings pass. Next: merge through all active upper branches, regenerate, rebuild/deliver Multi and BlurRebuilt, and verify native transitions. No push.
+
+## 2026-10-26 - RetroLAN contribution - T269 optional offline names
+Did: prepared an optional native Driver-file reader and integrated it at the PC default-profile initialization point. Kept the native profile/ID derivation and Player fallback. Corrected literal-name formatting and the 16-character debug assertion. Added standalone input-boundary tests, a release-workflow test step and user documentation. The legacy agent_context utility rejects the public fork directory name; base/phase board and ledger context were read directly. Work is isolated on a public-fork feature branch; no author phase branch is modified.
+Verified: source path and existing native 17-character profile buffer inspected; release build and native runtime checks pending.
+Blocked: local compiler/SDK installation denied by host automatic approval review; an artifact-only fork workflow build is being prepared using preinstalled GitHub runner tools.
+Next: run the Windows parser tests/full Master build, download its artifact, then verify native names, display settings and real LAN play before changing an existing game default.

@@ -70,3 +70,9 @@ Claim a task before working on it. One task per agent. Keep rows short; details 
 | T266 | M1 | Size the in-race Esc pause-menu dimming overlay to the viewport, as requested after T265. Found in user report / Belongs to Blur1PC shared UI. | session Codex pause-coverage | done (user approved; committed and merged; PC/Multi delivered; BlurX delivery blocked) | screens/Ingame/Paused.lua; docs/{BOARD,analysis,decisions,LEDGER}.md; _work/t266 | BlurX canonical delivery pending its existing syntax correction; owning-phase T266 record |
 
 | T268 | UI | Full-width exit fades and race-finish covers | session Codex race-intro coverage | verified; propagating approved fix | Found in BlurRebuilt / Belongs to Blur1PC; five Lua files; exit32, finish32 and failed16 verified; user authorized commit/propagation | none |
+
+## External contribution: offline names
+
+| ID | Milestone | Task | Owner | Status | Files / scope | Blocked on |
+|---|---|---|---|---|---|---|
+| T269 | LAN | Optional Driver file for distinct offline player names; preserve Player fallback | RetroLAN contribution / 0x90v1 | in progress | Found in released BlurRebuilt 1.5 / belongs to shared PC profile code; PcDriverName.h, Lua_Profile.cpp, SystemProfilemanager_PC.cpp, tools/offline_driver_name_test, release workflow, README and base docs | Windows build and real LAN verification pending |

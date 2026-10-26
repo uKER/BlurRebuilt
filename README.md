@@ -71,6 +71,20 @@ stored there, and both versions of the game use it.
 
 ## Optional settings
 
+### Offline/LAN player name
+
+Create an optional file named `Driver` in the game's working directory (normally
+beside `BlurRebuilt.exe`) to set the offline player name. It must contain 1–16
+printable ASCII bytes, with at least one non-space character, and no BOM or line
+ending. Different LAN players should use different names.
+
+The game reads this file when it initializes the default local profile. A missing
+or invalid file keeps the existing `Player` default. This uses the game's existing
+profile/ID derivation and does not edit Windows accounts, saves, or online login
+details. Online authentication can still supply the account's normal name.
+
+### Display settings
+
 These Windows environment variables are available if you want to adjust things:
 
 | Variable | Effect |

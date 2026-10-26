@@ -144,6 +144,15 @@ jobs:
             _work/build/gen/dx11_builtins
           key: dx11-shaders-${{ env.BLUR_FXC_ID }}-${{ hashFiles('code/amax/game/**/*.fx', 'code/amax/game/**/*.vsh', 'code/amax/game/**/*.psh', 'code/amax/game/**/*.h', 'code/amax/game/**/*.jam', 'code/mercury/library/**/*.jam', 'code/mercury/library/graphics/**/*.fx', 'code/mercury/library/graphics/**/*.vsh', 'code/mercury/library/graphics/**/*.psh', 'code/mercury/library/graphics/**/*.h', 'code/mercury/library/graphics/**/*.samplers', 'code/mercury/library/ui/**/*.vsh', 'code/mercury/library/ui/**/*.psh', 'code/mercury/library/ui/**/*.h', 'tools/dx11_fxcompile/*.py', 'tools/dx11_shadercompile/*.py', 'tools/jam2cmake/jamextract.py', 'tools/jam2cmake/cpgen.py', 'cmake/dx11.cmake') }}
 
+      - name: Test offline driver names
+        run: |
+          & $env:BLUR_CMAKE -S tools/offline_driver_name_test -B _work/tests/offline_driver_name -G $env:BLUR_GENERATOR -A x64
+          if ($LASTEXITCODE -ne 0) { throw 'offline-name test configure failed' }
+          & $env:BLUR_CMAKE --build _work/tests/offline_driver_name --config Release
+          if ($LASTEXITCODE -ne 0) { throw 'offline-name test build failed' }
+          & (Join-Path (Split-Path $env:BLUR_CMAKE) 'ctest.exe') --test-dir _work/tests/offline_driver_name -C Release --output-on-failure
+          if ($LASTEXITCODE -ne 0) { throw 'offline-name tests failed' }
+
       - name: Build Master Amax.exe and fx11
         env:
           BLUR_BUILD_SHADERS: ${{ steps.shaders.outputs.cache-hit == 'true' && 'OFF' || 'ON' }}

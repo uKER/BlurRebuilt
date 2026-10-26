@@ -7,6 +7,7 @@
 #include "ui/Graphics/Localisation/loc.h"
 
 #include "ui/Game/Profiles/ProfileInterface.h"
+#include "ui/Game/Profiles/PcDriverName.h" // [Blur2PC] optional offline name
 #include "UI/Game/Profiles/GamerPictureManager.h"
 #include "ui/Game/SaveSystem/SaveSystem.h"
 #include "ui/Util/WideString.h"
@@ -516,8 +517,10 @@ static S32 GuideActive( lua_State* pState )
 static S32 SetDefaultUserName(lua_State* pState)
 {
 #if defined ( PLATFORM_PC )
-	// all demonware usernames are in chars..
-	SysProfile::C_Manager::Instance().SetDemonwareAuthenticatedPlayerData("Player");
+	// [Blur2PC] Keep the native profile/ID derivation; allow unique offline LAN names.
+	char name[17];
+	ReadPcDriverName("Driver", name);
+	SysProfile::C_Manager::Instance().SetDemonwareAuthenticatedPlayerData(name);
 #endif
 	return 0;
 }
