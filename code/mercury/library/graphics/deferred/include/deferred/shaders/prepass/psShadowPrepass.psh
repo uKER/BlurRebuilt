@@ -1,0 +1,53 @@
+#include "psShadowPrepass.h"
+
+#if defined(PS_2_0) && defined(JITTER)
+#define SIMPLE
+#endif
+
+float4		g_vDepth	: register(CCP_RENDER_SETTINGS_2);
+float4x4	g_mWorld	: register(CCP_RENDER_SETTINGS_4);
+float4x4	g_mShadow	: register(CCP_RENDER_SETTINGS_8);
+
+sampler2D	g_tDepth	: register(s0);
+sampler2D	g_tShadow	: register(s1);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+float GetShadow(sampler2D tShadow, float3 vShadowCoord, float2 vScreenCoord)
+{
+#if defined(SIMPLE)
+	return GetShadowSimple(tShadow, vShadowCoord);
+#elif defined(JITTER)
+	return GetShadowJitter(tShadow, vShadowCoord, vScreenCoord);
+#elif defined(PCF)
+	return GetShadowPCF(tShadow, vShadowCoord);
+#elif defined(VARIANCE)
+	return GetShadowVariance(tShadow, vShadowCoord);
+#elif defined(EXPONENTIAL)
+	return GetShadowExponential(tShadow, vShadowCoord);
+#endif
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float	fZ				= SampleDepthBuffer(g_tDepth, input.m_TexCoord);
+	float	fW				= ScaleDepth(fZ, g_vDepth);
+	float4	vScreenPosition	= float4(input.m_TexCoord, fZ, 1.0f);
+	float3	vWorldPosition	= mul(vScreenPosition * fW, (float4x3) g_mWorld);
+	
+	float4	vShadowPosition	= mul(float4(vWorldPosition, 1.0f), g_mShadow);
+	float3	vShadowCoord	= vShadowPosition.xyz / vShadowPosition.w;
+	output.m_Colour			= GetShadow(g_tShadow, vShadowCoord, input.m_TexCoord);
+
+	return output;
+}

@@ -1,0 +1,6 @@
+DEF(E_ReparamRes_None, "None")
+DEF(E_ReparamRes_Low, "Low")
+DEF(E_ReparamRes_Medium, "Medium")
+DEF(E_ReparamRes_High, "High")
+DEF(E_ReparamRes_Default, "Default")
+DEF(E_ReparamRes_Unknown, "")

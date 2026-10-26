@@ -1,0 +1,27 @@
+SubDir TOP Code Mercury Library Graphics Mesh2 ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+source/mesh/Mesh2.cpp
+source/mesh/Mesh2Args.cpp
+source/mesh/Mesh2Manager.cpp
+source/mesh/Mesh2Render.cpp
+source/mesh/Mesh2Shaders.cpp
+source/mesh/Mesh2Utils.cpp
+;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+Library mesh2 : $(SRC) : StdAfx.cpp ;

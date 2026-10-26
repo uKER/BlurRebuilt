@@ -1,0 +1,4 @@
+type exe
+dependencies bdPlatform bdCore bdSocket bdConnection bdNet bdGraphics bdExampleCommon bdLobby bdExampleCommonLobby
+weight 250
+excludedarchitectures xenon psp-adhoc xbox

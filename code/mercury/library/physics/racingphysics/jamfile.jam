@@ -1,0 +1,153 @@
+SubDir TOP Code Mercury Library Physics RacingPhysics ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+Define USE_SOLVER_2 ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/Common/Core/Include
+$(MERCURY)/common/core/
+$(MERCURY)/Common/System/Include
+$(MERCURY)/Common/misc_shared/Include
+$(MERCURY)/Common/btl/Include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+source/collisions/boundingbox.cpp
+source/collisions/collisioncache.cpp
+source/collisions/collisionspheres.cpp
+source/collisions/generatespheres.cpp
+source/collisions/infiniteplane.cpp
+source/collisions/raycast.cpp
+source/collisions/roots3and4.cpp
+source/collisions/spherecollision.cpp
+source/collisions/sweptsphere.cpp
+source/collisions/toruscollision.cpp
+source/debug/colour.cpp
+source/debug/draw.cpp
+source/physics/articulatedbody.cpp
+source/physics/axis.cpp
+source/physics/compressfloat.cpp
+source/physics/constraints.cpp
+source/physics/parameters.cpp
+source/physics/physics.cpp
+source/physics/physicstimer.cpp
+source/physics/quaternion.cpp
+source/physics/rigidbody.cpp
+source/physics/rotationmatrix.cpp
+source/physics/surfaces.cpp
+source/system/Scheduler.cpp
+source/vehicles/debugsliprecorder.cpp
+source/vehicles/vehicle.cpp
+source/vehicles/car/car.cpp
+source/vehicles/car/cardebug.cpp
+source/vehicles/car/carengine.cpp
+source/vehicles/car/carsettings.cpp
+source/vehicles/car/cartransmission.cpp
+source/vehicles/car/carwheel.cpp
+source/vehicles/car/carnetworkphysics.cpp
+source/vehicles/car/spudebug.cpp
+source/vehicles/motorbike/motorbikenetworkphysics.cpp
+source/vehicles/motorbike/motorbikephysics.cpp
+source/vehicles/motorbike/motorbikesettings.cpp
+source/vehicles/motorbike/motorbikewheel.cpp
+source/vehicles/motorbike/motorbikes.cpp
+source/racingphysics.cpp
+source/vehicles/integrate.cpp
+source/vehicles/car/networkupdate.cpp
+;
+
+SRC = [ Batch $(SRC) : stdafx.h ] ;
+
+SPUINTEGRATESRC =
+	<SPU>$(MERCURY)/common/core/source/maths/Constants.cpp
+	<SPU>$(MERCURY)/common/core/source/maths/hvec/TableArcTan.cpp
+	<SPU>$(MERCURY)/common/core/source/maths/hvec/TableArcSin.cpp
+	<SPU>$(MERCURY)/common/core/source/maths/hvec/TableTan.cpp
+	<SPU>$(MERCURY)/common/core/source/maths/hvec/TableBernoulli.cpp
+	<SPU>source/physics/articulatedbody.cpp
+	<SPU>source/physics/axis.cpp
+	<SPU>source/physics/compressfloat.cpp
+	<SPU>source/physics/constraints.cpp
+	<SPU>source/physics/parameters.cpp
+	<SPU>source/physics/physics.cpp
+	<SPU>source/physics/physicstimer.cpp
+	<SPU>source/physics/quaternion.cpp
+	<SPU>source/physics/rigidbody.cpp
+	<SPU>source/physics/rotationmatrix.cpp
+	<SPU>source/physics/surfaces.cpp
+	<SPU>source/vehicles/debugsliprecorder.cpp
+	<SPU>source/vehicles/vehicle.cpp
+	<SPU>source/vehicles/car/car.cpp
+	<SPU>source/vehicles/car/carengine.cpp
+	<SPU>source/vehicles/car/cartransmission.cpp
+	<SPU>source/vehicles/car/carwheel.cpp
+	<SPU>source/vehicles/car/carsettings.cpp
+	<SPU>source/vehicles/car/spudebug.cpp
+	<SPU>source/vehicles/integrate.cpp
+;
+
+SPUNETSRC =
+	<SPU_NET>$(MERCURY)/common/core/source/maths/Constants.cpp
+	<SPU_NET>$(MERCURY)/common/core/source/maths/hvec/TableArcTan.cpp
+	<SPU_NET>$(MERCURY)/common/core/source/maths/hvec/TableArcSin.cpp
+	<SPU_NET>$(MERCURY)/common/core/source/maths/hvec/TableTan.cpp
+	<SPU_NET>$(MERCURY)/common/core/source/maths/hvec/TableBernoulli.cpp
+	<SPU_NET>source/physics/articulatedbody.cpp
+	<SPU_NET>source/physics/axis.cpp
+	<SPU_NET>source/physics/compressfloat.cpp
+	<SPU_NET>source/physics/constraints.cpp
+	<SPU_NET>source/physics/parameters.cpp
+	<SPU_NET>source/physics/physics.cpp
+	<SPU_NET>source/physics/physicstimer.cpp
+	<SPU_NET>source/physics/quaternion.cpp
+	<SPU_NET>source/physics/rigidbody.cpp
+	<SPU_NET>source/physics/rotationmatrix.cpp
+	<SPU_NET>source/vehicles/vehicle.cpp
+	<SPU_NET>source/vehicles/car/car.cpp
+	<SPU_NET>source/vehicles/car/carengine.cpp
+	<SPU_NET>source/vehicles/car/cartransmission.cpp
+	<SPU_NET>source/vehicles/car/carwheel.cpp
+	<SPU_NET>source/vehicles/car/carsettings.cpp
+	<SPU_NET>source/vehicles/car/spudebug.cpp
+	<SPU_NET>source/vehicles/car/networkupdate.cpp
+;
+
+ObjectDefines <SPU_NET>source/vehicles/car/car.cpp : SPU_NET_TASK ;
+ObjectDefines <SPU_NET>source/vehicles/car/networkupdate.cpp : SPU_NET_TASK ;
+
+# These two builds need size optimisation to fit on the SPU.
+if $(BUILD) = Debug || $(BUILD) = Release
+{
+	SrcOptim $(SPUSRC) : -Os ;
+	SrcOptim $(SPUNETSRC) : -Os ;
+}
+
+#SrcOptim <SPU>source/physics/rigidbody.cpp : Off ;
+#SrcOptim <SPU>source/vehicles/car/spudebug.cpp : Off ;
+#SrcOptim <SPU>source/vehicles/car/carwheel.cpp : Off ;
+
+LinkLibraries IntegrateSpu.self : $(SCE_PS3_ROOT)/target/spu/lib/libm.a gravity_fillcache_spu gravity_shared_spu core_spu ;
+LinkLibraries NetworkUpdateSpu.self : $(SCE_PS3_ROOT)/target/spu/lib/libm.a gravity_phantom_mesh_lib gravity_shared_spu core_spu ;
+
+AddSPUModule RacingPhysics : IntegrateSpu : $(SPUINTEGRATESRC) ;
+AddSPUModule RacingPhysics : NetworkUpdateSpu : $(SPUNETSRC) ;
+
+#SrcOptim $(SRC) : Off ;
+Library RacingPhysics : $(SRC) : stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+

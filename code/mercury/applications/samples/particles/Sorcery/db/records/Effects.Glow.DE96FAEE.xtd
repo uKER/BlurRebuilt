@@ -1,0 +1,53 @@
+xt
+	field __id "DE96FAEE"
+	field __name "Effects.Glow"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+	end
+	field airResistance "2.4"
+	array animation
+	end
+	field blendMode "Additive"
+	array children
+	end
+	array colourCurveA
+	end
+	array colourCurveRGB
+	end
+	array colourOverTime
+	end
+	field diffuseTexture "a0_Flare02"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	block light
+		field enabled "1"
+		field intensity "2"
+		field radius "5"
+	end
+	block limitSize
+	end
+	field name "Glow"
+	field shape "Sprite"
+	array sizeCurveX
+		block 
+			field time "0.000000"
+			field value "1"
+		end
+		block 
+			field time "0.510753"
+			field value "1.482558"
+		end
+		block 
+			field time "1.000000"
+			field value "0.959302"
+		end
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+	field type "Normal"
+end

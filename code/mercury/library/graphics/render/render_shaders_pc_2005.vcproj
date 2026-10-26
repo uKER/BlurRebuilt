@@ -1,0 +1,1726 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="render_shaders_pc"
+	ProjectGUID="{9822DFD5-3D68-4EF1-BFE5-C5A31464D3C4}"
+	RootNamespace="render_shaders_pc"
+	Keyword="Win32Proj"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="./lib"
+			IntermediateDirectory="./obj/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="./lib"
+			IntermediateDirectory="./obj/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Shaders"
+			>
+			<File
+				RelativePath=".\include\render\shaders\psCommon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\psConstants.cp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\psConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\psConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\psConstants.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\psFog.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\psHDR.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\vsCommon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\vsConstants.cv"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\vsConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\vsConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\include\render\shaders\vsConstants.h"
+				>
+			</File>
+			<Filter
+				Name="Debug"
+				>
+				<File
+					RelativePath=".\include\render\shaders\debug\psDebug.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\debug\vsDebug2D.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\debug\vsDebug3D.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Sky"
+				>
+				<File
+					RelativePath=".\include\render\shaders\sky\psSkyDome.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h;$(InputDir)..\psHDR.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h;$(InputDir)..\psHDR.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\sky\vsSkyDome.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Effects"
+				>
+				<Filter
+					Name="Perlin"
+					>
+					<File
+						RelativePath=".\include\render\shaders\effects\perlin\psPerlin.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E Main /D SAMPLES_1&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E Main /D SAMPLES_2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)4&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E Main /D SAMPLES_4&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)4.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E Main /D SAMPLES_1&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E Main /D SAMPLES_2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)4&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E Main /D SAMPLES_4&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)4.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\perlin\vsPerlin.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							ExcludedFromBuild="true"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E Main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E Main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Rain"
+					>
+					<File
+						RelativePath=".\include\render\shaders\effects\rain\psRain.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Drop&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D DROP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DropOcclusion&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D DROP /D OCCLUSION&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DropOcclusion2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D DROP /D OCCLUSION /D OCCLUSION2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Sheet&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D SHEET&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName)Drop.shader;$(InputDir)pcd3d9\$(InputName)DropOcclusion.shader;$(InputDir)pcd3d9\$(InputName)DropOcclusion2.shader;$(InputDir)pcd3d9\$(InputName)Sheet.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Drop&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D DROP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DropOcclusion&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D DROP /D OCCLUSION&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DropOcclusion2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D DROP /D OCCLUSION /D OCCLUSION2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Sheet&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D SHEET&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName)Drop.shader;$(InputDir)pcd3d9\$(InputName)DropOcclusion.shader;$(InputDir)pcd3d9\$(InputName)DropOcclusion2.shader;$(InputDir)pcd3d9\$(InputName)Sheet.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\rain\vsDrop.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Occlusion&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main /D OCCLUSION&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Simple&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main /D SIMPLE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SimpleOcclusion&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main /D SIMPLE /D OCCLUSION&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Simple.shader;$(InputDir)pcd3d9\$(InputName)Occlusion.shader;$(InputDir)pcd3d9\$(InputName)SimpleOcclusion.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Occlusion&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main /D OCCLUSION&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Simple&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main /D SIMPLE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SimpleOcclusion&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main /D SIMPLE /D OCCLUSION&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Simple.shader;$(InputDir)pcd3d9\$(InputName)Occlusion.shader;$(InputDir)pcd3d9\$(InputName)SimpleOcclusion.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\rain\vsSheet.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\rain\vsSplash.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Celestial"
+					>
+					<File
+						RelativePath=".\include\render\shaders\effects\celestial\psCelestial.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32Alpha&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32 /D WRITE_ALPHA&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32Alpha&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32 /D WRITE_ALPHA&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\celestial\vsCelestial.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Ocean"
+					>
+					<File
+						RelativePath=".\include\render\shaders\effects\ocean\OceanConstants.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\ocean\psOcean.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\ocean\vsOcean.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Lens Flare"
+					>
+					<File
+						RelativePath=".\include\render\shaders\effects\lensflare\psLensFlare.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\effects\lensflare\vsLensFlare.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Particle"
+				>
+				<File
+					RelativePath=".\include\render\shaders\particles\psParticle.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiply&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTexture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSprite&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMap&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Soft&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D DEPTH /D SOFT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Volumetric&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Decal&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Refract&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8HeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiplyHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColourHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTextureHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSpriteHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMapHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8HeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D DEPTH /D SOFT /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)VolumetricHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DecalHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)RefractHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT /D HEIGHTFOG&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiplyHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColourHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTextureHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSpriteHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMapHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D DEPTH /D SOFT /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)VolumetricHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DecalHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)RefractHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT /D HDR&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiplyHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColourHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTextureHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSpriteHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMapHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DecalHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)VolumetricHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)RefractHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT /D HDRU32&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h;$(InputDir)..\psCommon.h;$(InputDir)..\psFog.h;$(InputDir)..\psHDR.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)A8.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiply.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColour.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTexture.shader;$(InputDir)pcd3d9\$(InputName)PointSprite.shader;$(InputDir)pcd3d9\$(InputName)NormalMap.shader;$(InputDir)pcd3d9\$(InputName)Soft.shader;$(InputDir)pcd3d9\$(InputName)SoftA8.shader;$(InputDir)pcd3d9\$(InputName)Decal.shader;$(InputDir)pcd3d9\$(InputName)Volumetric.shader;$(InputDir)pcd3d9\$(InputName)Refract.shader;$(InputDir)pcd3d9\$(InputName)HeightFog.shader;$(InputDir)pcd3d9\$(InputName)A8HeightFog.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiplyHeightFog.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColourHeightFog.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTextureHeightFog.shader;$(InputDir)pcd3d9\$(InputName)PointSpriteHeightFog.shader;$(InputDir)pcd3d9\$(InputName)NormalMapHeightFog.shader;$(InputDir)pcd3d9\$(InputName)SoftHeightFog.shader;$(InputDir)pcd3d9\$(InputName)SoftA8HeightFog.shader;$(InputDir)pcd3d9\$(InputName)DecalHeightFog.shader;$(InputDir)pcd3d9\$(InputName)VolumetricHeightFog.shader;$(InputDir)pcd3d9\$(InputName)RefractHeightFog.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader;$(InputDir)pcd3d9\$(InputName)A8HDRU32.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiplyHDRU32.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColourHDRU32.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTextureHDRU32.shader;$(InputDir)pcd3d9\$(InputName)PointSpriteHDRU32.shader;$(InputDir)pcd3d9\$(InputName)NormalMapHDRU32.shader;$(InputDir)pcd3d9\$(InputName)SoftHDRU32.shader;$(InputDir)pcd3d9\$(InputName)SoftA8HDRU32.shader;$(InputDir)pcd3d9\$(InputName)DecalHDRU32.shader;$(InputDir)pcd3d9\$(InputName)VolumetricHDRU32.shader;$(InputDir)pcd3d9\$(InputName)RefractHDRU32.shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)A8HDR.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiplyHDR.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColourHDR.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTextureHDR.shader;$(InputDir)pcd3d9\$(InputName)PointSpriteHDR.shader;$(InputDir)pcd3d9\$(InputName)NormalMapHDR.shader;$(InputDir)pcd3d9\$(InputName)SoftHDR.shader;$(InputDir)pcd3d9\$(InputName)SoftA8HDR.shader;$(InputDir)pcd3d9\$(InputName)VolumetricHDR.shader;$(InputDir)pcd3d9\$(InputName)DecalHDR.shader;$(InputDir)pcd3d9\$(InputName)RefractHDR.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiply&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTexture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSprite&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMap&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Soft&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D DEPTH /D SOFT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Volumetric&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Decal&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Refract&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8HeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiplyHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColourHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTextureHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSpriteHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMapHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8HeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D DEPTH /D SOFT /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)VolumetricHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DecalHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL /D HEIGHTFOG&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)RefractHeightFog&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT /D HEIGHTFOG&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiplyHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColourHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTextureHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSpriteHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMapHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D DEPTH /D SOFT /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)VolumetricHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DecalHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)RefractHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT /D HDR&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)A8HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A8 /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaPreMultiplyHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAPREMULTIPLY /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterColourHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERCOL /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)AlphaFilterTextureHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D ALPHAFILTERTEX /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSpriteHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D POINTSPRITE /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMapHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D NORMALMAP /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)SoftA8HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D SOFT /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)DecalHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D DECAL /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)VolumetricHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D DEPTH /D VOLUMETRIC /D HDRU32&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)RefractHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D REFRACT /D HDRU32&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h;$(InputDir)..\psCommon.h;$(InputDir)..\psFog.h;$(InputDir)..\psHDR.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)A8.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiply.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColour.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTexture.shader;$(InputDir)pcd3d9\$(InputName)PointSprite.shader;$(InputDir)pcd3d9\$(InputName)NormalMap.shader;$(InputDir)pcd3d9\$(InputName)Soft.shader;$(InputDir)pcd3d9\$(InputName)SoftA8.shader;$(InputDir)pcd3d9\$(InputName)Decal.shader;$(InputDir)pcd3d9\$(InputName)Volumetric.shader;$(InputDir)pcd3d9\$(InputName)Refract.shader;$(InputDir)pcd3d9\$(InputName)HeightFog.shader;$(InputDir)pcd3d9\$(InputName)A8HeightFog.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiplyHeightFog.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColourHeightFog.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTextureHeightFog.shader;$(InputDir)pcd3d9\$(InputName)PointSpriteHeightFog.shader;$(InputDir)pcd3d9\$(InputName)NormalMapHeightFog.shader;$(InputDir)pcd3d9\$(InputName)SoftHeightFog.shader;$(InputDir)pcd3d9\$(InputName)SoftA8HeightFog.shader;$(InputDir)pcd3d9\$(InputName)DecalHeightFog.shader;$(InputDir)pcd3d9\$(InputName)VolumetricHeightFog.shader;$(InputDir)pcd3d9\$(InputName)RefractHeightFog.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader;$(InputDir)pcd3d9\$(InputName)A8HDRU32.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiplyHDRU32.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColourHDRU32.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTextureHDRU32.shader;$(InputDir)pcd3d9\$(InputName)PointSpriteHDRU32.shader;$(InputDir)pcd3d9\$(InputName)NormalMapHDRU32.shader;$(InputDir)pcd3d9\$(InputName)SoftHDRU32.shader;$(InputDir)pcd3d9\$(InputName)SoftA8HDRU32.shader;$(InputDir)pcd3d9\$(InputName)DecalHDRU32.shader;$(InputDir)pcd3d9\$(InputName)VolumetricHDRU32.shader;$(InputDir)pcd3d9\$(InputName)RefractHDRU32.shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)A8HDR.shader;$(InputDir)pcd3d9\$(InputName)AlphaPreMultiplyHDR.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterColourHDR.shader;$(InputDir)pcd3d9\$(InputName)AlphaFilterTextureHDR.shader;$(InputDir)pcd3d9\$(InputName)PointSpriteHDR.shader;$(InputDir)pcd3d9\$(InputName)NormalMapHDR.shader;$(InputDir)pcd3d9\$(InputName)SoftHDR.shader;$(InputDir)pcd3d9\$(InputName)SoftA8HDR.shader;$(InputDir)pcd3d9\$(InputName)VolumetricHDR.shader;$(InputDir)pcd3d9\$(InputName)DecalHDR.shader;$(InputDir)pcd3d9\$(InputName)RefractHDR.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\particles\vsParticle.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)UVW&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D UVW&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Decal&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH /D DECAL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Soft&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH /D SOFT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Volumetric&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH /D VOLUMETRIC&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSprite&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_POINTSPRITE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMap&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D NORMALMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NdotL&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D NDOTL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2D&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D TWOD&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName)UVW.shader;$(InputDir)pcd3d9\$(InputName)Decal.shader;$(InputDir)pcd3d9\$(InputName)Depth.shader;$(InputDir)pcd3d9\$(InputName)Soft.shader;$(InputDir)pcd3d9\$(InputName)Volumetric.shader;$(InputDir)pcd3d9\$(InputName)PointSprite.shader;$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)NormalMap.shader;$(InputDir)pcd3d9\$(InputName)NdotL.shader;$(InputDir)pcd3d9\$(InputName)2D.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)UVW&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D UVW&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Decal&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH /D DECAL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Soft&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH /D SOFT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Volumetric&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D DEPTH /D VOLUMETRIC&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)PointSprite&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_POINTSPRITE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NormalMap&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D NORMALMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)NdotL&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D NDOTL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2D&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D PARTICLE_TYPE_DEFAULT /D TWOD&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName)UVW.shader;$(InputDir)pcd3d9\$(InputName)Decal.shader;$(InputDir)pcd3d9\$(InputName)Depth.shader;$(InputDir)pcd3d9\$(InputName)Soft.shader;$(InputDir)pcd3d9\$(InputName)Volumetric.shader;$(InputDir)pcd3d9\$(InputName)PointSprite.shader;$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)NormalMap.shader;$(InputDir)pcd3d9\$(InputName)NdotL.shader;$(InputDir)pcd3d9\$(InputName)2D.shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="PostProcess"
+				>
+				<Filter
+					Name="Colour"
+					>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\colour\psColour.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\colour\psGreyscale.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psColour.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psColour.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\colour\psSepia.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psColour.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psColour.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\colour\psTint.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Generic"
+					>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\generic\psWeightedFilter13.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\generic\psWeightedFilter15.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\generic\psWeightedFilter16.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\generic\psWeightedFilter9.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Misc"
+					>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\misc\psMisc.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\misc\psShowDepth.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\misc\psStatic.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h; $(InputDir)\psMisc.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h; $(InputDir)\psMisc.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="HDR"
+					>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psBloomCombine.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psBloomDisplay.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psBrightPass.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32 /D GAMMA&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimpleHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR /D GAMMA /D SIMPLE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimpleHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32 /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaHDR.shader;$(InputDir)pcd3d9\$(InputName)GammaHDRU32.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader;$(InputDir)pcd3d9\$(InputName)GammaSimpleHDR.shader;$(InputDir)pcd3d9\$(InputName)GammaSimpleHDRU32.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32 /D GAMMA&#x0D;&#x0A;&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimple&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D GAMMA /D SIMPLE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimpleHDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR /D GAMMA /D SIMPLE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)GammaSimpleHDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32 /D GAMMA /D SIMPLE&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)GammaHDR.shader;$(InputDir)pcd3d9\$(InputName)GammaHDRU32.shader;$(InputDir)pcd3d9\$(InputName)GammaSimple.shader;$(InputDir)pcd3d9\$(InputName)GammaSimpleHDR.shader;$(InputDir)pcd3d9\$(InputName)GammaSimpleHDRU32.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psHDR.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psHDRU32.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminance.h"
+						>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminanceAdapted.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminanceClear.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminanceDisplay.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Exp&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D EXP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Exp.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Exp&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D EXP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Exp.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminanceFinal.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminanceInitial.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psLuminance.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psLuminance.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psLuminanceWeightDisplay.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\hdr\psToneMap.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)Gamma&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE /D GAMMA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D BLOOMCOMBINE /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)Gamma.shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Blur"
+					>
+					<File
+						RelativePath=".\include\render\shaders\postprocess\blur\psBlur.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Mesh"
+				>
+				<File
+					RelativePath=".\include\render\shaders\mesh\psMesh.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)0&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)1&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_ALBEDO&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_ALBEDO /D USE_DETAIL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_STANDARDSHADOWMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)4&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_VARIANCESHADOWMAP&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName)0.shader;$(InputDir)pcd3d9\$(InputName)1.shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader;$(InputDir)pcd3d9\$(InputName)4.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)0&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)1&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_ALBEDO&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_ALBEDO /D USE_DETAIL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_STANDARDSHADOWMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)4&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_VARIANCESHADOWMAP&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName)0.shader;$(InputDir)pcd3d9\$(InputName)1.shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader;$(InputDir)pcd3d9\$(InputName)4.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\mesh\vsMesh.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)0&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)1&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_ALBEDO&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_ALBEDO /D USE_DETAIL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_STANDARDSHADOWMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)4&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_VARIANCESHADOWMAP&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName)0.shader;$(InputDir)pcd3d9\$(InputName)1.shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader;$(InputDir)pcd3d9\$(InputName)4.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)0&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)1&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_ALBEDO&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_ALBEDO /D USE_DETAIL&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_STANDARDSHADOWMAP&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)4&quot; &quot;$(InputPath)&quot; /P vs_3_0 /D USE_VARIANCESHADOWMAP&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName)0.shader;$(InputDir)pcd3d9\$(InputName)1.shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader;$(InputDir)pcd3d9\$(InputName)4.shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Shadow"
+				>
+				<File
+					RelativePath=".\include\render\shaders\shadow\psShadowMapStandardDepth.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\shadow\psShadowMapVarianceDepth.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\shadow\vsShadowMapStandardDepth.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\shadow\vsShadowMapVarianceDepth.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Render"
+				>
+				<File
+					RelativePath=".\include\render\shaders\render\psDepthRender.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_2_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_2_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\render\vsDepthRender.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_2_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_2_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Texture"
+				>
+				<File
+					RelativePath=".\include\render\shaders\texture\psGaussBlur.h"
+					>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\texture\psGaussBlur.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\texture\psGradientToNormal.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\render\shaders\texture\psNormalMap.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Dynamic"
+				>
+				<Filter
+					Name="Cloth"
+					>
+					<File
+						RelativePath=".\include\render\shaders\dynamic\cloth\psCloth.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)..\..\psCommon.h;$(InputDir)..\..\psFog.h;$(InputDir)..\..\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)..\..\psCommon.h;$(InputDir)..\..\psFog.h;$(InputDir)..\..\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\dynamic\cloth\vsCloth.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Minimal"
+					>
+					<File
+						RelativePath=".\include\render\shaders\dynamic\minimal\psMinimal.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)..\..\psCommon.h;$(InputDir)..\..\psFog.h;$(InputDir)..\..\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDR&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)HDRU32&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main /D HDRU32&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)..\..\psCommon.h;$(InputDir)..\..\psFog.h;$(InputDir)..\..\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)HDR.shader;$(InputDir)pcd3d9\$(InputName)HDRU32.shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\dynamic\minimal\vsMinimal.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+				<Filter
+					Name="Light"
+					>
+					<File
+						RelativePath=".\include\render\shaders\dynamic\light\psLight.psh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)..\..\psCommon.h;$(InputDir)..\..\psFog.h;$(InputDir)..\..\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\psConstants.h;$(InputDir)..\..\psCommon.h;$(InputDir)..\..\psFog.h;$(InputDir)..\..\psHDR.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\include\render\shaders\dynamic\light\vsLight.vsh"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCustomBuildTool"
+								Description="Performing Custom Build Step - $(InputFileName)"
+								CommandLine="..\..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0 /E main&#x0D;&#x0A;"
+								AdditionalDependencies="$(InputDir)..\..\vsConstants.h"
+								Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+							/>
+						</FileConfiguration>
+					</File>
+				</Filter>
+			</Filter>
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

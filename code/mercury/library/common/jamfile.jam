@@ -1,0 +1,8 @@
+SubDir TOP Code Mercury Library Common ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+#SubInclude TOP Code Mercury Library Common btl ;
+SubInclude TOP Code Mercury Library Common misc_shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common xt2 ;
+

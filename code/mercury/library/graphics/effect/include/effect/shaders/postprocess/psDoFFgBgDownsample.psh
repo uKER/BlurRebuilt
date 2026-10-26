@@ -1,0 +1,91 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+float4		g_vDepth		: register(CCP_RENDER_SETTINGS_1);
+
+#define		g_vPixelSize	g_vSettings.zw
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tDepth		: register(s1);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+
+#if defined(XB2)
+	float3	vColour	= tex2D(g_tColour, input.m_TexCoord).rgb;
+#else
+	float3	vColour	= 0.0f;
+			vColour	+= tex2D(g_tColour, input.m_TexCoord + float2(-1.0f, -1.0f) * g_vPixelSize).rgb;
+			vColour	+= tex2D(g_tColour, input.m_TexCoord + float2(-1.0f, +1.0f) * g_vPixelSize).rgb;
+			vColour	+= tex2D(g_tColour, input.m_TexCoord + float2(+1.0f, -1.0f) * g_vPixelSize).rgb;
+			vColour	+= tex2D(g_tColour, input.m_TexCoord + float2(+1.0f, +1.0f) * g_vPixelSize).rgb;
+			vColour	*= 0.25f;
+#endif
+
+#if defined(PS3)
+	float4	vDepth;
+	vDepth.x	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-1.0f, -1.0f) * g_vPixelSize, g_vDepth);
+	vDepth.y	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-1.0f, +1.0f) * g_vPixelSize, g_vDepth);
+	vDepth.z	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+1.0f, -1.0f) * g_vPixelSize, g_vDepth);
+	vDepth.w	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+1.0f, +1.0f) * g_vPixelSize, g_vDepth);
+
+	float4	vCoC	= saturate(g_vSettings.x * vDepth + g_vSettings.y);	
+	float	fCoC	= max(vCoC.x, max(vCoC.y, max(vCoC.z, vCoC.w)));
+#else
+	float4	vDepth0;
+	vDepth0.x	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-1.5f, -1.5f) * g_vPixelSize, g_vDepth);
+	vDepth0.y	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-0.5f, -1.5f) * g_vPixelSize, g_vDepth);
+	vDepth0.z	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+0.5f, -1.5f) * g_vPixelSize, g_vDepth);
+	vDepth0.w	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+1.5f, -1.5f) * g_vPixelSize, g_vDepth);
+
+	float4	vDepth1;
+	vDepth1.x	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-1.5f, -0.5f) * g_vPixelSize, g_vDepth);
+	vDepth1.y	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-0.5f, -0.5f) * g_vPixelSize, g_vDepth);
+	vDepth1.z	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+0.5f, -0.5f) * g_vPixelSize, g_vDepth);
+	vDepth1.w	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+1.5f, -0.5f) * g_vPixelSize, g_vDepth);
+
+	float4	vDepth2;
+	vDepth2.x	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-1.5f, +0.5f) * g_vPixelSize, g_vDepth);
+	vDepth2.y	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-0.5f, +0.5f) * g_vPixelSize, g_vDepth);
+	vDepth2.z	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+0.5f, +0.5f) * g_vPixelSize, g_vDepth);
+	vDepth2.w	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+1.5f, +0.5f) * g_vPixelSize, g_vDepth);
+
+	float4	vDepth3;
+	vDepth3.x	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-1.5f, +1.5f) * g_vPixelSize, g_vDepth);
+	vDepth3.y	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-0.5f, +1.5f) * g_vPixelSize, g_vDepth);
+	vDepth3.z	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+0.5f, +1.5f) * g_vPixelSize, g_vDepth);
+	vDepth3.w	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+1.5f, +1.5f) * g_vPixelSize, g_vDepth);
+
+	float4	vCoC0	= saturate(g_vSettings.x * vDepth0 + g_vSettings.y);	
+	float4	vCoC1	= saturate(g_vSettings.x * vDepth1 + g_vSettings.y);
+	float4	vCoC2	= saturate(g_vSettings.x * vDepth2 + g_vSettings.y);
+	float4	vCoC3	= saturate(g_vSettings.x * vDepth3 + g_vSettings.y);
+
+	float4	vCoC	= max(vCoC0, max(vCoC1, max(vCoC2, vCoC3)));
+	float	fCoC	= max(vCoC.x, max(vCoC.y, max(vCoC.z, vCoC.w)));
+#endif
+	
+	output.m_Colour	= float4(vColour, fCoC);
+
+#else
+
+	output.m_Colour = 0.0f;
+
+#endif
+
+	return output;
+}

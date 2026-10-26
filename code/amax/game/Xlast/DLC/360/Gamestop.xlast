@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-16" standalone="no"?>
+<XboxLiveSubmissionProject Version="2.0.11164.2">
+	<ContentProject clsid="{AED6156D-A870-4FF7-924F-F375495A222A}" Name="Multiplayer Advantage Unlock" TitleID="41560845" TitleName="Blur" ActivationDate="06/04/2009" PubOfferingID="0000002" PubBitFlags="FFFFFFFF" HasCost="false" IsMarketplace="true" AllowProfileTransfer="true" AllowDeviceTransfer="true" DashIconPath="Z:\blur_release\code\amax\game\Xlast\Images\game_icon.png" TitleIconPath="Z:\blur_release\code\amax\game\Xlast\Images\game_icon.png" ContentType="0x00000002">
+		<LanguageSettings clsid="{F5BA1EE2-D217-447C-93C7-3C7AA6F25DD5}">
+			<Language clsid="{6424EAA3-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Multiplayer Advantage Unlock" Description="Get the Ford Bronco and Motormash game mode early at Rank 1, plus earn double fans for the first 5 Motormash events played."/>
+			<Language clsid="{6424EAA5-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Mehrspieler-Vorteilspaket" Description="Ford Bronco und 'Motorensalat'-Modus mit Rang 1 und doppelte Fans für deine ersten 5 Motorensalat-Events."/>
+			<Language clsid="{6424EAA6-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Avantage multijoueur" Description="Obtenez la Ford Bronco, le mode Annihilation et fans X2 pour vos 5 premières courses Annihilation."/>
+			<Language clsid="{6424EAA7-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Desbloqueo de ventajas multijug." Description="Obtén el Ford Bronco y motomasacre en el rango 1 y duplica los fans en tus 5 primeros eventos de motomasacre."/>
+			<Language clsid="{6424EAA8-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Sblocca vantaggio multigiocatore" Description="Ottieni la Ford Bronco e la modalità Sfasciamotori al livello 1; nei primi 5 eventi Sfasciamotori otterrai il doppio dei fan."/>
+		</LanguageSettings>
+		<Contents clsid="{0D8B38B9-F5A8-4050-8F8D-81F67E3B2456}">
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack Gamestop ToC.bin" TargetName="ToC.bin"/>
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack Gamestop.bin" TargetName="DLCPackGamestop.bin"/>
+		</Contents>
+		<ContentOffers clsid="{146485F0-DCD7-4AB1-97E1-9B0E64150499}">
+			<ContentOffer clsid="{4AF8FE5B-CCF2-4C23-852F-D91A94AE0E24}" friendlyName="GamestopRetailUnlock" title="Multiplayer Advantage Unlock" sellText="Get the Ford Bronco and Motormash game mode early at Rank 1, plus earn double fans for the first 5 Motormash events played." licenseMask="0x00000001" contentCategory="0x00000002" visibility="1" previewOfferId="0x00000000" offerId="0x00000000" banner="..\..\Images\Blur_Gamestop_DLC_Offer_Graphic.png" licenseLevel="2" consumable="false"/>
+		</ContentOffers>
+	</ContentProject>
+</XboxLiveSubmissionProject>

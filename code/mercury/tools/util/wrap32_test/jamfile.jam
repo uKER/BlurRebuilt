@@ -1,0 +1,81 @@
+SubDir TOP Code Mercury Tools Util Wrap32_Test ;
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+IncludePath
+$(TOP)/Code/Mercury/Library/Common/Core/Include
+$(TOP)/Code/Mercury/Library/Common/System/Include
+$(SUBDIR)/Include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/Include
+\"$(XENONSDK)/include/win32/vs2005\"
+\"$(XENONSDK)/include\"
+$(SUBDIR)/$(INTDIR)	# for wrap32_com.tlb
+$(TOP)/Libs/Vendor/ATI_Compress/1.4/include
+;
+
+SRC =
+source/main.cpp
+;
+
+SRC_COM =
+<comrc>source/com/comserver.rc
+<com>source/com/COMServer.cpp
+<com>source/com/wrap32.cpp
+$(SUBDIR)/$(INTDIR)/wrap32_com_i.c
+;
+
+SRC_DLL =
+<dll>source/dll/main.cpp
+<dll>source/dll/wrap32_xgraphics.cpp
+<dll>source/common/wrap32_utility.cpp
+;
+
+SRC_INTERFACE = 
+source/common/wrap32_utility.cpp
+source/interface/wrap32_xgraphics.cpp
+source/interface/wrap32_atidxt.cpp
+source/interface/wrap32_instance.cpp
+;
+
+# run MIDL compiler
+MIDLFLAGS = /char signed /env win32 /Oicf /h $(SUBDIR)/$(INTDIR)/wrap32_com.h /iid $(SUBDIR)/$(INTDIR)/wrap32_com_i.c /proxy $(SUBDIR)/$(INTDIR)/wrap32_com_p.c /no_robust ;
+MIDLCompiler $(SUBDIR)/$(INTDIR)/wrap32_com.tlb : $(SUBDIR)/source/com/COMServer.idl ;
+
+# output of the MIDL compiler is included by the .rc file
+Includes <Code!Mercury!Tools!Util!Wrap32_Test>source/com\\comserver.rc : $(SUBDIR)/$(INTDIR)/wrap32_com.tlb ;
+NotFile <Code!Mercury!Tools!Util!Wrap32_Test>wrap32_com.tlb ;
+Depends <Code!Mercury!Tools!Util!Wrap32_Test>wrap32_com.tlb : $(SUBDIR)/$(INTDIR)/wrap32_com.tlb ;
+Depends <Code!Mercury!Tools!Util!Wrap32_Test>$(SUBDIR)/$(INTDIR)\\wrap32_com_i.c : $(SUBDIR)/$(INTDIR)/wrap32_com.tlb ;
+Clean <Code!Mercury!Tools!Util!Wrap32_Test>$(SUBDIR)/$(INTDIR)\\wrap32_com_i.c $(SUBDIR)/$(INTDIR)/wrap32_com.tlb ;
+
+CcFlags /Zp16 ;
+
+ObjectCcFlags $(SRC_DLL) : -D_USRDLL -DSERVER_EXPORTS ;
+
+if $(WIN64) != 1
+{
+	LINKLIBS += $(XENONSDK)/lib/win32/vs2005/d3d9.lib $(XENONSDK)/lib/win32/vs2005/d3dx9.lib $(XENONSDK)/lib/win32/vs2005/xgraphics.lib ;
+
+	LinkLibraries wrap32_dll : core system tools_shared ;
+	DLL wrap32_dll : $(SRC_DLL) ;
+
+	LINKLIBS += RPCRT4.lib rpcns4.lib rpcndr.lib comsuppd.lib comsvcs.lib ;
+
+	ObjectCcFlags $(SRC_COM) : -D_ATL_DLL -D_MBSC ;
+
+	LinkLibraries wrap32_test_com : wrap32_dll ;
+	Application wrap32_test_com : $(SRC_COM) ;
+}
+
+Library wrap32_interface : $(SRC_INTERFACE) ;
+
+LinkLibraries wrap32_test : core system tools_shared wrap32_interface ;
+Application wrap32_test : $(SRC) ;
+
+Depends wrap32_test : wrap32_test_com ;
+
+ExportVcproj wrap32_test ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;

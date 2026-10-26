@@ -1,0 +1,69 @@
+echo "Building TestApp for $(PLATFORM)" ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+SubDir TOP Code MercuryGame Applications Graphics DynamicEffect ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/dynamic/include
+$(TOP)/Code/Mercury/Library/Graphics/renderingdata/include
+$(TOP)/Code/Mercury/Library/Graphics/fx/include
+$(TOP)/code/mercury/library/graphics/scenegraph/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/testsections/include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+./Main.cpp
+./TestDynamic/ClothRenderer.cpp
+./TestDynamic/CustomHDR.cpp
+./TestDynamic/GameFunctionality.cpp
+./TestSections/TestSectionDynamicEffect.cpp
+./TestSections/TestSectionLight.cpp
+./TestSections/TestSectionParticles.cpp
+./TestSections/TestSectionTracerFire.cpp
+;
+
+LinkLibraries DynamicEffect :
+		camera2 core display dynamic RenderingData fx scenegraph input resource textureresource framework testsections debugsystems misc_shared render system xtgame zlib
+		;
+
+Application DynamicEffect : $(SRC) : stdafx.cpp ;
+ExportVcproj DynamicEffect ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Dynamic ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics TextureResource ;
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys TestSections ;
+SubInclude TOP Code Mercury Library Gamesys DebugSystems ;
+SubInclude TOP Code Vendor zlib current_mercury  ;

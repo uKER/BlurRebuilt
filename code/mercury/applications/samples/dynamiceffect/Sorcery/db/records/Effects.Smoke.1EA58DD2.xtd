@@ -1,0 +1,74 @@
+xt
+	field __id "1EA58DD2"
+	field __name "Effects.Smoke"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+	end
+	field airResistance "1.5"
+	array animation
+	end
+	field blendMode "Alpha"
+	array children
+	end
+	array colourCurveA
+		block 
+			field __id "Effe8B8D6A83"
+			field value "0"
+		end
+		block 
+			field time "0.103"
+			field value "1"
+		end
+		block 
+			field time "1.000"
+			field value "0"
+		end
+	end
+	array colourCurveRGB
+		block 
+			field time "0.000"
+			field value "1"
+		end
+		block 
+			field time "0.103"
+			field value "1"
+		end
+		block 
+			field time "0.543"
+			field value "1"
+		end
+		block 
+			field time "1.000"
+			field value "1"
+		end
+	end
+	array colourOverTime
+	end
+	field diffuseTexture "Smoke0"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	block light
+	end
+	block limitSize
+	end
+	field name "Smoke"
+	field shape "RotatingSprite"
+	array sizeCurveX
+		block 
+			field __id "EffeAE1DA70D"
+			field time "0.537"
+			field value "1"
+		end
+		block 
+			field time "1.000"
+			field value "2"
+		end
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

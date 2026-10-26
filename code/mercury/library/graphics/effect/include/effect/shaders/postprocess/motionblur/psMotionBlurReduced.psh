@@ -1,0 +1,139 @@
+#include "../../psConstants.h"
+#include "../../psCommon.h"
+
+#define NOISE
+
+#if defined(NUM_TAPS_5)
+#	define NUM_TAPS 5
+#elif defined(NUM_TAPS_7)
+#	define NUM_TAPS 7
+#elif defined(NUM_TAPS_9)
+#	define NUM_TAPS 9
+#elif defined(NUM_TAPS_11)
+#	define NUM_TAPS 11
+#endif
+
+float4x4	g_mMatrix		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vDepthScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_4);
+float4		g_vStepScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_5);
+float4		g_vSettings		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_6);
+float4		g_vNoise		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_7);
+
+#if defined(PS3)
+#pragma texformat g_tColour RGBA8
+#pragma texformat g_tDepth RGBA8
+#pragma texformat g_tStencil RGBA8
+#pragma texformat g_tNoise RGBA8
+#pragma texdisablepc all
+#endif
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tDepth		: register(s1);
+#if defined(STENCIL)
+sampler2D	g_tStencil		: register(s2);
+#endif
+sampler2D	g_tNoise		: register(s3);
+
+#define		g_fNoiseScale	g_vSettings.x
+#define		g_fCentreWeight	g_vSettings.y
+#define		g_fAlpha		g_vSettings.z
+
+struct PS_OUTPUT
+{
+	real4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+real4 GetStep(float fDepth, float2 uv)
+{
+	// get position in uv * depth space
+	// get previous uvs
+	// and convert resulting texture * depth coords back to texture coords
+	real4	vPosition		= real4(uv, fDepth, 1.0h);
+			vPosition		= mul(vPosition, g_mMatrix);
+			vPosition.xy	*= (1.0f / vPosition.w);
+	
+	real2	vDelta			= vPosition.xy - uv;
+	
+	return vDelta.xyxy * g_vStepScale;
+}
+
+real4 GetColourAndMask(float2 uv)
+{
+#if defined(STENCIL)
+	real3	vColour = tex2D(g_tColour, uv).rgb;
+	real	fMask	= tex2D(g_tStencil, uv).b;
+	return	float4(vColour, fMask);
+#else
+	return tex2D(g_tColour, uv);
+#endif
+}
+
+real GetTapAlpha(real fMotionBlurFactor, real fAlpha)
+{
+	return abs(sign(fAlpha) - fMotionBlurFactor);
+}
+
+real4 GetSamplesAlphaMask(float2 vTexCoord, float fDepth, int N)
+{
+	real4	vCentre				= GetColourAndMask(vTexCoord);
+	real	fMotionBlurFactor	= 1.0h - sign(vCentre.a);
+	real4	vStep				= GetStep(fDepth, vTexCoord);
+			vStep				= vStep * fMotionBlurFactor;
+	
+	real4	vAccum				= real4(vCentre.rgb, 1.0f);
+	
+#if defined(NOISE)
+	real	fNoiseFactor		= tex2D(g_tNoise, vTexCoord.xy * g_vNoise.xy + g_vNoise.zw).r;
+	real4	vMotionUV			= vTexCoord.xyxy;
+			vMotionUV.xy		+= vStep.xy * (1.0h - g_fNoiseScale);
+			vMotionUV.zw		+= vStep.zw;
+			vMotionUV			+= vStep.xyxy * fNoiseFactor * g_fNoiseScale;
+	vAccum						= vAccum * g_fCentreWeight;
+#else
+	float4	vMotionUV			= vTexCoord.xyxy + vStep;
+#endif
+	
+	int N2 = (N - 1) / 2;
+	for (int i = 0; i < N2; ++i)
+	{			
+		float4	vUV			= vMotionUV.xyzw;
+
+		real4	vTap0		= GetColourAndMask(vUV.xy);
+				vTap0.a		= GetTapAlpha(fMotionBlurFactor, vTap0.a);
+	
+		real4	vTap1		= GetColourAndMask(vUV.zw);
+				vTap1.a		= GetTapAlpha(fMotionBlurFactor, vTap1.a);
+		
+		vAccum		= vTap0 * vTap0.a + vAccum;
+		vAccum		= vTap1 * vTap1.a + vAccum;
+		vMotionUV	+= vStep;
+	}
+
+	real fAlpha = saturate(length(vStep.xy) * g_fAlpha);
+	
+	return real4(vAccum.rgb / vAccum.a, fAlpha);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+
+	float	fDepth = SampleDepthBuffer(g_tDepth, input.m_TexCoord);
+	
+	output.m_Colour = GetSamplesAlphaMask(input.m_TexCoord, fDepth, NUM_TAPS);
+
+#else
+
+	output.m_Colour = 0.0f;
+
+#endif
+
+	return output;
+}

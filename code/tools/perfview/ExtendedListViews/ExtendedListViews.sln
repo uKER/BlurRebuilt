@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedListViews", "ExtendedListViews.csproj", "{36202DE0-590A-43D4-A99D-55412CAD71C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedListTest", "..\ExtendedListTest\ExtendedListTest.csproj", "{F4711416-DE3E-4D0F-8B1C-15A5F9CB98D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36202DE0-590A-43D4-A99D-55412CAD71C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36202DE0-590A-43D4-A99D-55412CAD71C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36202DE0-590A-43D4-A99D-55412CAD71C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36202DE0-590A-43D4-A99D-55412CAD71C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4711416-DE3E-4D0F-8B1C-15A5F9CB98D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4711416-DE3E-4D0F-8B1C-15A5F9CB98D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4711416-DE3E-4D0F-8B1C-15A5F9CB98D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4711416-DE3E-4D0F-8B1C-15A5F9CB98D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

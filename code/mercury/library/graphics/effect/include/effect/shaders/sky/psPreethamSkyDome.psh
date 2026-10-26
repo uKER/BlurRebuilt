@@ -1,0 +1,16 @@
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+float4	g_vSettings		: register(CCP_RENDER_SETTINGS);
+
+#define	g_fIntensity	g_vSettings.x
+
+struct PS_INPUT
+{
+	float4 m_Colour		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	return GetExposure(float4(input.m_Colour.rgb * g_fIntensity, 1.0f));
+}

@@ -1,0 +1,45 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vSettings		:	register(CCP_RENDER_SETTINGS);
+sampler2D	g_tFocalDepth	:	register(s0);
+
+#define		g_fPixelWidth	g_vSettings.x
+#define		g_fPixelHeight	g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float4	vMinimum = 1.0f;
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-1.5f * g_fPixelWidth, -1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-0.5f * g_fPixelWidth, -1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+0.5f * g_fPixelWidth, -1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+1.5f * g_fPixelWidth, -1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-1.5f * g_fPixelWidth, -0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-0.5f * g_fPixelWidth, -0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+0.5f * g_fPixelWidth, -0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+1.5f * g_fPixelWidth, -0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-1.5f * g_fPixelWidth, +0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-0.5f * g_fPixelWidth, +0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+0.5f * g_fPixelWidth, +0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+1.5f * g_fPixelWidth, +0.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-1.5f * g_fPixelWidth, +1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(-0.5f * g_fPixelWidth, +1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+0.5f * g_fPixelWidth, +1.5f * g_fPixelHeight)));
+	vMinimum = min(vMinimum, tex2D(g_tFocalDepth, input.m_TexCoord + float2(+1.5f * g_fPixelWidth, +1.5f * g_fPixelHeight)));
+
+	output.m_Colour = vMinimum;
+
+	return output;
+}

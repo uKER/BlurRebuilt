@@ -1,0 +1,82 @@
+#define ALPHA
+
+#include "dynamic\shaders\psCommon.h"
+#include "render/shaders/psHDR.h"
+
+float4x4	g_mToWorld			: register(CCP_RENDER_SETTINGS);
+float4		g_vViewPosition		: register(CCP_RENDER_SETTINGS_4);
+float4		g_vDepthScale		: register(CCP_RENDER_SETTINGS_5);
+sampler2D	g_tDepth			: register(s0);
+
+struct PS_INPUT
+{
+	float4	m_FogColour			: COLOR0;
+	float4	m_ProjPosition		: TEXCOORD0;
+	float3	m_ObjectPosition	: TEXCOORD1;
+	float3	m_ObjectViewVector	: TEXCOORD2;
+	float3	m_WorldPosition		: TEXCOORD3;
+	float3	m_WorldViewVector	: TEXCOORD4;
+	float3	m_FogSettings		: TEXCOORD5;
+};
+
+float GetVolumetricFog(float3 vViewVector, float3 vSettings)
+{
+	float fFogInt = length(vViewVector) * vSettings.z;
+	if (abs(vViewVector.y) > 0.01f)
+	{
+		float t = vSettings.y * vViewVector.y;
+		fFogInt *= (1.0f - exp(-t)) / t;
+	}
+	return exp(-vSettings.x * fFogInt);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+#if defined(PS_2_0)
+	return GetExposure(float4(0.0f, 0.0f, 0.0f, 0.0f));
+#else
+	float3	vPlanes			= sign(input.m_ObjectViewVector);
+	float3	vLambdas		= (vPlanes.xyz - input.m_ObjectPosition.xyz) / input.m_ObjectViewVector.xyz;
+	float	fLambda			= max(0.0f, min(vLambdas.x, min(vLambdas.y, vLambdas.z)));
+	
+	#if defined(FRONT_FACES)
+	float3	vEntryPosition	= input.m_WorldPosition;
+	float3	vViewVector0	= fLambda * input.m_WorldViewVector;
+	#elif defined(BACK_FACES)
+	float3	vEntryPosition	= (input.m_FogSettings.z < 0.0f) ? input.m_WorldPosition + fLambda * input.m_WorldViewVector : g_vViewPosition.xyz;
+	float3	vViewVector0	= input.m_WorldPosition - vEntryPosition;
+	#endif
+	
+	float2	uv				= (input.m_ProjPosition.xy / input.m_ProjPosition.w) * float2(0.5f, -0.5f) + float2(0.5f, 0.5f);
+	float3	vWorldPosition	= GetWorldPosition(g_tDepth, uv, g_vDepthScale, (float4x3) g_mToWorld);
+	float3	vViewVector1	= vWorldPosition - vEntryPosition;
+
+	float	fEntryToExit	= dot(vViewVector0, vViewVector0);
+	float	fEntryToDepth	= dot(vViewVector1, vViewVector1);
+	float	fExitToDepth	= dot(vViewVector0 - vViewVector1, vViewVector0 - vViewVector1);
+	
+	float3	vFogSettings	= float3(input.m_FogSettings.xy, exp(-input.m_FogSettings.y * vEntryPosition.y));
+	
+	float fFogAmount = 1.0f;
+	if (fEntryToDepth < fEntryToExit)
+	{
+		#if defined(BACK_FACES)	
+		if (fExitToDepth < fEntryToExit)
+		#endif
+		{
+			fFogAmount = GetVolumetricFog(vViewVector1, vFogSettings);
+		}
+	}
+	else
+	{
+		#if defined(BACK_FACES)
+		if (fExitToDepth < fEntryToDepth)
+		#endif
+		{
+			fFogAmount = GetVolumetricFog(vViewVector0, vFogSettings);
+		}
+	}
+
+	return GetExposure(float4(input.m_FogColour.rgb, 1.0f - fFogAmount));
+#endif
+}

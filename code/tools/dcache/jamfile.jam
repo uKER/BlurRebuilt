@@ -1,0 +1,33 @@
+SubDir TOP Code Tools DCache ;
+
+PIN = $(TOP)/libs/vendor/pin/current ;
+
+IncludePath
+$(PIN)/source/include
+$(PIN)/source/include/gen
+$(PIN)/extras/xed2-ia32/include
+;
+
+Define TARGET_IA32 HOST_IA32 TARGET_WINDOWS USING_XED DBIGARRAY_MULTIPLIER=1 D_CRT_SECURE_NO_DEPRECATE ;
+
+DEFINES = ;
+
+SRC =
+dcache.cpp
+;
+
+CCFLAGS = /MT /EHs- /EHa- /wd4530 /Gy ;
+
+OPTIM = ;
+
+LINKFLAGS = /EXPORT:main /NODEFAULTLIB /INCREMENTAL:NO /OPT:REF /MACHINE:x86 /ENTRY:Ptrace_DllMainCRTStartup@12 /BASE:0x55000000
+			$(PIN)/ia32/lib/pin.lib
+			$(PIN)/extras/xed2-ia32/lib/libxed.lib
+			libcpmt.lib libcmt.lib
+			$(PIN)/ia32/lib/pinvm.lib
+			kernel32.lib
+			$(PIN)/ia32/lib-ext/ntdll-32.lib ;
+
+DLL dcache : $(SRC) ;
+
+ExportVcproj dcache ;

@@ -1,0 +1,70 @@
+SubDir TOP Code Amax Tools Converter_shared Converter_shared ;
+
+USE_SOLVER2 = 1 ;
+
+if $(USE_SOLVER2) != 1
+{
+#echo define solver 1 ;
+}
+else
+{
+#echo define solver 2 ;
+	Define USE_SOLVER_2 ;
+}
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Util/Tools_shared/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/code/Tools/Aftkut/AftkUtLib/include
+$(TOP)/Code/Common/
+$(TOP)/Code/Mercury/Library/Graphics/Texture_Export/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+\"$(DXSDK_PATH)/include\"
+;
+
+SRC = 
+source/config/ObjectflagConfig.cpp
+source/config/PolyflagConfig.cpp
+source/helpers/AftkHelpers.cpp
+source/helpers/ExportHelpers.cpp
+source/helpers/XmlHelpers.cpp
+source/lux_interface/LuxEnums.cpp
+source/lux_interface/LuxInterface.cpp
+source/lux_interface/LuxLights.cpp
+source/lux_interface/LuxSampleList.cpp
+source/ModelData.cpp
+source/ProcessGraph.cpp
+source/renderdataconversion/ConvertAftkMesh.cpp
+source/renderdataconversion/ConvertAftkMaterial.cpp
+source/renderdataconversion/EffectManager.cpp
+source/renderdataconversion/Effect.cpp
+source/renderdataconversion/MaterialManager.cpp
+source/renderdataconversion/AnnotationReader.cpp
+source/renderdataconversion/ConstantAnnotationReader.cpp
+source/renderdataconversion/ParamAnnotationReader.cpp
+source/renderdataconversion/TextureAnnotationReader.cpp
+source/renderdataconversion/VtxInputAnnotationReader.cpp
+source/renderdataconversion/clustering.cpp
+source/renderdataconversion/pointcloud.cpp
+source/renderdataconversion/graphcluster.cpp
+source/renderdataconversion/EffectPermutationSelector.cpp
+source/renderdataconversion/CustomSemantic.cpp
+source/renderdataconversion/CustomSemanticManager.cpp
+source/CustomSourceSemantics/DIFF_IND0_NORM_BUMP.cpp
+source/PhysicsDataConverter.cpp
+source/RenderDataConverter.cpp
+;
+
+#Define JAM ;
+
+Library converter_shared : $(SRC) : stdafx.cpp ;
+

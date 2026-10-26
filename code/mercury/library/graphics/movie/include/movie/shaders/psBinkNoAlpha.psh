@@ -1,0 +1,56 @@
+#ifdef PS3
+
+uniform sampler2D YplaneNPA		: register(s0);
+uniform sampler2D cRplaneNPA	: register(s1);
+uniform sampler2D cBplaneNPA	: register(s2);
+uniform float AlphaNPA;
+
+float4 main( float4 texcoord: TEXCOORD0 ) : COLOR
+{
+	float4 c;
+	float4 p;
+	const float4  tor = float4( 1.164123535f, 1.595794678f, 0.0f, -0.87065506f );
+	const float4  tog = float4( 1.164123535f, -0.813476563f, -0.391448975f, 0.529705048f );
+	const float4  tob = float4( 1.164123535f,  0.0f, 2.017822266f, -1.081668854f );
+	c.x = tex2D( YplaneNPA, texcoord.xy ).x;
+	c.y = tex2D( cRplaneNPA, texcoord.zw ).x;
+	c.z = tex2D( cBplaneNPA, texcoord.zw ).x;
+	c.w = 1.0f;
+	p.x = dot( tor, c );
+	p.y = dot( tog, c );
+	p.z = dot( tob, c );
+	p.w = AlphaNPA;
+	return p;
+}
+
+#else // PS3
+
+sampler tex0   : register( s0 );
+sampler tex1   : register( s1 );
+sampler tex2   : register( s2 );
+float4  tor    : register( c0 );
+float4  tog    : register( c1 );
+float4  tob    : register( c2 );
+float4  consts : register( c3 );
+
+struct VS_OUT
+{
+    float4 T0: TEXCOORD0;
+};
+
+float4 main( VS_OUT In ) : COLOR
+{
+  float4 c;
+  float4 p;
+  c.x = tex2D( tex0, In.T0.xy ).x;
+  c.y = tex2D( tex1, In.T0.zw ).x;
+  c.z = tex2D( tex2, In.T0.zw ).x;
+  c.w = consts.x;  
+  p.x = dot( tor, c );
+  p.y = dot( tog, c );
+  p.z = dot( tob, c );
+  p.w = consts.w;
+  return p;
+}
+
+#endif // PS3

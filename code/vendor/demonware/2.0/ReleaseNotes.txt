@@ -1,0 +1,94 @@
+These are the release notes for DemonWare v2.0 rc1.
+ 
+Note that this is a beta release and has not fully been tested on all available
+platforms. 
+
+The intention of this file is to give you a brief overview of where to find
+everything you need to get started. 
+If you have any further questions, please contact us at support@demonware.net.
+ 
+ 
+=== Available packages and platforms ===
+ 
+The following packages are available for every supported platform:
+
+ - Full source Matchmaking+ package
+ - Full source State Engine package
+ 
+The Matchmaking+ product consists of the bdLobby library, plus the DemonWare 
+Transport layer libraries.
+ 
+The State Engine product consists of the bdPeer library, 
+plus the DemonWare Transport layer libraries.
+ 
+The DemonWare Transport layer is included in both products. It consists of the 
+following libraries: bdPlatform, bdCore, bdSocket, bdConnection and bdNet.
+ 
+The DemonWare libraries are available for the following platforms:
+ - Win32
+ - Xbox 360
+ - Playstation Portable (PSP)
+ - Playstation 3
+ - Nintendo Wii
+ - Linux
+ 
+ 
+ 
+=== Getting started ===
+
+To get quickly started you should:
+
+ - Extract the package to a location of your choice.
+
+ - Generate project files by running projgen. You may either double-click on projgen.exe, 
+   located in the dwtool-ng directory, or use the Python version, for example:
+
+     cd c:\src\demonware\dwtools-ng
+     python projgen.py
+
+   There will now be project files for each IDE/compiler and platform selected, 
+   located at the main directory for each library and executable, as well as 
+   one for the entire source tree, located in the root directory.
+
+ - Open up the relevant workspace/make/solution file. These are to be found in 
+   the root folder of your DemonWare installation.
+
+ - Read the documentation available at 
+   http://docs.demonware.net
+ 
+ 
+=== Note About Matchmaking+ ===
+
+The Matchmaking+ examples are for illustrative purposes only and are set up to 
+use a title ID that is also accessible to other evaluators.
+As a result functionality may be limited, for example if two evaluators use the
+same user ID to log on. 
+
+Upon signing a license for Matchmaking+, or by special arrangement for 
+prototyping purposes, you may submit an IMP configuration file to DemonWare. You
+will then receive a unique title ID.
+ 
+ 
+=== Firewall and Network Recommendations ===
+ 
+ - No restrictions should be put on UDP traffic (titles send and receive 
+   UDP packets from different ports and to different ports).
+ 
+ - Titles should be allowed to establish outgoing TCP connections to 
+   port 3074 (MatchMaking+ only).
+ 
+ 
+
+
+=== New documentation site ===
+
+
+A new documentation site http://docs.demonware.net has been setup to
+provide up-to-date information and material for developers.
+In order to access this site you need to request a new account to be setup
+for you, please contact support@demonware.net for this purpose. 
+Integration of this site with your current Devzone2 account is currently in progress.
+
+
+
+

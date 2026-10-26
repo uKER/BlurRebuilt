@@ -1,0 +1,235 @@
+// Standard types
+
+//
+// Vector
+//
+
+[Horizontal, NoBorder, Summary("[{vx}, {vy}]")]
+type Vec2
+{
+	[Label("X")] f32 vx = 0;
+	[Label("Y")] f32 vy = 0;
+}
+
+[Horizontal, NoBorder, Summary("[{vx}, {vy}, {vz}]")]
+type Vec3
+{
+	[Label("X")] f32 vx = 0;
+	[Label("Y")] f32 vy = 0;
+	[Label("Z")] f32 vz = 0;
+}
+
+[Horizontal, NoBorder, Summary("[{vx}, {vy}, {vz}, {vw}]")]
+type Vec4
+{
+	[Label("X")] f32 vx = 0;
+	[Label("Y")] f32 vy = 0;
+	[Label("Z")] f32 vz = 0;
+	[Label("W")] f32 vw = 0;
+}
+
+//
+// Matrix
+//
+
+[Summary("[{ax}, {ay}]")]
+type Mat22
+{
+	[Default(vx:1)]	Vec2 ax;
+	[Default(vy:1)]	Vec2 ay;
+}
+
+[Summary("[{ax}, {ay}, {az}]")]
+type Mat32
+{
+	[Default(vx:1)]	Vec2 ax;
+	[Default(vy:1)]	Vec2 ay;
+					Vec2 az;
+}
+
+[Summary("[{ax}, {ay}, {az}]")]
+type Mat33
+{
+	[Default(vx:1)]	Vec3 ax;
+	[Default(vy:1)]	Vec3 ay;
+	[Default(vz:1)]	Vec3 az;
+}
+
+[SceneView(semantic:"Type:ActorProperty")]
+[Summary("[{ax}, {ay}, {az}, {aw}]")]
+type Mat43
+{
+	[Default(vx:1)]	Vec3 ax;
+	[Default(vy:1)]	Vec3 ay;
+	[Default(vz:1)]	Vec3 az;
+					Vec3 aw;
+}
+
+[SceneView(semantic:"Type:ActorProperty")]
+[Summary("[{ax}, {ay}, {az}, {aw}]")]
+type Mat44
+{
+	[Default(vx:1)]	Vec4 ax;
+	[Default(vy:1)]	Vec4 ay;
+	[Default(vz:1)]	Vec4 az;
+	[Default(vw:1)]	Vec4 aw;
+}
+
+//
+// Colour
+//
+
+[Horizontal, NoBorder, Summary("[{r}, {g}, {b}]")]
+type Rgb
+{
+	f32 r = 1;
+	f32 g = 1;
+	f32 b = 1;
+
+	[Tool] [Hide] f32 i = 1;
+
+	[ColourSwatch(red:r, green:g, blue:b, premultiplyIntensity:true, intensity:i, maxIntensity:32.0)]
+	control ColourSwatch;
+}
+
+[Horizontal, NoBorder, Summary("[{r}, {g}, {b}, {a}]")]
+type Rgba
+{
+	f32 r = 1;
+	f32 g = 1;
+	f32 b = 1;
+	f32 a = 1;
+
+	[Tool] [Hide] f32 i = 1;
+
+	[ColourSwatch(red:r, green:g, blue:b, alpha:a, premultiplyIntensity:true, intensity:i, maxIntensity:32.0)]
+	control ColourSwatch;
+}
+
+[Horizontal, NoBorder, Summary("[{h}, {s}, {v}]")]
+type Hsv
+{
+	f32 h = 0;
+	f32 s = 0;
+	f32 v = 1;
+
+	[ColourSwatch(hue:h, sat:s, val:v)]
+	control ColourSwatch;
+}
+
+[Horizontal, NoBorder, Summary("[{h}, {s}, {v}, {a}]")]
+type Hsva
+{
+	f32 h = 0;
+	f32 s = 0;
+	f32 v = 1;
+	f32 a = 1;
+
+	[ColourSwatch(hue:h, sat:s, val:v, alpha:a)]
+	control ColourSwatch;
+}
+
+[Horizontal, NoBorder, Summary("[{r}, {g}, {b}]")]
+type LinRgb
+{
+	f32 r = 1;
+	f32 g = 1;
+	f32 b = 1;
+
+	[Tool] [Hide] f32 i = 1;
+
+	[ColourSwatch(red:r, green:g, blue:b, premultiplyIntensity:true, intensity:i, maxIntensity:32.0, gamma:1.0)]
+	control ColourSwatch;
+}
+
+[Horizontal, NoBorder, Summary("[{r}, {g}, {b}, {a}]")]
+type LinRgba
+{
+	f32 r = 1;
+	f32 g = 1;
+	f32 b = 1;
+	f32 a = 1;
+
+	[Tool] [Hide] f32 i = 1;
+
+	[ColourSwatch(red:r, green:g, blue:b, alpha:a, premultiplyIntensity:true, intensity:i, maxIntensity:32.0, gamma:1.0)]
+	control ColourSwatch;
+}
+
+//
+// Range
+//
+
+[Horizontal, NoBorder] type RangeI8		{ [Label("")] i8 from;	i8 to;	}
+[Horizontal, NoBorder] type RangeI16	{ [Label("")] i16 from;	i16 to;	}
+[Horizontal, NoBorder] type RangeI32	{ [Label("")] i32 from;	i32 to;	}
+[Horizontal, NoBorder] type RangeI64	{ [Label("")] i64 from;	i64 to;	}
+
+[Horizontal, NoBorder] type RangeU8		{ [Label("")] u8 from;	u8 to;	}
+[Horizontal, NoBorder] type RangeU16	{ [Label("")] u16 from;	u16 to;	}
+[Horizontal, NoBorder] type RangeU32	{ [Label("")] u32 from;	u32 to;	}
+[Horizontal, NoBorder] type RangeU64	{ [Label("")] u64 from;	u64 to;	}
+
+[Horizontal, NoBorder] type RangeF32	{ [Label("")] f32 from;	f32 to;	}
+[Horizontal, NoBorder] type RangeF64	{ [Label("")] f64 from;	f64 to;	}
+
+type RangeVec2 { [Label("")] Vec2 from; Vec2 to; }
+type RangeVec3 { [Label("")] Vec3 from; Vec3 to; }
+type RangeVec4 { [Label("")] Vec4 from; Vec4 to; }
+
+type RangeRgb		{ [Label("")] Rgb from;		Rgb to;		}
+type RangeRgba		{ [Label("")] Rgba from;	Rgba to;	}
+type RangeHsv		{ [Label("")] Hsv from;		Hsv to;		}
+type RangeHsva		{ [Label("")] Hsva from;	Hsva to;	}
+type RangeLinRgb	{ [Label("")] LinRgb from;	LinRgb to;	}
+type RangeLinRgba	{ [Label("")] LinRgba from;	LinRgba to;	}
+
+//
+// Dispersion
+//
+
+[Horizontal, NoBorder] type DispersionI8	{ [Label("")] i8 mean;	[Label("+/-"), NoLabelColon] i8 d;	}
+[Horizontal, NoBorder] type DispersionI16	{ [Label("")] i16 mean;	[Label("+/-"), NoLabelColon] i16 d;	}
+[Horizontal, NoBorder] type DispersionI32	{ [Label("")] i32 mean;	[Label("+/-"), NoLabelColon] i32 d;	}
+[Horizontal, NoBorder] type DispersionI64	{ [Label("")] i64 mean;	[Label("+/-"), NoLabelColon] i64 d;	}
+
+[Horizontal, NoBorder] type DispersionU8	{ [Label("")] u8 mean;	[Label("+/-"), NoLabelColon] u8 d;	}
+[Horizontal, NoBorder] type DispersionU16	{ [Label("")] u16 mean;	[Label("+/-"), NoLabelColon] u16 d;	}
+[Horizontal, NoBorder] type DispersionU32	{ [Label("")] u32 mean;	[Label("+/-"), NoLabelColon] u32 d;	}
+[Horizontal, NoBorder] type DispersionU64	{ [Label("")] u64 mean;	[Label("+/-"), NoLabelColon] u64 d;	}
+
+[Horizontal, NoBorder] type DispersionF32	{ [Label("")] f32 mean;	[Label("+/-"), NoLabelColon] f32 d;	}
+[Horizontal, NoBorder] type DispersionF64	{ [Label("")] f64 mean;	[Label("+/-"), NoLabelColon] f64 d;	}
+
+type DispersionVec2 { [Label("")] Vec2 mean; [Label("+/-"), NoLabelColon] Vec2 d; }
+type DispersionVec3 { [Label("")] Vec3 mean; [Label("+/-"), NoLabelColon] Vec3 d; }
+type DispersionVec4 { [Label("")] Vec4 mean; [Label("+/-"), NoLabelColon] Vec4 d; }
+
+//
+// Spline
+//
+
+enum SplineType
+{
+	linear,
+	cardinal,
+	catmullRom
+}
+
+[Summary("{position}")]
+[SceneView(semantic:"Type:KnotVec3")]
+type KnotVec3
+{
+			Vec3 position;
+	[Hide]	Vec3 tangentIn;
+	[Hide]	Vec3 tangentOut;
+
+	[Tool] [Range(0.0, 5.0)] f32 tension = 0.5;
+}
+
+[SceneView(semantic:"Type:ActorProperty")]
+type SplineVec3
+{
+	SplineType type = cardinal;
+	KnotVec3[] knots;
+}

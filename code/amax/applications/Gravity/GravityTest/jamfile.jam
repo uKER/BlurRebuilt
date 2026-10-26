@@ -1,0 +1,57 @@
+echo "Building GravityTest for $(PLATFORM)" ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+SubDir TOP Code MercuryGame Applications Gravity GravityTest ;
+
+IncludePath 
+GravityTest$(_PLATFORM)
+GravityTest$(_PLATFORM)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/Code/Mercury/Library/physics/gravity/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/testsections/include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+;
+
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+./Main.cpp
+./Physics/SectionPhysics.cpp
+./Physics/TestPhysics.cpp
+;
+
+LinkLibraries GravityTest :
+		core system display render camera2 input resource framework testsections debugsystems zlib gravity
+		;
+
+Application GravityTest : $(SRC) : stdafx.cpp ;
+
+ExportVcproj GravityTest ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library graphics display ;
+SubInclude TOP code mercury library graphics render ;
+SubInclude TOP code mercury library graphics camera2 ;
+SubInclude TOP code mercury library physics gravity ;
+SubInclude TOP code mercury library util input ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys TestSections ;
+SubInclude TOP Code Mercury Library Gamesys DebugSystems ;
+SubInclude TOP code vendor zlib current_mercury  ;

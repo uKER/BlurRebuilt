@@ -1,0 +1,22 @@
+Object Index: 4, Value: -28.75, SP: MIN
+Object Index: 3, Value: -23.305, SP: MIN
+Object Index: 7, Value: -20.152, SP: MIN
+Object Index: 2, Value: -14.733, SP: MIN
+Object Index: 4, Value: -10.934, SP: MAX
+Object Index: 3, Value: -9.6282, SP: MAX
+Object Index: 2, Value: -9.4218, SP: MAX
+Object Index: 7, Value: -8.4742, SP: MAX
+Object Index: 5, Value: -4.2751, SP: MIN
+Object Index: 8, Value: -3.3807, SP: MIN
+Object Index: 8, Value: -1.2727, SP: MAX
+Object Index: 9, Value: -3.8913e-002, SP: MIN
+Object Index: 9, Value: 1.09, SP: MAX
+Object Index: 1, Value: 4.1189, SP: MIN
+Object Index: 0, Value: 8.9069, SP: MIN
+Object Index: 5, Value: 13.277, SP: MAX
+Object Index: 1, Value: 15.785, SP: MAX
+Object Index: 6, Value: 18.396, SP: MIN
+Object Index: 0, Value: 18.799, SP: MAX
+Object Index: 6, Value: 21.026, SP: MAX
+
+MAX

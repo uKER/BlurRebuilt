@@ -1,0 +1,137 @@
+# Set up the include paths
+
+AMAXSHADERDIR = [ FSubDirPath TOP Code Amax Game Shaders ] ;
+MERCURYSHADERDIR = [ FSubDirPath TOP Code Mercury Library Graphics Shader ] ;
+
+IncludePath 
+$(AMAXSHADERDIR)
+$(MERCURYSHADERDIR)/include
+;
+
+# To be included in any Mercury/MercuryGame application that needs shaders
+
+CPFile $(AMAXSHADERDIR)/psConstants.cp ;
+CPFile $(AMAXSHADERDIR)/psTextures.sp ;
+CPFile $(AMAXSHADERDIR)/vsConstants.cv ;
+
+if $(PLATFORM) = PS3
+{
+	rule ExpandWithLighting
+	{
+		return
+		[ Expand
+			"<_LN>-D NIGHT_LIGHTING "
+			:
+			[ Combinations $(<) ]
+		] ;
+	}
+}
+else
+{
+	rule ExpandWithLighting
+	{
+		return
+		[ Expand
+			" "
+			"<_LN>-D NIGHT_LIGHTING "
+			:
+			[ Combinations $(<) ]
+		] ;
+	}
+}
+
+rule ExpandWithSkinning
+{
+	return [ Expand "<_skin>-D ENABLE_SKINNING " : [ ExpandWithLighting $(<) ] ] ;
+}
+
+rule MercuryEffect
+{
+	Effects $(MERCURYSHADERDIR)/source/$(<) : [ ExpandWithLighting $(>) ] ;
+}
+
+rule AmaxEffect
+{
+	Effects $(AMAXSHADERDIR)/$(<) : [ ExpandWithLighting $(>) ] ;
+}
+
+rule AmaxSkinnedEffect
+{
+	Effects $(AMAXSHADERDIR)/$(<) : [ ExpandWithSkinning $(>) ] ;
+}
+
+# Common Optimisations
+NO_BUMP		= "<_NB>-D NO_BUMPMAP " ;
+NO_EMIS		= "<_NE>-D NO_EMISSIVE " ;
+NO_DETAIL	= "<_ND>-D NO_DETAIL " ;
+NO_DIRT		= "<_NG>-D NO_DIRT " ;
+NO_LMAP		= "<_NL>-D NO_LIGHTMAP " ;
+NO_MTL		= "<_NM>-D NO_MATERIALMAP " ;
+NO_SPEC		= "<_NS>-D NO_SPECULAR " ;
+NO_VTXCOL	= "<_NV>-D NO_VTXCOL " ;
+NO_WLDNRM	= "<_NW>-D NO_WORLDNORMAL " ;
+
+# Shaders
+
+if $(SKIP_CUTSCENE_SHADERS) != 1
+{
+  AmaxEffect CS_Default.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Default.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_Eye.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Eye.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_Fabric.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Fabric.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_Glass.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Glass.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_Hair.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Hair.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_HairTuft.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_HairTuft.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_Mouth.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Mouth.fx : $(NO_VTXCOL) ;
+  AmaxEffect CS_Skin.fx : $(NO_VTXCOL) ;
+  AmaxSkinnedEffect CS_Skin.fx : $(NO_VTXCOL) ;
+}
+
+AmaxEffect AnimatedNeon.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect DecalFade.fx : $(NO_LMAP) $(NO_MTL) $(NO_VTXCOL) ;
+AmaxEffect Default.fx Material.fx : $(NO_BUMP) $(NO_LMAP) $(NO_MTL) $(NO_VTXCOL) $(NO_SPEC) ;
+AmaxEffect Default_Skin.fx : $(NO_BUMP) $(NO_EMIS) $(NO_LMAP) $(NO_MTL) $(NO_SPEC) $(NO_VTXCOL) ;
+AmaxEffect DetailColour.fx : $(NO_BUMP) $(NO_LMAP) $(NO_MTL) $(NO_VTXCOL) ;
+AmaxEffect DetailColourTwoMtl.fx : $(NO_BUMP) $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect Foliage.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect FlashingNeon.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect FlickeringNeon.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect HighVis.fx : $(NO_BUMP) $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxSkinnedEffect HighVis.fx : $(NO_BUMP) $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect HighVisBarrier.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect Ocean.fx OceanReflect.fx OceanFakeReflect.fx : $(NO_LMAP) ;
+AmaxEffect Puddle.fx : $(NO_BUMP) $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect Road.fx : $(NO_DETAIL) $(NO_DIRT) $(NO_LMAP) $(NO_SPEC) $(NO_VTXCOL) $(NO_WLDNRM) ;
+AmaxEffect RoadN.fx : $(NO_DETAIL) $(NO_DIRT) $(NO_LMAP) $(NO_SPEC) $(NO_VTXCOL) ;
+AmaxEffect RoadTwoSpec.fx : $(NO_DETAIL) $(NO_DIRT) $(NO_LMAP) $(NO_VTXCOL) $(NO_WLDNRM) ;
+AmaxEffect RoadTwoSpecN.fx : $(NO_DETAIL) $(NO_DIRT) $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect RoadDecal.fx : $(NO_LMAP) $(NO_SPEC) $(NO_VTXCOL) ;
+AmaxEffect ScreenFacingSprite.fx Billboard.fx FoliageBillboard.fx SyntheticBillboard.fx ;
+AmaxEffect ScrollFade.fx AutoScrollFade.fx : $(NO_LMAP) ;
+AmaxSkinnedEffect ScrollFade.fx : $(NO_LMAP) ;
+AmaxEffect ScrollUVNeon.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect SpeedTree.fx SpeedTreeLeaf.fx ;
+AmaxEffect Water.fx WaterCubeMap.fx WaterFlow.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+Effects $(MERCURYSHADERDIR)/source/Invalid.fx ;
+
+AmaxEffect Effects/CarLightFlare.fx ;
+AmaxEffect Effects/FlashingLightFlare.fx ;
+AmaxEffect Effects/LightFlare.fx ;
+AmaxEffect Effects/LightFlareCameraFade.fx ;
+AmaxEffect Effects/SoftLightFlare.fx ;
+
+AmaxEffect Advert.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+AmaxEffect AdvertTwoLayer.fx : $(NO_LMAP) $(NO_VTXCOL) ;
+
+
+#if $(GAME_DIR) && $(PLATFORM) = PC
+#{
+#	echo Sorcery exporting ;
+#	SorceryFX $(GAME_DIR)/sorcery/main/schema/Amax/Graphics/default_fx.txt : $(AMAXSHADERDIR)/Default.fx ;
+#}

@@ -1,0 +1,66 @@
+#include "..\psCommon.h"
+
+float4		g_Settings			: register(CCP_SETTINGS);
+sampler2D	g_Texture0			: register(s0);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+#if defined(BLUR_DX11)
+	// [Blur2PC] Preserve the TEXCOORD register emitted before uv by vsMultiTexture.
+	float4 MyWorldPosition		: TEXCOORD3;
+#endif
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+float4 sqr(float4 v) { return 0.25f+v*0.75f; }
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float4 colour = input.Colour;
+	float tint = g_Settings.x;//0.15f;
+	float power = g_Settings.y;//1.0f;
+	float darken = g_Settings.z;//0.5f;
+	float vig = g_Settings.w;//6.0f;
+
+	float2 off = { (1.0f / 256.0f) * (9.0f / 16.0f), 1.0f / 256.0f };
+
+	float4 r1 = sqr(tex2D(g_Texture0, input.uv + off * float2(+1.0f, +1.0f)));
+	float4 r2 = sqr(tex2D(g_Texture0, input.uv + off * float2(-1.0f, +1.0f)));
+	float4 r3 = sqr(tex2D(g_Texture0, input.uv + off * float2(+1.0f, -1.0f)));
+	float4 r4 = sqr(tex2D(g_Texture0, input.uv + off * float2(-1.0f, -1.0f)));
+	
+	float4 r5 = sqr(tex2D(g_Texture0, input.uv + off * float2(+2.0f, 0.0f)));
+	float4 r6 = sqr(tex2D(g_Texture0, input.uv + off * float2(-2.0f, 0.0f)));
+	float4 r7 = sqr(tex2D(g_Texture0, input.uv + off * float2(0.0f, +2.0f)));
+	float4 r8 = sqr(tex2D(g_Texture0, input.uv + off * float2(0.0f, -2.0f)));
+	
+	float4 r9 = sqr(tex2D(g_Texture0, input.uv + off * float2(+3.0f, +3.0f)));// * 0.5f;
+	float4 r10 = sqr(tex2D(g_Texture0, input.uv + off * float2(-3.0f, +3.0f)));// * 0.5f;
+	float4 r11 = sqr(tex2D(g_Texture0, input.uv + off * float2(+3.0f, -3.0f)));// * 0.5f;
+	float4 r12 = sqr(tex2D(g_Texture0, input.uv + off * float2(-3.0f, -3.0f)));// * 0.5f;
+
+	float4 c = (r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8 + r9 + r10 + r11 + r12) / 12;
+
+	float g = (c.r * 0.3f) + (c.g * 0.59f) + (c.b * 0.11f);
+
+	float4 result = lerp(g * colour, c, tint);
+
+	float n = length(input.uv - float2(0.5f, 0.5f));
+
+	result /= (1.0f + ((vig*n*n) * (vig*n*n))) * 0.5f;
+
+	result = pow(result, power);
+
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	OUT.Colour = result * darken;
+	OUT.Colour.a = input.Colour.a;
+
+	return OUT;
+}

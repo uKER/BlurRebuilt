@@ -1,0 +1,7 @@
+#define ENABLE_WIND
+#define ENABLE_ALPHA_ENHANCE
+#define ENABLE_MIPMAP_ALPHA_ENHANCE
+#define ALPHA_TO_COVERAGE
+#define REDUCE_DYNAMIC_LIGHTING
+
+#include "ScreenFacingSprite.fx"

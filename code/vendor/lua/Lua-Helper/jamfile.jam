@@ -1,0 +1,20 @@
+SubDir TOP Code Vendor Lua Lua-Helper ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath 
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(TOP)/code/vendor/lua/lua-5.1.4/src
+$(TOP)/code/vendor/lua/lua-helper/include
+$(MERCURY)/ui/include
+$(MERCURY)/util/lua_shared/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(MERCURY)/common/misc_shared/include
+;
+
+SRC =
+./src/LuaDebugger.cpp
+;
+
+Library lua_helper : $(SRC) ;

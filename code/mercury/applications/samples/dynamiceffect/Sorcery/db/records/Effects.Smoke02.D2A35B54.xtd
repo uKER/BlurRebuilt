@@ -1,0 +1,25 @@
+xt
+	field __id "D2A35B54"
+	field __name "Effects.Smoke02"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+	end
+	field airResistance "0"
+	field blendMode "Alpha"
+	array children
+	end
+	array colourCurveA
+	end
+	array colourCurveRGB
+	end
+	field diffuseTexture "Smoke05"
+	field name "Smoke02"
+	field shape "RotatingSprite"
+	array sizeCurveX
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

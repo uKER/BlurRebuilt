@@ -1,0 +1,17 @@
+SubDir TOP Code Tools spt_billboard spt_billboard_def ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/tools/spt_billboard/include/spt_billboard
+$(TOP)/code/tools/spt_billboard/include/spt_billboard_def
+./
+;
+
+SRC =
+../source/spt_billboard_def/TreeDefinition.cpp
+../source/spt_billboard_def/TreeRendererSettings.cpp
+;
+
+Library spt_billboard_def : $(SRC) : stdafx.cpp ;
+

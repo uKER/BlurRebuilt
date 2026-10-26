@@ -1,0 +1,44 @@
+SubDir TOP Code Vendor Lua lua-5.0.2 ;
+
+Define _CRT_SECURE_NO_WARNINGS ;
+
+IncludePath
+$(TOP)/Code/vendor/lua/lua-5.0.2/include
+$(TOP)/Code/vendor/lua/lua-5.0.2/src
+;
+
+SRC =
+src/lapi.c
+src/lcode.c
+src/ldebug.c
+src/ldo.c
+src/ldump.c
+src/lfunc.c
+src/lgc.c
+src/llex.c
+src/lmem.c
+src/lobject.c
+src/lopcodes.c
+src/lparser.c
+src/lstate.c
+src/lstring.c
+src/ltable.c
+src/ltests.c
+src/ltm.c
+src/lundump.c
+src/lvm.c
+src/lzio.c
+src/lib/lauxlib.c
+src/lib/lbaselib.c
+src/lib/ldblib.c
+src/lib/liolib.c
+src/lib/lmathlib.c
+src/lib/loadlib.c
+src/lib/lstrlib.c
+src/lib/ltablib.c
+#src/lua/lua.c
+#src/luac/luac.c
+#src/luac/print.c
+;
+
+Library lua_502 : $(SRC) ;

@@ -1,0 +1,349 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	BuildSystem="vsbuild">
+	<Config
+		Name="Debug"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/debug/libbdsocket.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -g -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<Config
+		Name="Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/release/libbdsocket.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<CustomFolders>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+		</Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters="">
+		</Folder>
+	</CustomFolders>
+	<Files AutoFolders="PackageView">
+<F N="bdAddressMap.cpp"/>
+<F N="bdAddressMap.h"/>
+<F N="bdAddrHandle.cpp"/>
+<F N="bdAddrHandle.h"/>
+<F N="bdAddrHandleRefWrapper.cpp"/>
+<F N="bdAddrHandleRefWrapper.h"/>
+<F N="bdPacketInterceptor.cpp"/>
+<F N="bdPacketInterceptor.h"/>
+<F N="bdSecurityKeyMap.cpp"/>
+<F N="bdSecurityKeyMap.h"/>
+<F N="bdSecurityKeyMapListener.h"/>
+<F N="bdServiceBandwidthArbitrator.cpp"/>
+<F N="bdServiceBandwidthArbitrator.h"/>
+<F N="bdSocketRouter.cpp"/>
+<F N="bdSocketRouter.h"/>
+<F N="bdSocketRouterConfig.cpp"/>
+<F N="bdSocketRouterConfig.h"/>
+<Folder Name = "bdDTLS">
+<F N="bdDTLS/bdDTLSAssociation.cpp"/>
+<F N="bdDTLS/bdDTLSAssociation.h"/>
+<F N="bdDTLS/bdDTLSPackets.h"/>
+<Folder Name = "bdPacket">
+<F N="bdDTLS/bdPacket/bdDTLSCookieAck.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSCookieAck.h"/>
+<F N="bdDTLS/bdPacket/bdDTLSCookieEcho.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSCookieEcho.h"/>
+<F N="bdDTLS/bdPacket/bdDTLSData.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSData.h"/>
+<F N="bdDTLS/bdPacket/bdDTLSError.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSError.h"/>
+<F N="bdDTLS/bdPacket/bdDTLSHeader.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSHeader.h"/>
+<F N="bdDTLS/bdPacket/bdDTLSInit.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSInit.h"/>
+<F N="bdDTLS/bdPacket/bdDTLSInitAck.cpp"/>
+<F N="bdDTLS/bdPacket/bdDTLSInitAck.h"/>
+</Folder>
+</Folder>
+<Folder Name = "bdNAT">
+<F N="bdNAT/bdIPDiscoveryClient.cpp"/>
+<F N="bdNAT/bdIPDiscoveryClient.h"/>
+<F N="bdNAT/bdIPDiscoveryConfig.cpp"/>
+<F N="bdNAT/bdIPDiscoveryConfig.h"/>
+<F N="bdNAT/bdIPDiscoveryServer.cpp"/>
+<F N="bdNAT/bdIPDiscoveryServer.h"/>
+<F N="bdNAT/bdNAT.h"/>
+<F N="bdNAT/bdNATTravClient.cpp"/>
+<F N="bdNAT/bdNATTravClient.h"/>
+<F N="bdNAT/bdNATTravClientData.cpp"/>
+<F N="bdNAT/bdNATTravClientData.h"/>
+<F N="bdNAT/bdNATTravListener.cpp"/>
+<F N="bdNAT/bdNATTravListener.h"/>
+<F N="bdNAT/bdNATTravServer.cpp"/>
+<F N="bdNAT/bdNATTravServer.h"/>
+<F N="bdNAT/bdNATTypeDiscoveryClient.cpp"/>
+<F N="bdNAT/bdNATTypeDiscoveryClient.h"/>
+<F N="bdNAT/bdNATTypeDiscoveryConfig.cpp"/>
+<F N="bdNAT/bdNATTypeDiscoveryConfig.h"/>
+<F N="bdNAT/bdNATTypeDiscoveryServer.cpp"/>
+<F N="bdNAT/bdNATTypeDiscoveryServer.h"/>
+<Folder Name = "bdPacket">
+<F N="bdNAT/bdPacket/bdIPDiscoveryPacket.cpp"/>
+<F N="bdNAT/bdPacket/bdIPDiscoveryPacket.h"/>
+<F N="bdNAT/bdPacket/bdIPDiscoveryPacketReply.cpp"/>
+<F N="bdNAT/bdPacket/bdIPDiscoveryPacketReply.h"/>
+<F N="bdNAT/bdPacket/bdNATTraversalPacket.cpp"/>
+<F N="bdNAT/bdPacket/bdNATTraversalPacket.h"/>
+<F N="bdNAT/bdPacket/bdNATTypeDiscoveryPacket.cpp"/>
+<F N="bdNAT/bdPacket/bdNATTypeDiscoveryPacket.h"/>
+<F N="bdNAT/bdPacket/bdNATTypeDiscoveryPacketReply.cpp"/>
+<F N="bdNAT/bdPacket/bdNATTypeDiscoveryPacketReply.h"/>
+</Folder>
+</Folder>
+<Folder Name = "bdQoS">
+<F N="bdQoS/bdQoS.h"/>
+<F N="bdQoS/bdQoSProbe.cpp"/>
+<F N="bdQoS/bdQoSProbe.h"/>
+<F N="bdQoS/bdQoSProbeListener.cpp"/>
+<F N="bdQoS/bdQoSProbeListener.h"/>
+<F N="bdQoS/bdQoSRemoteAddr.h"/>
+<Folder Name = "bdPacket">
+<F N="bdQoS/bdPacket/bdQoSReplyPacket.cpp"/>
+<F N="bdQoS/bdPacket/bdQoSReplyPacket.h"/>
+<F N="bdQoS/bdPacket/bdQoSRequestPacket.cpp"/>
+<F N="bdQoS/bdPacket/bdQoSRequestPacket.h"/>
+</Folder>
+</Folder>
+<Folder Name = "bdRelay">
+<F N="bdRelay/bdRelayPacket.h"/>
+<F N="bdRelay/bdRelayRouteManager.cpp"/>
+<F N="bdRelay/bdRelayRouteManager.h"/>
+<F N="bdRelay/bdRelaySocketRouter.cpp"/>
+<F N="bdRelay/bdRelaySocketRouter.h"/>
+<Folder Name = "bdPacket">
+<F N="bdRelay/bdPacket/bdRelayerInfo.cpp"/>
+<F N="bdRelay/bdPacket/bdRelayerInfo.h"/>
+<F N="bdRelay/bdPacket/bdRelayFinal.cpp"/>
+<F N="bdRelay/bdPacket/bdRelayFinal.h"/>
+<F N="bdRelay/bdPacket/bdRelayForward.cpp"/>
+<F N="bdRelay/bdPacket/bdRelayForward.h"/>
+<F N="bdRelay/bdPacket/bdRelayHeader.cpp"/>
+<F N="bdRelay/bdPacket/bdRelayHeader.h"/>
+<F N="bdRelay/bdPacket/bdRelayRouteAdd.cpp"/>
+<F N="bdRelay/bdPacket/bdRelayRouteAdd.h"/>
+<F N="bdRelay/bdPacket/bdRelayRouteRemove.cpp"/>
+<F N="bdRelay/bdPacket/bdRelayRouteRemove.h"/>
+</Folder>
+</Folder>
+	</Files>
+</Project>

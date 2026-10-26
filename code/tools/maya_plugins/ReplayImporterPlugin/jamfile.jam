@@ -1,0 +1,66 @@
+SubDir TOP Code tools maya_plugins replayimporterplugin ;
+
+SupportedTargets WIN32_TOOL ;
+
+AFTK_MAYA = 1 ;
+
+if $(AFTK_MAYA) = 1
+{
+	AFTK_LIBRARY = aftk_maya ;
+	Define NT_PLUGIN REQUIRE_IOSTREAM A3D_FILE_TRANSLATOR ;
+}
+else
+{
+	AFTK_LIBRARY = aftk ;
+	Define NT_PLUGIN REQUIRE_IOSTREAM XSI_FILE_TRANSLATOR ;
+}
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+TOOLS = $(TOP)/Code/Tools ;
+
+IncludePath
+./source
+$(TOP)/Code/Common
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(TOOLS)/Aftk/Aftk/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/Libs/Vendor/Xsiftk/5.11/h/Core
+$(TOP)/Libs/Vendor/Xsiftk/5.11/h/FTK
+$(TOP)/libs/vendor/maya/2008/include
+;
+
+SRC =
+source/aftk_translator_plugin/AftkTranslatorPlugin.cpp
+source/aftk_translator_plugin/EmailReport.cpp
+source/aftk_translator_plugin/Gui.cpp
+source/aftk_translator_plugin/MayaSubscriber.cpp
+;
+
+mayalibs = foundation.lib OpenMaya.lib OpenMayaUI.lib Image.lib OpenMayaAnim.lib OpenMayaFX.lib OpenMayaRender.lib ;
+
+LINKLIBS +=	$(TOP)/libs/vendor/maya/2008/lib/$(mayalibs) opengl32.lib winmm.lib user32.lib ws2_32.lib 
+			$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk.lib 
+			$(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2005.lib ;
+			
+			
+LINKFLAGS += /DLL /export:initializePlugin /export:uninitializePlugin ;
+
+LinkLibraries replayimporter_plugin : 
+	core 
+	system 
+	misc_shared
+	zlib
+	$(AFTK_LIBRARY) ;
+
+DLL replayimporter_plugin : $(SRC) : stdafx.cpp ;
+
+ExportVcproj replayimporter_plugin ;
+
+EmbedManifestDLL $(BIZARRE_ROOT)/tools/art_tools/maya/plugins/2008/replayImport_WIP.mll : replayimporter_plugin.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Tools Aftk Aftk ;

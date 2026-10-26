@@ -1,0 +1,33 @@
+SubDir TOP Code Tools Lux Lux_Common ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Common
+$(TOP)/Libs/Vendor/CommonC++/current/include
+$(TOP)/Code/Tools/Lux
+$(TOP)/Libs/Vendor/Xerces/2.5.0/src
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+$(TOP)/Libs/Vendor/OpenIL/current/include
+;
+
+SRC =
+#AlienBrain.cpp
+Bounds.cpp
+#D3dImageLoader.cpp
+#D3dPrimitives3D.cpp
+#D3dTextureManager.cpp
+LightingPass.cpp
+LpvsAftkProgressNotification.cpp
+LpvsUtility.cpp
+mdump.cpp
+MemoryDbg.cpp
+SamplePoints.cpp
+StringManipulation.cpp
+TexPreprocess.cpp
+VirtualMemory.cpp
+;
+
+Library lux_core : source/lux_common/$(SRC) : stdafx.cpp ;
+VcprojGroup TOP Code Tools Lux : Lux ;

@@ -1,0 +1,162 @@
+SubDir TOP Code Mercury Library Common Core ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Vendor/CxxTest/Current
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+;
+
+#echo $(TARGET) ;
+#echo -- $(USERNAME) ;
+
+if $(USERNAME) = jdenton
+{
+    Define USER_JDENTON ;
+    
+#    if $(TARGET) = "XBOX_360"
+#    {
+#	    echo 360 QXSTALLS ;
+#	    OPTIM += "/FAcs /QXSTALLS" ;
+#    }
+}
+
+
+SRC =
+<maths>./source/maths/Constants.cpp
+./source/maths/hvec/BigMatrix.cpp
+./source/maths/hvec/Complex.cpp
+./source/maths/hvec/Constants.cpp
+./source/maths/hvec/FP.cpp
+./source/maths/hvec/Geometry.cpp
+./source/maths/hvec/Geometry2d.cpp
+./source/maths/hvec/Matrix.cpp
+./source/maths/hvec/Quaternion.cpp
+./source/maths/hvec/RGBA.cpp
+./source/maths/hvec/Scalar.cpp
+./source/maths/hvec/Trigonometry.cpp
+./source/maths/hvec/Vector.cpp
+./source/maths/hvec/VectorConst.cpp
+./source/maths/hvec/TableBernoulli.cpp
+./source/maths/hvec/TableSin.cpp
+./source/maths/hvec/TableCos.cpp
+./source/maths/hvec/TableTan.cpp
+./source/maths/hvec/TableArcSin.cpp
+./source/maths/hvec/TableArcTan.cpp
+./source/maths/hvec/TableLog.cpp
+./source/maths/hvec/TableExp.cpp
+<new>./source/maths/hvec/new/VF32.cpp
+<new>./source/maths/hvec/new/Vec4F32.cpp
+<new>./source/maths/hvec/new/Mat33.cpp
+<new>./source/maths/hvec/new/Mat43.cpp
+<new>./source/maths/hvec/new/Mat44.cpp
+<new>./source/maths/hvec/new/Mat55.cpp
+<new>./source/maths/hvec/new/Mat66.cpp
+<new>./source/maths/hvec/new/Euler.cpp
+<new>./source/maths/hvec/new/Quaternion.cpp
+<new>./source/maths/hvec/new/FFT.cpp
+<GA>./source/maths/hvec/New/GA/Const.cpp
+./source/allocators/CoreMemoryNonTracked.cpp
+./source/allocators/stackallocator.cpp
+./source/utility/BizAssert.cpp
+./source/utility/CoreAssert.cpp
+./source/utility/CoreDebug.cpp
+./source/utility/endian.cpp
+./source/containers/rlebitvector.cpp
+./source/containers/String.cpp
+./source/threads/Event.cpp
+./source/threads/Mutex.cpp
+./source/threads/RwLock.cpp
+./source/threads/Semaphore.cpp
+./source/threads/Thread.cpp
+./source/threads/ThreadLocalStorage.cpp
+<btl>./source/btl/allocators/stackallocator.cpp
+;
+
+SPUSRC =
+./source/maths/hvec/SIMD.cpp
+;
+
+PS3SRC =
+./source/threads/WaitForObjects.cpp
+;
+
+
+SRC += $($(PLATFORM)SRC) ;
+
+SRC = [ Batch $(SRC) : CorePch.h ] ;
+
+### These files can't be batched
+SRC +=
+./source/allocators/CoreMemoryAligned.cpp
+;
+
+if $(PLATFORM) = PS3
+{
+	SRC += ./source/allocators/CoreMemoryContainer.cpp ;
+}
+
+SRC += $(SPUSRC) ;
+
+Library core : $(SRC) : CorePch.cpp : CorePch.h ;
+
+if $(PLATFORM) = PS3
+{
+	SPULibrary core_spu : <spu>$(SPUSRC) ;
+}
+
+###### Unit test
+
+IncludePath $(TOP)/Code/Mercury/Library/Common/System/include ;
+
+TESTS =
+test/btl/allocators/pool.h
+test/btl/allocators/stackallocator.h
+test/btl/containers/bitvector.h
+test/btl/containers/chainedhashtable.h
+test/btl/containers/hashtable.h
+test/btl/containers/list.h
+test/btl/containers/performance_tests.h 
+test/btl/containers/rlebitvector.h
+test/btl/containers/sortedbinarytree.h
+test/btl/containers/skiplist.h
+test/btl/containers/vector.h
+test/btl/utility/autopointer.h
+test/btl/utility/pair.h
+test/btl/utility/scopedpointer.h
+test/btl/utility/string.h
+test/btl/utility/types.h
+test/threads/testatomic.h
+test/threads/testmutex.h
+test/threads/testevent.h
+test/threads/testrwlock.h
+test/threads/testsemaphore.h
+test/threads/testspuevent.h
+#test/threads/testatomicmutex.cpp
+#test/threads/testspurwlock.cpp
+;
+PS3TESTS =
+test/threads/testspuevent.cpp(SPU)
+test/threads/testatomicmutex.cpp(SPU)
+test/threads/testspurwlock.cpp(SPU)
+;
+
+CxxTest core : $(TESTS) : $($(PLATFORM)TESTS) ;
+
+LinkLibraries core : core system ;
+
+SubInclude TOP Code Mercury Library Common System ;
+
+###### Setup the default vcproj groups for mercury
+
+VcprojGroup TOP Code Mercury Library AI : AI ;
+VcprojGroup TOP Code Mercury Library Common : Common ;
+VcprojGroup TOP Code Mercury Library Graphics : Graphics ;
+VcprojGroup TOP Code Mercury Library GameSys : GameSys ;
+VcprojGroup TOP Code Mercury Library Physics : Physics ;
+VcprojGroup TOP Code Mercury Library Util : Util ;
+VcprojGroup TOP Code Tools : Tools ;
+VcprojGroup TOP Vendor : Vendor ;
+

@@ -1,0 +1,16 @@
+SubDir TOP Code Mercury Library Util Lua_Shared ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Vendor/lua/lua-5.1.4/src
+;
+
+SRC = 
+source/ldebug2.cpp
+source/LuaAlloc.cpp
+source/LuaHelper.cpp
+;
+
+Library lua_shared : $(SRC) : LuaSharedPch.cpp : LuaSharedPch.h ;

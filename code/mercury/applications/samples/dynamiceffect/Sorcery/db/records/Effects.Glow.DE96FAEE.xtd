@@ -1,0 +1,99 @@
+xt
+	field __id "DE96FAEE"
+	field __name "Effects.Glow"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+	end
+	field airResistance "2.4"
+	array animation
+	end
+	field blendMode "Additive"
+	array children
+	end
+	array colourCurveA
+	end
+	array colourCurveRGB
+	end
+	array colourOverTime
+	end
+	field diffuseTexture "a0_Flare02"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	block light
+		field enabled "1"
+		field intensity "2"
+		field radius "5"
+	end
+	block limitSize
+	end
+	field name "Glow"
+	block physics
+	end
+	block render
+		array animation
+		end
+		field blendMode "Additive"
+		array colourCurveA
+		end
+		array colourOverTime
+		end
+		field diffuseTexture "a0_Flare02"
+		block filterColour
+		end
+		block light
+			field emit "1"
+			field enabled "1"
+			field intensity "1"
+			field radius "8"
+			field receive "0"
+		end
+		block limitSize
+		end
+		field shape "Sprite"
+		array sizeCurveX
+			block 
+				field __id "Effe92B14C97"
+				field time "0.000000"
+				field value ".75"
+			end
+			block 
+				field __id "EffeAAB7D952"
+				field time "0.494624"
+				field value "1.000000"
+			end
+			block 
+				field __id "Effe34479894"
+				field time "1.000000"
+				field value ".75"
+			end
+		end
+		array sizeCurveY
+		end
+		array sizeCurveZ
+		end
+	end
+	field shape "Sprite"
+	array sizeCurveX
+		block 
+			field __id "Effe5FFE7400"
+			field time "0.000000"
+			field value "1"
+		end
+		block 
+			field time "0.510753"
+			field value "1.482558"
+		end
+		block 
+			field time "1.000000"
+			field value "0.959302"
+		end
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+	field type "Normal"
+end

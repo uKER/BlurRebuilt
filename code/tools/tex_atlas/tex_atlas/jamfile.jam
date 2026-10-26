@@ -1,0 +1,36 @@
+SubDir TOP Code Tools tex_atlas tex_atlas ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(TOP)/Code/Common
+$(MERCURY)/Common/Core/Include
+$(MERCURY)/Common/System/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/code/Tools/File_Tag_db/File_Tag_db/include
+$(TOP)/Code/Tools/Tex_Atlas/include
+;
+
+TEXATLAS_SRC = 
+../source/Atlas.cpp
+../source/AutoScaleCropSheet.cpp
+../source/BMPImageHeaderBuilder.cpp
+#../source/Core.cpp
+../source/CropSheet.cpp
+#../source/Database.cpp
+../source/FixedSizeCropSheet.cpp
+../source/GridCropSheet.cpp
+#../source/Image.cpp
+../source/ImageCache.cpp
+../source/ImageHeader.cpp
+#../source/InputList.cpp
+../source/Progress.cpp
+../source/ScaleCropSheet.cpp
+../source/SortedTextureList.cpp
+../source/Space.cpp
+../source/TexturePackingLists.cpp
+../source/TGAImageHeaderBuilder.cpp
+;
+
+Library tex_atlas : $(TEXATLAS_SRC) : stdafx.cpp ;

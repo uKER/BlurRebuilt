@@ -1,0 +1,28 @@
+#include "deferred/shaders/psCommon.h"
+#include "deferred/shaders/psConstants.h"
+
+
+struct PS_INPUT
+{
+	float2	m_Offset	: TEXCOORD0;
+	float3	m_Colour	: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float2 radius = abs(input.m_Offset.xy);
+	float factor = pow(saturate(1.f - dot(radius.xy,radius.xy)), 6.f); 
+	
+	output.m_Colour.rgb = factor * input.m_Colour.rgb;
+	output.m_Colour.a = 0.f;
+	
+	return output;
+}

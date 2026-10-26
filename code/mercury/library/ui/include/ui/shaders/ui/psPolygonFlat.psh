@@ -1,0 +1,22 @@
+#include "..\psCommon.h"
+#include "psUiLightCommon.h"
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+	float4 MyWorldPosition		: TEXCOORD3;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main( PS_INPUT IN )
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	OUT.Colour = CombineFog( IN.Colour, LightColour( IN.MyWorldPosition ) );
+	
+	return OUT;
+}

@@ -1,0 +1,92 @@
+#include "..\..\psCommon.h"
+
+sampler2D	colourTexture		: register(s0);
+#if defined(LOOKUP)
+sampler2D	lookupTexture		: register(s1);
+#endif
+#if defined(REDUCED_ALPHA)
+sampler2D	reducedAlphaTexture	: register(s2);
+#endif
+#if !defined(HDR) || !defined(HDRU32)
+sampler2D	luminanceTexture	: register(s15);
+#endif
+
+#if defined(PS3)
+#pragma texformat colourTexture RGBA8
+#pragma texformat lookupTexture LUMINANCE8
+#pragma texformat reducedAlphaTexture RGBA8
+#pragma texformat luminanceTexture FLOAT_R32
+#pragma disablepc all
+#endif
+
+real4		g_vSettings1		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_14);
+real4		g_vSettings2		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_15);
+
+#define		g_fMiddleGrey			g_vSettings1.x
+#define		g_fBrightPassThreshold	g_vSettings1.y
+#define		g_fBrightPassOffset		g_vSettings1.z
+
+#define		g_fScale				g_vSettings2.x
+#define		g_vLuminance			g_vSettings2.yzw
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+#if defined(HDRU32)
+	real4 sampleLuminance = h4tex2D(colourTexture, input.uv).rgba;
+	real3 sample = sampleLuminance.rgb;
+#else
+	real3 sample = h4tex2D(colourTexture, input.uv).rgb;
+#endif
+
+#if defined(REDUCED_ALPHA)
+	real4 reducedAlpha = h4tex2D(reducedAlphaTexture, input.uv);
+	sample = reducedAlpha.rgb + sample * reducedAlpha.a;
+#endif
+	
+#if defined(HDR) || defined(HDRU32)
+	// invert gamma
+	sample.rgb = sample.rgb * sample.rgb;
+#else
+	// tonemap the sample
+	sample.rgb *= g_fMiddleGrey / (tex2D(luminanceTexture, float2(0.5f, 0.5f)).r + 0.001f);
+#endif	
+
+#if defined(HDRU32)
+	real currentDot = dot(sample, g_vLuminance);
+	real scale = max(1.0h, (1.0h - sampleLuminance.a) * (1.0h / currentDot));
+	sample *= scale;
+#endif
+
+	real sum = dot(sample, real3(0.30h, 0.59h, 0.11h));
+#if defined(LOOKUP)
+	sum = h4tex2D(lookupTexture, float2(sum * 255.0f / 256.0f + 0.5f / 256.0f, 0.5f)).r;
+	sample *= sum;
+#else
+	sum = saturate(sum - g_fBrightPassThreshold) / sum;
+	sample *= sum;
+	sample /= (g_fBrightPassOffset + sample);
+#endif
+
+	// can't just apply 1.5 scale as this breaks other implementations
+	output.colour.rgb = sample.rgb * g_fScale;
+	
+	#ifdef GAMMA
+		output.colour.rgb = sqrt(output.colour.rgb);
+	#endif
+	
+	output.colour.a = 1.0h;
+		
+	return output;
+}

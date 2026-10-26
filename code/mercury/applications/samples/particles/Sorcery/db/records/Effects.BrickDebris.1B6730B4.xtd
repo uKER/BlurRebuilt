@@ -1,0 +1,257 @@
+xt
+	field __id "1B6730B4"
+	field __name "Effects.BrickDebris"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+		field y "-12"
+	end
+	array animation
+	end
+	field blendMode "None"
+	array children
+		block 
+			block child
+				block Rotation
+					block x
+						field variation "180"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block Spin
+					block x
+						field variation "50"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block colour
+					field a "0.513"
+					field b "0.720"
+					field g "0.713"
+					field r "0.727"
+				end
+				block colour2
+				end
+				field distribution "Sphere"
+				block distributionSize
+					field x ".5"
+					field y ".5"
+					field z ".5"
+				end
+				field effect "EA7BF38E"
+				block force
+				end
+				block life
+					field value ".5"
+				end
+				field repeating "1"
+				block size
+					field value "1"
+				end
+				field space "World"
+				array spawn
+					block 
+						block amount
+							field disable "0"
+							field value "60"
+						end
+						block cone
+						end
+						block direction
+						end
+						block duration
+							field value "1"
+						end
+						block position
+						end
+						block rotation
+							field x "0"
+						end
+					end
+				end
+				block speed
+					field value "1"
+				end
+				block speedInherited
+					field value ".5"
+				end
+			end
+			block intensitySpeed
+			end
+		end
+		block 
+			block child
+				block Rotation
+					block x
+						field variation "180"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block Spin
+					block x
+						field variation "50"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block colour
+					field a "0.110"
+					field b "0.840"
+					field g "0.830"
+					field r "0.837"
+				end
+				block colour2
+				end
+				block distributionSize
+				end
+				field effect "6D540D5C"
+				field emit "PerSecond"
+				block force
+				end
+				block life
+					field value ".75"
+					field variation ".25"
+				end
+				field repeating "1"
+				block size
+					field value ".6"
+					field variation ".1"
+				end
+				array spawn
+					block 
+						block amount
+							field disable "0"
+							field distance "0.25"
+							field value "0"
+						end
+						block cone
+							field outer "360"
+						end
+						block direction
+						end
+						block duration
+						end
+						block position
+						end
+					end
+				end
+				block speed
+					field value ".2"
+				end
+				block speedInherited
+				end
+			end
+			block intensitySpeed
+			end
+		end
+		block 
+			block child
+				block Rotation
+					block x
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block Spin
+					block x
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block colour
+					field a "1.000"
+					field b "0.000"
+					field g "0.000"
+					field r "1.000"
+				end
+				block colour2
+				end
+				field distribution "Sphere"
+				block distributionSize
+					field x ".5"
+					field y "0"
+					field z ".5"
+				end
+				field effect "DBC8B729"
+				block force
+				end
+				block life
+					field value ".5"
+					field variation ".2"
+				end
+				field repeating "1"
+				block size
+					field value ".1"
+				end
+				field space "World"
+				array spawn
+					block 
+						block amount
+							field disable "0"
+							field value "20"
+							field variation "10"
+						end
+						block cone
+							field inner "30"
+							field outer "180"
+						end
+						block direction
+						end
+						block duration
+						end
+						block position
+						end
+					end
+				end
+				block speed
+				end
+				block speedInherited
+				end
+			end
+			block intensitySpeed
+				field max "5"
+				field min "1"
+			end
+			field type "Collision"
+		end
+	end
+	field collisions "Planar"
+	array colourCurveA
+	end
+	array colourCurveRGB
+	end
+	field diffuseTexture "a0_Debris_Stone"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	field friction "1"
+	block light
+	end
+	block limitSize
+	end
+	field name "BrickDebris"
+	field restitution "0"
+	field shape "Cube"
+	array sizeCurveX
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

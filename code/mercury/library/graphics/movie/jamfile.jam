@@ -1,0 +1,46 @@
+SubDir TOP Code Mercury Library Graphics Movie ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Libs/Vendor/Bink/1.9r
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+source/Movie.cpp
+source/MovieBase.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+PS3SRC = 
+source/ps3/PS3Bink.cpp
+source/ps3/PS3Movie.cpp
+source/ps3/bink/gcmtextures.cpp
+;
+
+
+PCSRC =
+source/w32/W32Movie.cpp
+;
+
+SHADERSRC =
+include/movie/shaders/vsBink.vsh
+include/movie/shaders/psBink.psh
+include/movie/shaders/psBinkNoAlpha.psh
+;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library movie : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : stdafx.cpp ;

@@ -1,0 +1,358 @@
+#include <Render Lib/stdafx.h"
+
+#include <windows.h>
+
+#include <string>
+
+#include <D3DX9.h>
+#include <dxerr9.h>
+
+#include <common/BizMaths.h>
+
+#include <utility/maths.h>
+#include <common/CVector3Wrapper.h>
+#include <utility/vector.h>
+
+#include <Render Lib/Common.h>
+#include <Render Lib/SinCos.h>
+#include <Render Lib/D3dWindowProporties.h>
+#include <Render Lib/D3dWindow.h>
+
+#include <Render Lib/Typedefs.h>
+#include <Render Lib/Camera.h>
+
+using namespace SR;
+
+Camera::Camera()
+{
+	Reset();
+}
+
+Camera::~Camera()
+{
+    Clear();
+}
+
+Camera::Camera(D3dWindow* pD3dWindow)
+{
+	Reset();
+
+	m_pD3dWindow = pD3dWindow;
+
+    D3DXMatrixIdentity(&m_matView); // ensure that the device's view matrix is the identity
+
+    m_pD3dWindow->GetD3dDevicePtr()->SetTransform(D3DTS_VIEW,&m_matView); 
+}
+
+void Camera::SetD3dWindowPtr(D3dWindow* pD3dWindow)
+{
+	m_pD3dWindow = pD3dWindow;
+}
+
+void Camera::SetPosition(const PositionVector& position)
+{
+    m_vPosition[0] = position[0];
+	m_vPosition[1] = position[1];
+	m_vPosition[2] = position[2];
+    m_bMovedSinceLastUpdate = true;
+}
+
+void Camera::MoveForward(float fDist)
+{
+    m_vPosition += fDist*m_vFacing;
+    m_bMovedSinceLastUpdate = true;
+}   
+
+void Camera::MoveRight(float fDist)
+{
+    m_vPosition += fDist*m_vRight;
+    m_bMovedSinceLastUpdate = true;
+}
+
+void Camera::MoveUp(float fDist){
+    m_vPosition += fDist*m_vUp;
+    m_bMovedSinceLastUpdate = true;
+}
+
+void Camera::MoveInDirection(float fDist, D3DXVECTOR3 *pvDir)
+{
+    m_vPosition += fDist*(*pvDir);
+    m_bMovedSinceLastUpdate = true;
+}
+
+void Camera::RotateDown(float fAngle)
+{
+    m_fRotAboutRight += fAngle;
+    m_bMovedSinceLastUpdate = true;
+}
+
+void Camera::RotateRight(float fAngle)
+{
+    m_fRotAboutUp += fAngle;
+    m_bMovedSinceLastUpdate = true;
+}
+
+void Camera::Roll(float fAngle)
+{
+    m_fRotAboutFacing += fAngle;
+    m_bMovedSinceLastUpdate = true;
+}
+
+D3DXMATRIX Camera::GetCurrentMatrix() const
+{
+    D3DXMATRIX matTotal; // used to speed up the process by performing less matrix
+                        // multiplications.
+
+    // the matrices which represent the rotation about each of our 3 axes
+    D3DXMATRIX matRotAboutUp; 
+	D3DXMATRIX matRotAboutRight;
+	D3DXMATRIX matRotAboutFacing;
+
+	// Build rotation comopnent of matrix;
+
+	// rotate about right vector (pitch)
+    D3DXMatrixRotationAxis(&matRotAboutRight,&m_vRight,m_fRotAboutRight);
+
+	// rotate about up vector (yaw)
+    D3DXMatrixRotationAxis(&matRotAboutUp,&D3DXVECTOR3(0,1,0),m_fRotAboutUp);
+	
+	// rotate about direction vector (roll)
+    D3DXMatrixRotationAxis(&matRotAboutFacing,&m_vFacing,m_fRotAboutFacing);
+
+	// Multiply matrices to produce a rotation matrix for our local 
+	// coordinate system
+//	Quaternion temp;
+//	temp = temp * rightAxisRotation * upAxisRotation * directionAxisRotation;
+//	m_matTotal = temp.GetMatrix();
+    // concatenate them to form a total rotation matrix
+	matTotal = matRotAboutRight;
+	D3DXMatrixMultiply(&matTotal,&matRotAboutUp,&matTotal);
+	D3DXMatrixMultiply(&matTotal,&matRotAboutFacing,&matTotal);
+	
+	// transform 2 of the vectors by this matrix and get the third 
+	// using the cross product
+
+	D3DXVECTOR3 vFacing;
+    D3DXVECTOR3 vUp;
+    D3DXVECTOR3 vRight;
+
+	// Get right vector
+	D3DXVec3TransformCoord(&vRight, &m_vRight, &matTotal);
+	// Get up vector
+	D3DXVec3TransformCoord(&vUp, &m_vUp, &matTotal);
+	// Get dir vector
+	D3DXVec3Cross(&vFacing,&m_vRight,&m_vUp);
+
+    D3DXVec3Cross(&vUp,&vFacing,&vRight);
+
+    // remember to normalise vectors before putting them into the view matrix
+    D3DXVec3Normalize(&vRight,&vRight);
+    D3DXVec3Normalize(&vUp,&vUp);
+    D3DXVec3Normalize(&vFacing,&vFacing);
+
+    // used to compute the bottom row of the view matrix
+    float fView41,fView42,fView43;
+    fView41 = -D3DXVec3Dot(&vRight,&m_vPosition);
+    fView42 = -D3DXVec3Dot(&vUp,&m_vPosition);
+    fView43 = -D3DXVec3Dot(&vFacing,&m_vPosition);
+
+    return D3DXMATRIX( vRight.x, vUp.x, vFacing.x, 0.0f,
+                       vRight.y, vUp.y, vFacing.y, 0.0f,
+                       vRight.z, vUp.z, vFacing.z, 0.0f,
+                       fView41, fView42, fView43, 1.0f
+                      );
+
+}
+
+const D3DXMATRIX& Camera::GetLastUsedMatrix() const
+{
+	return m_matView;
+}
+
+bool Camera::OnUpdateDevice()
+{
+	if (m_pD3dWindow == 0)
+	{
+		return false;
+	}
+
+    D3DXMATRIX matTotal; // used to speed up the process by performing less matrix
+                        // multiplications.
+	D3DXMatrixIdentity(&matTotal);
+
+    // the matrices which represent the rotation about each of our 3 axes
+    D3DXMATRIX matRotAboutUp; 
+	D3DXMATRIX matRotAboutRight;
+	D3DXMATRIX matRotAboutFacing;
+
+	D3DXMatrixIdentity(&matRotAboutUp);
+	D3DXMatrixIdentity(&matRotAboutRight);
+	D3DXMatrixIdentity(&matRotAboutFacing);
+
+	// Build rotation comopnent of matrix;
+
+	// rotate about right vector (pitch)
+	D3DXMatrixRotationAxis(&matRotAboutRight,&m_vRight,m_fRotAboutRight);
+
+	// rotate about up vector (yaw)
+    D3DXMatrixRotationAxis(&matRotAboutUp,&D3DXVECTOR3(0,1,0),m_fRotAboutUp);
+	
+	// rotate about direction vector (roll)
+    //D3DXMatrixRotationAxis(&matRotAboutFacing,&m_vFacing,0.01);
+	//D3DXMatrixRotationAxis(&matRotAboutFacing,&m_vFacing,m_fRotAboutFacing);
+
+	// Multiply matrices to produce a rotation matrix for our local 
+	// coordinate system
+//	Quaternion temp;
+//	temp = temp * rightAxisRotation * upAxisRotation * directionAxisRotation;
+//	m_matTotal = temp.GetMatrix();
+    // concatenate them to form a total rotation matrix
+//	matTotal = matRotAboutRight;
+//	matTotal = matRotAboutUp;
+	D3DXMatrixMultiply(&matTotal,&matRotAboutRight,&matRotAboutUp);
+//	D3DXMatrixMultiply(&matTotal,&matRotAboutFacing,&matTotal);
+	
+	// transform 2 of the vectors by this matrix and get the third 
+	// using the cross product
+
+	D3DXVECTOR3 vFacing;
+    D3DXVECTOR3 vUp;
+    D3DXVECTOR3 vRight;
+
+	// Get right vector
+//	D3DXVec3TransformCoord(&vRight, &m_vRight, &matTotal);
+	// Get up vector
+//	D3DXVec3TransformCoord(&vUp, &m_vUp, &matTotal);
+	// Get dir vector
+//	D3DXVec3Cross(&vFacing,&m_vRight,&m_vUp);
+
+//    D3DXVec3Cross(&vUp,&vFacing,&vRight);
+
+    D3DXVec3TransformCoord(&vRight,&m_vRight,&matTotal);   
+	D3DXVec3TransformCoord(&vUp,&m_vUp,&matTotal);   
+	D3DXVec3Cross(&vFacing,&vRight,&vUp);
+
+    // are these two still perpandicular?
+//    if (fabs(D3DXVec3Dot(&m_vUp,&m_vRight)) > 0.01){      
+        // these aren't perpandicular anymore - get another using the cross product
+    D3DXVec3Cross(&vUp,&vFacing,&vRight);
+  //  }
+
+    // remember to normalise vectors before putting them into the view matrix
+    D3DXVec3Normalize(&vRight,&vRight);
+    D3DXVec3Normalize(&vUp,&vUp);
+    D3DXVec3Normalize(&vFacing,&vFacing);
+
+    // used to compute the bottom row of the view matrix
+    float fView41,fView42,fView43;
+    fView41 = -D3DXVec3Dot(&vRight,&m_vPosition);
+    fView42 = -D3DXVec3Dot(&vUp,&m_vPosition);
+    fView43 = -D3DXVec3Dot(&vFacing,&m_vPosition);
+
+    m_matView = D3DXMATRIX( vRight.x, vUp.x, vFacing.x, 0.0f,
+							vRight.y, vUp.y, vFacing.y, 0.0f,
+							vRight.z, vUp.z, vFacing.z, 0.0f,
+							fView41, fView42, fView43, 1.0f
+                      );
+
+	  	// save our newly calculated vectors
+	m_vRight= vRight;
+	m_vUp = vUp;
+	m_vFacing = vFacing;
+
+    HRESULT hr;
+
+    // update the device - if we fail then return the error code
+	hr = m_pD3dWindow->GetD3dDevicePtr()->SetTransform(D3DTS_VIEW,&m_matView);
+    if (FAILED(hr)){
+        return false;
+    }
+
+    // reset the various variables to reflect the new update
+    m_fRotAboutUp = m_fRotAboutRight = m_fRotAboutFacing = 0.0f;
+    m_bMovedSinceLastUpdate = false;
+
+	/*
+    HRESULT hr;
+    D3DXMATRIX matTotal; // used to speed up the process by performing less matrix
+                           // multiplications.
+
+      // the matrices which represent the rotation about each of our 3 axes
+      D3DXMATRIX matRotAboutUp, matRotAboutRight, matRotAboutFacing;
+
+      // bail if we haven't moved since the last update
+//      if (!m_bMovedSinceLastUpdate){
+  //       return S_OK;
+    //  }
+
+	  D3DXVECTOR3 vFakeUp = D3DXVECTOR3(0,1,0);
+      // get the rotation matrices for each rotation   
+      D3DXMatrixRotationAxis(&matRotAboutRight,&m_vRight,m_fRotAboutRight);
+      D3DXMatrixRotationAxis(&matRotAboutUp,&vFakeUp,m_fRotAboutUp);
+      D3DXMatrixRotationAxis(&matRotAboutFacing,&m_vFacing,m_fRotAboutFacing);
+
+      // concatenate them to form a total rotation matrix
+      D3DXMatrixMultiply(&matTotal,&matRotAboutUp,&matRotAboutRight);
+      D3DXMatrixMultiply(&matTotal,&matRotAboutFacing,&matTotal);
+   
+      // transform 2 of the vectors by this matrix and get the third using the cross product
+      D3DXVec3TransformCoord(&m_vRight,&m_vRight,&matTotal);   
+      D3DXVec3TransformCoord(&m_vUp,&m_vUp,&matTotal);   
+      D3DXVec3Cross(&m_vFacing,&m_vRight,&m_vUp);
+
+      // are these two still perpandicular?
+      if (fabs(D3DXVec3Dot(&m_vUp,&m_vRight)) > 0.01){      
+         // these suckers aren't perpandicular anymore - get another using the cross product
+         D3DXVec3Cross(&m_vUp,&m_vFacing,&m_vRight);
+      }
+
+      // remember to normalise vectors before putting them into the view matrix
+      D3DXVec3Normalize(&m_vRight,&m_vRight);
+      D3DXVec3Normalize(&m_vUp,&m_vUp);
+      D3DXVec3Normalize(&m_vFacing,&m_vFacing);
+
+      // used to compute the bottom row of the view matrix
+      float fView41,fView42,fView43;
+      fView41 = -D3DXVec3Dot(&m_vRight,&m_vPosition);
+      fView42 = -D3DXVec3Dot(&m_vUp,&m_vPosition);
+      fView43 = -D3DXVec3Dot(&m_vFacing,&m_vPosition);
+
+      m_matView = D3DXMATRIX( m_vRight.x, m_vUp.x, m_vFacing.x, 0.0f,
+                              m_vRight.y, m_vUp.y, m_vFacing.y, 0.0f,
+                              m_vRight.z, m_vUp.z, m_vFacing.z, 0.0f,
+                              fView41, fView42,    fView43,     1.0f
+                             );
+
+      // update the device - if we fail then return the error code
+	  hr = m_pD3dWindow->GetD3dDevicePtr()->SetTransform(D3DTS_VIEW,&m_matView);
+      if (FAILED(hr)){
+         return hr;
+      }
+
+      // reset the various variables to reflect the new update
+      m_fRotAboutUp = m_fRotAboutRight = m_fRotAboutFacing = 0.0f;
+      m_bMovedSinceLastUpdate = false;
+*/
+
+	return true;
+}
+
+void Camera::Reset()
+{
+    // initialise members
+	m_pD3dWindow = NULL;
+    m_bMovedSinceLastUpdate = false;
+    m_vPosition = D3DXVECTOR3(0.0f,0.0f,0.0f);  // start at the origin
+    m_vFacing = D3DXVECTOR3(0.0f,0.0f,1.0f);    // facing down the positive Z axis
+    m_vRight = D3DXVECTOR3(1.0f,0.0f,0.0f);     // with the positive X axis to the right
+    m_vUp = D3DXVECTOR3(0.0f,1.0f,0.0);         // and the positive Y axis up
+    m_fRotAboutUp = m_fRotAboutRight = m_fRotAboutFacing = 0.0f;
+
+    D3DXMatrixIdentity(&m_matView); // initialise the view matrix to the identity
+}
+
+void Camera::Clear()
+{
+	Reset();
+}
+

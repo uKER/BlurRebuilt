@@ -1,0 +1,1301 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="btl_test"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+<Platform Name="Xbox 360"/>
+<Platform Name="Win32"/>
+<Platform Name="x64"/>
+<Platform Name="x64"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Debug\" IntermediateDirectory="obj\Win32\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug test"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug -a test"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32\Debug\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Release\" IntermediateDirectory="obj\Win32\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release test"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release -a test"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32\Release\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Speed\" IntermediateDirectory="obj\Win32\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed test"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed -a test"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32\Speed\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Profile\" IntermediateDirectory="obj\Win32\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile test"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile -a test"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32\Profile\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Master\" IntermediateDirectory="obj\Win32\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master test"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master -a test"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32\Master\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Debug\" IntermediateDirectory="obj\Xbox_360\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug test"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug -a test"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Xbox_360\Debug\btl_test.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Release_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Release\" IntermediateDirectory="obj\Xbox_360\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release test"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release -a test"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Xbox_360\Release\btl_test.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Speed_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Speed\" IntermediateDirectory="obj\Xbox_360\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed test"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed -a test"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Xbox_360\Speed\btl_test.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Profile_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Profile\" IntermediateDirectory="obj\Xbox_360\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile test"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile -a test"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Xbox_360\Profile\btl_test.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Master_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Master\" IntermediateDirectory="obj\Xbox_360\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master test"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master -a test"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Xbox_360\Master\btl_test.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Debug_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Debug\" IntermediateDirectory="obj\Ps3\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug test"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug -a test"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Ps3\Debug\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Release\" IntermediateDirectory="obj\Ps3\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release test"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release -a test"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Ps3\Release\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Speed\" IntermediateDirectory="obj\Ps3\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed test"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed -a test"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Ps3\Speed\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Profile\" IntermediateDirectory="obj\Ps3\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile test"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile -a test"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Ps3\Profile\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Master\" IntermediateDirectory="obj\Ps3\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master test"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master -a test"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Ps3\Master\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Debug\" IntermediateDirectory="obj\Win32_tool\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug test"
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug -a test"
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32_tool\Debug\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Release\" IntermediateDirectory="obj\Win32_tool\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release test"
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release -a test"
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32_tool\Release\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Speed\" IntermediateDirectory="obj\Win32_tool\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed test"
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed -a test"
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32_tool\Speed\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Profile\" IntermediateDirectory="obj\Win32_tool\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile test"
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile -a test"
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32_tool\Profile\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Master\" IntermediateDirectory="obj\Win32_tool\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master test"
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master -a test"
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32_tool\Master\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_WIN64|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64\Debug\" IntermediateDirectory="obj\Win64\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Debug test"
+				ReBuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Debug -a test"
+				CleanCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win64\Debug\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN64|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64\Release\" IntermediateDirectory="obj\Win64\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Release test"
+				ReBuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Release -a test"
+				CleanCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win64\Release\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN64|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64\Speed\" IntermediateDirectory="obj\Win64\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Speed test"
+				ReBuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Speed -a test"
+				CleanCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win64\Speed\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN64|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64\Profile\" IntermediateDirectory="obj\Win64\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Profile test"
+				ReBuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Profile -a test"
+				CleanCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win64\Profile\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN64|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64\Master\" IntermediateDirectory="obj\Win64\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Master test"
+				ReBuildCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Master -a test"
+				CleanCommandLine="jam -sTARGET=WIN64 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win64\Master\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Debug\" IntermediateDirectory="obj\Win64_tool\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Debug test"
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Debug -a test"
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win64_tool\Debug\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Release\" IntermediateDirectory="obj\Win64_tool\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Release test"
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Release -a test"
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win64_tool\Release\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Speed\" IntermediateDirectory="obj\Win64_tool\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Speed test"
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Speed -a test"
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win64_tool\Speed\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Profile\" IntermediateDirectory="obj\Win64_tool\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Profile test"
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Profile -a test"
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win64_tool\Profile\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Master\" IntermediateDirectory="obj\Win64_tool\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Master test"
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Master -a test"
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win64_tool\Master\btl_test.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\..\code\vendor\cxxtest\current;..\core\include;..\system\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="Btl" Filter="\">
+<File RelativePath="jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<Filter Name="Allocators" Filter="\">
+<File RelativePath="include\btl\Allocators\allocator.h"></File>
+<File RelativePath="include\btl\Allocators\pool.h"></File>
+<File RelativePath="include\btl\Allocators\stackallocator.h"></File>
+</Filter>
+<Filter Name="Containers" Filter="\">
+<File RelativePath="include\btl\Containers\algorithm.h"></File>
+<File RelativePath="include\btl\Containers\bitvector.h"></File>
+<File RelativePath="include\btl\Containers\chainedhashmap.h"></File>
+<File RelativePath="include\btl\Containers\chainedhashset.h"></File>
+<File RelativePath="include\btl\Containers\chainedhashtable.h"></File>
+<File RelativePath="include\btl\Containers\containers.h"></File>
+<File RelativePath="include\btl\Containers\hashops.h"></File>
+<File RelativePath="include\btl\Containers\initialiser.h"></File>
+<File RelativePath="include\btl\Containers\list.h"></File>
+<File RelativePath="include\btl\Containers\map.h"></File>
+<File RelativePath="include\btl\Containers\multimap.h"></File>
+<File RelativePath="include\btl\Containers\multiset.h"></File>
+<File RelativePath="include\btl\Containers\openhashmap.h"></File>
+<File RelativePath="include\btl\Containers\openhashset.h"></File>
+<File RelativePath="include\btl\Containers\openhashtable.h"></File>
+<File RelativePath="include\btl\Containers\radix.h"></File>
+<File RelativePath="include\btl\Containers\rlebitvector.h"></File>
+<File RelativePath="include\btl\Containers\sequence.h"></File>
+<File RelativePath="include\btl\Containers\set.h"></File>
+<File RelativePath="include\btl\Containers\setitem.h"></File>
+<File RelativePath="include\btl\Containers\sortedbinarytree.h"></File>
+<File RelativePath="include\btl\Containers\vector.h"></File>
+<File RelativePath="include\btl\Containers\bitvector.inl"></File>
+<File RelativePath="include\btl\Containers\list.inl"></File>
+<File RelativePath="include\btl\Containers\sortedbinarytree.inl"></File>
+</Filter>
+<Filter Name="Test" Filter="\">
+<File RelativePath="include\Test\archive.h"></File>
+<File RelativePath="include\Test\test.h"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="include\btl\Utility\autopointer.h"></File>
+<File RelativePath="include\btl\Utility\hash.h"></File>
+<File RelativePath="include\btl\Utility\pair.h"></File>
+<File RelativePath="include\btl\Utility\scopedpointer.h"></File>
+<File RelativePath="include\btl\Utility\string.h"></File>
+<File RelativePath="include\btl\Utility\threads.h"></File>
+<File RelativePath="include\btl\Utility\types.h"></File>
+<File RelativePath="include\btl\Utility\string.inl"></File>
+<File RelativePath="include\btl\Utility\stringhelpers.inl"></File>
+</Filter>
+</Filter>
+<Filter Name="Test" Filter="\">
+<File RelativePath="test\main.cpp"></File>
+<File RelativePath="test\stdafx.h"></File>
+<File RelativePath="test\jamfile.jam"></File>
+<Filter Name="Allocators" Filter="\">
+<File RelativePath="test\allocators\pool.h"></File>
+<File RelativePath="test\allocators\stackallocator.h"></File>
+</Filter>
+<Filter Name="Containers" Filter="\">
+<File RelativePath="test\containers\bitvector.h"></File>
+<File RelativePath="test\containers\chainedhashtable.h"></File>
+<File RelativePath="test\containers\hashtable.h"></File>
+<File RelativePath="test\containers\list.h"></File>
+<File RelativePath="test\containers\performance_tests.h"></File>
+<File RelativePath="test\containers\rlebitvector.h"></File>
+<File RelativePath="test\containers\sortedbinarytree.h"></File>
+<File RelativePath="test\containers\vector.h"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="test\utility\autopointer.h"></File>
+<File RelativePath="test\utility\pair.h"></File>
+<File RelativePath="test\utility\scopedpointer.h"></File>
+<File RelativePath="test\utility\string.h"></File>
+<File RelativePath="test\utility\types.h"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Common" Filter="\">
+<Filter Name="Core" Filter="\">
+<File RelativePath="..\Core\stdafx.cpp"></File>
+<File RelativePath="..\Core\stdafx.h"></File>
+<File RelativePath="..\Core\jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\Core\include\core\Containers.h"></File>
+<File RelativePath="..\Core\include\core\Core.h"></File>
+<File RelativePath="..\Core\include\core\Maths.h"></File>
+<File RelativePath="..\Core\include\core\MercuryCore.h"></File>
+<File RelativePath="..\Core\include\core\threads.h"></File>
+<File RelativePath="..\Core\include\core\UtMaths.h"></File>
+<Filter Name="Allocators" Filter="\">
+<File RelativePath="..\Core\include\core\allocators\allocator.h"></File>
+<File RelativePath="..\Core\include\core\allocators\blockallocator.h"></File>
+<File RelativePath="..\Core\include\core\allocators\CoreMemoryFunctions.h"></File>
+<File RelativePath="..\Core\include\core\allocators\pool.h"></File>
+<File RelativePath="..\Core\include\core\allocators\SSSMemoryPool.h"></File>
+<File RelativePath="..\Core\include\core\allocators\SSSMemoryPoolUtAllocator.h"></File>
+<File RelativePath="..\Core\include\core\allocators\SSSMemoryPoolUtInitialiser.h"></File>
+<File RelativePath="..\Core\include\core\allocators\SSSMultiMemoryPool.h"></File>
+<File RelativePath="..\Core\include\core\allocators\stackallocator.h"></File>
+<File RelativePath="..\Core\include\core\allocators\blockallocator.inl"></File>
+<File RelativePath="..\Core\source\allocators\CoreMemoryAligned.cpp"></File>
+<File RelativePath="..\Core\source\allocators\CoreMemoryNonTracked.cpp"></File>
+<File RelativePath="..\Core\source\allocators\CoreMemoryPhysical.cpp"></File>
+<File RelativePath="..\Core\source\allocators\stackallocator.cpp"></File>
+</Filter>
+<Filter Name="Containers" Filter="\">
+<File RelativePath="..\Core\include\core\containers\algorithm.h"></File>
+<File RelativePath="..\Core\include\core\containers\bitvector.h"></File>
+<File RelativePath="..\Core\include\core\containers\containerserialisation.h"></File>
+<File RelativePath="..\Core\include\core\containers\FixedString.h"></File>
+<File RelativePath="..\Core\include\core\containers\FixedVector.h"></File>
+<File RelativePath="..\Core\include\core\containers\initialiser.h"></File>
+<File RelativePath="..\Core\include\core\containers\list.h"></File>
+<File RelativePath="..\Core\include\core\containers\openhashtable.h"></File>
+<File RelativePath="..\Core\include\core\containers\radix.h"></File>
+<File RelativePath="..\Core\include\core\containers\rlebitvector.h"></File>
+<File RelativePath="..\Core\include\core\containers\sequence.h"></File>
+<File RelativePath="..\Core\include\core\containers\sortedbinarytree.h"></File>
+<File RelativePath="..\Core\include\core\containers\String.h"></File>
+<File RelativePath="..\Core\include\core\containers\StringHelpers.h"></File>
+<File RelativePath="..\Core\include\core\containers\vector.h"></File>
+<File RelativePath="..\Core\include\core\containers\String.inl"></File>
+<File RelativePath="..\Core\include\core\containers\StringHelpers.inl"></File>
+<File RelativePath="..\Core\source\containers\rlebitvector.cpp"></File>
+<File RelativePath="..\Core\source\containers\String.cpp"></File>
+<Filter Name="Genesis_containers" Filter="\">
+<File RelativePath="..\Core\include\core\containers\genesis_containers\Array.h"></File>
+<File RelativePath="..\Core\include\core\containers\genesis_containers\Bitfield.h"></File>
+<File RelativePath="..\Core\include\core\containers\genesis_containers\List.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Maths" Filter="\">
+<File RelativePath="..\Core\include\core\maths\constants.h"></File>
+<File RelativePath="..\Core\include\core\maths\conversion.h"></File>
+<File RelativePath="..\Core\include\core\maths\MathsUtil.h"></File>
+<File RelativePath="..\Core\include\core\maths\storage.h"></File>
+<File RelativePath="..\Core\include\core\maths\ValidateFloat.h"></File>
+<Filter Name="Hvec" Filter="\">
+<File RelativePath="..\Core\include\core\maths\hvec\Accessor.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\BigMatrix.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Complex.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Constants.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\FP.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\GA.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Geometry.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Geometry2d.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\MathsTest.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Matrix.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\MatrixStruct.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\ODE.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Param.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Quaternion.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\RGBA.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Scalar.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\ScalarInt.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SI.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SIMD.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SinCos.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Storage.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Trigonometry.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VecMatOp.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Vector.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorConst.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorInt.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorOp.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Accessor.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\BigMatrix.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Complex.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Constants.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\GA.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Geometry.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Geometry2d.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Matrix.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\matrix_svn_anomoly.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Quaternion.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\RGBA.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Scalar.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\scalarInt.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SI.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SIMD.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SIMD_PPU.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SIMD_SPU.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SIMD_SSE.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\SIMD_VMX.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Storage.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Trigonometry.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VecMatOp.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\Vector.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorConst.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorConstGlobals.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorInt.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\VectorOp.inl"></File>
+<File RelativePath="..\Core\source\maths\hvec\BigMatrix.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Complex.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Constants.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\FP.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\GA.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Geometry.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Geometry2d.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\MathsTest.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Matrix.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Quaternion.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\RGBA.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Scalar.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\SIMD.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableArcSin.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableArcTan.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableBernoulli.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableCos.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableExp.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableLog.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableSin.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\TableTan.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Test.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Trigonometry.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Vector.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\VectorConst.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\VectorOp.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\Constants.cpp.inl"></File>
+<File RelativePath="..\Core\source\maths\hvec\SIMD.cpp.inl"></File>
+<Filter Name="New" Filter="\">
+<File RelativePath="..\Core\include\core\maths\hvec\New\AxisBox.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Capsule.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassBool.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassComplex.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassG3V.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassGeometry.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassMatrix.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassQuaternion.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassScalar.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassVector.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Complex.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Cylinder.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Elementary.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_BiVector.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_MultiVector.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_Scalar.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_TriVector.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_Vector.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeClasses.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeComplete.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeGeneral.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeMinimal.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Line.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Mat33.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Mat43.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Mat44.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Matrix.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Normal3.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Plane.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Point3.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Quaternion.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\QuatTrans.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Render.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Sphere.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VBool.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Vec4F32.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt16.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt32.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt64.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt8.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Vector3.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Vector4.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VF32.h"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\AxisBox.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Capsule.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassBool.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassComplex.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassG3V.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassGeometry.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassMatrix.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassQuaternion.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassScalar.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\ClassVector.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Complex.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Cylinder.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Elementary.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_BiVector.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_MultiVector.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_Scalar.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_TriVector.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\G3V_Vector.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeComplete.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeGeneral.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\IncludeMinimal.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Line.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Mat33.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Mat43.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Mat44.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Matrix.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Normal3.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Plane.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Point3.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Quaternion.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\QuatTrans.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Sphere.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VBool.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Vec4F32.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt16.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt32.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt64.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VecInt8.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Vector3.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\Vector4.inl"></File>
+<File RelativePath="..\Core\include\core\maths\hvec\New\VF32.inl"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Mat33.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Mat43.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Mat44.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Matrix.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Quaternion.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Render.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\Vec4F32.cpp"></File>
+<File RelativePath="..\Core\source\maths\hvec\New\VF32.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Utmaths" Filter="\">
+<File RelativePath="..\Core\include\core\maths\utmaths\colour.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\maths.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\mmatrix.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\mvector.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\operator.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\recurse.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\spline.h"></File>
+<File RelativePath="..\Core\include\core\maths\utmaths\xmvectorwrapper.h"></File>
+<File RelativePath="..\Core\source\maths\UtMaths\xmvectorwrapper.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Threads" Filter="\">
+<File RelativePath="..\Core\include\core\threads\Atomic.h"></File>
+<File RelativePath="..\Core\include\core\threads\CpuInfo.h"></File>
+<File RelativePath="..\Core\include\core\threads\Event.h"></File>
+<File RelativePath="..\Core\include\core\threads\Mutex.h"></File>
+<File RelativePath="..\Core\include\core\threads\RwLock.h"></File>
+<File RelativePath="..\Core\include\core\threads\Semaphore.h"></File>
+<File RelativePath="..\Core\include\core\threads\Thread.h"></File>
+<File RelativePath="..\Core\include\core\threads\ThreadLocalStorage.h"></File>
+<File RelativePath="..\Core\include\core\threads\WaitForObjects.h"></File>
+<File RelativePath="..\Core\source\threads\CpuInfo.cpp"></File>
+<File RelativePath="..\Core\source\threads\Event.cpp"></File>
+<File RelativePath="..\Core\source\threads\Mutex.cpp"></File>
+<File RelativePath="..\Core\source\threads\RwLock.cpp"></File>
+<File RelativePath="..\Core\source\threads\Semaphore.cpp"></File>
+<File RelativePath="..\Core\source\threads\Thread.cpp"></File>
+<File RelativePath="..\Core\source\threads\ThreadLocalStorage.cpp"></File>
+<File RelativePath="..\Core\source\threads\WaitForObjects.cpp"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="..\Core\include\core\utility\autopointer.h"></File>
+<File RelativePath="..\Core\include\core\utility\CoreDebug.h"></File>
+<File RelativePath="..\Core\include\core\utility\endian.h"></File>
+<File RelativePath="..\Core\include\core\utility\hash.h"></File>
+<File RelativePath="..\Core\include\core\utility\hashops.h"></File>
+<File RelativePath="..\Core\include\core\utility\MemCpy.h"></File>
+<File RelativePath="..\Core\include\core\utility\NewCLib.h"></File>
+<File RelativePath="..\Core\include\core\utility\scopedpointer.h"></File>
+<File RelativePath="..\Core\include\core\utility\Singleton.h"></File>
+<File RelativePath="..\Core\include\core\utility\SmartPtr.h"></File>
+<File RelativePath="..\Core\include\core\utility\StringProc.h"></File>
+<File RelativePath="..\Core\include\core\utility\threads.h"></File>
+<File RelativePath="..\Core\include\core\utility\utility.h"></File>
+<File RelativePath="..\Core\source\utility\CoreAssert.cpp"></File>
+<File RelativePath="..\Core\source\utility\CoreDebug.cpp"></File>
+<File RelativePath="..\Core\source\utility\endian.cpp"></File>
+<File RelativePath="..\Core\source\utility\utility.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Test" Filter="\">
+<Filter Name="Threads" Filter="\">
+<File RelativePath="..\Core\test\threads\testatomic.h"></File>
+<File RelativePath="..\Core\test\threads\testevent.h"></File>
+<File RelativePath="..\Core\test\threads\testmutex.h"></File>
+<File RelativePath="..\Core\test\threads\testrwlock.h"></File>
+<File RelativePath="..\Core\test\threads\testsemaphore.h"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="System" Filter="\">
+<File RelativePath="..\System\stdafx.cpp"></File>
+<File RelativePath="..\System\stdafx.h"></File>
+<File RelativePath="..\System\jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\System\include\system\debuglog.h"></File>
+<File RelativePath="..\System\include\system\memory.h"></File>
+<File RelativePath="..\System\include\system\network.h"></File>
+<File RelativePath="..\System\include\system\perf.h"></File>
+<File RelativePath="..\System\include\system\scheduler.h"></File>
+<File RelativePath="..\System\include\system\serialise.h"></File>
+<File RelativePath="..\System\include\system\threads.h"></File>
+<Filter Name="Archive" Filter="\">
+<File RelativePath="..\System\include\system\archive\archive.h"></File>
+<File RelativePath="..\System\include\system\archive\autopointer.h"></File>
+<File RelativePath="..\System\include\system\archive\binaryarchive.h"></File>
+<File RelativePath="..\System\include\system\archive\bitvector.h"></File>
+<File RelativePath="..\System\include\system\archive\btl.h"></File>
+<File RelativePath="..\System\include\system\archive\handler.h"></File>
+<File RelativePath="..\System\include\system\archive\list.h"></File>
+<File RelativePath="..\System\include\system\archive\map.h"></File>
+<File RelativePath="..\System\include\system\archive\maths.h"></File>
+<File RelativePath="..\System\include\system\archive\pair.h"></File>
+<File RelativePath="..\System\include\system\archive\pointer.h"></File>
+<File RelativePath="..\System\include\system\archive\scopedpointer.h"></File>
+<File RelativePath="..\System\include\system\archive\serialisationinfo.h"></File>
+<File RelativePath="..\System\include\system\archive\serialisationkey.h"></File>
+<File RelativePath="..\System\include\system\archive\serialise.h"></File>
+<File RelativePath="..\System\include\system\archive\set.h"></File>
+<File RelativePath="..\System\include\system\archive\string.h"></File>
+<File RelativePath="..\System\include\system\archive\vector.h"></File>
+<File RelativePath="..\System\include\system\archive\xmlarchive.h"></File>
+<File RelativePath="..\System\source\archive\handler.cpp"></File>
+</Filter>
+<Filter Name="Artery" Filter="\">
+<File RelativePath="..\System\include\system\artery\Artery.h"></File>
+<File RelativePath="..\System\include\system\artery\ArteryMessage.h"></File>
+<File RelativePath="..\System\include\system\artery\ArterySync.h"></File>
+<File RelativePath="..\System\include\system\artery\artery_managed.h"></File>
+<File RelativePath="..\System\include\system\artery\BkSocket.h"></File>
+<File RelativePath="..\System\include\system\artery\WsSocket.h"></File>
+<File RelativePath="..\System\source\artery\Artery.cpp"></File>
+<File RelativePath="..\System\source\artery\ArteryMessage.cpp"></File>
+<File RelativePath="..\System\source\artery\ArteryPeer.cpp"></File>
+<File RelativePath="..\System\source\artery\ArteryService.cpp"></File>
+<File RelativePath="..\System\source\artery\ArterySync.cpp"></File>
+<File RelativePath="..\System\source\artery\artery_managed.cpp"></File>
+<File RelativePath="..\System\source\artery\BkSocket.cpp"></File>
+<File RelativePath="..\System\source\artery\WsSocket.cpp"></File>
+<File RelativePath="..\System\source\artery\ArteryImpl.h"></File>
+<File RelativePath="..\System\source\artery\ArteryService.h"></File>
+</Filter>
+<Filter Name="Automation" Filter="\">
+<File RelativePath="..\System\include\system\automation\Automation.h"></File>
+<File RelativePath="..\System\source\automation\Automation.cpp"></File>
+</Filter>
+<Filter Name="Debug" Filter="\">
+<File RelativePath="..\System\include\system\debug\BuildStamp.h"></File>
+<File RelativePath="..\System\include\system\debug\CyclicDebugLogger.h"></File>
+<File RelativePath="..\System\include\system\debug\Debug.h"></File>
+<File RelativePath="..\System\include\system\debug\DebugFilter.h"></File>
+<File RelativePath="..\System\include\system\debug\I_DebugRender.h"></File>
+<File RelativePath="..\System\include\system\debug\TestDebugVariables.h"></File>
+<File RelativePath="..\System\include\system\debug\Variables.h"></File>
+<File RelativePath="..\System\include\system\debug\VariablesNet.h"></File>
+<File RelativePath="..\System\source\debug\BuildStamp.cpp"></File>
+<File RelativePath="..\System\source\debug\Debug.cpp"></File>
+<File RelativePath="..\System\source\debug\NullDebugRender.cpp"></File>
+<File RelativePath="..\System\source\debug\TestDebugVariables.cpp"></File>
+<File RelativePath="..\System\source\debug\Variables.cpp"></File>
+<File RelativePath="..\System\source\debug\VariablesNet.cpp"></File>
+<Filter Name="Log" Filter="\">
+<File RelativePath="..\System\include\system\debug\log\AutoConfigure.h"></File>
+<File RelativePath="..\System\include\system\debug\log\ConfigReader.h"></File>
+<File RelativePath="..\System\include\system\debug\log\DebugLevel.h"></File>
+<File RelativePath="..\System\include\system\debug\log\DebugLog.h"></File>
+<File RelativePath="..\System\include\system\debug\log\DebugLogMacro.h"></File>
+<File RelativePath="..\System\include\system\debug\log\DebugLogSPU.h"></File>
+<File RelativePath="..\System\include\system\debug\log\DynamicLocationInfo.h"></File>
+<File RelativePath="..\System\include\system\debug\log\ExecuterFeedback.h"></File>
+<File RelativePath="..\System\include\system\debug\log\FileSystem.h"></File>
+<File RelativePath="..\System\include\system\debug\log\Filter.h"></File>
+<File RelativePath="..\System\include\system\debug\log\Format.h"></File>
+<File RelativePath="..\System\include\system\debug\log\GlobalInterface.h"></File>
+<File RelativePath="..\System\include\system\debug\log\LocationInfo.h"></File>
+<File RelativePath="..\System\include\system\debug\log\LogEvent.h"></File>
+<File RelativePath="..\System\include\system\debug\log\Logger.h"></File>
+<File RelativePath="..\System\include\system\debug\log\LogManager.h"></File>
+<File RelativePath="..\System\include\system\debug\log\NetworkRepeater.h"></File>
+<File RelativePath="..\System\include\system\debug\log\Singleton.h"></File>
+<File RelativePath="..\System\include\system\debug\log\ThreadContext.h"></File>
+<File RelativePath="..\System\include\system\debug\log\ThreadContextTemplate.h"></File>
+<File RelativePath="..\System\source\debug\log\AutoConfigure.cpp"></File>
+<File RelativePath="..\System\source\debug\log\ConfigReader.cpp"></File>
+<File RelativePath="..\System\source\debug\log\DebugLevel.cpp"></File>
+<File RelativePath="..\System\source\debug\log\ExecuterFeedback.cpp"></File>
+<File RelativePath="..\System\source\debug\log\FileSystem.cpp"></File>
+<File RelativePath="..\System\source\debug\log\Filter.cpp"></File>
+<File RelativePath="..\System\source\debug\log\Format.cpp"></File>
+<File RelativePath="..\System\source\debug\log\Logger.cpp"></File>
+<File RelativePath="..\System\source\debug\log\LogManager.cpp"></File>
+<File RelativePath="..\System\source\debug\log\NetworkRepeater.cpp"></File>
+<File RelativePath="..\System\source\debug\log\ThreadContext.cpp"></File>
+<Filter Name="Subscribers" Filter="\">
+<File RelativePath="..\System\include\system\debug\log\subscribers\ConsoleSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\DebugViewSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\E-MailSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\I_LogSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\LogFileSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\SocketServerSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\SocketSubscriber.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\SubscriberCommon.h"></File>
+<File RelativePath="..\System\include\system\debug\log\subscribers\SubscriberManager.h"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\ConsoleSubscriber.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\DebugViewSubscriber.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\E-MailSubscriber.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\LogFileSubscriber.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\SocketServerSubscriber.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\SocketSubscriber.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\SubscriberCommon.cpp"></File>
+<File RelativePath="..\System\source\debug\log\subscribers\SubscriberManager.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Managed" Filter="\">
+<File RelativePath="..\System\source\managed\AssemblyInfo.cpp"></File>
+<File RelativePath="..\System\source\managed\Stdafx.cpp"></File>
+<File RelativePath="..\System\source\managed\Stdafx.h"></File>
+<File RelativePath="..\System\source\managed\app.rc"></File>
+</Filter>
+<Filter Name="Memory" Filter="\">
+<File RelativePath="..\System\include\system\memory\AllocatorFunctions.h"></File>
+<File RelativePath="..\System\include\system\memory\BlockAllocator.h"></File>
+<File RelativePath="..\System\include\system\memory\CallStack.h"></File>
+<File RelativePath="..\System\include\system\memory\MemoryTracker.h"></File>
+<File RelativePath="..\System\include\system\memory\MemoryTrackerDefines.h"></File>
+<File RelativePath="..\System\include\system\memory\VirtualMemory.h"></File>
+<File RelativePath="..\System\source\memory\BlockAllocator.cpp"></File>
+<File RelativePath="..\System\source\memory\CallStack.cpp"></File>
+<File RelativePath="..\System\source\memory\MemoryTracker.cpp"></File>
+<File RelativePath="..\System\source\memory\MemoryTrackerPC.cpp"></File>
+<File RelativePath="..\System\source\memory\MemoryTracker_StandAlone.cpp"></File>
+<File RelativePath="..\System\source\memory\VirtualMemory.cpp"></File>
+</Filter>
+<Filter Name="Misc" Filter="\">
+<File RelativePath="..\System\include\system\misc\Base64.h"></File>
+<File RelativePath="..\System\include\system\misc\CatchFPE.h"></File>
+<File RelativePath="..\System\include\system\misc\FunctionQueue.h"></File>
+<File RelativePath="..\System\include\system\misc\Progress.h"></File>
+<File RelativePath="..\System\include\system\misc\Random.h"></File>
+<File RelativePath="..\System\include\system\misc\StringUtil.h"></File>
+<File RelativePath="..\System\source\misc\Base64.cpp"></File>
+<File RelativePath="..\System\source\misc\CatchFPE.cpp"></File>
+<File RelativePath="..\System\source\misc\Progress.cpp"></File>
+<File RelativePath="..\System\source\misc\Random.cpp"></File>
+<File RelativePath="..\System\source\misc\StringUtil.cpp"></File>
+</Filter>
+<Filter Name="Network" Filter="\">
+<File RelativePath="..\System\include\system\network\Address.h"></File>
+<File RelativePath="..\System\include\system\network\Connection.h"></File>
+<File RelativePath="..\System\include\system\network\Platform.h"></File>
+<File RelativePath="..\System\include\system\network\Service.h"></File>
+<File RelativePath="..\System\include\system\network\SMTPClient.h"></File>
+<File RelativePath="..\System\include\system\network\Socket.h"></File>
+<File RelativePath="..\System\source\network\Address.cpp"></File>
+<File RelativePath="..\System\source\network\Connection.cpp"></File>
+<File RelativePath="..\System\source\network\Service.cpp"></File>
+<File RelativePath="..\System\source\network\SMTPClient.cpp"></File>
+<File RelativePath="..\System\source\network\Socket.cpp"></File>
+</Filter>
+<Filter Name="Perf" Filter="\">
+<File RelativePath="..\System\include\system\perf\CPUTiming.h"></File>
+<File RelativePath="..\System\include\system\perf\PerfEvent.h"></File>
+<File RelativePath="..\System\include\system\perf\Profiler.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerBackend.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerEnable.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerGeneric.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerNetworkCode.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerPS3.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerSPU.h"></File>
+<File RelativePath="..\System\include\system\perf\ProfilerXenon.h"></File>
+<File RelativePath="..\System\include\system\perf\Timing.h"></File>
+<File RelativePath="..\System\include\system\perf\Timing.inl"></File>
+<File RelativePath="..\System\source\perf\CPUTiming.cpp"></File>
+<File RelativePath="..\System\source\perf\PerfEvent.cpp"></File>
+<File RelativePath="..\System\source\perf\Profiler.cpp"></File>
+<File RelativePath="..\System\source\perf\ProfilerBackend.cpp"></File>
+<File RelativePath="..\System\source\perf\ProfilerNetworkCode.cpp"></File>
+<File RelativePath="..\System\source\perf\ProfilerPS3.cpp"></File>
+<File RelativePath="..\System\source\perf\ProfilerSPU.cpp"></File>
+<File RelativePath="..\System\source\perf\ProfilerXenon.cpp"></File>
+<File RelativePath="..\System\source\perf\Timing.cpp"></File>
+</Filter>
+<Filter Name="Scheduler" Filter="\">
+<File RelativePath="..\System\include\system\scheduler\jobqueue.h"></File>
+<File RelativePath="..\System\include\system\scheduler\jobqueue_atomic_queue_lf.h"></File>
+<File RelativePath="..\System\include\system\scheduler\jobqueue_atomic_queue_mutex.h"></File>
+<File RelativePath="..\System\include\system\scheduler\jobqueue_generic.h"></File>
+<File RelativePath="..\System\include\system\scheduler\jobqueue_mem.h"></File>
+<File RelativePath="..\System\include\system\scheduler\jobqueue_ps3.h"></File>
+<File RelativePath="..\System\include\system\scheduler\jobqueue_xenon.h"></File>
+<File RelativePath="..\System\include\system\scheduler\overlays.h"></File>
+<File RelativePath="..\System\source\scheduler\entry_job.cpp"></File>
+<File RelativePath="..\System\source\scheduler\entry_pm.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_generic.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_kernel.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_kernel_ps3.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_kernel_xenon.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_legacy.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_mem.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_ps3.cpp"></File>
+<File RelativePath="..\System\source\scheduler\jobqueue_xenon.cpp"></File>
+<File RelativePath="..\System\source\scheduler\tl_ps3_spu_assert.cpp"></File>
+<Filter Name="Core" Filter="\">
+<File RelativePath="..\System\include\system\scheduler\core\mercury_to_tl.h"></File>
+<File RelativePath="..\System\include\system\scheduler\core\tl_defs.h"></File>
+<File RelativePath="..\System\include\system\scheduler\core\tl_thread.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Serialise" Filter="\">
+<File RelativePath="..\System\include\system\serialise\BinarySerialise.h"></File>
+<File RelativePath="..\System\include\system\serialise\BinarySerialiseAutoEndian.h"></File>
+<File RelativePath="..\System\include\system\serialise\btl.h"></File>
+<File RelativePath="..\System\include\system\serialise\C_File.h"></File>
+<File RelativePath="..\System\include\system\serialise\C_FileBlock.h"></File>
+<File RelativePath="..\System\include\system\serialise\C_FileSystem.h"></File>
+<File RelativePath="..\System\include\system\serialise\C_MemoryFile.h"></File>
+<File RelativePath="..\System\include\system\serialise\C_MemoryStream.h"></File>
+<File RelativePath="..\System\include\system\serialise\FileSystemHelperTypes.h"></File>
+<File RelativePath="..\System\include\system\serialise\I_BinaryStream.h"></File>
+<File RelativePath="..\System\include\system\serialise\I_File.h"></File>
+<File RelativePath="..\System\include\system\serialise\I_FileSystem.h"></File>
+<File RelativePath="..\System\include\system\serialise\MemoryFileSystem.h"></File>
+<File RelativePath="..\System\include\system\serialise\Serialise.h"></File>
+<File RelativePath="..\System\include\system\serialise\TextSerialise.h"></File>
+<File RelativePath="..\System\include\system\serialise\EndianSwitch.inl"></File>
+<File RelativePath="..\System\include\system\serialise\I_BinaryStream.inl"></File>
+<File RelativePath="..\System\source\serialise\C_File.cpp"></File>
+<File RelativePath="..\System\source\serialise\C_FileBlock.cpp"></File>
+<File RelativePath="..\System\source\serialise\C_FileSystem.cpp"></File>
+<File RelativePath="..\System\source\serialise\C_MemoryFile.cpp"></File>
+<File RelativePath="..\System\source\serialise\C_MemoryStream.cpp"></File>
+<File RelativePath="..\System\source\serialise\I_FileSystem.cpp"></File>
+<Filter Name="Memory_file_system" Filter="\">
+<File RelativePath="..\System\include\system\serialise\memory_file_system\C_MemoryDirectoryEntry.h"></File>
+<File RelativePath="..\System\include\system\serialise\memory_file_system\C_MemoryFileEntry.h"></File>
+<File RelativePath="..\System\include\system\serialise\memory_file_system\C_MemoryFileSystem.h"></File>
+<File RelativePath="..\System\source\serialise\memory_file_system\C_MemoryDirectoryEntry.cpp"></File>
+<File RelativePath="..\System\source\serialise\memory_file_system\C_MemoryFileEntry.cpp"></File>
+<File RelativePath="..\System\source\serialise\memory_file_system\C_MemoryFileSystem.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Shell" Filter="\">
+<File RelativePath="..\System\include\system\shell\ShellExec.h"></File>
+<File RelativePath="..\System\source\shell\ShellExec.cpp"></File>
+</Filter>
+<Filter Name="Time" Filter="\">
+<File RelativePath="..\System\include\system\time\ScopedTimer.h"></File>
+<File RelativePath="..\System\include\system\time\Time.h"></File>
+<File RelativePath="..\System\source\time\Time.cpp"></File>
+</Filter>
+<Filter Name="XML" Filter="\">
+<File RelativePath="..\System\include\system\XML\Definitions.h"></File>
+<File RelativePath="..\System\include\system\XML\Xml.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlBlockParser.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlDom.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlDomBaseNode.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlDomContent.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlDomDefinitions.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlDomElement.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlDomUtility.h"></File>
+<File RelativePath="..\System\include\system\XML\XmlParser.h"></File>
+<File RelativePath="..\System\source\XML\XmlBlockParser.cpp"></File>
+<File RelativePath="..\System\source\XML\XmlDom.cpp"></File>
+<File RelativePath="..\System\source\XML\XmlDomBaseNode.cpp"></File>
+<File RelativePath="..\System\source\XML\XmlDomContent.cpp"></File>
+<File RelativePath="..\System\source\XML\XmlDomElement.cpp"></File>
+<File RelativePath="..\System\source\XML\XmlDomUtility.cpp"></File>
+<File RelativePath="..\System\source\XML\XmlParser.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Test" Filter="\">
+<Filter Name="Scheduler" Filter="\">
+<File RelativePath="..\System\test\scheduler\testscheduler.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

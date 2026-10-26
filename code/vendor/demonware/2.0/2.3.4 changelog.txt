@@ -1,0 +1,233 @@
+DemonWare 2.3.3 [svn #23017] -> 2.3.4 [svn #23399]
+
+ - Full support for apple devices (iPhone/iPodTouch/iPad). CMake (>2.8) is required for generating XCode files (www.cmake.org).
+ - new service bdApplePushNotification: allows sending push notifications to Apple devices.
+ - new API: bdTeams::sendInstantMessageToTeam()
+ - new API: bdMessaging::getTeamMailHeaders(), bdMessaging::getTeamMails() bdMessaging::deleteTeamMail(), bdMessaging::sendTeamMail().
+ - new API: bdDML::recordIP() (XBOX360 only).
+ - new WS: newAPNsAnnouncement(payload). send push notifications to every user.
+ - extended WS: getMaximumEventNum(minutesAgo), added new optional parameter minutesAgo, which allows getting the maximum number of events at different times.
+ - bdStorageService.uploadFile and bdStorageService.removeFile now specify an optional ownerID.
+ - bdStorageService: Dedicated servers can upload, modify, read, and delete other users' public files.
+ - BugFix: Key archive service no longer allows NaN values to be written.
+ - BugFix: The bdReceiveThread could use up all of its memory in cases where the socket continually returns an error.
+ - BugFix: The bdPlatformSocket::receiveFrom on the Wii would incorrectly return BD_NET_CONNECTION_RESET repeatedly when the cable is pulled. Changed to
+           BD_NET_NOT_CONNECTED to propagate the error.
+ - BugFix: bdRSAKey::m_status not set to BD_RSA_KEY_INITIALIZED in bdRSAKey::import causing memory leaks on Wii
+ - BugFix: Missing trailing '/' in URLBase element of UPnP XML file was causing a buffer overrun
+ - BugFix: The m_status of the bdReceiveThread was not being initialised. Additionally, it wasn't being reset (to BD_NET_WOULD_BLOCK) upon a successful receive.
+
+
+DemonWare 2.3.2 [svn #22357] -> 2.3.3 [svn #23017]
+
+Lobby API:
+
+ - added ability to partially download HTTP files using a start and end byte 
+ - added ability to rate limit HTTP PUTs and GETs using client definced callback mechanism 
+ - new overloaded API call bdContentStreaming::upload() using bdUploadInterceptor
+ - new overloaded API call bdContentStreaming::download() using bdDownloadInterceptor
+ - new overloaded API call bdContentStreaming::downloadFileBySlot() using bdDownloadInterceptor
+ - new overloaded API call bdContentStreaming::downloadPublisherFile() using bdDownloadInterceptor
+ - new API call bdContentStreaming::downloadApplePurchasedFile() using client allocated buffer
+ - new overloaded API call bdContentStreaming::downloadApplePurchasedFile() using bdDownloadInterceptor
+ - new error messages for above: BD_CONTENTSTREAMING_INVALID_APPLE_RECEIPT, BD_CONTENTSTREAMING_APPLE_STORE_NOT_AVAILABLE
+ - new API call bdFacebook::isRegistered()
+ - new API call bdTwitter::isRegistered()
+ - Optimization: bdHTTPClient-xenon: Increased the packet size on Xenon from 512 to 1264 (the maximum possible)
+ - bdHTTPClient-xenon: Refactored HTTP GET
+ - bdHTTPWrapper: The SSL layer used for HTTPS no longer checks the common name of a servers CERT against the URL being accessed
+ - BugFix: fixed server names for multiple-location file serving: previously server names were fixed, now they are variables
+ - BugFix Trac #37 ExamplePlatformInit will now attempt to set the gateway address on Win32 PS3 Wii and unix machines
+ - BugFix Trac #65 bdSocketRouter now allows you to create connections to yourself
+ - added tommath tomcrypt as dependencies to relevant project generation files (.dwpgs)
+ - updated win32 dynamic libs: libcurl.lib (debug-mt-dll and release-my-dll)
+ - updated xenon libs: libtomcrypt.lib, libtommath.lib (all 4 build configurations)
+
+Lobby example code:
+
+ - ContentStreaming example: added a demonstration of stopping and resuming a HTTP download
+ - ContentStreaming example: added a demonstration of using callbacks as oppose to large buffers to download/upload files via HTTP 
+ - ContentStreaming example: added a demonstration of validating an iTunes Store receipt
+ - Facebook example: added a demonstration of IsRegistered
+ - Twitter example: added a demonstration of IsRegistered
+
+Server-side: 
+ 
+ - The DB schema has changed from 2.3.2 to 2.3.3
+ - @schema table contentPublisherStorageFileInfo
+ - IMT: added ability to wipe IMT data
+ - bdChannelChat: removed IMT in favour of database chat channels 
+ - bdContentStreaming: added preDownloadITunesPurchasedFile
+ - bdContentStreaming: added auditing of receipts used via record event
+ - bdContentStreaming: bdCSConfigOptions: added options enableUserFiles, iTunesReceiptWS, iTunesRequestTimeout
+ - bdContentStreaming: bdCSConfigOptions: altered format of options webServerConfs, webServerSecretConfs
+ - bdTagService: search by tags updated to use either sphinx or DB depending on title config
+ - bdContentUnlockService: added helper method addUnlockKeys
+ - bdTeamService: added options nonMemberCanIMTeam, nonMemberCanMailTeam
+ - bdTeamService: added methods pertaining to team mails and team IMs
+ - bdFriends/bdStorage/bdMatchMaking/bdMessaging/bdUserBlock services : added ORDER BYs to SELECTs to ensure repeatability
+ - bdTitleUtilitiesService: reserved event record categories 5000-5003 for internal use (for iTunes Store)
+
+Webservices:
+
+ - new WS: addUnlockLicenseCode(licenseCode, contentKey)
+ - new WS: addUnlockLicenseCodes(licenseCodesJSON, contentKey)
+ - new WS: addUnlockKey(unlockKey, contentKey)
+ - extended WS: contentServerUploadPublisherFile with optional param fileLocation which facilitates externally hosted files to be advertised and access 
+ controlled by the bdContentStreaming API
+
+DemonWare 2.3.1 [svn #21783] -> 2.3.2 [svn #22357]
+
+ - BugFix: possible division by zero in bdBandwidthTestResults::getBandwidth()
+ - new API call bdAuthService::createPS3Cookie(), bdAuthService::setPS3Cookie()
+ - new API call bdFriends::getRichPresence()
+ - new API call bdTitleUtilities::getServerTime()
+ - added bdRelaySocketRouter for XBox360
+ - new feature: bdDummySocket for creating loopback connections without having to start bdNet
+ - new feature: bitwise keyArchive writeTypes: AND/OR/XOR
+
+DemonWare 2.3 [svn #21783] -> 2.3.1 [svn #21783]
+
+ - new API call bdLobby::getErrorCode()
+ - Bugfix: Debug messages in bdLobby were being logged with a %s instead of a %i
+ - Bugfix: socket router pointer was not being initialized to BD_NULL on Xbox360
+ 
+DemonWare 2.2 [svn#20374] -> 2.3 [svn #21783]
+
+ - new service bdContentStreaming: support for uploading/downloading large files
+ - new service bdTags: tagging and searching of files uploaded with bdContentStreaming
+ - new bdVoteRank: bayseian ranking of files uploaded with bdContentStreaming
+ - new service bdGroup: allows tracking and counting of players
+ - added write types to bdStats, which will result in an increased rating: 
+      STAT_WRITE_REPLACE_WHEN_RATING_INCREASE,
+      STAT_WRITE_ADD_WHEN_RATING_INCREASE,
+      STAT_WRITE_MAX_WHEN_RATING_INCREASE,
+      STAT_WRITE_MIN_WHEN_RATING_INCREASE
+
+ - added alternative versions for bdStats::readStatsBy* functions to
+   better support inheritance from bdStatsInfo class
+ - new vectorized API calls to bdFriends:
+      proposeFriendships()
+      withdrawProposals()
+      acceptProposals()
+      rejectProposals()
+      removeFriends()
+ - new API call bdTeams::getMembershipsUser()
+ - bdTeamInfo now also contains the team's owner ID
+ - new service bdTwitter: posting of twitter feeds
+ - new service bdFaceBook: posting of messages to facebook
+ - new service bdLinkCode: account linking of players via 3rd party web sites
+ - new API call bdTitleUtilities::areUsersOnline()
+ - new API call bdSession::leaveGraceful(): gracefully shuts down connections in a P2P session
+ - deprecated API call: bdSession::leave()
+ - new feature: relay routing of network traffic in a P2P session
+
+ - Bugfix: possible crashbug in bdQoS::cancelProbes()
+ - Bugfix: online status of team members was always set to false (offline)
+ - Bugfix: bdMessaging::getMails() was using the wrong task ID, resulting in BD_PARAM_MISMATCHED_TYPE errors.
+ - Bugfix: possible buffer overrun in bdKeyArchive::write()
+ 
+DemonWare 2.1 [svn#18565] -> 2.2 [svn#20374]
+
+Note: reapplying your IMP file is necessary when upgrading to this version.
+
+ - new API call bdKeyArchive::resetAllKeyPairs()
+ - new API call bdTitleUtilities::getServerTime()
+ - new API call bdStorage::updateFile()
+ - new MMP option 'autoAcceptFriendship', automatically establishes a friendship relationship
+   when 2 players mutually propose friendship
+ - new service: bdCounter
+   allows storing and retrieval of counter values that are global within a title
+   This can be used for example to track the total number of games played
+ - new service: bdContentUnlock
+   allows for the unlocking of game content through license keys
+ - moved bdPlatformMath to bdGraphics subsystem
+ - bdByteBuffer::writeString() now also handles NAN values
+ - Bugfix: establishing a DTLS association failed when the connection
+   was initiated simultaneously by two nodes
+ - Bugfix: aborting a DNS lookup using GetHostByName could potentially block
+   on PS3
+ - Bugfix: size of an unencrypted payload was incorrectly calculated in bdMessage
+
+
+DemonWare 2.01 [svn#18069] -> 2.1 [svn#18565]
+
+Note: reapplying your IMP file is necessary when upgrading to this version.
+ 
+ - bdStats::writeStats() now handles file stats as well
+ - added new API call bdStats::deleteFileStats() and bdStats::deleteFileAndStats()
+ - uploading files now returns the file meta data (bdFileInfo)
+ - uploading a file now retains the file ID if a file with that name already exists
+ - retrieving stats now returns the time stamp of when the entry was last updated
+ - added API call bdAuthService::getAuthTicket() to retrieve an authentication ticket
+ - bdTitleUtilities::recordEvent() now takes an optional category as parameter
+ - added new API call bdTitleUtilities::recordEventBin()
+
+DemonWare 2.0 [svn#17577] -> 2.01 [svn#18069]
+
+ - added new API call bdMessaging::getMails() -> this requires a script update
+ - added username to bdMailHeader information -> this requires a script update
+ - updated PS3 to be compatible with firmware version 2.5
+ - fixed potential crash bug in bdSocketRouter
+ - improvement to bandwidth test client
+
+
+DemonWare RC2[svn#17430] -> Final [svn#17577] changelog.
+
+ - Fix in bdPlatformStreamSocket::isWritable() on PS3
+ - Logging and error handling in bdSocketRouter 
+ 
+
+
+DemonWare RC1[svn#17069] -> RC2[svn#17430] changelog.
+
+Lobby API:
+
+ - Added getPerformanceValues to bdMatchMaking API
+ - Added getSessionInvites to bdMatchMaking API
+    - Added bdSessionInvite class to contain results of getSessionInvites
+    - Altered onSessionInvite callback to use bdSessionInvite class 
+ - Added new server-side error codes to bdLobbyErrorCodes.h, [and removed unused error codes.]
+ - onNotifyLeave() callback in bdLobbyEventHandler.h now uses bdSessionID instead of bdSecurityID
+ - Reduced heap allocation in bdDTLSAssociation
+ - Improved debug output in bdDTLSAssociation
+ - bdSocket API altered to allow blocking mode to be set during socket creation.
+ - Altered bdLobbyConnection to check TCP connection is established before invoking onConnect callback
+ - Wii now uses Multi-threaded socket by default
+ - Added threaded stream sockets implementation for Win32/Wii platforms.
+ - bdNATTravClient throttled connections will not now timeout. 
+   Previously if a connection was intially throttled it would never succeed.
+ - bdMatchMakingInfo::getHostAddrAsCommonAddr now takes the localCommonAddr as an optional param.
+   Note that failing to pass in the localCommonAddr will result in the returned bdCommonAddr being
+   slightly invalid. [a warning will also be printed]
+ - Fix for some logic bugs in bdThreadedSocket: 
+    - buffer full during busy periods
+    - buffer not flushed before restarting.
+ - Fix for bdMatchMaking::notifyJoin 
+ - Fix for bdSocketRouter::sendTo on XBox 360 altering the passed in buffer. 
+   Buffer is now pristine when the sendTo function returns.
+
+Lobby example code:
+
+ - Renamed LobbyAdvertising example to TitleUtilities example.
+ - Updated examples to continue where an account for a userName already exists.
+ - Added radix project file for libtomcrypt & libtommath 
+ 
+Server-side: 
+
+ - Deleted leaderboards are now removed when an IMP file is applied to a title.
+ - Various fixes for Devzone2 interaction with server data.
+ - Altered MatchMaking serviceID to avoid number space conflicts.
+ - Deleted stats are now fully deleted, previously attempting to rewrite them would fail
+ - Rich presence data for friends now transmitted to client.
+ - Fix to team integrity checks. 
+ - Fix for in-memory leaderboards failing because of a malformed debug message.
+ - The filters defined in an IMP file now work when executing a customs query with 
+   bdMatchmaking::findSessions
+ - Added getPerformanceValues & getSessionInvites functions to API
+ - added config option to delete invites issued by a user when they logoff, disabled by default
+ - session invites for are now deleted when the session is deleted
+ - session invites to blocked users are now disabled 
+ - session invites to an invalid Session ID now fail with error code
+ - session invites with overSized attachments[1024 bytes] are blocked. 
+ - session invites to invalid users are ignored. 

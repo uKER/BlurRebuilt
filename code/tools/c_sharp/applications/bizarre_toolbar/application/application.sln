@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application", "application.csproj", "{2F559A8C-EFD8-43AA-BB46-68B34049511C}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows_messages", "..\..\..\libraries\windows_messages\windows_messages.csproj", "{EA8D9A01-4CBA-458A-A459-2811A4E3975B}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F559A8C-EFD8-43AA-BB46-68B34049511C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F559A8C-EFD8-43AA-BB46-68B34049511C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F559A8C-EFD8-43AA-BB46-68B34049511C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F559A8C-EFD8-43AA-BB46-68B34049511C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,41 @@
+SubDir TOP Code Mercury Tools Graphics TextureExportTest ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Texture_Export/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+$(TOP)/Code/Vendor/TClap/Current
+$(TOP)/Code/Tools/Attk/Attk/Include
+;
+
+SRC =
+source/Application.cpp
+source/Main.cpp
+source/CacheTest.cpp
+;
+
+# 
+
+LinkLibraries TextureExportTestTool :
+		core system misc_shared tools_shared display texture_export attk
+#		pcfx xefx
+		;
+
+Application TextureExportTestTool : $(SRC) : stdafx.cpp ;
+ExportVcproj TextureExportTestTool ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Attk Attk ;
+

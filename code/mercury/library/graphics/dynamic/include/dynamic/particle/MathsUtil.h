@@ -1,0 +1,12 @@
+#ifndef RENDER_DYNAMICEFFECT_PARTICLE_MATHSUTIL_H
+#define RENDER_DYNAMICEFFECT_PARTICLE_MATHSUTIL_H
+
+#ifdef _MSC_VER
+#pragma once
+#endif
+
+namespace DynamicEffect
+{
+}
+
+#endif // RENDER_DYNAMICEFFECT_PARTICLE_MATHSUTIL_H

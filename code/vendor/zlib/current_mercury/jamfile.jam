@@ -1,0 +1,27 @@
+SubDir TOP Code Vendor Zlib Current_Mercury ;
+
+SUBDIRHDRS = 
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+SRC = 
+compression.cpp
+adler32.c
+compress.c
+crc32.c
+deflate.c
+infback.c
+inffast.c
+inflate.c
+inftrees.c
+trees.c
+uncompr.c
+zutil.c
+;
+
+LintOptions $(SRC) : -e* ;
+
+Library zlib : $(SRC) ;
+
+VcprojGroup TOP Code Vendor : Vendor ;

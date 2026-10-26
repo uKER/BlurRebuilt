@@ -1,0 +1,36 @@
+SubDir TOP Code Mercury Tools Samples SorceryFX ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Graphics/Fx/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+$(MERCURY)/Graphics/Display/include
+;
+
+SRC =
+source/Application.cpp
+source/Main.cpp
+$(MERCURY)/graphics/fx/source/fxTools/fxFile.cpp
+$(MERCURY)/graphics/fx/source/fxTools/Eval.cpp
+$(MERCURY)/graphics/fx/source/fxTools/static_strings.cpp
+$(MERCURY)/graphics/fx/source/fxTools/util.cpp
+;
+
+LinkLibraries SorceryFX : core system tools_shared ;
+		
+Application SorceryFX : $(SRC) : stdafx.cpp ;
+ExportVcproj SorceryFX ;
+
+#EmbedManifest $(TOP)/bin/build_tools/SorceryFx.exe : SorceryFX.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;

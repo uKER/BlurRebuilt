@@ -1,0 +1,16 @@
+#ifndef MOVIE_MOVIE_DEFINES_H
+#define MOVIE_MOVIE_DEFINES_H
+
+#ifdef _MSC_VER
+#pragma once
+#endif
+
+#ifdef CFG_ALLOW_OPTIMIZE_OFF
+//#define CFG_ALLOW_OPTIMIZE_OFF_RENDER_MOVIE
+#endif
+
+#ifdef CFG_ALLOW_OPTIMIZE_OFF_RENDER_MOVIE
+#pragma message("CFG_ALLOW_OPTIMIZE_OFF_RENDER_MOVIE is enabled")
+#endif
+
+#endif // MOVIE_MOVIE_DEFINES_H

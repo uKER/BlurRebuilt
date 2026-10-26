@@ -1,0 +1,57 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4x4	g_mToWorld		: register(CCP_RENDER_SETTINGS);
+float4		g_vDepthScale	: register(CCP_RENDER_SETTINGS_4);
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS_5);
+sampler2D	g_tDepth		: register(s0);
+
+#define	g_fPixelWidth	g_vSettings.x
+#define	g_fPixelHeight	g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#if !defined(PS_2_0)
+#ifdef XENON
+	float4	uv0	= input.m_TexCoord.xyxy + float4(+g_fPixelWidth, 0.0f, 0.0f, +g_fPixelHeight);
+
+	float3	vWorldPosition0 = GetWorldPosition(g_tDepth, input.m_TexCoord.xy, g_vDepthScale, (float4x3) g_mToWorld);
+	float3	vWorldPositionx = GetWorldPosition(g_tDepth, uv0.xy, g_vDepthScale, (float4x3) g_mToWorld);
+	float3	vWorldPositiony = GetWorldPosition(g_tDepth, uv0.zw, g_vDepthScale, (float4x3) g_mToWorld);
+
+	float3	vDX				= normalize(vWorldPositionx - vWorldPosition0);
+	float3	vDY				= normalize(vWorldPositiony - vWorldPosition0);
+	float3	vNormal			= normalize(cross(vDX, vDY));
+#else
+	float4	uv0	= input.m_TexCoord.xyxy + float4(-g_fPixelWidth, 0.0f, +g_fPixelWidth, 0.0f);
+	float4	uv1	= input.m_TexCoord.xyxy + float4(0.0f, -g_fPixelHeight, 0.0f, +g_fPixelHeight);
+
+	float3	vWorldPosition0 = GetWorldPosition(g_tDepth, uv0.xy, g_vDepthScale, (float4x3) g_mToWorld);
+	float3	vWorldPosition1 = GetWorldPosition(g_tDepth, uv0.zw, g_vDepthScale, (float4x3) g_mToWorld);
+	float3	vWorldPosition2 = GetWorldPosition(g_tDepth, uv1.xy, g_vDepthScale, (float4x3) g_mToWorld);
+	float3	vWorldPosition3 = GetWorldPosition(g_tDepth, uv1.zw, g_vDepthScale, (float4x3) g_mToWorld);
+
+	float3	vDX				= normalize(vWorldPosition1 - vWorldPosition0);
+	float3	vDY				= normalize(vWorldPosition3 - vWorldPosition2);
+	float3	vNormal			= normalize(cross(vDX, vDY));
+#endif
+#else
+	float3	vNormal			= float3(0.0f, 0.0f, 0.0f);
+#endif
+
+	output.m_Colour = float4(vNormal * 0.5f + 0.5f, 1.0f);
+
+	return output;
+}

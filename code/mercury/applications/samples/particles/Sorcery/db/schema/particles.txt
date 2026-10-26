@@ -1,0 +1,336 @@
+
+// enumerations
+
+enum Particle_BlendMode
+{
+	Additive,
+	Alpha,
+	AlphaPreMultiply,
+	AlphaAdditive,
+	AlphaSubtractive,
+	AlphaFilterColour,
+	AlphaFilterTexture,
+	Subtractive,
+	None,
+	AlphaTest,
+	AlphaMask
+};
+
+enum Particle_Shape
+{
+	Beam,
+	CappedBeam,
+	CappedBeamNoLifeScale,
+	Sprite,
+	DirectionalSprite,
+	RotatingSprite,
+	SoftRotatingSprite,
+	VolumetricRotatingSprite,
+	Quad,
+	PointSprite,
+	Cube,
+	Pyramid,
+	Mesh,
+	None
+};
+
+enum Particle_E_LimitSize
+{
+	NoLimit,
+	Clamp,
+	AlphaFade
+};
+
+enum Particle_Sort
+{
+	PerBlock,
+	PerParticle
+};
+
+enum Particle_Type
+{
+	Normal,
+	Decal
+};
+
+enum Particle_Collision
+{
+	None,
+	Planar,
+	Full
+};
+
+enum Particle_EmitterRate
+{
+	PerSecond,
+	PerCycle
+};
+
+enum Particle_EmitterOrientation
+{
+	Local,
+	World
+};
+
+enum Particle_EmitterSpace
+{
+	World,
+	Local
+};
+
+enum Particle_EmitterDistribution
+{
+	Point,
+	Sphere,
+	Box,
+	Mesh
+};
+
+enum Particle_EmitterSpawn
+{
+	Normal,
+	Burst,
+	Persistent
+};
+
+enum Particle_EmitterColourMode
+{
+	SingleColour,
+	LerpColour,
+	LerpChannels
+};
+
+enum Particle_Child
+{
+	Trail,
+	Death,
+	Collision,
+	CollisionOnce
+};
+
+// helper classes
+
+
+[Horizontal]
+type Particle_Light
+{
+	bool enabled;
+	f32 radius;
+	f32 intensity;
+};
+
+[Horizontal]
+type Particle_LimitSize
+{
+	Particle_E_LimitSize	type;
+	f32			begin;
+	f32			max;
+};
+
+type Particle_Colour
+{
+	control ColourSwatch;
+
+	[Hide] f32 r;
+	[Hide] f32 g;
+	[Hide] f32 b;
+
+	[Range(0, 1)] f32 a;
+};
+
+type Particle_ColourTime
+{
+	control ColourSwatch;
+
+	[Hide] f32 r;
+	[Hide] f32 g;
+	[Hide] f32 b;
+
+	[Range(0, 1)] f32 time;
+};
+
+[Horizontal]
+type Particle_HermiteKeyFrame
+{
+	f32 value;
+	f32 inTangent;
+	f32 outTangent;
+	[Range(0.0f, 1.f)] f32 time;
+};
+
+[Horizontal]
+type Particle_F32MinMax
+{
+	f32 min;
+	f32 max;
+};
+
+type Particle_F32Vec3MinMax
+{
+	Particle_F32Vec3 min;
+	Particle_F32Vec3 max;
+};
+
+[Horizontal]
+type Particle_F32Vec3
+{
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+
+type Particle_F32Vec3Variation
+{
+	Particle_F32Variation x;
+	Particle_F32Variation y;
+	Particle_F32Variation z;
+};
+
+[Horizontal]
+type Particle_F32Variation
+{
+	f32 value;
+	f32 variation;
+};
+
+[Horizontal]
+type Particle_SpawnAmount
+{
+	f32 value;
+	f32 variation;
+	f32 distance;
+	bool disable;
+};
+
+
+[Horizontal]
+type Particle_Cone
+{
+	f32 outer;
+	f32 inner;
+};
+
+[Horizontal]
+type Particle_U32Variation
+{
+	u32 value;
+	u32 variation;
+};
+
+type Particle_SpawnTime
+{
+	Particle_SpawnAmount amount;
+	Particle_Cone cone;
+	Particle_F32Vec3 position;
+	Particle_F32Vec3 direction;
+	f32 time;
+	Particle_F32Variation duration;
+};
+
+
+[Record] type Particle_Effect
+{
+	sz8 name;
+	sz8 group;
+	sz8 diffuseTexture;
+	sz8 bumpTexture;
+	u32 atlasSize;
+	Particle_Light light;
+	Particle_BlendMode blendMode;
+	Particle_Colour filterColour;
+	Particle_Sort sort;
+	f32 depthBias;
+	Particle_Type type;
+	Particle_Shape shape;
+	sz8 mesh;
+
+	u32 freezeAmount;
+	f32 cullDistance;
+
+	Particle_LimitSize	limitSize;
+	
+    [Data(path: sizeCurveX, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:5, xSize:400, ySize:200)]
+    control Graph;
+	Particle_HermiteKeyFrame[] sizeCurveX;
+	
+    [Data(path: sizeCurveY, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:5, xSize:400, ySize:200)]
+    control Graph;
+	Particle_HermiteKeyFrame[] sizeCurveY;
+	
+    [Data(path: sizeCurveZ, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:5, xSize:400, ySize:200)]
+    control Graph;
+	Particle_HermiteKeyFrame[] sizeCurveZ;
+
+    [Data(path: animation, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:200)]
+    control Graph;
+	Particle_HermiteKeyFrame[] animation; 
+
+	Particle_ColourTime[] colourOverTime;
+
+    [Data(path: colourCurveA, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:200)]
+	control Graph;
+	Particle_HermiteKeyFrame[] colourCurveA;
+	Particle_Colour emissiveColour;
+	Particle_F32Vec3 acceleration;
+	f32 airResistance;
+	f32 force;
+	Particle_Collision collisions;
+	f32 restitution;
+	f32 friction;
+	f32 minusLife;
+	f32 expiryTime;
+	Particle_ChildEmitter[] children;
+	
+};
+
+type Particle_Emitter
+{
+	Particle_Effect& effect;
+	Particle_EmitterSpawn type;
+	bool repeating;
+	Particle_EmitterSpace space;
+	Particle_EmitterRate emit;
+	Particle_SpawnTime[] spawn;
+	Particle_EmitterOrientation orientation;
+	Particle_EmitterDistribution distribution;
+	Particle_F32Vec3 distributionSize;
+	Particle_F32Variation life;
+	Particle_F32Variation size;
+	Particle_F32Variation speed;
+	Particle_F32Variation speedInherited;
+	Particle_F32Vec3Variation Rotation;
+	Particle_F32Vec3Variation Spin;
+	Particle_EmitterColourMode colourMode;
+	Particle_Colour colour;
+	Particle_Colour colour2;
+	Particle_F32Variation force;
+	Particle_F32Vec3MinMax 	boundingBox;
+	f32			emitRadius;
+	f32			expiryTime;
+	u32			particlesPerBlock;
+};
+
+type Particle_ChildEmitter
+{
+	Particle_Child		type;
+	Particle_F32MinMax	intensitySpeed;
+	Particle_Emitter 	child;
+};
+
+[Record] type Particle_Event
+{
+	sz8 name;
+	Particle_F32Variation duration;
+	bool repeating;
+	Particle_Emitter[] emitters;
+};
+
+[Record] type Particle_WorldEvent
+{
+	Particle_Event& event;
+	Particle_F32Vec3 position;
+};
+
+
+

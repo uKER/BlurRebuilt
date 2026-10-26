@@ -1,0 +1,25 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+#include "../psHDR.h"
+
+
+//Shadow position and Size
+float4		g_ShadowMult		: register(CCP_RENDER_SETTINGS);
+
+sampler2D	g_tShadow		: register(s0);
+
+struct PS_INPUT
+{
+	float3	m_ShadowTexCoords	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+
+	float3 fShadow = float3(1.f, 1.f, 1.f) - tex2D(g_tShadow, input.m_ShadowTexCoords.xy).aaa * g_ShadowMult.rgb * (1.f / (1.f + input.m_ShadowTexCoords.z));
+	output.colour = float4(fShadow.r, fShadow.g, fShadow.b, 1.0f);
+	
+	return output;;
+}

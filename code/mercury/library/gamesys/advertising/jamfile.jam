@@ -1,0 +1,54 @@
+SubDir TOP Code Mercury Library GameSys Advertising ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/system/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/network/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/ui/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/resource/include
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" 
+	IncludePath $(TOP)/libs/vendor/Massive/3.7.1.106/include ;
+}
+
+if $(PLATFORM) = PS3
+{
+	IncludePath $(TOP)/libs/vendor/IGA/IGAPS3_20090714/include/RadialPS3 ;
+}
+
+# source/AdvertManager.cpp
+
+SRC = 
+source/Advertising.cpp
+source/AdvertManager.cpp
+source/AdvertObject.cpp
+;
+
+SRC = [ Batch $(SRC) : AdvertisingPch.h ] ;
+
+Library advertising : $(SRC) : AdvertisingPch.cpp : AdvertisingPch.h ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

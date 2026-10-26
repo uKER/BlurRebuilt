@@ -1,0 +1,27 @@
+#include "..\..\psCommon.h"
+#include "psHDR.h"
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float3 vColour = tex2D(colourTexture, input.uv).rgb;
+	
+#ifdef GAMMA
+	output.colour = float4(pow(vColour, g_fGamma), 1.0f);
+#else
+	output.colour = float4(vColour, 1.0f);
+#endif
+		
+	return output;
+}

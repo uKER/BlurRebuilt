@@ -1,0 +1,6 @@
+DEF(E_CompressType_Unknown, "")
+DEF(E_CompressType_Raw, "Raw")
+DEF(E_CompressType_ZLib, "ZLib")
+DEF(E_CompressType_XMem, "XMem")
+DEF(E_CompressType_PacketZLib, "PacketZLib")
+DEF(E_CompressType_PacketXMem, "PacketXMem")

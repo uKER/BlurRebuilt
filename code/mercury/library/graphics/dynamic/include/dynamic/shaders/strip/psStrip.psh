@@ -1,0 +1,27 @@
+#include "dynamic\shaders\psCommon.h"
+#include "render\shaders\psFog.h"
+#include "render\shaders\psHDR.h"
+
+sampler2D textureMap : register(s0);
+sampler2D normalMap : register(s1);
+
+float4 g_vLightDirection	: register(CCP_RENDER_LIGHT_DIRECTION);
+
+struct VS_OUTPUT
+{
+	float4 position			: POSITION0;
+	float4 colour			: TEXCOORD0;
+	float2 uv				: TEXCOORD1;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+	// specular
+	
+	float4 diffuse = tex2D(textureMap, input.uv.xy) * input.colour;
+	float4 colour;		
+	colour.rgb = diffuse.rgb * diffuse.a;
+	colour.a = diffuse.a;
+		
+	return GetExposure(colour);
+}

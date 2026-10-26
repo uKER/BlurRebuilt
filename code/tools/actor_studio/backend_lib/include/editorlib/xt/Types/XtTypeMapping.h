@@ -1,0 +1,17 @@
+DEF(E_XtType_IXtType, "IXtType")
+DEF(E_XtType_DgXtNode, "DgXtNode")
+DEF(E_XtType_DgXtGameDataNode, "GameData")
+DEF(E_XtType_DgXtCompNode, "ActorComponent")
+DEF(E_XtType_DgXtPropNode, "ActorProperty")
+DEF(E_XtType_SceneXtActorNode, "SceneActorNode")
+DEF(E_XtType_SceneXtNode, "SceneXtNode")
+DEF(E_XtType_Unknown, "")
+/*
+DEF(E_XtType_IXtType, "IXtType")
+DEF(E_XtType_DgXtNode, "DgXtNode")
+DEF(E_XtType_DgXtGameData, "DgXtGameDataNode")
+DEF(E_XtType_DgXtActorComponent, "DgXtCompNode")
+DEF(E_XtType_DgXtActorProp, "DgXtPropNode")
+DEF(E_XtType_SceneXtActorNode, "SceneXtActorNode")
+DEF(E_XtType_Unknown, "")
+*/

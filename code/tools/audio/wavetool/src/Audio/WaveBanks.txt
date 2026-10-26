@@ -1,0 +1,64 @@
+[Record] type WaveBank
+{
+};
+
+enum AudioFormat
+{
+	PCM,
+	XMA,
+	XMA2,
+	ADPCM
+};
+
+[Record] type AudioFormatPreset360
+{
+	AudioFormat Format = "XMA";
+	i32 BitDepth = 16;
+	i32 SampleRate = 48000;
+	[Range(1, 100)]
+	i32 XMACompressionQuality = 70;
+	bool XMAHighFrequencyFilter = false;
+};
+
+[Label("Audio Format Preset PS3")] 
+[Record] type AudioFormatPresetPS3
+{
+	AudioFormat Format = "ADPCM";
+	i32 BitDepth = 16;
+	i32 SampleRate = 48000;
+};
+
+[Record] type AudioFormatPresetPC
+{
+	AudioFormat Format = "PCM";
+	i32 BitDepth = 16;
+	i32 SampleRate = 48000;
+};
+
+type BuildPlatforms
+{
+    bool Build360;
+	[Label("Build PS3")] 
+    bool BuildPS3;
+    bool BuildPC;
+};
+
+type PlatformSettings
+{
+	sz8 BanksOutputPath;
+	[Label("Copy banks to kit/game image when built")]
+	bool CopyToKit;
+	sz8 DeploymentPath;	
+};
+
+[Record] type WaveBanksProjectSettings
+{
+	i32 CurrPlatform;
+	sz8 SamplesRootPath;
+	BuildPlatforms PlatformsToBuild;
+	bool WriteXmlToDisk=false;
+	PlatformSettings Settings360;
+	[Label("Settings PS3")]
+	PlatformSettings SettingsPS3;
+	PlatformSettings SettingsPC;
+};

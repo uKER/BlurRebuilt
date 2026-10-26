@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<template alienbrain_project = "The Club" texture_viewer = "%BIZARRE_ROOT%\tools\ravin\win32\texture_viewer\texture_viewer.exe">
+	<menu_items>
+		<menu_item name ="Coming soon" owner ="Help" value ="" />
+
+	</menu_items>
+	<regular_expressions>
+		<regular_expression name ="Everything" value =""/>
+		<regular_expression name ="Albedo" value ="^a._"/>
+
+		<regular_expression name ="Specular" value ="^s._"/>
+		<regular_expression name ="Normal" value ="^n._"/>
+		<regular_expression name ="Emissive" value ="^e._"/>
+		<regular_expression name ="Night Emissive" value ="^g._"/>
+
+		<regular_expression name ="Punchthrough" value ="_pt"/>
+		<regular_expression name ="Alpha blend" value ="_alpha"/>
+		<regular_expression name ="Decal" value ="_decal"/>
+		<arse></arse>
+		<regular_expression name ="Additive" value ="_add"/>
+		<regular_expression name ="Glowing material" value ="_glow"/>
+		<regular_expression name ="Sun beam material" value ="_sun"/>
+
+		<regular_expression name ="Skin shader" value ="_skin"/>
+		<regular_expression name ="Fabric shader" value ="_mat"/>
+		<regular_expression name ="Eye shader" value ="_eye"/>
+	</regular_expressions>
+	<types>
+		<type name = "image" display_name ="Image">
+			<menu_system>
+				<enums>
+					<enum name="e_size_reduction_factor">
+						"1"
+						"1/2"
+						"1/4"
+						"1/8"
+						"1/16"
+						"1/32"
+						"1/32"
+						"1/64"
+					</enum>
+					<enum name="Wrap type">
+						"WRAP"
+						"MIRROR"
+						"CLAMP"
+					</enum>
+					<enum name="e_multiplayer_reduction_factor">
+						"1"
+						"1/2"
+						"1/4"
+						"1/8"
+					</enum>
+				</enums>
+				<container name = "texture_properties" display_name = "Texture Properties" type = "basic" pre_format ="cr;">
+					<container name = "texture_enabled" display_name = "Texture Enabled" type = "bool" default ="true" pre_format ="cr;"/>
+					<container name = "texture_size_control" display_name = "Texture Size Control" type = "basic" pre_format ="cr;">
+						<container name = "size_reduction_factor" display_name="Size Reduction Factor" type ="enum" values = "e_size_reduction_factor" default="1" pre_format ="cr;"/>
+						<container name = "multiplayer_reduction_factor" display_name="Multiplayer Reduction Factor" type ="enum" values = "e_multiplayer_reduction_factor" default="1" pre_format ="cr;"/>
+					</container>
+
+					<container name = "texture_override" display_name = "Texture Override" type = "filename" default = "banana" pre_format ="cr;"/>
+
+					<container name = "specular_has_highlight" display_name = "Specular Has Highlight" type = "bool" default ="true" pre_format ="cr;"/>
+					<container name = "specular_has_envmap" display_name = "Specular Has Environment Map" type = "bool" default ="true" pre_format ="cr;"/>
+
+					<container name = "mipmap_bias" display_name = "Mipmap Bias" type = "int" default = "0" pre_format ="cr;"/>
+
+					<container name = "address_mode_u" display_name = "Address Mode U" type = "enum" values = "Wrap type" default = "WRAP" pre_format ="cr;"/>
+					<container name = "address_mode_v" display_name = "Address Mode V" type = "enum" values = "Wrap type" default = "WRAP" pre_format ="cr;"/>
+
+
+				</container>
+			</menu_system>
+		</type>
+
+		<type name = ".bmp" alias ="image" />
+		<type name = ".tga" alias ="image" />
+
+		<type name = ".default." filemask ="not applicable">
+			<menu_system>
+				<container name = "default_container" display_name = "Unsupported File" type = "basic">
+				</container>
+			</menu_system>
+		</type>
+
+	</types>
+</template>

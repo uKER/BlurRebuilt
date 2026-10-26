@@ -1,0 +1,31 @@
+xt
+	field __id "8394B775"
+	field __name "ColourStyles.Orange"
+	field __pack "F2519802"
+	field __type "UIColourStyle"
+	block bottom_left
+		field a "1"
+		field b "0"
+		field g "0.616"
+		field r "1"
+	end
+	block bottom_right
+		field a "1"
+		field b "0"
+		field g "0.616"
+		field r "1"
+	end
+	field name "Orange"
+	block top_left
+		field a "1"
+		field b "0"
+		field g "0.616"
+		field r "1"
+	end
+	block top_right
+		field a "1"
+		field b "0"
+		field g "0.616"
+		field r "1"
+	end
+end

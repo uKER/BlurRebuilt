@@ -1,0 +1,123 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by Nexus.rc
+//
+#define IDD_ABOUTBOX                    100
+#define IDP_OLE_INIT_FAILED             100
+#define IDR_MAINFRAME                   128
+#define IDR_NexusTYPE                   129
+#define IDD_PROGRESS                    130
+#define IDB_BIZLOGO                     132
+#define IDB_BITMAP2                     133
+#define IDI_ICON1                       135
+#define IDD_TANGENT_SPACE_OPTIONS       136
+#define IDD_MESH_WELD_OPTIONS           137
+#define IDD_COMMAND_VIEW                140
+#define IDD_VIEWPORT_CHILD_0            141
+#define IDC_PROGRESS_BAR                1000
+#define IDC_PROGESS_TEXT                1001
+#define IDC_BUTTON2                     1003
+#define IDC_CANCEL                      1003
+#define IDC_CTB_MAGEDIT                 1007
+#define IDC_CTB_MAGSPIN                 1008
+#define IDC_CTB_ANGLESPIN               1009
+#define IDC_CTB_ANGLEEDIT               1010
+#define IDC_WELDDISTANCESPIN            1011
+#define IDC_CTB_WELDDISTANCE_EDIT       1012
+#define IDC_CTB_NORMALISECHECK          1013
+#define IDC_CTB_WELDMESHCHECK           1014
+#define IDC_STATIC2                     1016
+#define IDC_MW_WELDDISTANCE_EDIT        1017
+#define IDC_MW_WELDDISTANCESPIN         1018
+#define IDC_ABOUTAFTK                   1019
+#define IDC_ABOUTVERSION                1020
+#define IDC_EDIT1                       1024
+#define IDC_COMMAND_VIEW_INPUT          1024
+#define IDC_COMMAND_VIEW_REDIT          1025
+#define ID_VIEW_SMOOTHSHADE             32771
+#define ID_VIEW_OUTPUT_TOOLBAR          32772
+#define ID_VIEW_FLATSHADE               32772
+#define IDR_TOOLBARX                    32773
+#define ID_Menu                         32773
+#define ID_SHADING_SMOOTHSHADEALL       32774
+#define ID_SHADING_SMOOTHSHADE          32775
+#define ID_LIGHTING_DEFAULTLIGHTING     32779
+#define ID_LIGHTING_USEALLLIGHTS        32780
+#define ID_SHADING_FLATSHADEALL         32783
+#define ID_SHADING_POINTSALL            32784
+#define ID_SHADING_TEXTURING            32785
+#define ID_SHADING_BACKFACECULLING      32786
+#define ID_SHADING_BOUNDINGBOX          32787
+#define ID_SHADING_WIREFRAMEALL         32789
+#define ID_RENDERING_VERTEXNORMALS      32790
+#define ID_FILE_IMPORT                  32791
+#define ID_FILE_EXPORT                  32792
+#define ID_FILE_EXPORTSELECTION         32793
+#define ID_RENDERING_AXES               32795
+#define ID_RENDERING_LIGHTMAPTYPE       32796
+#define ID_LIGHTMAPTYPE_FULLCOLOUR      32797
+#define ID_LIGHTMAPTYPE_2               32798
+#define ID_LIGHTMAPTYPE_3               32799
+#define ID_LIGHTMAPTYPE_MULTIPLIED      32800
+#define ID_VIEW_SHOW                    32801
+#define ID_SHOW_MESHES                  32802
+#define ID_SHOW_SPLINES                 32803
+#define ID_SHOW_POINTLIGHTS             32804
+#define ID_SHOW_SPOTLIGHTS              32805
+#define ID_SHOW_DIRECTIONALLIGHTS       32806
+#define ID_SHOW_NULLS                   32807
+#define ID_SHOW_JOINTS                  32808
+#define ID_SHOW_INSTANCES               32809
+#define ID_VIEW_SHOWGRID                32810
+#define ID_SHADING_SHOWWEIGHTING        32811
+#define ID_DEBUG_OUTPUTSCENEGRAPH       32812
+#define ID_SHADING_FIXEDFUNCTIONSKINNING 32813
+#define ID_SHADING_SHADERSKINNING       32814
+#define ID_SHADING_SHOWUV0              32816
+#define ID_SHADING_SHOWUV1              32817
+#define ID_VIEW_SCENEBOUNDINGBOX        32819
+#define ID_SHOW_REMAPPEDINSTANCES       32820
+#define ID_RENDERING_VERTEXTANGENTSPACE 32821
+#define ID_TASKS_CALCULATEVERTEXTANGENTSPACEFORSCENE 32823
+#define ID_TASKS_WELDMESHCOMPONENTSFORSCENE 32824
+#define ID_TASKS_WELDMESHPOLYGONVERTICESFORSCENE 32825
+#define ID_TASKSREPAIRSCENE             32826
+#define ID_VIEW_RIGHT_TOOLBAR           32827
+#define ID_TASKS_WELDMESH               32828
+#define ID_TANGENTSPACE_UVSET0          32829
+#define ID_TANGENTSPACE_UVSET1          32830
+#define ID_TANGENTSPACE_UVSET2          32831
+#define ID_TANGENTSPACE_UVSET3          32832
+#define ID_TANGENTSPACE_UVSET4          32833
+#define ID_VIEW_                        32834
+#define ID_VIEW_HEADSUPDISPLAY          32837
+#define ID_VIEW_ANIMATIONDETAILS        32838
+#define ID_VIEW_POLYCOUNT               32839
+#define ID_SHADING_CROPSHEET            32840
+#define ID_TASKS_OUTPUTSELECTIONSTATS   32841
+#define ID_HEADSUPDISPLAY_CAMERADETAILS 32842
+#define ID_TASKS_REMOVEDUPLICATEMESHES  32843
+#define ID_TASKS_CREATEINSTANCES        32844
+#define ID_SHOW_BONEDMESHINSTANCES      32845
+#define ID_SHOW_AREALIGHTS              32847
+#define ID_SHOW_LIGHTS                  32848
+#define ID_EDIT_SELECTIONMODE           32849
+#define ID_SELECTIONMODE_OBJECT         32850
+#define ID_SELECTIONMODE_POLYGON        32851
+#define ID_SELECTIONMODE_POINT          32852
+#define ID_VIEW_32853                   32853
+#define ID_VIEW_SELECTIONINFO           32854
+#define ID_SELECTIONINFO_SHOWFACEINFOONSELECTION 32855
+#define ID_SELECTIONINFO_SHOWNODEINFOONSELECTION 32856
+#define ID_TASKS_OUTPUTSCENEBOUNDS      34000
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        141
+#define _APS_NEXT_COMMAND_VALUE         32857
+#define _APS_NEXT_CONTROL_VALUE         1026
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif

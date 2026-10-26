@@ -1,0 +1,23 @@
+SubDir TOP Code Mercury Library GameSys Helper_Screens ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/util/input/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+./source/BizAssertScreen.cpp
+;
+
+Library helper_screens : $(SRC) ;

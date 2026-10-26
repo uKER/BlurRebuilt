@@ -1,0 +1,122 @@
+SubDir TOP Code Mercury Library Graphics Deferred ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Deferred/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Graphics/Spu/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+source/mask/Mask.cpp
+source/prepass/DynamicLights.cpp
+source/prepass/Light.cpp
+source/prepass/Shadow.cpp
+source/prepass/TiledVolumeSpotlights.cpp
+source/prepass/spu/Lighting.cpp
+source/Manager.cpp
+;
+
+if $(PLATFORM) = PS3
+{
+	SRC += Source/Prepass/SPU/JobQueueMaster.cpp ;
+	SRC += Source/Prepass/SPU/JobQueueWorker.cpp ;
+
+	SPUSRC =
+		<SPU>Source/Prepass/SPU/JobQueueMaster.cpp
+	;
+	AddSPUModule deferred : lightingprepassmaster : $(SPUSRC) ;
+
+	SPUSRC =
+		<SPU>Source/Prepass/SPU/JobQueueWorker.cpp
+	;
+	
+	#SrcOptim $(SPUSRC) : -O0 ;
+	SrcOptim $(SPUSRC) : -O3 ;
+	AddSPUModule deferred : lightingprepassworker : $(SPUSRC) ;
+    # TODO: [Stove] Enable strict aliasing! :)
+    #CCFLAGS on [ OBJfromSRC <SPU>Source/Prepass/SPU/JobQueueWorker.cpp ] = -g -fno-exceptions -ffast-math -fms-extensions -mfloat=fast  ;
+}
+
+SHADERSRC =
+include/deferred/shaders/mask/psMask.psh
+include/deferred/shaders/mask/vsMask.vsh
+include/deferred/shaders/prepass/psStencilPrepass.psh
+include/deferred/shaders/prepass/vsDynamicLightsPrepass.vsh
+include/deferred/shaders/prepass/vsSpotlightPrepass.vsh
+include/deferred/shaders/prepass/vsStencilPrepass.vsh
+include/deferred/shaders/prepass/vsTiledVolumeSpotlightsPrepass.vsh
+;
+
+SHADERSRC += [ Shader include/deferred/shaders/prepass/psDynamicLightsPrepass.psh :
+						"<1>-DONE"
+						"<2>-DTWO"
+						"<3>-DTHREE"
+						"<4>-DFOUR"
+						"<5>-DFIVE"
+						"<6>-DSIX"
+						"<7>-DSEVEN"
+						"<8>-DEIGHT"
+						"<2xMSAA1>-DONE -DMSAA_2"
+						"<2xMSAA2>-DTWO -DMSAA_2"
+						"<2xMSAA3>-DTHREE -DMSAA_2"
+						"<2xMSAA4>-DFOUR -DMSAA_2"
+						"<2xMSAA5>-DFIVE -DMSAA_2"
+						"<2xMSAA6>-DSIX -DMSAA_2"
+						"<2xMSAA7>-DSEVEN -DMSAA_2"
+						"<2xMSAA8>-DEIGHT -DMSAA_2" ] ;
+						
+SHADERSRC += [ Shaders include/deferred/shaders/prepass/psShadowPrepass.psh
+						include/deferred/shaders/prepass/psShadowFadePrepass.psh :
+						"<Simple>-DSIMPLE"
+						"<Jitter>-DJITTER"
+						"<PCF>-DPCF"
+						"<Variance>-DVARIANCE"
+						"<Exponential>-DEXPONENTIAL" ] ;
+
+SHADERSRC += [ Shader include/deferred/shaders/prepass/psSpotlightPrepass.psh :
+						""
+						"<Projected>-DPROJECTED"
+						"<Volume>-DVOLUME" ] ;
+
+SHADERSRC += [ Shader include/deferred/shaders/prepass/psTiledVolumeSpotlightsPrepass.psh :
+						"<1>-DONE"
+						"<2>-DTWO"
+						"<3>-DTHREE"
+						"<4>-DFOUR"
+						"<5>-DFIVE"
+						"<6>-DSIX"
+						"<7>-DSEVEN"
+						"<8>-DEIGHT"
+						"<9>-DNINE"
+						"<10>-DTEN"
+						"<11>-DELEVEN"
+						"<12>-DTWELVE" ] ;
+						
+ImportCP render/shaders/Constants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP render/shaders/psCommon.h : TOP Code Mercury Library Graphics Render ;
+ImportCP render/shaders/psCommon.h : TOP Code Mercury Library Graphics Display ;
+ImportCP psConstants.h : TOP Code Mercury Library Graphics Display ;
+CPFile include/deferred/shaders/psConstants.cp ;
+CPFile include/deferred/shaders/vsConstants.cv ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library deferred : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Spu ;

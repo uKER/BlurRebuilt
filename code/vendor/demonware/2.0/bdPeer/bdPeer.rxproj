@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdPeer</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdGame.cpp:1"><path>${project}\bdGame.cpp</path></file>
+<file file-tag="bdGame.h:1"><path>${project}\bdGame.h</path></file>
+<file file-tag="bdGameLog.cpp:1"><path>${project}\bdGameLog.cpp</path></file>
+<file file-tag="bdGameLog.h:1"><path>${project}\bdGameLog.h</path></file>
+<file file-tag="bdPeer.cpp:1"><path>${project}\bdPeer.cpp</path></file>
+<file file-tag="bdPeer.h:1"><path>${project}\bdPeer.h</path></file>
+<file file-tag="bdRound.cpp:1"><path>${project}\bdRound.cpp</path></file>
+<file file-tag="bdRound.h:1"><path>${project}\bdRound.h</path></file>
+<file file-tag="bdRoundInfo.cpp:1"><path>${project}\bdRoundInfo.cpp</path></file>
+<file file-tag="bdRoundInfo.h:1"><path>${project}\bdRoundInfo.h</path></file>
+<file file-tag="bdCommand.cpp:1"><path>${project}\bdCommand\bdCommand.cpp</path></file>
+<file file-tag="bdCommand.h:1"><path>${project}\bdCommand\bdCommand.h</path></file>
+<file file-tag="bdCommandFactory.cpp:1"><path>${project}\bdCommand\bdCommandFactory.cpp</path></file>
+<file file-tag="bdCommandFactory.h:1"><path>${project}\bdCommand\bdCommandFactory.h</path></file>
+<file file-tag="bdDeliveryInitializer.cpp:1"><path>${project}\bdDelivery\bdDeliveryInitializer.cpp</path></file>
+<file file-tag="bdDeliveryInitializer.h:1"><path>${project}\bdDelivery\bdDeliveryInitializer.h</path></file>
+<file file-tag="bdDeliveryInterceptor.cpp:1"><path>${project}\bdDelivery\bdDeliveryInterceptor.cpp</path></file>
+<file file-tag="bdDeliveryInterceptor.h:1"><path>${project}\bdDelivery\bdDeliveryInterceptor.h</path></file>
+<file file-tag="bdDeliveryLogger.cpp:1"><path>${project}\bdDelivery\bdDeliveryLogger.cpp</path></file>
+<file file-tag="bdDeliveryLogger.h:1"><path>${project}\bdDelivery\bdDeliveryLogger.h</path></file>
+<file file-tag="bdDeliveryManager.cpp:1"><path>${project}\bdDelivery\bdDeliveryManager.cpp</path></file>
+<file file-tag="bdDeliveryManager.h:1"><path>${project}\bdDelivery\bdDeliveryManager.h</path></file>
+<file file-tag="bdDeliveryManagerInfo.cpp:1"><path>${project}\bdDelivery\bdDeliveryManagerInfo.cpp</path></file>
+<file file-tag="bdDeliveryManagerInfo.h:1"><path>${project}\bdDelivery\bdDeliveryManagerInfo.h</path></file>
+<file file-tag="bdDeliveryManagerListener.cpp:1"><path>${project}\bdDelivery\bdDeliveryManagerListener.cpp</path></file>
+<file file-tag="bdDeliveryManagerListener.h:1"><path>${project}\bdDelivery\bdDeliveryManagerListener.h</path></file>
+<file file-tag="bdDeliveryMessage.cpp:1"><path>${project}\bdDelivery\bdDeliveryMessage.cpp</path></file>
+<file file-tag="bdDeliveryMessage.h:1"><path>${project}\bdDelivery\bdDeliveryMessage.h</path></file>
+<file file-tag="bdPlayer.cpp:1"><path>${project}\bdPlayer\bdPlayer.cpp</path></file>
+<file file-tag="bdPlayer.h:1"><path>${project}\bdPlayer\bdPlayer.h</path></file>
+<file file-tag="bdPlayerFactory.cpp:1"><path>${project}\bdPlayer\bdPlayerFactory.cpp</path></file>
+<file file-tag="bdPlayerFactory.h:1"><path>${project}\bdPlayer\bdPlayerFactory.h</path></file>
+<file file-tag="bdPlayerManager.cpp:1"><path>${project}\bdPlayer\bdPlayerManager.cpp</path></file>
+<file file-tag="bdPlayerManager.h:1"><path>${project}\bdPlayer\bdPlayerManager.h</path></file>
+<file file-tag="bdPlayerManagerListener.cpp:1"><path>${project}\bdPlayer\bdPlayerManagerListener.cpp</path></file>
+<file file-tag="bdPlayerManagerListener.h:1"><path>${project}\bdPlayer\bdPlayerManagerListener.h</path></file>
+<file file-tag="bdSession.cpp:1"><path>${project}\bdSession\bdSession.cpp</path></file>
+<file file-tag="bdSession.h:1"><path>${project}\bdSession\bdSession.h</path></file>
+<file file-tag="bdSessionData.cpp:1"><path>${project}\bdSession\bdSessionData.cpp</path></file>
+<file file-tag="bdSessionData.h:1"><path>${project}\bdSession\bdSessionData.h</path></file>
+<file file-tag="bdSessionDataFactory.cpp:1"><path>${project}\bdSession\bdSessionDataFactory.cpp</path></file>
+<file file-tag="bdSessionDataFactory.h:1"><path>${project}\bdSession\bdSessionDataFactory.h</path></file>
+<file file-tag="bdSessionHandler.cpp:1"><path>${project}\bdSession\bdSessionHandler.cpp</path></file>
+<file file-tag="bdSessionHandler.h:1"><path>${project}\bdSession\bdSessionHandler.h</path></file>
+<file file-tag="bdSessionInfo.cpp:1"><path>${project}\bdSession\bdSessionInfo.cpp</path></file>
+<file file-tag="bdSessionInfo.h:1"><path>${project}\bdSession\bdSessionInfo.h</path></file>
+<file file-tag="bdSessionInterceptor.cpp:1"><path>${project}\bdSession\bdSessionInterceptor.cpp</path></file>
+<file file-tag="bdSessionInterceptor.h:1"><path>${project}\bdSession\bdSessionInterceptor.h</path></file>
+<file file-tag="bdSessionListener.cpp:1"><path>${project}\bdSession\bdSessionListener.cpp</path></file>
+<file file-tag="bdSessionListener.h:1"><path>${project}\bdSession\bdSessionListener.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdGame.cpp:1</file-ref>
+<file-ref>bdGame.h:1</file-ref>
+<file-ref>bdGameLog.cpp:1</file-ref>
+<file-ref>bdGameLog.h:1</file-ref>
+<file-ref>bdPeer.cpp:1</file-ref>
+<file-ref>bdPeer.h:1</file-ref>
+<file-ref>bdRound.cpp:1</file-ref>
+<file-ref>bdRound.h:1</file-ref>
+<file-ref>bdRoundInfo.cpp:1</file-ref>
+<file-ref>bdRoundInfo.h:1</file-ref>
+<mixed-group group-tag="bdCommand:1"><label>bdCommand</label><group-items>
+<file-ref>bdCommand.cpp:1</file-ref>
+<file-ref>bdCommand.h:1</file-ref>
+<file-ref>bdCommandFactory.cpp:1</file-ref>
+<file-ref>bdCommandFactory.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdDelivery:1"><label>bdDelivery</label><group-items>
+<file-ref>bdDeliveryInitializer.cpp:1</file-ref>
+<file-ref>bdDeliveryInitializer.h:1</file-ref>
+<file-ref>bdDeliveryInterceptor.cpp:1</file-ref>
+<file-ref>bdDeliveryInterceptor.h:1</file-ref>
+<file-ref>bdDeliveryLogger.cpp:1</file-ref>
+<file-ref>bdDeliveryLogger.h:1</file-ref>
+<file-ref>bdDeliveryManager.cpp:1</file-ref>
+<file-ref>bdDeliveryManager.h:1</file-ref>
+<file-ref>bdDeliveryManagerInfo.cpp:1</file-ref>
+<file-ref>bdDeliveryManagerInfo.h:1</file-ref>
+<file-ref>bdDeliveryManagerListener.cpp:1</file-ref>
+<file-ref>bdDeliveryManagerListener.h:1</file-ref>
+<file-ref>bdDeliveryMessage.cpp:1</file-ref>
+<file-ref>bdDeliveryMessage.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlayer:1"><label>bdPlayer</label><group-items>
+<file-ref>bdPlayer.cpp:1</file-ref>
+<file-ref>bdPlayer.h:1</file-ref>
+<file-ref>bdPlayerFactory.cpp:1</file-ref>
+<file-ref>bdPlayerFactory.h:1</file-ref>
+<file-ref>bdPlayerManager.cpp:1</file-ref>
+<file-ref>bdPlayerManager.h:1</file-ref>
+<file-ref>bdPlayerManagerListener.cpp:1</file-ref>
+<file-ref>bdPlayerManagerListener.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdSession:1"><label>bdSession</label><group-items>
+<file-ref>bdSession.cpp:1</file-ref>
+<file-ref>bdSession.h:1</file-ref>
+<file-ref>bdSessionData.cpp:1</file-ref>
+<file-ref>bdSessionData.h:1</file-ref>
+<file-ref>bdSessionDataFactory.cpp:1</file-ref>
+<file-ref>bdSessionDataFactory.h:1</file-ref>
+<file-ref>bdSessionHandler.cpp:1</file-ref>
+<file-ref>bdSessionHandler.h:1</file-ref>
+<file-ref>bdSessionInfo.cpp:1</file-ref>
+<file-ref>bdSessionInfo.h:1</file-ref>
+<file-ref>bdSessionInterceptor.cpp:1</file-ref>
+<file-ref>bdSessionInterceptor.h:1</file-ref>
+<file-ref>bdSessionListener.cpp:1</file-ref>
+<file-ref>bdSessionListener.h:1</file-ref>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

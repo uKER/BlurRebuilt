@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="no"?>
+<DemonWare>
+  <Matchmaking>
+    <Table>
+      <Fields>
+        <field name="licenseID" dataType="blob" length="8" />
+      </Fields>
+      <Constants />
+      <Queries>
+        <Query id="1" name="FindSessions" maxresults="25" type="normal">
+          <Params />
+          <Filters />
+          <Sortops />
+          <Returns>
+            <return id="licenseID" datatype="blob" length="8" />
+          </Returns>
+        </Query>
+      </Queries>
+    </Table>
+  </Matchmaking>
+  <Statistics>
+    <statstables>
+      <Table name="Leaderboard" id="1">
+        <Fields>
+          <field name="kills" dataType="signed int64" length="64" />
+          <field name="deaths" dataType="signed int32" length="32" />
+          <field name="assists" dataType="signed int32" length="32" />
+          <field name="started" dataType="signed int32" length="32" />
+          <field name="completed" dataType="signed int32" length="32" />
+          <field name="killRate" dataType="double" length="64" />
+        </Fields>
+        <Constants />
+        <Queries />
+      </Table>
+    </statstables>
+  </Statistics>
+  <UserManagement>
+    <Table>
+      <Public>
+        <Fields />
+      </Public>
+      <Private>
+        <Fields />
+      </Private>
+    </Table>
+  </UserManagement>
+  <Teams>
+    <Table>
+      <Public>
+        <Fields />
+      </Public>
+      <Private>
+        <Fields />
+      </Private>
+    </Table>
+  </Teams>
+  <TeamMembers>
+    <Table>
+      <Public>
+        <Fields />
+      </Public>
+      <Private>
+        <Fields />
+      </Private>
+    </Table>
+  </TeamMembers>
+</DemonWare>

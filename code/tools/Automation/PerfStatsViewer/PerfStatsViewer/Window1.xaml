@@ -1,0 +1,120 @@
+﻿<Window x:Class="PerfStatsViewer.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Performance Stats Viewer" Height="579" Width="994"
+    xmlns:datavis="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+    xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
+    <Window.Resources>
+        <Style x:Key="LegendItemStyle" TargetType="chartingToolkit:LegendItem">
+            <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="chartingToolkit:LegendItem">
+                            <CheckBox Click="CheckBox_Click"  Cursor="Hand" IsChecked="true"
+                                  Content="{TemplateBinding Content}" Tag="{TemplateBinding Content}">
+                                <CheckBox.Template>
+                                    <ControlTemplate TargetType="CheckBox">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle Width="8" Height="8" Fill="{Binding Background}" Stroke="{Binding BorderBrush}" StrokeThickness="1" Margin="0,0,3,0" />
+                                                <datavis:Title Content="{TemplateBinding Content}" />
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </CheckBox.Template>
+                            </CheckBox>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="200*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="340" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="526*" />
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,5">
+            <TextBlock DockPanel.Dock="Top">Performance Sessions</TextBlock>
+            <my:DataGrid AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" ItemsSource="{Binding}" SelectionChanged="dataGrid1_SelectionChanged" Name="dataGrid1" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit">
+                <my:DataGrid.Columns>
+                    <my:DataGridTextColumn Width="110" Header="Ref" Binding="{Binding Path=Version}" />
+                    <my:DataGridTextColumn Width="140" Header="Time" Binding="{Binding Path=Time}" />
+                    <my:DataGridCheckBoxColumn Width="30" Header="360" Binding="{Binding Path=XBox360}" />
+                    <my:DataGridCheckBoxColumn Width="30" Header="PS3" Binding="{Binding Path=PS3}" />
+                </my:DataGrid.Columns>
+            </my:DataGrid>
+        </DockPanel>
+        <DockPanel Grid.Column="1" Grid.Row="0" Margin="0,0,0,5">
+            <TextBlock DockPanel.Dock="Top">Location</TextBlock>
+            <my:DataGrid AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="dataGridLocation_SelectionChanged" ItemsSource="{Binding}" Name="dataGridLocation" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit">
+                <my:DataGrid.Columns>
+                    <!-- my:DataGridTextColumn Width="100" Header="ID" Binding="{Binding Path=_id}" / -->
+                    <my:DataGridTextColumn Width="170" Header="Name" Binding="{Binding Path=name}" />
+                </my:DataGrid.Columns>
+            </my:DataGrid>
+        </DockPanel>
+        <DockPanel Grid.Column="2" Grid.Row="0" Margin="0,0,0,5">
+            <TextBlock DockPanel.Dock="Top">Route</TextBlock>
+            <my:DataGrid AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" SelectionChanged="dataGridRoute_SelectionChanged" ItemsSource="{Binding}" Name="dataGridRoute" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit">
+                <my:DataGrid.Columns>
+                    <my:DataGridTextColumn Width="170" Header="Name" Binding="{Binding Path=name}" />
+                </my:DataGrid.Columns>
+            </my:DataGrid>
+        </DockPanel>
+        <!-- GridSplitter Grid.Column="0" Grid.Row="0" Width="5" ResizeDirection="Columns" Grid.RowSpan="1"/ -->
+        <GridSplitter Grid.Column="0" Grid.Row="0" Height="5" Grid.ColumnSpan="4" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4">
+            <TabControl Name="MrTabby" >
+                <TabItem Header="Sub Session Overview">
+                    <chartingToolkit:Chart Name="chart1"  LegendTitle="Item" Title="Overview" Visibility="Hidden" >
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:LinearAxis Title="Time" Orientation="X"></chartingToolkit:LinearAxis>
+                            <chartingToolkit:LinearAxis Name ="axisDuration" Title="Duration(ms)" Minimum="0" ShowGridLines="True" Orientation="Y"></chartingToolkit:LinearAxis>
+                        </chartingToolkit:Chart.Axes>
+                    </chartingToolkit:Chart>
+                </TabItem>
+                <TabItem Header="CPU Update">
+                    <chartingToolkit:Chart Name="chartCpu"  LegendTitle="Item" Title="CPU Breakdown" Visibility="Hidden" VirtualizingStackPanel.IsVirtualizing="True" >
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:LinearAxis Title="Time" Orientation="X"></chartingToolkit:LinearAxis>
+                            <chartingToolkit:LinearAxis Name ="axisDuration2" Minimum="0" Title="Duration(ms)" ShowGridLines="True" Orientation="Y"></chartingToolkit:LinearAxis>
+                        </chartingToolkit:Chart.Axes>
+                    </chartingToolkit:Chart>
+                </TabItem>
+                <TabItem Header="Streaming">
+                    <chartingToolkit:Chart Name="chartStreaming"  LegendTitle="Item" Title="Streaming" Visibility="Hidden" VirtualizingStackPanel.IsVirtualizing="True" >
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:LinearAxis Title="Time" Orientation="X"></chartingToolkit:LinearAxis>
+                            <chartingToolkit:LinearAxis Name="axisMem" Title="Memory Usage(KB)" ShowGridLines="True" Minimum="0" Orientation="Y"></chartingToolkit:LinearAxis>
+                        </chartingToolkit:Chart.Axes>
+                    </chartingToolkit:Chart>
+                </TabItem>
+                <TabItem Header="Memory">
+                    <chartingToolkit:Chart Name="chartMemory"  LegendTitle="Item" Title="Memory" Visibility="Hidden" VirtualizingStackPanel.IsVirtualizing="True" >
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:LinearAxis Title="Time" Orientation="X"></chartingToolkit:LinearAxis>
+                            <chartingToolkit:LinearAxis Name="axisMem2" Title="Memory(KB)" ShowGridLines="True" Minimum="0" Orientation="Y"></chartingToolkit:LinearAxis>
+                        </chartingToolkit:Chart.Axes>
+                    </chartingToolkit:Chart>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="0" Margin="0,0,0,5">
+            <TextBlock DockPanel.Dock="Top">Sub Sessions</TextBlock>
+            <my:DataGrid AutoGenerateColumns="False" Name="dataGrid2" SelectionMode="Single" IsReadOnly="True" SelectionChanged="dataGrid2_SelectionChanged" ItemsSource="{Binding}" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit">
+                <my:DataGrid.Columns>
+                    <my:DataGridTextColumn Width="60" Header="Platform" Binding="{Binding Path=platform}" />
+                    <my:DataGridTextColumn Width="40" Header="Cars" Binding="{Binding Path=NumCars}" />
+                    <my:DataGridTextColumn Width="90" Header="Loading Time" Binding="{Binding Path=LoadingTime}" />
+                    <my:DataGridTextColumn Width="100" Header="Dynamic Objects" Binding="{Binding Path=DynamicObjects}" />
+                    <my:DataGridTextColumn Width="100" Header="Physical Objects" Binding="{Binding Path=PhysicalObjects}" />
+                </my:DataGrid.Columns>
+            </my:DataGrid>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,71 @@
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psColour.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+float4		g_vSkySettings		: register(CCP_RENDER_SETTINGS);
+float4		g_vFogColour		: register(CCP_RENDER_SETTINGS_1);
+float4		g_vFogSettings		: register(CCP_RENDER_SETTINGS_2);
+float4		g_vAdjust			: register(CCP_RENDER_SETTINGS_3);
+float4		g_vPixelSize		: register(CCP_RENDER_SETTINGS_4);
+
+sampler2D	g_tLDR				: register(s0);
+sampler2D	g_tHDR				: register(s1);
+
+#define		g_fRotation			g_vSkySettings.x
+#define		g_fIntensity		g_vSkySettings.y
+#define		g_fBlackHeight		g_vSkySettings.z
+#define		g_fBlackSize		g_vSkySettings.w
+
+#define		g_fFogAlpha			g_vFogSettings.x
+#define		g_fFogTop			g_vFogSettings.y
+#define		g_fFogPower			g_vFogSettings.z
+
+#define		g_fPixelWidth		g_vPixelSize.z
+#define		g_fPixelHeight		g_vPixelSize.w
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float2	uv				= input.m_TexCoord.xy + float2(g_fRotation, 0.0f);
+	
+	float3	vSampleLDR0		= tex2D(g_tLDR, uv).rgb;
+	float3	vSampleLDR1		= tex2D(g_tLDR, uv + float2(0.0f, g_fPixelHeight)).rgb;
+	float3	vSampleLDR2		= tex2D(g_tLDR, uv + float2(g_fPixelWidth, 0.0f)).rgb;
+	float3	vSampleLDR3		= tex2D(g_tLDR, uv + float2(g_fPixelWidth, g_fPixelHeight)).rgb;
+
+	float	vSampleHDR0		= tex2D(g_tHDR, uv).r;
+	float	vSampleHDR1		= tex2D(g_tHDR, uv + float2(0.0f, g_fPixelHeight)).r;
+	float	vSampleHDR2		= tex2D(g_tHDR, uv + float2(g_fPixelWidth, 0.0f)).r;
+	float	vSampleHDR3		= tex2D(g_tHDR, uv + float2(g_fPixelWidth, g_fPixelHeight)).r;
+
+	float3	vSample0		= vSampleLDR0 * vSampleHDR0;
+	float3	vSample1		= vSampleLDR1 * vSampleHDR1;
+	float3	vSample2		= vSampleLDR2 * vSampleHDR2;
+	float3	vSample3		= vSampleLDR3 * vSampleHDR3;
+
+	float2	vLerp			= frac(uv * g_vPixelSize.xy);
+	float3	vSample			= lerp(lerp(vSample0, vSample1, vLerp.y), lerp(vSample2, vSample3, vLerp.y), vLerp.x);	
+	
+	float3	vSkyColour		= vSample * g_fIntensity * 8.0f;
+	float3	vFogColour		= g_vFogColour.rgb;
+	float	fFogIntensity	= saturate((uv.y + g_fFogTop - 1.0f) / g_fFogTop);
+			fFogIntensity	= pow(fFogIntensity, g_fFogPower);
+			fFogIntensity	= fFogIntensity * g_fFogAlpha;
+	
+	float3	vColour			= lerp(vSkyColour, vFogColour, fFogIntensity);
+			vColour			= AdjustSaturation(vColour, g_vAdjust.xyz);
+			vColour			= AdjustContrast(vColour, g_vAdjust.w);
+
+	float	fBlackBlend		= saturate((g_fBlackHeight - uv.y) * g_fBlackSize);
+	
+	output = GetExposure(float4(vColour, 1.0f));
+	output.colour.xyz = output.colour.xyz * fBlackBlend;
+	
+	return output;
+}

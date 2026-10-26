@@ -1,0 +1,4 @@
+type exe
+dependencies bdPlatform bdCore bdSocket bdConnection bdNet bdPeer bdGraphics bdExampleCommon 
+weight 220
+excludedarchitectures

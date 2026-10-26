@@ -1,0 +1,42 @@
+#include "..\psCommon.h"
+
+float4	g_PolygonGradientColours[ 4 ]		: register( CCP_POLYGON_GRADIENT_COLOURS );
+float4  g_PolygonGradientColourParam		: register( CCP_POLYGON_GRADIENT_COLOURS_PARAM );
+
+sampler2D	g_Texture0						: register(s0);
+sampler2D	g_Texture1						: register(s1);
+
+struct PS_INPUT
+{
+	float4 Colour0				: COLOR0;
+	float4 Colour1				: COLOR1;
+	float4 Position				: POSITION;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main( PS_INPUT IN )
+{
+	PS_OUTPUT OUT;
+	float2 tmp, tmp2;
+
+	// Gradient tex coord
+	tmp.x = (IN.Colour0.x+1.0f)*0.5f;
+	tmp.y = g_PolygonGradientColourParam.x;
+	tmp = saturate(tmp);
+
+	// Multiply tex cordiate
+	tmp2.x = (IN.Colour1.x+1.0f)*0.5f;
+	tmp2.y = (IN.Colour1.y+1.0f)*0.5f;
+	tmp2.x = saturate(tmp2.x);
+
+	float4 grad_texture_colour = tex2D( g_Texture0, tmp );
+	float4 mult_texture_colour = tex2D( g_Texture1, tmp2 );
+
+	OUT.Colour	= g_PolygonGradientColours[ 0 ] * grad_texture_colour * mult_texture_colour;
+	
+	return OUT;
+}

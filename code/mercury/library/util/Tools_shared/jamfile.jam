@@ -1,0 +1,40 @@
+SubDir TOP Code Mercury Library Util Tools_shared ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Tools/file_tag_db/file_tag_db/include
+;
+
+SRC = 
+source/tools_shared/PlatformHelpers.cpp
+source/tools_shared/MemoryDbg.cpp
+source/tools_shared/MiniDumper.cpp
+source/tools_shared/ToolsApplication.cpp
+source/tools_shared/ToolsAssert.cpp
+source/tools_shared/argument/Argument.cpp
+source/tools_shared/argument/ArgumentDatabase.cpp
+source/tools_shared/argument/ArgumentParser.cpp
+source/tools_shared/argument/Syntax.cpp
+source/tools_shared/executer/ExecuterHelpers.cpp
+source/tools_shared/SchedulerConfig.cpp
+source/tools_shared/file_copy/FileCopyList.cpp
+source/tools_shared/file_copy/FileCopyListXml.cpp
+source/tools_shared/file_copy/FileCopyUtils.cpp
+source/tools_shared/shim/ShimFileCopyXmlExport.cpp
+source/tools_shared/shim/ShimOptions.cpp
+source/tools_shared/utility/AssetMeta.cpp
+source/tools_shared/utility/MacroExpander.cpp
+source/tools_shared/utility/Misc.cpp
+source/tools_shared/xml/XmlDom.cpp
+source/tools_shared/guid/CryptRandom.cpp
+;
+
+#SRC = [ Batch $(SRC) : stdafx.h ] ;
+
+Define JAM ;
+
+Library tools_shared : $(SRC) : stdafx.cpp ;
+

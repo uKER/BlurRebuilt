@@ -1,0 +1,30 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+sampler2D	g_tBlurred	: register(s1);
+
+struct PS_INPUT
+{
+#if defined(XB2)
+	float2	m_UV		: SPRITETEXCOORD;
+#else
+	float2	m_UV		: TEXCOORD0;
+#endif
+	float4	m_TexCoord	: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float2 vTexCoord = input.m_TexCoord.xy + (input.m_UV - 0.5f) * input.m_TexCoord.zw;
+
+	output.m_Colour = tex2D(g_tBlurred, vTexCoord);
+		
+	return output;
+}

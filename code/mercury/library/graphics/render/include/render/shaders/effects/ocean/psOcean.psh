@@ -1,0 +1,180 @@
+#include "..\..\psCommon.h"
+#include "..\..\psHDR.h"
+#include "OceanConstants.h"
+
+
+
+#define WATER_FRESNEL_R0		0.0204f
+#define WATER_FRESNEL_POWER		5.0f
+
+
+
+#ifndef PS_2_0
+#define DULL_SPECULAR
+#define FULL_FRESNEL
+#define REFLECTIONS
+#define SPECULAR
+#endif
+
+
+
+struct C_OceanSettings
+{
+	float4	m_Specular;		// .x = intensity, .y = power, .z = dull intensity, .w = dull power
+	float2	m_Reflect;		// .x = specular reflection, .y = specular blur factor
+	float3	m_Scales;		// .x = diffuse scale
+	float4	m_WaveColour;
+	float4	m_DeepColour;
+	float3	m_ObjSunDir;
+	float4	m_SunCol;
+	float4	m_SkyCol;
+	float4	m_FogColour;
+	float4	m_FogInfo;
+	float4	m_Animation;
+};
+
+
+
+extern C_OceanSettings	g_Settings :		register(CCP_RENDER_SETTINGS);
+
+extern sampler2D		s_Normal0Map :		register(SSP_OCEAN_NORMAL0MAP);
+extern sampler2D		s_Normal1Map :		register(SSP_OCEAN_NORMAL1MAP);
+extern samplerCUBE		s_ReflectionMap :	register(SSP_OCEAN_REFLECTIONMAP);
+
+
+
+struct PS_INPUT
+{
+	float4	m_TexCoord :		TEXCOORD0;
+	float3	m_View :			TEXCOORD1;
+	float4	m_Normal :			TEXCOORD2;
+	float3	m_Tangent :			TEXCOORD3;
+	float3	m_Binormal :		TEXCOORD4;
+};
+
+
+
+colour3 ApplyFog( colour3 inCol, float fogDist, colour3 fogCol, float4 fogSettings )
+{	
+	const float fogDensity = fogSettings.x;
+	const float fogNearDist = fogSettings.y;
+			
+	fogDist = max(fogDist - fogNearDist, 0.0f);
+	float fogBlend = exp(-fogDist * fogDensity); 	
+	return lerp(fogCol, inCol, fogBlend);
+}
+
+colour1 Desaturate(colour3 colour)
+{
+	return dot(colour, float3(0.3f, 0.59f, 0.11f));
+}
+	
+colour1 DesaturateX2(colour3 colour)
+{
+	return dot(colour, float3(0.60f, 1.18f, 0.22f));
+}
+
+
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	// colours
+	colour3	diffuseLight	=	0.0f;
+	colour3	specularLight	=	0.0f;
+	colour3	reflectedLight	=	0.0f;
+	real	fresnelCoeff	=	0.0f;
+
+	/*
+	 * CALCULATE NORMAL
+	 */
+	real3	inNormal		=	normalize(input.m_Normal.xyz);
+	real3	inBinormal		=	normalize(input.m_Binormal.xyz);
+	real3	inTangent		=	normalize(input.m_Tangent.xyz);
+
+	real3x3	tangentToObjectMatrix =
+				real3x3(	inTangent.x,	inTangent.y,	inTangent.z,
+							inNormal.x,		inNormal.y,		inNormal.z,
+							inBinormal.x,	inBinormal.y,	inBinormal.z
+						);
+	
+	// normal
+	real3	normal0			=	tex2D(s_Normal0Map, input.m_TexCoord.xy + g_Settings.m_Animation.xy).rgb * 2.0f - 1.0f;
+	real3	normal1			=	tex2D(s_Normal1Map, input.m_TexCoord.zw + g_Settings.m_Animation.zw).rgb * 2.0f - 1.0f;
+	real3	normal			=	normalize(normal0 + normal1);
+			normal			=	normalize(mul(normal.xzy, tangentToObjectMatrix));
+
+	// specular coefficients
+	real3	objView			=	normalize(input.m_View);
+	float3	objReflect		=	reflect(objView, normal);
+
+	/*
+	 * DIFFUSE LIGHT
+	 */
+
+	diffuseLight		+=	saturate(dot(g_Settings.m_ObjSunDir, normal)) * g_Settings.m_SunCol.rgb;
+	diffuseLight		+=	g_Settings.m_SkyCol.rgb;
+	diffuseLight		*=	g_Settings.m_Scales.x;
+	
+	/*
+	 * SUN AND SKY SPECULAR
+	 */
+
+	#if defined(SPECULAR)
+
+	real3	objSunHalf				=	normalize(-objView + g_Settings.m_ObjSunDir.xyz);
+	real	sunSpecBrightness		=	saturate(dot(objSunHalf, normal));
+	real	sunDullSpecBrightness	=	sunSpecBrightness;
+	
+	sunSpecBrightness				=	saturate(pow(sunSpecBrightness, g_Settings.m_Specular.y)) * g_Settings.m_Specular.x;
+
+	#if defined(DULL_SPECULAR)
+	sunDullSpecBrightness			=	saturate(pow(sunDullSpecBrightness, g_Settings.m_Specular.w)) * g_Settings.m_Specular.z;
+	#else
+	sunDullSpecBrightness			=	0.0f;
+	#endif
+	
+	specularLight					+=	(sunSpecBrightness + sunDullSpecBrightness) * g_Settings.m_SunCol.rgb;
+
+	#endif
+
+	/*
+	 * CUBE MAP SPECULAR
+	 */
+
+	real	nDotV			=	saturate( dot(objView, -normal) );
+
+	#if defined(REFLECTIONS)
+
+	colour1	avgLight		=	DesaturateX2(diffuseLight);
+	reflectedLight			+=	texCUBE(s_ReflectionMap, objReflect).rgb * avgLight;
+	#if defined(FULL_FRESNEL)
+	fresnelCoeff			=	WATER_FRESNEL_R0 + (1.0f - WATER_FRESNEL_R0) * pow(1.0f - nDotV, WATER_FRESNEL_POWER);
+	#else
+	fresnelCoeff			=	(1.0f - nDotV) * (1.0f - nDotV);
+	#endif
+
+	#else
+	
+	#endif
+
+	/*
+	 * WATER COLOUR
+	 */
+
+	colour3	waterColour		=	lerp(g_Settings.m_WaveColour, g_Settings.m_DeepColour, nDotV).rgb;
+	
+	/*
+	 * FINAL COLOUR
+	 */
+	 
+	// final diffuse value
+	colour3	finalDiff		=	diffuseLight * waterColour;
+	// final reflected value
+	colour3	finalRefl		=	reflectedLight;
+
+	// blend from lit to reflection based on fresnel
+	colour3	finalCol		=	lerp(finalDiff, finalRefl, fresnelCoeff * g_Settings.m_Reflect.x) + specularLight;
+	finalCol				=	ApplyFog( finalCol, input.m_Normal.w, g_Settings.m_FogColour.rgb, g_Settings.m_FogInfo );
+
+	return GetExposure(float4(finalCol, 1.0f));
+}

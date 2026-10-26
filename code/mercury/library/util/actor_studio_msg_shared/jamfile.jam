@@ -1,0 +1,21 @@
+SubDir TOP Code Mercury Library Util Actor_Studio_Msg_Shared ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/Messages.cpp
+;
+
+Library actor_studio_msg_shared : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

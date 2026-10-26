@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="bdExampleCommon"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="PSP Debug|Win32"
+			OutputDirectory="../../lib/psp-infra-sn/debug"
+			IntermediateDirectory="../../obj/psp-infra-sn/debug/bdExampleCommon"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../../external/libtomcrypt/src/headers;../..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_INFRA"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="PSP Release|Win32"
+			OutputDirectory="../../lib/psp-infra-sn/release"
+			IntermediateDirectory="../../obj/psp-infra-sn/release/bdExampleCommon"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../../external/libtomcrypt/src/headers;../..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_INFRA"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<File RelativePath="bdExampleCommon.cpp"></File>
+<File RelativePath="bdExampleCommon.h"></File>
+<File RelativePath="RemoteLogSubscriber.cpp"></File>
+<File RelativePath="RemoteLogSubscriber.h"></File>
+<File RelativePath="Sphere.cpp"></File>
+<File RelativePath="Sphere.h"></File>
+<Filter Name = "bdInput" Filter="">
+<File RelativePath="bdInput\bdInput-psp.cpp"></File>
+<File RelativePath="bdInput\bdInput.h"></File>
+</Filter>
+<Filter Name = "bdPlatformInit" Filter="">
+<File RelativePath="bdPlatformInit\bdExamplePlatformInit-psp-infra.cpp"></File>
+<File RelativePath="bdPlatformInit\bdExamplePlatformInit.h"></File>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

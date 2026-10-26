@@ -1,0 +1,59 @@
+SubDir TOP code tools camera_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+AFTK_MAYA = 1 ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+../aftk/aftk/include
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/CreateFileList.cpp
+source/Main.cpp
+;
+
+LINKLIBS += ws2_32.lib
+	$(TOP)/libs/vendor/maya/2008/lib/foundation.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMaya.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMayaUI.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMayaAnim.lib
+	$(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2005.lib
+;
+
+LinkLibraries camera_converter : core system tools_shared camera2tool aftk_maya $(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+
+Application camera_converter : $(SRC) : stdafx.cpp ;
+ExportVcproj camera_converter ;
+
+DEST_EXE = $(BIZARRE_ROOT)/tools\\common_tools\\win32\\camera_converter\\camera_converter.exe ;
+
+MkDir $(DEST_EXE:D) ;
+Depends $(DEST_EXE) $(DEST_EXE).manifest : $(DEST_EXE:D) ;
+Depends $(DEST_EXE).manifest : camera_converter.exe ;
+Copy $(DEST_EXE) : camera_converter.exe ;
+Copy $(DEST_EXE).manifest : $(OUTDIR)\\camera_converter.exe.manifest ;
+
+DEST2_EXE = $(BIZARRE_ROOT)/tools\\common_tools_wip\\win32\\camera_converter\\camera_converter.exe ;
+MkDir $(DEST2_EXE:D) ;
+Depends $(DEST2_EXE) $(DEST2_EXE).manifest : $(DEST2_EXE:D) ;
+Depends $(DEST2_EXE).manifest : camera_converter.exe ;
+Copy $(DEST2_EXE) : camera_converter.exe ;
+Copy $(DEST2_EXE).manifest : $(OUTDIR)\\camera_converter.exe.manifest ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library graphics camera2 ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code tools aftk aftk ;

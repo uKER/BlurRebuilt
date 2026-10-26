@@ -1,0 +1,79 @@
+SubDir TOP Code Mercury Library Graphics Camera2 ;
+
+IncludePath
+$(SUBDIR)
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/btl/include
+# TODO: [Ken] Avoid inclusion of this area
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkut/aftkutlib/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+./source/debug/CameraSwitch.cpp
+./source/debug/DebugTools.cpp
+./source/debug/PositionLogger.cpp
+./source/network/NetworkLink.cpp
+./source/shake/ShakeWorld.cpp
+./source/stock/AnimCamera.cpp
+./source/stock/BlendCamera.cpp
+./source/stock/ChaseCamera2.cpp
+./source/stock/CharacterCamera.cpp
+./source/stock/DebugFeed.cpp
+./source/stock/FlyCamera.cpp
+./source/stock/OrbitCamera.cpp
+./source/stock/RelativeCamera.cpp
+./source/stock/RelativeFlyCamera.cpp
+./source/stock/ScriptCamera.cpp
+./source/stock/ShakeCamera.cpp
+./source/stock/SimpleChaseCamera.cpp
+./source/stock/TvCamera.cpp
+./source/stock/TvFeed.cpp
+./source/tv/AnimData.cpp
+./source/tv/CameraScene.cpp
+./source/tv/TvZone.cpp
+./source/Camera.cpp
+./source/CamObj.cpp
+./source/CameraDisplay.cpp
+./source/CameraFactory.cpp
+./source/EffectInfo.cpp
+./source/Feed.cpp
+./source/FeedList.cpp
+;
+
+# run the AutoGrist rule on the list of source files
+SRC = [ Batch $(SRC) : stdafx.h ] ;
+
+SRC_GAME = 
+./source/capture/CaptureService.cpp
+./source/capture/LockScreen.cpp
+./source/capture/MovieEncoder.cpp
+./source/capture/PhotoCapture.cpp
+./source/capture/ScreenToFile.cpp
+;
+
+SRC_TOOL = 
+./source/export/AftkToAnimData.cpp
+./source/export/AftkToCameraScene.cpp
+;
+
+if $(CFG_CONVERTER) = 1
+{
+	Library camera2tool : $(SRC) $(SRC_TOOL) : stdafx.cpp ;
+}
+else
+{
+	Library camera2 : $(SRC) $(SRC_GAME) : stdafx.cpp ;
+}

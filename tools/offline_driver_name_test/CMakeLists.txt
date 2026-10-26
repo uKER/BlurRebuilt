@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.25)
+project(OfflineDriverNameTest LANGUAGES CXX)
+enable_testing()
+add_executable(offline_driver_name_test main.cpp)
+target_include_directories(offline_driver_name_test PRIVATE ../../code/mercury/library/ui/include)
+target_compile_features(offline_driver_name_test PRIVATE cxx_std_11)
+add_test(NAME offline_driver_name COMMAND offline_driver_name_test)

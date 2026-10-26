@@ -1,0 +1,24 @@
+SubDir TOP Code Mercury Applications Graphics TestDisplay2 ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+IncludePath 
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display2/include
+;
+
+SRC =
+./Main.cpp
+;
+
+LinkLibraries Display2 : 
+		core system display2 ;
+
+Application TestDisplay2 : $(SRC) : StdAfx.cpp ;
+
+ExportVcproj TestDisplay2 ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;

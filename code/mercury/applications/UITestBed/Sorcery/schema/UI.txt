@@ -1,0 +1,360 @@
+type UI_HermiteKeyFrame
+{
+	f32 value;
+	f32 inTangent;
+	f32 outTangent;
+	[Range(0.0f, 1.f)] f32 time;
+};
+
+type UI_HermiteCurve
+{
+	sz8 Name;
+	[Data(path: Curve, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200)]
+	control Graph;
+	UI_HermiteKeyFrame[] Curve;
+};
+
+[Record] type UIDef
+{
+	UI_HermiteCurve[] Curves;
+};
+
+enum UIJustify
+{
+	TopLeft,
+	TopCentre,
+	TopRight,
+	MiddleLeft,
+	MiddleCentre,
+	MiddleRight,
+	BottomLeft,
+	BottomCentre,
+	BottomRight,
+};
+enum UITimerType
+{
+	Wrap,
+	Bounce,
+	Stop,
+};
+enum UITimerRestType
+{
+	None,
+	Start,
+	End,
+};
+enum UIFixedSpaceType
+{
+	None,
+	Numbers,
+	Letters,
+	All,
+};
+enum UISpinnerType
+{
+	Text,
+	Step,
+};
+enum UIFontShader
+{
+	TextureWithAlpha,
+	IntensityOutline,
+	IntensityAsAlpha,
+	Polygon,
+	PolygonOutlineFixed,
+	PolygonOutlineFade,
+	PolygonOutlineFixedFade,
+	PolygonTextured,
+	PolygonGradient,
+	PolygonGradientParam,
+	PolygonGradientRadial,
+};
+enum UISliderType
+{
+	Analogue,
+	Variable,
+};
+
+[NoBorder] [Horizontal] type UIVector3Position
+{
+	[Range(-106.3, 746.6)] f32 x = 320;
+	[Range(0,480)] f32 y = 240;
+	[Range(0,100)] f32 z = 0;
+};
+[NoBorder] [Horizontal] type UIVector3Rotation
+{
+	[Range(0,360)] f32 x = 0;
+	[Range(0,360)] f32 y = 0;
+	[Range(0,360)] f32 z = 0;
+};
+[NoBorder] [Horizontal] type UIVector3Scale
+{
+	[Range(0,10)] f32 x = 1;
+	[Range(0,10)] f32 y = 1;
+	[Range(0,10)] f32 z = 1;
+};
+[NoBorder] [Horizontal] type UIVector3Size
+{
+	[Range(0, 853)] f32 x = 256;
+	[Range(0,480)] f32 y = 256;
+	[Range(0,100)] f32 z = 1;
+};
+[NoBorder] [Horizontal] type UIVector2UV
+{
+	[Range(0,1)] f32 u = 0;
+	[Range(0,1)] f32 v = 0;
+};
+[NoBorder] [Horizontal] 
+type UITimelineTimeRange
+{
+	f32						start;
+	f32						end;
+};
+
+[Summary("{Name}")]
+type UITimeline
+{
+	sz8					name;
+	UITimelineTimeRange	time;
+	UITimerType			type;
+	UITimerRestType		rest_type;
+	UITimelineEffect[]	effects;
+};
+
+[Summary("{component}")]
+type UITimelineEffect
+{
+	sz8						component;
+	UITimelineRangeBase*	amount;
+	[Data(path: "../#0/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: "../#1/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: "../#2/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: "../#3/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: "../#4/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: "../#5/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: "../#6/key", xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200,colour:888888,template:true)]
+	[Data(path: key, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:-0.5, yMax:1.5, xSize:400, ySize:200)]
+	control					Graph;
+	UI_HermiteKeyFrame[]	key;
+};
+
+[Hide]
+type UITimelineRangeBase
+{
+};
+
+type UIRangeNumber : UITimelineRangeBase
+{
+	f32	from;
+	f32 to;
+};
+
+type UIArrayNumber : UITimelineRangeBase
+{
+	f32[] items;
+};
+
+type UIArrayString : UITimelineRangeBase
+{
+	sz8[] items;
+};
+
+type UIArrayLoc : UITimelineRangeBase
+{
+	LocId[] items;
+};
+
+type UIRGB
+{
+	control ColourSwatch;
+
+	[Hide] [Range(0,1)] f32 r = 1;
+	[Hide] [Range(0,1)] f32 g = 1;
+	[Hide] [Range(0,1)] f32 b = 1;
+};
+
+[Summary("{filename}")]
+type UITextureParam
+{
+	sz8			filename;
+	UIVector2UV	pos;
+	UIVector2UV	size;
+	[Hide] i32	name;
+};
+
+[Record ]type LuaScript
+{
+	sz8			ScriptText;
+};
+
+type UIFontStyleDefault
+{
+	sz8						colour_style;
+	[Range(0.0f, 1.f)]f32	alpha = 1.0;
+	sz8						overide_name;
+	[FlatArray]sz8[]		texture_names;
+	UIFontShader			render_type;
+	f32						offsetx = 0;
+	f32						offsety = 0;
+	f32						offsetz = 0;
+	bool					offset_proportional;
+};
+
+type UIFontStylePolygonOutline : UIFontStyleDefault
+{
+	f32 outline_amount;
+};
+
+type UIFontStylePolygon3D : UIFontStyleDefault
+{
+	f32 extrude_amount;
+};
+
+type UIFontStylePolygonOutline3D : UIFontStyleDefault
+{
+	f32 extrude_amount;
+	f32 outline_amount;
+};
+
+type UIFontStylePolygonGradient : UIFontStyleDefault
+{
+	u32 GradientIndex = 0;
+	[Range(0,360)] f32 GradientAngle = 0;
+};
+
+type UIFontStylePolygonBevel3D : UIFontStyleDefault
+{
+	f32 extrude_amount;
+	f32 outline_amount;
+	f32 extrude_amount_bevel;
+};
+
+[Record] type UIFontStyle
+{
+	sz8						style_name;
+	sz8						font_name;
+	[Range(-1,1)]f32		tracking = 0;
+	f32						height_percentage =-1.0;
+	bool					italics;
+	bool					pixel_boundary_x;
+	bool					pixel_boundary_y;
+	UIFixedSpaceType		fixed_space;
+	UIFontStyleDefault*[]	render_passes;
+};
+
+[Record] type UIColourStyle
+{
+	sz8			name;
+	UIRGB		top_left;
+	UIRGB		top_right;
+	UIRGB		bottom_left;
+	UIRGB		bottom_right;
+};
+
+[Summary("{name} ({__type})")]
+type UIDummy : UIGadgetBaseData
+{
+};
+
+[NoBorder]
+type UIGadgetBaseData
+{
+	sz8						name;
+	UIJustify				justify = TopLeft;
+	UIVector3Position		pos;
+	UIVector3Rotation		rot;
+	UIVector3Scale			scale;
+	UIVector3Size			size;
+	sz8						colour_style;
+	[Range(0.0f, 1.f)]f32	alpha = 1.0;
+	u8 						layer = 0;
+	u8 						panel = 0;
+	sz8						parent_name;
+	UIJustify				parent_attach = TopLeft;
+	[FlatArray]UITextureParam[]	textures;
+	[FlatArray]UITimeline[]		time_lines;
+};
+
+type UIVariableSelectItem
+{
+	LocId	nameId;
+	LocId	helpId;
+	i32		value;
+	sz8		on_next;
+};
+
+[NoBorder] [Hide]
+type UIVariableSelect : UIDummy
+{
+	i32									controller;
+	sz8									style_selected;
+	sz8									style_deselected;
+	[FlatArray] UIVariableSelectItem[]	items;
+};
+
+type UIVerticalMenu : UIVariableSelect
+{
+	bool	loop_list;
+	f32		scroll_speed;
+	i32		num_rows;
+};
+
+type UIHorizontalMenu : UIVariableSelect
+{
+};
+
+type UISlider : UIVariableSelect
+{
+	UISliderType	slider_type;
+	f32				value = 0;
+	f32				step = 0.1;
+	f32				font_height = 16;
+};
+
+type UIStaticText : UIDummy
+{
+	sz8			style_name;
+	sz8			text_string;
+	LocId		text_id;
+};
+
+type UIStaticGraphic : UIDummy
+{
+};
+
+type UIStaticScene : UIDummy
+{
+	sz8			scene_name;
+	sz8			group_name_only;
+	sz8			shape_name_only;
+	bool		resize_excluded_elements;
+};
+
+type UIPath : UIDummy
+{
+	sz8			scene_name;
+	sz8			path_name;
+	f32			animation_time;
+};
+
+type UIStaticBox : UIDummy
+{
+	f32						cornerx;
+	f32						cornery;
+	[Range(0.0f, 1.f)] f32	corneru;
+	[Range(0.0f, 1.f)] f32	cornerv;
+};
+
+type UICamera : UIDummy
+{
+};
+
+[Record] type UIScreen
+{
+	sz8							Name;
+	UIDummy*[]					Elements;
+	[Category("Commands")]	sz8							OnNext;
+	[Category("Commands")]	sz8							OnBack;
+	[Category("Fonts")] [FlatArray] UIFontStyle[]	FontStyles;
+	[Category("Colours")] 	[FlatArray] UIColourStyle[]	ColourStyles;
+};

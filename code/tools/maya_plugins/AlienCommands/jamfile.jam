@@ -1,0 +1,38 @@
+SubDir TOP Code tools maya_plugins AlienCommands ;
+
+SupportedTargets WIN32_TOOL ;
+
+Define NT_PLUGIN REQUIRE_IOSTREAM _AFXDLL ;
+
+CcFlags /Zc:wchar_t- ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+TOOLS = $(TOP)/Code/Tools ;
+
+IncludePath
+./
+$(TOP)/libs/vendor/maya/2008/include
+$(TOP)/libs/vendor/alienbrain/1.2.9/c++/include
+;
+
+SRC =
+./AlienCommands/AlienCommands.cpp
+;
+
+mayalibs = foundation.lib OpenMaya.lib ;
+
+LINKLIBS +=	$(TOP)/libs/vendor/maya/2008/lib/$(mayalibs) 
+			$(TOP)/libs/vendor/alienbrain/1.2.9/c++/Lib/NxN_alienbrain_XDK_129.lib ;
+		
+LINKFLAGS += /DLL /export:initializePlugin /export:uninitializePlugin ;
+
+LinkLibraries aliencommands ;
+
+DLL aliencommands : $(SRC) : stdafx.cpp ;
+
+ExportVcproj AlienCommands ;
+
+EmbedManifestDLL $(BIZARRE_ROOT)/tools/art_tools/maya/plugins/2008/alienCommand_WIP.mll : aliencommands.exe ;
+
+
+

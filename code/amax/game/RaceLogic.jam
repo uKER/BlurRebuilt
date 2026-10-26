@@ -1,0 +1,23 @@
+IncludePath 
+$(TOP)/Code/Amax/Game/GameLogic/RaceLogic/Core
+;
+
+if $(BUILD) != Profile && $(BUILD) != Master
+{
+	if $(BUILD) != Speed 
+	{
+		if $(USERNAME) = sbilton || $(USERNAME) = pkerby  || $(USERNAME) = caspinall || $(USERNAME) = dwood || $(USERNAME) = gayoung || $(USERNAME) = cwright
+		{
+			Optim Off ;
+			echo OPTIMISATIONS ARE _OFF_ FOR RaceLogic code ;
+		}	
+	}
+}
+
+RACELOGIC_SRC = 
+[ Batch
+GameLogic/RaceLogicCore/Core/RaceLogicCore.cpp
+GameLogic/RaceLogicCore/Controllers/RLDatabaseController.cpp
+GameLogic/RaceLogicCore/Database/RLDatabase.cpp
+: StdAfx.h ]
+;

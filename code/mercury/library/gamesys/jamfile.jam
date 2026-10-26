@@ -1,0 +1,9 @@
+SubDir TOP Code Mercury Library Gamesys ;
+
+SubInclude TOP Code Mercury Library Gamesys actor_system ;
+SubInclude TOP Code Mercury Library Gamesys shared_actors ;
+SubInclude TOP Code Mercury Library Gamesys debugsystems ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys Game_resource ;
+SubInclude TOP Code Mercury Library Gamesys testsections ;
+SubInclude TOP Code Mercury Library Gamesys resource_utils ;

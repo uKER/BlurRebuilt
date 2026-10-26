@@ -1,0 +1,1775 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="display_shaders_ps3"
+	ProjectGUID="{BD83D7F0-CF4C-4AAD-9100-C31DD80565DD}"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Master|Win32"
+			OutputDirectory="Platform_PS3/$(ConfigurationName)"
+			IntermediateDirectory="Platform_PS3/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Speed|Win32"
+			OutputDirectory="Platform_PS3/$(ConfigurationName)"
+			IntermediateDirectory="Platform_PS3/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Platform_PS3/$(ConfigurationName)"
+			IntermediateDirectory="Platform_PS3/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Platform_PS3/$(ConfigurationName)"
+			IntermediateDirectory="Platform_PS3/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Profile|Win32"
+			OutputDirectory="Platform_PS3/$(ConfigurationName)"
+			IntermediateDirectory="Platform_PS3/$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="BluRayMaster|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Speed (Without Symbols)|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Speed (BluRay)|Win32"
+			OutputDirectory="$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
+			ConfigurationType="10"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			DeleteExtensionsOnClean="*.obj;*.d;*.map;*.lst;*.pch;$(TargetPath)"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+				CommandLine="rem PreComp.bat"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Shaders"
+			>
+			<File
+				RelativePath=".\include\display\shaders\psCommon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\display\shaders\psConstants.cp"
+				>
+				<FileConfiguration
+					Name="Master|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Speed|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="BluRayMaster|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Speed (Without Symbols)|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Speed (BluRay)|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\include\display\shaders\psConstants.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\display\shaders\vsCommon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\display\shaders\vsConstants.cv"
+				>
+				<FileConfiguration
+					Name="Master|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Speed|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Profile|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="BluRayMaster|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Speed (Without Symbols)|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Speed (BluRay)|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\include\display\shaders\vsConstants.h"
+				>
+			</File>
+			<Filter
+				Name="Render"
+				>
+				<File
+					RelativePath=".\include\display\shaders\render\psBasicRenderColoured.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\psBasicRenderTextured.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\psDefault.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture4xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_4XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2xAA&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2XAA&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture2x2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE_2X2&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Texture&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_TEXTURE&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Colour&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_COLOUR&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Depth&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_DEPTH&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Texture4xAA.shader;$(InputDir)ps3\$(InputName)Texture2xAA.shader;$(InputDir)ps3\$(InputName)Texture2x2.shader;$(InputDir)ps3\$(InputName)Texture.shader;$(InputDir)ps3\$(InputName)Colour.shader;$(InputDir)ps3\$(InputName)Depth.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\psDownsample.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Default&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)Quincunx&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxAlt&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_ALT&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)QuincunxShifted&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D USE_QUINCUNX_SHIFTED"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)Default.shader;$(InputDir)ps3\$(InputName)Quincunx.shader;$(InputDir)ps3\$(InputName)QuincunxAlt.shader;$(InputDir)ps3\$(InputName)QuincunxShifted.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\psFontRender.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\psTextureRender.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)RGB&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D RGB&#x0D;&#x0A;..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)A&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D A&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName)RGB.shader;$(InputDir)ps3\$(InputName)A.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\vsBasicRenderColoured2D.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\vsBasicRenderColoured3D.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\vsBasicRenderTextured2D.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\vsBasicRenderTextured3D.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\vsDefault_XY.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\render\vsFontRender.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+			<Filter
+				Name="Occlusion"
+				>
+				<File
+					RelativePath=".\include\display\shaders\occlusion\psOcclusion.psh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\display\shaders\occlusion\vsOcclusion.vsh"
+					>
+					<FileConfiguration
+						Name="Master|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Profile|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="BluRayMaster|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (Without Symbols)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Speed (BluRay)|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\..\bin\build_tools\bsc ps3 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)ps3\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+		</Filter>
+		<File
+			RelativePath=".\vsi.nul"
+			>
+			<FileConfiguration
+				Name="Master|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Speed|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Profile|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="BluRayMaster|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Speed (Without Symbols)|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Speed (BluRay)|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

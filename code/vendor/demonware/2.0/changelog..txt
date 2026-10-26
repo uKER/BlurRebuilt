@@ -1,0 +1,61 @@
+
+
+DemonWare RC2[svn#17430] -> Final [svn#17577] changelog.
+
+ - Fix in bdPlatformStreamSocket::isWritable() on PS3
+ - Logging and error handling in bdSocketRouter 
+ 
+
+
+DemonWare RC1[svn#17069] -> RC2[svn#17430] changelog.
+
+Lobby API:
+
+ - Added getPerformanceValues to bdMatchMaking API
+ - Added getSessionInvites to bdMatchMaking API
+    - Added bdSessionInvite class to contain results of getSessionInvites
+    - Altered onSessionInvite callback to use bdSessionInvite class 
+ - Added new server-side error codes to bdLobbyErrorCodes.h, [and removed unused error codes.]
+ - onNotifyLeave() callback in bdLobbyEventHandler.h now uses bdSessionID instead of bdSecurityID
+ - Reduced heap allocation in bdDTLSAssociation
+ - Improved debug output in bdDTLSAssociation
+ - bdSocket API altered to allow blocking mode to be set during socket creation.
+ - Altered bdLobbyConnection to check TCP connection is established before invoking onConnect callback
+ - Wii now uses Multi-threaded socket by default
+ - Added threaded stream sockets implementation for Win32/Wii platforms.
+ - bdNATTravClient throttled connections will not now timeout. 
+   Previously if a connection was intially throttled it would never succeed.
+ - bdMatchMakingInfo::getHostAddrAsCommonAddr now takes the localCommonAddr as an optional param.
+   Note that failing to pass in the localCommonAddr will result in the returned bdCommonAddr being
+   slightly invalid. [a warning will also be printed]
+ - Fix for some logic bugs in bdThreadedSocket: 
+    - buffer full during busy periods
+    - buffer not flushed before restarting.
+ - Fix for bdMatchMaking::notifyJoin 
+ - Fix for bdSocketRouter::sendTo on XBox 360 altering the passed in buffer. 
+   Buffer is now pristine when the sendTo function returns.
+
+Lobby example code:
+
+ - Renamed LobbyAdvertising example to TitleUtilities example.
+ - Updated examples to continue where an account for a userName already exists.
+ - Added radix project file for libtomcrypt & libtommath 
+ 
+Server-side: 
+
+ - Deleted leaderboards are now removed when an IMP file is applied to a title.
+ - Various fixes for Devzone2 interaction with server data.
+ - Altered MatchMaking serviceID to avoid number space conflicts.
+ - Deleted stats are now fully deleted, previously attempting to rewrite them would fail
+ - Rich presence data for friends now transmitted to client.
+ - Fix to team integrity checks. 
+ - Fix for in-memory leaderboards failing because of a malformed debug message.
+ - The filters defined in an IMP file now work when executing a customs query with 
+   bdMatchmaking::findSessions
+ - Added getPerformanceValues & getSessionInvites functions to API
+ - added config option to delete invites issued by a user when they logoff, disabled by default
+ - session invites for are now deleted when the session is deleted
+ - session invites to blocked users are now disabled 
+ - session invites to an invalid Session ID now fail with error code
+ - session invites with overSized attachments[1024 bytes] are blocked. 
+ - session invites to invalid users are ignored. 

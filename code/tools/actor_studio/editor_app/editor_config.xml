@@ -1,0 +1,22 @@
+<editor>
+	<dump path=""/>
+	<xtdb path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/sorcery/main"/>
+	<a3d_cache
+		path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/temp/"
+		tool="%BIZARRE_ROOT%/tools/common_tools/win32/nexus/nexus_cmd_maya.exe"
+		params="-s &quot;stat={ConvertScene('%scene%','|triangulate=false|strict=false','%cache%','forceconversion=false')};if stat[1] ~= 1 then;Exit(1);end;&quot; -a &quot;%tempdir%/log.txt&quot;"
+	/>
+	<ubercopy
+		path="%BIZARRE_ROOT%/tools/common_tools/win32/ubercopy/UberCopy_xbcp.exe"
+	/>
+  <paths
+		root="%BIZARRE_ROOT%/%BIZARRE_PROJECT%"
+		root_temp="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/temp"
+		root_working="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/working">
+    <root_game_paths>
+      <root_image_path platform="pc" path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/game/pc" />
+      <root_image_path platform="360" path="DEVKIT:\%BIZARRE_PROJECT%\image" />
+      <root_image_path platform="ps3" path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/game/ps3" />
+    </root_game_paths>
+  </paths>
+</editor>

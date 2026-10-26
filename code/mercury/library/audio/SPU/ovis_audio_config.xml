@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<ovis_config>
+  
+    <overlay>
+
+      <sections>
+
+        <section name="CodeOverlay1">
+          <object name="ActionIn.o"/>
+          <object name="ActionOut.o"/>
+          <object name="Array.o"/>
+          <object name="Cone.o"/>
+          <object name="ControlInput.o"/>
+          <object name="ControlOutput.o"/>
+          <object name="DebugPrint.o"/>
+          <object name="DopplerShift.o"/>
+<!--          <object name="Spring.o"/> -->
+          <object name="Envelope.o"/>
+          <object name="EventInput.o"/>
+          <object name="EventOutput.o"/>
+          <object name="Exponent.o"/>
+          <object name="GateSwitch.o"/>
+<!--          <object name="Gradient.o"/> -->
+          <object name="Invert.o"/>
+          <object name="LowPass.o"/>
+<!--          <object name="StereoDistortion.o"/> -->
+          <object name="Max.o"/>
+          <object name="Min.o"/>
+          <object name="MonoAudioInput.o"/>
+          <object name="MonoAudioOutput.o"/>
+<!--          <object name="MonoConvolution.o"/>  -->
+<!--          <object name="MonoDelay.o"/>  -->
+          <object name="MonoGain.o"/>
+          <object name="MonoHighPass.o"/>
+          <object name="QuadToSurroundMixer.o"/>
+          <object name="StereoToQuadMixer.o"/>
+          <object name="SurroundHighShelf.o"/>
+          <object name="SurroundPeakEQ.o"/>
+          <object name="MonoLipSync.o"/>
+          <object name="MonoLoopingSound.o"/>
+          <object name="MonoLowPass.o"/>
+          <object name="MonoOneShotSound.o"/>
+          <object name="MonoOneShotSoundTable.o"/>
+<!--          <object name="MonoPeakEQ.o"/> -->
+          <object name="MonoPeakLevel.o"/>
+<!--          <object name="MonoPhaser.o"/> -->
+<!--          <object name="MonoDistortion.o"/> -->
+          <object name="MonoLowShelf.o"/>
+          <object name="MonoHighShelf.o"/>
+<!--          <object name="MonoResonantLowPass.o"/>  -->
+<!--          <object name="MonoRMSLevel.o"/> -->
+          <object name="MonoSaturator.o"/>
+          <object name="ParameterIn.o"/>
+          <object name="ParameterOut.o"/>
+          <object name="PiecewiseLinearFunction.o"/>
+          <object name="Product.o"/>
+<!--          <object name="Quantize.o"/> -->
+          <object name="Random.o"/>
+          <object name="Rolloff.o"/>
+          <object name="SampleAndHold.o"/>
+          <object name="Script.o"/>
+          <object name="Selector.o"/>
+          <object name="Sin.o"/>
+          <object name="Source.o"/>
+          <object name="StereoAudioInput.o"/>
+<!--          <object name="StereoConvolution.o"/>  -->
+          <object name="StereoHighPass.o"/>
+          <object name="StereoLoopingSound.o"/>
+<!--          <object name="StereoLowPass.o"/>  -->
+          <object name="StereoOneShotSound.o"/>
+<!--          <object name="StereoSaturator.o"/>  -->
+          <object name="SurroundResonantLowPass.o"/>
+          <object name="Sum.o"/>
+          <object name="SurroundAudioInput.o"/>
+          <object name="SurroundAudioOutput.o"/>
+          <object name="SurroundDelay.o"/>
+          <object name="SurroundLowPass.o"/>
+          <object name="SurroundLowShelf.o"/>
+          <object name="SurroundSaturator.o"/>
+          <object name="SurroundResonantLowPass.o"/>
+          <object name="StereoAudioOutput.o"/>
+          <object name="Timer.o"/>
+          <object name="Variable.o"/>
+          <object name="Vector.o"/>
+          <object name="VectorIn.o"/>
+          <object name="VectorNearestPointOnLine.o"/>
+<!--          <object name="3dmaths.o"/>  -->
+          <object name="MonoToMonoMixer.o"/>
+<!--          <object name="MonoToMonoSpectralMixer.o"/>  -->
+          <object name="MonoToStereoMixer.o"/>
+          <object name="MonoToSurroundMixer.o"/>
+          <object name="MonoCompressor.o"/>
+          <object name="MonoFeedbackDelay.o"/>
+<!--          <object name="StereoToMonoMixer.o"/>  -->
+          <object name="StereoToStereoMixer.o"/>
+          <object name="StereoToSurroundMixer.o"/>
+          <object name="SurroundToSurroundMixer.o"/>
+          <object name="StereoCompressor.o"/>
+          <object name="StereoFeedbackDelay.o"/>
+          <object name="MonoToSurroundLFEMixer.o"/>
+          <object name="SurroundToSurroundLFEMixer.o"/>
+          <object name="SurroundLFEToSurroundLFEMixer.o"/>
+          <object name="SurroundLFEAudioInput.o"/>
+          <object name="SurroundLFEAudioOutput.o"/>
+          <object name="SurroundCompressor.o"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay2">
+          <object name="dspeffect.o"/>
+          <object name="decoderadpcm4bit.o"/>
+          <object name="decoderpcms16.o"/>
+          <object name="input.o"/>
+          <object name="output.o"/>
+        </section>
+
+      </sections>
+
+    </overlay>
+</ovis_config>

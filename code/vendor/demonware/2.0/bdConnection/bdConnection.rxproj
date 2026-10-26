@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdConnection</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdConnection.cpp:1"><path>${project}\bdConnection.cpp</path></file>
+<file file-tag="bdConnection.h:1"><path>${project}\bdConnection.h</path></file>
+<file file-tag="bdConnectionConfig.h:1"><path>${project}\bdConnectionConfig.h</path></file>
+<file file-tag="bdConnectionListener.cpp:1"><path>${project}\bdConnectionListener.cpp</path></file>
+<file file-tag="bdConnectionListener.h:1"><path>${project}\bdConnectionListener.h</path></file>
+<file file-tag="bdConnectionStatistics.cpp:1"><path>${project}\bdConnectionStatistics.cpp</path></file>
+<file file-tag="bdConnectionStatistics.h:1"><path>${project}\bdConnectionStatistics.h</path></file>
+<file file-tag="bdConnectionStore.cpp:1"><path>${project}\bdConnectionStore.cpp</path></file>
+<file file-tag="bdConnectionStore.h:1"><path>${project}\bdConnectionStore.h</path></file>
+<file file-tag="bdConnectionStoreConfig.cpp:1"><path>${project}\bdConnectionStoreConfig.cpp</path></file>
+<file file-tag="bdConnectionStoreConfig.h:1"><path>${project}\bdConnectionStoreConfig.h</path></file>
+<file file-tag="bdLoopbackConnection.cpp:1"><path>${project}\bdLoopbackConnection.cpp</path></file>
+<file file-tag="bdLoopbackConnection.h:1"><path>${project}\bdLoopbackConnection.h</path></file>
+<file file-tag="bdUnicastConnection.cpp:1"><path>${project}\bdUnicastConnection.cpp</path></file>
+<file file-tag="bdUnicastConnection.h:1"><path>${project}\bdUnicastConnection.h</path></file>
+<file file-tag="bdDispatcher.cpp:1"><path>${project}\bdDispatch\bdDispatcher.cpp</path></file>
+<file file-tag="bdDispatcher.h:1"><path>${project}\bdDispatch\bdDispatcher.h</path></file>
+<file file-tag="bdDispatchInterceptor.cpp:1"><path>${project}\bdDispatch\bdDispatchInterceptor.cpp</path></file>
+<file file-tag="bdDispatchInterceptor.h:1"><path>${project}\bdDispatch\bdDispatchInterceptor.h</path></file>
+<file file-tag="bdMessage.cpp:1"><path>${project}\bdMessage\bdMessage.cpp</path></file>
+<file file-tag="bdMessage.h:1"><path>${project}\bdMessage\bdMessage.h</path></file>
+<file file-tag="bdMessageFlags.h:1"><path>${project}\bdMessage\bdMessageFlags.h</path></file>
+<file file-tag="bdMessageTypes.h:1"><path>${project}\bdMessage\bdMessageTypes.h</path></file>
+<file file-tag="bdReceivedMessage.cpp:1"><path>${project}\bdMessage\bdReceivedMessage.cpp</path></file>
+<file file-tag="bdReceivedMessage.h:1"><path>${project}\bdMessage\bdReceivedMessage.h</path></file>
+<file file-tag="bdChunk.cpp:1"><path>${project}\bdPacket\bdChunk.cpp</path></file>
+<file file-tag="bdChunk.h:1"><path>${project}\bdPacket\bdChunk.h</path></file>
+<file file-tag="bdCookie.cpp:1"><path>${project}\bdPacket\bdCookie.cpp</path></file>
+<file file-tag="bdCookie.h:1"><path>${project}\bdPacket\bdCookie.h</path></file>
+<file file-tag="bdCookieAckChunk.cpp:1"><path>${project}\bdPacket\bdCookieAckChunk.cpp</path></file>
+<file file-tag="bdCookieAckChunk.h:1"><path>${project}\bdPacket\bdCookieAckChunk.h</path></file>
+<file file-tag="bdCookieEchoChunk.cpp:1"><path>${project}\bdPacket\bdCookieEchoChunk.cpp</path></file>
+<file file-tag="bdCookieEchoChunk.h:1"><path>${project}\bdPacket\bdCookieEchoChunk.h</path></file>
+<file file-tag="bdDataChunk.cpp:1"><path>${project}\bdPacket\bdDataChunk.cpp</path></file>
+<file file-tag="bdDataChunk.h:1"><path>${project}\bdPacket\bdDataChunk.h</path></file>
+<file file-tag="bdDefaultPacket.h:1"><path>${project}\bdPacket\bdDefaultPacket.h</path></file>
+<file file-tag="bdHeartbeatAckChunk.cpp:1"><path>${project}\bdPacket\bdHeartbeatAckChunk.cpp</path></file>
+<file file-tag="bdHeartbeatAckChunk.h:1"><path>${project}\bdPacket\bdHeartbeatAckChunk.h</path></file>
+<file file-tag="bdHeartbeatChunk.cpp:1"><path>${project}\bdPacket\bdHeartbeatChunk.cpp</path></file>
+<file file-tag="bdHeartbeatChunk.h:1"><path>${project}\bdPacket\bdHeartbeatChunk.h</path></file>
+<file file-tag="bdInitAckChunk.cpp:1"><path>${project}\bdPacket\bdInitAckChunk.cpp</path></file>
+<file file-tag="bdInitAckChunk.h:1"><path>${project}\bdPacket\bdInitAckChunk.h</path></file>
+<file file-tag="bdInitChunk.cpp:1"><path>${project}\bdPacket\bdInitChunk.cpp</path></file>
+<file file-tag="bdInitChunk.h:1"><path>${project}\bdPacket\bdInitChunk.h</path></file>
+<file file-tag="bdPacket.cpp:1"><path>${project}\bdPacket\bdPacket.cpp</path></file>
+<file file-tag="bdPacket.h:1"><path>${project}\bdPacket\bdPacket.h</path></file>
+<file file-tag="bdSAckChunk.cpp:1"><path>${project}\bdPacket\bdSAckChunk.cpp</path></file>
+<file file-tag="bdSAckChunk.h:1"><path>${project}\bdPacket\bdSAckChunk.h</path></file>
+<file file-tag="bdShutdownAckChunk.cpp:1"><path>${project}\bdPacket\bdShutdownAckChunk.cpp</path></file>
+<file file-tag="bdShutdownAckChunk.h:1"><path>${project}\bdPacket\bdShutdownAckChunk.h</path></file>
+<file file-tag="bdShutdownChunk.cpp:1"><path>${project}\bdPacket\bdShutdownChunk.cpp</path></file>
+<file file-tag="bdShutdownChunk.h:1"><path>${project}\bdPacket\bdShutdownChunk.h</path></file>
+<file file-tag="bdShutdownCompleteChunk.cpp:1"><path>${project}\bdPacket\bdShutdownCompleteChunk.cpp</path></file>
+<file file-tag="bdShutdownCompleteChunk.h:1"><path>${project}\bdPacket\bdShutdownCompleteChunk.h</path></file>
+<file file-tag="bdReliableReceiveWindow.cpp:1"><path>${project}\bdWindow\bdReliableReceiveWindow.cpp</path></file>
+<file file-tag="bdReliableReceiveWindow.h:1"><path>${project}\bdWindow\bdReliableReceiveWindow.h</path></file>
+<file file-tag="bdReliableSendWindow.cpp:1"><path>${project}\bdWindow\bdReliableSendWindow.cpp</path></file>
+<file file-tag="bdReliableSendWindow.h:1"><path>${project}\bdWindow\bdReliableSendWindow.h</path></file>
+<file file-tag="bdUnreliableReceiveWindow.cpp:1"><path>${project}\bdWindow\bdUnreliableReceiveWindow.cpp</path></file>
+<file file-tag="bdUnreliableReceiveWindow.h:1"><path>${project}\bdWindow\bdUnreliableReceiveWindow.h</path></file>
+<file file-tag="bdUnreliableSendWindow.cpp:1"><path>${project}\bdWindow\bdUnreliableSendWindow.cpp</path></file>
+<file file-tag="bdUnreliableSendWindow.h:1"><path>${project}\bdWindow\bdUnreliableSendWindow.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdConnection.cpp:1</file-ref>
+<file-ref>bdConnection.h:1</file-ref>
+<file-ref>bdConnectionConfig.h:1</file-ref>
+<file-ref>bdConnectionListener.cpp:1</file-ref>
+<file-ref>bdConnectionListener.h:1</file-ref>
+<file-ref>bdConnectionStatistics.cpp:1</file-ref>
+<file-ref>bdConnectionStatistics.h:1</file-ref>
+<file-ref>bdConnectionStore.cpp:1</file-ref>
+<file-ref>bdConnectionStore.h:1</file-ref>
+<file-ref>bdConnectionStoreConfig.cpp:1</file-ref>
+<file-ref>bdConnectionStoreConfig.h:1</file-ref>
+<file-ref>bdLoopbackConnection.cpp:1</file-ref>
+<file-ref>bdLoopbackConnection.h:1</file-ref>
+<file-ref>bdUnicastConnection.cpp:1</file-ref>
+<file-ref>bdUnicastConnection.h:1</file-ref>
+<mixed-group group-tag="bdDispatch:1"><label>bdDispatch</label><group-items>
+<file-ref>bdDispatcher.cpp:1</file-ref>
+<file-ref>bdDispatcher.h:1</file-ref>
+<file-ref>bdDispatchInterceptor.cpp:1</file-ref>
+<file-ref>bdDispatchInterceptor.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdMessage:1"><label>bdMessage</label><group-items>
+<file-ref>bdMessage.cpp:1</file-ref>
+<file-ref>bdMessage.h:1</file-ref>
+<file-ref>bdMessageFlags.h:1</file-ref>
+<file-ref>bdMessageTypes.h:1</file-ref>
+<file-ref>bdReceivedMessage.cpp:1</file-ref>
+<file-ref>bdReceivedMessage.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPacket:1"><label>bdPacket</label><group-items>
+<file-ref>bdChunk.cpp:1</file-ref>
+<file-ref>bdChunk.h:1</file-ref>
+<file-ref>bdCookie.cpp:1</file-ref>
+<file-ref>bdCookie.h:1</file-ref>
+<file-ref>bdCookieAckChunk.cpp:1</file-ref>
+<file-ref>bdCookieAckChunk.h:1</file-ref>
+<file-ref>bdCookieEchoChunk.cpp:1</file-ref>
+<file-ref>bdCookieEchoChunk.h:1</file-ref>
+<file-ref>bdDataChunk.cpp:1</file-ref>
+<file-ref>bdDataChunk.h:1</file-ref>
+<file-ref>bdDefaultPacket.h:1</file-ref>
+<file-ref>bdHeartbeatAckChunk.cpp:1</file-ref>
+<file-ref>bdHeartbeatAckChunk.h:1</file-ref>
+<file-ref>bdHeartbeatChunk.cpp:1</file-ref>
+<file-ref>bdHeartbeatChunk.h:1</file-ref>
+<file-ref>bdInitAckChunk.cpp:1</file-ref>
+<file-ref>bdInitAckChunk.h:1</file-ref>
+<file-ref>bdInitChunk.cpp:1</file-ref>
+<file-ref>bdInitChunk.h:1</file-ref>
+<file-ref>bdPacket.cpp:1</file-ref>
+<file-ref>bdPacket.h:1</file-ref>
+<file-ref>bdSAckChunk.cpp:1</file-ref>
+<file-ref>bdSAckChunk.h:1</file-ref>
+<file-ref>bdShutdownAckChunk.cpp:1</file-ref>
+<file-ref>bdShutdownAckChunk.h:1</file-ref>
+<file-ref>bdShutdownChunk.cpp:1</file-ref>
+<file-ref>bdShutdownChunk.h:1</file-ref>
+<file-ref>bdShutdownCompleteChunk.cpp:1</file-ref>
+<file-ref>bdShutdownCompleteChunk.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdWindow:1"><label>bdWindow</label><group-items>
+<file-ref>bdReliableReceiveWindow.cpp:1</file-ref>
+<file-ref>bdReliableReceiveWindow.h:1</file-ref>
+<file-ref>bdReliableSendWindow.cpp:1</file-ref>
+<file-ref>bdReliableSendWindow.h:1</file-ref>
+<file-ref>bdUnreliableReceiveWindow.cpp:1</file-ref>
+<file-ref>bdUnreliableReceiveWindow.h:1</file-ref>
+<file-ref>bdUnreliableSendWindow.cpp:1</file-ref>
+<file-ref>bdUnreliableSendWindow.h:1</file-ref>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

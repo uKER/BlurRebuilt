@@ -1,0 +1,58 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+#if defined(TAPS_5)
+#	define TAPS 5
+#elif defined(TAPS_7)
+#	define TAPS 7
+#elif defined(TAPS_9)
+#	define TAPS 9
+#elif defined(TAPS_11)
+#	define TAPS 11
+#elif defined(TAPS_13)
+#	define TAPS 13
+#endif
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tColour		: register(s0);
+
+#define		g_vOffset		g_vSettings.xy
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float4	vColour		= tex2D(g_tColour, input.m_TexCoord);
+#if TAPS > 1
+			vColour		+= tex2D(g_tColour, input.m_TexCoord + g_vOffset) + tex2D(g_tColour, input.m_TexCoord - g_vOffset);
+#if TAPS > 3
+			vColour		+= tex2D(g_tColour, input.m_TexCoord + 2.0f * g_vOffset) + tex2D(g_tColour, input.m_TexCoord - 2.0f * g_vOffset);
+#if TAPS > 5
+			vColour		+= tex2D(g_tColour, input.m_TexCoord + 3.0f * g_vOffset) + tex2D(g_tColour, input.m_TexCoord - 3.0f * g_vOffset);
+#if TAPS > 7
+			vColour		+= tex2D(g_tColour, input.m_TexCoord + 4.0f * g_vOffset) + tex2D(g_tColour, input.m_TexCoord - 4.0f * g_vOffset);
+#if TAPS > 9
+			vColour		+= tex2D(g_tColour, input.m_TexCoord + 5.0f * g_vOffset) + tex2D(g_tColour, input.m_TexCoord - 5.0f * g_vOffset);
+#if TAPS > 11
+			vColour		+= tex2D(g_tColour, input.m_TexCoord + 6.0f * g_vOffset) + tex2D(g_tColour, input.m_TexCoord - 6.0f * g_vOffset);
+#endif
+#endif
+#endif
+#endif
+#endif
+#endif
+
+	output.m_Colour = (1.0f / TAPS) * vColour;
+
+	return output;
+}

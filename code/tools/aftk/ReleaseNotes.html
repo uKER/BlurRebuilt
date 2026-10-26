@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>AFTK Release Notes</title></head>
+
+<center>
+<h1>AFTK Release Notes</h1>
+<h2>Contact: Ken MacLeod</h2>
+</center>
+
+<h2>AFTK V1.60-Stable Release Notes - 15th June 2005</h1>
+
+<h3>New Features</h3>
+
+<h4>Texture V Coordinate</h4>
+<p>Note that with V2.0.0 of the Maya exporter, the V texture coordinates, with respect to maya, are exported as 1-v. 
+They used to be exported as being -v.</p>
+
+<h4>Integrated Maya Support</h4>
+<p>There is now a build of the Aftk (and Nexus) with integrated Maya support (currently only Maya 6.0, although 6.5 will be provided shortly).
+This means that the Aftk can read .mb and .ma files. Importantly, this does not require a Maya license from the 
+server. However, if writing of .ma and .ma files were to be needed, a license would be needed. For this reason, the current Maya
+support is read-only.</p>
+
+<h4>Mesh Addition</h4>
+<p>A mesh can be added to another mesh by calling the <i>AddMesh</i> function of the mesh class. 
+This does not delete the added mesh. The <i>AddMesh</i> will preserve weighting information if present.</p>
+
+<h4>Integer Colour Packing</h4>
+<p>Floating point colour values can be packed in to a 32-bit integer by the following global function:
+<pre>
+inline U32 ColourRGBAToU32(F32 r, F32 g, F32 b, F32 a)
+</pre>
+Floating point colours can be recovered using this global function:
+<pre>
+inline AftkVector4F32 ColourRGBAFromU32(U32 colour)
+</pre>
+Note that the vertex colours exported by version 2.0.0 of the Maya exporter are now stored in 32 bits as integers, not 128 bits as floats.
+</p>
+
+<h4>Easier Welding</h4>
+<p>Instead of calling the 'weld mesh components' and 'weld polygon vertex' functions of <i>AftkScene</i> to perform 
+scene-wide mesh welding, you can use the <i>WeldMeshes</i> function, which does both. Similarly, on the mesh class 
+itself, the <i>Weld</i> function will perform welding of all data for an entire mesh.
+</p>
+
+<h4>Path Support</h4>
+<p>Nodes in the scene graph can now be accessed using directory-like paths. The path is delimited using pipe characters. 
+For example, consider a scene with a root node named "AftkRoot", which has a child named "child1". The path of the 
+root is "|AftkRoot", and the path of the child is "|AftkRoot|child1". The function <i>GetSceneNodeByPathByFullPath</i>
+performs the path query, returning the first matching node it finds. You can also search for a path fragment by using the
+<i>GetSceneNodeByPartialPath</i> function.
+</p>
+
+<h4>Clear Geometry Function for Mesh</h4>
+<p>The function <i>ClearGeometry</i> on the mesh class allows the erasing of a meshes geometry.</p>
+
+<h4>XRef Support</h4>
+<p>This is one of the biggest additions to this release of the Aftk. Although nobody is set to use it just yet!
+Essentially, the Aftk now supports 'XRef' nodes, these are like instance nodes, except that the object they instance is 
+potentially offline (not in main memory). Offline objects reside in .a3d scenes on disk. Offline objects can easily be 
+brought online thru an API call, and then work in a similar manner to traditional  instances. XRef objects are 
+equivalent to the 'reference' nodes that you see in the Maya outliner after loading a 'reference scene'. The Maya export system 
+supports the automatic creation of .a3d files for each reference scene when exporting a scene that employs references. 
+The scene into which the references were loaded then stores CRC values for the a3d reference files and also the .mb files 
+they originated from. This is to detect changes in the files such that references are only re-exported when necessary. 
+</p>
+<p>
+Fully elaborating on the nature of the Aftk's xref system will not be done here as its not currently needed.
+</p>
+
+<h3>Interface changes</h3>
+
+<p>The <i>Aftk</i> class has been removed. Its functionality is now encompassed by the <i>AftkScene</i> class.</p>
+
+<h3>Bug Fixes</h3>
+
+<p>If you use the <i>SetVertexDataChannelInfo</i> function of the mesh class to change the data type of a vertex data channel, then the aftk will
+now delete any existing data in that channel. It will then automatically creating a new channel of the given data type. Previously any existing vertex data was 
+left untouched, causing crashes later on when querying this data.</p>
+
+<h2>AFTK V1.50-Stable Release Notes - 9th May 2005</h1>
+
+<h3>New Features</h3>
+
+<h4>Build Information</h4>
+<p>Build properties can now be queried through the following <i>Aftk</i> class members. See doxygen for more information.</i>
+<pre>
+std::string GetBuildStamp() const;
+std::string GetBuildPC() const;
+std::string GetSVNRevision() const;
+</pre>
+</p>
+
+<h4>Animation Evaluation</h4>
+<p>The animation evaluation system for meshes has been updated. A mesh can be evaluated for a given value of x 
+(typically in units of time) by calling its <i>Evaluate</i> function. This updates an internal cache containing the 
+evaluated positions, normals, tangents and binormals for the mesh. This cache can the be queried via the following mesh
+functions.
+<pre>
+AftkPosition3	GetEvaluatedPolygonVertexPosition(U32 polyVertIndex) const;
+AftkNormal3	GetEvaluatedPolygonVertexNormal(U32 polyVertIndex) const;
+AftkVector3F32	GetEvaluatedPolygonVertexTangent(U32 uvSet, U32 polyVertIndex) const;
+AftkVector3F32	GetEvaluatedPolygonVertexBinormal(U32 uvSet, U32 polyVertIndex) const;
+</pre>
+</p>
+
+<h4>Tangent Space</h4>
+<p>Tangent space properties for meshes can now be added explicitly by users.</p>
+
+<h4>Arbitrary Data Per Polygon Vertex</h4>
+<p>The arbitrary vertex data system has been improved. A variety of data types can now be used, including all the usual 
+scalar types and some vector types. See doxygen.</p>
+
+<h4>Hierarchy Structure</h4>
+<p>The root node of the scene can no longer have any siblings. The Aftk attempts to enforce this relationship automatically.
+For example, attempting to set a node with siblings as the root node results in a new scene node being created as root. 
+The node with siblings is then parented to this. This hierarchy structure is the same as that of XSI, and allows for more
+simple hierarchy traversal and manipulation.</p>
+
+<h4>Scene Scaling</h4>
+<p>The Maya->A3D export plug-in no longer scales exported scenes down by a factor of 100. The Aftk will scale up older A3D 
+files when read in to compensate. This is done by altering the scene transform. The reason for this change is to make 
+A3D object scaling consistent with the scale of objects read from XSI.</p>
+
+<h4>Discrete Level of Detail (LOD) Support</h4>
+<p>Two methods for discrete LOD support have been implemented, see below.</p>
+
+<p>Method 1 - Seperate scene nodes, such as meshes, can be grouped inder a "LOD Group node" (<i>AftkSceneLodGroupNode</i>).
+The LOD group node contains a table which describes which of its children represent what level of detail. This table also 
+stores the threshold value at which lods are switched. This is the method that Maya uses to provide LOD support.</p>
+
+<p>Method 2 - Discrete LOD support has now been added to the mesh class. This has been implemented by storing separate lists of
+polygons for each LOD level. In order to create a level of detail, first call <i>SetLodLevelInfo</i>, providing the level of
+LOD you wish to create, and a structure describing that LOD. This structure includes the name and threshold at which the 
+subsequent LOD activates. Note that LODs should be stored sequentially from highest->lowest detail. Once the LOD 
+description has been added, polygon data can be input in the usual fashion. Note that all polygon functions now accept
+an argument indicating the LOD level they refer to. Alternatively, the <i>SetLodLevelMesh</i> function can be invoked. 
+This function takes the first LOD level of a given mesh and copies the vertex, polygon and weighting data from that mesh 
+into a specified level of detail on the target mesh. This data can then welded if desired, with the vertex weights 
+being averaged.</p>
+
+<h4>Bounds Information</h4>
+<p>Bounds information can be queried for any scene node object, so this includes instances and deformed objects. This 
+bounds information includes bounding box, bounding sphere and centre point information. The local and world space bounds
+can be provided. The bounds information is cached.</p>
+
+<h4>Hierarchy Manipulation</h4>
+<p>The following functions have been provided for scene graph manipulation, see doxygen for more info:
+<pre>
+void ExtractSceneNodeAndChildren(AftkSceneNode* pNode);
+void ExtractSceneNodeAndReparentChildren(AftkSceneNode* pNode);
+void DeleteSceneNodeAndReparentChildren(AftkSceneNode* pNode);
+void DeleteSceneNodeAndChildren(AftkSceneNode* pNode);
+</pre>
+</p>
+
+<h4>Deformed Instances</h4>
+<p>Deformed instances (boned instances) are now supported via the <i>AftkSceneMeshBonedInstanceNode</i> class. Deformed 
+instances with LODs are to be used for the PGR3 barriers.</p>
+
+<h4>Scene Wide Resource Management</h4>
+<p>Material and blind data resources are no longer automatically deleted when their reference count reaches zero. Instead,
+unused resources can be cleaned up by calling the <i>RemoveUnusedMaterialNodess</i> and <i>RemoveUnusedBlindDataNodes</i> functions of 
+<i>AftkScene</i>.</p>
+
+<h4>Mesh Local Resource Management</h4>
+<p>Material and blind data mapping table entries for mesh classes are no longer deleted when a resources mesh-relative 
+reference count reaches zero. Instead, functions <i>RemoveUnusedMeshPolygonMaterialMappings</i> and 
+<iRemoveUnusedMeshPolygonBlindDataMappings</i> or <i>AftkScene</i> can be called to remove mapping entries that are no
+longer used. Alternatively the <i>RemoveUnusedPolygonMaterialMappings</i> and <i>RemoveUnusedPolygonBlindDataMappings</i>
+of the <i>AftkSceneMeshRemappableNode</i> class can be used.</p>
+
+<p>To quickly remove all unused resource information, as mentioned in the above two points, call the <i>Optimise</i> 
+function of <i>AftkScene</i>.</p>
+
+<h3>Interface changes</h3>
+
+<p><i>AftkScene</i>'s <i>ValidateScene</i> function has been replaced by <i>Validate</i>.
+<p><i>AftkScene</i>'s <i>DeleteSceneNode</i> function has been replaced by <i>DeleteSceneNodeAndChildren</i>.
+<p>The API for arbitrary vertex data has been changed - see doxygen.</p>
+<p>The API for polygon access has changed such that you must specify the level of detail that you are querying.</i></p>
+
+<h3>Misc. changes</h3>
+
+<p>Some internal work has been undertaken in order to increase performance.</p>
+
+<h3>Bug Fixes</h3>
+
+<p>Deleting an instance of a node now correctly decreases the instance reference count for the node that was being
+instanced</p>
+
+<p>The 'ApplyMatrix' function of the mesh class now transforms tangents and binormals.</p>
+
+<h2>AFTK V1.45-Stable Release Notes - 7th March 2005</h1>
+
+<h3>New Features</h3>
+
+<p>No assertion checking is now performed in release builds for increased performance.</p>
+
+<p>Dynamic memory allocation for material, blind data, polygon and polygon vertex members is now handled via a memory pool
+system. As well as the AFTK faster, this also reduces memory usage. For a 127mb A3D scene, ~275mb of memory is required. This
+requirement used to be just over 300mb. For debug builds around 400mb was required for the same scene. This has now dropped 
+to around 300mb.</p>
+
+<h3>Bug Fixes</h3>
+
+<h4>Tangent space calculation</h4>
+<p>The AFTK had a bug which resulted in tangent space vectors being incorrectly shared across the mesh, making the results
+unusable. This has now been fixed. Tangent and binormal vectors are no longer implicitly shared upon creation. Instead, 
+they can be shared (via snapping) by calling <i>WeldVertexTangentsAndBinormals</i> on the mesh node.</p>
+<p>Tangents and binormals will also be shared by calling the scene's <i>WeldMeshComponents</i> function.
+
+<h3>Interface Changes</h3>
+
+<h4>Tangents and Binormals</h4>
+<p>The tangent and binormal related functions of the mesh class now follow the naming scheme <i>GetVertexTangent</i> 
+instead of <i>GetTangent</i> for consistency.</p>
+<p>Tangents and binormals are now returned as type <i>AftkNormal3</i> instead of <i>AftkVector3F32</i>, again for 
+consistency. As the name suggests, these vectors are normalised.</p>
+
+
+<h2>AFTK V1.40-Stable Release Notes - 25th February 2005</h1>
+
+<h3>New Features</h3>
+
+<p>Spot and point lights now have a <i>radius</i> attribute.</p>
+
+<h2>AFTK V1.39-Stable Release Notes - 24th February 2005</h1>
+
+<h3>New Features</h3>
+
+<h4>File locking</h4>
+<p>When reading a file, the Aftk attempts to secure the file for exclusive read access. Should this fail, an error to that effect
+is returned.</p>
+<p>Similarly, when writing a file, the Aftk attempts to lock the file for exclusive write access. These changes should prevent any
+problems on HT CPUs, where a program could possibly attempt to read an A3D file half way through it being written out by another
+process.</p>
+
+<h4>Quaternion Animation Blending</h4>
+<p>Quaternions are now used to interpolate (slerp) rotations within the animation evaluation code.</p>
+
+<h4>Animation Import</h4>
+<p>The 'ImportAnimation' functions of the <i>Aftk</i> and <i>AftkScene</i> classes allow animation to be imported from files on
+disk and scenes in memory respectively. The import matches scene nodes, by name, within the two scenes and then
+copies any animation data from animated source nodes into the target scene.</p>
+
+<h4>World Matrix Cache</h4>
+<p>The world matrices for all scene nodes are now cached, instead of being recalculated for every GetWorldMatrix call.</p>
+
+<h4>File loading progress from XSI</h4>
+<p>The XSI import code now provides a working progress callback.</p>
+
+<h3>Misc. Changes</h3>
+
+<h4>SoftImage XSI-FTK Library</h4>
+<p>On some peoples machines, building the Aftk would result in a large number of XSIFTK.lib linker errors. To fix this, the Aftk
+no longer links to the XSI-FTK library directly. This must be seperately linked into your application.</p>
+
+<h3>Bug Fixes</h3>
+
+<h4>Thread Safety</h4>
+
+<p>The Aftk's internal debug manager is now thread-safe.</p>
+
+<h4>Reference Counting</h4>
+
+<p>Global reference counts could become out of sync with the actual number of times a resource was used.</p>
+
+<h2>AFTK V1.38-Stable Release Notes - 10th February 2005</h1>
+
+<h3>New Features</h3>
+
+<h4>Remapable Mesh Materials and Blind Data</h4>
+<p>The way in which materials and blind data are associated with polygons has changed very significantly. The <i>AftkSceneMeshNode</i> class is
+now derived from a class named <i>AftkSceneMeshRemappableNode</i>. The latter class provides tables that map 16-bit indices to blind data and 
+material resources. So now, all polygons have 16-bit indices into these tables for their material and blind data. For the case of just a simple mesh
+one can get a polygon's material index, look this up against the mesh's index --> material resource mapping table, and thus end up with the material 
+resource. However, things get more interesting when considering another class derived from <i>AftkSceneMeshRemappableNode</i>, namely the 
+<i>AftkSceneMeshRemappedInstanceNode</i> class.
+
+<p>The <i>AftkSceneMeshRemappedInstanceNode</i> class represents a special instance of a mesh node. Two things are special about this node:</p>
+<p>(1) It it implements a mesh interface, allowing it to be queried like a regular mesh.</p>
+<p>(2) It provides <b>its own resource mapping tables</b>.</p> 
+<p>The fact that it contains its own mapping tables allows you to override material and blind data assignments. For example, consider the case where our remapped mesh instance points to a mesh with two polygons. Polygon 1 has a 
+material index of 0, and polygon 2 has a material index of 1. On the source mesh, these indices point to materials Lambert1 and Blinn1 respectively.
+The remapped instance of the mesh has a different material mapping table however. Such that material index 0 points to Phong1, while material index 1 
+still points to Blinn1. So you can see, that by providing different material mapping tables, materials can be easily overridden by instances.</p>
+
+<h4>Remapable Mesh UV Offsets</h4>
+<p>All nodes derived from <i>AftkSceneMeshRemappableNode</i>, such as <i>AftkSceneMeshNode</i>, can have UV offset information specified per UV set. 
+These UV offsets may be overrided in the <i>AftkSceneMeshRemappedInstanceNode</i> class.</p>
+
+<h4>Replace Function</h4>
+The <i>AftkSceneNode</i> class now provides a 'Replace' function. This deletes a given scene node and causes the current node to assume the position of
+the deleted node in the scene graph.
+
+<h4>Animated Mesh Evaluation</h4>
+<pre>
+AftkStatus		BuildAnimationHelpers();
+AftkStatus		EvaulateMatrixPalette(F32 x);
+AftkPosition3		EvaluatePolygonVertexPosition(U32 instance, const AftkMatrix44& worldMatrix) const;
+AftkNormal3		EvaluatePolygonVertexNormal(U32 instance, const AftkMatrix44& worldMatrix) const;
+U32			GetNumVertexWeights() const;
+const AftkVertexWeight& GetVertexWeight(U32 instance) const;
+U32			GetNumPaletteMatrices() const;
+const AftkMatrix44&	GetPaletteMatrix(U32 instance) const;
+</pre>
+
+<h4>Mesh Component Welding</h4>
+<p>It is now possible to share mesh components individually using the following functions on the 
+<i>AftkSceneMeshNode</i> class.</p>
+<pre>
+U32 	WeldTextureCoordinates (F32 threshold)
+U32 	WeldVertexNormals (F32 threshold)
+U32 	WeldVertexPositions (F32 threshold)
+</pre>
+<p>It's also possible to perform the above operations across all mesh nodes via these functions of the <i>AftkScene</i> 
+class:</p>
+<pre>
+U32 	WeldMeshComponents (F32 threshold=AFTK_EPSILON, AftkProgressNotification *pProgressCallback=0)
+</pre>
+
+<h4>Polygon Vertex Sharing</h4>
+<p>The Aftk now contains functions to share and un-share polygon vertices. 
+In order to maximise sharing is advisable you first weld all of the mesh components as previously
+described. Note that in the lighting tool, polygon vertices are unshared prior to lighting. For example, think 
+of the consequences of lighting to vertex colours with shared polygon vertices. The same polygon vertex would likely
+have its colour value overwritten several times, yielding incorrect results.</p>
+<pre>
+U32	WeldMeshPolygonVertices (F32 threshold, AftkProgressNotification *pProgressCallback=0)
+U32	ExpandMeshPolygonVertices (AftkProgressNotification *pProgressCallback=0)
+</pre>
+
+<h4>Mesh Repair</h4>
+Calling the following function on AftkSceneMeshNode will remove unused mesh components, including polygon vertices, 
+and will also remove degenerate triangles. The function returns the total number of repairs made.
+<pre>
+U32 	Repair (U32 &vPosRemoved, U32 &normRemoved, U32 &uvRemoved, U32 &pvRemoved, U32 &degTrisRemoved)
+</pre>
+Note, for convenience a function is provided in the <i>AftkScene class</i> which will repair all of the meshes in the
+scene.
+<pre>
+U32 	RepairMeshNodes (U32 &vPosRemoved, U32 &normRemoved, U32 &uvRemoved, U32 &pvRemoved, U32 &degTrisRemoved, AftkProgressNotification *pProgressCallback=0)
+</pre>
+
+<h4>Copying Meshes Between Scenes</h4>
+<p>It is now possible to copy a mesh between two Aftk instances. This should be useful for the PGR crowd system, as it will be possible to load an 
+animated character - evaluate the mesh data for a given pose, and then copy this data into a new Aftk instance in order to save out the pose 
+separately.</p>
+
+<h4>Cameras</h4>
+<p>Cameras are now exported from Maya, and are implemented by the <i>AftkSceneCameraNode</i> class. Please refer to the doxygen documentation 
+for this class.</p>
+
+<h3>Bug Fixes</h3>
+<p>Fixed memory leak within polygon cluster system.</p>
+<p>Bug fixed whereby vertex position welding could skip some vertices.</p>
+

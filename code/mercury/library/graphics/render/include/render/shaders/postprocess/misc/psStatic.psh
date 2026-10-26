@@ -1,0 +1,36 @@
+#include "..\..\psCommon.h"
+#include "psMisc.h"
+
+sampler2D textureMap : register(s0);
+
+float4 g_vStaticAmount : register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+struct PS_OUTPUT
+{
+	float4 RGBColor0     : COLOR0; 
+};
+
+struct VS_OUTPUT
+{
+	#if defined(BLUR_DX11) // [Blur1PCDX11] D3D11 links stages by register; the full-screen vertex shader emits SV_Position last.
+
+    float2 uv		: TEXCOORD0;
+    float4 position	: SV_Position;
+	#else
+    float4 position	: POSITION;		//Pixel position (world-view-proj space)  
+    float2 uv		: TEXCOORD0;
+	#endif
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT)0;
+   
+	float3 diffuseTexture = tex2D(textureMap, input.uv).rgb;
+	
+	diffuseTexture = ApplyStatic(diffuseTexture, input.uv, g_vStaticAmount.x);
+	
+	output.RGBColor0 = float4(diffuseTexture, 1.0f);
+	
+	return output;
+}

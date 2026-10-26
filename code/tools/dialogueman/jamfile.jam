@@ -1,0 +1,167 @@
+
+SubDir TOP Code Tools dialogueman ;
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+SupportedTargets WIN32_TOOL ;
+
+ACTORSTUDIO_BRANCH = 1 ;
+
+##Define UNICODE=1 _UNICODE=1 ;
+
+##DEFINES += UNICODE _UNICODE ;
+
+IncludePath
+./source/
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/xtwin/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/mercury/library/util/xt_shared/include
+$(TOP)/code/mercury/library/util/xtwin_wx/include
+$(TOP)/code/mercury/library/util/wx_shared/include
+$(TOP)/code/tools/svn_wrapper/include
+$(TOP)/code/tools/dialogueman/include
+$(TOP)/code/vendor/sigslot/include
+$(TOP)/libs/vendor/wxwidgets/2.8.6/include/msvc
+$(TOP)/libs/vendor/wxwidgets/2.8.6/include/
+$(TOP)/libs/vendor/wxwidgets/2.8.6/contrib/include
+$(TOP)/libs/vendor/basicexcel/include
+$(TOP)/libs/vendor/ms_speech_sdk/5.1/include
+;
+
+##Define
+##OBJ_SHADERS
+##;
+
+
+##SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += dbghelp.lib ws2_32.lib psapi.lib comctl32.lib rpcrt4.lib gdiplus.lib xbdm.lib sapi.lib Msimg32.lib ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 
+	/LIBPATH:\"$(XEDK_PATH)/lib/win32/vs2005\"
+	/LIBPATH:$(TOP)/code/tools/svn_wrapper/lib
+	/LIBPATH:$(TOP)/libs/vendor/ms_speech_sdk/5.1/lib/i386
+;
+LINKFLAGS += "/NODEFAULTLIB:LIBC.lib" 
+;
+
+CCFLAGS += "/Zc:wchar_t-" ;	##without this MS Speech won't work
+
+SRC =
+./source/dialogueman/actions/GenerateWavs.cpp
+./source/dialogueman/actions/TTSWav.cpp
+./source/dialogueman/actions/GenerateNames.cpp
+./source/dialogueman/actions/GenerateHashes.cpp
+./source/dialogueman/actions/GenerateSplits.cpp
+./source/dialogueman/actions/AddRows.cpp
+./source/dialogueman/actions/ChangeRows.cpp
+./source/dialogueman/actions/DeleteRows.cpp
+./source/dialogueman/actions/AudioXML.cpp
+./source/dialogueman/actions/NameHelpers.cpp
+./source/dialogueman/actions/BatchGenerate.cpp
+./source/dialogueman/actions/Amax/AmaxAudioTemplates.cpp
+./source/dialogueman/actions/Nightwing/NightwingAudioTemplates.cpp
+./source/dialogueman/actions/ExecuteDML.cpp
+./source/dialogueman/actions/TTSFilesInFolder.cpp
+./source/dialogueman/actions/NonTTSFilesInFolder.cpp
+./source/dialogueman/components/datatable/DataGrid.cpp
+./source/dialogueman/components/datatable/DataGridBase.cpp
+./source/dialogueman/components/datatable/DataGridFilter.cpp
+./source/dialogueman/components/datatable/DataGridPanel.cpp
+./source/dialogueman/components/explorer/Explorer.cpp
+./source/dialogueman/components/scarab_form/WxScarabForm.cpp
+./source/dialogueman/components/scarab_form/WxScarabFormContext.cpp
+./source/dialogueman/components/LocForm/LocForm.cpp
+./source/dialogueman/document/ColumnSet.cpp
+./source/dialogueman/document/Record.cpp
+./source/dialogueman/document/Row.cpp
+./source/dialogueman/document/RowSet.cpp
+./source/dialogueman/document/DbManager.cpp
+./source/dialogueman/frame/Frame.cpp
+./source/dialogueman/frame/menus/FrameMenuBar.cpp
+./source/dialogueman/frame/menus/FrameFileMenu.cpp
+./source/dialogueman/frame/menus/FrameEditMenu.cpp
+./source/dialogueman/frame/menus/FrameVersionControlMenu.cpp
+./source/dialogueman/frame/menus/FrameToolsMenu.cpp
+./source/dialogueman/frame/menus/FrameHelpMenu.cpp
+./source/dialogueman/misc/DomId.cpp
+./source/dialogueman/misc/MemoryOverload.cpp
+./source/dialogueman/misc/MutantValue.cpp
+./source/dialogueman/misc/Selection.cpp
+./source/dialogueman/misc/State.cpp
+./source/dialogueman/misc/StringUtil.cpp
+./source/dialogueman/misc/Utils.cpp
+./source/dialogueman/misc/ViewDisabler.cpp
+./source/dialogueman/misc/MacroExpander.cpp
+./source/dialogueman/xt/XtTypeDatabase.cpp
+./source/dialogueman/xt/XtTypeHelpers.cpp
+./source/dialogueman/importexport/Reader.cpp
+./source/dialogueman/importexport/ExcelReader.cpp
+./source/dialogueman/importexport/FinalDraftReader.cpp
+./source/dialogueman/importexport/ExcelWriter.cpp
+./source/dialogueman/importexport/ImportWizard.cpp
+./source/dialogueman/importexport/ExportWizard.cpp
+./source/dialogueman/importexport/Export.cpp
+./source/dialogueman/importexport/Import.cpp
+./source/dialogueman/diff/Diff.cpp
+./source/dialogueman/diff/DiffViewer.cpp
+./source/dialogueman/input_handlers/ShortcutHandler.cpp
+./source/dialogueman/dml/Variable.cpp
+./source/dialogueman/dml/Task.cpp
+./source/dialogueman/dml/Parser.cpp
+./source/dialogueman/dml/Tasks/AcquireArrayInComponentTask.cpp
+./source/dialogueman/dml/Tasks/AcquireArrayInRecordTask.cpp
+./source/dialogueman/dml/Tasks/AcquireFieldInComponentTask.cpp
+./source/dialogueman/dml/Tasks/AcquireFieldInBlockTask.cpp
+./source/dialogueman/dml/Tasks/AcquireFieldInRecordTask.cpp
+./source/dialogueman/dml/Tasks/AcquireBlockInComponentTask.cpp
+./source/dialogueman/dml/Tasks/AcquireComponentInArrayTask.cpp
+./source/dialogueman/dml/Tasks/AcquireFieldInArrayTask.cpp
+./source/dialogueman/dml/Tasks/AppendTask.cpp
+./source/dialogueman/dml/Tasks/ForTask.cpp
+./source/dialogueman/dml/Tasks/IfTask.cpp
+./source/dialogueman/dml/Tasks/MainTask.cpp
+./source/dialogueman/dml/Tasks/NewComponentTask.cpp
+./source/dialogueman/dml/Tasks/NewFieldTask.cpp
+./source/dialogueman/dml/Tasks/NewRecordTask.cpp
+./source/dialogueman/dml/Tasks/FindRecordByNameTask.cpp
+./source/dialogueman/dml/Tasks/RenameRecordTask.cpp
+./source/dialogueman/dml/Tasks/RefTask.cpp
+./source/dialogueman/dml/Tasks/SetComponentTypeTask.cpp
+./source/dialogueman/dml/Tasks/SetFieldValueTask.cpp
+./source/dialogueman/dml/Tasks/SetTask.cpp
+./source/dialogueman/dml/Tasks/AddTask.cpp
+./source/dialogueman/dml/Tasks/SubTask.cpp
+./source/dialogueman/dml/Tasks/MulTask.cpp
+./source/dialogueman/dml/Tasks/DivTask.cpp
+./source/dialogueman/App.cpp
+./source/dialogueman/Config.cpp
+./source/dialogueman/Allocator.cpp
+;
+
+LinkLibraries DialogueMan :
+	core system xttool xtwin tools_shared wxcore wxbase wxhtml wxaui wxcontrib wxregex wxtiff wxpng wxjpeg wxzlib wxadv xt_shared xtwin_wx basicexcel svn_wrapper wx_shared
+;
+
+Application DialogueMan : $(SRC) : stdafx.cpp ;
+
+ExportVcproj DialogueMan ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common xt2 ;
+SubInclude TOP code mercury library common xtwin ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code mercury library util xt_shared ;
+SubInclude TOP code mercury library util xtwin_wx ;
+SubInclude TOP code mercury library util wx_shared ;
+SubInclude TOP libs vendor wxwidgets 2.8.6 ;
+SubInclude TOP libs vendor basicexcel ;
+SubInclude TOP code tools svn_wrapper ;
+
+Depends DialogueMan.exe : $(TOP)/bin/tools_wip/win32/dialogueman/ ;
+MkDir $(TOP)/bin/tools_wip/win32/dialogueman/ ;
+
+EmbedManifest $(TOP)/bin/tools_wip/win32/dialogueman/dialogueman.exe : DialogueMan.exe ;

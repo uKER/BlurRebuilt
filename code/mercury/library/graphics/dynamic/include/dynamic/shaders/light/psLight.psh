@@ -1,0 +1,23 @@
+#define ALPHA
+#define ADDITIVE
+
+#include "dynamic/shaders/psCommon.h"
+#include "render\shaders\psFog.h"
+#include "render\shaders\psHDR.h"
+
+sampler2D textureMap : register(s0);
+
+struct VS_OUTPUT
+{
+	float4 position			: POSITION0;
+	float4 colour			: COLOR0;
+	float3 uvw				: TEXCOORD0;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+	float4 colour = tex2D(textureMap, input.uvw.xy) * input.colour * input.uvw.z;
+	colour.a = 0.0f;
+
+	return GetExposure(colour);
+}

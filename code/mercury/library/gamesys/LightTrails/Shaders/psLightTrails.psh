@@ -1,0 +1,30 @@
+#include "../../graphics/display/include/display/shaders/psCommon.h"
+#include "../../graphics/display/include/display/shaders/psConstants.h"
+
+struct PS_INPUT
+{
+	float4	m_Colour	: TEXCOORD0;
+	float3	m_Texcoords		: TEXCOORD1; //x-> height, y->projected Z, w -> projected W
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+		
+ 	float alpha = input.m_Colour.a;
+
+	alpha *= pow((1.f - 2.f * abs(input.m_Texcoords.x - 0.5f)), 0.75f);
+
+ 	alpha *= (1.f - saturate( 25.f * input.m_Texcoords.y/(input.m_Texcoords.z)));
+	
+	output.m_Colour.rgb = input.m_Colour.rgb * alpha;
+	output.m_Colour.a = alpha;
+	
+	return output;
+}

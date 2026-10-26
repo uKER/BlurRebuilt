@@ -1,0 +1,11 @@
+if $(JAMEXE:B) = safejam
+{
+	# using safe version of jam, perform the build
+	INCREMENTAL_LINKING = 0 ;
+	JAMBASEDIR = $(JAMEXE:D)/../../../bin/build_tools/ ;
+	include $(JAMBASEDIR)/jambase/base.jam ;
+}
+else
+{
+	exit Please use safejam.exe instead. ;
+}

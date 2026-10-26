@@ -1,0 +1,32 @@
+#include "..\..\psCommon.h"
+#include "..\..\psConstants.h"
+
+float4		g_vSettings	: register(CCP_RENDER_SETTINGS);
+
+sampler2D	g_tColour	: register(s0);
+sampler3D	g_tLookup	: register(s1);
+
+#define		g_fScale	g_vSettings.x
+#define		g_fBias		g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_vColour	: COLOR0; 
+};
+
+struct PS_INPUT
+{
+	float2	m_vTexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float3	vColour	= tex2D(g_tColour, input.m_vTexCoord).rgb;
+			vColour	= tex3D(g_tLookup, g_fScale * vColour + g_fBias).rgb;
+			
+	output.m_vColour = float4(vColour, 1.0f);
+	
+	return output;
+}

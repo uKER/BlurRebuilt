@@ -1,0 +1,37 @@
+SubDir TOP Code Mercury Library GameSys BlobShadows ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Graphics/fx/include
+$(TOP)/Code/Mercury/Library/Graphics/render/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/Code/Mercury/Library/Graphics/textureresource/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/graphics/portal/include
+$(TOP)/Code/Mercury/Library/Graphics/world_render/include
+;
+
+Define OBJ_SHADERS RENDERINGDATA_ALLOW_INCLUDE ;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+
+SRC =
+source/BlobShadows.cpp
+;
+
+
+SHADERSRC =
+;
+
+Library blobshadows : $(SRC) $(SHADERSRC) ;

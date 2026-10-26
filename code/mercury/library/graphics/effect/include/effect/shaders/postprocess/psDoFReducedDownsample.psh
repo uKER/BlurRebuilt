@@ -1,0 +1,49 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vCamera		: register(CCP_RENDER_SETTINGS);
+float4		g_vPixelSize	: register(CCP_RENDER_SETTINGS_1);
+float4		g_vDepth		: register(CCP_RENDER_SETTINGS_2);
+
+#define		g_fFocusPlaneDistance		g_vCamera.x
+#define		g_fFocusRange				g_vCamera.y
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tDepth		: register(s1);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+
+	float3	vColour	= tex2D(g_tColour, input.m_TexCoord).rgb;
+
+	float4	vDepth;
+	vDepth.x		= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-0.5f, -0.5f) * g_vPixelSize.xy, g_vDepth);
+	vDepth.y		= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(-0.5f, +0.5f) * g_vPixelSize.xy, g_vDepth);
+	vDepth.z		= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+0.5f, -0.5f) * g_vPixelSize.xy, g_vDepth);
+	vDepth.w		= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(+0.5f, +0.5f) * g_vPixelSize.xy, g_vDepth);
+
+	float4	vDistances	= saturate((vDepth - g_fFocusPlaneDistance) / (4.0f * g_fFocusRange) + 0.5f);
+	
+	output.m_Colour	= float4(vColour, min(min(vDistances.x, vDistances.y), min(vDistances.z, vDistances.w)));
+
+#else
+
+	output.m_Colour = 0.0f;
+
+#endif
+
+	return output;
+}

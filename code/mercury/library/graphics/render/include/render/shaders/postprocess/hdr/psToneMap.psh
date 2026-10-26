@@ -1,0 +1,39 @@
+#include "..\..\psCommon.h"
+#include "..\Colour\psColour.h"
+#include "psHDR.h"
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float3 colour = tex2D(colourTexture, input.uv).rgb;
+	float luminance = tex2D(luminanceTexture, float2(0.5f, 0.5f)).r;
+	
+#ifdef HDR
+	colour = colour * colour;
+#else
+	#ifdef HDRU32
+		colour = colour * colour;
+	#else
+		colour = ApplyToneMapping(colour, luminance);
+	#endif
+#endif
+
+	colour += ApplyInverseBloomGamma(GetBloomCombine(input.uv));
+	
+	colour = ApplyGamma(colour);
+
+	output.colour = float4(colour, 1.0f);
+		
+	return output;
+}

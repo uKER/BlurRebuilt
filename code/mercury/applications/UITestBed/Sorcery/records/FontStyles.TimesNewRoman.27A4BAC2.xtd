@@ -1,0 +1,11 @@
+xt
+	field __id "27A4BAC2"
+	field __name "FontStyles.TimesNewRoman"
+	field __pack "F2519802"
+	field __type "UIFontStyle"
+	field dropshadow "11.040"
+	field font "Times_New_Roman"
+	field name "TNR"
+	field shader "0"
+	field tracking "0"
+end

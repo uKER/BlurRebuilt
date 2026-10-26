@@ -1,0 +1,525 @@
+SubDir TOP Code Amax Game ;
+
+SupportedTargets WIN32 PS3 ;
+
+CheckPS3SDKVersion "310.001" ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SHADER_HASH_FILE = $(TOP)/Code/Amax/Game/Shaders/shader_hash2.txt ;
+
+Define USE_SOLVER_2 ;
+
+Define CREATE_CROWD_FLAG_RENDERER ;
+
+#EnableCallcap ;
+
+if $(BUILD) != Profile && $(BUILD) != Master
+{
+	Define LOGFS_ENABLE ;
+	Define CFILESYSTEM_CREATE_FUNC_ENABLED ;
+}
+
+IncludePath 
+Amax$(_PLATFORM)
+Amax$(_PLATFORM)/include
+$(MERCURY)/ai/air/include
+$(MERCURY)/animation/include
+$(MERCURY)/audio/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/advertising/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/gamesys/crowd_system/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/gamesys/game_debug/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/GameView/include
+$(MERCURY)/gamesys/lod/include
+$(MERCURY)/gamesys/helper_screens/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/SpecialFX/include
+$(MERCURY)/gamesys/AuxFlares/include
+$(MERCURY)/gamesys/LightTrails/include
+$(MERCURY)/gamesys/SplashCamera/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/graphics/deferred/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/effect/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/movie/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/graphics/spu/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/graphics/Ngl/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/network/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/JpegHelper/include
+$(MERCURY)/util/lua_shared/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/util/logicalfs/include
+$(MERCURY)/util/security/include
+$(MERCURY)/util/actor_studio_msg_shared/include
+$(MERCURY)/ui/include
+$(MERCURY)/gamesys/blobshadows/include
+$(MERCURY)/gamesys/dropshadows/include
+$(MERCURY)/gamesys/actor_studio_msg_game/include
+$(TOP)/code/vendor/lua/Lua-5.1.4/src
+$(TOP)/code/vendor/lua/Lua-Helper/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(TOP)/code/Amax/Library
+$(TOP)/Libs/Vendor/Bink/1.9r
+;
+
+if $(INCREMENTAL_LINKING) = 1
+{
+    ObjectCcFlags ./GameApp.cpp : -DINCREMENTAL_LINKING ;
+}
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" 
+$(TOP)/libs/vendor/openal/1.1/include ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += secur32.lib crypt32.lib ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" "$(TOP)/libs/vendor/openal/1.1/lib/Win32/OpenAL32.lib" "$(TOP)/libs/vendor/openal/1.1/lib/Win32/EFX-Util.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+LINKFLAGS += /NODEFAULTLIB:LIBCMTD /NODEFAULTLIB:LIBCMT ;
+}
+
+
+PS3LIBS = 
+$(TOP)/libs/vendor/bink/1.9r/binkps3 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np2_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libl10n_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/libvoice_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/libhttp_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/libhttp_util_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/libssl_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_trophy_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/hash/libsha1 
+;
+
+PCLIBS = 
+$(TOP)/libs/vendor/bink/1.9r/binkw32
+;
+
+
+# Massive Advertising
+
+if $(PLATFORM) = PC
+{
+	if $(BUILD) = Master
+	{
+		PCLIBS += $(TOP)/libs/vendor/massive/3.7.1.106/lib/x86/static/xmassiveadclient ;
+	}
+	else
+	{
+		PCLIBS += $(TOP)/libs/vendor/massive/3.7.1.106/lib/x86/static/xmassiveadclientlogging ;
+	}
+}
+
+SRC =
+[ Batch
+./Automation/GameAutomationMessageHandler.cpp
+./Automation/GamePerfLogging.cpp
+./Game/ActorDef/ActorTypes.cpp
+./Game/ActorDef/GameActor.cpp
+./Game/ActorDef/GameActorList.cpp
+./Game/PerfStats/PerfStats.cpp
+: StdAfx.h ]
+
+[ Batch
+./Game/AmaxCam/AmaxChaseCamera.cpp
+./Game/AmaxCam/BoltedCamera.cpp
+./Game/AmaxCam/CameraActor.cpp
+./Game/AmaxCam/CameraKeyFrame.cpp
+./Game/AmaxCam/CameraSwitcher.cpp
+./Game/AmaxCam/CameraSystem.cpp
+./Game/AmaxCam/CameraSpecialFX.cpp
+./Game/AmaxCam/CubeCapture.cpp
+./Game/AmaxCam/DirectorActor.cpp
+./Game/AmaxCam/FatalCamera.cpp
+./Game/AmaxCam/HOGResetCamera.cpp
+./Game/AmaxCam/SetPieceCamera.cpp
+./Game/AmaxCam/Helper.cpp
+./Game/AmaxCam/PassingShake.cpp
+./Game/AmaxCam/PhotoCamera2.cpp
+./Game/AmaxCam/PhysicsChecks.cpp
+./Game/AmaxCam/RayGroup.cpp
+./Game/AmaxCam/Sorcery.cpp
+./Game/AmaxCam/VehicleFeed.cpp
+./Game/AmaxCam/CameraDollyZoomSpecialFX.cpp
+./Game/AmaxCam/CameraNoiseSpecialFX.cpp
+: StdAfx.h ]
+
+[ Batch
+./Game/GameControls/GameControls.cpp
+./Game/GameDef/Materials.cpp
+./Game/GameDef/PhysicsConstants.cpp
+./Game/GameDef/Polyflags.cpp
+./Game/GameUtil/ResourceBag.cpp
+./Game/GameUtil/ResourceBagListener.cpp
+./Game/GameWorld/EnvironmentSettings.cpp
+./Game/GameWorld/GameWorld.cpp
+./Game/GameWorld/GameWorldOverrideCubemap.cpp
+./Game/GameWorld/GameWorldTasks.cpp
+./Game/GameWorld/PostProcessLayer.cpp
+./Game/GameWorld/View.cpp
+./Game/GameWorld/ViewManager.cpp
+<view>./Game/GameWorld/View/Main.cpp
+./Game/GameWorld/View/Mirror.cpp
+./Game/GameWorld/View/Reflection.cpp
+./Game/GameWorld/View/CubeMap.cpp
+./Game/Messaging/GameMessaging.cpp
+./Game/SimpleUi/SimpleUiLayer.cpp
+./Game/SystemLayer.cpp
+./Game/Game.cpp
+: StdAfx.h ]
+
+[ Batch
+./PlatformCallbacks/PlatformCallbacks_$(PLATFORM).cpp
+./GameSystems.cpp
+./Main.cpp
+./AppPhotoCapture.cpp
+./SchedulerConfig.cpp
+./Game/GameUtil/LoadingPerf.cpp
+: StdAfx.h ]
+./GameApp.cpp
+./GameAppResources.cpp
+;
+
+if $(BUILD) != Master
+{
+SRC +=
+[ Batch
+./Automation/GameDataLogging.cpp
+: StdAfx.h ]
+;
+}
+
+DRIVER_SRC =
+[ Batch
+Game/GameActors/Drivers/AnimationTree.cpp
+Game/GameActors/Drivers/DriverActor.cpp
+Game/GameActors/Drivers/DriverAnimationParameters.cpp
+Game/GameActors/Drivers/DriverManager.cpp
+Game/GameActors/Drivers/XtAnimationTree.cpp
+Game/GameActors/Drivers/XtAnimationTreeListener.cpp
+: StdAfx.h ]
+;
+
+VEHICLE_SRC = 
+[ Batch
+./Game/GameActors/Vehicles/VehicleActor.cpp
+./Game/GameActors/VehicleLogic/VehicleLogicActor.cpp
+./Game/GameActors/Components/VehicleLogic/HandOfGod/VLC_HandOfGod.cpp
+./Game/GameActors/Components/VehicleLogic/HandOfGod/VLC_AIController.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_E3Controller.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_Network_Damage.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_MP_Domination.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_MP_Local_Pickups.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_MP_Network_Pickups.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_MP_Pickups_AI.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_MultiplayerChallenges.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_PlayerRubberBanding.cpp
+./Game/GameActors/Components/VehicleLogic/Scoring/VLC_Statistics.cpp
+./Game/GameActors/Components/VehicleLogic/Scoring/VLC_PointsSystem.cpp
+./Game/GameActors/Components/VehicleLogic/Scoring/VLC_NewScoring.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Damage.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Pickups.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Pickups_AI.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Pickups_Targetting.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Performance_Modifier.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Drafting.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Rumble.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_FanDemands.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Tutorials.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Sensor.cpp
+./Game/GameActors/Components/VehicleLogic/Multiplayer/VLC_MP_IdleKickController.cpp
+./Game/GameActors/Vehicles/FakePhysics.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Abilities.cpp
+./Game/GameActors/Components/VehicleLogic/VLC_Network_Abilities.cpp
+./Game/GameActors/Components/VehicleLogic/HandOfGod/VLC_SuperControlController.cpp
+: StdAfx.h ]
+;
+
+
+if $(PLATFORM) = PS3
+{
+	DLC_SRC = 
+	[ Batch
+	./Game/DLC/DLC_Types.cpp
+	./Game/DLC/DLC_Controller.cpp
+	./Game/DLC/DLC_Controller_PS3.cpp
+	: StdAfx.h ]
+	;
+
+	ACHIEVEMENT_SRC = 
+	[ Batch
+	./Game/Achievements/AchievementSystem_PS3.cpp
+	./Game/Achievements/AvatarAwardSystem_PS3.cpp
+	./Game/Achievements/PictureAwardSystem_PS3.cpp
+	: StdAfx.h ]
+	;
+
+	GAME_DATA_INSTALLER_SRC = 
+	./PS3Installer/PS3InstallData.cpp
+	;
+	
+}
+
+if $(PLATFORM) = PC
+{
+	DLC_SRC = 
+	[ Batch
+	./Game/DLC/DLC_Types.cpp
+	./Game/DLC/DLC_Controller.cpp
+	./Game/DLC/DLC_Controller_PC.cpp
+	: StdAfx.h ]
+	;
+
+	ACHIEVEMENT_SRC = 
+	[ Batch
+	./Game/Achievements/AchievementSystem_PC.cpp
+	./Game/Achievements/AvatarAwardSystem_PC.cpp
+	./Game/Achievements/PictureAwardSystem_PC.cpp
+	: StdAfx.h ]
+	;
+}
+
+EFFECTS_SRC = 
+./Game/GameActors/Effects/EffectTestActor.cpp
+;
+
+CROWDS_SRC =
+./Game/GameActors/Crowds/CrowdGameActor.cpp
+;
+
+SPUSRC =
+	<SPU>./Game/GameWorld/GameWorldTasks.cpp
+;
+
+LinkLibraries carupdatelightcubemap : core_spu ;
+
+AddSPUModule Amax : carupdatelightcubemap : $(SPUSRC) ;
+
+if $(USERNAME) = cwright || $(USERNAME) = sbilton || $(USERNAME) = caspinall || $(USERNAME) = pkerby || $(USERNAME) = gayoung || $(USERNAME) = dgill || $(USERNAME) = pereid || $(USERNAME) = gsmillie
+{
+	SrcOptim $(VEHICLE_SRC) : Off ;
+}
+
+if $(USERNAME) = sbilton
+{
+	SrcOptim $(DLC_SRC) : Off ;
+}
+
+if $(USERNAME) = pkerby || $(USERNAME) = gayoung || $(USERNAME) = mtaylor || $(USERNAME) = jbunner || $(USERNAME) = gsmillie
+{
+	SrcOptim $(ACHIEVEMENT_SRC) : Off ;
+}
+
+if $(USERNAME) = caspinall
+{
+	SrcOptim $(WEAPONS_SRC) : Off ;
+}
+
+if $(USERNAME) = caspinall
+{
+	SrcOptim $(RACELOGIC_SRC) : Off ;
+}
+
+include demonware.jam ;
+include air_amax.jam ;
+include graphics.jam ;
+include RaceLogic.jam ;
+include ../Library/Ui/uiluasrc.jam ;
+
+ImportCP include/ui/shaders/vsConstants.h : TOP Code Mercury Library UI ;
+ImportCP include/ui/shaders/psConstants.h : TOP Code Mercury Library UI ;
+
+SRC += $(VEHICLE_SRC) $(DRIVER_SRC) $(WEAPONS_SRC) $(EFFECTS_SRC) $(CROWDS_SRC) $(RACELOGIC_SRC) $(GRAPHICS_SRC) $(AIR_AMAX_SRC) $(DLC_SRC) $(ACHIEVEMENT_SRC) ;
+
+SRC += $(GRAPHICS_SHADERS) ;
+
+if $(PLATFORM) = PS3
+{
+	SRC += $(GAME_DATA_INSTALLER_SRC) ;
+}
+
+LinkLibraries Amax :
+		core 
+		system 
+		misc_shared 
+		audio 
+		xtgame 
+		camera2 
+		deferred
+		display
+		display2
+		dynamic
+		effect
+		fx
+		movie
+		portal
+		render
+		RenderingData
+		shader
+		textureresource
+		vehicle
+		world_render
+		blobshadows
+		dropshadows
+		ui
+		scenegraph
+		RacingPhysics
+		animation
+		animated_model
+		input 
+		resource 
+		resource_utils
+		framework 
+		actor_system
+ 		advertising
+		game_debug
+		game_physics
+		crowd_system
+		game_resource
+		debugsystems
+		shared_actors
+		gravity 
+		zlib
+		liblua
+		lua_helper
+		lua_shared
+		network
+		air
+		$($(PLATFORM)LIBS)
+		navmesh
+		gameview
+		lod
+		specialFX
+		auxFlares
+		lightTrails
+		splashCamera
+		amax_network
+		amax_gamelogic
+		amax_racebook
+		amax_ui
+		amax_audio
+		amax_kanzen
+		helper_screens
+		Jpeg
+		JpegHelper
+		logicalfs
+		security
+		actor_studio_msg_game
+		actor_studio_msg_shared
+		libtomcryptv
+		libtommathv
+		;
+		
+		
+
+
+Application Amax : $(SRC) : stdafx.cpp ;
+LUABundle Amax : $(LUASRC) : ../Library/Ui/Game/LUA_Scripts ;
+ExportVcproj Amax ;
+
+SubInclude TOP Code Amax Library Network ;
+SubInclude TOP Code Amax Game GameLogic ;
+SubInclude TOP Code Amax Library Racebook ;
+SubInclude TOP Code Amax Library Ui ;
+SubInclude TOP Code Amax Library Kanzen ;
+SubInclude TOP Code Amax Game GameAudio ;
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Common Misc_shared ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library AI Air ;
+SubInclude TOP Code Mercury Library Ai NavMesh ;
+SubInclude TOP Code Mercury Library Animation ;
+SubInclude TOP Code Mercury Library Audio ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics Deferred ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;
+SubInclude TOP Code Mercury Library Graphics Dynamic ;
+SubInclude TOP Code Mercury Library Graphics Effect ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics Movie ;
+SubInclude TOP Code Mercury Library Graphics Portal ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Graphics SPU ;
+SubInclude TOP Code Mercury Library Graphics TextureResource ;
+SubInclude TOP Code Mercury Library Graphics Vehicle ;
+SubInclude TOP Code Mercury Library Graphics World_Render ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Physics RacingPhysics ;
+SubInclude TOP Code Mercury Library Gamesys Actor_system ;
+SubInclude TOP Code Mercury Library Gamesys Advertising ;
+SubInclude TOP Code Mercury Library Gamesys Animated_Model ;
+SubInclude TOP Code Mercury Library Gamesys Crowd_System ;
+SubInclude TOP Code Mercury Library Gamesys DebugSystems ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys Game_context ;
+SubInclude TOP Code Mercury Library Gamesys Game_debug ;
+SubInclude TOP Code Mercury Library Gamesys Game_physics ;
+SubInclude TOP Code Mercury Library Gamesys Game_resource ;
+SubInclude TOP Code Mercury Library Gamesys GameView ;
+SubInclude TOP Code Mercury Library Gamesys Lod ;
+SubInclude TOP Code Mercury Library Gamesys helper_screens ;
+SubInclude TOP Code Mercury Library Gamesys resource_utils ;
+SubInclude TOP Code Mercury Library Gamesys Actor_Studio_Msg_Game ;
+SubInclude TOP Code Mercury Library Gamesys shared_actors ;
+SubInclude TOP Code Mercury Library Gamesys SpecialFX ;
+SubInclude TOP Code Mercury Library Gamesys BlobShadows ;
+SubInclude TOP Code Mercury Library Gamesys DropShadows ;
+SubInclude TOP Code Mercury Library Gamesys AuxFlares ;
+SubInclude TOP Code Mercury Library Gamesys LightTrails ;
+SubInclude TOP Code Mercury Library Gamesys SplashCamera ;
+SubInclude TOP Code Mercury Library Network ;
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Util JpegHelper ;
+SubInclude TOP Code Mercury Library Util Lua_shared ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Util LogicalFs ;
+SubInclude TOP Code Mercury Library Util Security ;
+SubInclude TOP Code Mercury Library Util Actor_Studio_Msg_Shared ;
+SubInclude TOP Code Mercury Library Ui ;
+SubInclude TOP code vendor lua Lua-5.1.4 ;
+SubInclude TOP code vendor libtomcrypt 1.10 ;
+SubInclude TOP code vendor libtommath 0.39 ;
+SubInclude TOP code vendor lua Lua-Helper ;
+SubInclude TOP code vendor zlib current_mercury ;
+SubInclude TOP libs vendor jpeg version62 ;
+
+VcprojGroup TOP Code Amax : Amax ;
+
+if $(USERNAME) = jcutter
+{
+	if $(PLATFORM) = PS3
+	{
+		Copy $(BIZARRE_ROOT)/Amax/image/PS3/Amax.self : Amax.self ;
+	}
+}

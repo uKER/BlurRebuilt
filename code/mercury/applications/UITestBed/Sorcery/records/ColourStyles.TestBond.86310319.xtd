@@ -1,0 +1,31 @@
+xt
+	field __id "86310319"
+	field __name "ColourStyles.TestBond"
+	field __pack "F2519802"
+	field __type "UIColourStyle"
+	block bottom_left
+		field a "1.000"
+		field b "0.753"
+		field g "0.753"
+		field r "0.753"
+	end
+	block bottom_right
+		field a "1"
+		field b "0"
+		field g "0"
+		field r "0"
+	end
+	field name "TestBond"
+	block top_left
+		field a "1"
+		field b "0.753"
+		field g "0.753"
+		field r "0.753"
+	end
+	block top_right
+		field a "1"
+		field b "0.502"
+		field g "0"
+		field r "0.0392"
+	end
+end

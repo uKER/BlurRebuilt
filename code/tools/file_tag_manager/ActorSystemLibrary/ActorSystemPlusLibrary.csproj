@@ -1,0 +1,167 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24574FA5-AA8F-4CC8-A731-C3516C3F3CD7}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ActorSystem</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ActorSystem</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\RegexpHelper\RegexpHelper.csproj">
+      <Name>RegexpHelper</Name>
+      <Project>{0118F73C-7370-49DE-829C-D7A899CC8F4F}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActorBool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorCombobox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorDualCombo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorFloat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorInt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorParameter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorParameterGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActorSystemForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DebugWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XmlHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="ActorBool.resx">
+      <DependentUpon>ActorBool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorCombobox.resx">
+      <DependentUpon>ActorCombobox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorDualCombo.resx">
+      <DependentUpon>ActorDualCombo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorFloat.resx">
+      <DependentUpon>ActorFloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorInt.resx">
+      <DependentUpon>ActorInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorParameter.resx">
+      <DependentUpon>ActorParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorParameterGroup.resx">
+      <DependentUpon>ActorParameterGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActorSystemForm.resx">
+      <DependentUpon>ActorSystemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DebugWindow.resx">
+      <DependentUpon>DebugWindow.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

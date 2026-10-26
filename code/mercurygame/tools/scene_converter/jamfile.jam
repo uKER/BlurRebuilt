@@ -1,0 +1,186 @@
+SubDir TOP Code Mercurygame tools scene_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+CFG_CONVERTER = 1 ;
+Define CFG_CONVERTER=1 ;
+
+USE_SOLVER2 = 1 ;
+
+if $(USE_SOLVER2) != 1
+{
+#echo define solver 1 ;
+}
+else
+{
+#echo define solver 2 ;
+	Define USE_SOLVER_2 ;
+}
+
+# Uncomment to enable the check of sceneconverter file time during the export (debugging)
+# Define CHECK_SCENECONVERTER_FILE_TIME ;
+
+# needed for speedtree
+#LINKLIBS += 
+#	$(TOP)/libs/vendor/speedtree/4.0/lib/VC8/Release/SpeedTreeRT.lib 
+#	$(TOP)/libs/vendor/xerces/2.5.0/lib/xerces-c_2.lib ;
+
+IncludePath
+./source
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Util/Tools_shared/include
+$(MERCURY)/Util/spatial_hierarchy/include
+$(MERCURY)/graphics/texture_export/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/Common/Misc_Shared/include
+$(MERCURY)/GameSys/Crowd_System/include
+$(MERCURY)/GameSys/Advertising/include
+$(TOP)/Code/Common
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/code/Tools/Aftkut/AftkUtLib/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/Code/Tools/aftkspeedtree/aftkspeedtree/include
+$(TOP)/code/Tools/file_tag_db/file_tag_db/include
+$(TOP)/code/Tools/tex_atlas/include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/Code/MercuryGame/Tools/converter_shared/converter_shared/include
+$(TOP)/Code/Mercury/Library/Graphics/World_render/include
+;
+
+SRC =
+source/Application.cpp
+source/Debug.cpp
+source/data/AdvertisingData.cpp
+source/data/AftkSceneData.cpp
+source/data/ConversionOptions.cpp
+source/data/NullData.cpp
+source/data/PhysicsData.cpp
+source/data/RenderData.cpp
+source/data/SceneDescription.cpp
+source/data/ToolConfig.cpp
+source/data/LightListData.cpp
+source/data/LightSamplePointsData.cpp
+source/data/PvsData.cpp
+source/data/NavMeshData.cpp
+source/data/CubemapPointsData.cpp
+source/data/PortalData.cpp
+source/data/CrowdData.cpp
+source/data/CropSheetData.cpp
+source/Main.cpp
+source/Polyflags.cpp
+source/process/BuildAdvertisingData.cpp
+source/process/BuildPhysicsData.cpp
+source/process/BuildRenderData.cpp
+source/process/BuildSceneDescription.cpp
+source/process/CreateLightSamplePointsFile.cpp
+source/process/CreatePvsSamplePointsFile.cpp
+source/process/ExportGameScene.cpp
+source/process/GeneratePvsData.cpp
+source/process/LightAftk.cpp
+source/process/NullProcess.cpp
+source/process/PreprocessAftk.cpp
+source/process/ReadLitAftk.cpp
+source/process/ReadPvsData.cpp
+source/process/WritePreprocessedAftk.cpp
+source/process/ReadLightSamplePointsFile.cpp
+source/process/LightList.cpp
+source/process/BuildNavMeshData.cpp
+source/process/SpeedTree.cpp
+source/process/ApplyMaterials.cpp
+source/process/BuildCubemapPointsData.cpp
+source/process/BuildPortalData.cpp
+source/process/BuildCrowdData.cpp
+source/process/AftkReplaceLodActors.cpp
+source/process/CrowdReplaceSourceNodes.cpp
+source/process/CreateLodImposters.cpp
+source/process/GenerateCropSheets.cpp
+source/RouteNo.cpp
+source/util/MakeInvisiblePolygons.cpp
+source/util/MakeNoPVSPolygons.cpp
+resource.rc
+;
+
+LinkLibraries scene_converter : 
+	aftk
+	#aftkspeedtree 
+	aftkutlib 
+	attk	
+	converter_shared 
+	core 
+	file_tag_db
+	fxConv
+	gravityConv
+	misc_shared 	
+	pcfx
+	ps3fx
+	RenderingDataConv 
+	shader
+	portal
+	spatial_hierarchy
+	#spt_billboard_def
+	system 
+	texture_export 
+	tools_shared 
+	tex_atlas
+	xefx
+	zlib
+	$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+		
+if $(PLATFORM) = PC
+{
+	SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+}
+
+
+Application scene_converter : $(SRC) : stdafx.cpp ;
+ExportVcproj scene_converter ;
+
+#include $(TOP)/code/mercury/library/graphics/shader/fx.jam ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common misc_shared ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Graphics Portal ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Mercury Library Util Spatial_Hierarchy ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools aftkspeedtree aftkspeedtree ;
+SubInclude TOP Code Tools aftkut aftkutlib ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Tools file_tag_db file_tag_db ;
+SubInclude TOP Code Tools tex_atlas tex_atlas ;
+SubInclude TOP Code MercuryGame Tools Converter_shared Converter_shared ;
+SubInclude TOP Code Vendor ZLib current_mercury ;
+
+BUILDFOLDER = "win32" ;
+
+if $(WIN64) = 1
+{
+	BUILDFOLDER = "win64" ;
+}
+
+Depends scene_converter.exe : $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/ ;
+MkDir $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/ ;
+
+#Copy $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/scene_converter.exe : scene_converter.exe ;
+
+EmbedManifest $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/scene_converter.exe : scene_converter.exe ;
+
+Copy $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/pcfx.exe : pcfx.exe ;
+Copy $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/ps3fx.exe : ps3fx.exe ;
+Copy $(TOP)/bin/tools_wip/$(BUILDFOLDER)/scene_converter/xefx.exe : xefx.exe ;

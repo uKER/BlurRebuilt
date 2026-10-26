@@ -1,0 +1,88 @@
+SubDir TOP Code Mercury Applications RacingPhysicsTest2 ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+USE_SOLVER2 = 1 ;
+
+if $(USE_SOLVER2) != 1
+{
+echo define solver 1 ;
+}
+else
+{
+echo define solver 2 ;
+	Define USE_SOLVER_2 ;
+}
+
+XenonRemoteLocation Mercury\\RacingPhysicsTest2 ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Common/Misc_Shared/include
+$(MERCURY)/Graphics/Display/include
+$(MERCURY)/Graphics/Render/include
+$(MERCURY)/Graphics/SceneGraph/include
+$(MERCURY)/Graphics/Camera2/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/Graphics/RenderingData/include
+$(MERCURY)/Graphics/Ngl/include
+$(MERCURY)/Graphics/Fx/include
+$(MERCURY)/Physics/RacingPhysics/include
+$(MERCURY)/common/xt2/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+$(MERCURY)/GameSys/Framework/include
+$(MERCURY)/GameSys/TestSections/include
+$(MERCURY)/util/input/include
+
+;
+
+SRC =
+Source/debugvariables.cpp
+Source/gamepad.cpp
+Source/racingphysicstest.cpp
+Source/main.cpp
+;
+
+LinkLibraries RacingPhysicsTest2 : 
+	core 
+	system 
+	framework
+	resource
+	RenderingData 
+	fx 
+	scenegraph 
+	display 
+	render 
+	world_render
+	gravity 
+	camera2 
+	xtgame 
+	RacingPhysics ;
+		
+Application RacingPhysicsTest2 : $(SRC) : stdafx.cpp ;
+ExportVcproj RacingPhysicsTest2 ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics world_render ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Physics RacingPhysics ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Util Resource ;
+
+
+
+

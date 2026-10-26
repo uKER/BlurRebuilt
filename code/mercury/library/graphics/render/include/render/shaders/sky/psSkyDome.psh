@@ -1,0 +1,23 @@
+#include "..\\psCommon.h"
+#include "..\\psHDR.h"
+
+float4		g_SkySettings			: register(CCP_RENDER_SETTINGS);
+float4		g_FogColour				: register(CCP_RENDER_SETTINGS_1);
+sampler2D	g_AlbedoTexture			: register(s0);
+
+#define		g_SkyIntensity			g_SkySettings.y
+
+struct PS_INPUT
+{
+	float4 TexCoord0			: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	float3 vSkyColour = tex2D(g_AlbedoTexture, IN.TexCoord0.xy).xyz * g_SkyIntensity;	
+	float4 colour = float4(lerp(vSkyColour, g_FogColour.xyz, IN.TexCoord0.z), 1.f);
+	OUT = GetExposure(colour);
+	OUT.colour.xyz = lerp(float3(0.0f, 0.0f, 0.0f), OUT.colour.xyz, IN.TexCoord0.w);
+	return OUT;
+}

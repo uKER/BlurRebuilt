@@ -1,0 +1,71 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1130DF91-C279-45A3-893C-5E6295560728}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Alienbrain</RootNamespace>
+    <AssemblyName>alienbrain_interface</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="alienbrain_interface.checkin.cs" />
+    <Compile Include="alienbrain_interface.checkout.cs" />
+    <Compile Include="alienbrain_interface.cs" />
+    <Compile Include="alienbrain_info.cs" />
+    <Compile Include="alienbrain_interface.get_first_child.cs" />
+    <Compile Include="alienbrain_interface.get_first_folder.cs" />
+    <Compile Include="alienbrain_interface.get_latest_file.cs" />
+    <Compile Include="alienbrain_interface.get_next_child.cs" />
+    <Compile Include="alienbrain_interface.get_next_enumerated_child.cs" />
+    <Compile Include="alienbrain_interface.get_project_details.cs" />
+    <Compile Include="alienbrain_interface.import.cs" />
+    <Compile Include="alienbrain_interface.initialise.cs" />
+    <Compile Include="alienbrain_interface.load_project.cs" />
+    <Compile Include="alienbrain_interface.prepare_to_enumerate_children.cs" />
+    <Compile Include="alienbrain_interface.undo.checkout.cs" />
+    <Compile Include="alienbrain_queue.cs" />
+    <Compile Include="alienbrain_request.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\super_event_wait_handle\super_event_wait_handle.csproj">
+      <Project>{3CFE72CA-97BD-4BDD-9773-89A96E749545}</Project>
+      <Name>super_event_wait_handle</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

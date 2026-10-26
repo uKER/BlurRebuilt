@@ -1,0 +1,31 @@
+xt
+	field __id "94AEC497"
+	field __name "ColourStyles.LightBlue"
+	field __pack "F2519802"
+	field __type "UIColourStyle"
+	block bottom_left
+		field a "1.000"
+		field b "0.82"
+		field g "0.843"
+		field r "0.0824"
+	end
+	block bottom_right
+		field a "1.000"
+		field b "0.82"
+		field g "0.843"
+		field r "0.0824"
+	end
+	field name "LightBlue"
+	block top_left
+		field a "1.000"
+		field b "0.82"
+		field g "0.843"
+		field r "0.0824"
+	end
+	block top_right
+		field a "1.000"
+		field b "0.82"
+		field g "0.843"
+		field r "0.0824"
+	end
+end

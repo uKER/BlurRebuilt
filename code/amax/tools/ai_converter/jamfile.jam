@@ -1,0 +1,34 @@
+SubDir TOP Code Amax Tools ai_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/Converter.cpp
+source/Main.cpp
+;
+
+LinkLibraries ai_converter : core system tools_shared ;
+		
+Application ai_converter : $(SRC) : stdafx.cpp ;
+Depends $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ai_converter/ai_converter.exe : $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ai_converter/ ;
+MkDir $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ai_converter/ ;
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ai_converter/ai_converter.exe : ai_converter.exe ;
+
+ExportVcproj ai_converter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+

@@ -1,0 +1,268 @@
+SubDir TOP Code Mercury Library Audio ;
+
+Define USE_XAUDIO2 ;
+
+if $(USERNAME) = nbygrave || $(USERNAME) = jcutter || $(USERNAME) = coflanagan || $(USERNAME) = shall || $(USERNAME) = orenault
+{
+	Define AUDIO_BUILD ;
+	
+	if $(BUILD) != Speed && $(BUILD) != Master
+	{
+		# comment out this to turn optimizations on
+		#OPTIMIZE_OFF = 1 ;
+	}
+
+	if $(OPTIMIZE_OFF) = 1
+	{
+		Optim Off ;
+		#Define AUDIO_OPTIMIZE_OFF ;
+		echo OPTIMISATIONS ARE _OFF_ FOR AUDIO LIBRARY ;
+	}
+} 
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/Xt2/include
+$(MERCURY)/util/resource/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath $(TOP)/libs/vendor/openal/1.1/include \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC =
+./source/core/core.cpp
+./source/core/decoder.cpp
+./source/core/decoderadpcm4bit.cpp
+./source/core/decoderpcms16.cpp
+./source/core/dspcompressor.cpp
+./source/core/dspeffect.cpp
+./source/core/dspdelay.cpp
+./source/core/dspsend.cpp
+./source/core/dspiirhighpass1storder.cpp
+./source/core/dspiirlowpass1storder.cpp
+./source/core/dspiirlowpass2ndorder.cpp
+./source/core/dspiirlowpass4thorder.cpp
+./source/core/dspiirpeakeq.cpp
+./source/core/dspspectralreverb.cpp
+./source/core/dspflanger.cpp
+./source/core/dsppitchshift.cpp
+./source/core/dsprmslevel.cpp
+./source/core/dspsaturator.cpp
+./source/core/dspbitcrusher.cpp
+./source/core/dspringmodulator.cpp
+./source/core/filestream.cpp
+./source/core/filestreammanager.cpp
+./source/core/generator.cpp
+./source/core/return.cpp 
+./source/core/input.cpp
+./source/core/mastereffect.cpp
+./source/core/Mixer.cpp
+./source/core/output.cpp
+./source/core/quadeffect.cpp
+./source/core/renderer.cpp
+./source/core/wave.cpp
+./source/core/waveserver.cpp
+./source/core/profilertool.cpp
+./source/common/3dMaths.cpp
+./source/common/Queue.cpp
+./source/common/CircularBuffer.cpp
+./source/common/StaticBufferAllocator.cpp
+./source/common/Thread.cpp
+./source/common/Util.cpp
+./source/common/WaveBank.cpp
+./source/common/WaveBankReader.cpp
+./source/components/ActionIn.cpp
+./source/components/ActionOut.cpp
+./source/components/Array.cpp
+./source/components/Component.cpp
+./source/components/Cone.cpp
+./source/components/ControlInput.cpp
+./source/components/ControlOutput.cpp
+./source/components/DebugPrint.cpp
+./source/components/DopplerShift.cpp
+./source/components/Envelope.cpp
+./source/components/EventInput.cpp
+./source/components/EventOutput.cpp
+./source/components/CoordinateInput.cpp
+./source/components/CoordinateOutput.cpp
+./source/components/Exponent.cpp
+./source/components/Fraction.cpp
+./source/components/GateSwitch.cpp
+./source/components/Gradient.cpp
+./source/components/Invert.cpp
+./source/components/LowPass.cpp
+./source/components/Max.cpp
+./source/components/Metronome.cpp
+./source/components/Min.cpp
+./source/components/MonoAudioInput.cpp
+./source/components/MonoAudioOutput.cpp
+./source/components/MonoCompressor.cpp
+./source/components/MonoConvolution.cpp
+./source/components/MonoDelay.cpp
+./source/components/MonoSend.cpp
+./source/components/MonoReturn.cpp
+./source/components/StereoSend.cpp
+./source/components/StereoReturn.cpp
+./source/components/MonoHighPass.cpp
+./source/components/SurroundHighPass.cpp
+./source/components/MonoSpectralReverb.cpp
+./source/components/MonoLoopingSound.cpp
+./source/components/MonoLowPass.cpp
+./source/components/MonoOneShotSound.cpp
+./source/components/MonoOneShotSoundTable.cpp
+./source/components/MonoPeakEQ.cpp
+./source/components/MonoFlanger.cpp
+./source/components/SurroundFlanger.cpp
+./source/components/MonoResonantLowPass.cpp
+./source/components/Mono24dBResonantLowPass.cpp
+./source/components/Surround24dBResonantLowPass.cpp
+./source/components/MonoRMSLevel.cpp
+./source/components/MonoSaturator.cpp
+./source/components/MonoBitCrusher.cpp
+./source/components/SurroundBitCrusher.cpp
+./source/components/MonoRingModulator.cpp
+./source/components/SurroundRingModulator.cpp
+./source/components/MonoToMonoMixer.cpp
+./source/components/MonoToStereoMixer.cpp
+./source/components/MonoToSurroundLFEMixer.cpp
+./source/components/MonoToSurroundMixer.cpp
+./source/components/MonoToAmbisonicsMixer.cpp
+./source/components/ParameterIn.cpp
+./source/components/ParameterOut.cpp
+./source/components/PiecewiseLinearFunction.cpp
+./source/components/Product.cpp
+./source/components/QuadToSurroundMixer.cpp
+./source/components/Quantize.cpp
+./source/components/Random.cpp
+./source/components/Rolloff.cpp
+./source/components/SampleAndHold.cpp
+./source/components/Script.cpp
+./source/components/Selector.cpp
+./source/components/Sin.cpp
+./source/components/Source.cpp
+./source/components/Spring.cpp
+./source/components/StateMachine.cpp
+./source/components/Sequence.cpp
+./source/components/StereoAudioInput.cpp
+./source/components/StereoAudioOutput.cpp
+./source/components/StereoCompressor.cpp
+./source/components/StereoHighPass.cpp
+./source/components/StereoLoopingSound.cpp
+./source/components/StereoLowPass.cpp
+./source/components/StereoOneShotSound.cpp
+./source/components/StereoOneShotSoundTable.cpp
+./source/components/StereoPeakEQ.cpp
+./source/components/StereoRMSLevel.cpp
+./source/components/StereoPitchShift.cpp
+./source/components/StereoResonantLowPass.cpp
+./source/components/StereoSaturator.cpp
+./source/components/StereoToMonoMixer.cpp
+./source/components/StereoToQuadMixer.cpp
+./source/components/StereoToStereoMixer.cpp
+./source/components/StereoToSurroundMixer.cpp
+./source/components/Sum.cpp
+./source/components/SurroundAudioInput.cpp
+./source/components/SurroundAudioOutput.cpp
+./source/components/SurroundCompressor.cpp
+./source/components/SurroundDelay.cpp
+./source/components/SurroundLFEAudioInput.cpp
+./source/components/SurroundLFEAudioOutput.cpp
+./source/components/SurroundLFEToSurroundLFEMixer.cpp
+./source/components/SurroundLowPass.cpp
+./source/components/SurroundPeakEQ.cpp
+./source/components/SurroundResonantLowPass.cpp
+./source/components/SurroundRMSLevel.cpp
+./source/components/SurroundSaturator.cpp
+./source/components/SurroundToSurroundLFEMixer.cpp
+./source/components/SurroundToSurroundMixer.cpp
+./source/components/AmbisonicsToSurroundMixer.cpp
+./source/components/Timer.cpp
+./source/components/Variable.cpp
+./source/components/Vector.cpp
+./source/components/VectorIn.cpp
+./source/components/VectorOut.cpp
+./source/components/VectorNearestPointOnLine.cpp
+./source/components/ImpactFilter.cpp 
+./source/components/MessageDelay.cpp 
+./source/AppInterfaceLayer/XtAudio.cpp
+./source/AppInterfaceLayer/Entity.cpp
+./source/AppInterfaceLayer/EntityDefinition.cpp
+./source/AppInterfaceLayer/EntityManager.cpp
+./source/AppInterfaceLayer/InterfaceController.cpp
+./source/AppInterfaceLayer/Subsystem.cpp
+./source/AppInterfaceLayer/ObjectBankList.cpp
+./source/ComponentContainer.cpp
+./source/DebugMessage.cpp
+./source/Definition.cpp
+./source/DefinitionManager.cpp
+./source/Instance.cpp
+./source/InstanceUpdate.cpp
+./source/Object.cpp
+./source/ObjectManager.cpp
+./source/System.cpp
+./source/SystemCommon.cpp
+./source/SoundTouch/3dnow_win.cpp
+./source/SoundTouch/AAFilter.cpp
+./source/SoundTouch/FIFOSampleBuffer.cpp
+./source/SoundTouch/FIRFilter.cpp
+./source/SoundTouch/RateTransposer.cpp
+./source/SoundTouch/SoundTouch.cpp
+./source/SoundTouch/TDStretch.cpp
+./source/WaveBankManager.cpp
+./source/CpuCounters.cpp
+./source/BatchFrameAdd.cpp
+;
+
+SRC_2 = 
+;
+
+SRC = [ Batch $(SRC) : AudioPch.h ] $(SRC_2) ;
+
+
+PCSRC =
+./source/core/engine_pc.cpp
+;
+
+PS3SRC =
+# ./source/core/MP3Decode.cpp
+;
+
+#SrcOptim ./source/core/filestream.cpp : Off ;
+#SrcOptim ./source/core/MP3Decode.cpp : Off ;
+#SrcOptim ./source/core/renderer.cpp : Off ;
+#SrcOptim ./source/core/dspdelay.cpp : Off ;
+#SrcOptim ./source/core/decoderxma.cpp : Off ;
+
+if $(PLATFORM) = PS3
+{
+AdditionalObjects audio : audio_spu_ps3 ;
+}
+
+SPUSRCPATH = ./source ;
+
+SPUSRC =
+<spu>$(SPUSRCPATH)/BatchFrameAdd.cpp
+;
+
+#SrcOptim <spu>$(SPUSRCPATH)/BatchFrameAdd.cpp : Off ;
+
+if $(PLATFORM) = PS3
+{
+AddSPUModule audio : AudioBatchFrameAddSPU		: $(SPUSRC) ;
+}
+
+
+Library audio : $(SRC) $($(PLATFORM)SRC) : AudioPch.cpp : AudioPch.h ;
+
+if $(PLATFORM) = PS3
+{
+SubInclude TOP Code Mercury Library Audio SPU ;
+SubInclude TOP Code Mercury Library Common System ;
+}
+

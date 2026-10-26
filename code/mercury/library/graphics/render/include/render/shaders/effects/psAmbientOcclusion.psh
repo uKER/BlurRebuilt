@@ -1,0 +1,125 @@
+#include "..\\psConstants.h"
+#include "..\\psCommon.h"
+#include "..\\psHDR.h"
+
+extern float4x4		g_mInvProj			: register(CCP_RENDER_SETTINGS);
+extern float4		g_vProjScale		: register(CCP_RENDER_SETTINGS_4);
+extern float4		g_vDepthScale		: register(CCP_RENDER_SETTINGS_5);
+extern float4		g_vAmbientColour	: register(CCP_RENDER_SETTINGS_6);
+extern float4		g_vParams			: register(CCP_RENDER_SETTINGS_7);
+extern float4		g_vSamples[8]		: register(CCP_RENDER_SETTINGS_8);
+extern sampler2D	g_tDepth			: register(s0);
+extern sampler3D	g_tPlanes			: register(s1);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+float GetViewSpaceDepth(float fDepth)
+{
+	return g_vDepthScale.x / (g_vDepthScale.y - fDepth);
+}
+
+float3 GetViewPosition(float2 uv, float fDepth)
+{
+	float  fW = GetViewSpaceDepth(fDepth);
+	float2 vXY = uv * 2.0f - 1.0f;
+
+	float4 vProjectedPosition = float4(vXY, fDepth, 1.0f) * fW;
+	float4 vViewPosition = mul(vProjectedPosition, g_mInvProj);
+	
+	return vViewPosition.xyz;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float  fDepth = tex2D(g_tDepth, input.m_TexCoord).x;
+	float3 vViewPosition = GetViewPosition(input.m_TexCoord, fDepth);
+	
+	// get plane
+	float3 vPlane = tex3D(g_tPlanes, frac(vViewPosition * g_vParams.w)).xyz * 2.0f - 1.0f;
+	
+	// calculate eight sample positions
+	float4 fSampleDepths0, fSampleDepths1;
+	float4 fTextureDepths0, fTextureDepths1;
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[0].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths0.x = vSampleViewPosition.z;
+		fTextureDepths0.x = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[1].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths0.y = vSampleViewPosition.z;
+		fTextureDepths0.y = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[2].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths0.z = vSampleViewPosition.z;
+		fTextureDepths0.z = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[3].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths0.w = vSampleViewPosition.z;
+		fTextureDepths0.w = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[4].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths1.x = vSampleViewPosition.z;
+		fTextureDepths1.x = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[5].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths1.y = vSampleViewPosition.z;
+		fTextureDepths1.y = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[6].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths1.z = vSampleViewPosition.z;
+		fTextureDepths1.z = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+	{
+		float3 vSampleOffset = g_vParams.x * reflect(g_vSamples[7].xyz, vPlane);
+		float4 vSampleViewPosition = float4(vViewPosition + vSampleOffset, 1.0f);
+		float2 uv = (g_vProjScale.xy * vSampleViewPosition.xy / vSampleViewPosition.z) * 0.5f + 0.5f;
+		
+		fSampleDepths1.w = vSampleViewPosition.z;
+		fTextureDepths1.w = GetViewSpaceDepth(tex2D(g_tDepth, uv).r);
+	}
+
+	// calculate final occlusion
+	float4 fZDifferences0 = fSampleDepths0 - fTextureDepths0;
+	float4 fZDifferencesSq0 = fZDifferences0 * fZDifferences0;
+	float4 fZDifferences1 = fSampleDepths1 - fTextureDepths1;
+	float4 fZDifferencesSq1 = fZDifferences1 * fZDifferences1;
+	float4 fExposures0 = step(0.000f, fZDifferences0) / (1.0f + fZDifferencesSq0);
+	float4 fExposures1 = step(0.000f, fZDifferences1) / (1.0f + fZDifferencesSq1);
+	
+	float fExposure = dot(fExposures0 + fExposures1, float4(0.125f, 0.125f, 0.125f, 0.125f));
+	fExposure = pow(saturate(fExposure - g_vParams.y), g_vParams.z);
+	
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	output.colour = float4(fExposure * g_vAmbientColour.rgb, 0.0f);
+	return output;
+}

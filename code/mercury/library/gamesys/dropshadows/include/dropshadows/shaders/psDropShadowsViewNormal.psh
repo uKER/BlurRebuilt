@@ -1,0 +1,83 @@
+#include "../../../../../graphics/deferred/include/deferred/shaders/psCommon.h"
+#include "../../../../../graphics/deferred/include/deferred/shaders/psConstants.h"
+
+float4		g_vPosition[8]	: register(CCP_RENDER_SETTINGS);
+float4		g_vIntensity[8]	: register(CCP_RENDER_SETTINGS_8);
+float4		g_vViewUpVector	: register(CCP_RENDER_SETTINGS_20);
+float4		g_vDepth		: register(CCP_RENDER_SETTINGS_21);
+
+sampler2D	g_tDepth		: register(s0);
+sampler2D	g_tNormalDepth	: register(s1);
+
+#if defined(PS3)
+#pragma texformat g_tNormalDepth RGBA8
+#endif
+
+struct PS_INPUT
+{
+#if defined(BLUR_DX11)
+	// [Blur2PC] Preserve the position register emitted by vsDropShadowsViewNormal.
+	float4 m_Position : SV_Position;
+#endif
+	float2	m_TexCoord	: TEXCOORD0;
+	float3	m_Scale		: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	real3	vViewNormal;
+	real3	vViewPosition;
+	GetViewNormal(g_tNormalDepth, input.m_TexCoord, input.m_Scale, vViewNormal);
+	vViewPosition = GetViewPosition(g_tDepth, input.m_TexCoord.xy, g_vDepth.x, input.m_Scale);
+	
+	real	fShadow = 1.0h;
+	
+#if defined(ONE)	
+	int i = 0;
+#elif defined(TWO)
+	for (int i = 0; i < 2; ++i)
+#elif defined(THREE)
+	for (int i = 0; i < 3; ++i)
+#elif defined(FOUR)
+	for (int i = 0; i < 4; ++i)
+#elif defined(FIVE)
+	for (int i = 0; i < 5; ++i)
+#elif defined(SIX)
+	for (int i = 0; i < 6; ++i)
+#elif defined(SEVEN)
+	for (int i = 0; i < 7; ++i)
+#elif defined(EIGHT)
+	for (int i = 0; i < 8; ++i)
+#endif
+	{
+#if !defined(PS_2_0)
+		float3	vShadowCaster		= g_vPosition[i].xyz;
+		float	fShadowFalloff		= g_vPosition[i].w;
+		float	fShadowIntensity	= g_vIntensity[i].x;
+		
+		float3	vShadowVector		= vShadowCaster - vViewPosition;
+		float	fShadowDistance		= dot(vShadowVector, vShadowVector);
+		real	fShadowFactor		= saturate(fShadowDistance * fShadowFalloff);
+		real	fShadowDotNormal	= saturate(dot(normalize(vShadowVector), vViewNormal));
+				fShadowDotNormal	= pow(fShadowDotNormal, 1.0h / 16.0h);
+		real	fShadowScale		= lerp(1.0h, fShadowFactor, fShadowDotNormal * saturate(dot(vShadowVector.xyz, g_vViewUpVector.xyz) * fShadowFalloff * 4.0h));
+	
+		fShadow *= lerp(saturate(1.0h - fShadowIntensity), 1.0h, fShadowScale);
+#endif
+	}
+
+#if defined(HDR)
+	fShadow = sqrt(fShadow);
+#endif
+
+	output.m_Colour = float4(fShadow, fShadow, fShadow, 1.0f);
+
+	return output;
+}

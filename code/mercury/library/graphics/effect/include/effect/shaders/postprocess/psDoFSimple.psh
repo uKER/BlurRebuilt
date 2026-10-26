@@ -1,0 +1,34 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vSettings	: register(CCP_RENDER_SETTINGS);
+float4		g_vDepth	: register(CCP_RENDER_SETTINGS_1);
+
+sampler2D	g_tColour	: register(s0);
+sampler2D	g_tBlur		: register(s1);
+sampler2D	g_tDepth	: register(s2);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float4	vColour	= tex2D(g_tColour, input.m_TexCoord);
+	float4	vBlur	= tex2D(g_tBlur, input.m_TexCoord);
+
+	float	fDepth	= SampleDepthBuffer(g_tDepth, input.m_TexCoord, g_vDepth);
+	float	fFactor	= saturate(abs(fDepth - g_vSettings.x) * g_vSettings.y);
+
+	output.m_Colour	= lerp(vColour, vBlur, fFactor);
+
+	return output;
+}

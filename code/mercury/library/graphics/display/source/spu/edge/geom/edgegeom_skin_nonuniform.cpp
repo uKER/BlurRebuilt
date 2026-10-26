@@ -1,0 +1,697 @@
+/* SCE CONFIDENTIAL
+ * PLAYSTATION(R)Edge 0.3.0
+ * Copyright (C) 2007 Sony Computer Entertainment Inc.
+ * All Rights Reserved.
+ */
+
+#include <spu_printf.h>
+#include <spu_intrinsics.h>
+
+#include "edge/geom/edgegeom.h"
+
+/* from edgegeom_masks.cpp */
+extern const vec_uchar16 s_000A000C000E000G;
+extern const vec_uchar16 s_0b0d0f0h0j0l0n0p;
+extern const vec_uchar16 s_0Dd0;
+extern const vec_uchar16 s_AAAa;
+extern const vec_uchar16 s_AaBb;
+extern const vec_uchar16 s_ABcd;
+extern const vec_uchar16 s_ABC0;
+extern const vec_uchar16 s_BaA0;
+extern const vec_uchar16 s_BbAa;
+extern const vec_uchar16 s_CcCc;
+extern const vec_uchar16 s_Ccb0;
+extern const vec_uchar16 s_dBC0;
+extern const vec_uchar16 s_BCAD;
+
+extern "C" void edgeGeomSkinVertexesNonUniformScale(EdgeGeomSpuContext *ctx, vec_float4 *uniforms[4], int uniformCount, const vec_uchar16 *indexesAndWeights,
+	vec_float4 *matrices, int matrixCount)
+{
+	if(!matrixCount)
+		return;
+		
+	// Various select and shuffle masks used below
+	const vec_uint4 mask_XXX0 = (vec_uint4)spu_maskb(0xFFF0);
+	const vec_uint4 mask_XX00 = (vec_uint4)spu_maskb(0xFF00);
+	const vec_uchar16 s_000I000K000M000O = (vec_uchar16)spu_add((vec_int4)s_000A000C000E000G, 0x08);
+	const vec_uchar16 s_AAAA             = (vec_uchar16)spu_splats(0x00010203);
+	const vec_uchar16 s_BBBB             = (vec_uchar16)spu_splats(0x04050607);
+	const vec_uchar16 s_CCCC             = (vec_uchar16)spu_splats(0x08090A0B);
+	const vec_uchar16 s_cdAB             = spu_rlqwbyte(s_ABcd, 8);
+	const vec_uchar16 s_DDDD             = (vec_uchar16)spu_splats(0x0C0D0E0F);
+	const vec_uchar16 s_dddd             = spu_or(s_DDDD, 0x10);
+	const vec_uchar16 s_BBBb             = spu_sel(s_AaBb, s_BBBB, (vec_uchar16)mask_XXX0);
+	const vec_uchar16 s_CCCc             = spu_sel(s_CcCc, s_CCCC, (vec_uchar16)mask_XXX0);
+	const vec_uchar16 s_DDDd             = spu_sel(s_dddd, s_DDDD, (vec_uchar16)mask_XXX0);
+	const vec_uchar16 s_CABD             = spu_shuffle(s_BCAD, s_BCAD, s_BCAD);
+	const vec_float4  k1_0f              = (vec_float4)si_ilhu(0x3f80);
+	
+	const qword pMatRow0 = si_from_ptr(matrices + 0);
+	const qword pMatRow1 = si_from_ptr(matrices + 1);
+	const qword pMatRow2 = si_from_ptr(matrices + 2);
+
+	const vec_float4 weightScale = (vec_float4)spu_splats(1.0f / 255.0f);
+
+	// Variables used by actual skinning/renormalization code (which
+	// must persist across loop iterations)
+	vec_float4 out1={0}, out2={0}, out3={0}, out4={0};
+	vec_float4 out1_={0}, out2_={0}, out3_={0}, out4_={0};
+	vec_float4 transpose1={0}, transpose2={0}, transpose3={0}, transpose4={0};
+	qword sum = {0}, tmpRsqrt = {0};
+	vec_float4 rsqrt;
+	vec_float4 xxxx, yyyy, zzzz;
+	vec_float4 w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14, w15, w16;
+	vec_uint4 mat1, mat2, mat3, mat4, mat5, mat6, mat7, mat8, mat9, mat10, mat11, mat12, mat13, mat14, mat15, mat16;
+	
+	//// Preamble
+
+	// Set up input and output pointers for input attributes.  For the
+	// vector elements (pSrc1/2/3 and pDst1/2/3), the actual source
+	// and destination attributes depend on the number of attributes
+	// being processed.  If this switch table is unclear, jump down to
+	// the vector skinning code below and try following some data
+	// through the code with one, two or three attributes, and you
+	// should be able to convince yourself that it works.
+	qword pSrc = si_from_ptr(uniforms[0]);
+	qword pSrc1 = si_from_ptr(uniforms[1]);
+	qword pSrc_ = si_from_ptr(uniforms[1]);
+	qword pSrc__ = si_from_ptr(uniforms[1]);
+	qword pSrc2 = si_from_ptr(uniforms[2]);
+	qword pSrc3 = si_from_ptr(uniforms[3]);
+
+	// Load the first batch of vector inputs
+	vec_float4 in1 = (vec_float4)si_lqd(pSrc1, 0x00);
+	vec_float4 in2 = (vec_float4)si_lqd(pSrc1, 0x10);
+	vec_float4 in3 = (vec_float4)si_lqd(pSrc1, 0x20);
+	vec_float4 in4 = (vec_float4)si_lqd(pSrc1, 0x30);
+	vec_float4 in1_ = spu_shuffle(in1, in1, s_BCAD);
+	vec_float4 in2_ = spu_shuffle(in2, in2, s_BCAD);
+	vec_float4 in3_ = spu_shuffle(in3, in3, s_BCAD);
+	vec_float4 in4_ = spu_shuffle(in4, in4, s_BCAD);
+	vec_float4 in1__ = spu_shuffle(in1, in1, s_CABD);
+	vec_float4 in2__ = spu_shuffle(in2, in2, s_CABD);
+	vec_float4 in3__ = spu_shuffle(in3, in3, s_CABD);
+	vec_float4 in4__ = spu_shuffle(in4, in4, s_CABD);
+	
+	void *tableJump;
+	if(uniformCount == 2)
+		tableJump = &&TwoTables;
+	else if(uniformCount == 3)
+		tableJump = &&ThreeTables;
+	else 
+		tableJump = &&FourTables;
+
+	vec_char16 ind1, ind2;
+	ind1 = (vec_char16)*indexesAndWeights;
+	ind2 = (vec_char16)*(indexesAndWeights + 1);
+	indexesAndWeights = indexesAndWeights + 2;
+	
+	// Unpack the weights into four quadwords, and scale them back up to floats
+	vec_float4 weights1 = spu_convtf( (vec_uint4)spu_shuffle(ind1, ind1, s_000A000C000E000G), 0);
+	vec_float4 weights2 = spu_convtf( (vec_uint4)spu_shuffle(ind1, ind1, s_000I000K000M000O), 0);
+	vec_float4 weights3 = spu_convtf( (vec_uint4)spu_shuffle(ind2, ind2, s_000A000C000E000G), 0);
+	vec_float4 weights4 = spu_convtf( (vec_uint4)spu_shuffle(ind2, ind2, s_000I000K000M000O), 0);
+	weights1 = spu_mul(weights1, weightScale);
+	weights2 = spu_mul(weights2, weightScale);
+	weights3 = spu_mul(weights3, weightScale);
+	weights4 = spu_mul(weights4, weightScale);
+
+	vec_ushort8 indexes1 = (vec_ushort8)spu_shuffle(ind1, ind1, s_0b0d0f0h0j0l0n0p);
+	vec_ushort8 indexes2 = (vec_ushort8)spu_shuffle(ind2, ind2, s_0b0d0f0h0j0l0n0p);
+
+	vec_float4 pos1 = (vec_float4)si_lqd(pSrc, 0x00);
+	vec_float4 pos2 = (vec_float4)si_lqd(pSrc, 0x10);
+	vec_float4 pos3 = (vec_float4)si_lqd(pSrc, 0x20);
+	vec_float4 pos4 = (vec_float4)si_lqd(pSrc, 0x30);
+	vec_float4 pos1_ = spu_shuffle(pos1, pos1, s_BCAD);
+	vec_float4 pos2_ = spu_shuffle(pos2, pos2, s_BCAD);
+	vec_float4 pos3_ = spu_shuffle(pos3, pos3, s_BCAD);
+	vec_float4 pos4_ = spu_shuffle(pos4, pos4, s_BCAD);
+	vec_float4 pos1__ = spu_shuffle(pos1, pos1, s_CABD);
+	vec_float4 pos2__ = spu_shuffle(pos2, pos2, s_CABD);
+	vec_float4 pos3__ = spu_shuffle(pos3, pos3, s_CABD);
+	vec_float4 pos4__ = spu_shuffle(pos4, pos4, s_CABD);
+
+	uint32_t iterCount = ctx->spuConfigInfo.numVertexes / 4;
+	while(true)
+	{
+		//__asm__ volatile ("EdgeSkin_LoopTop:");
+		//
+		// Load mat1-mat16, weighting them by w1-w16, and combining
+		// each block of four into the final matrices M1-M4.  The
+		// final matrices need to have their fourth row transposed
+		// into place from their fourth column, with a 1.0 in the
+		// upper right corner (to preserve the input vectors' W component).
+		//
+
+		// Load the next pair of index/weight quads
+
+		// Broadcast each weight into all four elements of its own quadword
+		w1  = spu_shuffle(weights1, weights1, s_AAAA);
+		w2  = spu_shuffle(weights1, weights1, s_BBBB);
+		w3  = spu_shuffle(weights1, weights1, s_CCCC);
+		w4  = spu_shuffle(weights1, weights1, s_DDDD);
+		w5  = spu_shuffle(weights2, weights2, s_AAAA);
+		w6  = spu_shuffle(weights2, weights2, s_BBBB);
+		w7  = spu_shuffle(weights2, weights2, s_CCCC);
+		w8  = spu_shuffle(weights2, weights2, s_DDDD);
+		w9  = spu_shuffle(weights3, weights3, s_AAAA);
+		w10 = spu_shuffle(weights3, weights3, s_BBBB);
+		w11 = spu_shuffle(weights3, weights3, s_CCCC);
+		w12 = spu_shuffle(weights3, weights3, s_DDDD);
+		w13 = spu_shuffle(weights4, weights4, s_AAAA);
+		w14 = spu_shuffle(weights4, weights4, s_BBBB);
+		w15 = spu_shuffle(weights4, weights4, s_CCCC);
+		w16 = spu_shuffle(weights4, weights4, s_DDDD);
+
+		// Unpack the indexes, scaling each index up by 48 (to convert
+		// from a matrix index to a byte offset)
+		mat2  = (vec_uint4)spu_add( spu_sl(indexes1, 5), spu_sl(indexes1, 4) );	
+		mat10 = (vec_uint4)spu_add( spu_sl(indexes2, 5), spu_sl(indexes2, 4) );
+		// Move each index into the preferred word of a quadword.  We
+		// do not need to clear the high halfwords, since their low 4
+		// bits are guarenteed to be zero (and that's enough for an
+		// 18-bit address).
+		mat4  = spu_slqwbyte(mat2, 4);
+		mat6  = spu_slqwbyte(mat2, 8);
+		mat8  = spu_slqwbyte(mat2, 12);
+		mat12 = spu_slqwbyte(mat10, 4);
+		mat14 = spu_slqwbyte(mat10, 8);
+		mat16 = spu_slqwbyte(mat10, 12);
+		mat1  = spu_rl(mat2, 16);
+		mat3  = spu_rl(mat4, 16);
+		mat5  = spu_rl(mat6, 16);
+		mat7  = spu_rl(mat8, 16);
+		mat9  = spu_rl(mat10, 16);
+		mat11 = spu_rl(mat12, 16);
+		mat13 = spu_rl(mat14, 16);
+		mat15 = spu_rl(mat16, 16);
+		
+		ind1 = (vec_char16)*indexesAndWeights;
+		ind2 = (vec_char16)*(indexesAndWeights + 1);
+		indexesAndWeights = indexesAndWeights + 2;
+
+		// Unpack the weights into four quadwords, and scale them back up to floats
+		weights1 = spu_convtf( (vec_uint4)spu_shuffle(ind1, ind1, s_000A000C000E000G), 0);
+		weights2 = spu_convtf( (vec_uint4)spu_shuffle(ind1, ind1, s_000I000K000M000O), 0);
+		weights3 = spu_convtf( (vec_uint4)spu_shuffle(ind2, ind2, s_000A000C000E000G), 0);
+		weights4 = spu_convtf( (vec_uint4)spu_shuffle(ind2, ind2, s_000I000K000M000O), 0);
+		weights1 = spu_mul(weights1, weightScale);
+		weights2 = spu_mul(weights2, weightScale);
+		weights3 = spu_mul(weights3, weightScale);
+		weights4 = spu_mul(weights4, weightScale);
+
+		indexes1 = (vec_ushort8)spu_shuffle(ind1, ind1, s_0b0d0f0h0j0l0n0p);
+		indexes2 = (vec_ushort8)spu_shuffle(ind2, ind2, s_0b0d0f0h0j0l0n0p);
+
+		// Create final matrix M1
+		const vec_float4 mat1_1 = spu_mul( w1, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat1));
+		const vec_float4 mat1_2 = spu_mul( w1, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat1));
+		const vec_float4 mat1_3 = spu_mul( w1, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat1));
+		const vec_float4 mat2_1 = spu_madd(w2, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat2), mat1_1);
+		const vec_float4 mat2_2 = spu_madd(w2, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat2), mat1_2);
+		const vec_float4 mat2_3 = spu_madd(w2, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat2), mat1_3);
+		const vec_float4 mat3_1 = spu_madd(w3, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat3), mat2_1);
+		const vec_float4 mat3_2 = spu_madd(w3, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat3), mat2_2);
+		const vec_float4 mat3_3 = spu_madd(w3, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat3), mat2_3);
+		vec_float4 M1_1 = spu_madd(w4, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat4), mat3_1);
+		vec_float4 M1_2 = spu_madd(w4, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat4), mat3_2);
+		vec_float4 M1_3 = spu_madd(w4, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat4), mat3_3);
+		vec_float4 M1_4 = spu_shuffle(M1_2, M1_3, s_0Dd0);
+		M1_4 = spu_shuffle(M1_4, M1_1, s_dBC0);
+		M1_1 = spu_sel(k1_0f, M1_1, mask_XXX0);
+		M1_2 = spu_sel((vec_float4)mask_XXX0, M1_2, mask_XXX0);
+		M1_3 = spu_sel((vec_float4)mask_XXX0, M1_3, mask_XXX0);
+		// Calculate 4x3 cofactor matrix CM1
+		const vec_float4 m11m22m00_1 = spu_shuffle(M1_1, M1_1, s_BCAD);
+		const vec_float4 m22m00m11_1 = spu_shuffle(M1_1, M1_1, s_CABD);
+		const vec_float4 m12m20m01_1 = spu_shuffle(M1_2, M1_2, s_BCAD);
+		const vec_float4 m20m01m12_1 = spu_shuffle(M1_2, M1_2, s_CABD);
+		const vec_float4 m10m21m02_1 = spu_shuffle(M1_3, M1_3, s_BCAD);
+		const vec_float4 m21m02m10_1 = spu_shuffle(M1_3, M1_3, s_CABD);
+		vec_float4 CM1_1 = spu_msub(m11m22m00_1, m22m00m11_1, spu_mul(m21m02m10_1, m12m20m01_1));
+		vec_float4 CM1_2 = spu_msub(m20m01m12_1, m12m20m01_1, spu_mul(m10m21m02_1, m22m00m11_1));
+		vec_float4 CM1_3 = spu_msub(m10m21m02_1, m21m02m10_1, spu_mul(m20m01m12_1, m11m22m00_1));
+		
+		// Create final matrix M2
+		const vec_float4 mat5_1 = spu_mul( w5, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat5));
+		const vec_float4 mat5_2 = spu_mul( w5, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat5));
+		const vec_float4 mat5_3 = spu_mul( w5, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat5));
+		const vec_float4 mat6_1 = spu_madd(w6, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat6), mat5_1);
+		const vec_float4 mat6_2 = spu_madd(w6, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat6), mat5_2);
+		const vec_float4 mat6_3 = spu_madd(w6, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat6), mat5_3);
+		const vec_float4 mat7_1 = spu_madd(w7, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat7), mat6_1);
+		const vec_float4 mat7_2 = spu_madd(w7, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat7), mat6_2);
+		const vec_float4 mat7_3 = spu_madd(w7, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat7), mat6_3);
+		vec_float4 M2_1 = spu_madd(w8, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat8), mat7_1);
+		vec_float4 M2_2 = spu_madd(w8, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat8), mat7_2);
+		vec_float4 M2_3 = spu_madd(w8, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat8), mat7_3);
+		vec_float4 M2_4 = spu_shuffle(M2_2, M2_3, s_0Dd0);
+		M2_4 = spu_shuffle(M2_4, M2_1, s_dBC0);
+		M2_1 = spu_sel(k1_0f, M2_1, mask_XXX0);
+		M2_2 = spu_sel((vec_float4)mask_XXX0, M2_2, mask_XXX0);
+		M2_3 = spu_sel((vec_float4)mask_XXX0, M2_3, mask_XXX0);
+		// Calculate 4x3 cofactor matrix CM2
+		const vec_float4 m11m22m00_2 = spu_shuffle(M2_1, M2_1, s_BCAD);
+		const vec_float4 m22m00m11_2 = spu_shuffle(M2_1, M2_1, s_CABD);
+		const vec_float4 m12m20m01_2 = spu_shuffle(M2_2, M2_2, s_BCAD);
+		const vec_float4 m20m01m12_2 = spu_shuffle(M2_2, M2_2, s_CABD);
+		const vec_float4 m10m21m02_2 = spu_shuffle(M2_3, M2_3, s_BCAD);
+		const vec_float4 m21m02m10_2 = spu_shuffle(M2_3, M2_3, s_CABD);
+		vec_float4 CM2_1 = spu_msub(m11m22m00_2, m22m00m11_2, spu_mul(m21m02m10_2, m12m20m01_2));
+		vec_float4 CM2_2 = spu_msub(m20m01m12_2, m12m20m01_2, spu_mul(m10m21m02_2, m22m00m11_2));
+		vec_float4 CM2_3 = spu_msub(m10m21m02_2, m21m02m10_2, spu_mul(m20m01m12_2, m11m22m00_2));
+		
+		// Create final matrix M3
+		const vec_float4 mat9_1  = spu_mul( w9,  (vec_float4)si_lqx(pMatRow0, (vec_char16)mat9 ));
+		const vec_float4 mat9_2  = spu_mul( w9,  (vec_float4)si_lqx(pMatRow1, (vec_char16)mat9 ));
+		const vec_float4 mat9_3  = spu_mul( w9,  (vec_float4)si_lqx(pMatRow2, (vec_char16)mat9 ));
+		const vec_float4 mat10_1 = spu_madd(w10, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat10), mat9_1);
+		const vec_float4 mat10_2 = spu_madd(w10, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat10), mat9_2);
+		const vec_float4 mat10_3 = spu_madd(w10, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat10), mat9_3);
+		const vec_float4 mat11_1 = spu_madd(w11, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat11), mat10_1);
+		const vec_float4 mat11_2 = spu_madd(w11, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat11), mat10_2);
+		const vec_float4 mat11_3 = spu_madd(w11, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat11), mat10_3);
+		vec_float4 M3_1 = spu_madd(w12, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat12), mat11_1);
+		vec_float4 M3_2 = spu_madd(w12, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat12), mat11_2);
+		vec_float4 M3_3 = spu_madd(w12, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat12), mat11_3);
+		vec_float4 M3_4 = spu_shuffle(M3_2, M3_3, s_0Dd0);
+		M3_4 = spu_shuffle(M3_4, M3_1, s_dBC0);
+		M3_1 = spu_sel(k1_0f, M3_1, mask_XXX0);
+		M3_2 = spu_sel((vec_float4)mask_XXX0, M3_2, mask_XXX0);
+		M3_3 = spu_sel((vec_float4)mask_XXX0, M3_3, mask_XXX0);
+		// Calculate 4x3 cofactor matrix CM3
+		const vec_float4 m11m22m00_3 = spu_shuffle(M3_1, M3_1, s_BCAD);
+		const vec_float4 m22m00m11_3 = spu_shuffle(M3_1, M3_1, s_CABD);
+		const vec_float4 m12m20m01_3 = spu_shuffle(M3_2, M3_2, s_BCAD);
+		const vec_float4 m20m01m12_3 = spu_shuffle(M3_2, M3_2, s_CABD);
+		const vec_float4 m10m21m02_3 = spu_shuffle(M3_3, M3_3, s_BCAD);
+		const vec_float4 m21m02m10_3 = spu_shuffle(M3_3, M3_3, s_CABD);
+		vec_float4 CM3_1 = spu_msub(m11m22m00_3, m22m00m11_3, spu_mul(m21m02m10_3, m12m20m01_3));
+		vec_float4 CM3_2 = spu_msub(m20m01m12_3, m12m20m01_3, spu_mul(m10m21m02_3, m22m00m11_3));
+		vec_float4 CM3_3 = spu_msub(m10m21m02_3, m21m02m10_3, spu_mul(m20m01m12_3, m11m22m00_3));
+		
+		// Create final matrix M4
+		const vec_float4 mat13_1 = spu_mul( w13, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat13));
+		const vec_float4 mat13_2 = spu_mul( w13, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat13));
+		const vec_float4 mat13_3 = spu_mul( w13, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat13));
+		const vec_float4 mat14_1 = spu_madd(w14, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat14), mat13_1);
+		const vec_float4 mat14_2 = spu_madd(w14, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat14), mat13_2);
+		const vec_float4 mat14_3 = spu_madd(w14, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat14), mat13_3);
+		const vec_float4 mat15_1 = spu_madd(w15, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat15), mat14_1);
+		const vec_float4 mat15_2 = spu_madd(w15, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat15), mat14_2);
+		const vec_float4 mat15_3 = spu_madd(w15, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat15), mat14_3);
+		vec_float4 M4_1 = spu_madd(w16, (vec_float4)si_lqx(pMatRow0, (vec_char16)mat16), mat15_1);
+		vec_float4 M4_2 = spu_madd(w16, (vec_float4)si_lqx(pMatRow1, (vec_char16)mat16), mat15_2);
+		vec_float4 M4_3 = spu_madd(w16, (vec_float4)si_lqx(pMatRow2, (vec_char16)mat16), mat15_3);
+		vec_float4 M4_4 = spu_shuffle(M4_2, M4_3, s_0Dd0);
+		M4_4 = spu_shuffle(M4_4, M4_1, s_dBC0);
+		M4_1 = spu_sel(k1_0f, M4_1, mask_XXX0);
+		M4_2 = spu_shuffle(M4_2, M4_2, s_ABC0); 
+		M4_3 = spu_sel((vec_float4)mask_XXX0, M4_3, mask_XXX0); 
+		// Calculate 4x3 cofactor matrix CM4
+		const vec_float4 m11m22m00_4 = spu_shuffle(M4_1, M4_1, s_BCAD);
+		const vec_float4 m22m00m11_4 = spu_shuffle(M4_1, M4_1, s_CABD);
+		const vec_float4 m12m20m01_4 = spu_shuffle(M4_2, M4_2, s_BCAD);
+		const vec_float4 m20m01m12_4 = spu_shuffle(M4_2, M4_2, s_CABD);
+		const vec_float4 m10m21m02_4 = spu_shuffle(M4_3, M4_3, s_BCAD);
+		const vec_float4 m21m02m10_4 = spu_shuffle(M4_3, M4_3, s_CABD);
+		vec_float4 CM4_1 = spu_msub(m11m22m00_4, m22m00m11_4, spu_mul(m21m02m10_4, m12m20m01_4));
+		vec_float4 CM4_2 = spu_msub(m20m01m12_4, m12m20m01_4, spu_mul(m10m21m02_4, m22m00m11_4));
+		vec_float4 CM4_3 = spu_msub(m10m21m02_4, m21m02m10_4, spu_mul(m20m01m12_4, m11m22m00_4));
+
+		si_stqd((qword)spu_madd(pos1__, M1_3, spu_madd(pos1_, M1_2, spu_madd(pos1, M1_1, M1_4))), pSrc, 0x00);
+		si_stqd((qword)spu_madd(pos2__, M2_3, spu_madd(pos2_, M2_2, spu_madd(pos2, M2_1, M2_4))), pSrc, 0x10);
+		si_stqd((qword)spu_madd(pos3__, M3_3, spu_madd(pos3_, M3_2, spu_madd(pos3, M3_1, M3_4))), pSrc, 0x20);
+		si_stqd((qword)spu_madd(pos4__, M4_3, spu_madd(pos4_, M4_2, spu_madd(pos4, M4_1, M4_4))), pSrc, 0x30);
+		pSrc = (qword)spu_add((vec_int4)pSrc, 0x40);
+		
+		pos1 = (vec_float4)si_lqd(pSrc, 0x00);
+		pos2 = (vec_float4)si_lqd(pSrc, 0x10);
+		pos3 = (vec_float4)si_lqd(pSrc, 0x20);
+		pos4 = (vec_float4)si_lqd(pSrc, 0x30);
+		pos1_ = spu_shuffle(pos1, pos1, s_BCAD);
+		pos2_ = spu_shuffle(pos2, pos2, s_BCAD);
+		pos3_ = spu_shuffle(pos3, pos3, s_BCAD);
+		pos4_ = spu_shuffle(pos4, pos4, s_BCAD);
+		pos1__ = spu_shuffle(pos1, pos1, s_CABD);
+		pos2__ = spu_shuffle(pos2, pos2, s_CABD);
+		pos3__ = spu_shuffle(pos3, pos3, s_CABD);
+		pos4__ = spu_shuffle(pos4, pos4, s_CABD);
+
+		if(__builtin_expect(true, true))
+			goto *tableJump;
+
+		TwoTables:
+			//asm volatile ("ESV2:");
+
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			out1_ = out1;
+			out2_ = out2;
+			out3_ = out3;
+			out4_ = out4;
+			pSrc__ = pSrc_;
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 1
+			out1 = spu_madd(in1__, CM1_3, spu_madd(in1_, CM1_2, spu_mul(in1, CM1_1)));
+			out2 = spu_madd(in2__, CM2_3, spu_madd(in2_, CM2_2, spu_mul(in2, CM2_1)));
+			out3 = spu_madd(in3__, CM3_3, spu_madd(in3_, CM3_2, spu_mul(in3, CM3_1)));
+			out4 = spu_madd(in4__, CM4_3, spu_madd(in4_, CM4_2, spu_mul(in4, CM4_1)));
+			pSrc_ = pSrc1;
+			pSrc1 = (qword)spu_add((vec_int4)pSrc1, 0x40);
+			in1 = (vec_float4)si_lqd(pSrc1, 0x00);
+			in2 = (vec_float4)si_lqd(pSrc1, 0x10);
+			in3 = (vec_float4)si_lqd(pSrc1, 0x20);
+			in4 = (vec_float4)si_lqd(pSrc1, 0x30);
+			in1_ = spu_shuffle(in1, in1, s_BCAD);
+			in2_ = spu_shuffle(in2, in2, s_BCAD);
+			in3_ = spu_shuffle(in3, in3, s_BCAD);
+			in4_ = spu_shuffle(in4, in4, s_BCAD);
+			in1__ = spu_shuffle(in1, in1, s_CABD);
+			in2__ = spu_shuffle(in2, in2, s_CABD);
+			in3__ = spu_shuffle(in3, in3, s_CABD);
+			in4__ = spu_shuffle(in4, in4, s_CABD);
+			transpose1 = spu_shuffle(out1, out2, s_AaBb);
+			transpose2 = spu_shuffle(out3, out4, s_BbAa);
+			transpose3 = spu_shuffle(out1, out2, s_CcCc);
+			transpose4 = spu_shuffle(out3, out4, s_CcCc);
+
+			--iterCount;
+			if(__builtin_expect(iterCount != 0, true))
+				continue;
+
+			// Postamble
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc_, 0x00);
+			si_stqd((qword)spu_mul(out2, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc_, 0x10);
+			si_stqd((qword)spu_mul(out3, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc_, 0x20);
+			si_stqd((qword)spu_mul(out4, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc_, 0x30);
+
+			if(__builtin_expect(true, false))
+				return;
+		
+		ThreeTables:
+
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			out1_ = out1;
+			out2_ = out2;
+			out3_ = out3;
+			out4_ = out4;
+			pSrc__ = pSrc_;
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 1
+			out1 = spu_madd(in1__, CM1_3, spu_madd(in1_, CM1_2, spu_mul(in1, CM1_1)));
+			out2 = spu_madd(in2__, CM2_3, spu_madd(in2_, CM2_2, spu_mul(in2, CM2_1)));
+			out3 = spu_madd(in3__, CM3_3, spu_madd(in3_, CM3_2, spu_mul(in3, CM3_1)));
+			out4 = spu_madd(in4__, CM4_3, spu_madd(in4_, CM4_2, spu_mul(in4, CM4_1)));
+			pSrc_ = pSrc1;
+			pSrc1 = (qword)spu_add((vec_int4)pSrc1, 0x40);
+			in1 = (vec_float4)si_lqd(pSrc2, 0x00);
+			in2 = (vec_float4)si_lqd(pSrc2, 0x10);
+			in3 = (vec_float4)si_lqd(pSrc2, 0x20);
+			in4 = (vec_float4)si_lqd(pSrc2, 0x30);
+			in1_ = spu_shuffle(in1, in1, s_BCAD);
+			in2_ = spu_shuffle(in2, in2, s_BCAD);
+			in3_ = spu_shuffle(in3, in3, s_BCAD);
+			in4_ = spu_shuffle(in4, in4, s_BCAD);
+			in1__ = spu_shuffle(in1, in1, s_CABD);
+			in2__ = spu_shuffle(in2, in2, s_CABD);
+			in3__ = spu_shuffle(in3, in3, s_CABD);
+			in4__ = spu_shuffle(in4, in4, s_CABD);
+			transpose1 = spu_shuffle(out1, out2, s_AaBb);
+			transpose2 = spu_shuffle(out3, out4, s_BbAa);
+			transpose3 = spu_shuffle(out1, out2, s_CcCc);
+			transpose4 = spu_shuffle(out3, out4, s_CcCc);
+
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			out1_ = out1;
+			out2_ = out2;
+			out3_ = out3;
+			out4_ = out4;
+			pSrc__ = pSrc_;
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 1
+			out1 = spu_madd(in1__, CM1_3, spu_madd(in1_, CM1_2, spu_mul(in1, CM1_1)));
+			out2 = spu_madd(in2__, CM2_3, spu_madd(in2_, CM2_2, spu_mul(in2, CM2_1)));
+			out3 = spu_madd(in3__, CM3_3, spu_madd(in3_, CM3_2, spu_mul(in3, CM3_1)));
+			out4 = spu_madd(in4__, CM4_3, spu_madd(in4_, CM4_2, spu_mul(in4, CM4_1)));
+			pSrc_ = pSrc2;
+			pSrc2 = (qword)spu_add((vec_int4)pSrc2, 0x40);
+			in1 = (vec_float4)si_lqd(pSrc1, 0x00);
+			in2 = (vec_float4)si_lqd(pSrc1, 0x10);
+			in3 = (vec_float4)si_lqd(pSrc1, 0x20);
+			in4 = (vec_float4)si_lqd(pSrc1, 0x30);
+			in1_ = spu_shuffle(in1, in1, s_BCAD);
+			in2_ = spu_shuffle(in2, in2, s_BCAD);
+			in3_ = spu_shuffle(in3, in3, s_BCAD);
+			in4_ = spu_shuffle(in4, in4, s_BCAD);
+			in1__ = spu_shuffle(in1, in1, s_CABD);
+			in2__ = spu_shuffle(in2, in2, s_CABD);
+			in3__ = spu_shuffle(in3, in3, s_CABD);
+			in4__ = spu_shuffle(in4, in4, s_CABD);
+			transpose1 = spu_shuffle(out1, out2, s_AaBb);
+			transpose2 = spu_shuffle(out3, out4, s_BbAa);
+			transpose3 = spu_shuffle(out1, out2, s_CcCc);
+			transpose4 = spu_shuffle(out3, out4, s_CcCc);
+
+			--iterCount;
+			if(__builtin_expect(iterCount != 0, true))
+				continue;
+
+			// Postamble
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc_, 0x00);
+			si_stqd((qword)spu_mul(out2, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc_, 0x10);
+			si_stqd((qword)spu_mul(out3, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc_, 0x20);
+			si_stqd((qword)spu_mul(out4, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc_, 0x30);
+
+			if(__builtin_expect(true, false))
+				return;
+
+		FourTables:
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			out1_ = out1;
+			out2_ = out2;
+			out3_ = out3;
+			out4_ = out4;
+			pSrc__ = pSrc_;
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 1
+			out1 = spu_madd(in1__, CM1_3, spu_madd(in1_, CM1_2, spu_mul(in1, CM1_1)));
+			out2 = spu_madd(in2__, CM2_3, spu_madd(in2_, CM2_2, spu_mul(in2, CM2_1)));
+			out3 = spu_madd(in3__, CM3_3, spu_madd(in3_, CM3_2, spu_mul(in3, CM3_1)));
+			out4 = spu_madd(in4__, CM4_3, spu_madd(in4_, CM4_2, spu_mul(in4, CM4_1)));
+			pSrc_ = pSrc1;
+			pSrc1 = (qword)spu_add((vec_int4)pSrc1, 0x40);
+			in1 = (vec_float4)si_lqd(pSrc2, 0x00);
+			in2 = (vec_float4)si_lqd(pSrc2, 0x10);
+			in3 = (vec_float4)si_lqd(pSrc2, 0x20);
+			in4 = (vec_float4)si_lqd(pSrc2, 0x30);
+			in1_ = spu_shuffle(in1, in1, s_BCAD);
+			in2_ = spu_shuffle(in2, in2, s_BCAD);
+			in3_ = spu_shuffle(in3, in3, s_BCAD);
+			in4_ = spu_shuffle(in4, in4, s_BCAD);
+			in1__ = spu_shuffle(in1, in1, s_CABD);
+			in2__ = spu_shuffle(in2, in2, s_CABD);
+			in3__ = spu_shuffle(in3, in3, s_CABD);
+			in4__ = spu_shuffle(in4, in4, s_CABD);
+			transpose1 = spu_shuffle(out1, out2, s_AaBb);
+			transpose2 = spu_shuffle(out3, out4, s_BbAa);
+			transpose3 = spu_shuffle(out1, out2, s_CcCc);
+			transpose4 = spu_shuffle(out3, out4, s_CcCc);
+
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			out1_ = out1;
+			out2_ = out2;
+			out3_ = out3;
+			out4_ = out4;
+			pSrc__ = pSrc_;
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 1
+			out1 = spu_madd(in1__, CM1_3, spu_madd(in1_, CM1_2, spu_mul(in1, CM1_1)));
+			out2 = spu_madd(in2__, CM2_3, spu_madd(in2_, CM2_2, spu_mul(in2, CM2_1)));
+			out3 = spu_madd(in3__, CM3_3, spu_madd(in3_, CM3_2, spu_mul(in3, CM3_1)));
+			out4 = spu_madd(in4__, CM4_3, spu_madd(in4_, CM4_2, spu_mul(in4, CM4_1)));
+			pSrc_ = pSrc2;
+			pSrc2 = (qword)spu_add((vec_int4)pSrc2, 0x40);
+			in1 = (vec_float4)si_lqd(pSrc3, 0x00);
+			in2 = (vec_float4)si_lqd(pSrc3, 0x10);
+			in3 = (vec_float4)si_lqd(pSrc3, 0x20);
+			in4 = (vec_float4)si_lqd(pSrc3, 0x30);
+			in1_ = spu_shuffle(in1, in1, s_BCAD);
+			in2_ = spu_shuffle(in2, in2, s_BCAD);
+			in3_ = spu_shuffle(in3, in3, s_BCAD);
+			in4_ = spu_shuffle(in4, in4, s_BCAD);
+			in1__ = spu_shuffle(in1, in1, s_CABD);
+			in2__ = spu_shuffle(in2, in2, s_CABD);
+			in3__ = spu_shuffle(in3, in3, s_CABD);
+			in4__ = spu_shuffle(in4, in4, s_CABD);
+			transpose1 = spu_shuffle(out1, out2, s_AaBb);
+			transpose2 = spu_shuffle(out3, out4, s_BbAa);
+			transpose3 = spu_shuffle(out1, out2, s_CcCc);
+			transpose4 = spu_shuffle(out3, out4, s_CcCc);
+
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			out1_ = out1;
+			out2_ = out2;
+			out3_ = out3;
+			out4_ = out4;
+			pSrc__ = pSrc_;
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 1
+			out1 = spu_madd(in1__, CM1_3, spu_madd(in1_, CM1_2, spu_mul(in1, CM1_1)));
+			out2 = spu_madd(in2__, CM2_3, spu_madd(in2_, CM2_2, spu_mul(in2, CM2_1)));
+			out3 = spu_madd(in3__, CM3_3, spu_madd(in3_, CM3_2, spu_mul(in3, CM3_1)));
+			out4 = spu_madd(in4__, CM4_3, spu_madd(in4_, CM4_2, spu_mul(in4, CM4_1)));
+			pSrc_ = pSrc3;
+			pSrc3 = (qword)spu_add((vec_int4)pSrc3, 0x40);
+			in1 = (vec_float4)si_lqd(pSrc1, 0x00);
+			in2 = (vec_float4)si_lqd(pSrc1, 0x10);
+			in3 = (vec_float4)si_lqd(pSrc1, 0x20);
+			in4 = (vec_float4)si_lqd(pSrc1, 0x30);
+			in1_ = spu_shuffle(in1, in1, s_BCAD);
+			in2_ = spu_shuffle(in2, in2, s_BCAD);
+			in3_ = spu_shuffle(in3, in3, s_BCAD);
+			in4_ = spu_shuffle(in4, in4, s_BCAD);
+			in1__ = spu_shuffle(in1, in1, s_CABD);
+			in2__ = spu_shuffle(in2, in2, s_CABD);
+			in3__ = spu_shuffle(in3, in3, s_CABD);
+			in4__ = spu_shuffle(in4, in4, s_CABD);
+			transpose1 = spu_shuffle(out1, out2, s_AaBb);
+			transpose2 = spu_shuffle(out3, out4, s_BbAa);
+			transpose3 = spu_shuffle(out1, out2, s_CcCc);
+			transpose4 = spu_shuffle(out3, out4, s_CcCc);
+
+			--iterCount;
+			if(__builtin_expect(iterCount != 0, true))
+				continue;
+
+			// Postamble
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1_, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc__, 0x00);
+			si_stqd((qword)spu_mul(out2_, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc__, 0x10);
+			si_stqd((qword)spu_mul(out3_, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc__, 0x20);
+			si_stqd((qword)spu_mul(out4_, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc__, 0x30);
+			
+			// stage 2
+			xxxx = spu_sel(    transpose2, transpose1, mask_XX00);
+			yyyy = spu_shuffle(transpose2, transpose1, s_cdAB);
+			zzzz = spu_sel(    transpose4, transpose3, mask_XX00);
+			sum = (qword)spu_madd(yyyy, yyyy, spu_madd(zzzz, zzzz, spu_mul(xxxx, xxxx)));
+			tmpRsqrt = si_frsqest(sum);
+			
+			// stage 3 
+			rsqrt = (vec_float4)si_fi((qword)sum, tmpRsqrt);
+			si_stqd((qword)spu_mul(out1, spu_shuffle(rsqrt, k1_0f, s_AAAa)), pSrc_, 0x00);
+			si_stqd((qword)spu_mul(out2, spu_shuffle(rsqrt, k1_0f, s_BBBb)), pSrc_, 0x10);
+			si_stqd((qword)spu_mul(out3, spu_shuffle(rsqrt, k1_0f, s_CCCc)), pSrc_, 0x20);
+			si_stqd((qword)spu_mul(out4, spu_shuffle(rsqrt, k1_0f, s_DDDd)), pSrc_, 0x30);
+			
+			if(__builtin_expect(true, false))
+				return;
+	}
+}
+

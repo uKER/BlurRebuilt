@@ -1,0 +1,33 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_ShadowAlpha	: register(CCP_RENDER_SETTINGS);
+
+struct PS_INPUT
+{
+	real2	m_ProjectPos : TEXCOORD0;
+};
+struct PS_OUTPUT
+{
+	real4	colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	//kill using radius
+	real fShadow = g_ShadowAlpha.x;
+	
+	float distant = sqrt(dot(input.m_ProjectPos,input.m_ProjectPos));
+	 
+	fShadow *= (real)saturate((1.f - distant) * g_ShadowAlpha.y);
+
+#if PLATFORM_PS3
+	output.colour = real4(fShadow, fShadow, fShadow, fShadow);
+#else
+	output.colour = real4(1.h, 1.h, 1.h, fShadow);
+#endif
+
+	return output;
+}

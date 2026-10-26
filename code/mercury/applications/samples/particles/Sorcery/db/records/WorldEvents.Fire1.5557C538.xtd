@@ -1,0 +1,9 @@
+xt
+	field __id "5557C538"
+	field __name "WorldEvents.Fire1"
+	field __pack "2E661B2B"
+	field __type "Particle_WorldEvent"
+	field event "C6F00213"
+	block position
+	end
+end

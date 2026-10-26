@@ -1,0 +1,301 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2266F03B-C3EC-4DB2-86D4-B11B30D69C01}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProfilerTool</RootNamespace>
+    <AssemblyName>ProfilerTool</AssemblyName>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>6C383D558CC7EC9EC86F5683DC72F4C108B00100</ManifestCertificateThumbprint>
+    <ManifestKeyFile>ProfilerTool_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.XDevkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Comms.cs" />
+    <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Controls\AudioItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Connection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Fader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Graph.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GraphProps.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Joystick.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Joystick.Designer.cs">
+      <DependentUpon>Joystick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LED.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Log.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Log.Designer.cs">
+      <DependentUpon>Log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Vector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Vector.Designer.cs">
+      <DependentUpon>Vector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\XYControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\XYControl.Designer.cs">
+      <DependentUpon>XYControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Packets\AudioData.cs" />
+    <Compile Include="Packets\AudioGraphData.cs" />
+    <Compile Include="Packets\GetParamData.cs" />
+    <Compile Include="Packets\StatsData.cs" />
+    <Compile Include="Packets\ConnectionData.cs" />
+    <Compile Include="Packets\EventData.cs" />
+    <Compile Include="Packets\InitData.cs" />
+    <Compile Include="Packets\ObjectData.cs" />
+    <Compile Include="Packets\ValueData.cs" />
+    <Compile Include="Pages\ActionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\AudioPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\ConnectionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\EventPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\GraphPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\Page.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\ParametersPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Pages\VectorsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\ConnectDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\InstanceWnd.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\InstanceWnd.Designer.cs">
+      <DependentUpon>InstanceWnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MainWnd.Designer.cs">
+      <DependentUpon>MainWnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\AudioItem.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AudioItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Connection.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Connection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Fader.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Fader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GraphProps.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GraphProps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Joystick.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Joystick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Log.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Vector.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Vector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\XYControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>XYControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ConnectDlg.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ConnectDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\InstanceWnd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InstanceWnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MainWnd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainWnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Stats.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Stats.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Controls\MainTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\Stats.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Stats.Designer.cs">
+      <DependentUpon>Stats.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\groupbutton.gif" />
+    <Content Include="Resources\Joystick.bmp" />
+    <None Include="Resources\refreshbutton.bmp" />
+    <Content Include="Resources\loadmixbutton.gif" />
+    <Content Include="Resources\savemixbutton.gif" />
+    <Content Include="Resources\connectbutton.bmp" />
+    <None Include="ProfilerTool_TemporaryKey.pfx" />
+    <None Include="Resources\LED_Yellow_On.bmp" />
+    <None Include="Resources\LED_Yellow_Off.bmp" />
+    <None Include="Resources\LED_Red_On.bmp" />
+    <None Include="Resources\LED_Red_Off.bmp" />
+    <None Include="Resources\LED_Green_On.bmp" />
+    <None Include="Resources\LED_Green_Off.bmp" />
+    <None Include="Resources\LED_Black.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\library\common\system\system_pc_managed_2005.vcproj">
+      <Project>{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}</Project>
+      <Name>system_pc_managed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Controls\AVFader\Faders.csproj">
+      <Project>{38D64789-5F1E-4582-A20E-E53746DECB61}</Project>
+      <Name>Faders</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

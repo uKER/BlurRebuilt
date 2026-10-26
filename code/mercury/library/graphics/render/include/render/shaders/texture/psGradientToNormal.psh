@@ -1,0 +1,26 @@
+#include "..\\psConstants.h"
+#include "..\\psCommon.h"
+
+sampler2D	g_tGradients	: register(s0);
+
+struct PS_INPUT
+{
+	float2 vTexCoord0		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 vColour0			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float2 vDX = tex2D(g_tGradients, IN.vTexCoord0).xy;
+	float3 vNormal = normalize(float3(-vDX.x, 1.0f, -vDX.y));
+	
+	OUT.vColour0 = float4(vNormal * 0.5f + 0.5f, 1.0f);
+		
+	return OUT;
+}

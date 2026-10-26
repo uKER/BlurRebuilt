@@ -1,0 +1,4 @@
+type exe
+dependencies bdPlatform bdCore bdSocket bdConnection bdNet bdLobby bdExampleCommon bdExampleCommonLobby
+weight 360
+excludedarchitectures psp-adhoc ps3 xenon

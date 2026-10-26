@@ -1,0 +1,43 @@
+echo "Building Minimal Testapp for PC" ;
+
+if $(PLATFORM) != PC
+{
+	EXIT Wrong platform selected. ;
+}
+
+SubDir TOP Code Mercury Applications Minimal MinimalPS3 ;
+
+SUBDIRHDRS = 
+./include
+$(TOP)/Code/Mercury/Library/Core/include
+$(TOP)/Code/Mercury/Library/System/include
+$(TOP)/Code/Mercury/Library/Display/include
+$(TOP)/Code/Mercury/Library/Render/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(DXSDK_PATH)/include
+;
+
+SRC =
+#../../../library/samples/source/section/SectionSchedulerTest.cpp
+#../../../library/samples/source/section/SectionSchedulerTest.spu_cpp
+../../../library/samples/source/section/SectionSkyDome.cpp
+./Main.cpp
+;
+
+LinkLibraries MinimalPC :
+		core system display render zlib samples
+		;
+		
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" ;
+
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+
+Main MinimalPC : $(SRC) ; #: stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Core ;
+SubInclude TOP Code Mercury Library System ;
+SubInclude TOP Code Mercury Library Display ;
+SubInclude TOP Code Mercury Library Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+

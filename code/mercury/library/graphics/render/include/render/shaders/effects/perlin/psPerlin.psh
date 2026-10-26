@@ -1,0 +1,99 @@
+#include "..\..\psCommon.h"
+
+
+
+struct Settings
+{
+	float4	m_Persistence;
+	float4	m_Animation;
+	float4	m_ChannelScale[4];
+};
+
+
+
+extern Settings		g_Settings :	register(c0);
+extern sampler3D	s_Noise :		register(s0);
+
+
+
+struct PS_INPUT
+{
+	float4	m_TexCoord	: TEXCOORD0;
+};
+
+
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT	output	=	(PS_OUTPUT) 0;
+
+	float	z			=	g_Settings.m_Animation;
+	float3	pos			=	frac( float3(input.m_TexCoord.xy, z) );
+	
+	float	defaultamp  =	1.0f - g_Settings.m_Persistence;
+	float	amplitude;
+	float4	height		=	0.0f;
+	float4	noisePos	=	0.0f;
+	
+	#ifdef SAMPLES_4
+	for(int i = 0; i < 4; i++)
+	{
+		amplitude			=	defaultamp * g_Settings.m_ChannelScale[i].x;
+	#endif
+	
+	#ifdef SAMPLES_2
+	for(int i = 0; i < 2; i++)
+	{
+		amplitude			=	defaultamp * g_Settings.m_ChannelScale[i].x;
+	#endif
+	
+	#ifdef SAMPLES_1
+		amplitude			=	defaultamp;
+	#endif
+		
+		noisePos			=	float4( pos, 4.0f);
+#ifndef PS_2_0
+		height				+=	( tex3Dlod(s_Noise, noisePos) * 2.0f - 1.0f ) * amplitude;
+#endif
+		amplitude			*=	g_Settings.m_Persistence;
+
+		noisePos			=	float4( pos, 3.0f);
+#ifndef PS_2_0
+		height				+=	( tex3Dlod(s_Noise, noisePos) * 2.0f - 1.0f ) * amplitude;
+#endif
+		amplitude			*=	g_Settings.m_Persistence;
+
+		noisePos			=	float4( pos, 2.0f);
+#ifndef PS_2_0
+		height				+=	( tex3Dlod(s_Noise, noisePos) * 2.0f - 1.0f ) * amplitude;
+#endif
+		amplitude			*=	g_Settings.m_Persistence;
+
+		noisePos			=	float4( pos, 1.0f);
+#ifndef PS_2_0
+		height				+=	( tex3Dlod(s_Noise, noisePos) * 2.0f - 1.0f ) * amplitude;
+#endif
+		amplitude			*=	g_Settings.m_Persistence;
+
+		noisePos			=	float4( pos, 0.0f);
+#ifndef PS_2_0
+		height				+=	( tex3Dlod(s_Noise, noisePos) * 2.0f - 1.0f ) * amplitude;
+#endif
+		
+	#ifndef SAMPLES_1
+		pos.xy				*=	2.0f;
+		pos.z				*=	g_Settings.m_Animation.y;
+	}
+	#endif
+	
+	output.m_Colour		=	saturate(height.r * 0.5f + 0.5f);
+	
+	return output;
+}

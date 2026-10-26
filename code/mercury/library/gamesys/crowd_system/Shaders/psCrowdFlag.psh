@@ -1,0 +1,81 @@
+#include "../../graphics/display/include/display/shaders/psCommon.h"
+#include "../../graphics/display/include/display/shaders/psConstants.h"
+
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+	float3	m_Colour	: TEXCOORD1;
+	float4	m_ScreenPos	: TEXCOORD2;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+sampler2D	g_tFlag				: register(s0);
+sampler2D	g_tDynamicLight		: register(s1);
+
+float4		g_HalfPixelOffset	: register(c200);
+float4		g_Luminance			: register(c201);
+float4		g_FogColour			: register(c202);
+float4		g_DepthFog			: register(c203);
+
+float3 EvaluateDynamicLighting(in float3 vScreenPos)
+{
+	float2	vScreenCoord	= vScreenPos.xy / vScreenPos.z;
+
+#if !defined(PLATFORM_PS3)
+			vScreenCoord	= vScreenCoord + g_HalfPixelOffset.xy;
+#endif
+
+	return h4tex2D(g_tDynamicLight, vScreenCoord).rgb;
+}
+
+float4 EvaluateDepthFog(in float4 vColour, in float fDistance)
+{
+	float fogAmount		= -fDistance * g_DepthFog.x;
+	float3 fogColour	= g_FogColour.xyz;
+
+    float fogFactor		= exp(fogAmount);
+    
+    return float4(lerp(fogColour, vColour.xyz, saturate(fogFactor)), vColour.a);
+}
+
+float4 EvaluateFinalColour(in float4 vColour)
+{
+	float4 colour	= 0.0h;
+    
+    colour.rgb		= vColour.rgb * g_Luminance.x;
+#if defined(BLUR_DX11)
+    // [Blur2PC] Retail's ps_3_0 (Blur.exe 1.2) emits rsq then rcp per channel, and rsq takes abs(source).
+    // The SH lighting goes negative on flag faces turned from the light; SM5 sqrt gives NaN there (T251).
+    colour.rgb		= sqrt(abs(colour.rgb));
+#else
+    colour.rgb		= sqrt(colour.rgb);
+#endif
+
+    colour.a		= vColour.a;
+
+	return colour;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float4 albedo	= tex2D(g_tFlag, input.m_TexCoord);
+	
+	output.m_Colour.rgb	= (input.m_Colour.rgb + EvaluateDynamicLighting(input.m_ScreenPos.xyz)) * albedo.rgb; // Lighting
+	output.m_Colour.a	= albedo.a;
+	
+	output.m_Colour		= EvaluateDepthFog(output.m_Colour, input.m_ScreenPos.z);
+	output.m_Colour		= EvaluateFinalColour(output.m_Colour);
+	output.m_Colour.rgb *= output.m_Colour.a;
+	
+	// LOD FADE
+	output.m_Colour.a	*= saturate(input.m_ScreenPos.w);
+	
+	return output;
+}

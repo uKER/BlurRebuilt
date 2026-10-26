@@ -1,0 +1,197 @@
+xt
+	field __id "7418B21E"
+	field __name "Events.ImpactMetal"
+	field __pack "2E661B2B"
+	field __type "Particle_Event"
+	block duration
+	end
+	array emitters
+		block 
+			block Rotation
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			field __id "PartD63537A8"
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+				field a "0.000"
+				field r "0.000"
+			end
+			block colour2
+			end
+			block distributionSize
+			end
+			field effect "EB42F1F1"
+			block force
+			end
+			block life
+				field value "1"
+				field variation ".25"
+			end
+			field repeating "0"
+			block size
+				field value "0.1"
+			end
+			array spawn
+				block 
+					field __id "Part14E460A1"
+					block amount
+						field value "100"
+						field variation "10"
+					end
+					block cone
+						field outer "110"
+					end
+					block direction
+					end
+					block duration
+						field value "2"
+					end
+					block position
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "2.5"
+				field variation "1"
+			end
+			block speedInherited
+			end
+			field type "Burst"
+		end
+		block 
+			block Rotation
+				block x
+					field value "360"
+					field variation "360"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+					field value "25"
+					field variation "50"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block colour
+				field a "0.813"
+				field b "0.490"
+				field g "0.513"
+				field r "0.527"
+			end
+			block distributionSize
+			end
+			field effect "1EA58DD2"
+			block life
+				field value "2"
+			end
+			field repeating "0"
+			block size
+				field value "0.2"
+				field variation "0.1"
+			end
+			array spawn
+				block 
+					block amount
+						field value "0"
+					end
+					block cone
+						field outer "15"
+					end
+					block duration
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "0.2"
+				field variation "0.1"
+			end
+			block speedInherited
+			end
+			field type "Burst"
+		end
+		block 
+			block Rotation
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block colour
+				field a "1.000"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			block distributionSize
+			end
+			field effect "3EF8AE9D"
+			field emit "PerCycle"
+			block life
+				field value "3"
+			end
+			block size
+				field value "0.05"
+				field variation "0.02"
+			end
+			array spawn
+				block 
+					block amount
+						field value "0"
+					end
+					block cone
+					end
+					block duration
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "0"
+			end
+			block speedInherited
+			end
+			field type "Burst"
+		end
+	end
+	field name "bullettest3"
+end

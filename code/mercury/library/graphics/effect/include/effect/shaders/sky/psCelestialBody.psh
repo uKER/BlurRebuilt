@@ -1,0 +1,20 @@
+#define ALPHA
+
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+sampler2D	g_tTexture	: register(s0);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+	float4	m_Colour	: TEXCOORD1;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float4 vColour = tex2D(g_tTexture, input.m_TexCoord) * input.m_Colour;
+
+	return GetExposure(vColour);
+}

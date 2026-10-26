@@ -1,0 +1,23 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4	g_vParameters	: register(CCP_EFFECT_SHADOW_MAP_SETTINGS);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float4	m_ProjPosition	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+		
+	output.m_Colour	= exp(g_vParameters.x * input.m_ProjPosition.z / input.m_ProjPosition.w);
+	
+	return output;
+}

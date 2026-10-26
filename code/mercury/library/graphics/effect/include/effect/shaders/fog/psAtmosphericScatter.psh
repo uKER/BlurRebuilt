@@ -1,0 +1,69 @@
+#define ALPHA
+
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+float4x4	g_mToWorld			: register(CCP_RENDER_SETTINGS);
+float4		g_vViewPosition		: register(CCP_RENDER_SETTINGS_4);
+float4		g_vFogSettings		: register(CCP_RENDER_SETTINGS_5);
+float4		g_vFogColour		: register(CCP_RENDER_SETTINGS_6);
+float4		g_vDepthScale		: register(CCP_RENDER_SETTINGS_7);
+float4		g_vSunDirection		: register(CCP_RENDER_SETTINGS_8);
+float4		g_vSunIntensity		: register(CCP_RENDER_SETTINGS_9);
+float4		g_vMieG				: register(CCP_RENDER_SETTINGS_10);
+sampler2D	g_tDepth			: register(s0);
+
+#define		g_fHeightDensityAtViewer	g_vFogSettings.x
+#define		g_fHeightFalloff			g_vFogSettings.y
+#define		g_fGlobalDensity			g_vFogSettings.z
+#define		g_vRayleighSunIntensity		g_vSunIntensity.xyz
+#define		g_fMieSunIntensity			g_vSunIntensity.w
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+float GetMiePhase(float fCos, float fCos2)
+{
+	return g_vMieG.x * (1.0f + fCos2) / pow(g_vMieG.y - g_vMieG.z * fCos, 1.5f);
+}
+
+float GetRayleighPhase(float fCos2)
+{
+	return 0.75f + 0.75f * fCos2;
+}
+
+float GetVolumetricFog(float3 vViewVector)
+{
+	float fFogInt = length(vViewVector) * g_fHeightDensityAtViewer;
+	if (abs(vViewVector.y) > 0.01f)
+	{
+		float t = g_fHeightFalloff * vViewVector.y;
+		fFogInt *= (1.0f - exp(-t)) / t;
+	}
+	return exp(-g_fGlobalDensity * fFogInt);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	// get world position
+	float3 vWorldPosition = GetWorldPosition(g_tDepth, input.m_TexCoord, g_vDepthScale, (float4x3) g_mToWorld);
+	
+	// compute fog amount
+	float fFogAmount = GetVolumetricFog(vWorldPosition.xyz - g_vViewPosition.xyz);
+
+	// compute fog colour
+	float3	vRayleighColour	= g_vFogColour.rgb * g_vRayleighSunIntensity;
+	float3	vMieColour		= g_vFogColour.rgb * g_fMieSunIntensity;
+
+	float	fCos			= dot(g_vSunDirection.xyz, normalize(g_vViewPosition.xyz - vWorldPosition.xyz));
+	float	fCos2			= fCos * fCos;
+
+	float	fMiePhase		= GetMiePhase(fCos, fCos2);
+	float	fRayleighPhase	= GetRayleighPhase(fCos2);
+	
+	float3	vColour			= fRayleighPhase * vRayleighColour + fMiePhase * vMieColour;
+
+	return GetExposure(float4(vColour, 1.0f - fFogAmount));
+}

@@ -1,0 +1,71 @@
+SubDir TOP Code Tools Lux Lux_Client ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+IncludePath
+$(TOP)/Code/Tools/Lux
+$(TOP)/Code/Tools/Lux/lux_client/include
+$(TOP)/Code/Tools/Lux/Lux/Include
+$(TOP)/Code/Tools/Lux/Lux_Common/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+$(TOP)/Code/Vendor/TClap/Current
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+$(TOP)/Code/Tools/Attk/Attk/Include
+$(TOP)/Code/Tools/AftkUt/AftkUtLib/include
+$(TOP)/Code/Tools/ClusterServ_lib/include
+$(TOP)/Code/Mercury/Library/Util/spatial_hierarchy/include
+$(TOP)/Code/Common
+$(TOP)/Libs/Vendor/CommonC++/current/include
+;
+
+SRC =
+source/main.cpp
+;
+
+LINKLIBS += secur32.lib ;
+
+WIN64LIB = .lib ;
+if $(WIN64) = 1
+{
+	WIN64LIB = _64.lib ;
+}
+
+LinkLibraries lux_client :
+		core system tools_shared aftk attk aftkutlib clusterserv_lib spatial_hierarchy lux_core lux commonc++ ftm_xml_api
+		farm_library zlib misc_shared
+		$(TOP)/libs/vendor/xerces/2.5.0/lib/xerces-c_2$(WIN64LIB)
+		$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk
+		;
+
+Application lux_client : $(SRC) ;
+ExportVcproj lux_client ;
+
+if $(WIN64) = 1
+{
+	MakeLocate lux.exe : $(TOP)/bin/tools_WIP/win64/lux ;
+}
+else
+{
+	MakeLocate lux.exe : $(TOP)/bin/tools_WIP/win32/lux ;
+}
+
+EmbedManifest lux.exe : lux_client.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Mercury Library Util spatial_hierarchy ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Tools AftkUt AftkUtLib ;
+SubInclude TOP Code Tools ClusterServ_lib ;
+SubInclude TOP Code Tools File_Tag_Manager Ftm_Xml_Api Ftm_Xml_Api ;
+SubInclude TOP Code Tools Lux Lux_Common ;
+SubInclude TOP Code Tools Lux Lux ;
+SubInclude TOP Code Tools xFarm farm_library ;
+SubInclude TOP Code Vendor Zlib Current_Mercury ;
+SubInclude TOP Libs Vendor CommonC++ current ;

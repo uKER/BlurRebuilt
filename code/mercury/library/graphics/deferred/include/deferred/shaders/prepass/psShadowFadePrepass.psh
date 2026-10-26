@@ -1,0 +1,68 @@
+#include "psShadowPrepass.h"
+
+#if defined(PS_2_0) && defined(JITTER)
+#define SIMPLE
+#endif
+
+float4		g_vDepth	: register(CCP_RENDER_SETTINGS_2);
+float4		g_vFade		: register(CCP_RENDER_SETTINGS_3);
+float4x4	g_mWorld	: register(CCP_RENDER_SETTINGS_4);
+float4x4	g_mShadow0	: register(CCP_RENDER_SETTINGS_8);
+float4x4	g_mShadow1	: register(CCP_RENDER_SETTINGS_12);
+
+sampler2D	g_tDepth	: register(s0);
+sampler2D	g_tShadow0	: register(s1);
+sampler2D	g_tShadow1	: register(s2);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+float GetShadow(sampler2D tShadow, float3 vShadowCoord, float2 vScreenCoord)
+{
+#if defined(SIMPLE)
+	return GetShadowSimple(tShadow, vShadowCoord);
+#elif defined(JITTER)
+	return GetShadowJitter(tShadow, vShadowCoord, vScreenCoord);
+#elif defined(PCF)
+	return GetShadowPCF(tShadow, vShadowCoord);
+#elif defined(VARIANCE)
+	return GetShadowVariance(tShadow, vShadowCoord);
+#elif defined(EXPONENTIAL)
+	return GetShadowExponential(tShadow, vShadowCoord);
+#endif
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float	fZ					= SampleDepthBuffer(g_tDepth, input.m_TexCoord);
+	float	fW					= ScaleDepth(fZ, g_vDepth);
+	float4	vScreenPosition		= float4(input.m_TexCoord, fZ, 1.0f);
+	float3	vWorldPosition		= mul(vScreenPosition * fW, (float4x3) g_mWorld);
+	
+	float4	vShadowPosition0	= mul(float4(vWorldPosition, 1.0f), g_mShadow0);
+	float3	vShadowCoord0		= vShadowPosition0.xyz / vShadowPosition0.w;
+	float	fShadow0			= GetShadow(g_tShadow0, vShadowCoord0, input.m_TexCoord);
+
+#ifndef PS_2_0
+	float4	vShadowPosition1	= mul(float4(vWorldPosition, 1.0f), g_mShadow1);
+	float3	vShadowCoord1		= vShadowPosition1.xyz / vShadowPosition1.w;
+	float	fShadow1			= GetShadow(g_tShadow1, vShadowCoord1, input.m_TexCoord);
+	
+	float	fBlend				= (fW - g_vFade.x) * g_vFade.y;
+	
+	output.m_Colour				= lerp(fShadow0, fShadow1, fBlend);
+#else
+	output.m_Colour				= fShadow0;
+#endif
+
+	return output;
+}

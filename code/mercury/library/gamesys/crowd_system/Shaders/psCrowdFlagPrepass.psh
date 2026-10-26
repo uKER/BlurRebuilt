@@ -1,0 +1,23 @@
+#include "../../graphics/display/include/display/shaders/psCommon.h"
+#include "../../graphics/display/include/display/shaders/psConstants.h"
+
+
+struct PS_INPUT_PREPASS
+{
+	float3	m_Normal	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT_PREPASS input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float fDepth255 = input.m_Normal.z * 255.0h;
+	output.m_Colour = float4(input.m_Normal.xy * 0.5h + 0.5h, floor(fDepth255) / 255.0h, frac(fDepth255));
+	
+	return output;
+}

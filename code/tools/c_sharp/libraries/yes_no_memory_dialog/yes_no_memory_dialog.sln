@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xml_helper", "..\xml_helper\xml_helper.csproj", "{99261371-4AB4-4641-B43C-05A48200F948}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yes_no_memory_dialog", "yes_no_memory_dialog.csproj", "{7488D9AF-C584-4993-BAC3-E201BC22606C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "super_list_view", "..\super_list_view\super_list_view.csproj", "{AAF08F48-F40F-45BB-8508-CDBE6675D25B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows_messages", "..\windows_messages\windows_messages.csproj", "{EA8D9A01-4CBA-458A-A459-2811A4E3975B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99261371-4AB4-4641-B43C-05A48200F948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99261371-4AB4-4641-B43C-05A48200F948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99261371-4AB4-4641-B43C-05A48200F948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99261371-4AB4-4641-B43C-05A48200F948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7488D9AF-C584-4993-BAC3-E201BC22606C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7488D9AF-C584-4993-BAC3-E201BC22606C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7488D9AF-C584-4993-BAC3-E201BC22606C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7488D9AF-C584-4993-BAC3-E201BC22606C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF08F48-F40F-45BB-8508-CDBE6675D25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF08F48-F40F-45BB-8508-CDBE6675D25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF08F48-F40F-45BB-8508-CDBE6675D25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF08F48-F40F-45BB-8508-CDBE6675D25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

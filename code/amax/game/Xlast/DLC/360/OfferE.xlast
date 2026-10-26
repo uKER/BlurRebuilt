@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-16" standalone="no"?>
+<XboxLiveSubmissionProject Version="2.0.11164.2">
+	<ContentProject clsid="{AED6156D-A870-4FF7-924F-F375495A222A}" Name="Offer E Preorder Pack" TitleID="41560845" TitleName="Blur" ActivationDate="04/06/2009" PubOfferingID="0000002" PubBitFlags="FFFFFFFF" HasCost="false" IsMarketplace="true" AllowProfileTransfer="true" AllowDeviceTransfer="true" DashIconPath="Z:\blur_release\code\amax\game\Xlast\Images\game_icon.png" TitleIconPath="Z:\blur_release\code\amax\game\Xlast\Images\game_icon.png" ContentType="0x00000002">
+		<LanguageSettings clsid="{F5BA1EE2-D217-447C-93C7-3C7AA6F25DD5}">
+			<Language clsid="{6424EAA3-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Offer E Preorder Pack" Description="Contains the Offer E preorder unlocks"/>
+			<Language clsid="{6424EAA5-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Offer E-Vorbestellpaket" Description="Beinhaltet die Freischaltobjekte für Offer E-Vorbesteller"/>
+			<Language clsid="{6424EAA6-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Pack précommande Offer E" Description="Les bonus déverrouillés par le pack de précommande de Offer E"/>
+			<Language clsid="{6424EAA7-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Pack de reserva de Offer E" Description="Contiene los desbloqueos por reservar en Offer E."/>
+			<Language clsid="{6424EAA8-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Pacchetto preordine Offer E" Description="Contiene gli oggetti sbloccabili prenotando il gioco presso i punti vendita Offer E."/>
+		</LanguageSettings>
+		<Contents clsid="{0D8B38B9-F5A8-4050-8F8D-81F67E3B2456}">
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack Offer E ToC.bin" TargetName="ToC.bin"/>
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack Offer E.bin" TargetName="DLCPackOfferE.bin"/>
+		</Contents>
+		<ContentOffers clsid="{146485F0-DCD7-4AB1-97E1-9B0E64150499}">
+			<ContentOffer clsid="{4AF8FE5B-CCF2-4C23-852F-D91A94AE0E24}" friendlyName="OfferERetailUnlock" title="Offer E Retail Unlock" sellText="" licenseMask="0x00000001" contentCategory="0x00000001" visibility="1" previewOfferId="0x00000000" offerId="0x00000000" banner="..\..\Images\marketplace.png" licenseLevel="2" consumable="false"/>
+		</ContentOffers>
+	</ContentProject>
+</XboxLiveSubmissionProject>

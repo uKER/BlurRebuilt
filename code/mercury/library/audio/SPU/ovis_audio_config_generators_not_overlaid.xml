@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<ovis_config>
+  
+    <overlay>
+
+      <sections>
+
+        <section name="CodeOverlay1">
+          <object name="ActionIn.obj"/>
+          <object name="ActionOut.obj"/>
+          <object name="Array.obj"/>
+          <object name="Cone.obj"/>
+          <object name="ControlInput.obj"/>
+          <object name="ControlOutput.obj"/>
+          <object name="DebugPrint.obj"/>
+          <object name="DopplerShift.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay2">
+          <object name="Envelope.obj"/>
+          <object name="EventInput.obj"/>
+          <object name="EventOutput.obj"/>
+          <object name="Exponent.obj"/>
+          <object name="GateSwitch.obj"/>
+          <object name="Invert.obj"/>
+          <object name="LowPass.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay3">
+          <object name="Max.obj"/>
+          <object name="Min.obj"/>
+          <object name="MonoAudioInput.obj"/>
+          <object name="MonoAudioOutput.obj"/>
+          <object name="MonoGain.obj"/>
+          <object name="MonoHighPass.obj"/>
+          <object name="QuadToSurroundMixer.obj"/>
+          <object name="StereoToQuadMixer.obj"/>
+          <object name="SurroundHighShelf.obj"/>
+          <object name="SurroundPeakEQ.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay4">
+          <object name="MonoLipSync.obj"/>
+          <object name="MonoLoopingSound.obj"/>
+          <object name="MonoLowPass.obj"/>
+          <object name="MonoOneShotSound.obj"/>
+          <object name="MonoOneShotSoundTable.obj"/>
+          <object name="MonoPeakLevel.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay5">
+          <object name="MonoLowShelf.obj"/>
+          <object name="MonoHighShelf.obj"/>
+          <object name="MonoSaturator.obj"/>
+          <object name="ParameterIn.obj"/>
+          <object name="ParameterOut.obj"/>
+          <object name="PiecewiseLinearFunction.obj"/>
+          <object name="Product.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay6">
+          <object name="Random.obj"/>
+          <object name="Rolloff.obj"/>
+          <object name="SampleAndHold.obj"/>
+          <object name="Script.obj"/>
+          <object name="Selector.obj"/>
+          <object name="Sin.obj"/>
+          <object name="Source.obj"/>
+          <object name="StereoAudioInput.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay7">
+          <object name="StereoHighPass.obj"/>
+          <object name="StereoLoopingSound.obj"/>
+          <object name="StereoOneShotSound.obj"/>
+          <object name="SurroundResonantLowPass.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay8">
+          <object name="Sum.obj"/>
+          <object name="SurroundAudioInput.obj"/>
+          <object name="SurroundAudioOutput.obj"/>
+          <object name="SurroundDelay.obj"/>
+          <object name="SurroundLowPass.obj"/>
+          <object name="SurroundSaturator.obj"/>
+          <object name="SurroundResonantLowPass.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay9">
+          <object name="StereoAudioOutput.obj"/>
+          <object name="Timer.obj"/>
+          <object name="Variable.obj"/>
+          <object name="Vector.obj"/>
+          <object name="VectorIn.obj"/>
+          <object name="VectorNearestPointOnLine.obj"/>
+<!--          <object name="3dmaths.obj"/>  -->
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay10">
+          <object name="MonoToMonoMixer.obj"/>
+          <object name="MonoToStereoMixer.obj"/>
+          <object name="MonoToSurroundMixer.obj"/>
+          <object name="MonoCompressor.obj"/>
+          <object name="MonoFeedbackDelay.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay11">
+          <object name="StereoToStereoMixer.obj"/>
+          <object name="StereoToSurroundMixer.obj"/>
+          <object name="SurroundToSurroundMixer.obj"/>
+          <object name="StereoCompressor.obj"/>
+          <object name="StereoFeedbackDelay.obj"/>
+          <object name="SurroundLowShelf.obj"/>
+        </section>
+
+      </sections>
+
+      <sections>
+
+        <section name="CodeOverlay12">
+          <object name="MonoToSurroundLFEMixer.obj"/>
+          <object name="SurroundToSurroundLFEMixer.obj"/>
+          <object name="SurroundLFEToSurroundLFEMixer.obj"/>
+          <object name="SurroundLFEAudioInput.obj"/>
+          <object name="SurroundLFEAudioOutput.obj"/>
+          <object name="SurroundCompressor.obj"/>
+        </section>
+
+      </sections>
+
+    </overlay>
+</ovis_config>

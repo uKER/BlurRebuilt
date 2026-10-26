@@ -1,0 +1,32 @@
+SubDir TOP Code Mercury Applications Graphics TestAppWii ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+IncludePath 
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/applications/graphics/testappwii
+;
+
+SRC =
+./Main.cpp
+../../../library/graphics/display2/source/context/WiiContext.cpp
+../../../library/graphics/display2/source/context/Context.cpp
+../../../library/graphics/display2/source/device/WiiDevice.cpp
+../../../library/graphics/display2/source/device/Device.cpp
+;
+
+LinkLibraries TestAppWii : 
+		core system
+		;
+
+Application TestAppWii : $(SRC) : StdAfx.cpp ;
+
+ExportVcproj TestAppWii ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;

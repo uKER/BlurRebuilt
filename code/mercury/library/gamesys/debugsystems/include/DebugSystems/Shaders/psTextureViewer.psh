@@ -1,0 +1,46 @@
+#include "render\\shaders\\psConstants.h"
+#include "render\\shaders\\psCommon.h"
+
+sampler2D g_AlbedoTexture : register(s0);
+
+//(Colour-Alpha, Mipmaps, MipmapLevel, gamma )
+float4 g_TextureViewerSetup : register(CCP_RENDER_SETTINGS);
+
+struct PS_INPUT
+{
+	float4 Colour0			: COLOR0;
+	float4 Texcoord0		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour0			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+
+	float4 albedoColour = tex2D(g_AlbedoTexture, IN.Texcoord0.xy);
+	OUT.Colour0.xyz = (g_TextureViewerSetup.x * IN.Colour0.xyz * albedoColour.xyz) + (1.f - g_TextureViewerSetup.x) * IN.Colour0.w * albedoColour.w;
+	OUT.Colour0.w = g_TextureViewerSetup.x * IN.Colour0.w * albedoColour.w + (1.f - g_TextureViewerSetup.x);
+	
+	#ifdef PS_2_0
+	float4 albedoColourMip = 0.0f;
+	#else
+	float4 albedoColourMip = tex2Dlod(g_AlbedoTexture, float4(IN.Texcoord0.x,IN.Texcoord0.y ,1.f,g_TextureViewerSetup.z));
+	#endif
+	OUT.Colour0.xyz = OUT.Colour0.xyz * (1.f - g_TextureViewerSetup.y) +  g_TextureViewerSetup.y* IN.Colour0.xyz * albedoColourMip.xyz;
+	OUT.Colour0.w = OUT.Colour0.w * (1.f - g_TextureViewerSetup.y) +  g_TextureViewerSetup.y* IN.Colour0.w * albedoColourMip.w;
+
+	if (g_TextureViewerSetup.w > 0.5f)
+	{
+		OUT.Colour0.x = pow(OUT.Colour0.x, 1.f/2.2f);
+		OUT.Colour0.y = pow(OUT.Colour0.y, 1.f/2.2f);
+		OUT.Colour0.z = pow(OUT.Colour0.z, 1.f/2.2f);
+	}
+
+	
+	return OUT;
+}

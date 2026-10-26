@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<dml>
+
+  <!-- Global Variables -->
+  <globals>
+    <var name="prevConversation" value="" />
+    
+    <var name="packName" value="FinalRacebookAI" />
+    <var name="recordType" value="RaceBookAIConversation" />
+    
+    <varset name="events">
+      <var name="LAR1B" value="234A3AFD" />
+      <var name="LAR2B" value="E7F72224" />
+      <var name="LAR3" value="6766B809" />
+    </varset>
+    
+    <varset name="characters">
+      <var name="PLAYER" value="15255891" />
+      <var name="RYMER" value="A926986F" />
+      <var name="NO-1" value="A29AEB54" />
+      <var name="CARVER" value="BC18C25E" />
+      <var name="SHANNON" value="F6A3855C" />
+      <var name="LARIVER" value="6962BE98" />
+      <var name="HOLLYWOODHILLS" value="5DF2C590" />
+    </varset>
+    
+    <varset name="triggers">
+      <varset name="1STPLACE">
+        <var name="type" value="ReceiverFinishPosition" />
+        <varset name="fieldNames">
+          <var name="f1" value="ReverseSenderReceiver" />
+          <var name="f2" value="Quantifier" />
+          <var name="f3" value="Position" />
+          <var name="f4" value="DriverOverride" />
+        </varset>
+        <varset name="fieldValues">
+          <var name="ReverseSenderReceiver" value="0" />
+          <var name="Quantifier"  value="Equal" />
+          <var name="Position" value="1" />
+          <var name="DriverOverride" value="${characters.PLAYER}" />
+        </varset>    
+      </varset>
+      
+      <varset name="EVENTPASSED">
+        <var name="type" value="ReceiverMajorCrash" />
+        <varset name="fieldNames">
+          <var name="f1" value="ReverseSenderReceiver" />
+          <var name="f2" value="DriverOverride" />
+        </varset>
+        <varset name="fieldValues">
+          <var name="ReverseSenderReceiver" value="1" />
+          <var name="DriverOverride" value="${characters.CARVER}" />
+        </varset>
+      </varset>
+      
+      <varset name="OVERACHIEVED">
+        <var name="type" value="ReceiverWonByX" />
+        <varset name="fieldNames">
+          <var name="f1" value="ReverseSenderReceiver" />
+          <var name="f2" value="Quantifier" />
+          <var name="f3" value="WonBy" />
+          <var name="f4" value="DriverOverride" />
+        </varset>
+        <varset name="fieldValues">
+          <var name="ReverseSenderReceiver" value="0" />
+          <var name="Quantifier" value="Equal" />
+          <var name="WonBy" value="5" />
+          <var name="DriverOverride" value="${characters.RYMER}" />
+        </varset>
+      </varset>
+    </varset>
+    
+    <varset name="locations">
+      <varset name="PLAYERINBOX">
+        <var name="Character(1)OrGroup(2)Receivers" value="1" />  
+        <var name="CharacterReceivers" value="${characters.PLAYER}" />
+        <var name="MessageLocationsForCharacters" value="Private" />
+      </varset>
+  
+      <varset name="RIVERGROUPWALL">
+        <var name="Character(1)OrGroup(2)Receivers" value="2" />
+        <var name="GroupReceivers" value="${characters.LARIVER}" />
+        <var name="MessageLocationsForCharacters" value="Wall" />
+      </varset>
+      
+      <varset name="HOLLYWOODHILLSWALL">
+        <var name="Character(1)OrGroup(2)Receivers" value="2" />
+        <var name="GroupReceivers" value="${characters.HOLLYWOODHILLS}" />
+        <var name="MessageLocationsForCharacters" value="Wall" />
+      </varset>
+    </varset>
+    
+    <var name="messageComponent" value="" /> 
+    
+  </globals>
+  
+  <!-- Tasks Definitions -->
+  <main>
+    <for taskName="t1" items="${_rows}" itemVarName="currRow">
+      <!-- If we have a new Conversation -->
+      <if taskName="t2" comp="notEqual" arg1="${currRow.Conversation}" arg2="${prevConversation}">  
+        <!-- Create Conversation record -->
+        <new_record taskName="t3" 
+                    packName="FinalRacebookAI"
+                    recordName="${currRow.Event}.${currRow.Trigger}.${currRow.Location}.${currRow.Conversation}"
+                    recordType="RaceBookAIConversation" />
+        
+        <!-- Set the name -->
+        <acquire_field_in_record taskName="t200" recordPtr="${t3.outRecordPtr}" fieldName="Name" />
+        <set_field_value taskName="t201" fieldPtr="${t200.outFieldPtr}" fieldValue="${currRow.Event}.${currRow.Trigger}.${currRow.Location}.${currRow.Conversation}" />
+        
+        <!-- Fill the Prerequisites -->
+          <ref taskName="t10" varName="triggers.${currRow.Trigger}" />
+          <if taskName="t2000" comp="notEqual" arg1="${t10.outVar.type}" arg2="__END__">
+            <!-- Create Prerequisites component and add to array -->
+            <acquire_array_in_record taskName="t4" recordPtr="${t3.outRecordPtr}" arrayName="Prerequisites" />
+           
+            <acquire_component_in_array taskName="t5" arrayPtr="${t4.outArrayPtr}" index="0" />
+            <if taskName="t300" comp="equal" arg1="${t5.outComponentPtr}" arg2="0">
+              <new_component taskName="t301" />
+              <append taskName="t302" arrayPtr="${t4.outArrayPtr}" elementPtr="${t301.outComponentPtr}" />
+              <set taskName="t303" varName="t5.outComponentPtr" value="${t301.outComponentPtr}" />
+            </if>
+            
+            <!-- Fill the Triggers -->
+            <acquire_array_in_component taskName="t7" componentPtr="${t5.outComponentPtr}" arrayName="AndTriggers" />
+            
+            <acquire_component_in_array taskName="t8" arrayPtr="${t7.outArrayPtr}" index="0" />
+            <if taskName="t400" comp="equal" arg1="${t8.outComponentPtr}" arg2="0">
+              <new_component taskName="t401" />
+              <append taskName="t402" arrayPtr="${t7.outArrayPtr}" elementPtr="${t401.outComponentPtr}" />
+              <set taskName="t403" varName="t8.outComponentPtr" value="${t401.outComponentPtr}" />
+            </if>
+                               
+            <set_component_type taskName="t11" componentPtr="${t8.outComponentPtr}" componentType="${t10.outVar.type}" />
+                     
+            <!-- Fill the Weight -->
+            <acquire_field_in_component taskName="t100" componentPtr="${t5.outComponentPtr}" fieldName="Weight" />
+            <set_field_value taskName="t101" fieldPtr="${t100.outFieldPtr}" fieldValue="1" />
+            
+            <!-- Fill the Triggers Fields -->
+            
+            <for taskName="t12" items="${t10.outVar.fieldNames}" itemVarName="currFieldName">
+              <acquire_field_in_component taskName="t13" componentPtr="${t8.outComponentPtr}" fieldName="${currFieldName}" />
+              <ref taskName="t14" varName="t10.outVar.fieldValues.${currFieldName}" />
+              <set_field_value taskName="t15" fieldPtr="${t13.outFieldPtr}" fieldValue="${t14.outVar}" />
+            </for>
+                      
+            <!-- Fill During Events Field -->
+            <acquire_array_in_component taskName="t16" componentPtr="${t8.outComponentPtr}" arrayName="DuringEvents" />
+         
+            <acquire_field_in_array taskName="t17" arrayPtr="${t16.outArrayPtr}" index="0" />
+            <if taskName="t500" comp="equal" arg1="${t17.outFieldPtr}" arg2="0">
+              <new_field taskName="t501" />
+              <append taskName="t502" arrayPtr="${t16.outArrayPtr}" elementPtr="${t501.outFieldPtr}" />
+              <set taskName="t503" varName="t17.outFieldPtr" value="${t501.outFieldPtr}" />
+            </if>
+                      
+            <ref taskName="t18" varName="events.${currRow.Event}" />
+            <set_field_value taskName="t19" fieldPtr="${t17.outFieldPtr}" fieldValue="${t18.outVar}" />
+          </if>  
+                  
+        <!-- Fill the SendersGroup -->
+          <!-- Create Senders component and add to array -->
+          <acquire_array_in_record taskName="t21" recordPtr="${t3.outRecordPtr}" arrayName="Senders" />
+          
+          <acquire_component_in_array taskName="t22" arrayPtr="${t21.outArrayPtr}" index="0" />
+          <if taskName="t600" comp="equal" arg1="${t22.outComponentPtr}" arg2="0">
+            <new_component taskName="t601" />
+            <append taskName="t602" arrayPtr="${t21.outArrayPtr}" elementPtr="${t601.outComponentPtr}" />
+            <set taskName="t603" varName="t22.outComponentPtr" value="${t601.outComponentPtr}" />
+          </if>
+          
+          <!-- Fill the Senders -->
+          <acquire_array_in_component taskName="t24" componentPtr="${t22.outComponentPtr}" arrayName="Senders" />
+          
+          <acquire_field_in_array taskName="t25" arrayPtr="${t24.outArrayPtr}" index="0" />
+          <if taskName="t700" comp="equal" arg1="${t25.outFieldPtr}" arg2="0">
+            <new_field taskName="t701" />
+            <append taskName="t702" arrayPtr="${t24.outArrayPtr}" elementPtr="${t701.outFieldPtr}" />
+            <set taskName="t703" varName="t25.outFieldPtr" value="${t701.outFieldPtr}" />
+          </if>
+          
+          <ref taskName="t26" varName="characters.${currRow.Character}" />
+          <set_field_value taskName="t27" fieldPtr="${t25.outFieldPtr}" fieldValue="${t26.outVar}" />
+          
+          <!-- Fill the Receivers -->
+          <ref taskName="t29" varName="locations.${currRow.Location}.Character(1)OrGroup(2)Receivers" />
+          
+          <if taskName="t30" comp="equal" arg1="${t29.outVar}" arg2="1">
+            <!-- Fill the CharacterReceivers -->
+            <acquire_array_in_component taskName="t31" componentPtr="${t22.outComponentPtr}" arrayName="CharacterReceivers" />
+            
+            <acquire_field_in_array taskName="t32" arrayPtr="${t31.outArrayPtr}" index="0" />
+            <if taskName="t800" comp="equal" arg1="${t32.outFieldPtr}" arg2="0">
+              <new_field taskName="t801" />
+              <append taskName="t802" arrayPtr="${t31.outArrayPtr}" elementPtr="${t801.outFieldPtr}" />
+              <set taskName="t803" varName="t32.outFieldPtr" value="${t801.outFieldPtr}" />
+            </if>
+            
+            <ref taskName="t33" varName="locations.${currRow.Location}.CharacterReceivers" />
+            <set_field_value taskName="t34" fieldPtr="${t32.outFieldPtr}" fieldValue="${t33.outVar}" />
+          </if>
+          
+          <if taskName="t36" comp="equal" arg1="${t29.outVar}" arg2="2">
+            <!-- Fill the GroupReceivers -->
+            <acquire_array_in_component taskName="t37" componentPtr="${t22.outComponentPtr}" arrayName="GroupReceivers" />
+            
+            <acquire_field_in_array taskName="t38" arrayPtr="${t37.outArrayPtr}" index="0" />
+            <if taskName="t900" comp="equal" arg1="${t38.outFieldPtr}" arg2="0">
+              <new_field taskName="t901" />
+              <append taskName="t902" arrayPtr="${t37.outArrayPtr}" elementPtr="${t901.outFieldPtr}" />
+              <set taskName="t903" varName="t38.outFieldPtr" value="${t901.outFieldPtr}" />
+            </if>
+            
+            <ref taskName="t39" varName="locations.${currRow.Location}.GroupReceivers" />
+            <set_field_value taskName="t40" fieldPtr="${t38.outFieldPtr}" fieldValue="${t39.outVar}" />
+          </if>
+          
+          <!-- Fill the MessageLocationsForCharacters -->
+          <ref taskName="t42" varName="locations.${currRow.Location}.MessageLocationsForCharacters" />
+          <acquire_field_in_component taskName="t43" componentPtr="${t22.outComponentPtr}" fieldName="MessageLocationsForCharacters" />
+          <set_field_value taskName="t44" fieldPtr="${t43.outFieldPtr}" fieldValue="${t42.outVar}" />
+          
+          <!-- Fill the Messages -->
+          <acquire_array_in_component taskName="t45" componentPtr="${t22.outComponentPtr}" arrayName="Messages" />
+          
+          <acquire_component_in_array taskName="t46" arrayPtr="${t45.outArrayPtr}" index="0" />
+          <if taskName="t1000" comp="equal" arg1="${t46.outComponentPtr}" arg2="0">
+            <new_component taskName="t1001" />
+            <append taskName="t1002" arrayPtr="${t45.outArrayPtr}" elementPtr="${t1001.outComponentPtr}" />
+            <set taskName="t1003" varName="t46.outComponentPtr" value="${t1001.outComponentPtr}" />
+          </if>
+                    
+          <acquire_block_in_component taskName="t48" componentPtr="${t46.outComponentPtr}" blockName="Message" />
+          <acquire_field_in_block taskName="t49" blockPtr="${t48.outBlockPtr}" fieldName="id" />
+          <set_field_value taskName="t50" fieldPtr="${t49.outFieldPtr}" fieldValue="${currRow.TextId}" />
+          <acquire_field_in_block taskName="t51" blockPtr="${t48.outBlockPtr}" fieldName="record" />
+          <set_field_value taskName="t52" fieldPtr="${t51.outFieldPtr}" fieldValue="${currRow.TextRecord}" />
+          <set taskName="t53" varName="messageComponent" value="${t46.outComponentPtr}" /> 
+                      
+      </if>
+      
+      <!-- Still on the same Conversation -->
+      <if taskName="t54" comp="equal" arg1="${currRow.Conversation}" arg2="${prevConversation}">
+        <acquire_array_in_component taskName="t55" componentPtr="${messageComponent}" arrayName="Replies" />
+        
+        <acquire_component_in_array taskName="t56" arrayPtr="${t55.outArrayPtr}" index="0" />
+        <if taskName="t1100" comp="equal" arg1="${t56.outComponentPtr}" arg2="0">
+          <new_component taskName="t1101" />
+          <append taskName="t1102" arrayPtr="${t55.outArrayPtr}" elementPtr="${t1101.outComponentPtr}" />
+          <set taskName="t1103" varName="t56.outComponentPtr" value="${t1101.outComponentPtr}" />
+        </if>
+        
+        <!-- Set the Reply Block -->
+        <acquire_block_in_component taskName="t58" componentPtr="${t56.outComponentPtr}" blockName="Reply" />
+        <acquire_field_in_block taskName="t59" blockPtr="${t58.outBlockPtr}" fieldName="id" />
+        <set_field_value taskName="t60" fieldPtr="${t59.outFieldPtr}" fieldValue="${currRow.TextId}" />
+        <acquire_field_in_block taskName="t61" blockPtr="${t58.outBlockPtr}" fieldName="record" />
+        <set_field_value taskName="t62" fieldPtr="${t61.outFieldPtr}" fieldValue="${currRow.TextRecord}" />
+        
+        <!-- Set the Sender field -->
+        <acquire_field_in_component taskName="t63" componentPtr="${t56.outComponentPtr}" fieldName="Sender" />
+        <ref taskName="t64" varName="characters.${currRow.Character}" />
+        <set_field_value taskName="t65" fieldPtr="${t63.outFieldPtr}" fieldValue="${t64.outVar}" />  
+      </if>
+      
+      <set taskName="updatePrevConversation" varName="prevConversation" value="${currRow.Conversation}" />      
+    </for>
+  </main>
+  
+</dml>

@@ -1,0 +1,226 @@
+SubDir TOP Code Mercury Library Graphics Effect ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Effect/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+[ Batch
+source/fog/AtmosphericScatter.cpp
+source/fog/Fog.cpp
+source/fluids/Heightfield.cpp
+source/fluids/HeightfieldModify.cpp
+source/fluids/HeightfieldSolve.cpp
+source/ocean/FFTGPU.cpp
+source/ocean/Ocean.cpp
+source/postprocess/motionblur/MotionBlur.cpp
+source/postprocess/motionblur/MotionBlurId.cpp
+source/postprocess/motionblur/MotionBlurReduced.cpp
+source/postprocess/motionblur/MotionBlurVelocity.cpp
+source/postprocess/motionblur/VelocityBufferId.cpp
+source/postprocess/DoFBase.cpp
+source/postprocess/DoFClassify.cpp
+source/postprocess/DoFFgBg.cpp
+source/postprocess/DoFReduced.cpp
+source/postprocess/DoFSimple.cpp
+source/postprocess/MotionBlurDoF.cpp
+source/postprocess/MotionBlurDoFId.cpp
+source/postprocess/MotionBlurDoFReduced.cpp
+source/postprocess/MotionBlurDoFVelocity.cpp
+source/rain/Drop.cpp
+source/rain/Splash.cpp
+source/rain/Sheet.cpp
+source/shadow/CascadedShadowMap.cpp
+source/shadow/ExponentialShadowMap.cpp
+source/shadow/PerspectiveShadowMap.cpp
+source/shadow/ShadowMap.cpp
+source/shadow/ShadowMapSurface.cpp
+source/shadow/ShadowMapUtils.cpp
+source/shadow/ShadowMapView.cpp
+source/shadow/StandardShadowMap.cpp
+source/shadow/VarianceShadowMap.cpp
+source/sky/AtmosphericSkyDome.cpp
+source/sky/AtmosphericSolver.cpp
+source/sky/CelestialBody.cpp
+source/sky/HDRSkyDome.cpp
+source/sky/LuminanceSkyDome.cpp
+source/sky/MultiTexturedSkyDome.cpp
+source/sky/PreethamSkyDome.cpp
+source/sky/SkyDomeBase.cpp
+source/sky/TexturedSkyDome.cpp
+: StdAfx.h ]
+source/sky/SkyDomeEnvSettings.cpp
+;
+
+#SRC = [ AutoGrist $(SRC) ] ;
+
+SPUSRC = <SPU>source/fluids/HeightfieldModify.cpp ;
+AddSPUModule effect : HeightfieldModify : $(SPUSRC) ;
+
+SPUSRC = <SPU>source/fluids/HeightfieldSolve.cpp ;
+AddSPUModule effect : HeightfieldSolve : $(SPUSRC) ;
+
+if $(PLATFORM) = PS3
+{
+	FXCFLAGS on [ OBJfromSRC <HDRU32>psTexturedSkyDome.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=1" ;
+}
+
+SHADERSRC =
+include/effect/shaders/fluids/psHeightfieldModify.psh
+include/effect/shaders/rain/vsSheet.vsh
+include/effect/shaders/rain/vsSplash.vsh
+include/effect/shaders/ocean/vsOcean.vsh
+include/effect/shaders/postprocess/motionblur/psVelocityId.psh
+include/effect/shaders/postprocess/motionblur/psMotionBlurCopyStencil.psh
+include/effect/shaders/postprocess/motionblur/psMotionBlurDownsampleStencil.psh
+include/effect/shaders/postprocess/motionblur/psMotionBlurReducedComposite.psh
+include/effect/shaders/postprocess/motionblur/psMotionBlurWriteMask.psh
+include/effect/shaders/postprocess/psDoFClassifyBlurAll.psh
+include/effect/shaders/postprocess/psDoFClassifyDistance.psh
+include/effect/shaders/postprocess/psDoFClassifyMaxDownsample.psh
+include/effect/shaders/postprocess/psDoFClassifyMinDownsample.psh
+include/effect/shaders/postprocess/psDoFClassifyTilesFull.psh
+include/effect/shaders/postprocess/psDoFClassifyTilesIntermediate.psh
+include/effect/shaders/postprocess/psDoFClassifyTilesNone.psh
+include/effect/shaders/postprocess/psDoFClassifyWeights.psh
+include/effect/shaders/postprocess/psDoFFgBgBlur.psh
+include/effect/shaders/postprocess/psDoFFgBgCombine.psh
+include/effect/shaders/postprocess/psDoFFgBgDownsample.psh
+include/effect/shaders/postprocess/psDoFFgBgNear.psh
+include/effect/shaders/postprocess/psDoFSimple.psh
+include/effect/shaders/postprocess/vsDoFClassifyTiles.vsh
+include/effect/shaders/postprocess/psDoFReducedBlur.psh
+include/effect/shaders/postprocess/psDoFReducedComposite.psh
+include/effect/shaders/postprocess/psDoFReducedDownsample.psh
+include/effect/shaders/postprocess/psMotionBlurDoFCopyStencil.psh
+include/effect/shaders/postprocess/psMotionBlurDoFDownsampleStencil.psh
+include/effect/shaders/postprocess/psMotionBlurDoFReducedComposite.psh
+include/effect/shaders/postprocess/psMotionBlurDoFWriteMask.psh
+include/effect/shaders/shadow/psExponentialShadowMap.psh
+include/effect/shaders/shadow/psLinearShadowMap.psh
+include/effect/shaders/shadow/psShadowMap.psh
+include/effect/shaders/shadow/psVarianceResolve.psh
+include/effect/shaders/shadow/psVarianceShadowMap.psh
+include/effect/shaders/sky/psAtmosphericTexture.psh
+include/effect/shaders/sky/vsAtmosphericSkyDome.vsh
+include/effect/shaders/sky/vsCelestialBody.vsh
+include/effect/shaders/sky/vsPreethamSkyDome.vsh
+include/effect/shaders/sky/vsTexturedSkyDome.vsh
+include/effect/shaders/sky/vsBaseSkyDome.vsh
+;
+
+SHADERSRC += [ Shader	include/effect/shaders/fluids/psHeightfieldSolve.psh :
+						" "
+						"<Top>-DTOP"
+						"<Bottom>-DBOTTOM"
+						"<Left>-DLEFT"
+						"<Right>-DRIGHT" ] ;
+
+if $(PLATFORM) = PS3
+{
+	FXCFLAGS on [ OBJfromSRC <Alpha5>psMotionBlurReduced.psh ] = "-O1 -po OutColorPrec=fp16 -po randomSched=15 -po randomSeed=84" ;
+	FXCFLAGS on [ OBJfromSRC <Alpha7>psMotionBlurReduced.psh ] = "-O1 -po OutColorPrec=fp16 -po randomSched=12 -po randomSeed=99" ;
+	FXCFLAGS on [ OBJfromSRC <Alpha9>psMotionBlurReduced.psh ] = "-O1 -po OutColorPrec=fp16 -po randomSched=11 -po randomSeed=14" ;
+	FXCFLAGS on [ OBJfromSRC <Alpha11>psMotionBlurReduced.psh ] = "-O1 -po OutColorPrec=fp16 -po randomSched=12 -po randomSeed=99" ;
+}
+
+SHADERSRC += [ Shaders	include/effect/shaders/postprocess/motionblur/psMotionBlur.psh
+						include/effect/shaders/postprocess/motionblur/psMotionBlurReduced.psh
+						include/effect/shaders/postprocess/psMotionBlurDoF.psh
+						include/effect/shaders/postprocess/psMotionBlurDoFReduced.psh :
+						"<Alpha5>-DALPHA -DNUM_TAPS_5"
+						"<Alpha7>-DALPHA -DNUM_TAPS_7"
+						"<Alpha9>-DALPHA -DNUM_TAPS_9"
+						"<Alpha11>-DALPHA -DNUM_TAPS_11"
+						"<Stencil5>-DSTENCIL -DNUM_TAPS_5"
+						"<Stencil7>-DSTENCIL -DNUM_TAPS_7"
+						"<Stencil9>-DSTENCIL -DNUM_TAPS_9"
+						"<Stencil11>-DSTENCIL -DNUM_TAPS_11" ] ;
+SHADERSRC += [ Shader	include/effect/shaders/postprocess/psMotionBlurDoFVelocity.psh :
+						"<5>-DNUM_TAPS_5"
+						"<7>-DNUM_TAPS_7"
+						"<9>-DNUM_TAPS_9"
+						"<11>-DNUM_TAPS_11" ] ;
+SHADERSRC += [ Shader	include/effect/shaders/postprocess/motionblur/psMotionBlurVelocity.psh :
+						"<5>-DNUM_TAPS_5"
+						"<7>-DNUM_TAPS_7"
+						"<9>-DNUM_TAPS_9"
+						"<11>-DNUM_TAPS_11" ] ;
+SHADERSRC += [ Shaders	include/effect/shaders/sky/psAtmosphericSkyDome.psh
+						include/effect/shaders/sky/psCelestialBody.psh
+						include/effect/shaders/sky/psHDRSkyDome.psh
+						include/effect/shaders/sky/psLuminanceSkyDome.psh
+						include/effect/shaders/sky/psMultiTexturedSkyDome.psh
+						include/effect/shaders/sky/psPreethamSkyDome.psh
+						include/effect/shaders/fog/psVolumetricFog.psh
+						include/effect/shaders/fog/psAtmosphericScatter.psh :
+						" "
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shader include/effect/shaders/sky/psTexturedSkyDome.psh :
+						" "
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32"
+						"<Alpha>-DALPHA"
+						"<AlphaHDR>-DALPHA -DHDR"
+						"<AlphaHDRU32>-DALPHA -DHDRU32" ] ;
+SHADERSRC += [ Shader include/effect/shaders/rain/psRain.psh :
+						"<Drop>-DDROP"
+						"<DropOcclusion>-DDROP -DOCCLUSION"
+						"<DropOcclusion2>-DDROP -DOCCLUSION -DOCCLUSION2"
+						"<Sheet>-DSHEET" ] ;
+SHADERSRC += [ Shader include/effect/shaders/rain/vsDrop.vsh :
+						" "
+						"<Occlusion>-DOCCLUSION"
+						"<Simple>-DSIMPLE"
+						"<SimpleOcclusion>-DSIMPLE -DOCCLUSION" ] ;
+SHADERSRC += [ Shader include/effect/shaders/ocean/psFrequency.psh :
+						" "
+						"<Differential>-DDIFFERENTIAL" ] ; 
+SHADERSRC += [ Shader include/effect/shaders/ocean/psFFT.psh :
+						"<Horizontal>-DHORIZONTAL"
+						"<Vertical>-DVERTICAL" ] ;
+SHADERSRC += [ Shader include/effect/shaders/ocean/psOcean.psh :
+						"<>"
+						"<HDR>-DHDR" 
+						"<HDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shader include/effect/shaders/shadow/psExponentialFilter.psh :
+						"<X5>-DHORIZONTAL -DFIVE"
+						"<X7>-DHORIZONTAL -DSEVEN"
+						"<Y5>-DVERTICAL -DFIVE"
+						"<Y7>-DVERTICAL -DSEVEN" ] ;
+SHADERSRC += [ Shader include/effect/shaders/shadow/psVarianceFilter.psh :
+						"<X5>-DHORIZONTAL -DFIVE"
+						"<X7>-DHORIZONTAL -DSEVEN"
+						"<Y5>-DVERTICAL -DFIVE"
+						"<Y7>-DVERTICAL -DSEVEN" ] ;
+
+ImportCP Render/Shaders/Constants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP render\\shaders\\pscommon.h : TOP Code Mercury Library Graphics Render ;
+ImportCP render\\shaders\\pscommon.h : TOP Code Mercury Library Graphics Display ;
+ImportCP psConstants.h : TOP Code Mercury Library Graphics Display ;
+CPFile include/effect/shaders/psConstants.cp ;
+CPFile include/effect/shaders/vsConstants.cv ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library effect : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;

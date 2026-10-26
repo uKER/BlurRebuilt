@@ -1,0 +1,27 @@
+<config>
+
+<build
+	root="/shaders"
+/>
+
+<pc
+	compiler="fxc.exe /nologo /T:fx_2_0 /Od /Zi /Fo #output #input"
+	workingDestination="./shader_bin"
+	targetDestination="%BIZARRE_ROOT%\MyGame"
+	targetType="pc"
+	workingCopyTool="cmd /c copy #source #destination"
+	targetCopyTool="cmd /c copy #source #destination"
+	extension="fxo"
+/>
+
+<xbox360
+	compiler="fxc.exe /nologo /T:fx_2_0 /Od /Zi /Fo #output #input"
+	workingDestination="%BIZARRE_ROOT%\MyGame"
+	targetDestination="devkit:\MyGame"
+	targetType="xbox360"
+	workingCopyTool="cmd /c copy #source #destination"
+	targetCopyTool="%XEDK%\bin\win32\xbcp /r /y /t /f /d #source #destination"
+	extension="fxo"
+/>
+
+</config>

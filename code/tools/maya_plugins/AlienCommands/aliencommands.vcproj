@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="AlienCommands"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Debug\" IntermediateDirectory="obj\Win32_tool\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32_tool\Debug\AlienCommands.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\..\libs\vendor\maya\2008\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Release\" IntermediateDirectory="obj\Win32_tool\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32_tool\Release\AlienCommands.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\..\libs\vendor\maya\2008\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Speed\" IntermediateDirectory="obj\Win32_tool\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32_tool\Speed\AlienCommands.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\..\libs\vendor\maya\2008\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Profile\" IntermediateDirectory="obj\Win32_tool\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32_tool\Profile\AlienCommands.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\..\libs\vendor\maya\2008\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Master\" IntermediateDirectory="obj\Win32_tool\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32_tool\Master\AlienCommands.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\..\libs\vendor\maya\2008\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="AlienCommands" Filter="\">
+<File RelativePath="jamfile.jam"></File>
+<File RelativePath="buildlog.txt"></File>
+<Filter Name="AlienCommands" Filter="\">
+<File RelativePath="AlienCommands\AlienCommands.cpp"></File>
+<File RelativePath="AlienCommands\AlienCommands.h"></File>
+<File RelativePath="AlienCommands\stdafx.h"></File>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

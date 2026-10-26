@@ -1,0 +1,31 @@
+SupportedTargets WIN32 ;
+
+SubDir TOP Code MercuryGame Game ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath 
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+;
+
+
+
+SRC =
+FileTypes.cpp
+Registry.cpp
+;
+
+Application FileType : $(SRC) : stdafx.cpp ;
+
+LinkLibraries FileType : core system ;
+
+ExportVcproj FileType ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+
+Depends $(BIZARRE_ROOT)/Tools/common_tools_WIP/win32/filetypes/FileType.exe : $(BIZARRE_ROOT)/Tools/common_tools_WIP/win32/filetypes/ ;
+MkDir $(BIZARRE_ROOT)/Tools/common_tools_WIP/win32/filetypes/ ;
+
+EmbedManifest $(BIZARRE_ROOT)/Tools/common_tools_WIP/win32/filetypes/FileType.exe : FileType.exe ;

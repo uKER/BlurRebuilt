@@ -1,0 +1,36 @@
+SubDir TOP Code Mercury Library Common Btl ;
+
+StoreVcprojInfo btl ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/btl
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/vendor/cxxtest/current
+;
+
+###### Unit test
+TESTS =
+test/allocators/pool.h
+test/allocators/stackallocator.h
+test/containers/bitvector.h
+test/containers/chainedhashtable.h
+test/containers/hashtable.h
+test/containers/list.h
+test/containers/performance_tests.h
+test/containers/rlebitvector.h
+test/containers/sortedbinarytree.h
+test/containers/vector.h
+test/utility/autopointer.h
+test/utility/pair.h
+test/utility/scopedpointer.h
+test/utility/string.h
+test/utility/types.h
+;
+
+CxxTest btl_test : $(TESTS) : $($(PLATFORM)SRC) ;
+LinkLibraries btl_test : core system ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

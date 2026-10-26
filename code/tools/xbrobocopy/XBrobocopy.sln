@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XBrobocopy", "XBrobocopy\XBrobocopy.csproj", "{E7442D22-B67D-49F8-B809-D7396E9BDBF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XBrobocopyConsole", "XBrobocopyConsole\XBrobocopyConsole.csproj", "{D2859BC0-655A-4CCE-B694-CD0CA26821AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XBrobocopyTool", "XBrobocopyTool\XBrobocopyTool.csproj", "{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug xbcp|Any CPU = Debug xbcp|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release xbcp|Any CPU = Release xbcp|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Debug xbcp|Any CPU.ActiveCfg = Debug xbcp|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Debug xbcp|Any CPU.Build.0 = Debug xbcp|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Release xbcp|Any CPU.ActiveCfg = Release xbcp|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Release xbcp|Any CPU.Build.0 = Release xbcp|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7442D22-B67D-49F8-B809-D7396E9BDBF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Debug xbcp|Any CPU.ActiveCfg = Debug xbcp|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Debug xbcp|Any CPU.Build.0 = Debug xbcp|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Release xbcp|Any CPU.ActiveCfg = Release xbcp|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Release xbcp|Any CPU.Build.0 = Release xbcp|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2859BC0-655A-4CCE-B694-CD0CA26821AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Debug xbcp|Any CPU.ActiveCfg = Debug xbcp|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Debug xbcp|Any CPU.Build.0 = Debug xbcp|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Release xbcp|Any CPU.ActiveCfg = Release xbcp|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Release xbcp|Any CPU.Build.0 = Release xbcp|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA0F655-5716-4F3C-9AA1-34C60757A8F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

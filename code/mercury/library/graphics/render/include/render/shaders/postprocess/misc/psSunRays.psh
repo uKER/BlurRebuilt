@@ -1,0 +1,76 @@
+#include "..\..\psCommon.h"
+
+float4		g_vSettings1	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vSettings2	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_1);
+sampler2D	g_tTexture		: register(s0);
+
+#define	g_vSunPosition		g_vSettings1.xy
+#define	g_vSunSize			g_vSettings1.zw
+
+#define g_fSunIntensity		g_vSettings2.x
+
+#define	SAMPLES		16
+#define	STEP		(1.0f / SAMPLES)
+#define	SCALE		(-2.5f / SAMPLES)
+
+struct PS_OUTPUT
+{
+	float4 m_Colour		: COLOR0; 
+};
+
+struct VS_OUTPUT
+{
+	#if defined(BLUR_DX11) // [Blur1PCDX11] D3D11 links stages by register; the full-screen vertex shader emits SV_Position last.
+
+    float2 m_TexCoord	: TEXCOORD0;
+    float4 m_Position	: SV_Position;
+	#else
+    float4 m_Position	: POSITION;
+    float2 m_TexCoord	: TEXCOORD0;
+	#endif
+};
+
+float ApplyMask(float2 vPosition)
+{
+	float fLength2 = dot(vPosition * g_vSunSize, vPosition * g_vSunSize);
+	return 1.0f - saturate(fLength2);
+}
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+    
+	float3	vColour	= 0.0f;
+	float	fWeight = 1.0f;
+
+	for(int i = 0; i < SAMPLES; ++i)
+	{
+		float	fScale		= sqrt(i) * SCALE + 1.0f;
+		float2	vOffset		= (input.m_TexCoord - g_vSunPosition) * fScale;
+		float2	vTexCoord	= vOffset + g_vSunPosition;
+		float3	vSample		= tex2D(g_tTexture, vTexCoord).rgb;
+		float	fLuminance	= dot(vSample, float3(0.2125f, 0.7154f, 0.0721f));
+		float	fMask		= ApplyMask(vOffset);
+				vSample		*= fLuminance;
+				vSample		*= fMask;
+		
+		#ifdef GAMMA
+			vColour += fWeight * vSample * vSample;
+		#else
+			vColour += fWeight * vSample;
+		#endif
+			
+		fWeight -= STEP;
+	}
+	vColour *= 0.25f * g_fSunIntensity;
+
+#ifndef PS_2_0
+	#ifdef GAMMA
+		output.m_Colour = float4(sqrt(vColour), 1.0f);
+	#else
+		output.m_Colour = float4(vColour, 1.0f);
+	#endif
+#endif
+	
+	return output;
+}

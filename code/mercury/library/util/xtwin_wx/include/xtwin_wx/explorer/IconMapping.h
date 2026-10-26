@@ -1,0 +1,5 @@
+DEF(E_XtTreeViewNode_Root, "./icons/project.bmp", "./icons/project.bmp")
+DEF(E_XtTreeViewNode_PackFolder, "./icons/PackFolderClosed.bmp", "./icons/PackFolderOpen.bmp")
+DEF(E_XtTreeViewNode_Pack, "./icons/FolderHiddenClosed.bmp", "./icons/FolderHiddenOpen.bmp")
+DEF(E_XtTreeViewNode_RecordFolder, "./icons/FolderClosed.bmp", "./icons/FolderOpen.bmp")
+DEF(E_XtTreeViewNode_Record, "./icons/File.bmp", "./icons/File.bmp")

@@ -1,0 +1,14 @@
+xt
+	field __id "31E5E55D"
+	field __name "Tracer.Basic"
+	field __pack "2E661B2B"
+	field __type "Tracer_Effect"
+	field fade "1"
+	field name "Basic"
+	field shader "Temperature"
+	block size
+		field height "8"
+		field width "0.1"
+	end
+	field texture "Tracer"
+end

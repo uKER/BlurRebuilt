@@ -1,0 +1,24 @@
+HKCR
+{
+	COMServer.ServerWrapper.1 = s 'ServerWrapper Class'
+	{
+		CLSID = s '{AE14D6C6-2E7E-484D-A621-E62611B75B42}'
+	}
+	COMServer.ServerWrapper = s 'ServerWrapper Class'
+	{
+		CLSID = s '{AE14D6C6-2E7E-484D-A621-E62611B75B42}'
+		CurVer = s 'COMServer.ServerWrapper.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {AE14D6C6-2E7E-484D-A621-E62611B75B42} = s 'ServerWrapper Class'
+		{
+			ProgID = s 'COMServer.ServerWrapper.1'
+			VersionIndependentProgID = s 'COMServer.ServerWrapper'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{D8512517-560A-4353-A3AC-7D1CFE81505A}'
+		}
+	}
+}

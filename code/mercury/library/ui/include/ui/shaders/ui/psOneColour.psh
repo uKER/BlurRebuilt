@@ -1,0 +1,27 @@
+
+sampler2D	g_Texture0			: register(s0);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+	float2 TexCoord0			: TEXCOORD0;
+	//float4 MyWorldPosition		: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 );
+
+	OUT.Colour = IN.Colour;
+	OUT.Colour.a *= tex0.a;
+
+	return OUT;
+}

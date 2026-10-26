@@ -1,0 +1,69 @@
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tCurrent		: register(s0);
+sampler2D	g_tPrevious		: register(s1);
+#if defined(TOP) || defined(BOTTOM) || defined(LEFT) || defined(RIGHT)
+sampler2D	g_tEdge			: register(s2);
+#endif
+
+#define		g_fScale		g_vSettings.x
+#define		g_fDamping		g_vSettings.y
+#define		g_fPixelSize	g_vSettings.z
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float4	vNeighbouringHeights;
+#if defined(TOP)
+	vNeighbouringHeights.x	= tex2D(g_tCurrent, input.m_TexCoord + float2(-g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.y	= tex2D(g_tCurrent, input.m_TexCoord + float2(+g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.z	= tex2D(g_tEdge, input.m_TexCoord + float2(0.0f, -g_fPixelSize)).r;
+	vNeighbouringHeights.w	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, +g_fPixelSize)).r;
+#elif defined(BOTTOM)
+	vNeighbouringHeights.x	= tex2D(g_tCurrent, input.m_TexCoord + float2(-g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.y	= tex2D(g_tCurrent, input.m_TexCoord + float2(+g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.z	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, -g_fPixelSize)).r;
+	vNeighbouringHeights.w	= tex2D(g_tEdge, input.m_TexCoord + float2(0.0f, +g_fPixelSize)).r;
+#elif defined(LEFT)
+	vNeighbouringHeights.x	= tex2D(g_tEdge, input.m_TexCoord + float2(-g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.y	= tex2D(g_tCurrent, input.m_TexCoord + float2(+g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.z	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, -g_fPixelSize)).r;
+	vNeighbouringHeights.w	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, +g_fPixelSize)).r;
+#elif defined(RIGHT)
+	vNeighbouringHeights.x	= tex2D(g_tCurrent, input.m_TexCoord + float2(-g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.y	= tex2D(g_tEdge, input.m_TexCoord + float2(+g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.z	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, -g_fPixelSize)).r;
+	vNeighbouringHeights.w	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, +g_fPixelSize)).r;
+#else
+	vNeighbouringHeights.x	= tex2D(g_tCurrent, input.m_TexCoord + float2(-g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.y	= tex2D(g_tCurrent, input.m_TexCoord + float2(+g_fPixelSize, 0.0f)).r;
+	vNeighbouringHeights.z	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, -g_fPixelSize)).r;
+	vNeighbouringHeights.w	= tex2D(g_tCurrent, input.m_TexCoord + float2(0.0f, +g_fPixelSize)).r;
+#endif
+
+	float	fCurrentHeight	= tex2D(g_tCurrent, input.m_TexCoord).r;
+	float	fPreviousHeight	= tex2D(g_tPrevious, input.m_TexCoord).r;
+
+	float	fOffset			= dot(vNeighbouringHeights, 0.25f) - fCurrentHeight;
+	
+	float	fAcceleration	= g_fScale * fOffset; // scale is 4.0f * c2 * dt2 / h2
+	float	fVelocity		= (fCurrentHeight - fPreviousHeight) * g_fDamping;
+	float	fHeight			= fCurrentHeight + fVelocity + fAcceleration;
+
+	output.m_Colour = float4(fHeight, 0.0f, 0.0f, 1.0f);
+
+	return output;
+}

@@ -1,0 +1,21 @@
+echo "Building MercuryGame shaders for $(PLATFORM)" ;
+
+SubDir TOP Code MercuryGame Game Shaders ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+# MercuryGameShaders project setup
+
+ExportVcproj MercuryGameShaders ;
+StoreVcprojInfo MercuryGameShaders ;
+
+# Compile the shaders into Mercury Game
+
+AutoSetXenonRemoteLocation ;
+SetGameFolder $(BIZARRE_ROOT)/MercuryGame ;
+include $(TOP)/code/mercury/library/graphics/shader/shaders.jam ;
+include $(TOP)/code/mercury/library/graphics/vehicle/shaders.jam ;
+
+# Include the shader library
+
+SubInclude TOP Code Mercury Library Graphics Shader ;

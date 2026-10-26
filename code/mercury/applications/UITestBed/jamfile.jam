@@ -1,0 +1,223 @@
+SubDir TOP Code Mercury Applications UiTestBed ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+if $(BUILD) != Speed && $(BUILD) != Master
+{
+	if $(USERNAME) = dgill || $(USERNAME) = wbrown || $(USERNAME) = pereid
+	{
+		Optim Off ;
+		echo OPTIMISATIONS ARE _OFF_ FOR gameUI ;
+	}
+}
+
+IncludePath 
+UI
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Movie/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Network/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/Code/Mercury/Library/UI/include
+$(TOP)/Code/Mercury/Library/Util/Lua_Shared/include
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/lua/Lua-5.1.3/src
+$(TOP)/Code/Vendor/zlib/current_mercury
+$(TOP)/Code/Mercury/Library/gamesys/framework/include
+
+$(TOP)/Code/Mercury/gamesys/game_resource/include
+$(TOP)/Code/Mercury/gamesys/resource_utils/include
+$(TOP)/Code/Mercury/gamesys/crowd_system/include
+$(TOP)/Code/Mercury/graphics/fx/include
+$(TOP)/Code/Mercury/graphics/renderingdata/include
+$(TOP)/Code/Mercury/graphics/scenegraph/include
+$(TOP)/Code/Mercury/graphics/world_render/include
+$(TOP)/Code/Mercury/graphics/portal/include
+$(TOP)/Code/Mercury/physics/gravity/include
+$(TOP)/Code/Mercury/util/resource/include
+$(TOP)/Code/Mercury/animation/include
+$(TOP)/Code/Mercury/gamesys/actor_system/include
+$(TOP)/Code/Mercury/gamesys/animated_model/include
+$(TOP)/Code/Mercury/graphics/textureresource/include
+$(TOP)/Code/Mercury/shared_actors/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" "$(TOP)/libs/vendor/openal/1.1/lib/Win32/OpenAL32.lib" "$(TOP)/libs/vendor/openal/1.1/lib/Win32/EFX-Util.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+UI/FileSystem.cpp
+UI/PolyTest.cpp
+UI/SectionUI.cpp
+UI/UiManager.cpp
+UI/OverloadNew.cpp
+UI/Game/GameDataFinder.cpp
+UI/Game/GameVariableStore.cpp
+UI/Game/Lua_Interface/Lua_GameProfile.cpp
+#UI/Game/Lua_Interface/Lua_Windows.cpp
+UI/Game/Gadgets/UITestLeaderboardNEW.cpp
+Main.cpp
+;
+
+LUASRC = 
+./UI/Game/Lua_Scripts/UIEnums.lua
+./UI/Game/Lua_Scripts/UIFontSequences.lua
+./UI/Game/Lua_Scripts/UISetup.lua
+./UI/Game/Lua_Scripts/UIGlobals.lua
+./UI/Game/Lua_Scripts/Screens/GUIBank.lua
+./UI/Game/Lua_Scripts/Screens/Main.lua
+./UI/Game/Lua_Scripts/Screens/Vinyl.lua
+./UI/Game/Lua_Scripts/Screens/Blank.lua
+./UI/Game/Lua_Scripts/Screens/FriendsList.lua
+./UI/Game/Lua_Scripts/Screens/Intro/Welcome.lua
+./UI/Game/Lua_Scripts/Screens/Intro/MainMenu.lua
+./UI/Game/Lua_Scripts/Screens/Profile/AsyncLoad.lua
+./UI/Game/Lua_Scripts/Screens/Profile/AsyncSave.lua
+;
+
+EXCLUDE_LUA = [ GLOB UI/Game/Lua_Scripts/Debug : *.lua ] ;
+ExcludeFromSourceControl $(EXCLUDE_LUA) ;
+
+XENONLIBS = $(TOP)/libs/vendor/bink/1.8s/binkxenon ;
+
+PS3LIBS = 
+$(TOP)/libs/vendor/bink/1.8s/binkps3 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np2_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub
+$(SCE_PS3_ROOT)/target/ppu/lib/libl10n_stub
+;
+
+PCLIBS = $(TOP)/libs/vendor/bink/1.8s/binkw32 ;
+
+if $(PLATFORM) = XENON
+{
+	LINKLIBS += xmp.lib ;
+}
+
+DEMONWARE_LIBS = bdConnection bdCore bdLobby bdSocket bdPlatform bdNet bdExampleCommonLobby ;
+DEMONWARE_ENCRYPTION_LIBS = libtomcrypt libtommath ;
+
+if $(BUILD) = Debug
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/debug/$(DEMONWARE_LIBS).lib ;
+	}
+}
+else
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/release/$(DEMONWARE_LIBS).lib ;
+	}
+}
+
+LinkLibraries UITestBed :
+		core 
+		system
+		display 
+		liblua 
+		lua_shared 
+		misc_shared 
+		render 
+		movie 
+		samples 
+		ui 
+		xtgame 
+		zlib 
+		framework 
+		network 
+		
+		$($(PLATFORM)LIBS) 
+		fx
+		portal
+		RenderingData
+		textureresource
+		world_render
+		scenegraph
+		animation
+		animated_model
+		resource 
+		resource_utils
+		actor_system
+		crowd_system
+		game_resource
+		shared_actors
+		gravity
+		navmesh
+		;
+		
+LUABundle UITestBed : $(LUASRC) : ./Ui/Game/LUA_Scripts ;
+Application UITestBed : $(SRC) ; #: stdafx.cpp ;
+ExportVcproj UITestBed ;
+
+CPFile include/ui/shaders/psConstants.cp ;
+CPFile include/ui/shaders/vsConstants.cv ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Movie ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Mercury Library Network ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Ui ;
+SubInclude TOP Code Mercury Library Util Lua_Shared ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+SubInclude TOP code vendor lua Lua-5.1.3 ;
+
+SubInclude TOP code Mercury Library Gamesys Game_Resource ;
+SubInclude TOP code Mercury Library Gamesys Resource_Utils ;
+SubInclude TOP code Mercury Library Graphics Fx ;
+SubInclude TOP code Mercury Library Graphics RenderingData ;
+SubInclude TOP code Mercury Library Graphics SceneGraph ;
+SubInclude TOP code Mercury Library Graphics World_Render ;
+SubInclude TOP code Mercury Library Graphics Portal ;
+SubInclude TOP code Mercury Library Physics Gravity ;
+SubInclude TOP code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Ai NavMesh ;
+SubInclude TOP Code Mercury Library Ai NavMesh ;
+SubInclude TOP Code Mercury Library Gamesys Crowd_System ;
+SubInclude TOP Code Mercury Library Animation ;
+SubInclude TOP Code Mercury Library Gamesys Actor_system ;
+SubInclude TOP Code Mercury Library Gamesys Animated_Model ;
+SubInclude TOP Code Mercury Library Graphics textureresource ;
+SubInclude TOP Code Mercury Library Gamesys shared_actors ;
+
+
+
+
+

@@ -1,0 +1,55 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tDepthMin		: register(s0);
+sampler2D	g_tDepthMax		: register(s1);
+
+#define		g_fPixelWidth	g_vSettings.x
+#define		g_fPixelHeight	g_vSettings.y
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float	fMin = 1.0f;
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(-g_fPixelWidth, -g_fPixelHeight)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(0.0f, -g_fPixelHeight)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(+g_fPixelWidth, -g_fPixelHeight)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(-g_fPixelWidth, 0.0f)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(0.0f, 0.0f)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(+g_fPixelWidth, 0.0f)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(-g_fPixelWidth, +g_fPixelHeight)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(0.0f, +g_fPixelHeight)).x);
+			fMin = min(fMin, tex2D(g_tDepthMin, input.m_TexCoord + float2(+g_fPixelWidth, +g_fPixelHeight)).x);
+
+	float	fMax = 0.0f;
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(-g_fPixelWidth, -g_fPixelHeight)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(0.0f, -g_fPixelHeight)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(+g_fPixelWidth, -g_fPixelHeight)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(-g_fPixelWidth, 0.0f)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(0.0f, 0.0f)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(+g_fPixelWidth, 0.0f)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(-g_fPixelWidth, +g_fPixelHeight)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(0.0f, +g_fPixelHeight)).x);
+			fMax = max(fMax, tex2D(g_tDepthMax, input.m_TexCoord + float2(+g_fPixelWidth, +g_fPixelHeight)).x);
+	
+	output.m_Colour	= 0.0f;
+	if (fMax < 0.02f)
+		output.m_Colour = -1.0f;
+	else if (0.98f < fMin)
+		output.m_Colour = 1.0f;
+	
+	return output;
+}
+

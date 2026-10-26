@@ -1,0 +1,6 @@
+#define SCROLLDISTORT
+#define DOUBLELAYER
+#define SCROLLDISTORT_DOUBLELAYER
+#define DEPTHFADEDISABLE
+
+#include "Perks/MeshEffect.fx"

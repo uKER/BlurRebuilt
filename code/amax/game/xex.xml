@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xex>
+  <titleid id="0x41560845"/>
+  <privilege id="0x09"/>
+  <rating esrb="ESRB_E10+"
+          cero="UNRATED"
+          pegi-bbfc="PEGIBBFC_7"
+          usk="USK_12"
+          pegi="PEGI_7"
+          pegi-fi="PEGI_7"
+          pegi-pt="PEGI_6"
+          oflc-au="OFLC_AU_G8"
+          oflc-nz="OFLC_NZ_G8"
+          fpb="UNRATED"/>
+</xex>

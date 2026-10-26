@@ -1,0 +1,54 @@
+SubDir TOP Code Mercury Library GameSys Animated_Model ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/animation/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/Render/Include
+$(MERCURY)/graphics/world_render/Include
+$(MERCURY)/graphics/RenderingData/include
+$(MERCURY)/graphics/SceneGraph/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/util/resource/include
+;
+
+
+if $(PLATFORM) = PC
+{
+  SUBDIRHDRS += \"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+source/AnimatedModelInstance.cpp
+source/ManagedAnimatedModel.cpp
+source/UpdateTask.cpp
+source/TaskManager.cpp
+;
+
+if $(PLATFORM) = PS3
+{
+	SPUSRC =
+		<SPU>source/AnimatedModelInstance.cpp
+		<SPU>source/UpdateTask.cpp
+	;
+	
+	SPUSRC =
+		[ Batch $(SPUSRC) : source/AnimatedModelPch.h : SPU ]
+	;
+	
+	LinkLibraries animated_model_update_task : spu_anim_eval_lib ;
+	AddSPUModule animated_model : animated_model_update_task : $(SPUSRC) ;
+}
+
+
+Library animated_model : $(SRC) : source/AnimatedModelPch.cpp : AnimatedModelPch.h ;
+
+SubInclude TOP Code Mercury Library Animation ;

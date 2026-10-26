@@ -1,0 +1,40 @@
+SubDir TOP Code Mercury Applications Texture_Export_Test ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+IncludePath
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/UI/include
+$(TOP)/Code/Mercury/Library/Graphics/Texture_Export/include
+$(TOP)/Code/Vendor/zlib/current_mercury
+$(TOP)/Code/Vendor/lua/current/src
+;
+
+if $(PLATFORM) = PC
+{
+	SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 ;
+}
+
+SRC =
+main.cpp
+source/testSection.cpp
+;
+
+LinkLibraries TextureExportTest : core system display samples xtgame misc_shared ;
+		
+Application TextureExportTest : $(SRC) : stdafx.cpp ;
+ExportVcproj TextureExportTest ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;

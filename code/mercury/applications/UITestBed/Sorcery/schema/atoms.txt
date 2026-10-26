@@ -1,0 +1,29 @@
+atom bool : bool;
+
+atom i8 : i8;
+atom i16 : i16;
+atom i32 : i32;
+atom i64 : i64;
+
+atom u8 : u8;
+atom u16 : u16;
+atom u32 : u32;
+atom u64 : u64;
+
+atom f32 : f32;
+atom f64 : f64;
+
+atom sz8 : sz8;
+atom LocId : locid;
+
+type XtLocString
+{
+	u32 id;
+	sz8 name;
+	sz8 text;
+};
+
+[Record] type XtLocTable
+{
+	XtLocString[] strings;
+};

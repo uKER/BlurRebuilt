@@ -1,0 +1,11 @@
+xt
+	field __id "33427F4F"
+	field __name "FontStyles.Verdana"
+	field __pack "F2519802"
+	field __type "UIFontStyle"
+	field dropshadow "0.000"
+	field font "Verdana"
+	field name "V"
+	field shader "1"
+	field tracking "0"
+end

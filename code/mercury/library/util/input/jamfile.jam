@@ -1,0 +1,44 @@
+SubDir TOP Code Mercury Library Util Input ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/input/Device.cpp
+./source/input/DeviceManager.cpp
+./source/input/GameInputMapping.cpp
+./source/input/GameInput.cpp
+./source/input/Input.cpp
+./source/input/PadVirtual.cpp
+;
+
+
+PS3SRC = 
+./source/input/DeviceManagerPS3.cpp
+./source/input/PadPS3.cpp
+;
+
+PCSRC =
+./source/input/DeviceManagerPC.cpp
+./source/input/KeyboardPC.cpp
+./source/input/MousePC.cpp
+./source/input/Pad360.cpp
+;
+
+if $(USERNAME) = gsmillie
+{
+	SrcOptim $(SRC) : Off ;
+}
+
+
+Library input : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

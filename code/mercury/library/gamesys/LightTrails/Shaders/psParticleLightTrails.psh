@@ -1,0 +1,32 @@
+#include "../../graphics/display/include/display/shaders/psCommon.h"
+#include "../../graphics/display/include/display/shaders/psConstants.h"
+
+struct PS_INPUT
+{
+	float4	m_Colour		: TEXCOORD0;
+	float3	m_Normal		: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+ 	float alpha = input.m_Colour.a;
+	
+	//Distance centre
+	float distance = length(input.m_Normal.xyz);
+
+	alpha *= saturate(1.f - distance);
+
+	
+	output.m_Colour.rgb = input.m_Colour.rgb * alpha;
+	output.m_Colour.a = alpha;
+	
+	return output;
+}

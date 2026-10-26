@@ -1,0 +1,231 @@
+
+type SceneConfig
+{
+  f32 ScaleFactor = 1;
+};
+
+type CycleParameters
+{
+  f32 MaxGlobalRotationError = 0.7;
+  f32 MaxGlobalTranslationError = 0.005;
+  f32 MaxRelativeCustomCurveError = 0.0078125;
+  f32 MaxHighFidelityRotationError = 0.1;
+  f32 MaxHighFidelityTranslationError = 0.0001;
+  bool RemoveTranslationChannelsMatchingBasePose = true;
+  bool RemoveChannelsWithNoKeys = true;
+};
+
+[Hide]
+[NodeGraph(nodeColour:red,pinColour:red)]
+[Summary("{Name}")]
+type InputVar
+{
+	sz8		Name;
+};
+
+[Summary("{Name}: {Value:f2}")]
+[Default(Name:"Constant")]
+type ConstantVar: InputVar
+{
+	control Info;
+	[Range(0,1)] f32		Value;
+};
+
+[Summary("SineWave")]
+type SineWaveVar: InputVar
+{
+  [Range(0,10)] f32  Frequency = 0.4;
+  f32 Scale   = 1;
+  f32 Offset  = 0;
+  [Range(0,1)] f32 PhaseOffset = 0;
+  bool Clamp;
+  RangeF32 ClampRange;
+};
+
+[Summary("Timeline")]
+[NodeGraph(nodeColour:lightmagenta)]
+type TimelineVar: InputVar
+{
+};
+
+//enum ControllerInputType
+//{
+//	ForwardBack,
+//	LeftRight,
+//	Action1,
+//	Action2,
+//	Heading
+//};
+
+//[Summary("{Input}")]
+//type ControllerInputVar: InputVar
+//{
+//	ControllerInputType Input;
+//};
+
+enum BlendMode
+{
+	//Replace,
+	Accumulate,
+	Additive,
+	Lerp
+};
+
+enum LoopMode
+{
+  Once,
+  Continuous
+};
+
+[Hide]
+[NodeGraph(nodeColour:lightblue, pinColour:lightblue)]
+[DefaultDerivedType(CycleNode)]
+type Node
+{
+};
+
+[NodeGraph(pinEnabled:false)]
+[Summary("Result")]
+type ResultNode: Node
+{
+	[NodeGraph(pinArrow:true)] Node*& 	Input;
+};
+
+flags FieldMaskFlags
+{
+	TransformRotation		= 1,
+	TransformTranslation	= 1,
+	TransformScale			= 1,
+	TrajectoryRotation		= 1,
+	TrajectoryTranslation	= 1,
+	TrajectoryDeltaRotation	= 1,
+	TrajectoryDeltaTranslation	= 1,
+	CustomScalar = 1,
+	CustomVector3 = 1,
+	CustomVector4 = 1
+};
+
+[Summary("{Filename:n}")]
+[NodeGraph(nodeColour:green)]
+type CycleNode: Node
+{
+	sz8	Filename;
+	sz8	SubtractedFilename;
+	LoopMode LoopMode = Continuous;
+	bool IgnoreTrajectory = false;
+	[Range(0,2)] f32 TimeScale = 1;
+	[Range(0,1)] f32 PhaseOffset = 0;
+	SceneConfig  SceneOptions;
+	CycleParameters  CycleOptions;
+	[Hide] u32 Version = 2;
+	bool UseFieldMask = false;
+	FieldMaskFlags EnabledFields;
+	bool WorldSpace = false;
+	
+};
+
+[Summary("({ControlValue:f3}){Input}")]
+type BlendInput
+{
+	[NodeGraph(pinLabel:"Input ({ControlValue:f2})", pinArrow:true)] 
+	Node*&			Input;
+	f32 			ControlValue = 0;
+};
+
+[Summary("{Name} ({BlendMode})")]
+type BlendNode: Node
+{
+	BlendMode	BlendMode = Accumulate;
+
+	[Tool] sz8			Name = "Blend";
+	[NodeGraph(pinArrow:true)] InputVar*&	ControlInput;
+	BlendInput[]	Inputs;
+	[Data(path:"Inputs",xField:"ControlValue",yField:"ControlValue",xMin:-1,xMax:+1,yMin:-1,yMax:+1,xSize:400, ySize:100)]
+	control Chart;
+
+	bool			Wrap = false;
+};
+
+[Summary("{Name} ({BlendMode})")]
+type BlendLayer
+{
+	[Tool] sz8	Name = "Layer";
+	BlendMode	BlendMode = Lerp;
+	
+	[NodeGraph(pinArrow:true, pinLabel:"{BlendMode} Layer")]
+	Node*& Input;
+};
+
+[Summary("{Name}")]
+type LayeredBlendNode: Node
+{
+	[Tool] sz8	Name = "LayeredBlend";
+	//control Sequencer;
+	[NodeGraph(pinArrow:true)] Node*& BaseLayer;
+	BlendLayer[] Layers; 
+};
+
+enum MirrorAxis
+{
+  X, Y, Z
+};
+
+[NodeGraph(nodeColour:yellow)]
+[Summary("Mirror {MirrorAxis}")]
+type MirrorNode: Node
+{
+	Node*& Input;
+	MirrorAxis MirrorAxis = X;
+	bool Enabled = true;
+};
+
+[NodeGraph(nodeColour:orange)]
+[Summary("TimeController")]
+type TimeControllerNode: Node
+{
+  InputVar*& ControlInput;
+  Node*& Input;
+  [Default(from:0, to:1)] RangeF32 InputRange;
+  [Default(from:0,to:1)] RangeF32 TimeRange;
+};
+
+// [NodeGraph(nodeColour:lightorange)]
+// type IkTargetNode: Node
+// {
+// 	// position target as one of three things:
+// 	//	- vector
+// 	//	- default (= same as effector)
+// 	//	- joint + offset
+// 
+// 	// input joint name.
+// 	sz8				TargetJointName;
+// 	
+// 	IkChain*&		IkChain;
+// };
+// 
+// [NodeGraph(nodeColour:lightred)]
+// [Summary("{Name}")]
+// type IkChain
+// {
+// 	[Tool] sz8	Name;
+// 	sz8		RootJointName;
+// 	sz8		MidJointName;
+// 	sz8		EffectorJointName;
+// 	sz8		PlaneTargetJointName;
+// };
+
+[Record]
+type Graph
+{
+	[NodeGraph(ownTab:true,watermark:"Blend Tree")]
+	
+	[Hide]
+	control NodeGraph;
+
+	[NodeGraph(root:true)] ResultNode*	Result = ResultNode;
+	[NodeGraph(root:true)] Node*[]		Nodes;
+	//[NodeGraph(root:true)] IkChain[]	IkChains;
+	
+	[NodeGraph(root:true)] [FlatArray] InputVar*[] InputVars;
+};
+

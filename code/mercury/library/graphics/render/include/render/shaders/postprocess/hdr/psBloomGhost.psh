@@ -1,0 +1,70 @@
+#include "..\..\psCommon.h"
+
+float4		g_vScale01		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vScale23		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_1);
+float4		g_vColour0		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_2);
+float4		g_vColour1		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_3);
+float4		g_vColour2		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_4);
+float4		g_vColour3		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_5);
+
+sampler2D	bloomTexture	: register(s0);
+sampler2D	maskTexture		: register(s1);
+
+#if defined(PLATFORM_PS3)
+#pragma texformat bloomTexture RGBA8
+#pragma texformat maskTexture LUMINANCE8
+#endif
+
+struct PS_INPUT
+{
+	float2 uv				: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float4	xy0xy1			= (input.uv.xyxy - 0.5f) * g_vScale01;
+	float4	xy2xy3			= (input.uv.xyxy - 0.5f) * g_vScale23;
+	
+	float4	uv0uv1			= xy0xy1 + 0.5f;
+	float4	uv2uv3			= xy2xy3 + 0.5f;
+
+	real4	fades			= 0.0f;
+	fades.x					= tex2D(maskTexture, uv0uv1.xy).r;
+	fades.y					= tex2D(maskTexture, uv0uv1.zw).r;
+	fades.z					= tex2D(maskTexture, uv2uv3.xy).r;
+	fades.w					= tex2D(maskTexture, uv2uv3.zw).r;
+
+	real3	bloom0			= tex2D(bloomTexture, uv0uv1.xy).rgb;
+	real3	bloom1			= tex2D(bloomTexture, uv0uv1.zw).rgb;
+	real3	bloom2			= tex2D(bloomTexture, uv2uv3.xy).rgb;
+	real3	bloom3			= tex2D(bloomTexture, uv2uv3.zw).rgb;
+
+	real3	bloom			= tex2D(bloomTexture, input.uv).rgb;
+
+#ifdef GAMMA
+	bloom0 *= bloom0;
+	bloom1 *= bloom1;
+	bloom2 *= bloom2;
+	bloom3 *= bloom3;
+	bloom *= bloom;
+#endif
+
+	output.colour.rgb = bloom;
+	output.colour.rgb += bloom0 * g_vColour0 * fades.x;
+	output.colour.rgb += bloom1 * g_vColour1 * fades.y;
+	output.colour.rgb += bloom2 * g_vColour2 * fades.z;
+	output.colour.rgb += bloom3 * g_vColour3 * fades.w;
+#ifdef GAMMA
+	output.colour.rgb = sqrt(output.colour.rgb);
+#endif
+	output.colour.a = 1.0f;
+	
+	return output;
+}

@@ -1,0 +1,442 @@
+info on debugging done on ssl cert issue.
+It appears that s3.amazonaws.com:443 will validate but morgan2.s3.amazonaws.com:443 will not
+// SSL certificate problem, verify that the CA cert is OK. Details:
+// error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed
+// Check domain listed on cert vs URL used:
+// URL: morgan2.s3.amazonaws.com
+// Cert common name CN: *.s3.amazonaws.com
+// Check CA is in bundle:
+// DigiCert Assured ID Root CA is in bundle (x4)
+// Entrust is in bundle (x7)
+
+// note:
+// http://www.openssl.org/docs/ssl/SSL_CTX_load_verify_locations.html
+// apparently does not work in Windows due to some limit in openssl
+
+pem bundle creator tool
+http://curl.haxx.se/lxr/source/lib/mk-ca-bundle.pl
+
+downloaded pem certs from:
+https://www.entrust.net/downloads/root_request.cfm?reqtype=1
+
+http://hackaday.com/2008/12/30/25c3-hackers-completely-break-ssl-using-200-ps3s/
+
+/*
+INFO ON S3 CERTS:
+
+* The Amazon Cert *
+Subject:C=US, ST=Washington, L=Seattle, O=Amazon.com Inc., CN=*.s3.amazonaws.com
+Issuer:C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert Global CA
+
+Version:2
+Signature Algorithm:sha1WithRSAEncryption
+Start date:2008-12-02 00:00:00 GMT
+Expire date:2010-02-15 23:59:59 GMT
+Public Key Algorithm:rsaEncryption
+RSA Public Key:1024
+X509v3 Basic Constraints:CA:FALSE
+X509v3 CRL Distribution Points:URI:http://crl3.digicert.com/DigiCertGlobalCA-2008k.crl, 
+URI:http://crl4.digicert.com/DigiCertGlobalCA-2008k.crl
+
+* The issuing CA Cert 'Digicert' *
+
+Subject:C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert Global CA
+Issuer:C=US, O=Entrust.net, OU=www.entrust.net/CPS incorp. by ref. (limits liab.), OU=(c) 1999 Entrust.net Limited, 
+CN=Entrust.net Secure Server Certification Authority
+
+Version:2
+Serial Number:4286aba0
+Signature Algorithm:sha1WithRSAEncryption
+Start date:2006-07-14 17:10:28 GMT
+Expire date:2014-07-14 17:40:28 GMT
+Public Key Algorithm:rsaEncryption
+RSA Public Key:2048
+X509v3 Basic Constraints:CA:TRUE,pathlen:0
+
+*/
+
+/*
+
+TESTING SSL 
+
+// Comparing the entrust cert to the list of root certs taken from libcurl
+// we find no matches 
+Serial Number:4286aba0
+
+OpenSSL> x509 -in entrust1.pem -noout -noout -serial
+serial=374AD243
+OpenSSL>
+OpenSSL> x509 -in entrust2.pem -noout -noout -serial
+serial=380391EE
+OpenSSL> x509 -in entrust3.pem -noout -noout -serial
+serial=3863B966
+OpenSSL> x509 -in entrust4.pem -noout -noout -serial
+serial=389B113C
+OpenSSL> x509 -in entrust5.pem -noout -noout -serial
+serial=389EF6E4
+OpenSSL> x509 -in entrust6.pem -noout -noout -serial
+serial=456B5054
+OpenSSL> x509 -in entrust7.pem -noout -noout -serial
+serial=3CB54F40
+
+OpenSSL> x509 -in digicert1.pem -noout -noout -serial
+serial=0CE7E0E517D846FE8FE560FC1BF03039
+OpenSSL>
+OpenSSL> x509 -in digicert2.pem -noout -noout -serial
+serial=083BE056904246B1A1756AC95991C74A
+OpenSSL> x509 -in digicert3.pem -noout -noout -serial
+serial=02AC5C266A0B409B8F0B79F2AE462577
+
+OpenSSL> x509 -in entrustSite1.pem -noout -noout -serial
+serial=374AD243
+OpenSSL> x509 -in entrustSite2.pem -noout -noout -serial
+unable to load certificate
+1304:error:0D07209B:asn1 encoding routines:ASN1_get_object:too long:.\crypto\asn1\asn1_lib.c:142:
+1304:error:0D068066:asn1 encoding routines:ASN1_CHECK_TLEN:bad object header:.\crypto\asn1\tasn_dec.c:1281:
+1304:error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error:.\crypto\asn1\tasn_dec.c:380:Type=X509
+1304:error:0906700D:PEM routines:PEM_ASN1_read_bio:ASN1 lib:.\crypto\pem\pem_oth.c:83:
+error in x509
+OpenSSL> x509 -in entrustSite3.pem -noout -noout -serial
+serial=456B5054
+OpenSSL> x509 -in entrustSite4.pem -noout -noout -serial
+serial=42872D4C
+OpenSSL> x509 -in entrustSite5.pem -noout -noout -serial
+serial=456B50CD
+
+*/
+
+s_client -connect www.entrust.net:443  -prexit
+s_client -connect morgan.s3.amazonaws.com:443 -CApath C:\code\ContentServerDev\openssl-0.9.8i\out32 -prexit
+ 
+ 
+OpenSSL> s_client -connect docs.demonware.net:443 -CAfile C:\code\ContentServerDev\openssl-0.9.8i\out32\cacert_bundle.pem
+Loading 'screen' into random state - done
+CONNECTED(00000700)
+depth=1 /C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+verify return:1
+depth=0 /C=IE/O=*.demonware.net/OU=GT18811329/OU=See www.rapidssl.com/resources/cps (c)08/OU=Domain Control Validated - RapidSSL(R)/CN=*.demonware.net
+verify return:1
+---
+Certificate chain
+ 0 s:/C=IE/O=*.demonware.net/OU=GT18811329/OU=See www.rapidssl.com/resources/cps (c)08/OU=Domain Control Validated - RapidSSL(R)/CN=*.demonware.net
+   i:/C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIDSzCCArSgAwIBAgIDCONaMA0GCSqGSIb3DQEBBAUAMFoxCzAJBgNVBAYTAlVT
+MRwwGgYDVQQKExNFcXVpZmF4IFNlY3VyZSBJbmMuMS0wKwYDVQQDEyRFcXVpZmF4
+IFNlY3VyZSBHbG9iYWwgZUJ1c2luZXNzIENBLTEwHhcNMDgwNzA5MTcxNDUwWhcN
+MTAxMDA5MTcxNDUwWjCBujELMAkGA1UEBhMCSUUxGDAWBgNVBAoUDyouZGVtb253
+YXJlLm5ldDETMBEGA1UECxMKR1QxODgxMTMyOTExMC8GA1UECxMoU2VlIHd3dy5y
+YXBpZHNzbC5jb20vcmVzb3VyY2VzL2NwcyAoYykwODEvMC0GA1UECxMmRG9tYWlu
+IENvbnRyb2wgVmFsaWRhdGVkIC0gUmFwaWRTU0woUikxGDAWBgNVBAMUDyouZGVt
+b253YXJlLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAp6iOHzRnaPZe
+vaaFA3ygtfZMvAg6JLU451hpd7mSH0+xeMssJZ3lGp5Cl6PiYK5mTjsESfKMocIb
++djhYqPDk1l7zSFGRyNFi2odtI1j+UEFGBQlmvWZiPeAQYXl0cvrDCda/P5UeXZE
+mTcB16n7lKM3wT42oix0h7iM3l5zgr8CAwEAAaOBvTCBujAOBgNVHQ8BAf8EBAMC
+BPAwHQYDVR0OBBYEFDGqSh6c0ADITNEVprLpGsRLEqX9MDsGA1UdHwQ0MDIwMKAu
+oCyGKmh0dHA6Ly9jcmwuZ2VvdHJ1c3QuY29tL2NybHMvZ2xvYmFsY2ExLmNybDAf
+BgNVHSMEGDAWgBS+qKB0clBrRLfJI9j7qP+zV2tobDAdBgNVHSUEFjAUBggrBgEF
+BQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQQFAAOBgQAA
+H+7V/1feJYSQAMXkiOcmNMDoQODdJjiWpMGSTd95RJ7AjKR4Oju1J4t4PyZMgsHN
+sh2TX+C509DHTgjmmXLM2gIQ7/aTc+hmuGFsM1BntrvK+T8RV4GGxiJpUlJJ5Jd9
+sGfPLi+uiSBeaMxZs3j21hfVc4Tq5/ex+UC/jJI5Jw==
+-----END CERTIFICATE-----
+subject=/C=IE/O=*.demonware.net/OU=GT18811329/OU=See www.rapidssl.com/resources/cps (c)08/OU=Domain Control Validated - RapidSSL(R)/CN=*.demonware.net
+issuer=/C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1411 bytes and written 322 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 1024 bit
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID: 4FAD6C5D0DDEF0C2C648F9ADF2D42094E030AF1E06FC49127CAE46A6CFB57A5D
+    Session-ID-ctx:
+    Master-Key: 558DCBE00FB34BBA27D88C208A13A3A1D6D74DEE8313A2FDBC57125DC874647A984A665525A851FC42092EDD4F0D8423
+    Key-Arg   : None
+    Start Time: 1231864291
+    Timeout   : 300 (sec)
+    Verify return code: 0 (ok)
+---
+
+OpenSSL> s_client -connect cvs.demonware.net:443 -CAfile C:\code\ContentServerDev\openssl-0.9.8i\out32\cacert_bundle.pem
+Loading 'screen' into random state - done
+CONNECTED(000006E8)
+depth=1 /C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+verify return:1
+depth=0 /C=IE/O=*.demonware.net/OU=GT18811329/OU=See www.rapidssl.com/resources/cps (c)08/OU=Domain Control Validated - RapidSSL(R)/CN=*.demonware.net
+verify return:1
+---
+Certificate chain
+ 0 s:/C=IE/O=*.demonware.net/OU=GT18811329/OU=See www.rapidssl.com/resources/cps (c)08/OU=Domain Control Validated - RapidSSL(R)/CN=*.demonware.net
+   i:/C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIDSzCCArSgAwIBAgIDCONaMA0GCSqGSIb3DQEBBAUAMFoxCzAJBgNVBAYTAlVT
+MRwwGgYDVQQKExNFcXVpZmF4IFNlY3VyZSBJbmMuMS0wKwYDVQQDEyRFcXVpZmF4
+IFNlY3VyZSBHbG9iYWwgZUJ1c2luZXNzIENBLTEwHhcNMDgwNzA5MTcxNDUwWhcN
+MTAxMDA5MTcxNDUwWjCBujELMAkGA1UEBhMCSUUxGDAWBgNVBAoUDyouZGVtb253
+YXJlLm5ldDETMBEGA1UECxMKR1QxODgxMTMyOTExMC8GA1UECxMoU2VlIHd3dy5y
+YXBpZHNzbC5jb20vcmVzb3VyY2VzL2NwcyAoYykwODEvMC0GA1UECxMmRG9tYWlu
+IENvbnRyb2wgVmFsaWRhdGVkIC0gUmFwaWRTU0woUikxGDAWBgNVBAMUDyouZGVt
+b253YXJlLm5ldDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAp6iOHzRnaPZe
+vaaFA3ygtfZMvAg6JLU451hpd7mSH0+xeMssJZ3lGp5Cl6PiYK5mTjsESfKMocIb
++djhYqPDk1l7zSFGRyNFi2odtI1j+UEFGBQlmvWZiPeAQYXl0cvrDCda/P5UeXZE
+mTcB16n7lKM3wT42oix0h7iM3l5zgr8CAwEAAaOBvTCBujAOBgNVHQ8BAf8EBAMC
+BPAwHQYDVR0OBBYEFDGqSh6c0ADITNEVprLpGsRLEqX9MDsGA1UdHwQ0MDIwMKAu
+oCyGKmh0dHA6Ly9jcmwuZ2VvdHJ1c3QuY29tL2NybHMvZ2xvYmFsY2ExLmNybDAf
+BgNVHSMEGDAWgBS+qKB0clBrRLfJI9j7qP+zV2tobDAdBgNVHSUEFjAUBggrBgEF
+BQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQQFAAOBgQAA
+H+7V/1feJYSQAMXkiOcmNMDoQODdJjiWpMGSTd95RJ7AjKR4Oju1J4t4PyZMgsHN
+sh2TX+C509DHTgjmmXLM2gIQ7/aTc+hmuGFsM1BntrvK+T8RV4GGxiJpUlJJ5Jd9
+sGfPLi+uiSBeaMxZs3j21hfVc4Tq5/ex+UC/jJI5Jw==
+-----END CERTIFICATE-----
+subject=/C=IE/O=*.demonware.net/OU=GT18811329/OU=See www.rapidssl.com/resources/cps (c)08/OU=Domain Control Validated - RapidSSL(R)/CN=*.demonware.net
+issuer=/C=US/O=Equifax Secure Inc./CN=Equifax Secure Global eBusiness CA-1
+---
+No client certificate CA names sent
+---
+SSL handshake has read 1379 bytes and written 322 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 1024 bit
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID:
+    Session-ID-ctx:
+    Master-Key: 25FC2AF43D85C2C6CCA4CB0047920E1BCC11BA3906923200DCA97FD66ECBDB2825F71872E63CA1623277E76C94D33D87
+    Key-Arg   : None
+    Start Time: 1231864337
+    Timeout   : 300 (sec)
+    Verify return code: 0 (ok)
+---
+
+OpenSSL> s_client -connect www.fortify.net:443 -CAfile C:\code\ContentServerDev\openssl-0.9.8i\out32\cacert_bundle.pem
+Loading 'screen' into random state - done
+CONNECTED(000006D4)
+depth=3 /L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 2 Policy Validation Authority/CN=http://www.valicert.com//emailAddress=info@valicert.c
+om
+verify return:1
+depth=2 /C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority
+verify return:1
+depth=1 /C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./OU=http://certificates.godaddy.com/repository/CN=Go Daddy Secure Certification Authority/serialNumber=
+07969287
+verify return:1
+depth=0 /O=www.fortify.net/CN=www.fortify.net/OU=Domain Control Validated
+verify return:1
+---
+Certificate chain
+ 0 s:/O=www.fortify.net/CN=www.fortify.net/OU=Domain Control Validated
+   i:/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./OU=http://certificates.godaddy.com/repository/CN=Go Daddy Secure Certification Authority/serialNumber=079
+69287
+ 1 s:/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./OU=http://certificates.godaddy.com/repository/CN=Go Daddy Secure Certification Authority/serialNumber=079
+69287
+   i:/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority
+ 2 s:/C=US/O=The Go Daddy Group, Inc./OU=Go Daddy Class 2 Certification Authority
+   i:/L=ValiCert Validation Network/O=ValiCert, Inc./OU=ValiCert Class 2 Policy Validation Authority/CN=http://www.valicert.com//emailAddress=info@valicert.com
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIE1zCCA7+gAwIBAgIEAOEsOjANBgkqhkiG9w0BAQUFADCByjELMAkGA1UEBhMC
+VVMxEDAOBgNVBAgTB0FyaXpvbmExEzARBgNVBAcTClNjb3R0c2RhbGUxGjAYBgNV
+BAoTEUdvRGFkZHkuY29tLCBJbmMuMTMwMQYDVQQLEypodHRwOi8vY2VydGlmaWNh
+dGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkxMDAuBgNVBAMTJ0dvIERhZGR5IFNl
+Y3VyZSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTERMA8GA1UEBRMIMDc5NjkyODcw
+HhcNMDgxMTIzMDMzMDAzWhcNMTAwMTA0MDYxNzA5WjBXMRgwFgYDVQQKEw93d3cu
+Zm9ydGlmeS5uZXQxGDAWBgNVBAMTD3d3dy5mb3J0aWZ5Lm5ldDEhMB8GA1UECxMY
+RG9tYWluIENvbnRyb2wgVmFsaWRhdGVkMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB
+iQKBgQDIuZD/BYolOuLXrXHXrEgL6WvBodLWmrvaXieIIJN3pph1cjA0zbnlq7bT
+vAa81e4aMZNBSmaj7frI5LjQ68CSZ4oS0ZTrZwns34qyb+kirhf/jNzGBPs+WAJT
+6KywNELFNPXKGRzKiuCKozSPguQwGrBZEHZF4Ue4vXMiYyLv5QIDAQABo4IBuTCC
+AbUwDwYDVR0TAQH/BAUwAwEBADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUH
+AwIwDgYDVR0PAQH/BAQDAgWgMDIGA1UdHwQrMCkwJ6AloCOGIWh0dHA6Ly9jcmwu
+Z29kYWRkeS5jb20vZ2RzMS0wLmNybDBTBgNVHSAETDBKMEgGC2CGSAGG/W0BBxcB
+MDkwNwYIKwYBBQUHAgEWK2h0dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20v
+cmVwb3NpdG9yeS8wgYAGCCsGAQUFBwEBBHQwcjAkBggrBgEFBQcwAYYYaHR0cDov
+L29jc3AuZ29kYWRkeS5jb20vMEoGCCsGAQUFBzAChj5odHRwOi8vY2VydGlmaWNh
+dGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RfaW50ZXJtZWRpYXRlLmNydDAf
+BgNVHSMEGDAWgBT9rGEyk2xF1uLuhV+auud2mWjM5zAnBgNVHREEIDAegg93d3cu
+Zm9ydGlmeS5uZXSCC2ZvcnRpZnkubmV0MB0GA1UdDgQWBBQaWPs+2u3iMxWNOc0A
+nx6BW5QPQzANBgkqhkiG9w0BAQUFAAOCAQEAiFAonvzmVQ29vugl1yUrix11cNua
+pRj0xSyOAmIxT9KXTlVLbwn8ZDjheyr4TNSw5WGSpul2aEbN0k2LZrLEXtJvOXej
+F9nwIxk+fAtkCizUqN84EJCj4mDvk/CcEdmdULYOTGUEoZ6GlR1ZcRNlRIhFHVLS
+9pXLOz3TYO6nQI58uY1I0DctIlw/+yA761/Wc+SP/3nLsSUd/vENrOw1w0noVfiG
+o9UU2YohSElLYn3wDLE+IoSbXbSo/02RBPUKiDbZXH5ULK7zdTFiivk8ndTwfBch
+WRuTYwPGyPc2nPebDaIMZJ9LpnpkZZDYQFsIo+uP1hnkFM+llv4B5/d2dA==
+-----END CERTIFICATE-----
+subject=/O=www.fortify.net/CN=www.fortify.net/OU=Domain Control Validated
+issuer=/C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./OU=http://certificates.godaddy.com/repository/CN=Go Daddy Secure Certification Authority/serialNumber=0
+7969287
+---
+No client certificate CA names sent
+---
+SSL handshake has read 4342 bytes and written 322 bytes
+---
+New, TLSv1/SSLv3, Cipher is DHE-RSA-AES256-SHA
+Server public key is 1024 bit
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : DHE-RSA-AES256-SHA
+    Session-ID: 01F526362D9AEB21A70774BF809609ACD262ED1795DF11DF5E09B6923067D08D
+    Session-ID-ctx:
+    Master-Key: 0BB63BDA2451D1816AE649F1CD5B16851377907900F290921F77FBD256E54DBBA39401D4E5590977322F4874BA71B88A
+    Key-Arg   : None
+    Start Time: 1231864440
+    Timeout   : 300 (sec)
+    Verify return code: 0 (ok)
+    
+    
+OpenSSL> s_client -connect s3.amazonaws.com:443 -CAfile C:\code\ContentServerDev\openssl-0.9.8i\out32\cacert_bundle.pem
+Loading 'screen' into random state - done
+CONNECTED(000006B4)
+depth=2 /C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+verify return:1
+depth=1 /C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at https://www.verisign.com/rpa (c)05/CN=VeriSign Class 3 Secure Server CA
+verify return:1
+depth=0 /C=US/ST=Washington/L=Seattle/O=Amazon.com Inc./CN=s3.amazonaws.com
+verify return:1
+---
+Certificate chain
+ 0 s:/C=US/ST=Washington/L=Seattle/O=Amazon.com Inc./CN=s3.amazonaws.com
+   i:/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at https://www.verisign.com/rpa (c)05/CN=VeriSign Class 3 Secure Server CA
+ 1 s:/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at https://www.verisign.com/rpa (c)05/CN=VeriSign Class 3 Secure Server CA
+   i:/C=US/O=VeriSign, Inc./OU=Class 3 Public Primary Certification Authority
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIE9TCCA92gAwIBAgIQVVt2ghXl7OVxfmChwvzrszANBgkqhkiG9w0BAQUFADCB
+sDELMAkGA1UEBhMCVVMxFzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMR8wHQYDVQQL
+ExZWZXJpU2lnbiBUcnVzdCBOZXR3b3JrMTswOQYDVQQLEzJUZXJtcyBvZiB1c2Ug
+YXQgaHR0cHM6Ly93d3cudmVyaXNpZ24uY29tL3JwYSAoYykwNTEqMCgGA1UEAxMh
+VmVyaVNpZ24gQ2xhc3MgMyBTZWN1cmUgU2VydmVyIENBMB4XDTA4MDEzMTAwMDAw
+MFoXDTA5MDEzMDIzNTk1OVowaTELMAkGA1UEBhMCVVMxEzARBgNVBAgTCldhc2hp
+bmd0b24xEDAOBgNVBAcUB1NlYXR0bGUxGDAWBgNVBAoUD0FtYXpvbi5jb20gSW5j
+LjEZMBcGA1UEAxQQczMuYW1hem9uYXdzLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOB
+jQAwgYkCgYEA3TtuQTDLEC+VdXHpiOph31mqEk7OlvKS8SLPucrTPJSyc1u2t8PG
+wX0Y+gZ6TdWyeIpggd7xsKMslaltwEb+bghcwDchkEnKgl6kLkJ+CnCMfbhUulq1
+xuYT8AeshKPrucXI6K4XnuycnGJ+LEnVLmk3VuIyrnu5jg3+d1Sr860CAwEAAaOC
+AdMwggHPMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgWgMEQGA1UdHwQ9MDswOaA3oDWG
+M2h0dHA6Ly9TVlJTZWN1cmUtY3JsLnZlcmlzaWduLmNvbS9TVlJTZWN1cmUyMDA1
+LmNybDBEBgNVHSAEPTA7MDkGC2CGSAGG+EUBBxcDMCowKAYIKwYBBQUHAgEWHGh0
+dHBzOi8vd3d3LnZlcmlzaWduLmNvbS9ycGEwHQYDVR0lBBYwFAYIKwYBBQUHAwEG
+CCsGAQUFBwMCMB8GA1UdIwQYMBaAFG/sr6DdiqTv9SoQZy0/VYK81+8lMHkGCCsG
+AQUFBwEBBG0wazAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AudmVyaXNpZ24uY29t
+MEMGCCsGAQUFBzAChjdodHRwOi8vU1ZSU2VjdXJlLWFpYS52ZXJpc2lnbi5jb20v
+U1ZSU2VjdXJlMjAwNS1haWEuY2VyMG4GCCsGAQUFBwEMBGIwYKFeoFwwWjBYMFYW
+CWltYWdlL2dpZjAhMB8wBwYFKw4DAhoEFEtruSiWBgy70FI4mymsSweLIQUYMCYW
+JGh0dHA6Ly9sb2dvLnZlcmlzaWduLmNvbS92c2xvZ28xLmdpZjANBgkqhkiG9w0B
+AQUFAAOCAQEAZuxlQEZHjR4gUjqnpw0fQzbFSZw4LyFbcjOrOse//3BF00R97ND3
+C1odgajdOBcSqLpomSb2VhLp2rxMdnqU2b5enyqu3DK63OyCfEInzf3Jzbdh9fj2
+swfZdebI+MwNKv8o/9RVEsaIHXtRQbxeD2hWU/rFCNAXrwDCSfYeyr7ONtyjR5sl
+KvuaCIcWSqmqRqMEx9SXWLpi21/QHpm4CT8qb/q1xnC65SadEMDYwIk3yqv64SaY
+tIcKmhS2jJCE0gnBM2Uub5N98L2hfciWf8Jv3dTmHnzpWIsGi9XdWAIzrjWUOOR3
+zJz8sVOQjteMPd5O6ASTAM0sg5iNMqwHJg==
+-----END CERTIFICATE-----
+subject=/C=US/ST=Washington/L=Seattle/O=Amazon.com Inc./CN=s3.amazonaws.com
+issuer=/C=US/O=VeriSign, Inc./OU=VeriSign Trust Network/OU=Terms of use at https://www.verisign.com/rpa (c)05/CN=VeriSign Class 3 Secure Server CA
+---
+No client certificate CA names sent
+---
+SSL handshake has read 2606 bytes and written 306 bytes
+---
+New, TLSv1/SSLv3, Cipher is RC4-MD5
+Server public key is 1024 bit
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : RC4-MD5
+    Session-ID: 74D2D8FEF70E0B1601F4EFD6E02E16C36391C6B1A8032B550817380C1153E8E3
+    Session-ID-ctx:
+    Master-Key: CEC4140D9E72DD96CF8ABAE7CFE309D7DE7055D9BDA2ED892E701AD7F89B86B2D4FBBB78630720A58F62393CC62D8532
+    Key-Arg   : None
+    Start Time: 1231864499
+    Timeout   : 300 (sec)
+    Verify return code: 0 (ok)
+---
+
+
+OpenSSL> s_client -connect morgan2.s3.amazonaws.com:443 -CAfile C:\code\ContentServerDev\openssl-0.9.8i\out32\cacert_bundle.pem
+Loading 'screen' into random state - done
+CONNECTED(000006A0)
+depth=1 /C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global CA
+verify error:num=20:unable to get local issuer certificate
+verify return:0
+---
+Certificate chain
+ 0 s:/C=US/ST=Washington/L=Seattle/O=Amazon.com Inc./CN=*.s3.amazonaws.com
+   i:/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global CA
+ 1 s:/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global CA
+   i:/C=US/O=Entrust.net/OU=www.entrust.net/CPS incorp. by ref. (limits liab.)/OU=(c) 1999 Entrust.net Limited/CN=Entrust.net Secure Server Certification Author
+ity
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIGEzCCBPugAwIBAgIQATp8v+7LS2Ob8E564uw2sjANBgkqhkiG9w0BAQUFADBc
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMRswGQYDVQQDExJEaWdpQ2VydCBHbG9iYWwgQ0EwHhcN
+MDgxMjAyMDAwMDAwWhcNMTAwMjE1MjM1OTU5WjBrMQswCQYDVQQGEwJVUzETMBEG
+A1UECBMKV2FzaGluZ3RvbjEQMA4GA1UEBxMHU2VhdHRsZTEYMBYGA1UEChMPQW1h
+em9uLmNvbSBJbmMuMRswGQYDVQQDFBIqLnMzLmFtYXpvbmF3cy5jb20wgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBALMcvWtspjJbliV9naNVIBlHNmPd9rpI469K
+U1sGF4dOQGlVHDOR4KrPcwF9bkJtQRlqH6XjtL2cXjnfhXlq1C5FekX/WZM6ilXE
+Qym1nrLNl0L0Sicf51z9t4Mq2ARHGR3ORaQv0kf2YNCuFYqro7bV37LiNhPWmHZY
+wC53G61HAgMBAAGjggNEMIIDQDAfBgNVHSMEGDAWgBSnxxOgegE8ne+CSIJI1XNR
+thJWKjAdBgNVHQ4EFgQUurqS7V7zaxt0Gn5GIo3J8+bC7K8wdgYIKwYBBQUHAQEE
+ajBoMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wQAYIKwYB
+BQUHMAKGNGh0dHA6Ly93d3cuZGlnaWNlcnQuY29tL0NBQ2VydHMvRGlnaUNlcnRH
+bG9iYWxDQS5jcnQwDgYDVR0PAQH/BAQDAgWgMAwGA1UdEwEB/wQCMAAwfwYDVR0f
+BHgwdjA5oDegNYYzaHR0cDovL2NybDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0R2xv
+YmFsQ0EtMjAwOGsuY3JsMDmgN6A1hjNodHRwOi8vY3JsNC5kaWdpY2VydC5jb20v
+RGlnaUNlcnRHbG9iYWxDQS0yMDA4ay5jcmwwggHGBgNVHSAEggG9MIIBuTCCAbUG
+C2CGSAGG/WwBAwABMIIBpDA6BggrBgEFBQcCARYuaHR0cDovL3d3dy5kaWdpY2Vy
+dC5jb20vc3NsLWNwcy1yZXBvc2l0b3J5Lmh0bTCCAWQGCCsGAQUFBwICMIIBVh6C
+AVIAQQBuAHkAIAB1AHMAZQAgAG8AZgAgAHQAaABpAHMAIABDAGUAcgB0AGkAZgBp
+AGMAYQB0AGUAIABjAG8AbgBzAHQAaQB0AHUAdABlAHMAIABhAGMAYwBlAHAAdABh
+AG4AYwBlACAAbwBmACAAdABoAGUAIABEAGkAZwBpAEMAZQByAHQAIABDAFAALwBD
+AFAAUwAgAGEAbgBkACAAdABoAGUAIABSAGUAbAB5AGkAbgBnACAAUABhAHIAdAB5
+ACAAQQBnAHIAZQBlAG0AZQBuAHQAIAB3AGgAaQBjAGgAIABsAGkAbQBpAHQAIABs
+AGkAYQBiAGkAbABpAHQAeQAgAGEAbgBkACAAYQByAGUAIABpAG4AYwBvAHIAcABv
+AHIAYQB0AGUAZAAgAGgAZQByAGUAaQBuACAAYgB5ACAAcgBlAGYAZQByAGUAbgBj
+AGUALjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDQYJKoZIhvcNAQEF
+BQADggEBADqKHKDoOtBWa35v5s0UuO5C45YetzWH0fpvDjU6E9LQlHW/zDUkwt6U
+jMgm8vueq8F4YwI/jtEzILGv67NWZk4NXOvQgHS3OPkRciBYjHLSRiihK7uR/+m+
+2wuTfgMHklcysIh3KNKySf8iv+0nqXhCJKCuhAXMa2b+jJgMAgR3NWibPyXQMnku
+CNpMJMW4XEIuhlL9zg1WcBO1Xe7l8mQmu9ASgdQMahMtNb3jrtijcclsxsHcFJXG
+9DReWOx+f+LDJq8xTJ2gXOOHZHdMtPpzkt9gmUIqP+MbYLPd3l3GHl6czDACPy0z
+afV9qBoARm9FkOfferWFEh0P3OaEr68=
+-----END CERTIFICATE-----
+subject=/C=US/ST=Washington/L=Seattle/O=Amazon.com Inc./CN=*.s3.amazonaws.com
+issuer=/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global CA
+---
+No client certificate CA names sent
+---
+SSL handshake has read 3284 bytes and written 306 bytes
+---
+New, TLSv1/SSLv3, Cipher is RC4-MD5
+Server public key is 1024 bit
+Compression: NONE
+Expansion: NONE
+SSL-Session:
+    Protocol  : TLSv1
+    Cipher    : RC4-MD5
+    Session-ID: 51F710DE24BD8E5CBE4CED6A6745FD0BE7D6CCE4250F75D75C71C1D9444A62BC
+    Session-ID-ctx:
+    Master-Key: 2A84475A0568305AEEBDCFE0A6E2DC1FCA12CF8C7D4EFA1030F79D83D1993158533BAEEC1A22AB2E0A0A252C453F34A2
+    Key-Arg   : None
+    Start Time: 1231864574
+    Timeout   : 300 (sec)
+    Verify return code: 20 (unable to get local issuer certificate)
+       

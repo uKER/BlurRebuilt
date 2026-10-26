@@ -1,0 +1,42 @@
+SubDir TOP Code Mercury Library Util Resource ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/LogicalFs/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/Handle.cpp
+./source/Listener.cpp
+./source/Manager.cpp
+./source/Resource.cpp
+./source/ResourceBase.cpp
+./source/TypeRegistry.cpp
+;
+
+Library resource : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;
+
+
+###### Unit test
+
+IncludePath
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Vendor/CxxTest/Current
+;
+
+CxxTest resource_test :
+test/TestResource.h
+;
+LinkLibraries resource_test : core system resource ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

@@ -1,0 +1,95 @@
+SubDir TOP Code Amax Game GameAudio ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath 
+Amax$(_PLATFORM)
+Amax$(_PLATFORM)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/effect/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/Movie/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/graphics/Ngl/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/network/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/lua_shared/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/ui/include
+$(MERCURY)/animation/include
+$(MERCURY)/audio/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/ai/air/include
+$(TOP)/code/vendor/lua/Lua-5.1.4/src
+$(TOP)/code/vendor/lua/Lua-Helper/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(MERCURY)/gamesys/GameView/include
+$(MERCURY)/gamesys/Lod/include
+$(MERCURY)/gamesys/SpecialFX/include
+$(TOP)/code/Amax/Game
+$(TOP)/code/Amax/Game/AI
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/Amax/Library
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" $(TOP)/libs/vendor/openal/1.1/include ;
+}
+
+SRC = 
+./Game/GameActors/AudioActors.cpp
+./Game/GameActors/Components/AudioComponents.cpp
+./Game/GameActors/Components/AudioMessageHandlers/BaseMessageHandler.cpp
+./Game/GameActors/Components/Creation/AudioComponentsCreate.cpp
+./Game/GameActors/Components/GameComponents.cpp
+./Game/GameActors/Components/Messages/AudioMessages.cpp
+./GameAudio/DefaultSubsystem.cpp
+./GameAudio/GameAudioLayer.cpp
+./GameAudio/MusicSubsystem.cpp
+./GameAudio/VehicleSubsystem.cpp
+./GameAudio/UISubsystem.cpp
+./GameAudio/DialogueSubsystem.cpp
+./GameAudio/SystemSubsystem.cpp
+./GameAudio/DynamicObjSubsystem.cpp
+./GameAudio/WheelSubsystem.cpp
+./GameAudio/ListenerSubsystem.cpp
+./GameAudio/EntitySuspendResume.cpp
+./GameAudio/PickupSubsystem.cpp
+./GameAudio/CollisionSubsystem.cpp
+;
+
+SRC2 = 
+;
+
+
+SRC = [ Batch $(SRC) : StdAfx.h ] $(SRC2) ;
+
+ImportCP include/ui/shaders/vsConstants.h : TOP Code Mercury Library UI ;
+ImportCP include/ui/shaders/psConstants.h : TOP Code Mercury Library UI ;
+
+Library amax_audio : $(SRC) : StdAfx.cpp ;

@@ -1,0 +1,39 @@
+SubDir TOP Code Mercury Tools Graphics FxExporter ;
+
+SupportedTargets WIN32_TOOL ;
+
+CFG_CONVERTER = 1 ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+$(TOP)/Code/Vendor/TClap/Current
+$(TOP)/Code/Tools/Attk/Attk/Include
+;
+
+SRC =
+source/Application.cpp
+source/Main.cpp
+;
+
+# 
+
+LinkLibraries FxExporter :
+		core system tools_shared display
+		pcfx xefx ps3fx fx
+		;
+
+Application FxExporter : $(SRC) : stdafx.cpp ;
+ExportVcproj FxExporter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+

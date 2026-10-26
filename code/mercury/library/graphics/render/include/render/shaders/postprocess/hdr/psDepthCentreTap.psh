@@ -1,0 +1,16 @@
+#include "..\..\psCommon.h"
+
+sampler2D g_DepthBuffer   : register(s0);
+
+struct PS_OUTPUT
+{
+  float4 colour : COLOR0;
+};
+
+PS_OUTPUT main()
+{
+  PS_OUTPUT output      = (PS_OUTPUT)0;
+  float4 photo_pixel    = tex2D(g_DepthBuffer, float2(0.5f, 0.5f));
+  output.colour         = photo_pixel;
+  return output;
+}

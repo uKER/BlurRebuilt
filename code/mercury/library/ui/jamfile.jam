@@ -1,0 +1,302 @@
+SubDir TOP Code Mercury Library UI ;
+
+MERCURY = [ FSubDirPath TOP Code Mercury Library ] ;
+
+IncludePath
+$(SUBDIR)/include
+$(MERCURY)/common/Core/include
+$(MERCURY)/common/Btl/include
+$(MERCURY)/common/System/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/graphics/Camera2/include
+$(MERCURY)/graphics/Display/include
+$(MERCURY)/graphics/Display2/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/Movie/include
+$(MERCURY)/graphics/Render/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/network/include
+$(MERCURY)/common/Xt2/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/lua_shared/include
+$(MERCURY)/util/resource/include
+$(TOP)/code/amax/game
+$(TOP)/Code/Genesis/Library/include
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/Code/Vendor/lua/lua-5.1.4/src
+$(TOP)/Code/Vendor/zlib/current_mercury
+$(TOP)/Libs/Vendor/Bink/1.9r
+;
+
+Define 
+OBJ_SHADERS 
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(GFWLSDK_PATH)\include\" \"$(DXSDK_PATH)\include\" ;
+}
+
+SRC = 
+[ Batch
+./source/ui/DashboardInterface.cpp
+./source/ui/GameSaveSystem.cpp
+./source/ui/UiLogger.cpp
+./source/ui/Game/Effects.cpp
+./source/ui/Game/Timeline.cpp
+./source/ui/Game/StringStore.cpp
+./source/ui/Game/UIDataFinder.cpp
+./source/ui/Game/UILocaliser.cpp
+./source/ui/Game/UILua.cpp
+./source/ui/Game/UIMaths.cpp
+./source/ui/Game/UIScreenControl.cpp
+./source/ui/Game/UIScreenControl_AutomationHook.cpp
+./source/ui/Game/UITimer.cpp
+./source/ui/Game/UIXt.cpp
+./source/ui/Game/Gadgets/BaseUIList.cpp
+./source/ui/Game/Gadgets/BaseUIShape.cpp
+./source/ui/Game/Gadgets/BaseUIVariableSelect.cpp
+./source/ui/Game/Gadgets/Buttons.cpp
+./source/ui/Game/Gadgets/ButtonController.cpp
+./source/ui/Game/Gadgets/ButtonMessaging.cpp
+./source/ui/Game/Gadgets/UIAdobeBox.cpp
+./source/ui/Game/Gadgets/UIAdobeTrail.cpp
+./source/ui/Game/Gadgets/UIAdobeAnimation.cpp
+./source/ui/Game/Gadgets/UIBox.cpp
+./source/ui/Game/Gadgets/UICamera.cpp
+./source/ui/Game/Gadgets/UICredits.cpp
+./source/ui/Game/Gadgets/UILegal.cpp
+./source/ui/Game/Gadgets/UIFriendsList.cpp
+./source/ui/Game/Gadgets/UIGraph.cpp
+./source/ui/Game/Gadgets/UIHorizontalMenu.cpp
+./source/ui/Game/Gadgets/UIItemSpinner.cpp
+./source/ui/Game/Gadgets/UIKeyboard.cpp
+./source/ui/Game/Gadgets/UILeaderboard.cpp
+./source/ui/Game/Gadgets/UIPath.cpp
+./source/ui/Game/Gadgets/UIParticleEmitter.cpp
+./source/ui/Game/Gadgets/UIProgressBar.cpp
+./source/ui/Game/Gadgets/UIScrollBar.cpp
+./source/ui/Game/Gadgets/UISlider.cpp
+./source/ui/Game/Gadgets/UIStaticGraphic.cpp
+./source/ui/Game/Gadgets/UIStaticLetter.cpp
+./source/ui/Game/Gadgets/UIStaticScene.cpp
+./source/ui/Game/Gadgets/UIStaticShape.cpp
+./source/ui/Game/Gadgets/UIStaticText.cpp
+./source/ui/Game/Gadgets/UITable.cpp
+./source/ui/Game/Gadgets/UINodeList.cpp
+./source/ui/Game/Gadgets/UIVariableSpinner.cpp
+./source/ui/Game/Gadgets/UIVerticalMenu.cpp
+./source/ui/Game/Marketplace/Marketplace.cpp
+./source/ui/Game/Marketplace/MarketplaceDataFinder.cpp
+./source/ui/Game/Marketplace/Marketplace_$(PLATFORM).cpp
+./source/ui/Game/Profiles/ProfileDataFinder.cpp
+./source/ui/Game/Profiles/ProfileInterface.cpp
+./source/ui/Game/Profiles/GamerPictureManager.cpp
+./source/ui/Game/Profiles/GamerPictureManager_$(PLATFORM).cpp
+./source/ui/Game/SaveSystem/SaveSystem.cpp
+./source/ui/Game/SaveSystem/SaveSystem_$(PLATFORM).cpp
+./source/ui/Game/Lua_Interaface/Lua_Buttons.cpp
+./source/ui/Game/Lua_Interaface/Lua_Controller.cpp
+./source/ui/Game/Lua_Interaface/Lua_Debug.cpp
+./source/ui/Game/Lua_Interaface/Lua_Hardware.cpp
+./source/ui/Game/Lua_Interaface/Lua_Marketplace.cpp
+./source/ui/Game/Lua_Interaface/Lua_Profile.cpp
+./source/ui/Game/Lua_Interaface/Lua_Screen.cpp
+./source/ui/Game/Lua_Interaface/Lua_Shape.cpp
+./source/ui/Game/Lua_Interaface/Lua_System.cpp
+./source/ui/Game/Lua_Interaface/Lua_Vars.cpp
+./source/ui/Game/Automation/UIAutomation.cpp
+./source/ui/Graphics/Movie.cpp
+./source/ui/Graphics/Renderer.cpp
+./source/ui/Graphics/Simple2d.cpp
+./source/ui/Graphics/SimpleTimer.cpp
+./source/ui/Graphics/UIColourClasses.cpp
+./source/ui/Graphics/UIParticle.cpp
+./source/ui/Graphics/UISpriteTextureParam.cpp
+./source/ui/Graphics/UITextureManager.cpp
+./source/ui/Graphics/Font/Font.cpp
+./source/ui/Graphics/Font/FontStyle.cpp
+./source/ui/Graphics/Font/FontCache.cpp
+./source/ui/Graphics/Font/TextEffect.cpp
+./source/ui/Graphics/Font/UIBitmapFont.cpp
+./source/ui/Graphics/Font/UIPolygonFont.cpp
+./source/ui/Graphics/Localisation/Loc.cpp
+./source/ui/Graphics/Localisation/XtLocHack.cpp
+./source/ui/Illustrator/UIAdobeColour.cpp
+./source/ui/Illustrator/UIAdobeGroup.cpp
+./source/ui/Illustrator/UIAdobePath.cpp
+./source/ui/Illustrator/UIAdobePoint.cpp
+./source/ui/Illustrator/UIAdobePolygon.cpp
+./source/ui/Illustrator/UIAdobeScene.cpp
+./source/ui/Illustrator/UIAdobeSceneManager.cpp
+./source/ui/Illustrator/UIAdobeShape.cpp
+./source/ui/Illustrator/Ipf/IpfData.cpp
+./source/ui/Illustrator/Ipf/IpfReader.cpp
+./source/ui/Illustrator/Ipf/IpfWriter.cpp
+./source/ui/Util/WideString.cpp
+: StdAfx.h ]
+;
+
+SRC2 = 
+[ Batch
+./source/ui/Graphics/Polygons/UIClipOperations.cpp
+./source/ui/Graphics/Polygons/UIHoleResolver.cpp
+./source/ui/Graphics/Polygons/UIPolygonClasses.cpp
+./source/ui/Graphics/Polygons/UITriangulator.cpp
+: StdAfx.h ]
+;
+
+SrcOptim $(SRC2) : On ;
+
+if $(PLATFORM) = PS3
+{
+#	LINKLIBS += $(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_licensearea_stub.a ;
+	LINKLIBS += $(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub.a ;
+	LINKLIBS += $(SCE_PS3_ROOT)/target/ppu/lib/libpngdec_stub.a ;
+}
+		
+if $(BUILD) != Profile && $(BUILD) != Master
+{
+	if $(USERNAME) = pkerby || $(USERNAME) = dgill || $(USERNAME) = wbrown || $(USERNAME) = pereid || $(USERNAME) = sbilton || $(USERNAME) = psnape || $(USERNAME) = orenault || $(USERNAME) = asimpson || $(USERNAME) = mtaylor 
+	{
+		Optim Off ;
+		echo OPTIMISATIONS ARE _OFF_ FOR UI code ;
+	}
+}
+
+SHADERS =
+./include/ui/shaders/ui/psDefault.psh
+./include/ui/shaders/ui/psOneColour.psh
+./include/ui/shaders/ui/psFontEffects.psh
+./include/ui/shaders/ui/psFontIntensityOutline.psh
+./include/ui/shaders/ui/psAMLoading.psh
+./include/ui/shaders/ui/psBloomComposite.psh
+./include/ui/shaders/ui/psMovie.psh
+./include/ui/shaders/ui/psMovieWithAlpha.psh
+./include/ui/shaders/ui/psIntensityCutout.psh
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psIntensityAsAlpha.psh :
+				"<>"
+				"<Invert>-D_INVERT_"
+				"<InvertNotOne>-D_INVERT_ -D_NOT_ONE_"
+				"<Tex>-D_TEX_"
+				"<TexNoAlpha>-D_TEX_ -D_NO_ALPHA_" 
+				"<Tex2AdditiveNoAlpha>-D_TEX_ -D_NO_ALPHA_ -D_TEX2_ADDITIVE_" 
+				]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psMultiTexture.psh :
+				"<1>"
+				"<2>-DSAMPLERS_2"
+				"<3>-DSAMPLERS_3" 
+				]
+;
+				
+SHADERS += [ Shader ./include/ui/shaders/ui/psMultiTextureFullAlpha.psh :
+				"<1>"
+				"<2>-DSAMPLERS_2"
+				"<3>-DSAMPLERS_3" 
+				]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psGreyScale.psh :
+				"<1>"
+				"<2>-DSAMPLERS_2" 
+				"<2_IAA>-DSAMPLERS_2 -DSAMPLERS_2_IAA"
+				]
+;
+
+SHADERS += [ Shader ././include/ui/shaders/ui/psUserGammaCorrect.psh :
+				"<>"
+				"<2_IAA>-DSAMPLERS_2 -DSAMPLERS_2_IAA"
+				]
+;
+
+
+SHADERS +=
+./include/ui/shaders/ui/psNormalMapOffset.psh
+./include/ui/shaders/ui/psPolygonFlat.psh
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psIntensityLerp.psh :
+				"<>"
+				"<_AM_DamageBar>-D_AM_DAMAGE_BAR_"
+				"<_AM_Perks>-D_AM_PERKS_" ]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psPolygonFont.psh :
+				"<>"
+				"<_Textured>-D_TEXTURED_" ]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psPolygonStroke.psh :
+				"<Alpha>"
+				"<IntensityAsAlpha>-D_INTENSITY_AS_ALPHA_" ]
+;
+
+SHADERS +=
+./include/ui/shaders/ui/psPolygonMultiply.psh
+./include/ui/shaders/ui/psPolygonTrail.psh
+./include/ui/shaders/ui/psPolygonPaint.psh
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/psPolygonGradient.psh :
+				"<>"
+				"<_Param>-D_USE_PARAM_"
+				"<_Radial>-D_RADIAL_" ]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/vsMultiTexture.vsh : 
+				"<1>"
+				"<2>-DSAMPLERS_2"
+				"<3>-DSAMPLERS_3" ]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/vsPolygonFlat.vsh :
+				"<>"
+				"<_FinnedOuter>-D_FINNED_OUTER_" ]
+;
+
+SHADERS +=
+./include/ui/shaders/ui/vsPolygonTrail.vsh
+./include/ui/shaders/ui/vsPolygonPaint.vsh
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/vsPolygonFont.vsh :
+				"<>"
+				"<_OutlineFixed>-D_OUTLINE_FIXED_"
+				"<_OutlineFade>-D_OUTLINE_FADE_"
+				"<_OutlineFixedFade>-D_OUTLINE_FIXED_ -D_OUTLINE_FADE_"
+				"<_Textured>-D_TEXTURED_"
+				"<_Gradient>-D_GRADIENT_"
+				"<_Finned>-D_FINNED_"
+				"<_FinnedOuter>-D_FINNED_ -D_FINNED_OUTER_" ]
+;
+
+SHADERS += [ Shader ./include/ui/shaders/ui/vsPolygonStroke.vsh :
+				"<>"
+				"<_AM_AudioEq>-D_AM_AUDIO_EQ_" ]
+;
+
+SHADERS +=
+./include/ui/shaders/ui/vsPolygonGradient.vsh
+./include/ui/shaders/ui/vsPolygonMultiply.vsh
+;
+
+# Nightwing shaders
+SHADERS +=
+./include/ui/shaders/ui/ps_NW_FightCountdown.psh
+;
+
+CPFile include/ui/shaders/psConstants.cp ;
+CPFile include/ui/shaders/vsConstants.cv ;
+
+Library ui : $(SRC) $(SRC2) $(SHADERS) $($(PLATFORM)SRC) : stdafx.cpp ;

@@ -1,0 +1,161 @@
+#ifndef MAYA_IO_H
+#define MAYA_IO_H
+
+#ifdef _MSC_VER_
+#pragma once
+#endif
+
+#pragma once
+
+#include <fstream>
+#include <cctype>
+#include <cassert>
+#include <cmath>
+#include <ctime>
+#include <cstdio>
+#include <algorithm>
+
+#include <io.h>
+
+// disable warning C4995: '_OLD_IOSTREAMS_ARE_DEPRECATED': name was marked as #pragma deprecated
+#pragma warning(disable : 4995)
+
+#include <maya/MDagPath.h>
+#include <maya/MDagPathArray.h>
+#include <maya/MFileIO.h>
+#include <maya/MFileObject.h>
+#include <maya/MFnAttribute.h>
+#include <maya/MFnCompoundAttribute.h>
+#include <maya/MFnDagNode.h>
+#include <maya/MFnDependencyNode.h>
+#include <maya/MGlobal.h>
+#include <maya/MItDag.h>
+#include <maya/MItDependencyNodes.h>
+#include <maya/MObjectArray.h>
+#include <maya/MPlug.h>
+#include <maya/MPlugArray.h>
+#include <maya/MPxFileTranslator.h>
+#include <maya/MString.h>
+#include <maya/MStringArray.h>
+#include <maya/MIOStream.h>
+#include <maya/MItMeshPolygon.h>
+#include <maya/MFnSet.h>
+#include <maya/MFnMesh.h>
+#include <maya/MDagPath.h>
+#include <maya/MItDependencyGraph.h>
+#include <maya/MPlug.h>
+#include <maya/MPointArray.h>
+#include <maya/MPoint.h>
+#include <maya/MFnTransform.h>
+#include <maya/MMatrix.h>
+#include <maya/MTransformationMatrix.h>
+#include <maya/MFnSingleIndexedComponent.h>
+#include <maya/MPxCommand.h>
+#include <maya/MFnLight.h>
+#include <maya/MFnNonAmbientLight.h>
+#include <maya/MFnPointLight.h>
+#include <maya/MFnDirectionalLight.h>
+#include <maya/MFnLambertShader.h>
+#include <maya/MDGModifier.h>
+#include <maya/MFnNurbsCurve.h>
+#include <maya/MFnTypedAttribute.h>
+#include <maya/MFnNumericAttribute.h>
+#include <maya/MFnNumericData.h>
+#include <maya/MFnStringData.h>
+#include <maya/MFnSpotLight.h>
+#include <maya/MFnMatrixData.h>
+#include <maya/MString.h>
+#include <maya/MArgList.h>
+#include <maya/MGlobal.h>
+#include <maya/MPoint.h>
+#include <maya/MIntArray.h>
+#include <maya/MDoubleArray.h>
+#include <maya/MFloatPoint.h>
+#include <maya/MFloatPointArray.h>
+#include <maya/MDagPath.h>
+#include <maya/MPlug.h>
+#include <maya/MFnCharacter.h>
+#include <maya/MFnClip.h>
+#include <maya/MFnSkinCluster.h>
+#include <maya/MTime.h>
+#include <maya/MItGeometry.h>
+#include <maya/MAnimUtil.h>
+#include <maya/MFnAnimCurve.h>
+#include <maya/MAnimControl.h>
+#include <maya/MIkSystem.h>
+#include <maya/MFnIkJoint.h>
+#include <maya/MFnCamera.h>
+#include <maya/MQuaternion.h>
+#include <maya/MEulerRotation.h>
+#include <maya/MFnAreaLight.h>
+
+#include <Aftk/Aftk.h>
+
+#include "MayaIoDefinitions.h"
+#include "MayaIoStringTable.h"
+#include "MayaIoUtility.h"
+#include "MayaIoErrorMacros.h"
+
+#include "import/MayaIoImportOptions.h"
+#include "import/MayaIoPlugImportFilter.h"
+#include "import/MayaIoInstanceTracker.h"
+#include "import/MayaIoMaterialImportFilter.h"
+#include "import/MayaIoPlugImportFilter.h"
+#include "import/MayaIoSceneNodeImportFilter.h"
+#include "import/MayaIoLayerImportFilter.h"
+#include "import/MayaIoConnectedDgImport.h"
+#include "import/MayaIoDgNodeImport.h"
+#include "import/MayaIoDgAnimationCurveImport.h"
+#include "import/MayaIoDgBlendWeightedImport.h"
+#include "import/MayaIoDgUnitConversionImport.h"
+#include "import/MayaIoBindPoseHelper.h"
+#include "import/MayaIoMaterialHelper.h"
+#include "import/MayaIoBonedInstanceJointList.h"
+#include "import/MayaIoSceneNodeImport.h"
+#include "import/MayaIoLimitMixinImport.h"
+#include "import/MayaIoSceneAimConstraintImport.h"
+#include "import/MayaIoSceneLookAtConstraintImport.h"
+#include "import/game_specific/MayaIoIGameImport.h"
+#include "import/MayaIoAftkMayaMapping.h"
+#include "import/MayaIoImport.h"
+#include "import/MayaIoMaterialImport.h"
+#include "import/MayaIoSceneMeshImport.h"
+#include "import/MayaIoSceneMeshBonedInstanceImport.h"
+#include "import/MayaIoSceneLodMeshImport.h"
+#include "import/MayaIoSceneLodGroupImport.h"
+#include "import/MayaIoSceneSplineImport.h"
+#include "import/MayaIoSceneInstanceImport.h"
+#include "import/MayaIoSceneLightImport.h"
+#include "import/MayaIoSceneNonAmbientLightImport.h"
+#include "import/MayaIoScenePointLightImport.h"
+#include "import/MayaIoSceneDirectionalLightImport.h"
+#include "import/MayaIoSceneSpotLightImport.h"
+#include "import/MayaIoSceneAreaLightImport.h"
+#include "import/MayaIoSceneCustomActorImport.h"
+#include "import/MayaIoSceneCustomLightImport.h"
+#include "import/MayaIoSceneCameraImport.h"
+#include "import/MayaIoSceneJointImport.h"
+#include "import/MayaIoSceneSpeedTreeImport.h"
+#include "import/MayaIoSceneHemisphereLightImport.h"
+#include "import/MayaIoScenePointConstraintImport.h"
+#include "import/MayaIoSceneOrientConstraintImport.h"
+#include "import/MayaIoDgDistanceDimImport.h"
+
+#include "export/MayaIoExport.h"
+#include "export/MayaIoSceneNodeExport.h"
+#include "export/MayaIoSceneMeshExport.h"
+#include "export/MayaIoMaterialExport.h"
+#include "export/MayaIoSceneSplineExport.h"
+#include "export/MayaIoSceneLightExport.h"
+#include "export/MayaIoSceneNonAmbientLightExport.h"
+#include "export/MayaIoSceneDirectionalLightExport.h"
+#include "export/MayaIoSceneSpotLightExport.h"
+#include "export/MayaIoScenePointLightExport.h"
+#include "export/MayaIoSceneInstanceExport.h"
+#include "export/MayaIoSceneJointExport.h"
+#include "export/MayaIoDgNodeExport.h"
+#include "export/MayaIoDgAnimationCurveExport.h"
+#include "export/MayaIoConnectedDgExport.h"
+#include "MayaIoMain.h"
+
+#endif

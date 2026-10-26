@@ -1,0 +1,28 @@
+SubDir TOP Code Tools clusterserv_lib ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Tools/xFarm/farm_library/include
+$(TOP)/Libs/Vendor/CommonC++/Current/include
+$(TOP)/Code/Common
+;
+
+SRC =
+src_network/src/Client.cpp
+src_network/src/Connection.cpp
+src_network/src/IServer.cpp
+src_network/src/JobQueue.cpp
+src_network/src/JobScheduler.cpp
+src_network/src/NetMessages.cpp
+src_network/src/Network.cpp
+src_network/src/NullServer.cpp
+src_network/src/SerializeBin.cpp
+src_network/src/Server.cpp
+#src_network/src/stdafx.cpp
+zlib/compression.cpp
+#zlib/zlib.cpp
+;
+
+Library clusterserv_lib : $(SRC) ;

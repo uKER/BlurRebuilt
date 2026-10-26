@@ -1,0 +1,8 @@
+DEF(E_LayerViewNode_Layer,		"./icons/layer_layernode.png")
+DEF(E_LayerViewNode_Actor,		"./icons/scenegraph_actornode.png")
+DEF(E_LayerViewNode_SceneNode,	"./icons/scenegraph_groupnode.png")
+DEF(E_LayerViewNode_Aftk,		"./icons/scenegraph_aftknode.png")
+DEF(E_LayerViewNode_ActorRoot,	"./icons/scenegraph_actorroot.png")
+DEF(E_LayerViewNode_RefRoot,	"./icons/scenegraph_refscenes.png")
+DEF(E_LayerViewNode_RefUnloaded,"./icons/scenegraph_refscene_unloaded.png")
+DEF(E_LayerViewNode_RefLoaded,	"./icons/scenegraph_refscene_loaded.png")

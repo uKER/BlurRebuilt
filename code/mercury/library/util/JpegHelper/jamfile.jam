@@ -1,0 +1,25 @@
+SubDir TOP Code Mercury Library Util JpegHelper ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/util/jpeghelper/include
+$(TOP)/libs/vendor/jpeg/version62/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./src/JpegDecoder.cpp
+./src/JpegEncoder.cpp
+;
+
+Library JpegHelper : $(SRC) : stdafx.cpp ;

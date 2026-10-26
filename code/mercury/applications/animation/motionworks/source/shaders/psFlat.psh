@@ -1,0 +1,28 @@
+#include "psConstants.h"
+#include "psCommon.h"
+
+float4 g_DiffuseColour : register(CCP_DISPLAY_COLOUR);
+
+struct PS_INPUT
+{
+	float4 WorldNormal		: TEXCOORD0;
+#ifdef ENABLE_NORMAL_MAP
+	float4 WorldTangent		: TEXCOORD1;
+	float4 WorldBinormal	: TEXCOORD2;
+#endif
+	float4 WorldViewDir		: TEXCOORD3;
+	float4 Color0			: COLOR0;
+	
+};
+
+struct PS_OUTPUT
+{
+	float4 Color0			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	OUT.Color0 = g_DiffuseColour;
+	return OUT;
+}

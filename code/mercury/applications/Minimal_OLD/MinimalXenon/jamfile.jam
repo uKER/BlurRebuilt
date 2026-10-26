@@ -1,0 +1,45 @@
+echo "Building Minimal Testapp for XENON" ;
+
+if $(PLATFORM) != XENON
+{
+	EXIT Wrong platform selected. ;
+}
+
+SubDir TOP Code Mercury Applications Minimal MinimalPS3 ;
+
+SUBDIRHDRS = 
+./include
+$(TOP)/Code/Mercury/Library/Core/include
+$(TOP)/Code/Mercury/Library/System/include
+$(TOP)/Code/Mercury/Library/Display/include
+$(TOP)/Code/Mercury/Library/Render/include
+$(TOP)/Code/Mercury/Library/Samples/include
+;
+
+SRC =
+#../../../library/samples/source/section/SectionSchedulerTest.cpp
+#../../../library/samples/source/section/SectionSchedulerTest.spu_cpp
+#../../../library/samples/source/section/SectionMovie.cpp
+../../../library/samples/source/section/SectionSkyDome.cpp
+./Main.cpp
+;
+
+LinkLibraries MinimalXENON :
+		core system display render zlib samples
+		;
+		
+LINKLIBS += ;
+
+LINKFLAGS += ;
+
+Main MinimalXENON : $(SRC) ; #: stdafx.cpp ;
+
+XenonDeploy MinimalXENON : Mercury/MinimalXenon ;
+
+SubInclude TOP Code Mercury Library Core ;
+SubInclude TOP Code Mercury Library System ;
+SubInclude TOP Code Mercury Library Display ;
+SubInclude TOP Code Mercury Library Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+

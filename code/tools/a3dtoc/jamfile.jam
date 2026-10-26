@@ -1,0 +1,29 @@
+SubDir TOP Code Tools a3dtoc ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+source/App.cpp
+;
+
+LINKLIBS +=  ws2_32.lib ;
+LinkLibraries a3dtoc : core system tools_shared aftk $(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+		
+Application a3dtoc : $(SRC) : stdafx.cpp ;
+ExportVcproj a3dtoc ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Aftk Aftk ;

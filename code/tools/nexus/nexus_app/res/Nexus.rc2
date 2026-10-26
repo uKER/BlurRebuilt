@@ -1,0 +1,42 @@
+//
+// Nexus.RC2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////
+
+IDR_MESH_BASIC_EFFECT		RCDATA "../nexus_render/Shaders/MeshBasic.fx"
+IDR_MESH_TEXTURE_EFFECT		RCDATA "../nexus_render/Shaders/MeshTexture.fx"
+IDR_MESH_LIGHTMAP_EFFECT	RCDATA "../nexus_render/Shaders/MeshLightmap.fx"
+IDR_MESH_SELECTION_EFFECT	RCDATA "../nexus_render/Shaders/MeshSelection.fx"
+IDR_GIZMO_EFFECT			RCDATA "../nexus_render/Shaders/Gizmo.fx"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBARX BITMAP "res/Toolbar24.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBARX TOOLBAR  25, 28
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+	BUTTON		ID_SELECTIONMODE_OBJECT
+	BUTTON		ID_SELECTIONMODE_POLYGON
+END

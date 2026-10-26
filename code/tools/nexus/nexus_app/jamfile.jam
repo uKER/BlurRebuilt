@@ -1,0 +1,98 @@
+SubDir TOP Code Tools Nexus Nexus_app ;
+
+SupportedTargets WIN32_TOOL ;
+
+Define __STATPROFUIS_WITH_DLLMFC__ ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(SUBDIR)/include
+$(SUBDIR)/source
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/common
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/code/Tools/Aftkut/AftkUtLib/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/Code/Tools/tex_atlas/include
+$(TOP)/Code/Tools/file_tag_db/file_tag_db/include
+$(TOP)/Code/Tools/nexus/nexus_core/include
+$(TOP)/Code/Tools/nexus/nexus_render/include
+$(TOP)/Code/vendor/lua/lua-5.0.2/include
+$(TOP)/libs/vendor/prof-uis/2.26/include
+\"$(DXSDK_PATH)/include\" 
+;
+
+SRC =
+source/nexus_app/DisplayManager.cpp
+source/nexus_app/MemoryDbg.cpp
+source/nexus_app/Nexus.cpp
+source/nexus_app/NexusDoc.cpp
+source/nexus_app/NexusSystem.cpp
+source/nexus_app/NexusProgressDialog.cpp
+source/nexus_app/Overlay2D.cpp
+source/nexus_app/Viewport.cpp
+source/nexus_app/ViewportDisplay.cpp
+source/nexus_app/ViewportParent.cpp
+source/nexus_app/BaseThread.cpp
+source/mfc_extras/ChatRichEd.cpp
+source/mfc_extras/ColorEdit.cpp
+source/mfc_extras/HistoryEdit.cpp
+source/mfc_extras/NumEdit.cpp
+source/mfc_extras/NumSpinCtrl.cpp
+source/mfc_extras/TreeCtrlEx.cpp
+source/nexus_app/CommandEdit.cpp
+source/nexus_app/DockingPanelBottom.cpp
+source/nexus_app/DockingPanelRight.cpp
+source/nexus_app/LayerGrid.cpp
+source/nexus_app/MainFrm.cpp
+source/nexus_app/SceneGraphTree.cpp
+source/nexus_app/AboutBox.cpp
+source/nexus_app/CalculateTangentsAndBinormalsDialog.cpp
+source/nexus_app/CommandView.cpp
+source/nexus_app/MeshWeldingOptions.cpp
+#Nexus.rc
+;
+
+RES_SRC = 
+res/bitmap2.bmp
+res/bizarre_icon.ico
+res/bizarrelogo.bmp
+res/Nexus.ico
+res/NexusDoc.ico
+res/Toolbar.bmp
+;
+
+D3DLIBS = d3d9.lib d3dx9.lib dinput8.lib dxguid.lib dxerr.lib ;
+LINKLIBS += "$(DXSDK_PATH)/Lib/x86/$(D3DLIBS)" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG /LIBPATH:"$(TOP)/libs/vendor/prof-uis/2.26/lib" ;
+
+LinkLibraries nexus_app : 
+	core 
+	system 
+	lua_502
+	tools_shared 
+	aftk 
+	aftkutlib 
+	attk
+	file_tag_db 
+	nexus_core
+	nexus_render
+	$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk 
+;
+			
+Application nexus_app : $(SRC) : stdafx.cpp ;
+ExportVcproj nexus_app ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools aftkut aftkutlib ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Vendor Lua lua-5.0.2 ;
+SubInclude TOP Code Tools File_Tag_Db File_Tag_Db ;
+SubInclude TOP Code Tools Nexus Nexus_Core ;
+SubInclude TOP Code Tools Nexus Nexus_Render ;

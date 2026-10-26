@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="bdPlatform"
+	ProjectGUID="FC05AC92-420A-38BF-9B51-B5640C20A27C"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/debug"
+			IntermediateDirectory="../obj/psp-adhoc-sn/debug/bdPlatform"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;.."
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/release"
+			IntermediateDirectory="../obj/psp-adhoc-sn/release/bdPlatform"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;.."
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<Filter Name = "bdPlatformConfig" Filter="">
+<File RelativePath="bdPlatformConfig\bdPlatformConfig-psp.h"></File>
+<File RelativePath="bdPlatformConfig\bdPlatformConfig.h"></File>
+<File RelativePath="bdPlatformConfig\bdSettings.h"></File>
+</Filter>
+<Filter Name = "bdPlatformCoreTypes" Filter="">
+<File RelativePath="bdPlatformCoreTypes\bdPlatformCoreTypes.cpp"></File>
+<File RelativePath="bdPlatformCoreTypes\bdPlatformCoreTypes.h"></File>
+</Filter>
+<Filter Name = "bdPlatformError" Filter="">
+<File RelativePath="bdPlatformError\bdPlatformError.cpp"></File>
+<File RelativePath="bdPlatformError\bdPlatformError.h"></File>
+</Filter>
+<Filter Name = "bdPlatformLog" Filter="">
+<File RelativePath="bdPlatformLog\bdMessageProxy.cpp"></File>
+<File RelativePath="bdPlatformLog\bdMessageProxy.h"></File>
+<File RelativePath="bdPlatformLog\bdPlatformLog.cpp"></File>
+<File RelativePath="bdPlatformLog\bdPlatformLog.h"></File>
+</Filter>
+<Filter Name = "bdPlatformMemory" Filter="">
+<File RelativePath="bdPlatformMemory\bdPlatformMemory.h"></File>
+<File RelativePath="bdPlatformMemory\bdPlatformMemory.inl"></File>
+</Filter>
+<Filter Name = "bdPlatformPatterns" Filter="">
+<File RelativePath="bdPlatformPatterns\bdLinkable.cpp"></File>
+<File RelativePath="bdPlatformPatterns\bdLinkable.h"></File>
+</Filter>
+<Filter Name = "bdPlatformRandom" Filter="">
+<File RelativePath="bdPlatformRandom\bdPlatformTrulyRandom-ps2.cpp"></File>
+<File RelativePath="bdPlatformRandom\bdPlatformTrulyRandom.h"></File>
+</Filter>
+<Filter Name = "bdPlatformSocket" Filter="">
+<File RelativePath="bdPlatformSocket\bdInAddr-psp.cpp"></File>
+<File RelativePath="bdPlatformSocket\bdInAddr-psp.h"></File>
+<File RelativePath="bdPlatformSocket\bdInAddr.h"></File>
+<File RelativePath="bdPlatformSocket\bdPlatformSocket-psp-adhoc.cpp"></File>
+<File RelativePath="bdPlatformSocket\bdPlatformSocket.cpp"></File>
+<File RelativePath="bdPlatformSocket\bdPlatformSocket.h"></File>
+<File RelativePath="bdPlatformSocket\bdPlatformStreamSocket.cpp"></File>
+<File RelativePath="bdPlatformSocket\bdPlatformStreamSocket.h"></File>
+</Filter>
+<Filter Name = "bdPlatformString" Filter="">
+<File RelativePath="bdPlatformString\bdPlatformString-ps2.inl"></File>
+<File RelativePath="bdPlatformString\bdPlatformString.cpp"></File>
+<File RelativePath="bdPlatformString\bdPlatformString.h"></File>
+<File RelativePath="bdPlatformString\bdPlatformString.inl"></File>
+</Filter>
+<Filter Name = "bdPlatformThread" Filter="">
+<File RelativePath="bdPlatformThread\bdPlatformMutex-psp.cpp"></File>
+<File RelativePath="bdPlatformThread\bdPlatformMutex.cpp"></File>
+<File RelativePath="bdPlatformThread\bdPlatformMutex.h"></File>
+<File RelativePath="bdPlatformThread\bdPlatformSemaphore-psp.cpp"></File>
+<File RelativePath="bdPlatformThread\bdPlatformSemaphore.h"></File>
+<File RelativePath="bdPlatformThread\bdPlatformSignal-psp.cpp"></File>
+<File RelativePath="bdPlatformThread\bdPlatformSignal.h"></File>
+<File RelativePath="bdPlatformThread\bdPlatformThread-psp.cpp"></File>
+<File RelativePath="bdPlatformThread\bdPlatformThread.cpp"></File>
+<File RelativePath="bdPlatformThread\bdPlatformThread.h"></File>
+</Filter>
+<Filter Name = "bdPlatformTiming" Filter="">
+<File RelativePath="bdPlatformTiming\bdPlatformTiming-psp.cpp"></File>
+<File RelativePath="bdPlatformTiming\bdPlatformTiming.cpp"></File>
+<File RelativePath="bdPlatformTiming\bdPlatformTiming.h"></File>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

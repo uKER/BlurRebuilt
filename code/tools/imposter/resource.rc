@@ -1,0 +1,27 @@
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+
+#include "afxres.h"
+
+
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+"IDC_ICON"		ICON			"./imposter.ico"
+
+#endif    // Neutral resources
+
+#ifndef APSTUDIO_INVOKED
+
+#endif    // not APSTUDIO_INVOKED
+

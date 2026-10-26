@@ -1,0 +1,88 @@
+// DWBS ------------------------------------------------------------------ DWBS
+//
+// PLATFORM		: WIN32
+// PRODUCT		: BIT_DEMON
+// VISIBILITY	: PUBLIC
+//
+// DWBS ------------------------------------------------------------------ DWBS
+
+// PURPOSE: Defines platform specific settings for Win32 compiled with Microsoft
+//			Visual Studio .Net.
+
+#ifndef BD_PLATFORM_CONFIG_WIN32_MSVC7_H
+#define BD_PLATFORM_CONFIG_WIN32_MSVC7_H
+
+#define BD_COMPILER_MSVC
+#define BD_COMPILER_MSVC7
+
+// Detect build configuration
+#if defined(_DEBUG)
+#	define BD_DEBUG
+#else
+#	define BD_RELEASE
+#endif
+
+#define BD_CALL __cdecl
+
+// native types
+#ifdef  _WIN64
+typedef	long				BD_LONG;
+#else
+typedef	__w64 long			BD_LONG;
+#endif
+
+#ifdef  _WIN64
+typedef unsigned long		BD_ULONG;
+#else
+typedef __w64 unsigned long	BD_ULONG;
+#endif
+
+#ifdef  _WIN64
+typedef __int64				BD_WORD;
+#else
+typedef __w64 int			BD_WORD;
+#endif
+
+#ifdef  _WIN64
+typedef unsigned __int64	BD_UWORD;
+#else
+typedef __w64 unsigned int	BD_UWORD;
+#endif
+
+// fixed width types
+typedef __int64				BD_INT_64;
+typedef unsigned __int64	BD_UINT_64;
+
+typedef __int64				BD_LONG_64;
+typedef unsigned __int64	BD_ULONG_64;
+
+typedef char				BD_CHAR8;
+typedef unsigned char		BD_UCHAR8;
+typedef char				BD_PLATFORM_CHAR;
+
+#define BD_INT_64_FORMAT "%I64i"
+#define BD_UINT_64_FORMAT "%I64u"
+
+#define BD_ALIGN_VARIABLE(name, align) __declspec(align(align)) name
+
+# if !defined (_INC_WINDOWS)     // Already include windows.h ?
+// Must define strict before including windows.h !
+#  if !defined (STRICT)
+#   define STRICT 1
+#  endif // STRICT
+#  if !defined (WIN32_LEAN_AND_MEAN)
+#   define WIN32_LEAN_AND_MEAN
+#  endif // !defined (WIN32_LEAN_AND_MEAN)
+# endif // !defined (_INC_WINDOWS)
+
+#include <windows.h>
+
+typedef HANDLE bdThreadHandle;
+typedef LPTHREAD_START_ROUTINE bdThreadProc;
+typedef int bdDNSHandle;
+typedef HANDLE bdMutexHandle;
+typedef HANDLE bdSemaphoreHandle;
+typedef HANDLE bdSignalHandle;
+
+#endif // BD_PLATFORM_CONFIG_WIN32_MSVC7_H
+

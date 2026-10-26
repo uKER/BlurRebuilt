@@ -1,0 +1,184 @@
+#include "..\\psCommon.h"
+
+#ifdef PS_2_0
+float4		g_Settings			: register(c0);
+#else
+float4		g_Settings			: register(c100);
+#endif
+
+#ifdef USE_ALBEDO
+sampler2D	g_AlbedoTexture		: register(s0);
+#ifdef USE_DETAIL
+sampler2D	g_DetailTexture		: register(s1);
+#endif
+#endif
+#if defined(USE_STANDARDSHADOWMAP) || defined(USE_VARIANCESHADOWMAP)
+sampler2D	g_ShadowTexture		: register(s2);
+#endif
+
+struct PS_INPUT
+{
+	float4 Normal				: TEXCOORD0;
+	#ifdef USE_ALBEDO
+	float4 Albedo				: TEXCOORD1;
+	#endif
+	#if defined(USE_STANDARDSHADOWMAP) || defined(USE_VARIANCESHADOWMAP)
+	float4 Shadow				: TEXCOORD2;
+	#endif
+	#if defined(USE_STANDARDSHADOWMAP)
+	float4 Depth				: TEXCOORD3;
+	#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR0;
+};
+
+#if defined(USE_STANDARDSHADOWMAP)
+
+#define SHADOW_SIZE 1024.f
+#define SHADOW_INVSIZE 1.f / SHADOW_SIZE
+#ifndef XB2
+#define SHADOW_EPSILON 0.01f
+#else
+#define SHADOW_EPSILON 0.0f
+#endif
+
+float ComputeShadowPCF(float shadowEpsilon, float4 shadowCoords, sampler2D shadowTexture, float shadowSize, float shadowInvSize)
+{
+	float2 newShadowCoords = shadowCoords.xy * (1.f / shadowCoords.w);
+
+	float3 depthValues1;
+	depthValues1.x = tex2D(shadowTexture, newShadowCoords + float2(-shadowInvSize, -shadowInvSize)).x;
+	depthValues1.y = tex2D(shadowTexture, newShadowCoords + float2(-shadowInvSize,  0.f)).x;
+	depthValues1.z = tex2D(shadowTexture, newShadowCoords + float2(-shadowInvSize,  shadowInvSize)).x;
+	#ifndef XB2
+	depthValues1 = step( shadowEpsilon, depthValues1 + SHADOW_EPSILON );
+	#else
+	depthValues1 = step( shadowEpsilon, depthValues1 );
+	#endif
+
+	float3 depthValues2;
+	depthValues2.x = tex2D(shadowTexture, newShadowCoords + float2( 0.f, -shadowInvSize)).x;
+	depthValues2.y = tex2D(shadowTexture, newShadowCoords).x;
+	depthValues2.z = tex2D(shadowTexture, newShadowCoords + float2( 0.f,  shadowInvSize)).x;
+	#ifndef XB2
+	depthValues2 = step( shadowEpsilon, depthValues2 + SHADOW_EPSILON );
+	#else
+	depthValues2 = step( shadowEpsilon, depthValues2 );
+	#endif
+
+	float3 depthValues3;
+	depthValues3.x = tex2D(shadowTexture, newShadowCoords + float2( shadowInvSize, -shadowInvSize)).x;
+	depthValues3.y = tex2D(shadowTexture, newShadowCoords + float2( shadowInvSize,  0.f)).x;
+	depthValues3.z = tex2D(shadowTexture, newShadowCoords + float2( shadowInvSize,  shadowInvSize)).x;
+	#ifndef XB2
+	depthValues3 = step( shadowEpsilon, depthValues3 + SHADOW_EPSILON );
+	#else
+	depthValues3 = step( shadowEpsilon, depthValues3 );
+	#endif
+
+	float2 shadowFrac = frac(newShadowCoords * shadowSize);
+
+	float3 shadowLerp1 = lerp(depthValues1, depthValues2, shadowFrac.x);
+	float3 shadowLerp2 = lerp(depthValues2, depthValues3, shadowFrac.x);
+	
+	float4 shadowLerp;
+
+	shadowLerp.xy = lerp(shadowLerp1.xy, shadowLerp1.yz, shadowFrac.yy);
+	shadowLerp.zw = lerp(shadowLerp2.xy, shadowLerp2.yz, shadowFrac.yy);
+	
+	float result = dot(shadowLerp, float4(0.25f, 0.25f, 0.25f, 0.25f));
+	
+	if (shadowEpsilon < 0.0f || shadowEpsilon > 1.0f)
+		return 1.0f;
+	else
+		return result;
+}
+
+#endif
+
+#if defined(USE_VARIANCESHADOWMAP)
+
+float ComputeShadowAttenuationPoint(float3 vShadowCoord)
+{
+	float fDepth = tex2D(g_ShadowTexture, vShadowCoord.xy).r;
+	//return fDepth;
+	return vShadowCoord.z <= fDepth ? 1.0f : 0.0f;
+}
+
+float ComputeShadowAttenuationVSM(float3 vShadowCoord)
+{
+    float4 vVSM   = tex2D(g_ShadowTexture, vShadowCoord.xy);
+    float  fAvgZ  = vVSM.r; // Filtered z
+    float  fAvgZ2 = vVSM.g; // Filtered z-squared
+
+   // Use variance shadow mapping to compute the maximum probability that the
+    // pixel is in shadow
+    float variance = (fAvgZ2) - (fAvgZ*fAvgZ);
+    //variance       = min( 1.0f, max( 0.0f, variance + g_fEpsilonVSM ) );
+    #ifdef XB2
+    //variance       = min(1.0f, max(0.0f, variance + 0.02));
+    variance       = min(1.0f, max(0.0f, variance + g_Settings.x));
+    #else
+    variance       = min(1.0f, max(0.0f, variance + 0.001));
+    #endif
+    
+    float mean     = fAvgZ;
+    float d        = vShadowCoord.z - mean;
+    float p_max    = variance / (variance + d*d);
+
+	// To combat light-bleeding, experiment with raising p_max to some power
+    // (Try values from 0.1 to 100.0, if you like.)
+    if (vShadowCoord.z < 0.0f || vShadowCoord.z > 1.0f)
+		return 1.0f;
+    else
+    if (vShadowCoord.z <= fAvgZ)
+        return 1.0f;
+	else
+		return pow( p_max, g_Settings.y );
+		//return pow( p_max, 4.0f );
+}
+
+
+#endif
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float4 finalColour = float4(0.f, 0.f, 0.f, 0.f);
+
+	#ifdef USE_ALBEDO
+	float4 albedoColour = tex2D(g_AlbedoTexture, IN.Albedo.xy);
+	#ifdef USE_DETAIL
+	float4 detailColour = tex2D(g_DetailTexture, IN.Albedo.xy);
+	finalColour = albedoColour * detailColour * 2.f;
+	#else
+	finalColour = albedoColour;
+	#endif
+	#else
+	finalColour = float4(1.f, 1.f, 1.f, 1.f);
+	#endif
+
+	float diffuse = dot(IN.Normal.xyz, normalize(float3(1,1,1)));
+	
+	#if defined(USE_STANDARDSHADOWMAP)
+	float shadow = ComputeShadowPCF(IN.Depth.x / IN.Depth.y, IN.Shadow, g_ShadowTexture, SHADOW_SIZE, SHADOW_INVSIZE);
+	#endif
+	
+	#if defined(USE_VARIANCESHADOWMAP)
+	float shadow = ComputeShadowAttenuationVSM(IN.Shadow.xyz);
+	#endif
+	
+	#if defined(USE_STANDARDSHADOWMAP) || defined(USE_VARIANCESHADOWMAP)
+	finalColour.xyz = diffuse * shadow;
+	#else
+	finalColour.xyz = diffuse;
+	#endif
+	
+	OUT.Colour = finalColour;
+	
+	return OUT;
+}

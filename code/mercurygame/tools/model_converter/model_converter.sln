@@ -1,0 +1,43 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "model_converter", "model_converter.vcproj", "{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 tool = Debug|Win32 tool
+		Debug|Win64 tool = Debug|Win64 tool
+		Release|Win32 tool = Release|Win32 tool
+		Release|Win64 tool = Release|Win64 tool
+		Speed|Win32 tool = Speed|Win32 tool
+		Speed|Win64 tool = Speed|Win64 tool
+		Profile|Win32 tool = Profile|Win32 tool
+		Profile|Win64 tool = Profile|Win64 tool
+		Master|Win32 tool = Master|Win32 tool
+		Master|Win64 tool = Master|Win64 tool
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Win32 tool.ActiveCfg = Debug_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Win32 tool.Build.0 = Debug_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Win64 tool.ActiveCfg = Debug_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Win64 tool.Build.0 = Debug_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Win32 tool.ActiveCfg = Release_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Win32 tool.Build.0 = Release_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Win64 tool.ActiveCfg = Release_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Win64 tool.Build.0 = Release_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Win32 tool.ActiveCfg = Speed_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Win32 tool.Build.0 = Speed_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Win64 tool.ActiveCfg = Speed_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Win64 tool.Build.0 = Speed_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Win32 tool.ActiveCfg = Profile_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Win32 tool.Build.0 = Profile_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Win64 tool.ActiveCfg = Profile_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Win64 tool.Build.0 = Profile_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Win32 tool.ActiveCfg = Master_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Win32 tool.Build.0 = Master_WIN32_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Win64 tool.ActiveCfg = Master_WIN64_TOOL|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Win64 tool.Build.0 = Master_WIN64_TOOL|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

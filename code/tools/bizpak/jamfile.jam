@@ -1,0 +1,52 @@
+SubDir TOP Code Tools BizPak ;
+
+SupportedTargets WIN32_TOOL ;
+
+Define CFG_CONVERTER ;
+CFG_CONVERTER = 1 ;
+
+IncludePath
+./source/
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/mercury/library/util/logicalfs/include
+$(TOP)/code/vendor/tclap/current
+;
+
+LINKLIBS += dbghelp.lib ws2_32.lib ;
+
+LINKFLAGS += /SUBSYSTEM:CONSOLE /MACHINE:X86 ;
+
+SRC =
+./source/Commands/PakAddUpdate.cpp
+./source/Commands/PakCommon.cpp
+./source/Commands/PakCreate.cpp
+./source/Commands/PakExtract.cpp
+./source/Commands/PakList.cpp
+./source/Commands/PakTest.cpp
+./source/Application.cpp
+./source/Options.cpp
+./source/Main.cpp
+;
+
+LinkLibraries BizPak :
+	core system misc_shared tools_shared logicalfs zlib
+;
+
+Application BizPak : $(SRC) : stdafx.cpp ;
+
+Depends $(BIZARRE_ROOT)/tools/common_tools_wip/win32/bizpak/BizPak.exe : $(BIZARRE_ROOT)/tools/common_tools_wip/win32/bizpak/ ;
+MkDir $(BIZARRE_ROOT)/tools/common_tools_wip/win32/bizpak/ ;
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/bizpak/BizPak.exe : BizPak.exe ;
+
+ExportVcproj BizPak ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common misc_shared ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code mercury library util logicalfs ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+

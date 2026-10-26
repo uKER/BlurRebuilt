@@ -1,0 +1,44 @@
+#include "..\\psCommon.h"
+
+#if defined(BLUR_DX11) // [Blur1PCDX11] Separate texture and sampler bindings.
+Texture2D g_AlbedoTexture : register(t0);
+SamplerState g_AlbedoSampler : register(s0);
+#else
+sampler2D g_AlbedoTexture : register(s0);
+#endif
+
+struct PS_INPUT
+{
+	#if defined(BLUR_DX11)
+	float4 Colour0			: TEXCOORD0;
+	float4 Texcoord0		: TEXCOORD1;
+	#else
+	float4 Colour0			: COLOR0;
+	float4 Texcoord0		: TEXCOORD0;
+	#endif
+};
+
+struct PS_OUTPUT
+{
+	#if defined(BLUR_DX11)
+	float4 Colour0			: SV_Target;
+	#else
+	float4 Colour0			: COLOR0;
+	#endif
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	#if defined(BLUR_DX11)
+	float4 albedoColour = g_AlbedoTexture.Sample(g_AlbedoSampler, IN.Texcoord0.xy);
+	#else
+	float4 albedoColour = tex2D(g_AlbedoTexture, IN.Texcoord0.xy);
+	#endif
+	
+	OUT.Colour0.xyz = IN.Colour0.xyz * albedoColour.xyz;
+	OUT.Colour0.w = IN.Colour0.w * albedoColour.w;
+	
+	return OUT;
+}

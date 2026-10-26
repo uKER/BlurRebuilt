@@ -1,0 +1,141 @@
+SubDir TOP Code Mercury Library GameSys Crowd_System ;
+
+if $(USERNAME) = rthomas
+{
+#	Optim Off ;
+}
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/animation/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/SceneGraph/include
+$(MERCURY)/graphics/TextureResource/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/util/resource/include
+;
+
+if $(PLATFORM) = PC
+{
+  SUBDIRHDRS += \"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+
+# Main
+
+./source/CrowdActionSelect.cpp
+./source/CrowdActorUpdateModule.cpp
+./source/CrowdActorUpdateTask.cpp
+./source/CrowdAnimation.cpp
+./source/CrowdAnimationEventEffect.cpp
+./source/CrowdAnimationPool.cpp
+./source/CrowdBlock.cpp
+./source/CrowdBlockCache.cpp
+./source/CrowdBlockVisibilityModule.cpp
+./source/CrowdBlockVisibilityTask.cpp
+./source/CrowdCycle.cpp
+./source/CrowdDebug.cpp
+./source/CrowdEvent.cpp
+./source/CrowdPopulation.cpp
+./source/CrowdResources.cpp
+./source/CrowdRandom.cpp
+./source/CrowdSharedAnimation.cpp
+./source/CrowdSharedAnimationPool.cpp
+./source/CrowdUniqueAnimationPool.cpp
+./source/CrowdSpectator.cpp
+./source/CrowdSpectators.cpp
+./source/CrowdSystem.cpp
+./source/CrowdSystemActor.cpp
+./source/CrowdTextureCache.cpp
+./source/CrowdWorld.cpp
+./source/XtCrowd.cpp
+./source/XtCrowdPopulationListener.cpp
+./source/XtCrowdTextureListListener.cpp
+
+# Effects
+
+./source/effects/CrowdCameraFlashes.cpp
+./source/effects/CrowdFlags.cpp
+
+;
+
+SHADERSRC =
+
+Shaders/psCrowdFlag.psh
+Shaders/psCrowdFlagPrepass.psh
+Shaders/vsCrowdFlag.vsh
+Shaders/vsCrowdFlagPrepass.vsh
+
+;
+
+SRC = [ Batch $(SRC) : CrowdSystemPch.h ] ;
+	
+# SRC = [ AutoGrist $(SRC) : CrowdSystemPch.h ] ;
+
+if $(PLATFORM) = PS3
+{
+ 	LinkLibraries crowd_block_visibility_task : core_spu ;
+ 
+ 	SPUSRC =
+ 		<SPU>./source/CrowdEvent.cpp
+ 		<SPU>./source/CrowdBlockVisibilityModule.cpp
+ 		<SPU>./source/CrowdBlockVisibilityTask.cpp
+ 	;
+ 	
+	SrcOptim $(SPUSRC) : -O3 ;
+ 	# SrcOptim $(SPUSRC) : -O0 ;
+ 	AddSPUModule crowd_system : crowd_block_visibility_task : $(SPUSRC) ;
+ 	
+ 	# LinkLibraries crowd_actor_update_task : core_spu ;
+ 	# LinkLibraries crowd_actor_update_task : spu_anim_eval_lib ;
+
+ 	
+ 	SPUSRC =
+ 		<SPU>./source/CrowdActionSelect.cpp
+ 		<SPU>./source/CrowdActorUpdateModule.cpp
+ 		<SPU>./source/CrowdActorUpdateTask.cpp
+ 		<SPU>./source/CrowdAnimation.cpp
+ 		<SPU>./source/CrowdBlock.cpp
+ 		<SPU>./source/CrowdBlockCache.cpp
+ 		<SPU>./source/CrowdCycle.cpp
+ 		<SPU>./source/CrowdRandom.cpp
+ 		<SPU>./source/CrowdSharedAnimation.cpp
+ 		<SPU>./source/CrowdSharedAnimationPool.cpp
+ 		<SPU>./source/CrowdSpectator.cpp
+ 		<SPU>./source/CrowdUniqueAnimationPool.cpp
+ 	;
+ 	
+ 	MATHSDIR = $(TOP)/Code/Mercury/Library/Common/Core/Source/Maths ;
+ 	
+ 	SPUMATHSSRC = 
+		$(MATHSDIR)/hvec/VectorConst.cpp
+		$(MATHSDIR)/hvec/TableArcSin.cpp
+		$(MATHSDIR)/hvec/Trigonometry.cpp
+		$(MATHSDIR)/hvec/new/VF32.cpp 
+	;
+	
+	SPUSRC += <SPU>$(SPUMATHSSRC) ;
+ 	
+ 	SrcOptim $(SPUSRC) : -O3 ;
+ 	# SrcOptim $(SPUSRC) : -Os ;
+ 	# SrcOptim $(SPUSRC) : -O1 ;
+ 	# SrcOptim $(SPUSRC) : -O0 ;
+ 	AddSPUModule crowd_system : crowd_actor_update_task : $(SPUSRC) ;
+}
+
+Library crowd_system : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : CrowdSystemPch.cpp : CrowdSystemPch.h ;

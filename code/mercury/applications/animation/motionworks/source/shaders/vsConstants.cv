@@ -1,0 +1,12 @@
+#include "..\..\..\..\..\..\mercury\library\graphics\display\include\display\shaders\vsConstants.cv"
+
+#begin 32
+
+CV_CHARACTER_SKINNING_MATRIX_0
+CV_CHARACTER_SKINNING_MATRIX_1
+CV_CHARACTER_SKINNING_MATRIX_2
+
+// 51 others...
+
+#skip 153
+

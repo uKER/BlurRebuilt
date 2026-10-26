@@ -1,0 +1,4 @@
+#ifndef NEXUS_CMD_DEFINITIONS_H
+#define NEXUS_CMD_DEFINITIONS_H
+
+#endif

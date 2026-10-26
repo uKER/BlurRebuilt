@@ -1,0 +1,57 @@
+SubDir TOP Code Mercury Library GameSys Game_Debug ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/lod/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/Render/Include
+$(MERCURY)/graphics/world_render/Include
+$(MERCURY)/graphics/RenderingData/include
+$(MERCURY)/graphics/SceneGraph/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/ai/navmesh/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/animation/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+Define USE_SOLVER_2 ;
+
+SRC = 
+source/CubeMapPointDebug.cpp
+source/DebugModelRender.cpp
+source/DebugResourceRender.cpp
+source/DebugSamplerStates.cpp
+source/DebugTextureOverlay.cpp
+source/DebugWorldTextures.cpp
+source/DumpResourceStats.cpp
+source/GameDebug.cpp
+source/LightSamplePointDebug.cpp
+source/ModelResourceUsageUtils.cpp
+source/ShaderDebugToggles.cpp
+source/MiniPerfMonitor.cpp
+;
+
+SRC = [ Batch $(SRC) ] ;
+
+Library game_debug : $(SRC) ; #: GameDebugPch.cpp : GameDebugPch.h ;

@@ -1,0 +1,57 @@
+SubDir TOP Code Tools Vis Vis_Core ;
+
+CFG_CONVERTER = 1 ;
+Define CFG_CONVERTER=1 ;
+
+IncludePath
+$(SUBDIR)/../
+$(SUBDIR)/../vis_core/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+$(TOP)/Code/Vendor/TClap/Current
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+$(TOP)/Code/Tools/Attk/Attk/Include
+$(TOP)/Code/Tools/ClusterServ_lib/include
+\"$(DXSDK_PATH)/include\"
+$(TOP)/Code/Common
+$(TOP)/Libs/Vendor/CommonC++/current/include
+$(TOP)/Libs/Vendor/Xerces/2.5.0/src
+$(TOP)/Code/Tools/file_tag_db/file_tag_db/include
+$(TOP)/Code/Tools/AftkUt/AftkUtLib/include
+
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Graphics/FX/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/MercuryGame/tools/Converter_Shared/Converter_Shared/include
+$(TOP)/Libs/Vendor/Xerces/2.5.0/src
+;
+
+SRC =
+ClientSide.cpp
+D3DMesh.cpp
+D3DRenderer.cpp
+Database.cpp
+Frustum.cpp
+Kd-TreeBuilder.cpp
+mdump.cpp
+MemoryDbg.cpp
+Mesh.cpp
+PolygonCluster.cpp
+ProcessTextureTags.cpp
+PVSResult.cpp
+SampleArea.cpp
+SamplePoints.cpp
+Sampler.cpp
+Scene.cpp
+#Util.cpp
+vis.cpp
+Weld.cpp
+LightingPass.cpp
+ReadXmlConfig.cpp
+;
+
+Library vis_core : source/vis_core/$(SRC) : stdafx.cpp ;
+
+VcprojGroup TOP Code Tools Vis : Vis ;

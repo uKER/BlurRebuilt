@@ -1,0 +1,54 @@
+# bdPeer
+
+SHELL       = /bin/sh
+
+DW_ROOT	    ?= ..
+DWPGS_SPECIFIED_PATHS = 
+INCS        =  -I$(DW_ROOT)  -I$(DW_ROOT)/external/libtomcrypt/src/headers -I$(DW_ROOT)/external/expat -I$(DW_ROOT)/external/curl-7.19.2/include $(DWPGS_SPECIFIED_PATHS) 
+
+
+CPPFLAGS    = -Wall -Werror -fno-exceptions -fno-common -fmessage-length=1000 -fdiagnostics-show-location=once -pipe $(INCS)
+TARGET      = ../lib/unix/release/libbdpeer.a
+
+PLAT        = unix
+OPTIMIZE    = release
+
+ifdef DEBUG
+CPPFLAGS    += -g
+OPTIMIZE    = debug
+TARGET      = ../lib/unix/debug/libbdpeer.a
+endif
+
+OBJ_DIR     = $(DW_ROOT)/obj/$(PLAT)/$(OPTIMIZE)/bdPeer
+OBJS_ABSOLUTE	= $(OBJS:%=${OBJ_DIR}/%)
+
+SOURCE	    = bdGame.cpp bdGameLog.cpp bdPeer.cpp bdRound.cpp bdRoundInfo.cpp bdCommand/bdCommand.cpp bdCommand/bdCommandFactory.cpp bdDelivery/bdDeliveryInitializer.cpp bdDelivery/bdDeliveryInterceptor.cpp bdDelivery/bdDeliveryLogger.cpp bdDelivery/bdDeliveryManager.cpp bdDelivery/bdDeliveryManagerInfo.cpp bdDelivery/bdDeliveryManagerListener.cpp bdDelivery/bdDeliveryMessage.cpp bdPlayer/bdPlayer.cpp bdPlayer/bdPlayerFactory.cpp bdPlayer/bdPlayerManager.cpp bdPlayer/bdPlayerManagerListener.cpp bdSession/bdSession.cpp bdSession/bdSessionData.cpp bdSession/bdSessionDataFactory.cpp bdSession/bdSessionHandler.cpp bdSession/bdSessionInfo.cpp bdSession/bdSessionInterceptor.cpp bdSession/bdSessionListener.cpp 
+OBJS        = $(SOURCE:.cpp=-unix.o)
+
+AS          = g++
+CC          = g++
+LD          = g++
+RM          = /bin/rm -f
+
+
+
+all: .depend $(TARGET)
+
+clean:
+	$(RM) $(TARGET) $(OBJS_ABSOLUTE)
+
+$(TARGET): $(OBJS_ABSOLUTE)
+	ar rcs $(TARGET) $(OBJS_ABSOLUTE)
+
+$(OBJ_DIR)/%-unix-unix.o: %-unix.cpp
+	if [ ! -d $(OBJ_DIR)/`dirname $*` ] ; then mkdir -p $(OBJ_DIR)/`dirname $*`; fi
+	$(CC) -c $(CPPFLAGS) $*-unix.cpp -o $(OBJ_DIR)/$*-unix-unix.o
+
+$(OBJ_DIR)/%-unix.o: %.cpp
+	if [ ! -d $(OBJ_DIR)/`dirname $*` ] ; then mkdir -p $(OBJ_DIR)/`dirname $*`; fi
+	$(CC) -c $(CPPFLAGS) $*.cpp -o $(OBJ_DIR)/$*-unix.o
+
+.depend:
+	makedepend -f- -- $(CPPFLAGS) -- $(SOURCE) 2>> /dev/null > .depend
+
+-include .depend

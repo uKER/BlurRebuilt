@@ -1,0 +1,89 @@
+#ifndef _STOPWATCH_H_
+#define _STOPWATCH_H_
+
+#if defined (PLATFORM_PS3)
+#include <sys/sys_time.h>
+#endif
+
+//--------------------------------------------------------------------------------------
+// Name: Stopwatch
+// Desc: Simple stopwatch class for timing events
+//--------------------------------------------------------------------------------------
+class StopWatch
+{
+public:
+	StopWatch()
+	{
+#if defined (PLATFORM_XENON) || defined (PLATFORM_PC)
+		#ifndef RELEASE_TO_MASTER
+		QueryPerformanceFrequency(&m_TicksPerSecond);	
+		m_s64StartTime.QuadPart = 0;
+		Start();
+		#endif
+#endif
+#if defined (PLATFORM_PS3)
+		#ifndef RELEASE_TO_MASTER
+		m_TicksPerSecond = sys_time_get_timebase_frequency();	
+		m_s64StartTime = 0;
+		Start();
+		#endif
+#endif
+	}
+	inline void Start() 
+	{ 
+#if defined (PLATFORM_XENON) || defined (PLATFORM_PC)
+		#ifndef RELEASE_TO_MASTER
+		QueryPerformanceCounter(&m_s64StartTime);	
+		#endif
+#endif
+#if defined (PLATFORM_PS3)
+		#ifndef RELEASE_TO_MASTER
+		m_s64StartTime = sys_time_get_system_time();	
+		#endif
+#endif
+	}
+	// get current time. time is in seconds.
+	// can be called repeatedly.
+	inline F32 Time()
+	{
+#if defined (PLATFORM_XENON) || defined (PLATFORM_PC)
+		#ifndef RELEASE_TO_MASTER
+		LARGE_INTEGER s64EndTime;
+		QueryPerformanceCounter(&s64EndTime); 
+		__int64 s64Ticks = s64EndTime.QuadPart - m_s64StartTime.QuadPart;
+		F32 fElapsedTime = s64Ticks / (F32)m_TicksPerSecond.QuadPart;
+		return fElapsedTime;
+		#else
+		return 0.0f;
+		#endif
+#endif
+#if defined (PLATFORM_PS3)
+		#ifndef RELEASE_TO_MASTER
+		system_time_t s64EndTime;
+		s64EndTime = sys_time_get_system_time(); 
+		system_time_t s64Ticks = s64EndTime - m_s64StartTime;
+		F32 fElapsedTime = s64Ticks / (F32)m_TicksPerSecond;
+		return fElapsedTime;
+		#else
+		return 0.0f;
+		#endif
+#endif
+		return 0.0f;
+	}
+
+public:
+#if defined (PLATFORM_XENON) || defined (PLATFORM_PC)
+	#ifndef RELEASE_TO_MASTER
+	LARGE_INTEGER m_s64StartTime;
+	LARGE_INTEGER m_TicksPerSecond;
+	#endif
+#endif
+#if defined (PLATFORM_PS3)
+	#ifndef RELEASE_TO_MASTER
+	system_time_t m_s64StartTime;
+	uint64_t m_TicksPerSecond;
+	#endif
+#endif
+};
+//uint64_t sys_time_get_timebase_frequency  sys_time_get_system_time
+#endif // _STOPWATCH_H_

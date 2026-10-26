@@ -1,0 +1,10 @@
+SubDir TOP Code Tools Aftk Aftk Jam_maya ;
+
+SupportedTargets WIN32_TOOL ;
+
+AFTK_MAYA = 1 ;
+
+ExportVcproj aftk_maya ;
+
+SubInclude TOP Code Tools Aftk Aftk ;
+

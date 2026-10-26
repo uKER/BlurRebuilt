@@ -1,0 +1,66 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AftkTranslatorPlugin", "aftk_translator_plugin\AftkTranslatorPlugin.vcproj", "{67F56DB3-46A3-410C-8A2A-7A683866395D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{661BB307-31CE-4D19-9181-BB3B2939199D} = {661BB307-31CE-4D19-9181-BB3B2939199D}
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9} = {9634D64A-F9D4-490B-BF97-AEBD078679F9}
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A} = {DC11B76D-4309-4D38-B99C-BD8A88E02F0A}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Aftk", "aftk\Aftk.vcproj", "{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc", "..\..\mercury\library\system\system_pc.vcproj", "{661BB307-31CE-4D19-9181-BB3B2939199D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_pc", "..\..\mercury\library\core\core_pc.vcproj", "{9634D64A-F9D4-490B-BF97-AEBD078679F9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug 7.0 = Debug 7.0
+		Debug XSI 7.0 = Debug XSI 7.0
+		Release 7.0 = Release 7.0
+		Release XSI 7.0 = Release XSI 7.0
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Debug 7.0.ActiveCfg = Debug 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Debug 7.0.Build.0 = Debug 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Debug XSI 7.0.ActiveCfg = Debug XSI 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Debug XSI 7.0.Build.0 = Debug XSI 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Release 7.0.ActiveCfg = Release 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Release 7.0.Build.0 = Release 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Release XSI 7.0.ActiveCfg = Release XSI 7.0|Win32
+		{67F56DB3-46A3-410C-8A2A-7A683866395D}.Release XSI 7.0.Build.0 = Release XSI 7.0|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug 7.0.ActiveCfg = Debug Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug 7.0.Build.0 = Debug Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug XSI 7.0.ActiveCfg = Debug Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug XSI 7.0.Build.0 = Debug Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release 7.0.ActiveCfg = Release Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release 7.0.Build.0 = Release Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release XSI 7.0.ActiveCfg = Release Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release XSI 7.0.Build.0 = Release Maya 7.0 Win32|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug 7.0.ActiveCfg = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug 7.0.Build.0 = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug XSI 7.0.ActiveCfg = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug XSI 7.0.Build.0 = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release 7.0.ActiveCfg = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release 7.0.Build.0 = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release XSI 7.0.ActiveCfg = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release XSI 7.0.Build.0 = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug 7.0.ActiveCfg = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug 7.0.Build.0 = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug XSI 7.0.ActiveCfg = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug XSI 7.0.Build.0 = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release 7.0.ActiveCfg = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release 7.0.Build.0 = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release XSI 7.0.ActiveCfg = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release XSI 7.0.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

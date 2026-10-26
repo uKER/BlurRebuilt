@@ -1,0 +1,41 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+#if defined(XB2)
+#define CmpFunc min
+#elif defined(PS3)
+#define CmpFunc min
+#else
+#define CmpFunc max
+#endif
+
+float4		g_vSettings	: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tDepth	: register(s1);
+
+#define		g_fPixelWidth	g_vSettings.x
+#define		g_fPixelHeight	g_vSettings.y
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+	float	m_Depth		: DEPTH0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float	fDepth00	= SampleDepthBuffer(g_tDepth, input.m_TexCoord);
+	float	fDepth10	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(g_fPixelWidth, 0.0f));
+	float	fDepth01	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(0.0f, g_fPixelHeight));
+	float	fDepth11	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(g_fPixelWidth, g_fPixelHeight));
+
+	output.m_Depth		= CmpFunc(CmpFunc(fDepth00, fDepth10), CmpFunc(fDepth01, fDepth11));
+	
+	return output;
+}

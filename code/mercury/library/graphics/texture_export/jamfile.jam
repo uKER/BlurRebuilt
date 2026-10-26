@@ -1,0 +1,137 @@
+SubDir TOP Code Mercury Library Graphics Texture_Export ;
+
+if $(CFG_CONVERTER) != 1
+{
+# the game-side code for loading compiled .fx files
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+	Define NGL_GPU_D3D_PC NGL_GPU_D3D NGL_GPU_D3D9 ;
+}
+
+Define NGL_GPU_ONLY ;
+
+SRC =
+source/ngl/ngl_gpu.cpp
+source/ngl/ngl_fx.cpp
+;
+
+
+Library texture_export : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;
+
+}
+else
+{
+# exporter-side code for converting textures and converting .fx files
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+# Library paths for directx SDK and Xenon SDK are different for 64-bit
+if $(WIN64) = 1
+{
+	DXLIB = "$(DXSDK_PATH)/Lib/x64" ;
+	XLIB = "$(XENONSDK)/lib/x64/vs2005" ;
+	Define _X64_ ;
+}
+else
+{
+	DXLIB = "$(DXSDK_PATH)/Lib/x86" ;
+	XLIB = "$(XENONSDK)/lib/win32/vs2008" ;
+}
+
+IncludePath
+$(SUBDIR)/include
+$(SUBDIR)/source
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+
+#$(TOP)/Libs/Vendor/ATI_Compress/1.4/include
+$(TOP)/Libs/Vendor/ATI_Compress/1.7/include
+$(TOP)/Libs/Vendor/nvidia_dds_utilities/LIBS/inc
+$(TOP)/Libs/Vendor/nvidia_cg/1.4.1/include
+$(TOP)/Code/Tools/Attk/Attk/Include
+$(TOP)/libs/vendor/devil/1.6.7-mercury/include
+;
+
+Define NGL_TOOL ;
+
+ObjectCcFlags source/Target/pctex.cpp source/Target/pcfx.cpp : -I\"$(DXSDK_PATH)/include\" ;
+ObjectCcFlags source/Target/ps3tex.cpp : -I$(TOP)/code/mercury/library/graphics/texture_export/source/targets/ps3 -I\"$(DXSDK_PATH)/include\" ;
+ObjectCcFlags source/Target/xetex.cpp source/Target/xefx.cpp : -I\"$(XENONSDK)/include/win32/vs2005\" ;
+
+SRC = 
+source/Palette.cpp
+source/Rescale.cpp
+source/Surface.cpp
+source/TexelFormat.cpp
+source/Texture.cpp
+source/Targets/pctex.cpp
+source/Targets/ps3tex.cpp
+source/Targets/xetex.cpp
+source/Converters/atiDXT.cpp
+source/Converters/AdjustChannels.cpp
+source/Converters/CalculateAlphaFlags.cpp
+source/Converters/GenerateMipmaps.cpp
+source/Converters/HDRCompression.cpp
+source/Converters/HeightMapToNormalMap.cpp
+source/Converters/INR0.cpp
+source/Converters/NormaliseColour.cpp
+#source/Converters/nvDXT.cpp
+source/Converters/RescaleSurface.cpp
+source/Converters/sRGB.cpp
+
+source/TextureManager.cpp
+source/TextureProcessing.cpp
+source/Utility.cpp
+;
+
+# the FX exporting code for Xenon and PC go into separate DLLS which statically link with different versions of D3D9
+FXSRC =
+source/fxTools/static_strings.cpp
+source/fxTools/util.cpp
+source/fxTools/fxFile.cpp
+source/fxTools/Eval.cpp
+;
+
+ObjectDefines source/targets/pcfx.cpp source/targets/xefx.cpp : DLL_EXPORT ;
+
+LinkLibraries pcfx : core system "$(DXLIB)/d3d9" "$(DXLIB)/d3dx9" "$(DXLIB)/dinput8" "$(DXLIB)/dxguid" "$(DXLIB)/dxerr" ;
+LinkLibraries xefx : core system "$(XLIB)/d3d9" "$(XLIB)/d3dx9" "$(XLIB)/xgraphics" ;
+
+#DLL pcfx : $(FXSRC) source/targets/pcfx.cpp : stdafx.cpp ;
+#DLL xefx : $(FXSRC) source/targets/xefx.cpp : stdafx.cpp ;
+
+# include DirectX
+LINKLIBS += "$(DXLIB)/d3d9.lib" "$(DXLIB)/d3dx9.lib" "$(DXLIB)/dinput8.lib" "$(DXLIB)/dxguid.lib" "$(DXLIB)/dxerr.lib" ;
+# required for Xenon texture writing
+LINKLIBS += $(XLIB)/d3d9.lib $(XLIB)/d3dx9.lib $(XLIB)/xgraphics.lib ;
+
+if $(WIN64) = 1
+{
+LINKLIBS += $(TOP)/libs/vendor/ati_compress/1.7/lib/VC8/x64/ATI_Compress_MT_DLL_VC8.lib ;
+}
+else
+{
+# required for ATI DXT library
+# required for NVidia DXT library
+LINKLIBS += $(TOP)/libs/vendor/nvidia_dds_utilities/LIBS/lib/release/nvDXTlibMTDLL.lib ;
+LINKLIBS += $(TOP)/libs/vendor/ati_compress/1.7/lib/VC8/Win32/ATI_Compress_MT_DLL_VC8.lib ;
+}
+
+Library texture_export : $(SRC) : stdafx.cpp ;
+}
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

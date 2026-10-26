@@ -1,0 +1,27 @@
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+extern sampler2D	g_tNormals	: register(s0);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+	float3	m_Normal	: TEXCOORD1;
+	float3	m_Eye		: TEXCOORD2;
+	float4	m_Screen	: TEXCOORD3;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float3	vNormal0	= tex2D(g_tNormals, input.m_TexCoord.xy).xyz - 0.5f;
+	float3	vNormal1	= tex2D(g_tNormals, input.m_TexCoord.xy * 5.87f).xyz - 0.5f;
+	float3	vNormal		= normalize(vNormal0 + 0.25f * vNormal1);
+	//float3	vNormal		= normalize(tex2D(g_tNormals, input.m_TexCoord.xy).xyz * 2.0f - 1.0f);
+	float3	vEye		= normalize(input.m_Eye);
+
+	//float	fFresnel	= 0.0204f + (1.0f - 0.0204f) * pow(1.0f - saturate(dot(vNormal, -vEye)), 5.0f);
+
+	float3	vColour		= float3(0.30f, 0.73f, 0.63f) * vNormal.y;
+	
+	return GetExposure(float4(vColour, 1.0f));
+}

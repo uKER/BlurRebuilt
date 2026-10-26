@@ -1,0 +1,31 @@
+#include "../../graphics/display/include/display/shaders/psCommon.h"
+#include "../../graphics/display/include/display/shaders/psConstants.h"
+
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+	float3	m_Colour	: TEXCOORD1;
+#ifdef PLATFORM_PS3
+	float	m_UserClipPlane : CLP0;
+#endif
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+sampler2D	g_tFlare		: register(s0);
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float4 tex = tex2D(g_tFlare, input.m_TexCoord);
+	
+	output.m_Colour.rgb = input.m_Colour * tex.rgb * tex.a;
+	output.m_Colour.a = 0.f;
+	
+	return output;
+}

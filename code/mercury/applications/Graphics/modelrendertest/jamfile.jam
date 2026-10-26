@@ -1,0 +1,84 @@
+SubDir TOP Code Mercury Applications Graphics ModelRenderTest ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+XenonRemoteLocation Mercury\\ModelRenderTest ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/misc_shared/include
+$(MERCURY)/Graphics/Display/include
+$(MERCURY)/Graphics/Render/include
+$(MERCURY)/Graphics/RenderingData/include
+$(MERCURY)/Graphics/Camera2/include
+$(MERCURY)/Graphics/Ngl/include
+$(MERCURY)/Graphics/Fx/include
+$(MERCURY)/Graphics/SceneGraph/include
+$(MERCURY)/Graphics/Shader/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/GameSys/Framework/include
+$(MERCURY)/GameSys/TestSections/include
+$(MERCURY)/util/input/include
+\"$(DXSDK_PATH)/include\"
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+Main.cpp
+./../../../../mercury/library/gamesys/testsections/source/TestSectionHDR.cpp
+source/ModelRenderSection.cpp
+source/modelrenderer.cpp
+;
+
+LinkLibraries ModelRenderTest :
+		core 
+		system 
+		display 
+		render 
+		camera2  
+		input 
+		framework 
+		testsections 
+		debugsystems 
+		input 
+		resource 
+		zlib 
+		RenderingData 
+		fx 
+		scenegraph
+		world_render
+		textureresource
+		;
+
+Application ModelRenderTest : $(SRC) : stdafx.cpp ;
+
+ExportVcproj ModelRenderTest ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics world_render ;
+SubInclude TOP Code Mercury Library Graphics TextureResource ;
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys TestSections ;
+SubInclude TOP Code Mercury Library Gamesys Debugsystems ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+SubInclude TOP Code Mercury Library Common misc_shared ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Fx ;

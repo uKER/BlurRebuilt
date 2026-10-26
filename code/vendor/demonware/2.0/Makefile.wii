@@ -1,0 +1,211 @@
+#demonware
+
+all: ./bdExample/ClientServer/BasicSinglePlayer/00_BasicSinglePlayer ./bdExample/ClientServer/BasicMultiPlayer/01_BasicMultiPlayer ./bdExample/TestApps/SimultaneousConnect/02_SimultaneousConnect ./bdExample/ClientServer/StrictExtrapolation/03_StrictExtrapolation ./bdExample/ClientServer/ServerGameLogic/04_ServerGameLogic ./bdExample/ClientServer/ClientAndServerGameLogic/05_ClientAndServerGameLogic ./bdExample/ClientServer/Interpolation/06_Interpolation ./bdExample/ClientServer/InterpolationAndExtrapolation/07_InterpolationAndExtrapolation ./bdExample/ClientServer/DeltaCompression/08_DeltaCompression ./bdExample/ClientServer/CommandCompression/09_CommandCompression ./bdExample/ClientServer/SelectiveUpdating/10_SelectiveUpdating ./bdExample/ClientServer/InterpolationBreak/11_InterpolationBreak ./bdExample/ClientServer/PlayerControl/12_PlayerControl ./bdExample/Peer/DiscreteMovement/13_DiscreteMovement ./bdExample/TestApps/MultipleSecAssoc/14_MultipleSecAssoc ./bdExample/TestApps/SocketRouterOnly/15_SocketRouterOnly ./bdExample/Peer/ConsoleReconnectTest/16_ConsoleReconnectTest ./bdExample/Peer/ContinuousMovement/17_ContinuousMovement ./bdExample/Peer/ReconnectTest/18_ReconnectTest ./bdExample/Peer/StateBased/19_StateBased ./bdExample/TestApps/SessionConsistencyFixUp/22_SessionConsistencyFixUp ./bdExample/Peer/Interpolation/23_Interpolation-p2p ./bdExample/Peer/Interaction/24_Interaction ./bdExample/Peer/InteractionAndInterpolation/25_InteractionAndInterpolation ./bdExample/Peer/Replay/26_Replay ./bdExample/Peer/TurnBased/27_TurnBased ./bdExample/Peer/CommandDriven/28_CommandDriven ./bdExample/Peer/ExpandedGameInfo/29_ExpandedGameInfo ./bdExample/Peer/ExpandedSessionData/30_ExpandedSessionData ./bdExample/Peer/MidRoundJoining/31_MidRoundJoining ./bdExample/LobbyServices/Profiles/32_Profiles ./bdExample/LobbyServices/AnonymousMatchMaking/33_AnonymousMatchMaking ./bdExample/LobbyServices/Authentication/34_Authentication ./bdExample/LobbyServices/ChannelChat/35_ChannelChat ./bdExample/LobbyServices/ContentStreaming/36_ContentStreaming ./bdExample/LobbyServices/ContentUnlock/37_ContentUnlock ./bdExample/LobbyServices/Counter/38_Counter ./bdExample/LobbyServices/CrossTitle/39_CrossTitle ./bdExample/LobbyServices/Facebook/41_Facebook ./bdExample/LobbyServices/Friends/42_Friends ./bdExample/LobbyServices/KeyArchive/43_KeyArchive ./bdExample/LobbyServices/LicenseAuthentication/44_LicenseAuthentication ./bdExample/LobbyServices/LinkCode/45_LinkCode ./bdExample/LobbyServices/LobbyBandwidth/46_LobbyBandwidth ./bdExample/LobbyServices/MatchMaking/48_MatchMaking ./bdExample/LobbyServices/NASTokenAuthentication/49_NASTokenAuthentication ./bdExample/LobbyServices/NASTokenAuthenticationNewUser/50_NASTokenAuthenticationNewUser ./bdExample/LobbyServices/Stats/52_Stats ./bdExample/LobbyServices/Storage/53_Storage ./bdExample/LobbyServices/Tags/54_Tags ./bdExample/LobbyServices/Teams/55_Teams ./bdExample/LobbyServices/TitleUtilities/56_TitleUtilities ./bdExample/LobbyServices/Twitter/57_Twitter ./bdExample/LobbyServices/VoteRank/58_VoteRank ./bdExample/LobbyServices/QOSExample/64_QOSExample ./bdExample/LobbyServices/Group/68_Group ./bdExample/TestApps/LANBasedSocketRouterTest/70_LANBasedSocketRouterTest ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a 
+
+clean:
+	cd ././bdExample/ClientServer/BasicSinglePlayer && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/BasicMultiPlayer && make -f Makefile.wii clean
+	cd ././bdExample/TestApps/SimultaneousConnect && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/StrictExtrapolation && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/ServerGameLogic && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/ClientAndServerGameLogic && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/Interpolation && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/InterpolationAndExtrapolation && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/DeltaCompression && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/CommandCompression && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/SelectiveUpdating && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/InterpolationBreak && make -f Makefile.wii clean
+	cd ././bdExample/ClientServer/PlayerControl && make -f Makefile.wii clean
+	cd ././bdExample/Peer/DiscreteMovement && make -f Makefile.wii clean
+	cd ././bdExample/TestApps/MultipleSecAssoc && make -f Makefile.wii clean
+	cd ././bdExample/TestApps/SocketRouterOnly && make -f Makefile.wii clean
+	cd ././bdExample/Peer/ConsoleReconnectTest && make -f Makefile.wii clean
+	cd ././bdExample/Peer/ContinuousMovement && make -f Makefile.wii clean
+	cd ././bdExample/Peer/ReconnectTest && make -f Makefile.wii clean
+	cd ././bdExample/Peer/StateBased && make -f Makefile.wii clean
+	cd ././bdExample/TestApps/SessionConsistencyFixUp && make -f Makefile.wii clean
+	cd ././bdExample/Peer/Interpolation && make -f Makefile.wii clean
+	cd ././bdExample/Peer/Interaction && make -f Makefile.wii clean
+	cd ././bdExample/Peer/InteractionAndInterpolation && make -f Makefile.wii clean
+	cd ././bdExample/Peer/Replay && make -f Makefile.wii clean
+	cd ././bdExample/Peer/TurnBased && make -f Makefile.wii clean
+	cd ././bdExample/Peer/CommandDriven && make -f Makefile.wii clean
+	cd ././bdExample/Peer/ExpandedGameInfo && make -f Makefile.wii clean
+	cd ././bdExample/Peer/ExpandedSessionData && make -f Makefile.wii clean
+	cd ././bdExample/Peer/MidRoundJoining && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Profiles && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/AnonymousMatchMaking && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Authentication && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/ChannelChat && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/ContentStreaming && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/ContentUnlock && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Counter && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/CrossTitle && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Facebook && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Friends && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/KeyArchive && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/LicenseAuthentication && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/LinkCode && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/LobbyBandwidth && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/MatchMaking && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/NASTokenAuthentication && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/NASTokenAuthenticationNewUser && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Stats && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Storage && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Tags && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Teams && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/TitleUtilities && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Twitter && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/VoteRank && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/QOSExample && make -f Makefile.wii clean
+	cd ././bdExample/LobbyServices/Group && make -f Makefile.wii clean
+	cd ././bdExample/TestApps/LANBasedSocketRouterTest && make -f Makefile.wii clean
+	cd ././bdClientServer && make -f Makefile.wii clean
+	cd ././bdConnection && make -f Makefile.wii clean
+	cd ././bdCore && make -f Makefile.wii clean
+	cd ././bdExample/bdExampleCommon && make -f Makefile.wii clean
+	cd ././bdExample/bdExampleCommonLobby && make -f Makefile.wii clean
+	cd ././bdGraphics && make -f Makefile.wii clean
+	cd ././bdLobby && make -f Makefile.wii clean
+	cd ././bdNet && make -f Makefile.wii clean
+	cd ././bdPeer && make -f Makefile.wii clean
+	cd ././bdPlatform && make -f Makefile.wii clean
+	cd ././bdSocket && make -f Makefile.wii clean
+
+
+./bdExample/ClientServer/BasicSinglePlayer/00_BasicSinglePlayer: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/BasicSinglePlayer && make -f Makefile.wii
+./bdExample/ClientServer/BasicMultiPlayer/01_BasicMultiPlayer: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/BasicMultiPlayer && make -f Makefile.wii
+./bdExample/TestApps/SimultaneousConnect/02_SimultaneousConnect: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/TestApps/SimultaneousConnect && make -f Makefile.wii
+./bdExample/ClientServer/StrictExtrapolation/03_StrictExtrapolation: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/StrictExtrapolation && make -f Makefile.wii
+./bdExample/ClientServer/ServerGameLogic/04_ServerGameLogic: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/ServerGameLogic && make -f Makefile.wii
+./bdExample/ClientServer/ClientAndServerGameLogic/05_ClientAndServerGameLogic: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/ClientAndServerGameLogic && make -f Makefile.wii
+./bdExample/ClientServer/Interpolation/06_Interpolation: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/Interpolation && make -f Makefile.wii
+./bdExample/ClientServer/InterpolationAndExtrapolation/07_InterpolationAndExtrapolation: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/InterpolationAndExtrapolation && make -f Makefile.wii
+./bdExample/ClientServer/DeltaCompression/08_DeltaCompression: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/DeltaCompression && make -f Makefile.wii
+./bdExample/ClientServer/CommandCompression/09_CommandCompression: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/CommandCompression && make -f Makefile.wii
+./bdExample/ClientServer/SelectiveUpdating/10_SelectiveUpdating: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/SelectiveUpdating && make -f Makefile.wii
+./bdExample/ClientServer/InterpolationBreak/11_InterpolationBreak: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/InterpolationBreak && make -f Makefile.wii
+./bdExample/ClientServer/PlayerControl/12_PlayerControl: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/ClientServer/PlayerControl && make -f Makefile.wii
+./bdExample/Peer/DiscreteMovement/13_DiscreteMovement: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/DiscreteMovement && make -f Makefile.wii
+./bdExample/TestApps/MultipleSecAssoc/14_MultipleSecAssoc: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/TestApps/MultipleSecAssoc && make -f Makefile.wii
+./bdExample/TestApps/SocketRouterOnly/15_SocketRouterOnly: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/TestApps/SocketRouterOnly && make -f Makefile.wii
+./bdExample/Peer/ConsoleReconnectTest/16_ConsoleReconnectTest: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/ConsoleReconnectTest && make -f Makefile.wii
+./bdExample/Peer/ContinuousMovement/17_ContinuousMovement: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/ContinuousMovement && make -f Makefile.wii
+./bdExample/Peer/ReconnectTest/18_ReconnectTest: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/ReconnectTest && make -f Makefile.wii
+./bdExample/Peer/StateBased/19_StateBased: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/StateBased && make -f Makefile.wii
+./bdExample/TestApps/SessionConsistencyFixUp/22_SessionConsistencyFixUp: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/TestApps/SessionConsistencyFixUp && make -f Makefile.wii
+./bdExample/Peer/Interpolation/23_Interpolation-p2p: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/Interpolation && make -f Makefile.wii
+./bdExample/Peer/Interaction/24_Interaction: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/Interaction && make -f Makefile.wii
+./bdExample/Peer/InteractionAndInterpolation/25_InteractionAndInterpolation: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/InteractionAndInterpolation && make -f Makefile.wii
+./bdExample/Peer/Replay/26_Replay: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/Replay && make -f Makefile.wii
+./bdExample/Peer/TurnBased/27_TurnBased: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/TurnBased && make -f Makefile.wii
+./bdExample/Peer/CommandDriven/28_CommandDriven: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/CommandDriven && make -f Makefile.wii
+./bdExample/Peer/ExpandedGameInfo/29_ExpandedGameInfo: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/ExpandedGameInfo && make -f Makefile.wii
+./bdExample/Peer/ExpandedSessionData/30_ExpandedSessionData: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/ExpandedSessionData && make -f Makefile.wii
+./bdExample/Peer/MidRoundJoining/31_MidRoundJoining: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/Peer/MidRoundJoining && make -f Makefile.wii
+./bdExample/LobbyServices/Profiles/32_Profiles: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Profiles && make -f Makefile.wii
+./bdExample/LobbyServices/AnonymousMatchMaking/33_AnonymousMatchMaking: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/AnonymousMatchMaking && make -f Makefile.wii
+./bdExample/LobbyServices/Authentication/34_Authentication: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Authentication && make -f Makefile.wii
+./bdExample/LobbyServices/ChannelChat/35_ChannelChat: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/ChannelChat && make -f Makefile.wii
+./bdExample/LobbyServices/ContentStreaming/36_ContentStreaming: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/ContentStreaming && make -f Makefile.wii
+./bdExample/LobbyServices/ContentUnlock/37_ContentUnlock: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/ContentUnlock && make -f Makefile.wii
+./bdExample/LobbyServices/Counter/38_Counter: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Counter && make -f Makefile.wii
+./bdExample/LobbyServices/CrossTitle/39_CrossTitle: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/CrossTitle && make -f Makefile.wii
+./bdExample/LobbyServices/Facebook/41_Facebook: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Facebook && make -f Makefile.wii
+./bdExample/LobbyServices/Friends/42_Friends: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Friends && make -f Makefile.wii
+./bdExample/LobbyServices/KeyArchive/43_KeyArchive: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/KeyArchive && make -f Makefile.wii
+./bdExample/LobbyServices/LicenseAuthentication/44_LicenseAuthentication: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/LicenseAuthentication && make -f Makefile.wii
+./bdExample/LobbyServices/LinkCode/45_LinkCode: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/LinkCode && make -f Makefile.wii
+./bdExample/LobbyServices/LobbyBandwidth/46_LobbyBandwidth: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/LobbyBandwidth && make -f Makefile.wii
+./bdExample/LobbyServices/MatchMaking/48_MatchMaking: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/MatchMaking && make -f Makefile.wii
+./bdExample/LobbyServices/NASTokenAuthentication/49_NASTokenAuthentication: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/NASTokenAuthentication && make -f Makefile.wii
+./bdExample/LobbyServices/NASTokenAuthenticationNewUser/50_NASTokenAuthenticationNewUser: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/NASTokenAuthenticationNewUser && make -f Makefile.wii
+./bdExample/LobbyServices/Stats/52_Stats: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Stats && make -f Makefile.wii
+./bdExample/LobbyServices/Storage/53_Storage: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Storage && make -f Makefile.wii
+./bdExample/LobbyServices/Tags/54_Tags: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Tags && make -f Makefile.wii
+./bdExample/LobbyServices/Teams/55_Teams: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Teams && make -f Makefile.wii
+./bdExample/LobbyServices/TitleUtilities/56_TitleUtilities: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/TitleUtilities && make -f Makefile.wii
+./bdExample/LobbyServices/Twitter/57_Twitter: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Twitter && make -f Makefile.wii
+./bdExample/LobbyServices/VoteRank/58_VoteRank: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/VoteRank && make -f Makefile.wii
+./bdExample/LobbyServices/QOSExample/64_QOSExample: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/QOSExample && make -f Makefile.wii
+./bdExample/LobbyServices/Group/68_Group: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/LobbyServices/Group && make -f Makefile.wii
+./bdExample/TestApps/LANBasedSocketRouterTest/70_LANBasedSocketRouterTest: ./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a ./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a 
+	cd ./bdExample/TestApps/LANBasedSocketRouterTest && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdclientserver.a: 
+	cd ./bdClientServer && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdconnection.a: 
+	cd ./bdConnection && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdcore.a: 
+	cd ./bdCore && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommon.a: 
+	cd ./bdExample/bdExampleCommon && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdexamplecommonlobby.a: 
+	cd ./bdExample/bdExampleCommonLobby && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdgraphics.a: 
+	cd ./bdGraphics && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdlobby.a: 
+	cd ./bdLobby && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdnet.a: 
+	cd ./bdNet && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdpeer.a: 
+	cd ./bdPeer && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdplatform.a: 
+	cd ./bdPlatform && make -f Makefile.wii
+./lib/$(PLAT)/$(OPTIMIZE)/libbdsocket.a: 
+	cd ./bdSocket && make -f Makefile.wii

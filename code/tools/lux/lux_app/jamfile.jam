@@ -1,0 +1,99 @@
+SubDir TOP Code Tools Lux Lux_App ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath
+$(SUBDIR)/include
+$(SUBDIR)/include/lux_app/CustomControls
+$(TOP)/Code/Tools/Lux
+$(TOP)/Code/Tools/Lux/lux_client/include
+$(TOP)/Code/Tools/Lux/Lux/Include
+$(TOP)/Code/Tools/Lux/Lux_Common/include
+$(TOP)/Code/Tools/Lux/Scene_Renderer/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+$(TOP)/Code/Vendor/TClap/Current
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+$(TOP)/Code/Tools/Attk/Attk/Include
+$(TOP)/Code/Tools/AftkUt/AftkUtLib/include
+$(TOP)/Code/Tools/ClusterServ_lib/include
+$(TOP)/Code/Mercury/Library/Util/spatial_hierarchy/include
+$(TOP)/Code/Common
+$(TOP)/Libs/Vendor/CommonC++/current/include
+\"$(DXSDK_PATH)/include\"
+$(TOP)/Libs/Vendor/Prof-Uis/2.26/include
+;
+
+Define _AFXDLL __STATPROFUIS_WITH_DLLMFC__ _MBCS ;
+
+SRC =
+AppSettings.cpp
+LayerDlg.cpp
+LMapProgDlg.cpp
+LpvsApp.cpp
+LpvsAppDoc.cpp
+LpvsCore.cpp
+LpvsFileProgressDialog.cpp
+LpvsGui.cpp
+LpvsMainFrame.cpp
+LpvsProjectPreferencesDialog.cpp
+LpvsRenderView.cpp
+PickerDlg.cpp
+PolygonPicker.cpp
+#ViewGrid.cpp
+CustomControls/CaptionBar.cpp
+CustomControls/CaptionView.cpp
+CustomControls/ColorButton.cpp
+CustomControls/ColourPopup.cpp
+CustomControls/Cursor.cpp
+#CustomControls/CustomSplitter.cpp
+CustomControls/DarkDialog.cpp
+CustomControls/FixedWidthToolbar.cpp
+CustomControls/HlprFuncs.cpp
+CustomControls/Mouse.cpp
+CustomControls/ProgressTimeToComplete.cpp
+CustomControls/RollupCtrl.cpp
+CustomControls/WndSlider.cpp
+;
+SRC = source/lux_app/$(SRC) ;
+SRC += lux_app.rc ;
+
+DXLIBS = d3d9.lib d3dx9.lib dinput8.lib dxguid.lib dxerr.lib ;
+if $(WIN64) = 1
+{
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x64/$(DXLIBS)" ;
+}
+else
+{
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/$(DXLIBS)" ;
+}
+
+LINKLIBS += secur32.lib netapi32.lib ;
+LINKFLAGS += /LIBPATH:$(TOP)/libs/vendor/prof-uis/2.26/lib /SUBSYSTEM:WINDOWS ;
+LinkLibraries lux_app :
+		core system tools_shared aftk attk aftkutlib clusterserv_lib spatial_hierarchy lux_core lux commonc++ ftm_xml_api scene_renderer
+		farm_library zlib
+		$(TOP)/libs/vendor/xerces/2.5.0/lib/xerces-c_2
+		$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk
+		;
+
+Application lux_app : $(SRC) ;
+ExportVcproj lux_app ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Mercury Library Util spatial_hierarchy ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Tools AftkUt AftkUtLib ;
+SubInclude TOP Code Tools ClusterServ_lib ;
+SubInclude TOP Code Tools File_Tag_Manager Ftm_Xml_Api Ftm_Xml_Api ;
+SubInclude TOP Code Tools Lux Lux_Common ;
+SubInclude TOP Code Tools Lux Lux ;
+SubInclude TOP Code Tools Lux Scene_Renderer ;
+SubInclude TOP Code Tools xFarm farm_library ;
+SubInclude TOP Code Vendor Zlib Current_Mercury ;
+SubInclude TOP Libs Vendor CommonC++ current ;

@@ -1,0 +1,50 @@
+SubDir TOP Code Mercury Library GameSys Game_Resource ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/Render/Include
+$(MERCURY)/graphics/RenderingData/include
+$(MERCURY)/graphics/SceneGraph/include
+$(MERCURY)/graphics/world_render/Include
+$(MERCURY)/gamesys/crowd_system/include
+$(MERCURY)/gamesys/advertising/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/ai/navmesh/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+Define USE_SOLVER_2 ;
+
+SRC = 
+source/CrowdData.cpp
+source/EffectVariations.cpp
+source/ElementList.cpp
+source/GameResource.cpp
+source/LevelResource.cpp
+source/LevelSceneManager.cpp
+source/ModelResource.cpp
+source/ModelData.cpp
+source/ModelTypeManager.cpp
+source/PhysicsLevel.cpp
+;
+
+SRC = [ Batch $(SRC) ] ;
+
+Library game_resource : $(SRC) ; #: GameResourcePch.cpp : GameResourcePch.h ;

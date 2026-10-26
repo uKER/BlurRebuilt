@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+******************************************************
+*** Test Shader Config File
+******************************************************
+-->
+
+<!-- ***** -->
+<!-- Enums -->
+<!-- ***** -->
+
+<ShaderEnum name ="Material">
+	<Item name = "Def" />
+	<Item name = "Tex" />
+	<Item name = "TexCub" />
+  <Item name = "TexHlt" />
+  <Item name = "TexCubHlt" />
+	<Item name = "TexNrm" />
+	<Item name = "TexCubNrm" />
+  <Item name = "TexHltNrm" />
+  <Item name = "TexCubHltNrm" />
+
+	<Item name = "TexEmi" />
+	<Item name = "TexCubEmi" />
+  <Item name = "TexHltEmi" />
+  <Item name = "TexCubHltEmi" />
+	<Item name = "TexNrmEmi" />
+	<Item name = "TexCubNrmEmi" />
+  <Item name = "TexHltNrmEmi" />
+  <Item name = "TexCubHltNrmEmi" />
+
+	<Item name = "TexNEm" />
+	<Item name = "TexCubNEm" />
+  <Item name = "TexHltNEm" />
+  <Item name = "TexCubHltNEm" />
+	<Item name = "TexNrmNEm" />
+	<Item name = "TexCubNrmNEm" />
+  <Item name = "TexHltNrmNEm" />
+  <Item name = "TexCubHltNrmNEm" />
+  
+	<Item name = "Glo" />
+	<Item name = "Sun" />
+	<Item name = "Eye" />
+	<Item name = "Fab" />
+	<Item name = "Ski" />
+  <Item name = "Flo" />
+</ShaderEnum>
+
+<ShaderEnum name ="Type">
+  <Item name = "LDe" />
+  <Item name = "LDeSca" />
+  <Item name = "LDeScaSkn" />
+  <Item name = "Lmp" />
+</ShaderEnum>
+
+<ShaderEnum name ="PointLights">
+	<Item name = "Pl0" />
+  <Item name = "Pl1" />
+  <Item name = "Pl4" />
+</ShaderEnum>
+
+<ShaderEnum name ="ShadowMap">
+	<Item name = "Sm0" />
+	<Item name = "Sm1" />
+</ShaderEnum>
+
+<ShaderEnum name ="BlendMode">
+  <Item name = "BSo" />
+  <Item name = "BPt" />
+  <Item name = "BAl" />
+</ShaderEnum>
+
+<ShaderEnum name ="Lighting">
+  <Item name = "LightNo" />
+  <Item name = "LightDe" />
+  <Item name = "LightSh" />
+  <Item name = "LightMp" />
+  <Item name = "LightMpNoSun" />
+  <Item name = "LightMpNoInt" />
+</ShaderEnum>
+
+<TableAxis name = "Offline">
+	<Combination name ="Default">
+		<ShaderEnum name ="Material"/>
+		<ShaderEnum name ="Type"/>
+	</Combination>
+</TableAxis>
+
+<TableAxis name = "Ingame">
+	<Combination name ="Default">
+    <ShaderEnum name ="Lighting"/>
+    <ShaderEnum name ="PointLights"/>
+    <ShaderEnum name ="ShadowMap"/>
+    <ShaderEnum name ="BlendMode"/>
+  </Combination>
+</TableAxis>
+
+<ShaderTable>
+	<OfflineAxis name ="Offline"/>
+	<IngameAxis name ="Ingame"/>
+</ShaderTable>

@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="gravity"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+<Platform Name="Xbox 360"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Debug\" IntermediateDirectory="obj\Win32\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug -a"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32\Debug\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Release\" IntermediateDirectory="obj\Win32\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release -a"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32\Release\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Speed\" IntermediateDirectory="obj\Win32\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed -a"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32\Speed\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Profile\" IntermediateDirectory="obj\Win32\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile -a"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32\Profile\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Master\" IntermediateDirectory="obj\Win32\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master"
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master -a"
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32\Master\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Debug\" IntermediateDirectory="obj\Xbox_360\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug -a"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Xbox_360\Debug\gravity.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Release_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Release\" IntermediateDirectory="obj\Xbox_360\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release -a"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Xbox_360\Release\gravity.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Speed_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Speed\" IntermediateDirectory="obj\Xbox_360\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed -a"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Xbox_360\Speed\gravity.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Profile_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Profile\" IntermediateDirectory="obj\Xbox_360\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile -a"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Xbox_360\Profile\gravity.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Master_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Master\" IntermediateDirectory="obj\Xbox_360\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master"
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master -a"
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Xbox_360\Master\gravity.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Debug_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Debug\" IntermediateDirectory="obj\Ps3\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug -a"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Ps3\Debug\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Release\" IntermediateDirectory="obj\Ps3\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release -a"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Ps3\Release\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Speed\" IntermediateDirectory="obj\Ps3\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed -a"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Ps3\Speed\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Profile\" IntermediateDirectory="obj\Ps3\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile -a"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Ps3\Profile\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Master\" IntermediateDirectory="obj\Ps3\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master"
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master -a"
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Ps3\Master\gravity.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath=".\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="Gravity" Filter="\">
+<File RelativePath="stdafx.cpp"></File>
+<File RelativePath="stdafx.h"></File>
+<File RelativePath="jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<Filter Name="Broadphase" Filter="\">
+<File RelativePath="include\gravity\broadphase\DistributionTree.h"></File>
+<File RelativePath="include\gravity\broadphase\Object.h"></File>
+<File RelativePath="include\gravity\broadphase\SweepAndPrune.h"></File>
+<File RelativePath="include\gravity\broadphase\DistributionTree.inl"></File>
+<File RelativePath="include\gravity\broadphase\Object.inl"></File>
+<File RelativePath="include\gravity\broadphase\SweepAndPrune.inl"></File>
+<File RelativePath="source\broadphase\DistributionTree.cpp"></File>
+<File RelativePath="source\broadphase\stdafx.cpp"></File>
+<File RelativePath="source\broadphase\SweepAndPrune.cpp"></File>
+<File RelativePath="source\broadphase\stdafx.h"></File>
+</Filter>
+<Filter Name="Narrowphase" Filter="\">
+<File RelativePath="include\gravity\narrowphase\AxisBox.h"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleCapsule.h"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleRay.h"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleSphere.h"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleTriangle.h"></File>
+<File RelativePath="include\gravity\narrowphase\CollisionManager.h"></File>
+<File RelativePath="include\gravity\narrowphase\CollisionResult.h"></File>
+<File RelativePath="include\gravity\narrowphase\CompositeShapeCollision.h"></File>
+<File RelativePath="include\gravity\narrowphase\CompositeShapeTriangle.h"></File>
+<File RelativePath="include\gravity\narrowphase\ConvexHull.h"></File>
+<File RelativePath="include\gravity\narrowphase\ConvexTriangle.h"></File>
+<File RelativePath="include\gravity\narrowphase\CylinderSphere.h"></File>
+<File RelativePath="include\gravity\narrowphase\GJK.h"></File>
+<File RelativePath="include\gravity\narrowphase\OBBCapsule.h"></File>
+<File RelativePath="include\gravity\narrowphase\OBBOBB.h"></File>
+<File RelativePath="include\gravity\narrowphase\OBBRay.h"></File>
+<File RelativePath="include\gravity\narrowphase\OBBSphere.h"></File>
+<File RelativePath="include\gravity\narrowphase\OBBTriangle.h"></File>
+<File RelativePath="include\gravity\narrowphase\OptimisedAABBTree.h"></File>
+<File RelativePath="include\gravity\narrowphase\OptimisedKDTree.h"></File>
+<File RelativePath="include\gravity\narrowphase\Primitive.h"></File>
+<File RelativePath="include\gravity\narrowphase\PrimitiveTest.h"></File>
+<File RelativePath="include\gravity\narrowphase\Ray.h"></File>
+<File RelativePath="include\gravity\narrowphase\RayTriangle.h"></File>
+<File RelativePath="include\gravity\narrowphase\Resource.h"></File>
+<File RelativePath="include\gravity\narrowphase\Shape.h"></File>
+<File RelativePath="include\gravity\narrowphase\Shapes.h"></File>
+<File RelativePath="include\gravity\narrowphase\SphereRay.h"></File>
+<File RelativePath="include\gravity\narrowphase\SphereSphere.h"></File>
+<File RelativePath="include\gravity\narrowphase\SphereTriangle.h"></File>
+<File RelativePath="include\gravity\narrowphase\TriangleMesh.h"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleCapsule.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleRay.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleSphere.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CapsuleTriangle.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CollisionManager.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CollisionResult.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CompositeShapeCollision.inl"></File>
+<File RelativePath="include\gravity\narrowphase\CompositeShapeTriangle.inl"></File>
+<File RelativePath="include\gravity\narrowphase\ConvexTriangle.inl"></File>
+<File RelativePath="include\gravity\narrowphase\GJK.inl"></File>
+<File RelativePath="include\gravity\narrowphase\ISA_GJK.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OBBCapsule.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OBBOBB.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OBBRay.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OBBSegment.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OBBSphere.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OBBTriangle.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OptimisedAABBTree.inl"></File>
+<File RelativePath="include\gravity\narrowphase\OptimisedKDTree.inl"></File>
+<File RelativePath="include\gravity\narrowphase\Primitive.inl"></File>
+<File RelativePath="include\gravity\narrowphase\PrimitiveTest.inl"></File>
+<File RelativePath="include\gravity\narrowphase\RayTriangle.inl"></File>
+<File RelativePath="include\gravity\narrowphase\SphereRay.inl"></File>
+<File RelativePath="include\gravity\narrowphase\SphereSphere.inl"></File>
+<File RelativePath="include\gravity\narrowphase\SphereTriangle.inl"></File>
+<File RelativePath="source\narrowphase\AABB.cpp"></File>
+<File RelativePath="source\narrowphase\Capsule.cpp"></File>
+<File RelativePath="source\narrowphase\CollisionManager.cpp"></File>
+<File RelativePath="source\narrowphase\Cylinder.cpp"></File>
+<File RelativePath="source\narrowphase\GJKClosestPoints.cpp"></File>
+<File RelativePath="source\narrowphase\GJKIntersect.cpp"></File>
+<File RelativePath="source\narrowphase\OBB.cpp"></File>
+<File RelativePath="source\narrowphase\OBBSegment.cpp"></File>
+<File RelativePath="source\narrowphase\PrimitiveClosestPointsTest.cpp"></File>
+<File RelativePath="source\narrowphase\PrimitiveIntersectTest.cpp"></File>
+<File RelativePath="source\narrowphase\Sphere.cpp"></File>
+<File RelativePath="source\narrowphase\stdafx.cpp"></File>
+<File RelativePath="source\narrowphase\TriangleMesh.cpp"></File>
+<File RelativePath="source\narrowphase\stdafx.h"></File>
+</Filter>
+<Filter Name="Sdk" Filter="\">
+<File RelativePath="include\gravity\sdk\Action.h"></File>
+<File RelativePath="include\gravity\sdk\Body.h"></File>
+<File RelativePath="include\gravity\sdk\BodyHelper.h"></File>
+<File RelativePath="include\gravity\sdk\CollisionCallback.h"></File>
+<File RelativePath="include\gravity\sdk\ConstraintDescriptors.h"></File>
+<File RelativePath="include\gravity\sdk\InertiaTensorGenerator.h"></File>
+<File RelativePath="include\gravity\sdk\PhysicsSDK.h"></File>
+<File RelativePath="include\gravity\sdk\Scene.h"></File>
+<File RelativePath="include\gravity\sdk\ShapeDescriptors.h"></File>
+<File RelativePath="include\gravity\sdk\Body.inl"></File>
+<File RelativePath="include\gravity\sdk\BodyHelper.inl"></File>
+<File RelativePath="source\sdk\Action.cpp"></File>
+<File RelativePath="source\sdk\Body.cpp"></File>
+<File RelativePath="source\sdk\BodyHelper.cpp"></File>
+<File RelativePath="source\sdk\InertiaTensorGenerator.cpp"></File>
+<File RelativePath="source\sdk\PhysicsSDK.cpp"></File>
+<File RelativePath="source\sdk\Scene.cpp"></File>
+<File RelativePath="source\sdk\stdafx.cpp"></File>
+<File RelativePath="source\sdk\stdafx.h"></File>
+</Filter>
+<Filter Name="Sharedphysics" Filter="\">
+<File RelativePath="include\gravity\sharedphysics\AllocationManager.h"></File>
+<File RelativePath="include\gravity\sharedphysics\Array.h"></File>
+<File RelativePath="include\gravity\sharedphysics\BinaryHeap.h"></File>
+<File RelativePath="include\gravity\sharedphysics\Collider.h"></File>
+<File RelativePath="include\gravity\sharedphysics\ConstraintGraph.h"></File>
+<File RelativePath="include\gravity\sharedphysics\ContactDatabase.h"></File>
+<File RelativePath="include\gravity\sharedphysics\ContactStream.h"></File>
+<File RelativePath="include\gravity\sharedphysics\ContactStreamIterator.h"></File>
+<File RelativePath="include\gravity\sharedphysics\Integrator.h"></File>
+<File RelativePath="include\gravity\sharedphysics\List.h"></File>
+<File RelativePath="include\gravity\sharedphysics\Material.h"></File>
+<File RelativePath="include\gravity\sharedphysics\MemoryAllocator.h"></File>
+<File RelativePath="include\gravity\sharedphysics\PersistentContactManifold.h"></File>
+<File RelativePath="include\gravity\sharedphysics\QuickSort.h"></File>
+<File RelativePath="include\gravity\sharedphysics\RadixSort.h"></File>
+<File RelativePath="include\gravity\sharedphysics\RigidBody.h"></File>
+<File RelativePath="include\gravity\sharedphysics\SafeStack.h"></File>
+<File RelativePath="include\gravity\sharedphysics\Select.h"></File>
+<File RelativePath="include\gravity\sharedphysics\SortedArray.h"></File>
+<File RelativePath="include\gravity\sharedphysics\AllocationManager.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\BinaryHeap.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\ContactDatabase.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\ContactStream.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\ContactStreamIterator.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\Integrator.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\MemoryAllocator.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\RadixSort.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\RigidBody.inl"></File>
+<File RelativePath="include\gravity\sharedphysics\SortedArray.inl"></File>
+<File RelativePath="source\sharedphysics\ConstraintGraph.cpp"></File>
+<File RelativePath="source\sharedphysics\ContactDatabase.cpp"></File>
+<File RelativePath="source\sharedphysics\Integrator.cpp"></File>
+<File RelativePath="source\sharedphysics\stdafx.cpp"></File>
+<File RelativePath="source\sharedphysics\stdafx.h"></File>
+</Filter>
+<Filter Name="Solver" Filter="\">
+<File RelativePath="include\gravity\solver\Constraint.h"></File>
+<File RelativePath="include\gravity\solver\ConstraintGraphManager.h"></File>
+<File RelativePath="include\gravity\solver\ConstraintManager.h"></File>
+<File RelativePath="include\gravity\solver\Featherstone.h"></File>
+<File RelativePath="include\gravity\solver\InvertMJT.h"></File>
+<File RelativePath="include\gravity\solver\Jacobian.h"></File>
+<File RelativePath="include\gravity\solver\LCP.h"></File>
+<File RelativePath="include\gravity\solver\LCP2.h"></File>
+<File RelativePath="include\gravity\solver\LCP3.h"></File>
+<File RelativePath="source\solver\CarWheelJointConstraint.cpp"></File>
+<File RelativePath="source\solver\CarWheelJointInvertMJT.cpp"></File>
+<File RelativePath="source\solver\CarWheelJointJacobian.cpp"></File>
+<File RelativePath="source\solver\ConstraintGraphManager.cpp"></File>
+<File RelativePath="source\solver\ConstraintManager.cpp"></File>
+<File RelativePath="source\solver\ContactConstraint.cpp"></File>
+<File RelativePath="source\solver\ContactInvertMJT.cpp"></File>
+<File RelativePath="source\solver\ContactJacobian.cpp"></File>
+<File RelativePath="source\solver\Featherstone.cpp"></File>
+<File RelativePath="source\solver\LCP.cpp"></File>
+<File RelativePath="source\solver\LCP2.cpp"></File>
+<File RelativePath="source\solver\LCP3.cpp"></File>
+<File RelativePath="source\solver\Link.cpp"></File>
+<File RelativePath="source\solver\Multibody.cpp"></File>
+<File RelativePath="source\solver\PrismaticJointConstraint.cpp"></File>
+<File RelativePath="source\solver\PrismaticJointInvertMJT.cpp"></File>
+<File RelativePath="source\solver\PrismaticJointJacobian.cpp"></File>
+<File RelativePath="source\solver\PrismaticJointLimitConstraint.cpp"></File>
+<File RelativePath="source\solver\PrismaticJointLimitInvertMJT.cpp"></File>
+<File RelativePath="source\solver\PrismaticJointLimitJacobian.cpp"></File>
+<File RelativePath="source\solver\RevoluteJointConstraint.cpp"></File>
+<File RelativePath="source\solver\RevoluteJointInvertMJT.cpp"></File>
+<File RelativePath="source\solver\RevoluteJointJacobian.cpp"></File>
+<File RelativePath="source\solver\RevoluteJointLimitConstraint.cpp"></File>
+<File RelativePath="source\solver\RevoluteJointLimitInvertMJT.cpp"></File>
+<File RelativePath="source\solver\RevoluteJointLimitJacobian.cpp"></File>
+<File RelativePath="source\solver\SphericalJointConstraint.cpp"></File>
+<File RelativePath="source\solver\SphericalJointInvertMJT.cpp"></File>
+<File RelativePath="source\solver\SphericalJointJacobian.cpp"></File>
+<File RelativePath="source\solver\stdafx.cpp"></File>
+<File RelativePath="source\solver\stdafx.h"></File>
+</Filter>
+<Filter Name="Treebuilder" Filter="\">
+<File RelativePath="include\gravity\treebuilder\AABBTree.h"></File>
+<File RelativePath="include\gravity\treebuilder\GenericTree.h"></File>
+<File RelativePath="include\gravity\treebuilder\KDTree.h"></File>
+<File RelativePath="include\gravity\treebuilder\AABBTree.inl"></File>
+<File RelativePath="include\gravity\treebuilder\GenericTree.inl"></File>
+<File RelativePath="include\gravity\treebuilder\KDTree.inl"></File>
+<File RelativePath="source\treebuilder\AABBTree.cpp"></File>
+<File RelativePath="source\treebuilder\KDTree.cpp"></File>
+<File RelativePath="source\treebuilder\stdafx.cpp"></File>
+<File RelativePath="source\treebuilder\stdafx.h"></File>
+</Filter>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

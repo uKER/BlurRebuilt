@@ -1,0 +1,50 @@
+#include "..\..\psCommon.h"
+#include "psLuminance.h"
+
+float4		g_vWeightSettings	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+sampler2D	textureMap			: register(s0);
+
+struct PS_INPUT
+{
+	float2 uv		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float fSum = 0.0f;
+	
+	#ifdef HDRU32
+		// scaled luminance is stored in alpha channel
+		float luminance = log((1.0f - tex2D(textureMap, input.uv).a) * g_fLuminanceScale + 0.0001f);
+		fSum += luminance;
+	#else
+		#ifdef HDR
+			// frame buffer contains tonemapped colour in gamma
+			float3 colour = tex2D(textureMap, input.uv).rgb;
+			
+			// invert gamma and undo tonemap
+			colour = colour * colour * g_fInvExposure;
+			
+			// get the luminance of this pixel
+			fSum += GetLogLuminance(colour);
+		#else
+			float3 colour = tex2D(textureMap, input.uv).rgb;
+			fSum += GetLogLuminanceScaled(colour);
+		#endif
+	#endif
+	
+	float dist = length(float2(g_vWeightSettings.x, g_vWeightSettings.y) - input.uv) * g_vWeightSettings.z;
+	float weight = saturate(1.0f - dist);
+
+	output.colour = float4(fSum * weight, weight, 0.f, 1.f);
+
+	return output;
+}

@@ -1,0 +1,41 @@
+SubDir TOP Code Mercury Library Graphics Patcher ;
+
+IncludePath
+$(SUBDIR)/Include
+$(TOP)/code/mercury/library/Common/Btl/Include
+$(TOP)/Code/Mercury/Library/Common/Core/Include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/Include
+$(TOP)/Code/Mercury/Library/Common/System/Include
+$(TOP)/Code/Mercury/Library/Graphics/Display/Include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/Include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+if $(PLATFORM) = PS3
+{
+	SRC =
+	./source/Patcher.cpp
+	;
+}
+else
+{
+	SRC = ;
+}
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+if $(PLATFORM) = PS3
+{
+	AddSPUModule patcher : PatcherJob : ./source/Job.cpp ;
+	Library patcher : $(SRC) : stdafx.cpp ;
+}
+else
+{
+	Library patcher : stdafx.cpp ;
+}

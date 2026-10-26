@@ -1,0 +1,189 @@
+SubDir TOP Code Mercury Applications Network NetTest ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+if $(PLATFORM) = XENON
+{
+	XEXCFG = xex.xml ;
+	XEXADDITIONALSECTIONS += 534507DD=\"..\\..\\..\\..\\nightwing\\xlast\\Bizarre_Sample.spa\",RO ;
+}
+
+if $(USERNAME) = orenault
+{
+	echo -------------------------- ;
+	echo using testapp game path ;
+	echo -------------------------- ;
+	echo workspace branch :
+	echo "//bizdepot/trunk/nightwing/game/multiplayer/... //orenault_workspace_netestapp/code/mercury/applications/network/nettest/source/multiplayer/..." ;
+	echo -------------------------- ;
+
+	GAMEPATH = ./source ;
+}
+else
+{
+	echo -------------------------- ;
+	echo using nightwing game path ;
+	echo -------------------------- ;
+	echo no workspace branch ;
+	echo -------------------------- ;
+	
+	GAMEPATH = $(TOP)/code/nightwing/game ;
+}
+
+IncludePath
+NetTest$(PLATFORM)
+NetTest$(PLATFORM)/include
+source
+source/ui
+$(TOP)/Code/Mercury/Library/Multiplayer/Engine/Source
+$(TOP)/Code/Mercury/Library/Multiplayer/Game/Source
+$(TOP)/Code/Mercury/Library/Multiplayer/UI/Source
+$(TOP)/Code/Mercury/Library/Multiplayer/UI/Source/gadgets
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Movie/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/Code/Mercury/Library/Network/include
+$(TOP)/Code/Vendor/Demonware/2.0
+$(TOP)/Code/Vendor/Demonware/2.0/External/libtomcrypt/src/headers
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/UI/include
+$(TOP)/Code/Mercury/Library/Util/Lua_Shared/include
+$(TOP)/Code/Vendor/zlib/current_mercury
+$(TOP)/Code/Vendor/lua/current/src
+./source/multiplayer/gameTestApp
+./source/multiplayer/gameEmptyApp
+
+IncludePath 
+Game/Temp
+Game
+Ui
+
+;
+
+if $(PLATFORM) = PC
+{
+	SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG /XEXWORKSPACE:2048000 ;
+}
+
+SRC =
+source/netSection.cpp
+source/UI/FileSystem.cpp
+source/UI/PolyTest.cpp
+source/UI/SectionUI.cpp
+source/UI/UiManager.cpp
+source/UI/OverloadNew.cpp
+source/UI/NetPanelGadget.cpp
+source/UI/Game/GameDataFinder.cpp
+source/UI/Game/GameVariableStore.cpp
+source/UI/Game/ProfileDataFinder.cpp
+#source/UI/Game/ProfileInterface.cpp
+source/UI/Game/SaveSystem.cpp
+source/UI/Game/SaveSystem_$(PLATFORM).cpp
+source/UI/Game/Lua_Interface/Lua_Profile.cpp
+NetTest$(PLATFORM)/Main.cpp
+
+$(TOP)/code/mercury/library/samples/source/section/SectionNetState.cpp
+$(TOP)/code/mercury/library/samples/source/section/SectionNetConnect.cpp
+
+#----------------------
+# test app
+#----------------------
+source/gameEmptyApp/netGameFactoryEmptyApp.cpp
+source/gameEmptyApp/netGameWorldEmptyApp.cpp
+source/gameTestApp/game/netGameWorld.cpp
+source/gameTestApp/game/netGameWorldTestApp.cpp
+source/gameTestApp/game/GameActors/netGameActor.cpp
+source/gameTestApp/game/netTestAppFactory.cpp
+source/gameTestStateApp/game/netGameFactoryStateTest.cpp
+
+;
+
+LUASRC = 
+source/UI/Game/Lua_Scripts/UIEnums.lua
+source/UI/Game/Lua_Scripts/UIFontSequences.lua
+source/UI/Game/Lua_Scripts/UIGlobals.lua
+source/UI/Game/Lua_Scripts/UISetup.lua
+source/UI/Game/Lua_Scripts/Popups/GUIBank.lua
+source/UI/Game/Lua_Scripts/Screens/GUIBank.lua
+source/UI/Game/Lua_Scripts/Screens/Main.lua
+source/UI/Game/Lua_Scripts/Screens/Multiplayer.lua
+;
+
+XENONLIBS = $(TOP)/libs/vendor/bink/1.8s/binkxenon ;
+PS3LIBS = $(TOP)/libs/vendor/bink/1.8s/binkps3 $(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub ;
+PCLIBS = $(TOP)/libs/vendor/bink/1.8s/binkw32 ;
+
+if $(PLATFORM) = XENON
+{
+	LINKLIBS += xmp.lib xhv.lib ;
+}	
+
+DEMONWARE_LIBS = bdConnection bdCore bdLobby bdSocket bdPlatform bdNet bdLobby ;
+DEMONWARE_ENCRYPTION_LIBS = libtomcrypt libtommath ;
+
+echo config is $(BUILD) ;
+
+if $(BUILD) = Debug
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/debug/$(DEMONWARE_LIBS).lib ;
+	}
+}
+else
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/release/$(DEMONWARE_LIBS).lib ;
+	}
+}
+
+LinkLibraries NetTest : core system display render network zlib samples liblua lua_shared ui xtgame misc_shared movie $($(PLATFORM)LIBS) netengine netgame netui ;
+		
+LUABundle NetTest : $(LUASRC) : source/Ui/Game/LUA_Scripts ;
+Application NetTest : $(SRC) : stdafx.cpp ;
+ExportVcproj NetTest ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Movie ;
+SubInclude TOP Code Mercury Library Network ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Ui ;
+SubInclude TOP Code Mercury Library Util Lua_Shared ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+SubInclude TOP Code Vendor lua current src ;
+SubInclude TOP Code Mercury Library Multiplayer Engine ;
+SubInclude TOP Code Mercury Library Multiplayer Game ;
+SubInclude TOP Code Mercury Library Multiplayer UI ;

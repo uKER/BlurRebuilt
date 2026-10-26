@@ -1,0 +1,17 @@
+SubDir TOP Code Mercury Library ;
+
+SupportedTargets WIN32 PS3 ;
+
+ExportVcproj MercuryLibs ;
+
+SubInclude TOP Code Mercury Library Animation ;
+SubInclude TOP Code Mercury Library Audio ;
+SubInclude TOP Code Mercury Library Common ;
+SubInclude TOP Code Mercury Library GameSys ;
+SubInclude TOP Code Mercury Library Graphics ;
+SubInclude TOP Code Mercury Library Network ;
+SubInclude TOP Code Mercury Library physics ;
+SubInclude TOP Code Mercury Library samples ;
+SubInclude TOP Code Mercury Library Util ;
+SubInclude TOP Code Mercury Library Ui ;
+

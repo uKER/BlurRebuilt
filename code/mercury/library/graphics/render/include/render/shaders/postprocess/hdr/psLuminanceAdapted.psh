@@ -1,0 +1,33 @@
+#include "..\..\psCommon.h"
+
+sampler2D	currentLumTexture		: register(s0);
+sampler2D	adaptedLumTexture		: register(s1);
+
+float4		g_vSettings				: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+#define		g_fFrameTime			g_vSettings.x
+#define		g_fLuminanceAdjustment	g_vSettings.y
+#define		g_fLumMin				g_vSettings.z
+#define		g_fLumMax				g_vSettings.w
+
+struct PS_INPUT
+{
+	float2 uv				: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float fCurrentLum = tex2D(currentLumTexture, float2(0.5f, 0.5f)).r;
+	float fAdaptedLum = tex2D(adaptedLumTexture, float2(0.5f, 0.5f)).r;
+	float fLum = fAdaptedLum + (fCurrentLum - fAdaptedLum) * (1.0f - pow(0.98f, 30.f * g_fFrameTime));
+	
+	output.colour = float4(fLum, 0.f, 0.f, 1.f);
+
+	return output;
+}

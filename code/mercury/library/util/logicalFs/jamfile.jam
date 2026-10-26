@@ -1,0 +1,122 @@
+SubDir TOP Code Mercury Library Util logicalFs ;
+
+if $(CFG_CONVERTER) = 1
+{
+	Define CFG_CONVERTER=1 ;
+}
+
+if $(USERNAME) = kmacleod
+{
+	Define LOGICAL_FS_DEBUG ;
+}
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Util/LogicalFs/include
+$(TOP)/code/mercury/Library/Util/tools_shared/include
+$(TOP)/Code/Vendor/zlib/Current_Mercury
+;
+
+SRC =
+./source/gamefs/GameHelpers.cpp
+
+./source/logfs/LogFsManager.cpp
+./source/logfs/LogFsEvent.cpp
+
+./source/memoryfs/impl/MemoryDirectoryEntry.cpp
+./source/memoryfs/impl/MemoryFileEntry.cpp
+./source/memoryfs/impl/MemoryFile.cpp
+./source/memoryfs/MemoryFs.cpp
+
+./source/overlayfs/OverlayFs.cpp
+./source/overlayfs/OverlayLayer.cpp
+
+./source/pakfs/impl/PakAtomicJobList.cpp
+./source/pakfs/impl/PakBuildHelpers.cpp
+./source/pakfs/impl/PakCompressRaw.cpp
+./source/pakfs/impl/PakCompressZLib.cpp
+./source/pakfs/impl/PakCompressPacketZLib.cpp
+./source/pakfs/impl/PakCreateFiles.cpp
+./source/pakfs/impl/PakDefinitions.cpp
+./source/pakfs/impl/PakEntryFile.cpp
+./source/pakfs/impl/PakFile.cpp
+./source/pakfs/impl/PakIoMediator.cpp
+./source/pakfs/impl/PakRead.cpp
+./source/pakfs/impl/PakSha1.cpp
+./source/pakfs/impl/PakUtil.cpp
+./source/pakfs/impl/PakWrite.cpp
+./source/pakfs/Pak.cpp
+./source/pakfs/PakFs.cpp
+./source/pakfs/PakGlobals.cpp
+./source/pakfs/PakHelpers.cpp
+./source/pakfs/PakFsManager.cpp
+./source/LogicalFs.cpp
+;
+
+	
+if $(CFG_CONVERTER) = 1
+{
+Define CFG_CONVERTER ;
+SUBDIRHDRS += \"$(XENONSDK)/include/win32/vs2005\" ;
+
+SRC +=
+./source/pakfs/impl/PakCompressXMem.cpp 
+./source/pakfs/impl/PakCompressPacketXMem.cpp
+;
+}
+
+
+#SubDir TOP Code Vendor Zlib Current_Mercury ;
+
+#SUBDIRHDRS += $(TOP)/Code/vendor/zlib/current_mercury ;
+#ZLIBDIR = $(TOP)/Code/vendor/zlib/current_mercury ;
+
+SPUSRCDEFLATE =
+<spu_deflate>./source/pakfs/impl/PakCompressPacketZLib.cpp
+<spu_deflate>./source/pakfs/impl/PakAtomicJobList.cpp
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/adler32.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/compress.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/crc32.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/deflate.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/infback.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inffast.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inflate.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inftrees.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/trees.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/uncompr.c
+<spu_deflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/zutil.c
+;
+
+SPUSRCINFLATE =
+<spu_inflate>./source/pakfs/impl/PakCompressPacketZLib.cpp
+<spu_inflate>./source/pakfs/impl/PakAtomicJobList.cpp
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/adler32.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/compress.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/crc32.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/deflate.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/infback.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inffast.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inflate.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inftrees.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/trees.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/uncompr.c
+<spu_inflate>$(TOP)/Code/Vendor/Zlib/Current_Mercury/zutil.c
+;
+
+ObjectDefines <spu_deflate>./source/pakfs/impl/PakCompressPacketZLib.cpp : DEFLATE_MODULE ;
+ObjectDefines <spu_inflate>./source/pakfs/impl/PakCompressPacketZLib.cpp : INFLATE_MODULE ;
+
+if $(PLATFORM) = PS3
+{
+	AddSPUModule logicalfs : PakDeflate		: $(SPUSRCDEFLATE) ;
+	AddSPUModule logicalfs : PakInflate		: $(SPUSRCINFLATE) ;
+}
+
+
+Library logicalfs : $(SRC) : LogicalFsPch.cpp ;
+

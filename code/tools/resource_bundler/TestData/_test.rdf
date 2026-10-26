@@ -1,0 +1,63 @@
+<RDF Version="XPR2">
+
+<Texture 
+	Name	=	"TestTexture"
+	Source	=	"textures\test.tga"
+	Format	=	"D3DFMT_DXT5"
+	Format	=	"nvD3DFMT_DXT1"
+	Format	=	"ATI_TC_FORMAT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"TestTexture2"
+	Source	=	"textures\test2.tga"
+	Format	=	"D3DFMT_L8"
+	Format	=	"ATI_TC_FORMAT_DXT1"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"TestTextureMipMap"
+	Source	=	"textures\test.tga"
+	Format	=	"D3DFMT_DXT5"
+	Format	=	"ATI_TC_FORMAT_DXT5"
+	Width	=	"128"
+	Height	=	"128"
+	Levels	=	"5"
+/>
+
+<Texture
+	Name		=	"TestAlphaTexture"
+	Source		=	"textures\test.tga"
+	AlphaSource	=	"textures\alpha.tga"
+	Format		=	"D3DFMT_DXT5"
+	Format		=	"ATI_TC_FORMAT_DXT5"
+	Levels		=	"0"
+/>
+
+<ArrayTexture
+	Name	=	"TestArrayTexture"
+	Source	=	"textures\array1.tga"
+	Source	=	"textures\array2.tga"
+	Source	=	"textures\array3.tga"
+	Format	=	"D3DFMT_DXT5"
+	Format	=	"ATI_TC_FORMAT_DXT5"
+	Levels	=	"0"
+/>
+	
+<Cubemap 
+	Name	=	"TestReflection"
+	Source0	=	"textures\Array1.tga"
+	Source1	=	"textures\Array2.tga"
+	Source2	=	"textures\Array3.tga"
+	Source3	=	"textures\Array1.tga"
+	Source4	=	"textures\Array2.tga"
+	Source5	=	"textures\Array3.tga"
+	Format	=	"D3DFMT_DXT1"
+	Format	=	"ATI_TC_FORMAT_DXT1"
+	Size	=	"128"
+	Levels	=	"1" 
+/>
+
+</RDF>

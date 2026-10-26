@@ -1,0 +1,335 @@
+xt
+	field __id "882F08B7"
+	field __name "Events.RocketTrail"
+	field __pack "2E661B2B"
+	field __type "Particle_Event"
+	block duration
+	end
+	array emitters
+		block 
+			block Rotation
+				block x
+					field value "180"
+					field variation "180"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+					field variation "50"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			field __id "PartC35CD4D9"
+			block animation
+				block duration
+				end
+				field repeating "1"
+				block time
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+			end
+			block colour2
+			end
+			block distributionSize
+			end
+			field effect "EA7BF38E"
+			block force
+			end
+			block life
+				field value ".5"
+				field variation ".25"
+			end
+			block misc
+				block boundingBox
+					block max
+					end
+					block min
+					end
+				end
+			end
+			block particle
+				block Rotation
+					block x
+						field value "180"
+						field variation "180"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block Spin
+					block x
+						field variation "50"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block colour
+				end
+				block colour2
+				end
+				block force
+				end
+				block life
+					field value ".5"
+				end
+				block size
+					field value ".5"
+					field variation ".1"
+				end
+				block speed
+					field value "8"
+					field variation "2"
+				end
+				block speedInherited
+					field value "0"
+				end
+			end
+			field repeating "1"
+			block size
+				field value ".5"
+				field variation ".1"
+			end
+			field space "Local"
+			block spawn
+				block amount
+					field distance ".1"
+					field value "300"
+				end
+				block cone
+					field outer "20"
+				end
+				block direction
+					field y "-1"
+				end
+				block distributionSize
+				end
+				block position
+				end
+				field space "Local"
+			end
+			block speed
+				field value "5"
+			end
+			block speedInherited
+				field value "0"
+				field variation "0"
+			end
+		end
+		block 
+			block Rotation
+				block x
+					field value "180"
+					field variation "180"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+					field variation "50"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			field __id "PartAE1F8E33"
+			block animation
+				block duration
+				end
+				field repeating "1"
+				block time
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+				field a "0.253"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			block colour2
+			end
+			block distributionSize
+			end
+			field effect "6D540D5C"
+			block force
+			end
+			block life
+				field value "2"
+				field variation ".5"
+			end
+			block misc
+				block boundingBox
+					block max
+					end
+					block min
+					end
+				end
+			end
+			block particle
+				block Rotation
+					block x
+						field value "180"
+						field variation "180"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block Spin
+					block x
+						field variation "50"
+					end
+					block y
+					end
+					block z
+					end
+				end
+				block colour
+					field a "0.407"
+					field b "1.000"
+					field g "1.000"
+					field r "1.000"
+				end
+				block colour2
+				end
+				block force
+				end
+				block life
+					field value "1"
+					field variation ".5"
+				end
+				block size
+					field value "1"
+					field variation ".5"
+				end
+				block speed
+				end
+				block speedInherited
+				end
+			end
+			field repeating "0"
+			block size
+				field value "1"
+				field variation ".25"
+			end
+			block spawn
+				block amount
+					field distance ".5"
+				end
+				block cone
+					field outer "30"
+				end
+				block direction
+				end
+				block distributionSize
+				end
+				block position
+				end
+			end
+			block speed
+				field value "0"
+			end
+			block speedInherited
+				field value "0"
+				field variation "0"
+			end
+		end
+		block 
+			block Rotation
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			field __id "Part7F382A34"
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+			end
+			block colour2
+			end
+			block distributionSize
+			end
+			field effect "EB42F1F1"
+			block force
+			end
+			block life
+				field value ".5"
+				field variation ".1"
+			end
+			field repeating "1"
+			block size
+				field value ".05"
+				field variation "0.01"
+			end
+			field space "Local"
+			array spawn
+				block 
+					field __id "Part88B52E94"
+					block amount
+						field disable "0"
+						field value "300"
+					end
+					block cone
+						field outer "20"
+					end
+					block direction
+						field y "-1"
+					end
+					block duration
+					end
+					block position
+					end
+				end
+			end
+			block speed
+				field value "5"
+			end
+			block speedInherited
+			end
+		end
+	end
+	field repeating "1"
+end

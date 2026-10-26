@@ -1,0 +1,60 @@
+SubDir TOP Code Mercury Library Graphics world_render ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Graphics/fx/include
+$(TOP)/Code/Mercury/Library/Graphics/render/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/graphics/portal/include
+$(TOP)/Code/Mercury/Library/GameSys/Game_Resource/include
+;
+
+Define
+OBJ_SHADERS
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+Define OBJ_SHADERS RENDERINGDATA_ALLOW_INCLUDE ;
+
+SRC = source/pvs.cpp ;
+
+GAMESRC =
+source/LightList.cpp
+source/LightSamplePoints.cpp
+source/LightSamplePointScene.cpp
+source/ModelInstance.cpp
+source/RenderLevel.cpp
+source/RenderModel.cpp
+source/RenderModelData.cpp
+source/WorldRender.cpp
+source/Scene.cpp
+source/EnvironmentSampler.cpp
+source/CubemapPoints.cpp
+;
+
+TOOLSRC = ;
+
+if $(CFG_CONVERTER) != 1
+{
+SRC += $(GAMESRC) ;
+}
+else
+{
+SRC += $(TOOLSRC) ;
+}
+
+SHADERSRC =
+;
+
+Library world_render : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : stdafx.cpp ;

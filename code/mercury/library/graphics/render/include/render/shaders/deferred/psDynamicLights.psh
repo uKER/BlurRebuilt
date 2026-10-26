@@ -1,0 +1,60 @@
+#define ADDITIVE
+
+#include "../psCommon.h"
+#include "../psConstants.h"
+#include "../psHDR.h"
+
+float4		g_vPosition[8]	: register(CCP_RENDER_SETTINGS);
+float4		g_vColour[8]	: register(CCP_RENDER_SETTINGS_8);
+float4x4	g_mToWorld		: register(CCP_RENDER_SETTINGS_16);
+float4		g_vDepth		: register(CCP_RENDER_SETTINGS_20);
+
+sampler2D	g_tDepth		: register(s0);
+sampler2D	g_tNormal		: register(s1);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float3	vWorldPosition	= GetWorldPosition(g_tDepth, input.m_TexCoord, g_vDepth, (float4x3) g_mToWorld);
+	float3	vWorldNormal	= normalize(tex2D(g_tNormal, input.m_TexCoord).rgb - 0.5f);
+	
+	float3	vDiffuse = 0.0f;
+#if defined(ONE)	
+	int i = 0;
+#elif defined(TWO)
+	for (int i = 0; i < 2; ++i)
+#elif defined(THREE)
+	for (int i = 0; i < 3; ++i)
+#elif defined(FOUR)
+	for (int i = 0; i < 4; ++i)
+#elif defined(FIVE)
+	for (int i = 0; i < 5; ++i)
+#elif defined(SIX)
+	for (int i = 0; i < 6; ++i)
+#elif defined(SEVEN)
+	for (int i = 0; i < 7; ++i)
+#elif defined(EIGHT)
+	for (int i = 0; i < 8; ++i)
+#endif
+	{
+#if !defined(PS_2_0)
+		float3	vLightColour	= g_vColour[i].xyz;
+		float3	vLightPosition	= g_vPosition[i].xyz;
+		float	fLightFalloff	= g_vPosition[i].w;
+		
+		float3	vLightToWorld	= vLightPosition - vWorldPosition;
+		float	fLightDistance	= dot(vLightToWorld, vLightToWorld);
+		float	fLightFactor	= 1.0f - saturate(fLightDistance * fLightFalloff);
+
+		float	fLightDotNormal	= saturate(dot(normalize(vLightToWorld), vWorldNormal));
+
+		vDiffuse += vLightColour * fLightDotNormal * fLightFactor;
+#endif
+	}
+
+	return GetExposure(float4(vDiffuse, 1.0f));
+}

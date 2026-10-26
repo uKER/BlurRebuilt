@@ -1,0 +1,22 @@
+#include "Common.h"
+
+sampler2D	g_DiffuseTexture		: register(s0);
+
+PS_OUTPUT main(VS_OUTPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)1;
+	
+#ifdef GREYSCALE
+	float4 col = tex2D(g_DiffuseTexture, float2(-IN.Texcoord0.x, IN.Texcoord0.y));
+	OUT.Colour.rgb = (col.r + col.g + col.b)/3;
+	OUT.Colour.a = col.a;
+#else
+	OUT.Colour = tex2D(g_DiffuseTexture, float2(-IN.Texcoord0.x, IN.Texcoord0.y));
+#endif
+
+#ifdef DEPTHBIAS
+	OUT.Depth = IN.Depth;
+#endif
+
+	return OUT;
+}

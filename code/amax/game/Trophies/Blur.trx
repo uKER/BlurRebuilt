@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<trophytrp>
+ <file name="TROPCONF.SFM" path="">
+  <trophyconf version="1.0">
+   <npcommid>NPXX00471_00</npcommid>
+   <trophyset-version>01.00</trophyset-version>
+   <trophy id="000" hidden="no" ttype="P" pid="-1"/>
+   <trophy id="001" hidden="no" ttype="B" pid="000"/>
+   <trophy id="002" hidden="no" ttype="B" pid="000"/>
+   <trophy id="003" hidden="no" ttype="S" pid="000"/>
+   <trophy id="004" hidden="no" ttype="B" pid="000"/>
+   <trophy id="005" hidden="no" ttype="B" pid="000"/>
+   <trophy id="006" hidden="no" ttype="B" pid="000"/>
+   <trophy id="007" hidden="no" ttype="B" pid="000"/>
+   <trophy id="008" hidden="no" ttype="B" pid="000"/>
+   <trophy id="009" hidden="no" ttype="B" pid="000"/>
+   <trophy id="010" hidden="no" ttype="B" pid="000"/>
+   <trophy id="011" hidden="no" ttype="B" pid="000"/>
+   <trophy id="012" hidden="no" ttype="B" pid="000"/>
+   <trophy id="013" hidden="no" ttype="B" pid="000"/>
+   <trophy id="014" hidden="no" ttype="B" pid="000"/>
+   <trophy id="015" hidden="no" ttype="B" pid="000"/>
+   <trophy id="016" hidden="no" ttype="B" pid="000"/>
+   <trophy id="017" hidden="no" ttype="B" pid="000"/>
+   <trophy id="018" hidden="no" ttype="B" pid="000"/>
+   <trophy id="019" hidden="no" ttype="B" pid="000"/>
+   <trophy id="020" hidden="no" ttype="B" pid="000"/>
+   <trophy id="021" hidden="no" ttype="B" pid="000"/>
+   <trophy id="022" hidden="no" ttype="B" pid="000"/>
+   <trophy id="023" hidden="no" ttype="B" pid="000"/>
+   <trophy id="024" hidden="no" ttype="B" pid="000"/>
+   <trophy id="025" hidden="no" ttype="B" pid="000"/>
+   <trophy id="026" hidden="no" ttype="B" pid="000"/>
+   <trophy id="027" hidden="no" ttype="S" pid="000"/>
+   <trophy id="028" hidden="no" ttype="G" pid="000"/>
+   <trophy id="029" hidden="no" ttype="S" pid="000"/>
+   <trophy id="030" hidden="no" ttype="S" pid="000"/>
+   <trophy id="031" hidden="no" ttype="B" pid="000"/>
+   <trophy id="032" hidden="no" ttype="B" pid="000"/>
+   <trophy id="033" hidden="no" ttype="S" pid="000"/>
+   <trophy id="034" hidden="no" ttype="S" pid="000"/>
+   <trophy id="035" hidden="no" ttype="S" pid="000"/>
+   <trophy id="036" hidden="no" ttype="S" pid="000"/>
+   <trophy id="037" hidden="no" ttype="S" pid="000"/>
+   <trophy id="038" hidden="no" ttype="S" pid="000"/>
+   <trophy id="039" hidden="no" ttype="S" pid="000"/>
+   <trophy id="040" hidden="no" ttype="B" pid="000"/>
+   <trophy id="041" hidden="no" ttype="S" pid="000"/>
+   <trophy id="042" hidden="no" ttype="B" pid="000"/>
+   <trophy id="043" hidden="no" ttype="B" pid="000"/>
+   <trophy id="044" hidden="no" ttype="B" pid="000"/>
+   <trophy id="045" hidden="no" ttype="B" pid="000"/>
+   <trophy id="046" hidden="no" ttype="B" pid="000"/>
+   <trophy id="047" hidden="no" ttype="B" pid="000"/>
+   <trophy id="048" hidden="no" ttype="B" pid="000"/>
+   <trophy id="049" hidden="no" ttype="B" pid="000"/>
+   <trophy id="050" hidden="no" ttype="B" pid="000"/>
+  </trophyconf>
+ </file>
+ <file name="TROP.SFM" path="">
+  <trophyconf version="1.0">
+   <title-name>Blur Trophies</title-name>
+   <title-detail>Bizarre Creations new racer</title-detail>
+   <trophy id="000">
+    <name>Platinum Trophy</name>
+    <detail>Congratulations!!!</detail>
+   </trophy>
+   <trophy id="001">
+    <name>Double Tapper</name>
+    <detail>Hit any opponent with a double tap powerup</detail>
+   </trophy>
+   <trophy id="002">
+    <name>Defender</name>
+    <detail>Successfully shield a powerup attack</detail>
+   </trophy>
+   <trophy id="003">
+    <name>Jedi Reflexes</name>
+    <detail>Shield 3 powerup attacks in a row, in a single race</detail>
+   </trophy>
+   <trophy id="004">
+    <name>Pileup</name>
+    <detail>Smash a driver into another opponent using a powerup</detail>
+   </trophy>
+   <trophy id="005">
+    <name>Revenge</name>
+    <detail>Perform a revenge attack on a driver</detail>
+   </trophy>
+   <trophy id="006">
+    <name>Geography Wars</name>
+    <detail>(Puzzle achievement) - Win a race in every location</detail>
+   </trophy>
+   <trophy id="007">
+    <name>Minersweeper</name>
+    <detail>Move a mine out of your way using a powerup</detail>
+   </trophy>
+   <trophy id="008">
+    <name>Nitro Overtake</name>
+    <detail>Overtake 3 cars with a single nitro</detail>
+   </trophy>
+   <trophy id="009">
+    <name>Flipout</name>
+    <detail>Flip a car out</detail>
+   </trophy>
+   <trophy id="010">
+    <name>Crashout</name>
+    <detail>Make a car crash using a powerup</detail>
+   </trophy>
+   <trophy id="011">
+    <name>You Were Only Supposed to Blow the Doors off</name>
+    <detail>Smash through the Barn doors in Amboy</detail>
+   </trophy>
+   <trophy id="012">
+    <name>Secret Agent Skills</name>
+    <detail>Come first in an Aston Martin, without being hit by a powerup</detail>
+   </trophy>
+   <trophy id="013">
+    <name>Winner</name>
+    <detail>Win your first race</detail>
+   </trophy>
+   <trophy id="014">
+    <name>Carve him up</name>
+    <detail>Beat Carver in any event</detail>
+   </trophy>
+   <trophy id="015">
+    <name>London Calling</name>
+    <detail>Knock over all the phone boxes in Hackney.</detail>
+   </trophy>
+   <trophy id="016">
+    <name>Barger</name>
+    <detail>Barge three cars in one race</detail>
+   </trophy>
+   <trophy id="017">
+    <name>Nitro Jump</name>
+    <detail>Use nitro while in mid air</detail>
+   </trophy>
+   <trophy id="018">
+    <name>Leaving it late</name>
+    <detail>Repair your car when its in critical condition</detail>
+   </trophy>
+   <trophy id="019">
+    <name>Pacifist</name>
+    <detail>Complete a race using no powerups, or hitting anything</detail>
+   </trophy>
+   <trophy id="020">
+    <name>Sheer Van-ity</name>
+    <detail>Reverse over the finish line in first place in the supervan.</detail>
+   </trophy>
+   <trophy id="021">
+    <name>Bowler Hat </name>
+    <detail>Land the Bowler on an opponents car.</detail>
+   </trophy>
+   <trophy id="022">
+    <name>D.U.I.</name>
+    <detail>Plough into the environment at a stupid speed (0 point achievement)</detail>
+   </trophy>
+   <trophy id="023">
+    <name>Panic On The Streets Of London </name>
+    <detail>Help Khan beat Morrissey (complete event CH13)</detail>
+   </trophy>
+   <trophy id="024">
+    <name>Hot Wheels</name>
+    <detail>Finish a race with one of your wheels bust up</detail>
+   </trophy>
+   <trophy id="025">
+    <name>My Way Or The Highway </name>
+    <detail>Barge two opponents either side of you and cause them both damage</detail>
+   </trophy>
+   <trophy id="026">
+    <name>Crowd Pleaser</name>
+    <detail>Collect your first fan pickup</detail>
+   </trophy>
+   <trophy id="027">
+    <name>Fan Favorite</name>
+    <detail>Collect all fan pickups in a single event in San Francisco</detail>
+   </trophy>
+   <trophy id="028">
+    <name>King of the Scene</name>
+    <detail>Complete every event in LA Downtown</detail>
+   </trophy>
+   <trophy id="029">
+    <name>King of New York</name>
+    <detail>Win the 100K New York Race</detail>
+   </trophy>
+   <trophy id="030">
+    <name>Prove yourself</name>
+    <detail>Complete the LA River group</detail>
+   </trophy>
+   <trophy id="031">
+    <name>I don’t like girls</name>
+    <detail>Hit Shannon, Laraya and Natalya in a single event</detail>
+   </trophy>
+   <trophy id="032">
+    <name>Treachery</name>
+    <detail>Become Khan's minder</detail>
+   </trophy>
+   <trophy id="033">
+    <name>Drayke's Misfortune</name>
+    <detail>Hit Drayke into the water on the docks</detail>
+   </trophy>
+   <trophy id="034">
+    <name>Breakin and Racin</name>
+    <detail>Break into the Barcelona Raceway (unlock in the intro of SP3)</detail>
+   </trophy>
+   <trophy id="035">
+    <name>Japan Achievement</name>
+    <detail>Take out all Japanese Drivers on Mt Haruna</detail>
+   </trophy>
+   <trophy id="036">
+    <name>Stunt Group Acheivement</name>
+    <detail>Complete all of Weaving's stunts</detail>
+   </trophy>
+   <trophy id="037">
+    <name>Terminated</name>
+    <detail>Wreck every car in a race in Drayke's destruction group</detail>
+   </trophy>
+   <trophy id="038">
+    <name>NO-1's time trials Achievement</name>
+    <detail>Complete all of NO-1's time trials</detail>
+   </trophy>
+   <trophy id="039">
+    <name>Epilogue Achievement</name>
+    <detail>Complete all Epilogue one on ones</detail>
+   </trophy>
+   <trophy id="040">
+    <name>Record Breaker</name>
+    <detail>Beat one of Rymer's records</detail>
+   </trophy>
+   <trophy id="041">
+    <name>Brotherly Love</name>
+    <detail>Help NO-1 &amp; Talon win the Team Championship</detail>
+   </trophy>
+   <trophy id="042">
+    <name>Bowl them over</name>
+    <detail>Win the Bowler Nemesis </detail>
+   </trophy>
+   <trophy id="043">
+    <name>Movie Mogul</name>
+    <detail>Help Shannon's movie career (by completing Lights, Camera, Action!!)</detail>
+   </trophy>
+   <trophy id="044">
+    <name>Group Creator</name>
+    <detail>Create an online group</detail>
+   </trophy>
+   <trophy id="045">
+    <name>Event Creator</name>
+    <detail>Create an event in someones group</detail>
+   </trophy>
+   <trophy id="046">
+    <name>If there's no pic it didn’t happen</name>
+    <detail>Take a picture of you in 1st place and upload it to Blurb</detail>
+   </trophy>
+   <trophy id="047">
+    <name>Livery Achivement</name>
+    <detail>Create a livery for one of your cars</detail>
+   </trophy>
+   <trophy id="048">
+    <name>Avatar Achievement</name>
+    <detail>Create an avatar</detail>
+   </trophy>
+   <trophy id="049">
+    <name>Blur Party</name>
+    <detail>Win a race in 4 player split screen</detail>
+   </trophy>
+   <trophy id="050">
+    <name>Shock a Khan</name>
+    <detail>Shock Khan 3 times in one race</detail>
+   </trophy>
+  </trophyconf>
+ </file>
+ <file name="ICON0.PNG" path="G:\dev\code\amax\game\Trophies\ICON0.PNG" />
+ <file name="TROP000.PNG" path="G:\dev\code\amax\game\Trophies\TROP000.PNG" />
+ <file name="TROP001.PNG" path="G:\dev\code\amax\game\Trophies\TROP001.PNG" />
+ <file name="TROP002.PNG" path="G:\dev\code\amax\game\Trophies\TROP002.PNG" />
+ <file name="TROP003.PNG" path="G:\dev\code\amax\game\Trophies\TROP003.PNG" />
+ <file name="TROP004.PNG" path="G:\dev\code\amax\game\Trophies\TROP004.PNG" />
+ <file name="TROP005.PNG" path="G:\dev\code\amax\game\Trophies\TROP005.PNG" />
+ <file name="TROP006.PNG" path="G:\dev\code\amax\game\Trophies\TROP006.PNG" />
+ <file name="TROP007.PNG" path="G:\dev\code\amax\game\Trophies\TROP007.PNG" />
+ <file name="TROP008.PNG" path="G:\dev\code\amax\game\Trophies\TROP008.PNG" />
+ <file name="TROP009.PNG" path="G:\dev\code\amax\game\Trophies\TROP009.PNG" />
+ <file name="TROP010.PNG" path="G:\dev\code\amax\game\Trophies\TROP010.PNG" />
+ <file name="TROP011.PNG" path="G:\dev\code\amax\game\Trophies\TROP011.PNG" />
+ <file name="TROP012.PNG" path="G:\dev\code\amax\game\Trophies\TROP012.PNG" />
+ <file name="TROP013.PNG" path="G:\dev\code\amax\game\Trophies\TROP013.PNG" />
+ <file name="TROP014.PNG" path="G:\dev\code\amax\game\Trophies\TROP014.PNG" />
+ <file name="TROP015.PNG" path="G:\dev\code\amax\game\Trophies\TROP015.PNG" />
+ <file name="TROP016.PNG" path="G:\dev\code\amax\game\Trophies\TROP016.PNG" />
+ <file name="TROP017.PNG" path="G:\dev\code\amax\game\Trophies\TROP017.PNG" />
+ <file name="TROP018.PNG" path="G:\dev\code\amax\game\Trophies\TROP018.PNG" />
+ <file name="TROP019.PNG" path="G:\dev\code\amax\game\Trophies\TROP019.PNG" />
+ <file name="TROP020.PNG" path="G:\dev\code\amax\game\Trophies\TROP020.PNG" />
+ <file name="TROP021.PNG" path="G:\dev\code\amax\game\Trophies\TROP021.PNG" />
+ <file name="TROP022.PNG" path="G:\dev\code\amax\game\Trophies\TROP022.PNG" />
+ <file name="TROP023.PNG" path="G:\dev\code\amax\game\Trophies\TROP023.PNG" />
+ <file name="TROP024.PNG" path="G:\dev\code\amax\game\Trophies\TROP024.PNG" />
+ <file name="TROP025.PNG" path="G:\dev\code\amax\game\Trophies\TROP025.PNG" />
+ <file name="TROP026.PNG" path="G:\dev\code\amax\game\Trophies\TROP026.PNG" />
+ <file name="TROP027.PNG" path="G:\dev\code\amax\game\Trophies\TROP027.PNG" />
+ <file name="TROP028.PNG" path="G:\dev\code\amax\game\Trophies\TROP028.PNG" />
+ <file name="TROP029.PNG" path="G:\dev\code\amax\game\Trophies\TROP029.PNG" />
+ <file name="TROP030.PNG" path="G:\dev\code\amax\game\Trophies\TROP030.PNG" />
+ <file name="TROP031.PNG" path="G:\dev\code\amax\game\Trophies\TROP031.PNG" />
+ <file name="TROP032.PNG" path="G:\dev\code\amax\game\Trophies\TROP032.PNG" />
+ <file name="TROP033.PNG" path="G:\dev\code\amax\game\Trophies\TROP033.PNG" />
+ <file name="TROP034.PNG" path="G:\dev\code\amax\game\Trophies\TROP034.PNG" />
+ <file name="TROP035.PNG" path="G:\dev\code\amax\game\Trophies\TROP035.PNG" />
+ <file name="TROP036.PNG" path="G:\dev\code\amax\game\Trophies\TROP036.PNG" />
+ <file name="TROP037.PNG" path="G:\dev\code\amax\game\Trophies\TROP037.PNG" />
+ <file name="TROP038.PNG" path="G:\dev\code\amax\game\Trophies\TROP038.PNG" />
+ <file name="TROP039.PNG" path="G:\dev\code\amax\game\Trophies\TROP039.PNG" />
+ <file name="TROP040.PNG" path="G:\dev\code\amax\game\Trophies\TROP040.PNG" />
+ <file name="TROP041.PNG" path="G:\dev\code\amax\game\Trophies\TROP041.PNG" />
+ <file name="TROP042.PNG" path="G:\dev\code\amax\game\Trophies\TROP042.PNG" />
+ <file name="TROP043.PNG" path="G:\dev\code\amax\game\Trophies\TROP043.PNG" />
+ <file name="TROP044.PNG" path="G:\dev\code\amax\game\Trophies\TROP044.PNG" />
+ <file name="TROP045.PNG" path="G:\dev\code\amax\game\Trophies\TROP045.PNG" />
+ <file name="TROP046.PNG" path="G:\dev\code\amax\game\Trophies\TROP046.PNG" />
+ <file name="TROP047.PNG" path="G:\dev\code\amax\game\Trophies\TROP047.PNG" />
+ <file name="TROP048.PNG" path="G:\dev\code\amax\game\Trophies\TROP048.PNG" />
+ <file name="TROP049.PNG" path="G:\dev\code\amax\game\Trophies\TROP049.PNG" />
+ <file name="TROP050.PNG" path="G:\dev\code\amax\game\Trophies\TROP050.PNG" />
+</trophytrp>

@@ -1,0 +1,30 @@
+SubDir TOP Code Mercury Tools Graphics Utils ShaderProjectCompiler ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Tools/Graphics/Utils/ShaderProjectCompiler/src
+;
+
+SRC =
+Main.cpp
+src/DebugOutput.cpp
+src/CommandLine.cpp
+src/ShaderCompiler.cpp
+src/ShaderProjectCompiler.cpp
+;
+
+LinkLibraries ShaderProjectCompiler :
+		core system 
+		;
+
+Application ShaderProjectCompiler : $(SRC) : StdAfx.cpp ;
+
+Copy $(TOP)/bin/build_tools/ShaderProjectCompiler.exe : ShaderProjectCompiler.exe ;
+
+ExportVcproj ShaderProjectCompiler ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

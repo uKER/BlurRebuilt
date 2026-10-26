@@ -1,0 +1,19 @@
+SubDir TOP Code Mercury Library Util Security ;
+
+Define LTM_DESC ;
+Define LTC_SOURCE ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/Security/include
+$(TOP)/Code/Vendor/LibTomCrypt/1.10/src/headers
+;
+
+SRC =
+./source/RSASecurity.cpp
+;
+
+Library security : $(SRC) : SecurityPch.cpp ;
+

@@ -1,0 +1,38 @@
+SubDir TOP Code Mercury Library GameSys AuxFlares ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/scenegraph/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/GameSys/resource_utils/Include
+$(TOP)/code/mercury/library/graphics/TextureResource/Include
+
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+source/AuxFlares.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+SHADERSRC =
+shaders/psAuxFlares.psh
+shaders/vsAuxFlares.vsh
+;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library auxFlares : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : AuxFlaresPch.cpp : AuxFlaresPch.h ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;

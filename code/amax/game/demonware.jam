@@ -1,0 +1,47 @@
+IncludePath 
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/demonware/2.0/external/curl-7.19.2/include
+$(TOP)/code/vendor/demonware/2.0/external/openssl-0.9.8i/include
+;
+
+DEMONWARE_LIBS = 
+bdConnection 
+bdCore 
+bdLobby 
+bdSocket 
+bdPlatform 
+bdNet 
+bdExampleCommonLobby 
+;
+
+DEMONWARE_HTTP_LIBS = 
+ssleay32
+libeay32
+libcurl
+;
+
+if $(BUILD) = Master || $(BUILD) = Speed || $(BUILD) = Profile || $(BUILD) = Release
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_LIBS).lib ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_HTTP_LIBS).lib ;
+	}
+}
+else
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_LIBS).lib ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_HTTP_LIBS).lib ;
+	}
+}

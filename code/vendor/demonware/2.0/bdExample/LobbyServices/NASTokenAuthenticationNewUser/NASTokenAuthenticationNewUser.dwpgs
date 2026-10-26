@@ -1,0 +1,8 @@
+type exe
+dependencies bdPlatform bdCore bdSocket bdConnection bdNet bdGraphics bdLobby bdExampleCommon bdExampleCommonLobby
+weight 270
+excludedarchitectures win32 xenon xbox psp-adhoc psp-infra ps2 unix ps3 osx iphone 
+
+additionalincludepaths  "C:/RVLDWC/include/" "C:/RevoEX/include/"
+additionallibs          dwc_common.a  dwcsec_auth.a  dwc_nonport.a  vf.a  gamespy.a  dwcsec_nas.a  nhttp.a  ssl.a  dwcsec_svl.a
+additionallibpaths      "C:/RVLDWC/lib/RVL/Debug/" "C:/RevoEX/RVL/lib/"

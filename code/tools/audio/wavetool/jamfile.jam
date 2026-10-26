@@ -1,0 +1,83 @@
+
+SubDir TOP code red tools sorceryx2 ;
+
+SupportedTargets WIN32_TOOL WIN32_TOOL_2008 ;
+
+XDK = [ ConvertDOSPath $(XEDK) ] ;
+
+IncludePath
+	./src
+	$(TOP)/code/mercury/library/common/core/include
+	$(TOP)/code/mercury/library/common/system/include
+	$(TOP)/code/mercury/library/common/xt2/include
+	$(TOP)/code/mercury/library/common/xtwin/include
+	$(TOP)/code/tools/svn_wrapper/include
+	\"$(XDK)/include/win32/vs2005\"
+;
+
+Define _MBCS ;
+
+LINKLIBS += gdiplus.lib comctl32.lib ws2_32.lib xbdm.lib Msimg32.lib imagehlp.lib psapi.lib ;
+
+LINKFLAGS +=
+	/SUBSYSTEM:WINDOWS
+	/MACHINE:X86
+	/INCREMENTAL:NO
+	/OPT:REF
+	/OPT:ICF
+	/LIBPATH:\"$(XEDK_PATH)/lib/win32/vs2005\"
+;
+
+SRC =
+	./src/Resource/sorcery.rc
+	
+	./src/Core/WinMain.cpp
+	
+	./src/Application/ConvertData.cpp
+	./src/Application/GotoRecordDlg.cpp
+	./src/Application/SorceryApp.cpp
+	./src/Application/SorceryDocument.cpp
+	./src/Application/SorceryExport.cpp
+	./src/Application/SorceryView.cpp
+	./src/Application/SorceryWindow.cpp
+	
+	./src/Audio/WaveBank.cpp
+	./src/Audio/WaveBankPane.cpp
+	./src/Audio/WaveBundlerDll.cpp
+	
+	./src/DynamicForm/DynamicForm.cpp
+	./src/DynamicForm/GridForm.cpp
+	
+	./src/Explorer/ExFolder.cpp
+	./src/Explorer/ExItem.cpp
+	./src/Explorer/ExNode.cpp
+	./src/Explorer/ExPack.cpp
+	./src/Explorer/Explorer.cpp
+	./src/Explorer/ExRoot.cpp
+	./src/Explorer/ExXt.cpp
+	
+	./src/LocForm/LocCSVParser.cpp
+	./src/LocForm/LocDialog.cpp
+	./src/LocForm/LocForm.cpp
+	./src/LocForm/LocFormCsv.cpp
+	./src/LocForm/LocFormIni.cpp
+	./src/LocForm/LocFormTxt.cpp
+	
+	./src/Network/Network.cpp
+	./src/Network/XtNet.cpp
+	
+	./src/SearchWindow/SearchWindow.cpp
+	./src/SearchWindow/SorceryPathDlg.cpp
+;
+
+LinkLibraries sorcery_jam : core system xttool xtwin svn_wrapper ;
+
+Application sorcery_jam : $(SRC) : ./src/Core/StdAfx.cpp : Core/StdAfx.h ;
+
+ExportVcproj sorcery_jam ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common xt2 ;
+SubInclude TOP code mercury library common xtwin ;
+SubInclude TOP code tools svn_wrapper ;

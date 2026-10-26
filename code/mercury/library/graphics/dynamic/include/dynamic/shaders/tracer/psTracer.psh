@@ -1,0 +1,27 @@
+#include "dynamic\shaders\psCommon.h"
+#include "render\shaders\psFog.h"
+#include "render\shaders\psHDR.h"
+
+
+sampler2D textureMap : register(s0);
+
+struct VS_OUTPUT
+{
+	float4 position	: POSITION0;
+	float4 colour	: TEXCOORD0;
+	float2 uv		: TEXCOORD1;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{
+	float3 tex = tex2D(textureMap, input.uv).rgb;
+
+#if defined(DEFAULT_TEXTURE)
+	float3 colour = tex * input.colour.rgb;
+#elif defined(TEMPERATURE_TEXTURE)
+	float3 colour = tex.r * input.colour.rgb + tex.g * input.colour.a;
+#endif
+	colour *= input.colour.a;
+
+	return GetExposure(float4(colour, 1.0f));
+}

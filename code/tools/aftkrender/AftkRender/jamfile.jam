@@ -1,0 +1,124 @@
+SubDir TOP code tools aftkrender aftkrender ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkrender/aftkrender/include
+$(TOP)/code/tools/attk/attk/include
+;
+
+##Define
+##OBJ_SHADERS
+##;
+
+
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+
+
+AFTKRENDERSRC =
+./source/AftkRender.cpp
+./source/Utility.cpp
+./source/common/Application.cpp
+./source/common/GeometryNode.cpp
+./source/common/Material.cpp
+./source/common/Renderer.cpp
+./source/common/ShaderManager.cpp
+./source/common/Scene.cpp
+./source/common/TextureManager.cpp
+./source/common/TextureState.cpp
+./source/common/VertexFormat.cpp
+./source/common/ViewContext.cpp
+./source/mesh/Mesh.cpp
+./source/mesh/MeshBuilder.cpp
+./source/mesh/MeshNode.cpp
+./source/mesh/MeshSceneBuilder.cpp
+./source/mesh/MeshSceneGraphNode.cpp
+./source/mesh/Ray.cpp
+./source/render/GridRenderer.cpp
+./source/render/FontRenderer.cpp
+./source/render/SceneRenderer.cpp
+./source/scene/AftkMeshNode.cpp
+./source/scene/AftkSceneBuilder.cpp
+./source/scene/AftkSceneGraphNode.cpp
+./source/scene/MaterialBuilder.cpp
+;
+
+AFTKRENDERSHADERSRC += [ Shader shaders/vsBasic.vsh :
+	" "
+	"<Normal> -DNORM"
+	"<NormalColour> -DNORM -DCOLOUR"
+	"<NormalUV> -DNORM -DUV"
+	"<NormalTangents> -DNORM -DTANGENTS"
+	"<NormalColourUV> -DNORMAL -DCOLOUR -DUV"
+	"<NormalColourTangents> -DNORM -DCOLOUR -DTANGENTS"
+	"<NormalUVTangents> -DNORM -DUV -DTANGENTS"
+	"<NormalColourUVTangents> -DNORM -DCOLOUR -DUV -DTANGENTS"
+] ;
+
+AFTKRENDERSHADERSRC += [ Shader shaders/vsBillboard.vsh :
+	" -DNORM -DUV"
+	"<Colour> -DNORM -DUV -DCOLOUR"
+	"<Tangents> -DNORM -DUV -DTANGENTS"
+	"<ColourTangents> -DNORM -DUV -DCOLOUR -DTANGENTS"
+] ;
+
+AFTKRENDERSHADERSRC += [ Shader shaders/vsSkinned.vsh :
+	" -DNORM -DSKINNED"
+	"<Colour> -DNORM -DSKINNED -DCOLOUR"
+	"<UV> -DNORM -DSKINNED -DUV"
+	"<Tangents> -DNORM -DSKINNED -DTANGENTS"
+	"<ColourUV> -DNORM -DSKINNED -DCOLOUR -DUV"
+	"<ColourTangents> -DNORM -DSKINNED -DCOLOUR -DTANGENTS"
+	"<UVTangents> -DNORM -DSKINNED -DUV -DTANGENTS"
+	"<ColourUVTangents> -DNORM -DSKINNED -DCOLOUR -DUV -DTANGENTS"
+] ;
+
+AFTKRENDERSHADERSRC += [ Shader shaders/psBasic.psh :
+	" "
+	"<SHL> -DSHL -DTEXTURED"
+	"<Colour> -DCOLOUR"
+	"<VertexColour> -DVERTEXCOLOUR"
+	"<VertexColourLighting> -DVERTEXCOLOURLIGHTING"
+	"<Texture> -DTEXTURED"
+	"<TextureColour> -DTEXTURED -DCOLOUR"
+	"<TextureVertexColour> -DTEXTURED -DVERTEXCOLOUR"
+	"<TextureVertexColourLighting> -DTEXTURED -DVERTEXCOLOURLIGHTING"
+	"<NdotL> -DNDOTL"
+	"<NdotLColour> -DNDOTL -DCOLOUR"
+	"<NdotLVertexColour> -DNDOTL -DVERTEXCOLOUR"
+	"<NdotLVertexColourLighting> -DNDOTL -DVERTEXCOLOURLIGHTING"
+	"<NdotLTexture> -DNDOTL -DTEXTURED"
+	"<NdotLTextureColour> -DNDOTL -DTEXTURED -DCOLOUR"
+	"<NdotLTextureVertexColour> -DNDOTL -DTEXTURED -DVERTEXCOLOUR"
+	"<NdotLTextureVertexColourLighting> -DNDOTL -DTEXTURED -DVERTEXCOLOURLIGHTING"
+	"<Xray> -DXRAY -DTEXTURED"
+	"<XrayColour> -DXRAY -DCOLOUR"
+	"<XrayVertexColour> -DXRAY -DVERTEXCOLOUR"
+	"<XrayVertexColourLighting> -DXRAY -DVERTEXCOLOURLIGHTING"
+	"<XrayTexture> -DXRAY -DTEXTURED"
+	"<XrayTextureColour> -DXRAY -DTEXTURED -DCOLOUR"
+	"<XrayTextureVertexColour> -DXRAY -DTEXTURED -DVERTEXCOLOUR"
+	"<XrayTextureVertexColourLighting> -DXRAY -DTEXTURED -DVERTEXCOLOURLIGHTING"
+	"<XrayNdotL> -DXRAY -DNDOTL"
+	"<XrayNdotLColour> -DXRAY -DNDOTL -DCOLOUR"
+	"<XrayNdotLVertexColour> -DXRAY -DNDOTL -DVERTEXCOLOUR"
+	"<XrayNdotLVertexColourLighting> -DXRAY -DNDOTL -DVERTEXCOLOURLIGHTING"
+	"<XrayNdotLTexture> -DXRAY -DNDOTL -DTEXTURED"
+	"<XrayNdotLTextureColour> -DXRAY -DNDOTL -DTEXTURED -DVERTEXCOLOUR"
+	"<XrayNdotLTextureVertexColour> -DXRAY -DNDOTL -DTEXTURED -DVERTEXCOLOUR"
+	"<XrayNdotLTextureVertexColourLighting> -DXRAY -DNDOTL -DTEXTURED -DVERTEXCOLOURLIGHTING"
+] ;
+
+CPFile shaders/psConstants.cp ;
+CPFile shaders/vsConstants.cv ;
+
+CcFlags /DWIN32 ;	##nvidia CG header files
+
+Library aftkrender : <aftkrender>$(AFTKRENDERSRC) $(AFTKRENDERSHADERSRC) : AftkRenderPch.cpp ;
+
+##ExportVcproj aftkrender ;
+

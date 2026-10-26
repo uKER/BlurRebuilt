@@ -1,0 +1,140 @@
+SubDir TOP Code Mercurygame tools model_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+CFG_CONVERTER = 1 ;
+Define CFG_CONVERTER=1 ;
+
+USE_SOLVER2 = 1 ;
+
+if $(USE_SOLVER2) != 1
+{
+#echo define solver 1 ;
+}
+else
+{
+#echo define solver 2 ;
+	Define USE_SOLVER_2 ;
+}
+
+if $(USERNAME) = jdenton { Define USER_JDENTON ; }
+
+IncludePath
+./source
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Util/Tools_shared/include
+$(MERCURY)/graphics/texture_export/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/code/Tools/Aftkut/AftkUtLib/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/code/Tools/file_tag_db/file_tag_db/include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/Code/MercuryGame/Tools/converter_shared/converter_shared/include
+$(TOP)/Code/Mercury/Library/Graphics/World_render/include
+;
+
+SRC =
+source/Application.cpp
+source/Debug.cpp
+source/data/AftkSceneData.cpp
+source/data/ConversionOptions.cpp
+source/data/NullData.cpp
+source/data/PhysicsData.cpp
+source/data/RenderData.cpp
+source/data/SceneDescription.cpp
+source/data/ToolConfig.cpp
+source/data/PvsData.cpp
+source/Main.cpp
+source/Polyflags.cpp
+source/process/BuildPhysicsData.cpp
+source/process/BuildRenderData.cpp
+source/process/BuildSceneDescription.cpp
+source/process/ExportGameScene.cpp
+source/process/LightAftk.cpp
+source/process/NullProcess.cpp
+source/process/PreprocessAftk.cpp
+source/process/PreprocessAftkExecuterLods.cpp
+source/process/ReadLitAftk.cpp
+source/process/WritePreprocessedAftk.cpp
+source/process/CreatePvsSamplePointsFile.cpp
+source/process/GeneratePvsData.cpp
+source/process/ReadPvsData.cpp
+source/process/CarPVSHacks.cpp
+source/util/MakeNoPVSPolygons.cpp
+source/util/MakeInvisiblePolygons.cpp
+resource.rc
+;
+
+LinkLibraries model_converter : 
+	core 
+	system 
+	misc_shared 
+	file_tag_db
+	gravityConv 
+	RenderingDataConv 
+	fxConv
+	shader
+	portal
+	texture_export 
+	tools_shared 
+	aftk 
+	aftkutlib 
+	attk
+	converter_shared 
+	zlib
+	$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+	
+if $(WIN64) != 1
+{
+	LinkLibraries model_converter : xefx ps3fx pcfx ;
+}
+		
+if $(PLATFORM) = PC
+{
+	SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+}
+
+Application model_converter : $(SRC) : stdafx.cpp ;
+ExportVcproj model_converter ;
+
+#include $(TOP)/code/mercury/library/graphics/shader/fx.jam
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common misc_shared ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Portal ; 
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools aftkut aftkutlib ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Tools file_tag_db file_tag_db ;
+SubInclude TOP Code MercuryGame Tools Converter_shared Converter_shared ;
+SubInclude TOP Code Vendor ZLib current_mercury ;
+
+Depends model_converter.exe : $(TOP)/bin/tools_wip/win32/model_converter/ ;
+MkDir $(TOP)/bin/tools_wip/win32/model_converter/ ;
+
+#Copy $(TOP)/bin/tools_wip/win32/model_converter/model_converter.exe : model_converter.exe ;
+
+EmbedManifest $(TOP)/bin/tools_wip/win32/model_converter/model_converter.exe : model_converter.exe ;
+
+Copy $(TOP)/bin/tools_wip/win32/model_converter/pcfx.exe : pcfx.exe ;
+Copy $(TOP)/bin/tools_wip/win32/model_converter/ps3fx.exe : ps3fx.exe ;
+Copy $(TOP)/bin/tools_wip/win32/model_converter/xefx.exe : xefx.exe ;

@@ -1,0 +1,80 @@
+#include "..\..\psCommon.h"
+#include "psHDR.h"
+#include "psBloom.h"
+
+sampler2D	sunTexture			: register(s4);
+
+float4		g_vSunSettings		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_3);
+
+#define		g_fSunScale			g_vSunSettings.x
+
+#if defined(PLATFORM_PS3)
+#pragma texformat sunTexture RGBA8
+#endif
+
+real3 GetSunBloom4(float2 uv)
+{
+	real3 colour = 0.0f;
+	real3 bloom0 = tex2D(bloomTexture0, uv).rgb;
+	colour += g_fBloomScale0 * bloom0;
+
+	real3 bloom1 = tex2D(bloomTexture1, uv).rgb;
+	colour += g_fBloomScale1 * bloom1;
+	
+	real3 bloom2 = tex2D(bloomTexture2, uv).rgb;
+	colour += g_fBloomScale2 * bloom2;
+
+	real3 bloom3 = tex2D(bloomTexture3, uv).rgb;
+	colour += g_fBloomScale3 * bloom3;
+
+	real3 sun = tex2D(sunTexture, uv).rgb;
+	colour += g_fSunScale * sun;
+
+	return max(colour, 0.0f);
+}
+
+real3 GetSunBloom4Gamma(float2 uv)
+{
+	real3 colour = 0.0h;
+	real3 bloom0 = tex2D(bloomTexture0, uv).rgb;
+	colour += g_fBloomScale0 * bloom0 * bloom0;
+
+	real3 bloom1 = tex2D(bloomTexture1, uv).rgb;
+	colour += g_fBloomScale1 * bloom1 * bloom1;
+	
+	real3 bloom2 = tex2D(bloomTexture2, uv).rgb;
+	colour += g_fBloomScale2 * bloom2 * bloom2;
+
+	real3 bloom3 = tex2D(bloomTexture3, uv).rgb;
+	colour += g_fBloomScale3 * bloom3 * bloom3;
+
+	real3 sun = tex2D(sunTexture, uv).rgb;
+	colour += g_fSunScale * sun * sun;
+
+	return max(sqrt(colour), 0.0h);
+}
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+#ifdef GAMMA
+	output.colour.rgb = GetSunBloom4Gamma(input.uv);
+#else
+	output.colour.rgb = GetSunBloom4(input.uv);
+#endif
+
+	output.colour.a = 1.0h;
+		
+	return output;
+}

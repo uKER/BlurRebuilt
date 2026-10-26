@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtomcrypt", "dw-win32-vc7-ltc.vcproj", "{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtommath", "..\libtommath\dw-win32-vc7-ltm.vcproj", "{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug-mt = Debug-mt
+		Debug-mt-dll = Debug-mt-dll
+		Release-mt = Release-mt
+		Release-mt-dll = Release-mt-dll
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt.ActiveCfg = Debug-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt.Build.0 = Debug-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt-dll.ActiveCfg = Debug-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt-dll.Build.0 = Debug-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt.ActiveCfg = Release-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt.Build.0 = Release-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt-dll.ActiveCfg = Release-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt-dll.Build.0 = Release-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt.ActiveCfg = Debug-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt.Build.0 = Debug-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt-dll.ActiveCfg = Debug-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt-dll.Build.0 = Debug-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt.ActiveCfg = Release-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt.Build.0 = Release-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt-dll.ActiveCfg = Release-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt-dll.Build.0 = Release-mt-dll|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,38 @@
+SubDir TOP Code Mercury Applications Physics RacingPhysicsTest ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Graphics/Display/include
+$(MERCURY)/Graphics/Render/include
+$(MERCURY)/Graphics/Camera2/include
+$(MERCURY)/Physics/RacingPhysics/include
+$(MERCURY)/common/xt2/include
+;
+
+SRC =
+Source/debugvariables.cpp
+Source/gamepad.cpp
+Source/racingphysicstest.cpp
+Source/main.cpp
+;
+
+LinkLibraries RacingPhysicsTest : core system display render camera2 xtgame RacingPhysics ;
+		
+Application RacingPhysicsTest : $(SRC) : stdafx.cpp ;
+ExportVcproj RacingPhysicsTest ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Physics RacingPhysics ;
+

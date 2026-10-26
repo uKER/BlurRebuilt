@@ -1,0 +1,162 @@
+SubDir TOP Code Mercury Library Common Misc_Shared ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+$(TOP)/Code/Vendor
+;
+
+SRC = 
+archive/handler.cpp
+archive/serialiser.cpp
+Geometry/Bounds.cpp
+Geometry/ConvexHull.cpp
+Geometry/RegionBSP.cpp
+Geometry/SimpleBSP.cpp
+Geometry/SimplePoly.cpp
+Types/Float16.cpp
+Moments/Moments.cpp
+Curve/HermiteCurve.cpp
+#Curve/Hermite1D.cpp
+#Curve/Hermite3D.cpp
+#NewCurve/Debug/HelloWorld.cpp
+NewCurve/Definitions.cpp
+NewCurve/Reparameterise.cpp
+DataStructure/StringTable.cpp
+MathsDebug/MathsDebug.cpp
+Cloth/ClothBase.cpp
+Cloth/ClothSheet.cpp
+Cloth/ClothString.cpp
+DGUtil/DGUtil.cpp
+Compression/Inflate.cpp
+Compression/Deflate.cpp
+Compression/InflateTask.cpp
+Compression/XMemCompress.cpp
+Messaging/GameMessaging.cpp
+Messaging/MessageBase.cpp
+Messaging/MessageDebug.cpp
+Messaging/MessageHandler.cpp
+Messaging/MessageMultiHandler.cpp
+Messaging/MessageSerialisation.cpp
+Messaging/MessageStats.cpp
+Messaging/MessageSubscriberSystem.cpp
+Messaging/MessageTypeList.cpp
+Messaging/MessageTypeRange.cpp
+Sort/BitonicSort.cpp
+Sort/QuickSort.cpp
+Context/ContextualStream.cpp
+Context/I_Anything.cpp
+KdTree/KdTreeBuilder.cpp
+Variant/Variant.cpp
+;
+
+#if win32 tool or xbox 360 game...
+JAM_USE_XMEM_COMPRESSION = 0 ;
+
+if $(TOOL) = 1
+{
+	#echo NOTE: Misc_Shared was built WITH XMemCompress support (PC CONVERTER) ;
+	Define USE_XMEM_COMPRESSION ;
+	JAM_USE_XMEM_COMPRESSION = 1 ;
+}
+else
+{
+	echo NOTE: Misc_Shared was built WITHOUT XMemCompress support ;
+}
+
+SPUSRC =
+	<SPU>Source/Misc_Shared/Compression/InflateTask.cpp
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_adler32.c
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_crc32.c
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_fetch_and_inflate_raw_data.cpp
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_inffast.c
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_inflate.c
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_inflate_raw_data.cpp
+	#<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_inftrees.c
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Edge/edgezlib_unaligned_large_dma_put.cpp
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Mercury/adler32.c
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Mercury/crc32.c
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inffast.c
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inflate.c
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Mercury/inftrees.c
+	<SPU>$(TOP)/Code/Vendor/Zlib/Current_Mercury/zutil.c
+;
+
+AddSPUModule misc_shared : InflateSpu : $(SPUSRC) ;
+
+if $(CFG_CONVERTER) = 1
+{
+	SRC +=
+	Cache/Cache.cpp
+	Cache/CacheEntry.cpp
+	Cache/CacheStream.cpp
+	Cache/CacheKey.cpp
+	;
+}
+
+if $(TOOL) && $(JAM_USE_XMEM_COMPRESSION)
+{
+	XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+	IncludePath \"$(XENONSDK)/include/win32/vs2005\" ;
+	
+	# Library paths for directx SDK and Xenon SDK are different for 64-bit
+	if $(WIN64) = 1
+	{
+		#echo NOTE: Misc_Shared Using 64-bit Tools XDK ;
+		XLIB = "$(XENONSDK)/lib/x64/vs2005" ;
+	}
+	else
+	{
+		#echo NOTE: Misc_Shared Using 32-bit Tools XDK ;
+		XLIB = "$(XENONSDK)/lib/win32/vs2008" ;
+	}
+
+	if $(JAM_USE_XMEM_COMPRESSION) = 1
+	{
+		if $(WIN64) = 1
+		{
+			LINKLIBS += $(TOP)/libs/vendor/xbox360_xdk/9328/lib/x64/vs2008/Xcompress.lib ;
+		}
+		else
+		{
+			LINKLIBS += $(XLIB)/Xcompress.lib ;
+		}
+	}
+}
+
+SRC = ./source/misc_shared/$(SRC) ;
+
+SRC = [ Batch $(SRC) : MiscSharedPch.h ] ;
+
+Library misc_shared : $(SRC) : MiscSharedPch.cpp : MiscSharedPch.h ;
+
+
+###### Unit test
+
+TESTS =
+test/KdTree/KdTree.h
+#test/archive/test.cpp
+;
+
+if $(CFG_CONVERTER) = 1
+{
+	TEST += test/cache/testcache.h ;
+}
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Vendor/CxxTest/Current
+;
+
+CxxTest misc_shared : $(TESTS) ;
+LinkLibraries misc_shared : core system misc_shared zlib ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Vendor Zlib Current_Mercury ;
+

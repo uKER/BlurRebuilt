@@ -1,0 +1,32 @@
+SubDir TOP code mercury library util xtwin_wx ;
+
+IncludePath
+	$(SUBDIR)/include
+	$(SUBDIR)/source
+	$(TOP)/Code/Mercury/Library/Common/Core/include
+	$(TOP)/Code/Mercury/Library/Common/System/include
+	$(TOP)/Code/Mercury/Library/Common/Xt2/include
+;
+
+if $(ACTORSTUDIO_BRANCH)
+{
+	IncludePath
+		$(TOP)/libs/vendor/wxwidgets/2.8.6/include/msvc
+		$(TOP)/libs/vendor/wxwidgets/2.8.6/include/
+		$(TOP)/libs/vendor/wxwidgets/2.8.6/contrib/include
+	;
+}
+else
+{
+	Define WXUSINGDLL ;
+	IncludePath
+		$(TOP)/libs/vendor/wxwidgets/2.8.9/include/msvc
+		$(TOP)/libs/vendor/wxwidgets/2.8.9/include/
+		$(TOP)/libs/vendor/wxwidgets/2.8.9/contrib/include
+	;
+}
+SRC = 
+	./source/xtwin_wx/explorer/explorer.cpp
+;
+
+Library xtwin_wx : $(SRC) : stdafx.cpp ;

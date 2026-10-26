@@ -1,0 +1,54 @@
+#include "dynamic\shaders\psCommon.h"
+#include "render\shaders\psFog.h"
+#include "render\shaders\psHDR.h"
+
+sampler2D textureMap : register(s0);
+sampler2D normalMap : register(s1);
+
+float4 g_vLightDirection	: register(CCP_RENDER_LIGHT_DIRECTION);
+float4 g_vViewPosition		: register(CCP_DISPLAY_VIEW_POSITION);
+float4 g_vSettings			: register(CCP_DYNAMIC_CLOTH_SETTINGS);
+float4 g_vColour			: register(CCP_DYNAMIC_CLOTH_COLOUR);
+
+struct VS_OUTPUT
+{
+	float4 position			: POSITION0;
+	float4 colour			: COLOR0;
+	float2 uv				: TEXCOORD0;
+	float3 world			: TEXCOORD1;
+	float3 normal			: TEXCOORD2;
+};
+
+#ifndef PS3
+#ifdef PS_2_0
+PS_OUTPUT main(VS_OUTPUT input)
+#else
+PS_OUTPUT main(VS_OUTPUT input, float face : VFACE)
+#endif
+#else
+PS_OUTPUT main(VS_OUTPUT input)
+#endif
+{ 
+	float4 colour;
+#ifndef PS3
+#ifndef PS_2_0
+	input.normal *= face;
+#endif
+#endif
+	
+	// specular
+	
+	float3 view = normalize(input.world - g_vViewPosition.xyz);
+	float3 reflected = reflect(view, input.normal);
+	
+	float3 specular = g_vSettings.x * pow(saturate(dot(reflected, g_vLightDirection.xyz)), g_vSettings.y);
+	
+	float4 diffuse = tex2D(textureMap, input.uv.xy) * input.colour * g_vColour;
+	float4 lighting = saturate(dot(normalize(input.normal), g_vLightDirection.xyz)) + g_vSettings.z;
+		
+	colour.rgb = diffuse.rgb * lighting.rgb * diffuse.a;
+	colour.rgb += specular;
+	colour.a = diffuse.a;
+		
+	return GetExposure(colour);
+}

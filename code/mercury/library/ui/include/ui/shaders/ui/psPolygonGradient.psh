@@ -1,0 +1,56 @@
+#include "..\psCommon.h"
+
+float4	g_PolygonGradientColours[ 4 ]		: register( CCP_POLYGON_GRADIENT_COLOURS );
+float4  g_PolygonGradientColourParam		: register( CCP_POLYGON_GRADIENT_COLOURS_PARAM );
+
+sampler2D	g_Texture0						: register(s0);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main( PS_INPUT IN )
+{
+	PS_OUTPUT OUT;
+	float2 tmp;
+
+#if defined(_USE_PARAM_)
+	tmp.x = (IN.Colour.x+1.0f)*0.5f;
+	tmp.y = g_PolygonGradientColourParam.x;
+	tmp = saturate(tmp);
+#elif defined(_RADIAL_)
+	// Radial
+	tmp.x = IN.Colour.x;
+	tmp.y = IN.Colour.y;
+
+	float len = length( tmp );
+	tmp.x = len;
+	tmp.y = g_PolygonGradientColourParam.x;
+	tmp = saturate(tmp);
+#else
+	tmp.x = IN.Colour.x; // (IN.Colour.x+1.0f)*0.5f;
+	tmp.y = IN.Colour.y; // (IN.Colour.y+1.0f)*0.5f;
+	tmp = saturate(tmp);
+#endif
+
+	float4 texture_colour = tex2D( g_Texture0, tmp );
+
+	// Clamp gradient colours
+	tmp = saturate(tmp);
+	float4 col0 = lerp( g_PolygonGradientColours[ 0 ], g_PolygonGradientColours[ 1 ], tmp.x );
+	float4 col1 = lerp( g_PolygonGradientColours[ 3 ], g_PolygonGradientColours[ 2 ], tmp.x );
+	
+	OUT.Colour	= lerp( col1, col0, tmp.y );
+	
+#if defined(_USE_PARAM_) || defined(_RADIAL_)
+	OUT.Colour	*= texture_colour;
+#endif
+	
+	return OUT;
+}

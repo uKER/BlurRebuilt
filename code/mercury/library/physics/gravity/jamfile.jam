@@ -1,0 +1,602 @@
+SubDir TOP Code Mercury Library Physics Gravity ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/Include
+$(TOP)/Code/Mercury/Library/Common/System/Include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+;
+if $(CFG_CONVERTER) = 1
+{
+	SUBDIRHDRS += $(TOP)/Code/Mercury/Library/Graphics/RenderingData/include ;
+}
+
+#USE_SOLVER2 = 1 ;
+
+#if $(USE_SOLVER2) != 1
+#{
+#echo define solver 1 ;
+#}
+#else
+#{
+#echo define solver 2 ;
+#	Define USE_SOLVER_2 ;
+#}
+
+#SrcOptim source/narrowphase/CollisionManager.cpp : $(OPTIMISATION_OFF) ;
+
+
+TOOL_SRC =
+source/exporter/Exporter.cpp
+[ Batch 
+source/exporter/ExportPrimitivesList.cpp
+source/exporter/GravityConverter.cpp
+source/exporter/GravityExporter.cpp
+source/exporter/ConvexHullGeneration.cpp
+#source/exporter/ConvexHullDecomposition.cpp
+source/narrowphase/Shapes.cpp
+source/sharedphysics/RigidBody.cpp
+source/narrowphase/PrimitiveClosestPointsTest.cpp
+source/narrowphase/OBBSegment.cpp
+: StdAfx.h ]
+;
+
+GAME_SRC =
+
+source/cloths/HighFieldFluid.cpp
+source/cloths/HighFieldFluidCollision.cpp
+source/cloths/DeformableBody.cpp
+
+source/narrowphase/GJKCollisionSpu.cpp
+source/narrowphase/Capsule.cpp
+source/narrowphase/Sphere.cpp
+source/narrowphase/OBB.cpp
+source/narrowphase/OBBSegment.cpp
+source/narrowphase/PrimitiveClosestPointsTest.cpp
+source/narrowphase/PrimitiveIntersectTest.cpp
+source/narrowphase/GJKCollision.cpp
+source/narrowphase/GJKRayCastCollision.cpp
+
+source/narrowphase/GJK_Box.cpp
+source/narrowphase/GJKClosestPoints.cpp
+source/narrowphase/GJKIntersect.cpp
+source/narrowphase/SpuCollisionResource.cpp
+#source/narrowphase/TriangleMesh.cpp
+source/narrowphase/LineCollisionCache.cpp
+source/narrowphase/TriangleSegment.cpp
+source/narrowphase/InstanceMeshCollision.cpp
+source/narrowphase/CollisionManager.cpp
+source/narrowphase/CollisionManager_Cloth.cpp
+#source/narrowphase/CollisionManager_Rope.cpp 
+source/narrowphase/CollisionManager_Mesh.cpp
+source/narrowphase/CollisionManager_Plane.cpp
+source/narrowphase/CollisionManager_Collision.cpp
+source/narrowphase/CollisionManager_Raytrace.cpp
+source/narrowphase/CollisionManager_FillCache.cpp
+source/narrowphase/CollisionManager_Transform.cpp
+source/narrowphase/Shapes.cpp
+#source/narrowphase/FinitePlaneCollision.cpp
+#source/narrowphase/EPA.cpp
+source/narrowphase/EPASilhouette.cpp
+source/narrowphase/EPASimplified.cpp
+source/narrowphase/PersistentContactManifold.cpp
+source/narrowphase/GJKSPU.cpp
+source/narrowphase/SPUManager.cpp
+source/narrowphase/Ray.cpp
+
+source/cloths/ClothPrimitivesCollision.cpp
+source/cloths/ClothTrianglePrimitivesCollision.cpp
+
+source/broadphase/DistributionTree.cpp
+source/broadphase/DistributionTree_Raytrace.cpp
+source/broadphase/DistributionTree_FillCache.cpp
+source/broadphase/SweepAndPrune.cpp
+
+source/sdk/Scene.cpp
+source/sdk/SPUScene.cpp
+source/sdk/Scene_DebugRender.cpp
+source/sdk/Body.cpp
+source/sdk/Action.cpp
+source/sdk/BodyHelper.cpp
+source/sdk/CollisionPhantom.cpp
+source/sdk/ConstraintDescriptors.cpp
+source/sdk/CharacterController.cpp
+source/sdk/RagdollController.cpp
+source/sdk/KinematicController.cpp
+source/sdk/AnimatedShapeController.cpp
+source/sdk/PhysicsSDK.cpp
+source/sdk/FluidEvents.cpp
+
+source/Triggers/TriggerEvent.cpp
+source/Triggers/TriggerSystem.cpp
+
+source/sharedphysics/ContactStreamIterator.cpp
+source/sharedphysics/ConstraintGraph.cpp
+source/sharedphysics/ContactDatabase.cpp
+source/sharedphysics/Integrator.cpp
+source/sharedphysics/rigidbody.cpp
+source/sharedphysics/Spring.cpp
+
+source/importer/Importer.cpp 
+
+#source/exporter/ConvexHullGeneration.cpp
+;
+
+#GAME_SRC +=
+#source/cars/CarEngine.cpp
+#source/cars/Car.cpp
+#;
+
+# shared source
+SRC =
+#source/exporter/ConvexHullGeneration.cpp
+#source/exporter/ConvexHullDecomposition.cpp
+source/narrowphase/AABB.cpp
+source/narrowphase/OptimisedAABBTree.cpp
+source/narrowphase/ConvexHull.cpp
+
+source/sdk/InertiaTensorGenerator.cpp
+source/sdk/ShapeDescriptors.cpp
+
+
+source/treebuilder/AABBTree.cpp
+source/treebuilder/BuildClothTree.cpp
+
+source/sharedphysics/GravityConstants.cpp
+source/sharedphysics/SPU_Memory.cpp
+source/cloths/Particle.cpp
+source/cloths/Cloth.cpp
+source/cloths/SoftBody.cpp
+source/cloths/Rope.cpp
+source/cloths/RopeCollision.cpp
+source/cloths/ParticleBasedFluid.cpp 
+source/importer/InstanceMeshResourceManager.cpp 
+
+;
+
+GAME_SRC += 
+source/solver2/CarWheelJointConstraint.cpp
+source/solver2/CarWheelJointInvertMJT.cpp
+source/solver2/CarWheelJointJacobian.cpp
+source/solver2/ConstraintGraphManager.cpp
+source/solver2/ConstraintManager.cpp
+source/solver2/ContactConstraint.cpp
+source/solver2/ContactInvertMJT.cpp
+source/solver2/ContactJacobian.cpp
+source/solver2/LCP.cpp
+source/solver2/PrismaticJointConstraint.cpp
+source/solver2/PrismaticJointInvertMJT.cpp
+source/solver2/PrismaticJointJacobian.cpp
+source/solver2/PrismaticJointLimitConstraint.cpp
+source/solver2/PrismaticJointLimitInvertMJT.cpp
+source/solver2/PrismaticJointLimitJacobian.cpp
+source/solver2/RevoluteJointConstraint.cpp
+source/solver2/RevoluteJointInvertMJT.cpp
+source/solver2/RevoluteJointJacobian.cpp
+source/solver2/RevoluteJointLimitConstraint.cpp
+source/solver2/RevoluteJointLimitInvertMJT.cpp
+source/solver2/RevoluteJointLimitJacobian.cpp
+source/solver2/SphericalJointConstraint.cpp
+source/solver2/SphericalJointInvertMJT.cpp
+source/solver2/SphericalJointJacobian.cpp
+source/solver2/FixedRotationalConstraint.cpp 
+source/solver2/FixedRotationalInvertMJT.cpp 
+source/solver2/FixedRotationalJacobian.cpp
+source/solver2/SphericalJointLimitConstraint.cpp
+source/solver2/SphericalJointLimitInvertMJT.cpp
+source/solver2/SphericalJointLimitJacobian.cpp
+source/solver2/DistanceConstraint.cpp
+source/solver2/DistanceInvertMJT.cpp
+source/solver2/DistanceJacobian.cpp
+source/solver2/TwoRotationalConstraint.cpp
+source/solver2/TwoRotationalInvertMJT.cpp
+source/solver2/TwoRotationalJacobian.cpp
+#source/solver2/AngularLimitConstraint.cpp
+#source/solver2/AngularLimitInvertMJT.cpp
+#source/solver2/AngularLimitJacobian.cpp
+source/solver2/Constraint_Debug.cpp
+;
+#}
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+if $(CFG_CONVERTER) = 1
+{
+	SRC += $(TOOL_SRC) ;
+	Define GRAVITY_EXPORTER ;
+}
+else
+{
+	SRC += [ Batch $(GAME_SRC) : StdAfx.h ] ;
+	
+}
+
+
+#SPU_FC_SRC =
+#<__spu__fc>source/sdk/scene.cpp
+#<__spu__fc>source/narrowphase/optimisedAABBTree.cpp
+#;
+
+SPU_RT_SRC =
+<__spu__rt>source/sdk/SPUScene.cpp
+<__spu__rt>source/narrowphase/CollisionManager_Raytrace.cpp
+#<__spu__rt>source/narrowphase/GJKSPU.cpp
+#<__spu__rt>source/narrowphase/SpuManager.cpp
+#<__spu__rt>source/narrowphase/GJKRayCastCollision.cpp
+;
+
+SPU_TRT_SRC =
+<__spu__trt>source/sdk/SPUScene.cpp
+<__spu__trt>source/narrowphase/CollisionManager_Raytrace.cpp
+#<__spu__trt>source/narrowphase/GJKSPU.cpp
+#<__spu__trt>source/narrowphase/SpuManager.cpp
+#<__spu__trt>source/narrowphase/GJKRayCastCollision.cpp
+;
+
+SPU_MC_SRC =
+<__spu__mc>source/sdk/SPUScene.cpp 
+<__spu__mc>source/narrowphase/CollisionManager_Mesh.cpp
+#<__spu__mc>source/narrowphase/SPUManager.cpp
+;
+
+SPU_PHMC_SRC =
+<__spu__phmc>source/sdk/SPUScene.cpp
+<__spu__phmc>source/narrowphase/CollisionManager_Mesh.cpp
+#<__spu__phmc>source/narrowphase/SPUManager.cpp
+;
+
+
+SPU_GP_SRC =
+#<__spu__gp>source/sdk/scene.cpp
+<__spu__gp>source/sdk/SPUScene.cpp
+#<__spu__gp>source/sdk/Scene_DebugRender.cpp
+;
+
+SPU_DC_SRC =
+<__spu__dc>source/sdk/SPUScene.cpp 
+<__spu__dc>source/narrowphase/SpuCollisionResource.cpp
+<__spu__dc>source/narrowphase/InstanceMeshCollision.cpp
+#<__spu__dc>source/narrowphase/SPUManager.cpp
+<__spu__dc>source/narrowphase/PersistentContactManifold.cpp
+;
+
+SPU_PHDC_SRC =
+<__spu__phdc>source/sdk/SPUScene.cpp
+<__spu__phdc>source/narrowphase/SpuCollisionResource.cpp
+<__spu__phdc>source/narrowphase/InstanceMeshCollision.cpp
+#<__spu__phdc>source/narrowphase/SPUManager.cpp
+;
+
+SPU_SLV_SAFE_SRC = 
+<__spu__slv>source/sdk/SPUScene.cpp
+<__spu__slv>source/solver2/LCP.cpp
+[ Batch
+<__spu__slv>source/solver2/SphericalJointConstraint.cpp
+<__spu__slv>source/solver2/SphericalJointInvertMJT.cpp
+<__spu__slv>source/solver2/SphericalJointJacobian.cpp
+<__spu__slv>source/solver2/CarWheelJointConstraint.cpp
+<__spu__slv>source/solver2/CarWheelJointInvertMJT.cpp
+<__spu__slv>source/solver2/CarWheelJointJacobian.cpp
+<__spu__slv>source/solver2/ConstraintManager.cpp
+<__spu__slv>source/solver2/PrismaticJointConstraint.cpp
+<__spu__slv>source/solver2/PrismaticJointInvertMJT.cpp
+<__spu__slv>source/solver2/PrismaticJointJacobian.cpp
+<__spu__slv>source/solver2/PrismaticJointLimitConstraint.cpp
+<__spu__slv>source/solver2/PrismaticJointLimitInvertMJT.cpp
+<__spu__slv>source/solver2/PrismaticJointLimitJacobian.cpp
+<__spu__slv>source/solver2/RevoluteJointConstraint.cpp
+<__spu__slv>source/solver2/RevoluteJointInvertMJT.cpp
+<__spu__slv>source/solver2/RevoluteJointJacobian.cpp
+<__spu__slv>source/solver2/RevoluteJointLimitConstraint.cpp
+<__spu__slv>source/solver2/RevoluteJointLimitInvertMJT.cpp
+<__spu__slv>source/solver2/RevoluteJointLimitJacobian.cpp
+<__spu__slv>source/solver2/FixedRotationalConstraint.cpp
+<__spu__slv>source/solver2/FixedRotationalInvertMJT.cpp
+<__spu__slv>source/solver2/FixedRotationalJacobian.cpp
+<__spu__slv>source/solver2/SphericalJointLimitConstraint.cpp
+<__spu__slv>source/solver2/SphericalJointLimitInvertMJT.cpp
+<__spu__slv>source/solver2/SphericalJointLimitJacobian.cpp
+<__spu__slv>source/solver2/DistanceConstraint.cpp
+<__spu__slv>source/solver2/DistanceInvertMJT.cpp
+<__spu__slv>source/solver2/DistanceJacobian.cpp
+<__spu__slv>source/solver2/TwoRotationalConstraint.cpp
+<__spu__slv>source/solver2/TwoRotationalInvertMJT.cpp
+<__spu__slv>source/solver2/TwoRotationalJacobian.cpp
+]
+;
+
+SPU_SLV_SRC =
+<__spu__slv>$(TOP)/Code/mercury/library/common/core/source/maths/hvec/Trigonometry.cpp
+<__spu__slv>$(TOP)/code/mercury/library/common/core/source/maths/hvec/New/Mat33.cpp
+;
+
+SPU_FILLCACHE_SRC = 
+#<__spu_fc_src>source/sdk/Scene.cpp
+<__spu_fc_src>source/sdk/SPUScene.cpp
+<__spu_fc_src>source/narrowphase/OptimisedAABBTree.cpp
+<__spu_fc_src>source/broadphase/DistributionTree_FillCache.cpp
+<__spu_fc_src>source/narrowphase/CollisionManager_FillCache.cpp
+;
+
+SPU_PHANTOM_MESH_SRC = 
+<__spu_phc_src>source/sdk/SPUScene.cpp
+<__spu_phc_src>source/narrowphase/CollisionManager_Mesh.cpp
+<__spu_phc_src>source/sharedphysics/ContactStreamIterator.cpp
+<__spu_phc_src>source/sdk/CollisionPhantom.cpp
+<__spu_phc_src>source/narrowphase/CollisionManager_Transform.cpp
+;
+
+SPU_WATERQUERY_SRC = 
+<__spu__wq>source/sdk/SPUScene.cpp
+<__spu__wq>source/narrowphase/CollisionManager_Raytrace.cpp
+;
+
+SPU_CCD_SRC =
+<__spu__ccd>source/sdk/SPUScene.cpp
+<__spu__ccd>source/narrowphase/CollisionManager_Mesh.cpp
+<__spu__ccd>source/narrowphase/OptimisedAABBTree.cpp
+;
+
+SPU_FCD_SRC =
+<__spu__fcd>source/sdk/SPUScene.cpp
+<__spu__fcd>source/narrowphase/CollisionManager_FillCache.cpp
+<__spu__fcd>source/narrowphase/shapes.cpp
+<__spu__fcd>source/sdk/FluidEvents.cpp
+;
+
+SPU_RC_SRC =
+<__spu__rc>source/sdk/SPUScene.cpp
+<__spu__rc>source/sdk/RagdollController.cpp
+; 
+
+SPU_ANIMATED_SRC =
+<__spu__ac>source/sdk/SPUScene.cpp
+<__spu__ac>source/sdk/AnimatedShapeController.cpp
+;
+
+SPU_INT_SRC = 
+<__spu__int>source/sdk/SPUScene.cpp
+;
+
+SPU_KIN_SRC = 
+<__spu__kin>source/sdk/SPUScene.cpp
+<__spu__kin>source/sdk/KinematicController.cpp
+;
+
+SPU_PIN_SRC =
+<__spu__pin>source/sdk/SPUScene.cpp
+<__spu__pin>source/narrowphase/CollisionManager_Transform.cpp
+;
+
+SPU_SHARED_SRC =
+[ Batch
+source/sdk/Body.cpp
+source/broadphase/DistributionTree_Raytrace.cpp
+source/cloths/SoftBody.cpp
+source/cloths/ClothPrimitivesCollision.cpp
+source/cloths/RopeCollision.cpp
+#source/cloths/RopePrimitiveCollision.cpp
+source/narrowphase/PrimitiveClosestPointsTest.cpp
+source/narrowphase/LineCollisionCache.cpp
+source/narrowphase/TriangleSegment.cpp
+source/narrowphase/Capsule.cpp
+source/narrowphase/GJKClosestPoints.cpp 
+source/narrowphase/GJKSPU.cpp
+source/narrowphase/EPASimplified.cpp
+source/narrowphase/EPASilhouette.cpp
+source/narrowphase/CollisionManager_Plane.cpp
+source/sharedphysics/GravityConstants.cpp
+source/narrowphase/CollisionManager_Collision.cpp
+source/narrowphase/GJK_Box.cpp
+source/narrowphase/OBBSegment.cpp
+source/narrowphase/GJKcollision.cpp
+source/narrowphase/GJKCollisionSPU.cpp
+source/narrowphase/GJKRayCastCollision.cpp
+source/narrowphase/ConvexHull.cpp
+source/narrowphase/Ray.cpp
+source/narrowphase/PrimitiveIntersectTest.cpp
+source/sharedphysics/SPU_Memory.cpp
+source/narrowphase/SPUManager.cpp
+: StdAfx.h : __spu__ ]
+[ Batch
+source/sharedphysics/ConstraintGraph.cpp
+source/sharedphysics/RigidBody.cpp
+source/solver2/ContactConstraint.cpp
+source/solver2/ContactInvertMJT.cpp
+source/solver2/ContactJacobian.cpp
+: StdAfx.h : __spu__ ]
+
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/Constants.cpp
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/VectorConst.cpp
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/New/Vec4F32.cpp
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/New/VF32.cpp
+#$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/New/Const.cpp
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/TableArcSin.cpp
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/TableArcTan.cpp
+$(TOP)/Code/Mercury/Library/Common/Core/Source/Maths/HVec/TableCos.cpp
+$(TOP)/Code/mercury/library/common/core/source/maths/hvec/New/Euler.cpp
+;
+
+#SPU_SHARED_SRC = <__spu__>$(SPU_SHARED_SRC) ; ## not needed because the batching now has the __spu__ gristing in it
+
+#SrcOptim source/narrowphase/GJKCollision.cpp : -O0 ;
+
+if $(BUILD) = Debug
+{
+	#echo "overriding optimisations on SPU" ;
+	SrcOptim	$(SPU_MC_SRC)
+				$(SPU_PHMC_SRC)
+				$(SPU_GP_SRC)
+				$(SPU_RT_SRC)
+				$(SPU_TRT_SRC)
+				$(SPU_SLV_SRC)
+				$(SPU_DC_SRC)
+				$(SPU_PHDC_SRC)
+				$(SPU_SLV_SAFE_SRC)
+				$(SPU_SHARED_SRC)
+				$(SPU_FILLCACHE_SRC) 
+				$(SPU_CCD_SRC) 
+				$(SPU_RC_SRC) : -Os ;
+}
+else
+{
+	#if $(TARGET) = WIN32
+	#{
+	#	if $(BUILD) = Release
+	#	{
+	#		echo "overriding optimisations on PC" ;
+	#		SrcOptim source/narrowphase/GJKCollision.cpp : -O0 ;
+	#		SrcOptim source/narrowphase/GJKCollisionSpu.cpp : -O0 ;
+	#		SrcOptim source/narrowphase/GJK_Box.cpp : -O0 ;
+	#		SrcOptim source/narrowphase/SpuCollisionResource.cpp : -O0 ;
+	#	}
+	#}
+}
+
+
+if $(PLATFORM) = PS3
+{
+	SrcOptim $(SPU_SLV_SRC) : -Os ;
+	if $(BUILD) = Debug
+	{
+		SrcOptim $(SPU_DC_SRC) : -Os ;
+		#SrcOptim $(SPU_MC_SRC) : -O0 ;
+		#SrcOptim source/narrowphase/LineCollisionCache.cpp : -O0 ;
+		#SrcOptim <__spu__ccd>source/sdk/Scene.cpp : -Os ;
+		SrcOptim <__spu__ccd>source/sdk/SPUScene.cpp : -Os ;
+		
+	}
+	
+	#SrcOptim <__spu__dco>$(SPU_DCO_SRC) : -Os ;
+
+	#ObjectDefines <__spu__rt>source/sdk/scene.cpp : SPU_RAYTRACE ;
+	ObjectDefines <__spu__rt>source/sdk/SPUScene.cpp : SPU_RAYTRACE ;
+	ObjectDefines <__spu__rt>source/narrowphase/CollisionManager_Raytrace.cpp : SPU_RAYTRACE ;
+	
+	#ObjectDefines <__spu__trt>source/sdk/SPUScene.cpp : SPU_RAYTRACE ;
+	ObjectDefines <__spu__trt>source/sdk/SPUScene.cpp : SPU_TRANSPARENT_RAYTRACE ;
+	ObjectDefines <__spu__trt>source/narrowphase/CollisionManager_Raytrace.cpp : SPU_TRANSPARENT_RAYTRACE ;
+	
+	ObjectDefines <__spu__mc>source/sdk/scene.cpp : SPU_MESH_COLLISION ;
+	ObjectDefines <__spu__mc>source/sdk/SPUScene.cpp : SPU_MESH_COLLISION ;
+	ObjectDefines <__spu__mc>source/narrowphase/CollisionManager_Mesh.cpp : SPU_MESH_COLLISION ;
+	
+	ObjectDefines <__spu_phc_src>source/narrowphase/CollisionManager_Mesh.cpp : SPU_MESH_COLLISION ;
+	ObjectDefines <__spu_phc_src>source/sdk/SPUScene.cpp : SPU_PHANTOM_MESH_LIB ;
+	
+	ObjectDefines <__spu__phmc>source/sdk/scene.cpp : SPU_MESH_COLLISION ;
+	ObjectDefines <__spu__phmc>source/sdk/SPUScene.cpp : SPU_PHANTOM_MESH_COLLISION ;
+	ObjectDefines <__spu__phmc>source/narrowphase/CollisionManager_Mesh.cpp : SPU_MESH_COLLISION ;
+	
+	
+	#ObjectDefines <__spu__gp>source/sdk/scene.cpp : SPU_GROUNDPLANE_COLLISION ;
+	ObjectDefines <__spu__gp>source/sdk/SPUScene.cpp : SPU_GROUNDPLANE_COLLISION ;  
+	
+	#ObjectDefines <__spu__slv>source/sdk/scene.cpp : SPU_SOLVER ;
+	ObjectDefines <__spu__slv>source/sdk/SPUScene.cpp : SPU_SOLVER ;
+	
+	#ObjectDefines <__spu__dc>source/sdk/scene.cpp : SPU_DYNAMIC_COLLISION ;
+	ObjectDefines <__spu__dc>source/sdk/SPUScene.cpp : SPU_DYNAMIC_COLLISION ;
+	ObjectDefines <__spu__dc>source/narrowphase/InstanceMeshCollision.cpp : SPU_DYNAMIC_COLLISION ;
+	ObjectDefines <__spu__dc>source/narrowphase/SpuCollisionResource.cpp : SPU_DYNAMIC_COLLISION ;
+	#ObjectDefines <__spu__dc>source/narrowphase/SpuManager.cpp : SPU_DYNAMIC_COLLISION ;
+	
+	ObjectDefines <__spu__phdc>source/sdk/SPUScene.cpp : SPU_DYNAMIC_PHANTOM_COLLISION ;
+	ObjectDefines <__spu__phdc>source/narrowphase/InstanceMeshCollision.cpp : SPU_DYNAMIC_COLLISION ;
+	ObjectDefines <__spu__phdc>source/narrowphase/SpuCollisionResource.cpp : SPU_DYNAMIC_COLLISION ;
+	#ObjectDefines <__spu__phdc>source/narrowphase/SpuManager.cpp : SPU_DYNAMIC_COLLISION ;
+	
+	
+	#ObjectDefines <__spu__wq>source/sdk/Scene.cpp : SPU_WATER_QUERY ;
+	ObjectDefines <__spu__wq>source/sdk/SPUScene.cpp : SPU_WATER_QUERY ;
+	ObjectDefines <__spu__wq>source/narrowphase/CollisionManager_Raytrace.cpp : SPU_RAYTRACE ;
+	
+	ObjectDefines <__spu_fc_src>source/narrowphase/OptimisedAABBTree.cpp : SPU_FILL_CACHE ;
+	ObjectDefines <__spu_fc_src>source/narrowphase/CollisionManager_FillCache.cpp : SPU_FILL_CACHE ;
+	#ObjectDefines <__spu_fc_src>source/sdk/Scene.cpp : SPU_FILL_CACHE ;
+	ObjectDefines <__spu_fc_src>source/sdk/SPUScene.cpp : SPU_FILL_CACHE ;
+	
+	ObjectDefines <__spu__ccd>source/narrowphase/CollisionManager_Mesh.cpp : SPU_CONTINUOUS_COLLISION ;
+	#ObjectDefines <__spu__ccd>source/sdk/Scene.cpp : SPU_CONTINUOUS_COLLISION ;
+	ObjectDefines <__spu__ccd>source/sdk/SPUScene.cpp : SPU_CONTINUOUS_COLLISION ;
+	ObjectDefines <__spu__ccd>source/narrowphase/OptimisedAABBTree.cpp : SPU_CONTINUOUS_COLLISION ;
+	
+	#ObjectDefines <__spu__fcd>source/sdk/Scene.cpp : SPU_FLUID_COLLISION ;
+	ObjectDefines <__spu__fcd>source/sdk/SPUScene.cpp : SPU_FLUID_COLLISION ;
+	ObjectDefines <__spu__fcd>source/narrowphase/CollisionManager_FillCache.cpp : SPU_FLUID_COLLISION ;
+	
+	#ObjectDefines <__spu__rc>source/sdk/Scene.cpp : SPU_RAGDOLL_CONTROLLER ;
+	ObjectDefines <__spu__rc>source/sdk/SPUScene.cpp : SPU_RAGDOLL_CONTROLLER ;
+	#ObjectDefines <__spu__rc>source/sdk/RagdollController : SPU_RAGDOLL_CONTROLLER ;
+	
+	ObjectDefines <__spu__ac>source/sdk/SPUScene.cpp : SPU_ANIMATED_CONTROLLER ;
+	
+	ObjectDefines <__spu__int>source/sdk/SPUScene.cpp : SPU_INTEGRATE ;
+	
+	ObjectDefines <__spu__kin>source/sdk/SPUScene.cpp : SPU_KINEMATIC_UPDATE ;
+	
+	ObjectDefines <__spu__pin>source/sdk/SPUScene.cpp : SPU_POST_INTEGRATE ;
+	
+
+	SPULibrary gravity_shared_spu : $(SPU_SHARED_SRC) ;
+	
+	SPULibrary gravity_fillcache_spu : $(SPU_FILLCACHE_SRC) ;
+	SPULibrary gravity_phantom_mesh_lib : $(SPU_PHANTOM_MESH_SRC) ;
+
+	LinkLibraries	gravity_raytrace
+					gravity_transparentraytrace
+					gravity_meshcollision
+					gravity_phantommeshcollision
+					gravity_groundplanecollision
+					gravity_solver
+					gravity_waterquery
+					gravity_continuous_collision
+					gravity_fluid_collision
+					gravity_ragdoll_controller
+					gravity_animated_controller
+					gravity_dynamic_phantom_collision
+					gravity_fillcache
+					gravity_dynamic_collision
+					gravity_dynamicoverlay_collision
+					gravity_integrate
+					gravity_kinematic
+					gravity_post_integrate
+					: gravity_shared_spu core_spu $(SCE_PS3_ROOT)/target/spu/lib/libm.a ;
+
+	AddSPUModule gravity : gravity_raytrace : $(SPU_RT_SRC) ;
+	AddSPUModule gravity : gravity_transparentraytrace : $(SPU_TRT_SRC) ;
+	AddSPUModule gravity : gravity_meshcollision : $(SPU_MC_SRC) ;
+	AddSPUModule gravity : gravity_phantommeshcollision : $(SPU_PHMC_SRC) ;
+	AddSPUModule gravity : gravity_groundplanecollision : $(SPU_GP_SRC) ;
+	AddSPUModule gravity : gravity_solver : $(SPU_SLV_SRC) $(SPU_SLV_SAFE_SRC) ;
+	AddSPUModule gravity : gravity_dynamic_collision : $(SPU_DC_SRC) ;
+	AddSPUModule gravity : gravity_dynamic_phantom_collision : $(SPU_PHDC_SRC) ;
+	AddSPUModule gravity : gravity_waterquery : $(SPU_WATERQUERY_SRC) ;
+	AddSPUModule gravity : gravity_fluid_collision : $(SPU_FCD_SRC) ;
+	AddSPUModule gravity : gravity_continuous_collision : $(SPU_CCD_SRC) ;
+	AddSPUModule gravity : gravity_ragdoll_controller : $(SPU_RC_SRC) $(SPU_SLV_SRC) ;
+	AddSPUModule gravity : gravity_animated_controller : $(SPU_ANIMATED_SRC) $(SPU_SLV_SRC) ;
+	AddSPUModule gravity : gravity_integrate : $(SPU_INT_SRC) ;
+	AddSPUModule gravity : gravity_kinematic : $(SPU_KIN_SRC) $(SPU_SLV_SRC) ;
+	AddSPUModule gravity : gravity_post_integrate : $(SPU_PIN_SRC) ;
+	#AddSPUModule gravity : gravity_fillcache : $(SPU_FC_SRC) ;
+	#AddSPUModule gravity : gravity_dynamicoverlay_collision : <__spu__dco>$(SPU_DCO_SRC) ;
+}
+
+#Optim Off ;
+
+if $(CFG_CONVERTER) = 1
+{
+	Define CFG_CONVERTER=1 ;
+	Library gravityConv : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;
+}
+else
+{	
+	Library gravity : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;
+}
+ 
+#SubInclude TOP Code Mercury Library Common System ;
+#if CFG_CONVERTER
+#{
+#	SubInclude TOP Code Mercury Library Graphics RenderingData ;
+#}

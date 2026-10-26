@@ -1,0 +1,2089 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="AftkConv"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Debug\" IntermediateDirectory="obj\Win32_tool\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32_tool\Debug\AftkConv.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\code\common;..\..\..\code\mercury\library\common\btl\include;..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\mercury\library\common\xt2\include;..\..\..\code\mercury\library\graphics\display\include;..\..\..\code\mercury\library\graphics\display2\include;..\..\..\code\mercury\library\physics\gravity\include;..\..\..\code\mercury\library\util\logicalfs\include;..\..\..\code\mercury\library\util\tools_shared\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\aftkut\aftkutlib\include;..\..\..\code\tools\file_tag_db\file_tag_db\include;..\..\..\code\vendor;..\..\..\code\vendor\cxxtest\current;..\..\..\code\vendor\zlib\current_mercury;..\..\..\libs\vendor\fbx_sdk\2009.1\include;..\..\..\libs\vendor\fbx_sdk\2009.1\include\kbaselib;..\..\..\libs\vendor\maya\2008\include;..\..\..\libs\vendor\maya\2008\include\;..\..\..\libs\vendor\xsiftk\5.11\h\core;..\..\..\libs\vendor\xsiftk\5.11\h\ftk;..\..\mercury\library\common\core;..\..\mercury\library\common\core\include;..\..\mercury\library\common\misc_shared;..\..\mercury\library\common\misc_shared\include;..\..\mercury\library\common\system;..\..\mercury\library\common\system\include;..\..\mercury\library\util\logicalfs;..\..\mercury\library\util\logicalfs\include;..\..\mercury\library\util\tools_shared;..\..\mercury\library\util\tools_shared\include;..\..\vendor\zlib\current_mercury;..\aftk\aftk;..\aftkut\aftkutlib;..\aftkut\aftkutlib\include;..\file_tag_db\file_tag_db;..\file_tag_db\file_tag_db\include;.\source\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Release\" IntermediateDirectory="obj\Win32_tool\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32_tool\Release\AftkConv.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\code\common;..\..\..\code\mercury\library\common\btl\include;..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\mercury\library\common\xt2\include;..\..\..\code\mercury\library\graphics\display\include;..\..\..\code\mercury\library\graphics\display2\include;..\..\..\code\mercury\library\physics\gravity\include;..\..\..\code\mercury\library\util\logicalfs\include;..\..\..\code\mercury\library\util\tools_shared\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\aftkut\aftkutlib\include;..\..\..\code\tools\file_tag_db\file_tag_db\include;..\..\..\code\vendor;..\..\..\code\vendor\cxxtest\current;..\..\..\code\vendor\zlib\current_mercury;..\..\..\libs\vendor\fbx_sdk\2009.1\include;..\..\..\libs\vendor\fbx_sdk\2009.1\include\kbaselib;..\..\..\libs\vendor\maya\2008\include;..\..\..\libs\vendor\maya\2008\include\;..\..\..\libs\vendor\xsiftk\5.11\h\core;..\..\..\libs\vendor\xsiftk\5.11\h\ftk;..\..\mercury\library\common\core;..\..\mercury\library\common\core\include;..\..\mercury\library\common\misc_shared;..\..\mercury\library\common\misc_shared\include;..\..\mercury\library\common\system;..\..\mercury\library\common\system\include;..\..\mercury\library\util\logicalfs;..\..\mercury\library\util\logicalfs\include;..\..\mercury\library\util\tools_shared;..\..\mercury\library\util\tools_shared\include;..\..\vendor\zlib\current_mercury;..\aftk\aftk;..\aftkut\aftkutlib;..\aftkut\aftkutlib\include;..\file_tag_db\file_tag_db;..\file_tag_db\file_tag_db\include;.\source\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Speed\" IntermediateDirectory="obj\Win32_tool\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32_tool\Speed\AftkConv.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\code\common;..\..\..\code\mercury\library\common\btl\include;..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\mercury\library\common\xt2\include;..\..\..\code\mercury\library\graphics\display\include;..\..\..\code\mercury\library\graphics\display2\include;..\..\..\code\mercury\library\physics\gravity\include;..\..\..\code\mercury\library\util\logicalfs\include;..\..\..\code\mercury\library\util\tools_shared\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\aftkut\aftkutlib\include;..\..\..\code\tools\file_tag_db\file_tag_db\include;..\..\..\code\vendor;..\..\..\code\vendor\cxxtest\current;..\..\..\code\vendor\zlib\current_mercury;..\..\..\libs\vendor\fbx_sdk\2009.1\include;..\..\..\libs\vendor\fbx_sdk\2009.1\include\kbaselib;..\..\..\libs\vendor\maya\2008\include;..\..\..\libs\vendor\maya\2008\include\;..\..\..\libs\vendor\xsiftk\5.11\h\core;..\..\..\libs\vendor\xsiftk\5.11\h\ftk;..\..\mercury\library\common\core;..\..\mercury\library\common\core\include;..\..\mercury\library\common\misc_shared;..\..\mercury\library\common\misc_shared\include;..\..\mercury\library\common\system;..\..\mercury\library\common\system\include;..\..\mercury\library\util\logicalfs;..\..\mercury\library\util\logicalfs\include;..\..\mercury\library\util\tools_shared;..\..\mercury\library\util\tools_shared\include;..\..\vendor\zlib\current_mercury;..\aftk\aftk;..\aftkut\aftkutlib;..\aftkut\aftkutlib\include;..\file_tag_db\file_tag_db;..\file_tag_db\file_tag_db\include;.\source\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Profile\" IntermediateDirectory="obj\Win32_tool\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32_tool\Profile\AftkConv.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\code\common;..\..\..\code\mercury\library\common\btl\include;..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\mercury\library\common\xt2\include;..\..\..\code\mercury\library\graphics\display\include;..\..\..\code\mercury\library\graphics\display2\include;..\..\..\code\mercury\library\physics\gravity\include;..\..\..\code\mercury\library\util\logicalfs\include;..\..\..\code\mercury\library\util\tools_shared\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\aftkut\aftkutlib\include;..\..\..\code\tools\file_tag_db\file_tag_db\include;..\..\..\code\vendor;..\..\..\code\vendor\cxxtest\current;..\..\..\code\vendor\zlib\current_mercury;..\..\..\libs\vendor\fbx_sdk\2009.1\include;..\..\..\libs\vendor\fbx_sdk\2009.1\include\kbaselib;..\..\..\libs\vendor\maya\2008\include;..\..\..\libs\vendor\maya\2008\include\;..\..\..\libs\vendor\xsiftk\5.11\h\core;..\..\..\libs\vendor\xsiftk\5.11\h\ftk;..\..\mercury\library\common\core;..\..\mercury\library\common\core\include;..\..\mercury\library\common\misc_shared;..\..\mercury\library\common\misc_shared\include;..\..\mercury\library\common\system;..\..\mercury\library\common\system\include;..\..\mercury\library\util\logicalfs;..\..\mercury\library\util\logicalfs\include;..\..\mercury\library\util\tools_shared;..\..\mercury\library\util\tools_shared\include;..\..\vendor\zlib\current_mercury;..\aftk\aftk;..\aftkut\aftkutlib;..\aftkut\aftkutlib\include;..\file_tag_db\file_tag_db;..\file_tag_db\file_tag_db\include;.\source\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Master\" IntermediateDirectory="obj\Win32_tool\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32_tool\Master\AftkConv.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath=".;..\..\..\code\common;..\..\..\code\mercury\library\common\btl\include;..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\mercury\library\common\xt2\include;..\..\..\code\mercury\library\graphics\display\include;..\..\..\code\mercury\library\graphics\display2\include;..\..\..\code\mercury\library\physics\gravity\include;..\..\..\code\mercury\library\util\logicalfs\include;..\..\..\code\mercury\library\util\tools_shared\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\aftkut\aftkutlib\include;..\..\..\code\tools\file_tag_db\file_tag_db\include;..\..\..\code\vendor;..\..\..\code\vendor\cxxtest\current;..\..\..\code\vendor\zlib\current_mercury;..\..\..\libs\vendor\fbx_sdk\2009.1\include;..\..\..\libs\vendor\fbx_sdk\2009.1\include\kbaselib;..\..\..\libs\vendor\maya\2008\include;..\..\..\libs\vendor\maya\2008\include\;..\..\..\libs\vendor\xsiftk\5.11\h\core;..\..\..\libs\vendor\xsiftk\5.11\h\ftk;..\..\mercury\library\common\core;..\..\mercury\library\common\core\include;..\..\mercury\library\common\misc_shared;..\..\mercury\library\common\misc_shared\include;..\..\mercury\library\common\system;..\..\mercury\library\common\system\include;..\..\mercury\library\util\logicalfs;..\..\mercury\library\util\logicalfs\include;..\..\mercury\library\util\tools_shared;..\..\mercury\library\util\tools_shared\include;..\..\vendor\zlib\current_mercury;..\aftk\aftk;..\aftkut\aftkutlib;..\aftkut\aftkutlib\include;..\file_tag_db\file_tag_db;..\file_tag_db\file_tag_db\include;.\source\"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="AftkConv" Filter="\">
+<File RelativePath="stdafx.cpp"></File>
+<File RelativePath="stdafx.h"></File>
+<File RelativePath="jamfile.jam"></File>
+<File RelativePath="buildlog.txt"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="include\aftkconv\Version.h"></File>
+<File RelativePath="source\Application.cpp"></File>
+<File RelativePath="source\Convert.cpp"></File>
+<File RelativePath="source\Main.cpp"></File>
+<File RelativePath="source\Maya.cpp"></File>
+<File RelativePath="source\Merge.cpp"></File>
+<File RelativePath="source\Meta.cpp"></File>
+<File RelativePath="source\Options.cpp"></File>
+<File RelativePath="source\Query.cpp"></File>
+<File RelativePath="source\Application.h"></File>
+<File RelativePath="source\Convert.h"></File>
+<File RelativePath="source\Definitions.h"></File>
+<File RelativePath="source\Maya.h"></File>
+<File RelativePath="source\Merge.h"></File>
+<File RelativePath="source\Meta.h"></File>
+<File RelativePath="source\Options.h"></File>
+<File RelativePath="source\Query.h"></File>
+<File RelativePath="source\Command.inl"></File>
+</Filter>
+</Filter>
+<Filter Name="Common" Filter="\">
+<Filter Name="Core" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\CorePch.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\CorePch.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\jamfile.jam"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\buildlog.txt"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\BizAssert.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\Containers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\Core.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\Maths.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\MercuryCore.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\UtMaths.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\xtstdx.h"></File>
+<Filter Name="Allocators" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\allocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\blockallocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\CoreMemoryFunctions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\pool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\SSSMemoryPool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\SSSMemoryPoolUtAllocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\SSSMemoryPoolUtInitialiser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\SSSMultiMemoryPool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\stackallocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\allocators\blockallocator.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\allocators\CoreMemoryAligned.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\allocators\CoreMemoryContainer.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\allocators\CoreMemoryNonTracked.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\allocators\CoreMemoryPhysical.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\allocators\stackallocator.cpp"></File>
+</Filter>
+<Filter Name="Btl" Filter="\">
+<Filter Name="Allocators" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Allocators\allocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Allocators\pool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Allocators\stackallocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\btl\allocators\stackallocator.cpp"></File>
+</Filter>
+<Filter Name="Containers" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\algorithm.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\bitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\chainedhashmap.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\chainedhashset.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\chainedhashtable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\containers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\hashops.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\initialiser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\list.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\map.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\multimap.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\multiset.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\openhashmap.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\openhashset.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\openhashtable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\radix.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\rlebitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\sequence.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\set.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\setitem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\sortedbinarytree.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\bitvector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\list.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Containers\sortedbinarytree.inl"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\autopointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\hash.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\hashops.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\pair.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\scopedpointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\string.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\threads.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\types.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\string.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\btl\Utility\stringhelpers.inl"></File>
+</Filter>
+</Filter>
+<Filter Name="Containers" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\algorithm.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\bitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\containerserialisation.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\FixedString.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\FixedVector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\initialiser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\list.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\openhashtable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\radix.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\rlebitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\sequence.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\sortedbinarytree.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\String.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\StringHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\String.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\StringHelpers.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\containers\rlebitvector.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\containers\String.cpp"></File>
+<Filter Name="Genesis_containers" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\genesis_containers\Array.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\genesis_containers\Bitfield.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\genesis_containers\List.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\containers\genesis_containers\Sort.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Maths" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\constants.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\conversion.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\MathsUtil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\storage.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\ValidateFloat.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\Constants.cpp"></File>
+<Filter Name="Hvec" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Accessor.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\BigMatrix.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Complex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Constants.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\FP.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Geometry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Geometry2d.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\MathsTest.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Matrix.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\MatrixStruct.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\ODE.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Param.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Quaternion.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\RGBA.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Scalar.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\ScalarInt.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SI.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SIMD.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SinCos.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Storage.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Trigonometry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VecMatOp.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorConst.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorInt.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorOp.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Accessor.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\BigMatrix.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Complex.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Constants.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Geometry.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Geometry2d.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Matrix.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\matrix_svn_anomoly.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Quaternion.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\RGBA.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Scalar.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\scalarInt.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SI.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SIMD.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SIMD_PPU.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SIMD_SPU.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SIMD_SSE.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\SIMD_VMX.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Storage.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Trigonometry.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VecMatOp.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\Vector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorConst.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorConstGlobals.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorInt.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\VectorOp.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\BigMatrix.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Complex.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Constants.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\FP.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Geometry.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Geometry2d.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\MathsTest.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Matrix.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Quaternion.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\RGBA.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Scalar.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\SIMD.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableArcSin.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableArcTan.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableBernoulli.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableCos.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableExp.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableLog.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableSin.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\TableTan.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Test.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Trigonometry.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Vector.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\VectorConst.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\VectorOp.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Constants.cpp.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\SIMD.cpp.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\Trigonometry.cpp.inl"></File>
+<Filter Name="New" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\AxisBox.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Capsule.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassBool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassComplex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassDual.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassGeometry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassJacobian.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassMatrix.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassQuaternion.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassScalar.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassVector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Closest.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Complex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Const.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Cubic.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Cylinder.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Distance.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\DualQuaternion.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\DualScalar.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\DualVector3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Elementary.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Euler.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\FFT.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\HPoint3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeAnimation.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeClasses.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeComplete.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeCompleteGA.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeGeneral.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeGeometry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeMinimal.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludePhysics.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Intersect.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Line.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat26.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat33.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat36.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat43.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat44.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat46.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat55.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat56.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat62.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat63.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat64.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat65.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat66.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat67.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat76.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Normal3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\OrientedBox.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Plane.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Point3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Quaternion.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\QuatTrans.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Render.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ScaleMat3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ShearMat3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Sphere.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Triangle.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VBool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec12F32.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec16Bool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec4Bool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec4F32.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec8Bool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec8F32.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt16.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt32.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt64.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt8.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector2.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector3NL.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector4.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector5.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector6.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector7.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector8.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VF32.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Volume.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\AxisBox.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Capsule.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassBool.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassComplex.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassDual.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassGeometry.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassJacobian.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassMatrix.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassQuaternion.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassScalar.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ClassVector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Closest.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Complex.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Const.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Cubic.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Cylinder.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Distance.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\DualQuaternion.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\DualScalar.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\DualVector3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Elementary.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Euler.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\HPoint3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeAnimation.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeComplete.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeCompleteGA.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeGeneral.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeGeometry.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludeMinimal.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\IncludePhysics.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Intersect.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Line.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat26.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat33.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat36.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat43.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat44.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat46.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat55.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat56.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat62.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat63.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat64.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat65.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat66.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat67.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Mat76.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Normal3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\OrientedBox.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Plane.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Point3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Quaternion.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\QuatTrans.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ScaleMat3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\ShearMat3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Sphere.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Triangle.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VBool.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec12F32.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec16Bool.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec4Bool.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec4F32.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec8Bool.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vec8F32.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt16.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt32.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt64.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VecInt8.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector2.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector3.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector3NL.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector4.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector5.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector6.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector7.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Vector8.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\VF32.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\Volume.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Euler.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\FFT.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Mat33.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Mat43.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Mat44.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Mat55.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Mat66.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Quaternion.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Render.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\Vec4F32.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\VF32.cpp"></File>
+<Filter Name="G3V" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\BiVector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\Class.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\ContractLeft.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\ContractRight.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\G3V.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\GeometricProduct.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\InnerProduct.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecBT.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecSB.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecST.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecSV.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecVB.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecVT.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\OuterProduct.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\Scalar.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\ScalarProduct.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\TriVector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\Vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\BiVector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\Class.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\ContractLeft.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\ContractRight.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\G3V.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\GeometricProduct.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\InnerProduct.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecBT.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecSB.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecST.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecSV.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecVB.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\MultiVecVT.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\OuterProduct.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\Scalar.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\ScalarProduct.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\TriVector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G3V\Vector.inl"></File>
+</Filter>
+<Filter Name="G5" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Class.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Const.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Dual.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\DualPlane.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\DualSphere.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Inverse.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Involution.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Point.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Reverse.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Rotor.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Scalar.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Scalor.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Translator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\T_Vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Class.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Const.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Dual.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\DualPlane.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\DualSphere.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Inverse.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Involution.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\OperatorGP.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\OperatorIP.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\OperatorLC.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\OperatorOP.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\OperatorRC.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\OperatorSP.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Point.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Reverse.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Rotor.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Scalar.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Scalor.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Templates.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Translator.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\T_Vector.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\hvec\New\G5\Vector.inl"></File>
+</Filter>
+<Filter Name="GA" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\hvec\New\GA\Const.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Utmaths" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\colour.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\maths.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\mmatrix.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\mvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\operator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\recurse.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\spline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\maths\utmaths\xmvectorwrapper.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\maths\UtMaths\xmvectorwrapper.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Threads" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\Atomic.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\AtomicMutex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\CpuInfo.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\Event.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\Misc.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\Mutex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\RwLock.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\Semaphore.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\SpuEvent.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\SpuRwLock.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\Thread.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\ThreadLocalStorage.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\threads\WaitForObjects.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\CpuInfo.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\Event.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\Mutex.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\RwLock.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\Semaphore.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\Thread.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\ThreadLocalStorage.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\threads\WaitForObjects.cpp"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\autopointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\CoreDebug.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\Delegate.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\endian.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\hash.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\hashops.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\MemCpy.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\NewCLib.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\scopedpointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\Singleton.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\SmartPtr.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\StringProc.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\threads.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\include\core\utility\utility.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\utility\BizAssert.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\utility\CoreAssert.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\utility\CoreDebug.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\utility\endian.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\source\utility\utility.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Test" Filter="\">
+<Filter Name="Btl" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\archive.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\test.h"></File>
+<Filter Name="Allocators" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\allocators\pool.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\allocators\stackallocator.h"></File>
+</Filter>
+<Filter Name="Containers" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\bitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\chainedhashtable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\hashtable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\list.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\performance_tests.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\rlebitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\sortedbinarytree.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\containers\vector.h"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\utility\autopointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\utility\pair.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\utility\scopedpointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\utility\string.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\btl\utility\types.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Threads" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testatomicmutex.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testspuevent.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testspurwlock.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testatomic.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testevent.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testmutex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testrwlock.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testsemaphore.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Core\test\threads\testspuevent.h"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Misc_shared" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\MiscSharedPch.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\MiscSharedPch.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\jamfile.jam"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\buildlog.txt"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurveHermite.h"></File>
+<Filter Name="Archive" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\archive.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\autopointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\binaryarchive.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\bitvector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\btl.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\handler.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\list.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\map.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\maths.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\pair.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\pointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\scopedpointer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\serialisationinfo.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\serialisationkey.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\serialise.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\serialiser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\set.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\string.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\utmaths.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\vector.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\archive\xmlarchive.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\archive\handler.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\archive\serialiser.cpp"></File>
+</Filter>
+<Filter Name="Cache" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cache\cache.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cache\cacheentry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cache\cachekey.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cache\cachestream.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cache\cache.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cache\cacheentry.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cache\cachekey.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cache\cachestream.cpp"></File>
+</Filter>
+<Filter Name="Cloth" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cloth\Cloth.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cloth\ClothBase.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cloth\ClothSheet.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cloth\ClothString.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Cloth\ClothWorld.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cloth\ClothBase.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cloth\ClothSheet.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Cloth\ClothString.cpp"></File>
+</Filter>
+<Filter Name="Compression" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Compression\Deflate.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Compression\Inflate.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Compression\InflateTask.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Compression\XMemCompress.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Compression\Deflate.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Compression\Inflate.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Compression\InflateSPU.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Compression\InflateTask.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Compression\XMemCompress.cpp"></File>
+</Filter>
+<Filter Name="Context" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Context\ContextProvider.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Context\ContextualStream.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Context\I_Anything.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Context\ContextualStream.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Context\I_Anything.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Context\ContextualStream.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Context\I_Anything.cpp"></File>
+</Filter>
+<Filter Name="Curve" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Curve\HermiteCurve.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Curve\HermiteCurve.cpp"></File>
+</Filter>
+<Filter Name="DataRef" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\DataRef.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\DataRefDeclare.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Factory.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Ptr.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Sorcery.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Storage.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Factory.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Ptr.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataRef\Sorcery.inl"></File>
+</Filter>
+<Filter Name="DataStructure" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DataStructure\StringTable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\DataStructure\StringTable.cpp"></File>
+</Filter>
+<Filter Name="DGUtil" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DGUtil\DGUtil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\DGUtil\DGUtilHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\DGUtil\DGUtil.CPP"></File>
+</Filter>
+<Filter Name="Factory" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Factory\Factory.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Factory\Factory.inl"></File>
+</Filter>
+<Filter Name="FileFormats" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\FileFormats\TGA.h"></File>
+</Filter>
+<Filter Name="Geometry" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\Bounds.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\ConvexHull.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\RegionBSP.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\SimpleBSP.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\SimplePoly.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\weld.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\RegionBSP.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Geometry\SimplePoly.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Geometry\Bounds.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Geometry\ConvexHull.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Geometry\RegionBSP.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Geometry\SimpleBSP.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Geometry\SimplePoly.cpp"></File>
+</Filter>
+<Filter Name="KdTree" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\KdTree\KdNode.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\KdTree\KdTree.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\KdTree\KdTreeBuilder.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\KdTree\KdTreeBuilder.cpp"></File>
+</Filter>
+<Filter Name="Maths" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Maths\XMUtil.h"></File>
+</Filter>
+<Filter Name="MathsDebug" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\MathsDebug\MathsDebug.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\MathsDebug\MathsDebug.cpp"></File>
+</Filter>
+<Filter Name="Messaging" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\GameMessaging.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageBase.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageDebug.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageDispatcher.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageHandler.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageMultiHandler.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageSerialisation.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageStats.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageSubscriberList.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageSubscriberSystem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageTypeList.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageTypeRange.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageValue.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageValue2Tuple.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageValue3Tuple.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageValueStorage.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\Messaging.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessagingDeclare.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageBase.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageDispatcher.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageSubscriberList.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Messaging\MessageTypeRange.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\GameMessaging.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageBase.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageDebug.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageHandler.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageMultiHandler.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageSerialisation.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageStats.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageSubscriberSystem.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageTypeList.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\MessageTypeRange.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Messaging\Messaging.cpp"></File>
+</Filter>
+<Filter Name="Moments" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Moments\Moments.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Moments\Moments.cpp"></File>
+</Filter>
+<Filter Name="NewCurve" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\ArcIterator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\BezierCurve.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\BSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CardinalSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CatmullRomSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Curve.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveBounds.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveData.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveDataHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveWrapper.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Definitions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\EReparamRes.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\HermiteHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\HermitePolicies.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\HermiteSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\HermiteSplineTypes.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\MayaHermiteSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\NurbSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\NurbSplineData.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Polyline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Reparameterise.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\ReparamHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\ArcIterator.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\BezierCurve.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\BSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CardinalSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CatmullRomSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Curve.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveBounds.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveData.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveDataHelpers.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\CurveHelpers.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\HermiteHelpers.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\HermiteSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\MayaHermiteSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\NurbSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\NurbSplineData.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Polyline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Reparameterise.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\NewCurve\Definitions.cpp"></File>
+<Filter Name="Actor" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Actor\ActorHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Actor\ActorSplineTypes.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Actor\ActorHelpers.inl"></File>
+</Filter>
+<Filter Name="Debug" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\DebugRender.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\HelloWorld.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\RenderBezierCurve.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\RenderHermiteSpline.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\DebugRender.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\RenderBezierCurve.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\NewCurve\Debug\RenderHermiteSpline.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\NewCurve\Debug\HelloWorld.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Noise" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Noise\Perlin.h"></File>
+</Filter>
+<Filter Name="Sort" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Sort\BitonicSort.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Sort\QuickSort.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Sort\BitonicSort.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Sort\QuickSort.cpp"></File>
+</Filter>
+<Filter Name="Types" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Types\Float16.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Types\FP32.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Types\Float16.cpp"></File>
+</Filter>
+<Filter Name="UID" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\UID\FourCC.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\UID\TypeChecker.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\UID\TypeTable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\UID\TypeTable.inl"></File>
+</Filter>
+<Filter Name="Variant" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Variant\KeyValue.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Variant\Variant.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Variant\KeyValue.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\include\misc_shared\Variant\Variant.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\source\misc_shared\Variant\Variant.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Test" Filter="\">
+<Filter Name="Archive" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\test\archive\test.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\test\archive\test.h"></File>
+</Filter>
+<Filter Name="Cache" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\test\cache\testcache.h"></File>
+</Filter>
+<Filter Name="KdTree" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\Misc_Shared\test\KdTree\KdTree.h"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="System" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\SystemPch.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\SystemPch.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\jamfile.jam"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\buildlog.txt"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debuglog.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\threads.h"></File>
+<Filter Name="Artery" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\artery\Artery.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\artery\ArteryMessage.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\artery\ArterySync.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\artery\artery_managed.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\artery\BkSocket.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\artery\WsSocket.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\Artery.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\ArteryMessage.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\ArteryPeer.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\ArteryService.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\ArterySync.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\artery_managed.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\BkSocket.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\WsSocket.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\ArteryImpl.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\artery\ArteryService.h"></File>
+</Filter>
+<Filter Name="Automation" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\automation\Automation.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\automation\AutomationMessages.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\automation\Automation.cpp"></File>
+</Filter>
+<Filter Name="Datalogging" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\datalogging\DataLogging.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\datalogging\DataLogging.cpp"></File>
+</Filter>
+<Filter Name="Debug" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\BuildStamp.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\CyclicDebugLogger.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\Debug.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\DebugFilter.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\I_DebugRender.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\TestDebugVariables.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\Variables.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\VariablesNet.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\BuildStamp.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\Debug.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\TestDebugVariables.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\Variables.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\VariablesNet.cpp"></File>
+<Filter Name="Debugrender" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\debugrender\DebugRenderItem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\debugrender\DebugRenderItem.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\debugrender\DebugRenderItem.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\debugrender\NullDebugRender.cpp"></File>
+</Filter>
+<Filter Name="Log" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\AutoConfigure.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\ConfigReader.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\DebugLevel.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\DebugLog.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\DebugLogMacro.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\DebugLogSPU.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\DynamicLocationInfo.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\ExecuterFeedback.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\FileSystem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\Filter.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\Format.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\GlobalInterface.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\LocationInfo.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\LogEvent.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\Logger.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\LogManager.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\NetworkRepeater.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\Singleton.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\ThreadContext.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\ThreadContextTemplate.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\AutoConfigure.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\ConfigReader.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\DebugLevel.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\ExecuterFeedback.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\FileSystem.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\Filter.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\Format.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\Logger.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\LogManager.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\NetworkRepeater.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\ThreadContext.cpp"></File>
+<Filter Name="Subscribers" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\ConsoleSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\DebugViewSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\E-MailSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\I_LogSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\LogFileSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\SocketServerSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\SocketSubscriber.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\SubscriberCommon.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\log\subscribers\SubscriberManager.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\ConsoleSubscriber.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\DebugViewSubscriber.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\E-MailSubscriber.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\LogFileSubscriber.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\SocketServerSubscriber.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\SocketSubscriber.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\SubscriberCommon.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\log\subscribers\SubscriberManager.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Metadebug" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\metadebug\DefaultMetaDebugNotify.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\metadebug\MetaDebug.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\metadebug\MetaDebugAttributeList.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\metadebug\MetaDebugLog.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\debug\metadebug\MetaDebugRender.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\metadebug\DefaultMetaDebugNotify.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\metadebug\MetaDebug.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\metadebug\MetaDebugAttributeList.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\metadebug\MetaDebugLog.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\debug\metadebug\MetaDebugRender.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Io" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\io\async.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\async.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\AsyncFile.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\IoDevice.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\IoFile.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\IoRequest.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\IoService.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\IoStream.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\io\IoImpl.h"></File>
+</Filter>
+<Filter Name="Managed" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\source\managed\AssemblyInfo.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\managed\SystemPch.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\managed\SystemPch.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\managed\app.rc"></File>
+</Filter>
+<Filter Name="Memory" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\AllocatorFunctions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\BlockAllocator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\CallStack.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\MemoryBuffer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\MemoryTracker.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\MemoryTrackerDefines.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\VirtualMemory.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\memory\AllocatorFunctions.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\memory\BlockAllocator.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\memory\CallStack.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\memory\MemoryBuffer.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\memory\MemoryTracker.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\memory\MemoryTracker_StandAlone.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\memory\VirtualMemory.cpp"></File>
+</Filter>
+<Filter Name="Misc" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\Base64.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\BtlStringUtil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\CatchFPE.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\FunctionQueue.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\Platform.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\Progress.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\Random.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\misc\StringUtil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\Base64.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\BtlStringUtil.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\CatchFPE.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\Platform.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\Progress.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\Random.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\misc\StringUtil.cpp"></File>
+</Filter>
+<Filter Name="Network" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network\Address.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network\Connection.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network\Platform.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network\Service.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network\SMTPClient.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\network\Socket.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\network\Address.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\network\Connection.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\network\Service.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\network\SMTPClient.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\network\Socket.cpp"></File>
+</Filter>
+<Filter Name="Perf" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\CPUTiming.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\PerfEvent.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\Profiler.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerBackend.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerEnable.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerGeneric.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerNetworkCode.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerPS3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerSPU.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerUtil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\ProfilerXenon.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\Timing.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\perf\Timing.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\CPUTiming.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\PerfEvent.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\Profiler.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\ProfilerBackend.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\ProfilerNetworkCode.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\ProfilerPS3.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\ProfilerSPU.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\ProfilerUtil.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\ProfilerXenon.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\perf\Timing.cpp"></File>
+</Filter>
+<Filter Name="Scheduler" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\cache.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_atomic_queue_lf.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_atomic_queue_mutex.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_generic.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_mem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_memutil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_ps3.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\jobqueue_xenon.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\overlays.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\cache.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\entry_job.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\entry_pm.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_generic.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_kernel.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_kernel_ps3.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_kernel_xenon.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_legacy.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_mem.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_ps3.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\jobqueue_xenon.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\scheduler\tl_ps3_spu_assert.cpp"></File>
+<Filter Name="Core" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\core\mercury_to_tl.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\core\tl_defs.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\scheduler\core\tl_thread.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Serialise" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\BinarySerialise.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\BinarySerialiseAutoEndian.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\btl.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\C_File.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\C_FileBlock.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\C_FileSystem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\C_MemoryStream.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\FilePath.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\FilePathHashOps.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\FileSystemGlobals.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\FileSystemHelperTypes.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\I_BinaryStream.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\I_File.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\I_FileSystem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\MemoryFileSystem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\Serialise.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\TextSerialise.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\utmaths.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\EndianSwitch.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\FilePath.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\serialise\I_BinaryStream.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\C_File.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\C_FileBlock.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\C_FileSystem.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\C_MemoryStream.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\FilePath.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\FileSystemGlobals.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\serialise\I_FileSystem.cpp"></File>
+</Filter>
+<Filter Name="Shell" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\shell\ShellExec.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\shell\ShellExec.cpp"></File>
+</Filter>
+<Filter Name="Time" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\time\ScopedTimer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\time\SimpleTimer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\time\Time.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\time\Time.cpp"></File>
+</Filter>
+<Filter Name="XML" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\Definitions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\Xml.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlBlockParser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlDom.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlDomBaseNode.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlDomContent.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlDomDefinitions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlDomElement.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlDomUtility.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\include\system\XML\XmlParser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlBlockParser.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlDom.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlDomBaseNode.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlDomContent.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlDomElement.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlDomUtility.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Common\System\source\XML\XmlParser.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Test" Filter="\">
+<Filter Name="Scheduler" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Common\System\test\scheduler\testscheduler.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Tools" Filter="\">
+<Filter Name="Aftk_maya" Filter="\">
+<File RelativePath="..\Aftk\Aftk\stdafx.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\stdafx.h"></File>
+<File RelativePath="..\Aftk\Aftk\jamfile.jam"></File>
+<Filter Name="Jam_maya" Filter="\">
+<File RelativePath="..\Aftk\Aftk\jam_maya\jamfile.jam"></File>
+<File RelativePath="..\Aftk\Aftk\jam_maya\buildlog.txt"></File>
+</Filter>
+<Filter Name="Jam_native" Filter="\">
+<File RelativePath="..\Aftk\Aftk\jam_native\jamfile.jam"></File>
+<File RelativePath="..\Aftk\Aftk\jam_native\buildlog.txt"></File>
+</Filter>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshTriangulate.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\Aftk.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkAllocators.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkAnimationCurveNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkAttachData.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkAttributeTypeMapping.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBaseKey.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBlendWeightedNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBlindDataNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBlindDataResourceManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBlobData.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBounds.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBuildAdjacency.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkClipCurveMapping.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkClipSourceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkComponentCluster.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkDefinitions.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkDistanceDimNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkDynamicPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkEnum.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkEuler.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkEvaluatableNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkGenericAttribute.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkGeometry.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkGlobal.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkGroupLodLevelInfo.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkHermiteKey.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkIClipNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkIEvaluatableNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkInfluenceClusterNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkIObject.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkIPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkISceneConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkISceneMeshNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkLayerNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkLimitMixin.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkLinearKey.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkLodLevel.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMaterialNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMaths.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMatrixPaletteEntry.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMemoryManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshCalculateNormals.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshCalculateTangents.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshExpandPolygonVertices.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshLodLevelInfo.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshRemoveDegenerates.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshTriangulate.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshWeld.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshWeldComponentAxis.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshWeldMemoryManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkNamedResourceManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkNullMemoryManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkNullPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkPolygon.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkPolygonCluster.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkPolygonVertex.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkProgress.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkProxyPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkRay.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkRayMeshResult.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkRayPlaneResult.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkRayTriangleResult.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkScene.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneAimConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneAreaLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneCameraNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneDirectionalLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneGeometryNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneHemisphereLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneInstanceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneJointNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneLodGroupNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneLookAtConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneMeshBonedInstanceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneMeshNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneMeshRemappableNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneMeshRemappedInstanceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneNodeIterator.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneNodeVisit.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneNonAmbientLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneOrientConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkScenePointConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkScenePointLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneSplineNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneSpotLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSceneXRefNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSearch.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkShaderImageNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkShaderNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSharedResource.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSharedResourceManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkSharedResourceMapping.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkStaticPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkStatus.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkStringTable.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkTextureCoordinateIndices.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkTextureCoordinateSet.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkTrack.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkTriangleIterator.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkTypedefs.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkUnitConversionNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkUtility.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkVertexDataChannelInfo.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkVertexWeight.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkWeight.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkWeightEnvelope.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkWeldMemoryManager.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkXRefScene.h"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkAnimationCurveNode.inl"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkBlendWeightedNode.inl"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkDistanceDimNode.inl"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkMeshWeld.inl"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkProxyPlug.inl"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkStaticPlug.inl"></File>
+<File RelativePath="..\Aftk\Aftk\include\aftk\AftkUnitConversionNode.inl"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkAnimationCurveNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkBlendWeightedNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkBlindDataNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkBlobData.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkBounds.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkBuildAdjacency.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkComponentCluster.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkDistanceDimNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkDynamicPlug.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkEvaluateSpline.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkGenericAttribute.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkGeometry.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkGlobal.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkInfluenceClusterNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkInterpolation.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkIObject.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkIPlug.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkLayerNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkLimitMixin.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkLodLevel.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMaterialNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMaths.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMemoryManager.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMeshCalculateNormals.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMeshCalculateTangents.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMeshExpandPolygonVertices.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMeshRemoveDegenerates.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMeshWeld.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMeshWeldMemoryManager.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkNullPlug.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkPolygon.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkPolygonCluster.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkPolygonVertex.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkRay.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkScene.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneAimConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneAreaLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneCameraNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneDirectionalLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneGeometryNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneHemisphereLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneInstanceNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneJointNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneLodGroupNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneLookAtConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneMeshBonedInstanceNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneMeshNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneMeshRemappableNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneMeshRemappedInstanceNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneNonAmbientLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneOrientConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkScenePointConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkScenePointLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneSplineNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneSpotLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkSceneXRefNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkShaderImageNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkShaderNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkStatus.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkTrans.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkTriangleIterator.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkUnitConversionNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkUtility.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkVertexWeight.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkWeightEnvelope.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkWeldMemoryManager.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkXRefScene.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkEvaluateSpline.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkInterpolation.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkMoveToMercury.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\AftkOutputMacros.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\aftk\Ftk.h"></File>
+<Filter Name="Fbx_io" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\FbxIoMain.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\FbxIoUtility.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\FbxIo.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\FbxIoMain.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\FbxIoUtility.h"></File>
+<Filter Name="Import" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoAnimationCurveImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoAnimationImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoSceneImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoSceneNodeImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoAnimationCurveImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoAnimationImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoImportOptions.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoSceneImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\fbx_io\import\FbxIoSceneNodeImport.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Maya_io" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoMain.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoMatrixHelper.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoPolyFlagsHelper.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoUtility.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIo.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoDefinitions.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoErrorMacros.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoMain.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoMatrixHelper.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoPolyFlagsHelper.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoProgress.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoStringTable.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\MayaIoUtility.h"></File>
+<Filter Name="Export" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoConnectedDgExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoDgAnimationCurveExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoDgNodeExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoMaterialExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneDirectionalLightExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneInstanceExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneJointExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneLightExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneMeshExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneNodeExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneNonAmbientLightExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoScenePointLightExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneSplineExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneSpotLightExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoConnectedDgExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoDgAnimationCurveExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoDgNodeExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoMaterialExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneDirectionalLightExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneInstanceExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneJointExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneLightExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneMeshExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneNodeExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneNonAmbientLightExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoScenePointLightExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneSplineExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\export\MayaIoSceneSpotLightExport.h"></File>
+</Filter>
+<Filter Name="Import" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoAftkMayaMapping.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoBindPoseHelper.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoConnectedDgImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgAnimationCurveImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgBlendWeightedImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgDistanceDimImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgNodeImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgUnitConversionImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoIrmPostProcess.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoLimitMixinImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoMaterialHelper.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoMaterialImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneAimConstraintImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneAreaLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneCameraImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneConstraintImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneCustomActorImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneCustomLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneDirectionalLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneHemisphereLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneInstanceImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneJointImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLodGroupImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLodMeshImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLookAtConstraintImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneMeshBonedInstanceImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneMeshImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneNodeImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneNonAmbientLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneOrientConstraintImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoScenePointConstraintImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoScenePointLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneSpeedTreeImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneSplineImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneSpotLightImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoAftkMayaMapping.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoBindPoseHelper.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoBonedInstanceJointList.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoConnectedDgImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgAnimationCurveImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgBlendWeightedImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgDistanceDimImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgNodeImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoDgUnitConversionImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoFilter.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoImportOptions.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoInstanceTracker.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoIrmPostProcess.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoLayerImportFilter.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoLimitMixinImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoMaterialHelper.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoMaterialImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoMaterialImportFilter.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoPlugImportFilter.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneAimConstraintImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneAreaLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneCameraImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneConstraintImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneCustomActorImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneCustomLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneDirectionalLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneHemisphereLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneInstanceImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneJointImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLodGroupImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLodMeshImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneLookAtConstraintImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneMeshBonedInstanceImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneMeshImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneNodeImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneNodeImportFilter.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneNonAmbientLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneOrientConstraintImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoScenePointConstraintImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoScenePointLightImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneSpeedTreeImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneSplineImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\MayaIoSceneSpotLightImport.h"></File>
+<Filter Name="Game_specific" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\MayaIoIGameImport.h"></File>
+<Filter Name="Pgr3" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\pgr3\MayaIoPGR3GameImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\pgr3\MayaIoPGR3GameImport.h"></File>
+</Filter>
+<Filter Name="Pgr4" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\pgr4\MayaIoPGR4GameImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\pgr4\MayaIoPGR4GameImport.h"></File>
+</Filter>
+<Filter Name="Shitstorm" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\shitstorm\MayaIoShitstormGameImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\maya_io\import\game_specific\shitstorm\MayaIoShitstormGameImport.h"></File>
+</Filter>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Native_io" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeAnimationCurve.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeBlendWeightedNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeBlindDataNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeComponentCluster.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDiskReader.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDiskWriter.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDistanceDimNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDynamicPlug.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeFtk.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeGenericAttribute.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeInfluenceClusterNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeIObject.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeIPlug.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeLayerNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeLimitMixin.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeMaterialNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeNullPlug.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativePolygon.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativePolygonCluster.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativePolygonVertex.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeScene.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneAimConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneAreaLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneCameraNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneDirectionalLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneHemisphereLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneInstanceNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneJointNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneLodGroupNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneLookAtConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshBonedInstanceNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshRemappableNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshRemappedInstanceNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneNonAmbientLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneOrientConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeScenePointConstraintNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeScenePointLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneSplineNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneSpotLightNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneXRefNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeShaderImageNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeShaderNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeTrack.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeUnitConversionNode.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeUtility.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeWeightEnvelope.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeXRefScene.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeAllocators.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeAnimationCurve.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeBaseKey.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeBlendWeightedNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeBlindDataNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeComponentCluster.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDefinitions.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDiskReader.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDiskWriter.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDistanceDimNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeDynamicPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeFtk.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeGenericAttribute.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeHermiteKey.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeInfluenceClusterNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeIObject.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeIPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeLayerNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeLegacyShaderConnection.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeLimitMixin.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeMaterialNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeNullPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativePolygon.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativePolygonCluster.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativePolygonVertex.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeScene.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneAimConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneAreaLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneCameraNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneDirectionalLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneHemisphereLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneInstanceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneJointNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneLodGroupNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneLookAtConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshBonedInstanceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshRemappableNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneMeshRemappedInstanceNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneNonAmbientLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneOrientConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeScenePointConstraintNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeScenePointLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneSplineNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneSpotLightNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeSceneXRefNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeShaderImageNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeShaderNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeStaticPlug.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeStringTable.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeUnitConversionNode.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeUtility.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeWeight.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeWeightEnvelope.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeXRefScene.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\native_io\NativeStaticPlug.inl"></File>
+</Filter>
+<Filter Name="Xsi_io" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\XsiIoMain.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\XsiIo.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\XsiIoMain.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\XsiIoUtility.h"></File>
+<Filter Name="Export" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoAnimationCurveExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoAnimationExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoMaterialExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoSceneExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoSceneMeshExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoSceneNodeExport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoAnimationCurveExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoAnimationExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoMaterialExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoSceneExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoSceneMeshExport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\export\XsiIoSceneNodeExport.h"></File>
+</Filter>
+<Filter Name="Import" Filter="\">
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoAnimationCurveImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoAnimationImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoMaterialImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneIkNodeImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneMeshImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneNodeImport.cpp"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoAnimationCurveImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoAnimationImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoImportOptions.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoMaterialImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneIkNodeImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneMeshImport.h"></File>
+<File RelativePath="..\Aftk\Aftk\source\xsi_io\import\XsiIoSceneNodeImport.h"></File>
+</Filter>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Aftkutlib" Filter="\">
+<File RelativePath="..\AftkUt\AftkUtLib\stdafx.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\stdafx.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\jamfile.jam"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\buildlog.txt"></File>
+<Filter Name="Source" Filter="\">
+<Filter Name="Aftkut" Filter="\">
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUt.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtBlindDataHelper.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtCentreSceneNode.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtCreateMaterial.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtCrowdHelper.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtExpandUniqueRemappedInstances.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtFindAmbiguousActorNames.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtFixNonUniformScaling.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtGenerateAdPlacement.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtImport.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtIrmOptimise.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtList.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtMakeDoubleSidedPolygons.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtMergeMeshes.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtNodeFlagParser.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtNormaliseTextureCoordinates.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtProcessDuplicateNodes.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtQuery.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRadialEdgeEdge.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRadialEdgeMesh.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRadialEdgePolygon.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRadialEdgeVertex.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRegenerateBrokenNormals.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRemapMirroredMaterials.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRemoveBaseInstances.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtRemoveConstructionNodes.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtReplaceWithActorNodes.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtReplaceWithLodGroup.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtSmoothingHelper.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtSmoothNormals.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtSmoothTangents.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtSnapVertices.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtUtility.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\AftkUtVersion.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\include\aftkut\MathsUtility.h"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtBlindDataHelper.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtCentreSceneNode.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtCreateMaterial.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtCrowdHelper.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtExpandUniqueRemappedInstances.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtFindAmbiguousActorNames.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtFixNonUniformScaling.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtGenerateAdPlacement.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtImport.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtIrmOptimise.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtMakeDoubleSidedPolygons.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtMergeMeshes.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtNodeFlagParser.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtNormaliseTextureCoordinates.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtProcessDuplicateNodes.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtQuery.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRadialEdgeEdge.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRadialEdgeMesh.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRadialEdgePolygon.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRadialEdgeVertex.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRegenerateBrokenNormals.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRemapMirroredMaterials.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRemoveBaseInstances.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtRemoveConstructionNodes.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtReplaceWithActorNodes.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtReplaceWithLodGroup.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtSmoothingHelper.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtSmoothNormals.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtSmoothTangents.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtSnapVertices.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtUtility.cpp"></File>
+<File RelativePath="..\AftkUt\AftkUtLib\source\aftkut\AftkUtVersion.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="File_tag_db" Filter="\">
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\stdafx.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\stdafx.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\FileTagDB.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\GenericAttribute.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\MetaManager.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\MetaTag.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\Tag.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\TagDB.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\TagDBManager.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\include\file_tag_db\TagDBSax.h"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\GenericAttribute.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\MetaManager.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\MetaTag.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\Tag.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\TagDB.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\TagDBManager.cpp"></File>
+<File RelativePath="..\File_Tag_Db\File_Tag_Db\source\file_tag_db\TagDBSax.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Zlib" Filter="\">
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\adler32.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\compress.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\crc32.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\deflate.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\example.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\gzio.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\infback.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inffast.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inflate.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inftrees.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\minigzip.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\trees.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\uncompr.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\zutil.c"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\compression.cpp"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\main.cpp"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\compression.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\crc32.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\deflate.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inffast.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inffixed.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inflate.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\inftrees.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\trees.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\zconf.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\zconf.in.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\zlib.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\zutil.h"></File>
+<File RelativePath="..\..\Vendor\Zlib\Current_Mercury\jamfile.jam"></File>
+</Filter>
+</Filter>
+<Filter Name="Util" Filter="\">
+<Filter Name="Logicalfs" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\LogicalFsPch.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\LogicalFsPch.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\LogicalFs.cpp"></File>
+<Filter Name="Gamefs" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\gamefs\GameHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\gamefs\GameHelpers.cpp"></File>
+</Filter>
+<Filter Name="Logfs" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\logfs\LogFs.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\logfs\LogFsEvent.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\logfs\LogFsManager.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\logfs\LogFs.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\logfs\LogFsManager.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\logfs\LogFsEvent.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\logfs\LogFsManager.cpp"></File>
+</Filter>
+<Filter Name="Memoryfs" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\memoryfs\MemoryFs.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\memoryfs\MemoryFs.cpp"></File>
+<Filter Name="Impl" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\memoryfs\impl\MemoryDirectoryEntry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\memoryfs\impl\MemoryFile.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\memoryfs\impl\MemoryFileEntry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\memoryfs\impl\MemoryDirectoryEntry.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\memoryfs\impl\MemoryFile.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\memoryfs\impl\MemoryFileEntry.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Overlayfs" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\overlayfs\OverlayFs.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\overlayfs\OverlayLayer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\overlayfs\OverlayFs.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\overlayfs\OverlayLayer.cpp"></File>
+</Filter>
+<Filter Name="Pakfs" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\Pak.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\PakFs.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\PakFsManager.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\PakHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\Pak.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\PakFs.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\PakFsManager.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\PakHelpers.cpp"></File>
+<Filter Name="Impl" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\IPakCompress.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakBuildHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakCompressRaw.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakCompressXMem.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakCompressZLib.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakCreateFiles.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakDefinitions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakEntryFile.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakFatEntry.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakFile.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakHeader.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakIoMediator.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakRead.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakSha1.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakUtil.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\include\pakfs\impl\PakWrite.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakBuildHelpers.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakCompressRaw.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakCompressXMem.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakCompressZLib.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakCreateFiles.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakDefinitions.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakEntryFile.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakFile.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakIoMediator.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakRead.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakSha1.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakUtil.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\logicalFs\source\pakfs\impl\PakWrite.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Tools_shared" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\stdafx.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\stdafx.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\jamfile.jam"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\buildlog.txt"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\MemoryDbg.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\MiniDumper.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\PlatformHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\SchedulerConfig.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\ToolsApplication.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\ToolsAssert.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\ToolsShared.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\VersionStrings.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\VersionStrings.inl"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\MemoryDbg.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\MiniDumper.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\PlatformHelpers.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\SchedulerConfig.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\ToolsApplication.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\ToolsAssert.cpp"></File>
+<Filter Name="Argument" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\argument\Argument.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\argument\ArgumentDatabase.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\argument\ArgumentParser.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\argument\Syntax.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\argument\Argument.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\argument\ArgumentDatabase.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\argument\ArgumentParser.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\argument\Syntax.cpp"></File>
+</Filter>
+<Filter Name="Executer" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\executer\Executer.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\executer\ExecuterHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\executer\ExecuterHelpers.cpp"></File>
+</Filter>
+<Filter Name="File_copy" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\file_copy\FileCopy.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\file_copy\FileCopyList.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\file_copy\FileCopyListXml.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\file_copy\FileCopyPlatforms.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\file_copy\FileCopyUtils.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\file_copy\FileCopyList.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\file_copy\FileCopyListXml.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\file_copy\FileCopyUtils.cpp"></File>
+</Filter>
+<Filter Name="Guid" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\guid\CryptRandom.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\guid\CryptRandom.cpp"></File>
+</Filter>
+<Filter Name="Shim" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\shim\Shim.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\shim\ShimDefinitions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\shim\ShimErrorHelpers.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\shim\ShimFileCopyXmlExport.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\shim\ShimOptions.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\shim\ShimSharedXmlTags.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\shim\ShimFileCopyXmlExport.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\shim\ShimOptions.cpp"></File>
+</Filter>
+<Filter Name="Utility" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\utility\assetmeta.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\utility\MacroExpander.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\utility\Misc.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\utility\assetmeta.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\utility\MacroExpander.cpp"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\utility\Misc.cpp"></File>
+</Filter>
+<Filter Name="Xml" Filter="\">
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\include\tools_shared\xml\XmlDom.h"></File>
+<File RelativePath="..\..\Mercury\Library\Util\Tools_shared\source\tools_shared\xml\XmlDom.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

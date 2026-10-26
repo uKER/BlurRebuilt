@@ -1,0 +1,69 @@
+SubDir TOP Code Tools AftkConv ;
+
+AFTK_MAYA = 1 ;
+AFTK_FBX = 1 ;
+
+Define NT_APP ;
+Define MLIBRARY_DONTUSE_MFC_MANIFEST ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath
+./source/
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/mercury/library/util/logicalfs/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkut/aftkutlib/include
+$(TOP)/code/tools/file_tag_db/file_tag_db/include
+$(TOP)/libs/vendor/maya/2008/include/
+$(TOP)/code/tools/aftkconv/include
+;
+
+LINKFLAGS += /SUBSYSTEM:CONSOLE /MACHINE:X86 
+	/LIBPATH:$(TOP)/libs/vendor/xsiftk/5.11/lib 
+	/LIBPATH:$(TOP)/libs/vendor/fbx_sdk/2009.1/lib
+	/LIBPATH:$(TOP)/libs/vendor/maya/2008/lib
+;
+
+LINKLIBS += dbghelp.lib ws2_32.lib xsiftk.lib OpenMaya.lib Foundation.lib OpenMayaAnim.lib ;
+if $(AFTK_FBX) = 1
+{
+	LINKLIBS += fbxsdk_md2005.lib ;
+}
+
+SRC =
+./source/Application.cpp
+./source/Convert.cpp
+./source/Options.cpp
+./source/Main.cpp
+./source/Maya.cpp
+./source/Merge.cpp
+./source/Meta.cpp
+./source/Query.cpp
+;
+
+LinkLibraries AftkConv :
+	core system misc_shared tools_shared logicalfs zlib aftk_maya aftkutlib file_tag_db 
+;
+
+Application AftkConv : $(SRC) : stdafx.cpp ;
+
+Depends $(BIZARRE_ROOT)/tools/common_tools_wip/win32/AftkConv/AftkConv.exe : $(BIZARRE_ROOT)/tools/common_tools_wip/win32/AftkConv/ ;
+MkDir $(BIZARRE_ROOT)/tools/common_tools_wip/win32/AftkConv/ ;
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/AftkConv/AftkConv.exe : AftkConv.exe ;
+
+ExportVcproj AftkConv ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common misc_shared ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code mercury library util logicalfs ;
+SubInclude TOP code tools aftk aftk ;
+SubInclude TOP code tools aftkut aftkutlib ;
+SubInclude TOP code tools file_tag_db file_tag_db ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+

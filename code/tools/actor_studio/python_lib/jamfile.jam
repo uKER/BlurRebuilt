@@ -1,0 +1,66 @@
+SubDir TOP Code Tools actor_studio python_lib ;
+
+rule CompileSwig
+{
+	local _tgt = [ FGristFiles $(<) ] ;
+	MakeLocate $(_tgt) : $(SUBDIR) ;
+	Depends $(>) : $(_tgt) ;
+	Depends all : $(>) ;
+	CompileSwigAction $(_tgt) : $(>) : $(3) ;
+	SrcDisablePch $(<) ;
+}
+
+actions CompileSwigAction
+{
+	echo Building swig bindings for $(>:D=) to $(<:D)
+	cd $(TOP)/Code/Tools/actor_studio/python_lib
+	echo $(>)
+	echo $(<)
+	echo $(3)
+	"$(TOP)/code/vendor/swigwin/1.3.36/swig.exe" -c++ -python "$(>)"
+	echo Copy $(TOP)/Code/Tools/actor_studio/editor_app/$(OUTDIR)/$(3).py : $(>:D)/$(3).py ;
+	
+}
+
+Define WXUSINGDLL Py_RELEASE ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/xtwin/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/xt_shared/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkrender/aftkrender
+$(TOP)/code/tools/aftkrender/aftkrender/include
+$(TOP)/code/tools/actor_studio/editor_app/include
+$(TOP)/code/tools/actor_studio/backend_lib/include
+$(TOP)/code/tools/actor_studio/properties_lib/include
+$(TOP)/code/vendor/python/2.6/include
+$(TOP)/code/vendor/python/2.6/PC
+$(TOP)/code/vendor/sigslot/include
+$(TOP)/libs/vendor/boost
+;
+
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+
+EDITORPYTHONSRC =
+source/collision/collision_wrap.cxx
+source/helpers/helpers_wrap.cxx
+source/helpers/Helpers.cpp
+;
+
+CompileSwig source/helpers/helpers_wrap.cxx : source/helpers/Helpers.i : helpers ;
+CompileSwig source/collision/collision_wrap.cxx : source/collision/Collision.i : collision ;
+
+Library python_lib : $(EDITORPYTHONSRC) : stdafx.cpp ;
+
+## Copy Collision.py to actorstudio directory...
+
+## 
+
+ExportVcproj python_lib ;

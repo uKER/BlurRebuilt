@@ -1,0 +1,11 @@
+xt
+	block packs
+		block pack2E661B2B
+			array filters
+				field  "WorldEvents"
+			end
+			field id "2E661B2B"
+			field name "DynamicEffect"
+		end
+	end
+end

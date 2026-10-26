@@ -1,0 +1,143 @@
+SubDir TOP Code Amax Library Ui ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath 
+Amax$(_PLATFORM)
+Amax$(_PLATFORM)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/effect/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/Movie/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/graphics/Ngl/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/network/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/lua_shared/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/ui/include
+$(MERCURY)/animation/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/advertising/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/ai/air/include
+$(MERCURY)/audio/include
+$(TOP)/code/vendor/lua/Lua-5.1.4/src
+$(TOP)/code/vendor/lua/Lua-Helper/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(MERCURY)/gamesys/GameView/include
+$(MERCURY)/gamesys/Lod/include
+$(MERCURY)/gamesys/SpecialFX/include
+$(TOP)/code/Amax/Game
+$(TOP)/code/Amax/Game/AI
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/demonware/2.0/external/curl-7.19.2/include
+$(TOP)/code/vendor/demonware/2.0/external/openssl-0.9.8i/include
+$(TOP)/code/Amax/Library
+$(TOP)/Libs/Vendor/Bink/1.9r
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" $(TOP)/libs/vendor/openal/1.1/include ;
+}
+
+if $(USERNAME) = pkerby || $(USERNAME) = dgill || $(USERNAME) = wbrown || $(USERNAME) = pereid || $(USERNAME) = sbilton || $(USERNAME) = psnape || $(USERNAME) = gayoung || $(USERNAME) = mtaylor
+{
+	if $(BUILD) != Profile && $(BUILD) != Master
+	{
+		Optim Off ;
+		echo OPTIMISATIONS ARE _OFF_ FOR GameUI code ;
+	}
+}
+
+SRC = 
+DepthOfField.cpp
+GameDataFinder.cpp
+HudDataFinder.cpp
+LobbyDataFinder.cpp
+LanDataFinder.cpp
+MatchingDataFinder.cpp
+MpDataFinder.cpp
+GameVariableStore.cpp
+CustomTextureManager.cpp
+UiHelpers.cpp
+UiManager.cpp
+UiMessages.cpp
+UiLayer.cpp
+UiPostProcessBuffer.cpp
+UiRenderBuffer.cpp
+UiXtConfig.cpp
+Game/UiPhotoMode.cpp
+Game/Gadgets/UIAmaxGraphic.cpp
+Game/Gadgets/UIAmaxLight.cpp
+Game/Gadgets/UIAmaxSlider.cpp
+Game/Gadgets/UICarousel.cpp
+Game/Gadgets/UICheckbox.cpp
+Game/Gadgets/UIFocalPoint.cpp
+Game/Gadgets/UILightPaint.cpp
+Game/Gadgets/UILobby.cpp
+Game/Gadgets/UIReinforceText.cpp
+Game/Gadgets/UISpeakerSetup.cpp
+Game/Gadgets/UICarNode.cpp
+Game/Gadgets/UILocatorNode.cpp
+Game/Gadgets/Hud/UIAiHud.cpp
+Game/Gadgets/Hud/UICheckpoint.cpp
+Game/Gadgets/Hud/UIDamage.cpp
+Game/Gadgets/Hud/UIHudDummy.cpp
+Game/Gadgets/Hud/UIFanMessage.cpp
+Game/Gadgets/Hud/UILoadoutController.cpp
+Game/Gadgets/Hud/UIMiniMap.cpp
+Game/Gadgets/Hud/UIMultiplayerData.cpp
+Game/Gadgets/Hud/UIMultiplayerSpeaking.cpp
+Game/Gadgets/Hud/UIPerks.cpp
+Game/Gadgets/Hud/UIPerks2.cpp
+Game/Gadgets/Hud/UIRankBar.cpp
+Game/Gadgets/Hud/UIRaceLine.cpp
+Game/Gadgets/Hud/UIRaceLineSplitscreen.cpp
+Game/Gadgets/Hud/UIShield.cpp
+Game/Gadgets/Hud/UITargeting.cpp
+Game/Gadgets/Vinyl/UIColourPicker.cpp
+Game/Gadgets/UIPostProcessTexture.cpp
+Game/Lua_Interface/Lua_Multiplayer.cpp
+Game/Multiplayer/MultiplayerCache.cpp
+Game/Multiplayer/MultiplayerHelpers.cpp
+Game/Gadgets/UIChicklets.cpp
+SpDataFinder.cpp
+Game/Gadgets/Hud/UIMinorScoreLog.cpp
+Game/Gadgets/Hud/UIRequirementsMessage.cpp
+LightPaintSystem.cpp
+Game/Gadgets/UIToggle.cpp
+Game/Gadgets/UIRacePreview.cpp
+Game/Gadgets/Hud/UITeamTugOfWar.cpp
+;
+
+ImportCP include/ui/shaders/vsConstants.h : TOP Code Mercury Library UI ;
+ImportCP include/ui/shaders/psConstants.h : TOP Code Mercury Library UI ;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+Library amax_ui : $(SRC) : StdAfx.cpp ;

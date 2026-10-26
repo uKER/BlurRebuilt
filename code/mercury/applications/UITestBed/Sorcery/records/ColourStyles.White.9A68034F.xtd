@@ -1,0 +1,31 @@
+xt
+	block ColourBottomLeft
+		field a "1"
+		field b "1"
+		field g "1"
+		field r "1"
+	end
+	block ColourBottomRight
+		field a "1"
+		field b "1"
+		field g "1"
+		field r "1"
+	end
+	block ColourTopLeft
+		field a "1"
+		field b "1"
+		field g "1.000"
+		field r "1"
+	end
+	block ColourTopRight
+		field a "1"
+		field b "1"
+		field g "1"
+		field r "1"
+	end
+	field StyleName "White"
+	field __id "9A68034F"
+	field __name "ColourStyles.White"
+	field __pack "F2519802"
+	field __type "UIColourStyle"
+end

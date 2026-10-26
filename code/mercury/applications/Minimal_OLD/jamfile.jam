@@ -1,0 +1,43 @@
+SubDir TOP Code Mercury Applications Minimal ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+IncludePath 
+Minimal$(PLATFORM)
+Minimal$(PLATFORM)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Samples/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+#../../library/samples/source/section/SectionSchedulerTest.cpp
+#../../library/samples/source/section/SectionSchedulerTest.spu_cpp
+../../library/samples/source/section/SectionSkyDome.cpp
+Minimal$(PLATFORM)/Main.cpp
+;
+
+LinkLibraries Minimal :
+		core system display render zlib samples
+		;
+		
+Application Minimal : $(SRC) ;
+ExportVcproj Minimal ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+SubInclude TOP Code Mercury Library Common Btl ;
+

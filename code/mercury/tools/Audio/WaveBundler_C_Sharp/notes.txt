@@ -1,0 +1,54 @@
+//			XmlDocument xDocument = new XmlDocument();
+//
+//			try
+//			{
+//				xDocument.Load(strInputFilename);
+//			}
+//			catch
+//			{
+//				Console.WriteLine("Error in xml file \"{0}\"", strInputFilename);
+//				return;
+//			}
+//
+//			XmlElement xWavebank = xDocument["wavebank"];
+//
+//			if(xWavebank == null)
+//			{
+//				Console.WriteLine("Error in xml file {0}", strInputFilename);
+//				
+//				// TODO: give feedback on wich line the error occured on?
+//				return;
+//			}
+
+//			int waveCount=0;
+//			// count how many valid wave entries are in the ini file
+//			foreach(XmlNode xChild in xWavebank)
+//			{
+//				if(xChild.NodeType == XmlNodeType.Element)
+//				{
+//					if (GetKeyValue(xChild, "filename")=="")
+//						continue;
+//					if (GetKeyValue(xChild, "internalName")=="")
+//						continue;
+//					if (GetKeyValue(xChild, "default_level")=="")
+//						continue;
+//					waveCount++;
+//				}
+//			}
+//
+//			int c=0;
+//			foreach(XmlNode xChild in xWavebank)
+//			{
+//				if(xChild.NodeType == XmlNodeType.Element)
+//				{
+//					string strFilename = GetKeyValue(xChild, "filename");
+//
+//					string strName = GetKeyValue(xChild, "internalName");
+//					
+//					string strDefaultLevel = GetKeyValue(xChild, "default_level");
+//
+//					/// TODO: Call a function.
+//				
+//					Console.WriteLine(strFilename);
+//				}
+//			}

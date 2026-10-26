@@ -1,0 +1,23 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vScale	: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tDepth	: register(s0);
+
+struct PS_INPUT
+{
+	float4	m_Colour	: COLOR0;
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output;
+	output.m_Colour = SampleDepthBuffer(g_tDepth, input.m_TexCoord, g_vScale);
+	return output;
+}

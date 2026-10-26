@@ -1,0 +1,59 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MercuryLibs", "mercurylibs.vcproj", "{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+EndProject
+Global
+
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|Xbox 360 = Debug|Xbox 360
+		Debug|Ps3 = Debug|Ps3
+		Release|Win32 = Release|Win32
+		Release|Xbox 360 = Release|Xbox 360
+		Release|Ps3 = Release|Ps3
+		Speed|Win32 = Speed|Win32
+		Speed|Xbox 360 = Speed|Xbox 360
+		Speed|Ps3 = Speed|Ps3
+		Profile|Win32 = Profile|Win32
+		Profile|Xbox 360 = Profile|Xbox 360
+		Profile|Ps3 = Profile|Ps3
+		Master|Win32 = Master|Win32
+		Master|Xbox 360 = Master|Xbox 360
+		Master|Ps3 = Master|Ps3
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Win32.ActiveCfg = Debug_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Win32.Build.0 = Debug_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Xbox 360.ActiveCfg = Debug_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Xbox 360.Build.0 = Debug_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Ps3.ActiveCfg = Debug_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Debug|Ps3.Build.0 = Debug_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Win32.ActiveCfg = Release_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Win32.Build.0 = Release_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Xbox 360.ActiveCfg = Release_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Xbox 360.Build.0 = Release_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Ps3.ActiveCfg = Release_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Release|Ps3.Build.0 = Release_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Win32.ActiveCfg = Speed_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Win32.Build.0 = Speed_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Xbox 360.ActiveCfg = Speed_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Xbox 360.Build.0 = Speed_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Ps3.ActiveCfg = Speed_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Speed|Ps3.Build.0 = Speed_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Win32.ActiveCfg = Profile_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Win32.Build.0 = Profile_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Xbox 360.ActiveCfg = Profile_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Xbox 360.Build.0 = Profile_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Ps3.ActiveCfg = Profile_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Profile|Ps3.Build.0 = Profile_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Win32.ActiveCfg = Master_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Win32.Build.0 = Master_WIN32|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Xbox 360.ActiveCfg = Master_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Xbox 360.Build.0 = Master_XBOX_360|Xbox 360
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Ps3.ActiveCfg = Master_PS3|Win32
+		{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}.Master|Ps3.Build.0 = Master_PS3|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

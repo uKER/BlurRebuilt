@@ -1,0 +1,51 @@
+#include "..\..\psConstants.h"
+#include "..\..\psCommon.h"
+
+sampler2D textureMap : register(s0);
+sampler2D depthMap : register(s1);
+
+float4 g_vDepthScale : register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4 g_vFocus      : register(CCP_RENDER_POSTPROCESS_PARAMETERS_1);
+float4 g_vTaps[5]    : register(CCP_RENDER_POSTPROCESS_PARAMETERS_2);
+
+struct PS_OUTPUT
+{
+	float4 RGBColor0     : COLOR0; 
+};
+
+struct VS_OUTPUT
+{
+    float4 position	: POSITION;		//Pixel position (world-view-proj space)  
+    float2 uv		: TEXCOORD0;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT)0;
+   
+	float depthBufferValue = tex2D(depthMap, input.uv).r;
+	
+	float depth = g_vDepthScale.x / (g_vDepthScale.y - depthBufferValue);
+
+	// Average several pixels from the screen:
+	int i;
+	float4 pix={0.f,0.f,0.f,0.f};
+	float scale=0.f;
+	float rdepth=1.f/depth;
+	
+	scale=rdepth-g_vFocus.x;
+	if (scale<0.f) scale=-scale;
+
+	for (i=0; i<5; i++)
+	{
+		float2 uv=input.uv;
+		uv+=g_vTaps[i].xy*scale;
+		pix+=tex2D(textureMap, uv);
+	}
+	
+	pix*=1.f/5.f;
+	
+	output.RGBColor0 = pix;
+		
+	return output;
+}

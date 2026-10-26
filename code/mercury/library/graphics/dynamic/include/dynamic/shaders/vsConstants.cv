@@ -1,0 +1,5 @@
+#include "..\..\..\..\render\include\render\shaders\vsConstants.cv"
+
+#set 248
+
+CV_RENDER_PARTICLE_EMISSIVE_COLOUR

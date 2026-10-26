@@ -1,0 +1,130 @@
+#include "../../psConstants.h"
+#include "../../psCommon.h"
+
+#define NOISE
+
+#if defined(NUM_TAPS_5)
+#	define NUM_TAPS 5
+#elif defined(NUM_TAPS_7)
+#	define NUM_TAPS 7
+#elif defined(NUM_TAPS_9)
+#	define NUM_TAPS 9
+#elif defined(NUM_TAPS_11)
+#	define NUM_TAPS 11
+#endif
+
+float4x4	g_mMatrix		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vDepthScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_4);
+float4		g_vStepScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_5);
+float4		g_vSettings		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_6);
+float4		g_vNoise		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_7);
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tDepth		: register(s1);
+#if defined(STENCIL)
+sampler2D	g_tStencil		: register(s2);
+#endif
+sampler2D	g_tNoise		: register(s3);
+
+#define		g_fNoiseScale	g_vSettings.x
+#define		g_fCentreWeight	g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+float4 GetStep(float fDepth, float2 uv)
+{
+	// get position in uv * depth space
+	// get previous uvs
+	// and convert resulting texture * depth coords back to texture coords
+	float4	vPosition		= float4(uv.x * fDepth, uv.y * fDepth, fDepth, 1);
+			vPosition		= mul(vPosition, g_mMatrix);
+			vPosition.xy	/= vPosition.w;
+	
+	float2	vDelta			= vPosition.xy - uv;
+	
+	return	vDelta.xyxy * g_vStepScale;
+}
+
+float4 GetColourAndMask(float2 uv)
+{
+#if defined(STENCIL)
+	float3	vColour = tex2D(g_tColour, uv).rgb;
+	float	fMask	= tex2D(g_tStencil, uv).b;
+	return	float4(vColour, fMask);
+#else
+	return tex2D(g_tColour, uv);
+#endif
+}
+
+float GetTapAlpha(float fMotionBlurFactor, float fAlpha)
+{
+	return abs(sign(fAlpha) - fMotionBlurFactor);
+}
+
+float4 GetSamplesAlphaMask(float2 vTexCoord, float fDepth, int N)
+{
+	float4	vCentre				= GetColourAndMask(vTexCoord);
+	float	fMotionBlurFactor	= 1.0f - sign(vCentre.a);
+	float4	vStep				= GetStep(fDepth, vTexCoord);
+			vStep				= vStep * fMotionBlurFactor;
+	
+	float4	vAccum				= float4(vCentre.rgb, 1.0f);
+	
+#if defined(NOISE)
+	float4	vMotionUV			= vTexCoord.xyxy;
+	vMotionUV.xy += vStep.xy * (1.0f - g_fNoiseScale);
+	vMotionUV.zw += vStep.zw;
+	float fNoiseFactor = tex2D(g_tNoise, vTexCoord.xy * g_vNoise.xy + g_vNoise.zw).r;
+	vMotionUV += vStep.xyxy * fNoiseFactor * g_fNoiseScale;
+	vAccum *= g_fCentreWeight;
+#else
+	float4	vMotionUV			= vTexCoord.xyxy + vStep;
+#endif
+	
+	int N2 = (N - 1) / 2;
+	for (int i = 0; i < N2; ++i)
+	{			
+		float4	vUV			= vMotionUV.xyzw;
+
+		float4	vTap0		= GetColourAndMask(vUV.xy);
+				vTap0.a		= GetTapAlpha(fMotionBlurFactor, vTap0.a);
+				vTap0.rgb	*= vTap0.a;
+	
+		float4	vTap1		= GetColourAndMask(vUV.zw);
+				vTap1.a		= GetTapAlpha(fMotionBlurFactor, vTap1.a);
+				vTap1.rgb	*= vTap1.a;
+		
+		vAccum		+= vTap0;
+		vAccum		+= vTap1;
+		vMotionUV	+= vStep;
+	}
+
+	return float4(vAccum.rgb / vAccum.a, 1.0f);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+
+	float	fDepth = SampleDepthBuffer(g_tDepth, input.m_TexCoord, g_vDepthScale);
+	
+	output.m_Colour = GetSamplesAlphaMask(input.m_TexCoord, fDepth, NUM_TAPS);
+
+#else
+
+	output.m_Colour = 0.0f;
+
+#endif
+
+	return output;
+}

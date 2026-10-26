@@ -1,0 +1,93 @@
+﻿<Window x:Class="PickNMix.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Pic n Mix" Height="456" Width="829">
+    <Window.Resources>
+        <DataTemplate x:Key="myLbTemp1">
+            <TextBlock Name="MrButt" Text="{Binding Name}" />
+        </DataTemplate>
+        <DataTemplate x:Key="myLbTemp2">
+            <TextBlock Name="MyTextBlock" Text="{Binding Name}" />
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Use}" Value="True">
+                    <Setter Property="Visibility" TargetName="MyTextBlock" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Highlight}" Value="True">
+                    <Setter Property="Foreground" TargetName="MyTextBlock" Value="Red" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        <DataTemplate x:Key="myLbTemp3">
+            <TextBlock Name="MyTextBlock" Text="{Binding Name}" />
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Use}" Value="False">
+                    <Setter Property="Visibility" TargetName="MyTextBlock" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Highlight}" Value="True">
+                    <Setter Property="Foreground" TargetName="MyTextBlock" Value="Red" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open..." Click="MenuItem_OpenFile" />
+                <MenuItem Header="Save..." Click="MenuItem_SaveFile" />
+            </MenuItem>
+        </Menu>
+        <DockPanel DockPanel.Dock="Top">
+            <TextBlock Width="100" >Game Config:</TextBlock>
+            <Button DockPanel.Dock="Right" Click="Button_FindGameDef">Find...</Button>
+            <TextBox Name="GameConfig" IsReadOnly="True" />
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <TextBlock Width="100">Sorcery Database:</TextBlock>
+            <Button DockPanel.Dock="Right" Click="Button_FindSorcery">Find...</Button>
+            <TextBox Name="SorceryPath" IsReadOnly="True" />
+        </DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0">
+                <TextBlock DockPanel.Dock="Top">Category</TextBlock>
+                <ListBox Name="Types"
+                     SelectionMode="Single"
+                     ItemTemplate="{StaticResource myLbTemp1}"
+                     IsSynchronizedWithCurrentItem="True"/>
+            </DockPanel>
+
+            <DockPanel Grid.Column="1">
+                <TextBlock DockPanel.Dock="Top">Available</TextBlock>
+                <ListBox Name="Available"
+                     MouseDoubleClick="MouseDoubleClick_ToggleItemUse"
+                     DataContext="{Binding ElementName=Types, Path=Items}"
+                     ItemTemplate="{StaticResource myLbTemp2}"
+                     ItemsSource="{Binding Path=Records}"
+                     SelectionMode="Extended"
+                     IsSynchronizedWithCurrentItem="True" />
+            </DockPanel>
+
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <Button Height="30" Click="Button_Click_2">&lt;</Button>
+                <Button Height="30" Click="Button_Click_1" >></Button>
+            </StackPanel>
+
+            <DockPanel Grid.Column="3">
+                <TextBlock DockPanel.Dock="Top">Picked</TextBlock>
+                <ListBox Name="Picked"
+                    MouseDoubleClick="MouseDoubleClick_ToggleItemUse"
+                    DataContext="{Binding ElementName=Types, Path=Items}"
+                    ItemTemplate="{StaticResource myLbTemp3}"
+                    SelectionMode="Extended"
+                    ItemsSource="{Binding Path=Records}" />
+            </DockPanel>
+
+        </Grid>
+    </DockPanel>
+</Window>

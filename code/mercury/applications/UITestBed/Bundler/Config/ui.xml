@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<RDF Version="XPR2">
+  
+<Texture
+  Name	=	"test_card"
+  Source	=	".\textures\ui\test_card.tga"
+  Format	=	"DXT5"
+  Compressor  = "ATI"
+  Levels	=	"1"
+/>
+<Texture
+  Name	=	"mesh4"
+  Source	=	".\textures\ui\mesh4.tga"
+  Format	=	"DXT5"
+  Compressor  = "ATI"
+  Levels	=	"1"
+/>
+</RDF>

@@ -1,0 +1,67 @@
+SubDir TOP Code Mercury Library GameSys Framework ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/fx/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/graphics/Render/Include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/util/lua_shared/include
+$(TOP)/code/mercury/library/ui/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+$(TOP)/code/mercury/library/graphics/TextureResource/include
+#$(TOP)/code/mercury/library/audio/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(TOP)/code/vendor/lua/current/src
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+IncludePath \"$(DXSDK_PATH)/include\" 
+$(TOP)/libs/vendor/openal/1.1/include ;
+}
+
+SRC = 
+./source/Application/ApplicationParams.cpp
+./source/Application/ApplicationBase.cpp
+./source/Application/CoreDialogs.cpp
+./source/Application/CoreSystems.cpp
+./source/Application/LoadDebugVars.cpp
+./source/Application/LoadingThread.cpp
+./source/Application/PerformanceLogging.cpp
+./source/Application/UserControls.cpp
+./source/Framework.cpp
+./source/Layer/Layer.cpp
+./source/Layer/LayerManager.cpp
+./source/shared_layers/DebugLayer.cpp
+./source/Timer/Timer.cpp
+./source/View/View.cpp
+./source/Debug/MemoryBudgets.cpp
+./source/Debug/MemoryDumpers.cpp
+;
+
+if $(PLATFORM) = "PC"
+{
+SRC += 
+./source/Application/ApplicationPC.cpp
+;
+}
+
+if $(PLATFORM) = "PS3"
+{
+SRC += 
+./source/Application/ApplicationPS3.cpp
+;
+}
+
+
+Library framework : $(SRC) $($(PLATFORM)SRC) : FrameworkPch.cpp : FrameworkPch.h ;

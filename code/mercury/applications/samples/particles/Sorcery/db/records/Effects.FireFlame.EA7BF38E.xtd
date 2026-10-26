@@ -1,0 +1,68 @@
+xt
+	field __id "EA7BF38E"
+	field __name "Effects.FireFlame"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+	end
+	array animation
+	end
+	field atlasSize "1"
+	field blendMode "AlphaAdditive"
+	array children
+	end
+	array colourCurveA
+		block 
+			field time "0.000"
+			field value "0"
+		end
+		block 
+			field outTangent "0"
+			field time "0.047"
+			field value ".5"
+		end
+		block 
+			field time "0.880"
+			field value ".5"
+		end
+		block 
+			field time "1.000"
+			field value "0"
+		end
+	end
+	array colourCurveRGB
+	end
+	array colourOverTime
+	end
+	field cullDistance "50"
+	field diffuseTexture "Flame02"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	block light
+	end
+	block limitSize
+		field type "AlphaFade"
+	end
+	field name "FireFlame"
+	field shape "RotatingSprite"
+	array sizeCurveX
+		block 
+			field time "0.000000"
+			field value "0.930233"
+		end
+		block 
+			field time "0.768817"
+			field value "0.901163"
+		end
+		block 
+			field time "1.000"
+			field value "0"
+		end
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

@@ -1,0 +1,6 @@
+
+namespace Maths
+{ 
+
+}; // namespace Maths
+

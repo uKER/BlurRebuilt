@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ttswav>
+	<speak text="President Bush said Friday the US government was moving aggressively to address the financial markets crisis" voiceName="Microsoft Sam" file="c:\tmp\prueba1.wav"/>
+	<speak text="In his increasingly slashing campaign against Senator Barack Obama, Senator John McCain this morning released a paint-peeling advertisement that highlights " voiceName="Microsoft Mary" file="c:\tmp\prueba2.wav"/>
+	<speak text="Questions about possible cases of fraudulent voter registrations were being raised this week as officials in several states investigated hundreds of questionable or duplicate registration forms submitted by an advocacy group" voiceName="Microsoft Mike" file="c:\tmp\prueba3.wav"/>
+</ttswav>

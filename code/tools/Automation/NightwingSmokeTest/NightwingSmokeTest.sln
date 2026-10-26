@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightwingSmokeTest", "NightwingSmokeTest.csproj", "{7747A1D0-BA22-45FB-A211-B106A7AD1F8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misc", "..\..\Managed Helper Libraries\Misc\Misc.csproj", "{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationHelper", "..\AutomationHelper\AutomationHelper\AutomationHelper.csproj", "{38A83C8E-BD5B-45E0-B35C-E6F6A0FB2240}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XtInterop", "..\..\Managed Helper Libraries\XtInterop\XtInterop.vcproj", "{29905316-ED23-4FD4-944C-F7E971D6CC3D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9} = {9634D64A-F9D4-490B-BF97-AEBD078679F9}
+		{8B89125C-44B0-443B-AF48-568A994046C7} = {8B89125C-44B0-443B-AF48-568A994046C7}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc_managed_2008", "..\..\..\mercury\library\common\system\system_pc_managed_2008.vcproj", "{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{661BB307-31CE-4D19-9181-BB3B2939199D} = {661BB307-31CE-4D19-9181-BB3B2939199D}
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9} = {9634D64A-F9D4-490B-BF97-AEBD078679F9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_pc_2008", "..\..\..\mercury\library\common\core\core_pc_2008.vcproj", "{9634D64A-F9D4-490B-BF97-AEBD078679F9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xttool_pc_2008", "..\..\..\mercury\library\common\xt2\xttool_pc_2008.vcproj", "{8B89125C-44B0-443B-AF48-568A994046C7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc_2008", "..\..\..\mercury\library\common\system\system_pc_2008.vcproj", "{661BB307-31CE-4D19-9181-BB3B2939199D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightwingAutomationHelper", "..\AutomationHelper\NightwingAutomationHelper\NightwingAutomationHelper.csproj", "{408C6A65-ACD8-4297-9E47-0EF3EFE68298}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7747A1D0-BA22-45FB-A211-B106A7AD1F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7747A1D0-BA22-45FB-A211-B106A7AD1F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7747A1D0-BA22-45FB-A211-B106A7AD1F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7747A1D0-BA22-45FB-A211-B106A7AD1F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38A83C8E-BD5B-45E0-B35C-E6F6A0FB2240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A83C8E-BD5B-45E0-B35C-E6F6A0FB2240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A83C8E-BD5B-45E0-B35C-E6F6A0FB2240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A83C8E-BD5B-45E0-B35C-E6F6A0FB2240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29905316-ED23-4FD4-944C-F7E971D6CC3D}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{29905316-ED23-4FD4-944C-F7E971D6CC3D}.Debug|Any CPU.Build.0 = Debug|Win32
+		{29905316-ED23-4FD4-944C-F7E971D6CC3D}.Release|Any CPU.ActiveCfg = Release|Win32
+		{29905316-ED23-4FD4-944C-F7E971D6CC3D}.Release|Any CPU.Build.0 = Release|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Debug|Any CPU.Build.0 = Debug|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Release|Any CPU.ActiveCfg = Release|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Release|Any CPU.Build.0 = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug|Any CPU.Build.0 = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release|Any CPU.Build.0 = Release|Win32
+		{8B89125C-44B0-443B-AF48-568A994046C7}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{8B89125C-44B0-443B-AF48-568A994046C7}.Debug|Any CPU.Build.0 = Debug|Win32
+		{8B89125C-44B0-443B-AF48-568A994046C7}.Release|Any CPU.ActiveCfg = Release|Win32
+		{8B89125C-44B0-443B-AF48-568A994046C7}.Release|Any CPU.Build.0 = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug|Any CPU.Build.0 = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release|Any CPU.ActiveCfg = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release|Any CPU.Build.0 = Release|Win32
+		{408C6A65-ACD8-4297-9E47-0EF3EFE68298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408C6A65-ACD8-4297-9E47-0EF3EFE68298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408C6A65-ACD8-4297-9E47-0EF3EFE68298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408C6A65-ACD8-4297-9E47-0EF3EFE68298}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

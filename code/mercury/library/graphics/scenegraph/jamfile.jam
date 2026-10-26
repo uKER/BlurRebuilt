@@ -1,0 +1,115 @@
+SubDir TOP Code Mercury Library Graphics SceneGraph ;
+
+# enable SPU Bus error checking code
+SUBDIRSPUBERR = 1 ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Misc_shared/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Graphics/Portal/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Graphics/World_Render/include
+$(TOP)/Code/Mercury/Library/Animation/include
+;
+
+Define RENDERINGDATA_ALLOW_INCLUDE SCENEGRAPH_ALLOW_INCLUDE ;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+if (PLATFORM) = PS3
+{
+IncludePath
+$(TOP)/Code/Mercury/Library/Graphics/Portal/source
+;
+}
+
+SRC =
+source/GatherNode.cpp
+source/RenderNode.cpp
+source/Bounds.cpp
+source/CullNode.cpp
+source/RenderingData/RenderListNode.cpp
+source/RenderingData/StaticRenderListNode.cpp
+source/RenderingData/CachedRenderListNode.cpp
+source/RenderingData/StaticScene.cpp
+<PPU>source/RenderingData/CachedRenderListNodeGather.cpp
+source/RenderingData/ModelInstanceNode.cpp
+source/RenderingData/ModelInstanceFlatList.cpp
+<PPU>source/RenderingData/ModelInstanceFlatListGather.cpp
+source/View.cpp
+source/ViewInterface.cpp
+source/MultiView.cpp
+source/RendererInterface.cpp
+source/Context.cpp
+source/SceneGraph.cpp
+source/RenderPass.cpp
+source/RenderTask.cpp
+source/RenderGroupSettings.cpp
+source/Light/Light.cpp
+source/Light/Manager.cpp
+source/Util/MemoryUsageVisitor.cpp
+source/Util/DebugRenderVisitor.cpp
+source/Visible/BackFrontSorter.cpp
+source/Visible/FrontBackSorter.cpp
+source/Visible/DepthSorter.cpp
+source/RenderingData/PortalCullNode.cpp
+source/RenderingData/ModelInstancePortalList.cpp
+<PPU>source/RenderingData/PortalCullNodeClassify.cpp
+source/ListNode.cpp
+;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+LinkLibraries scenegraph_cachedrenderlistnodegather scenegraph_modelinstanceflatlistgather scenegraph_portalcullnodeclassify scenegraph_rendermodule : core_spu ;
+
+SPUSRC =
+	<SPU>source/RenderingData/CachedRenderListNodeGather.cpp
+;
+AddSPUModule scenegraph : scenegraph_cachedrenderlistnodegather : $(SPUSRC) ;
+
+SPUSRC =
+	<SPU>source/RenderingData/ModelInstanceFlatListGather.cpp
+;
+AddSPUModule scenegraph : scenegraph_modelinstanceflatlistgather : $(SPUSRC) ;
+
+SPUSRC =
+	<SPU>source/RenderingData/PortalCullNodeClassify.cpp
+;
+AddSPUModule scenegraph : scenegraph_portalcullnodeclassify : $(SPUSRC) ;
+
+SPUSRC = 
+<spu_>source/Context.cpp
+;
+
+if $(PLATFORM) = PS3
+{
+LinkLibraries scenegraph_rendermodule : renderingdata_spu fx_spu display_spu display2_spu $(SCE_PS3_ROOT)/target/spu/lib/libgcm_spu ;
+
+SrcOptim $(SPUSRC) : -Os ;
+AddSPUModule scenegraph : scenegraph_rendermodule : $(SPUSRC) ;
+}
+
+if $(CFG_CONVERTER) = 1
+{
+	SrcDefine $(SRC) : CFG_CONVERTER=1 ;
+	Library scenegraphConv : <conv>$(SRC) : <conv>stdafx.cpp ;
+}
+else
+{
+	Library scenegraph : $(SRC) : stdafx.cpp ;
+}
+
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;

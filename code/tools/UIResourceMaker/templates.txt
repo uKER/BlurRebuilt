@@ -1,0 +1,135 @@
+#STATICGRAPHIC#	
+	<STATICGRAPHIC Use="">
+		<LAYER Number="" />
+		<POS X="" Y="" />
+		<SIZE X="" Y="" />
+		<ROTATION RX="" RY="" RZ="" />
+		<COLOUR A="" R="" G="" B="" />
+		<TEXTURE Stage="">
+			<NAME File=".tga" />
+			<TEXTUREPOS U="" V="" />
+			<TEXTURESIZE U="" V="" />
+		</TEXTURE>
+	</STATICGRAPHIC>
+#STATICMODEL#	
+	<STATICMODEL Use="">
+		<LAYER Number="" />
+		<POS X="" Y="" Z="" />
+		<SIZE X="" Y="" Z="" />
+		<ROTATION RX="" RY="" RZ="" />
+		<COLOUR A="" R="" G="" B="" />
+		<MODEL File=".pak" />
+		<TEXTURE Stage="">
+			<NAME File=".tga" />
+			<TEXTUREPOS U="" V="" />
+			<TEXTURESIZE U="" V="" />
+		</TEXTURE>
+	</STATICMODEL>
+#STATICLINE#	
+	<STATICLINE Use="">
+		<LAYER Number="" />
+		<POS X="" Y="" />
+		<SIZE Length="" Width="" />
+		<ROTATION RX="" RY="" RZ="" />
+		<COLOUR A="" R="" G="" B="" />
+		<ALIASCOLOUR A="" R="" G="" B="" />
+		<TEXTURE Stage="">
+			<NAME File=".tga" />
+			<TEXTUREPOS U="" V="" />
+			<TEXTURESIZE U="" V="" />
+		</TEXTURE>
+	</STATICLINE>
+#STATICTEXT#
+	<STATICTEXT Use="">
+		<LAYER Number="" />
+		<POS X="" Y="" />
+		<SIZE Pixel="" WrapSize="" />
+		<ROTATION RX="" RY="" RZ="" />
+		<COLOUR A="" R="" G="" B="" />
+		<FONT Name="" />
+		<TEXT Define="IDS_" />
+		<JUSTIFY JustifyValue="" />
+	</STATICTEXT>
+#VARIABLESELECT#	
+	<VARIABLESELECT Use="">
+		<ORIENTATION LayoutType="" />
+		<LAYER Number="" />
+		<POS X="" Y="" />
+		<TEXTCOLOUR A="" R="" G="" B="" />
+		<SELECTEDCOLOUR A="" R="" G="" B="" />
+		<JUSTIFY JustifyValue="" />
+		<FONT Name="" />
+		<SIZE Pixel="" Spacing="" FadeValue="" />
+		<VARIABLE VarType="" />
+	</VARIABLESELECT>
+#VARIABLESELECT_HORIZ#	
+		<FLOWSEPERATOR X="" Y="" Char="" />
+		<FLOWSTRING Define="IDS_"/>
+		<FLOWSTRING Define="IDS_"/>
+		<FLOWSTRING Define="IDS_"/>
+#VARIABLESELECT_VERT#	
+		<FLOWSTRING Define="IDS_"/>
+		<FLOWSTRING Define="IDS_"/>
+		<FLOWSTRING Define="IDS_"/>
+#VARIABLESELECT_RADIAL#
+		<TEXTURE Stage="">
+			<NAME File=".tga" />
+			<TEXTUREPOS U="" V="" />
+			<TEXTURESIZE U="" V="" />
+		</TEXTURE>
+		<ARROWTEXTURE File=".tga" />
+		<FLOWSTRING Define="IDS_"/>
+		<FLOWSTRING Define="IDS_"/>
+		<FLOWSTRING Define="IDS_"/>
+#EFFECTMOVE#
+		<EFFECT EffectType="MOVE">
+			<FROM X="" Y="" Z="" />
+			<TO X="" Y="" Z="" />
+			<TIMERS Start="" Duration="" Timer="" />
+			<TIME When="" />
+		</EFFECT>
+#EFFECTSIZE#
+		<EFFECT EffectType="SIZE">
+			<FROM X="" Y="" Z="" />
+			<TO X="" Y="" Z="" />
+			<TIMERS Start="" Duration="" Timer="" />
+			<TIME When="" />
+		</EFFECT>
+#EFFECTCOLOUR#
+		<EFFECT EffectType="COLOUR">
+			<FROM A="" R="" G="" B="" />
+			<TO A="" R="" G="" B="" />
+			<TIMERS Start="" Duration="" Timer="" />
+			<TIME When="" />
+		</EFFECT>
+#EFFECTTEXTURESIZE#
+			<EFFECT EffectType="TEXTURESIZE">
+				<FROM U="" V="" />
+				<TO U="" V="" />
+				<TIMERS Start="" Duration="" Timer="" />
+				<TIME When="" />
+			</EFFECT>
+#EFFECTTEXTUREMOVE#
+			<EFFECT EffectType="TEXTUREMOVE">
+				<FROM U="" V="" />
+				<TO U="" V="" />
+				<TIMERS Start="" Duration="" Timer="" />
+				<TIME When="" />
+			</EFFECT>
+#EFFECTBLUR#
+			<EFFECT EffectType="BLUR">
+				<FROM Value="" />
+				<TO Value="" />
+				<TIMERS Start="" Duration="" Timer="" />
+				<TIME When="" />
+			</EFFECT>
+#EFFECTROTATE#
+		<EFFECT EffectType="ROTATE">
+			<FROM RX="" RY="" RZ="" />
+			<TO RX="" RY="" RZ="" />
+			<TIMERS Start="" Duration="" Timer="" />
+			<TIME When="" />
+		</EFFECT>
+#TIMER#
+		<TIMER? Time="" Do="" />
+#

@@ -1,0 +1,64 @@
+#include "..\..\psCommon.h"
+#include "psHDR.h"
+#include "psBloom.h"
+
+real3 GetBloom4(float2 uv)
+{
+	real3 colour = 0.0h;
+	real3 bloom0 = tex2D(bloomTexture0, uv).rgb;
+	colour += g_fBloomScale0 * bloom0;
+
+	real3 bloom1 = tex2D(bloomTexture1, uv).rgb;
+	colour += g_fBloomScale1 * bloom1;
+	
+	real3 bloom2 = tex2D(bloomTexture2, uv).rgb;
+	colour += g_fBloomScale2 * bloom2;
+
+	real3 bloom3 = tex2D(bloomTexture3, uv).rgb;
+	colour += g_fBloomScale3 * bloom3;
+
+	return max(colour, 0.0h);
+}
+
+real3 GetBloom4Gamma(float2 uv)
+{
+	real3 colour = 0.0f;
+	real3 bloom0 = tex2D(bloomTexture0, uv).rgb;
+	colour += g_fBloomScale0 * bloom0 * bloom0;
+
+	real3 bloom1 = tex2D(bloomTexture1, uv).rgb;
+	colour += g_fBloomScale1 * bloom1 * bloom1;
+	
+	real3 bloom2 = tex2D(bloomTexture2, uv).rgb;
+	colour += g_fBloomScale2 * bloom2 * bloom2;
+
+	real3 bloom3 = tex2D(bloomTexture3, uv).rgb;
+	colour += g_fBloomScale3 * bloom3 * bloom3;
+
+	return max(sqrt(colour), 0.0h);
+}
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+#ifdef GAMMA
+	output.colour.rgb = GetBloom4Gamma(input.uv);
+#else
+	output.colour.rgb = GetBloom4(input.uv);
+#endif
+
+	output.colour.a = 1.0h;
+		
+	return output;
+}

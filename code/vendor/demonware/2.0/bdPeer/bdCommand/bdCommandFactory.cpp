@@ -1,0 +1,53 @@
+// DWBS ------------------------------------------------------------------ DWBS
+//
+// PLATFORM		: ALL
+// PRODUCT		: BIT_DEMON
+// VISIBILITY	: PUBLIC
+//
+// DWBS ------------------------------------------------------------------ DWBS
+
+#include <bdPeer/bdCommand/bdCommandFactory.h>
+
+BD_REGISTER_SINGLETON(bdCommandFactoryImpl)
+
+#define BD_LOG_LEVEL "commandFactory"
+
+bdCommand* bdCommandFactoryImpl::create() const
+{
+	BD_ASSERT(m_creator != BD_NULL, "bdCommandFactoryImpl::create, "
+		"must set a command class with BD_REGISTER_COMMAND_CLASS before "
+		"calling create.");
+
+	return m_creator->create();
+}
+
+
+void bdCommandFactoryImpl::setClass(bdCreatorBase<bdCommand> *const creator)
+{
+	if (m_creator)
+	{
+		BD_WARN(BD_LOG_LEVEL,"Command class already set ,BD_REGISTER_COMMAND_CLASS should only be called once otherwise memory is leaked.");
+	}
+	else
+	{
+		m_creator = creator;
+	}
+}
+
+bdCommandFactoryImpl::bdCommandFactoryImpl()
+: m_creator(BD_NULL)
+{
+}
+
+bdCommandFactoryImpl::~bdCommandFactoryImpl()
+{
+	if (m_creator)
+	{
+		delete m_creator;
+	}
+}
+
+bdCommandFactory::bdCommandFactory()
+{
+
+}

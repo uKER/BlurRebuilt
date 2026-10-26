@@ -1,0 +1,22 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+	float	m_Depth		: DEPTH0;
+};
+
+PS_OUTPUT main()
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	output.m_Colour = 0.0f;
+#if defined(XB2) || defined(PS3)
+	output.m_Depth	= 0.0f;
+#else
+	output.m_Depth	= 1.0f;
+#endif
+
+	return output;
+}

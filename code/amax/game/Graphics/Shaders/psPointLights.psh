@@ -1,0 +1,79 @@
+#include "deferred/shaders/psCommon.h"
+#include "deferred/shaders/psConstants.h"
+
+float4		g_vPosition[12]	: register(CCP_RENDER_SETTINGS);
+float4		g_vColour[12]	: register(CCP_RENDER_SETTINGS_12);
+
+sampler2D	g_tNormalDepth	: register(s0);
+
+#if defined(PS3)
+#pragma texformat g_tNormalDepth RGBA8
+#endif
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+	float3	m_Scale		: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	real4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float3	vViewPosition;
+	real3	vViewNormal;
+	GetViewPositionAndNormal(g_tNormalDepth, input.m_TexCoord, input.m_Scale, vViewPosition, vViewNormal);
+	
+	real3	vDiffuse = 0.0h;
+
+#if defined(ONE)	
+	int i = 0;
+#elif defined(TWO)
+	for (int i = 0; i < 2; ++i)
+#elif defined(THREE)
+	for (int i = 0; i < 3; ++i)
+#elif defined(FOUR)
+	for (int i = 0; i < 4; ++i)
+#elif defined(FIVE)
+	for (int i = 0; i < 5; ++i)
+#elif defined(SIX)
+	for (int i = 0; i < 6; ++i)
+#elif defined(SEVEN)
+	for (int i = 0; i < 7; ++i)
+#elif defined(EIGHT)
+	for (int i = 0; i < 8; ++i)
+#elif defined(NINE)
+	for (int i = 0; i < 9; ++i)
+#elif defined(TEN)
+	for (int i = 0; i < 10; ++i)
+#elif defined(ELEVEN)
+	for (int i = 0; i < 11; ++i)
+#elif defined(TWELVE)
+	for (int i = 0; i < 12; ++i)
+#endif
+	{
+#if !defined(PS_2_0)
+		real3	vLightColour	= g_vColour[i].xyz;
+		float3	vLightPosition	= g_vPosition[i].xyz;
+		real	fLightFalloff	= g_vPosition[i].w;
+		
+		float3	vLightToWorld	= vLightPosition - vViewPosition;
+		float	fLightDistance	= dot(vLightToWorld, vLightToWorld);
+		real	fLightFactor	= 1.0h - saturate(fLightDistance * fLightFalloff);
+
+		real	fLightDotNormal	= saturate(dot(normalize(vLightToWorld), vViewNormal));
+
+		vDiffuse += vLightColour * (fLightDotNormal * fLightFactor);
+#endif
+	}
+	
+	output.m_Colour.rgb	= vDiffuse;
+	output.m_Colour.a	= 1.0h;
+
+	return output;
+}

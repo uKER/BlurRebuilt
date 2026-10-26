@@ -1,0 +1,44 @@
+SubDir TOP Code Mercury Library GameSys SplashCamera ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/scenegraph/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/GameSys/resource_utils/Include
+$(TOP)/code/mercury/library/graphics/TextureResource/Include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+source/SplashCamera.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+SHADERSRC =	[ Shader shaders/psSplashCamera.psh :
+				"<>"
+				"<Refract>-DREFRACT"
+				"<Light>-DLIGHT" ] ;
+SHADERSRC += [ Shader shaders/vsSplashCamera.vsh :
+				"<>"
+				"<Refract>-DREFRACT" ] ;
+
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library splashCamera : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : SplashCameraPch.cpp : SplashCameraPch.h ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;

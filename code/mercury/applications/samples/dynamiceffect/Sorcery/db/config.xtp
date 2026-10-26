@@ -1,0 +1,54 @@
+xt
+	field __version "10"
+	block build
+		block deployment
+			block pc
+				field method "copy-pc"
+				field root "Z:\devroot\code\mercury\applications\samples\dynamiceffect\bin\win32\Image\"
+				field stage "pc"
+			end
+			block ps3
+				field method "copy-pc"
+				field root "Z:\devroot\code\mercury\applications\samples\dynamiceffect\bin\ps3\Image\"
+				field stage "ps3"
+			end
+			block x360
+				field method "copy-x360"
+				field root "devkit:\dynamiceffect\"
+				field stage "x360"
+			end
+		end
+		block platforms
+			block pc
+				field endian "little"
+			end
+			block ps3
+				field endian "big"
+			end
+			block x360
+				field endian "big"
+			end
+		end
+		block staging
+			block pc
+				field platform "pc"
+				field root "%db%\export\pc\"
+			end
+			block ps3
+				field platform "ps3"
+				field root "%db%\export\ps3\"
+			end
+			block x360
+				field platform "x360"
+				field root "%db%\export\360\"
+			end
+		end
+		block structure
+			field packs "%pack%.bin"
+		end
+	end
+	block languages
+	end
+	field name "Test"
+	field sendAllOnConnect "0"
+end

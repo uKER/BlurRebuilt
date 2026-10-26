@@ -1,0 +1,40 @@
+SubDir TOP Code Mercury Library Samples ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath
+$(TOP)/Libs/Vendor/dx9sdk/current/include
+;
+}
+
+_PLATFORM = $(PLATFORM) ;
+
+SRC = 
+./source/section/Section.cpp
+./source/section/SectionEmpty.cpp
+./source/system/Application.cpp
+./source/system/Camera.cpp
+./source/system/Config.cpp
+./source/system/Debug.cpp
+./source/system/Input.cpp
+./source/system/$(_PLATFORM)Application.cpp
+./source/system/Timer.cpp
+./source/system/View.cpp
+./source/system/Viewport.cpp
+;
+
+PS3SRC =
+./source/system/PS3Pad.cpp
+;
+
+
+Library samples : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

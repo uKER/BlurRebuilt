@@ -1,0 +1,29 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+sampler2D	g_tDownsample	: register(s0);
+sampler2D	g_tBlur			: register(s1);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	real4	vDownsample	= tex2D(g_tDownsample, input.m_TexCoord);
+	real4	vBlur		= tex2D(g_tBlur, input.m_TexCoord);
+	
+	real	fCoC		= 2.0f * max(vDownsample.a, vBlur.a) - vDownsample.a;
+	
+	output.m_Colour		= real4(vDownsample.rgb, fCoC);
+
+	return output;
+}

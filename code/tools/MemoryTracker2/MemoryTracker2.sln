@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryTracker2", "MemoryTracker2\MemoryTracker2.csproj", "{40FBE964-9595-45CE-92E4-548933C06225}"
+	ProjectSection(ProjectDependencies) = postProject
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7} = {533C54CD-7CD0-4CFF-9870-98F2EF157EF7}
+		{662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6} = {662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AddrToNameDLL", "AddrToNameDLL\AddrToNameDLL.vcproj", "{662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_pc_2008", "..\..\mercury\library\common\core\core_pc_2008.vcproj", "{9634D64A-F9D4-490B-BF97-AEBD078679F9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc_managed_2008", "..\..\mercury\library\common\system\system_pc_managed_2008.vcproj", "{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{661BB307-31CE-4D19-9181-BB3B2939199D} = {661BB307-31CE-4D19-9181-BB3B2939199D}
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9} = {9634D64A-F9D4-490B-BF97-AEBD078679F9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc_2008", "..\..\mercury\library\common\system\system_pc_2008.vcproj", "{661BB307-31CE-4D19-9181-BB3B2939199D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40FBE964-9595-45CE-92E4-548933C06225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40FBE964-9595-45CE-92E4-548933C06225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40FBE964-9595-45CE-92E4-548933C06225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40FBE964-9595-45CE-92E4-548933C06225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6}.Debug|Any CPU.Build.0 = Debug|Win32
+		{662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6}.Release|Any CPU.ActiveCfg = Release|Win32
+		{662C7CCF-6DE2-4C78-BA34-CBDCFE2B5EB6}.Release|Any CPU.Build.0 = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug|Any CPU.Build.0 = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release|Any CPU.Build.0 = Release|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Debug|Any CPU.Build.0 = Debug|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Release|Any CPU.ActiveCfg = Release|Win32
+		{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}.Release|Any CPU.Build.0 = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug|Any CPU.Build.0 = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release|Any CPU.ActiveCfg = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release|Any CPU.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

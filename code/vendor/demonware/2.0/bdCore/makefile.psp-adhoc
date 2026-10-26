@@ -1,0 +1,60 @@
+# bdCore
+
+SHELL		= /bin/sh
+
+DW_ROOT		?= ..
+SCE_TOP		?= /usr/local/sce
+PSP_TOP		= $(SCE_TOP)/psp
+PSP_LIBDIR	= $(PSP_TOP)/lib
+
+OBJ_DIR		= $(DW_ROOT)/obj/psp-adhoc/release
+
+INCS		= -I$(PSP_TOP)/include -I$(DW_ROOT) -I$(DW_ROOT)/external/libtomcrypt/src/headers
+
+SOURCE		= bdCore.cpp bdContainers/bdBitBuffer.cpp bdContainers/bdByteBuffer.cpp bdContainers/bdHashMap.cpp bdContainers/bdSequenceNumber.cpp bdContainers/bdSequenceNumberStore.cpp bdContainers/bdSingleton.cpp bdCrypto/bdCypher.cpp bdCrypto/bdCypher3Des.cpp bdCrypto/bdHash.cpp bdCrypto/bdHashTiger192.cpp bdCrypto/bdHMac.cpp bdCrypto/bdHMacSHA1.cpp bdMemory/bdAlignedOffsetMemory.cpp bdMemory/bdMallocMemory.cpp bdMemory/bdMemory.cpp bdReference/bdReferencable.cpp bdSocket/bdAddr.cpp bdSocket/bdCommonAddr-psp-adhoc.cpp bdSocket/bdCommonAddrInfo-psp-adhoc.cpp bdSocket/bdEndpoint.cpp bdSocket/bdInetAddr-psp-adhoc.cpp bdSocket/bdMACAddr.cpp bdSocket/bdSecurityID.cpp bdSocket/bdSecurityInfo.cpp bdSocket/bdSecurityKey.cpp bdSocket/bdSocket.cpp bdSocket/bdStreamSocket.cpp bdSocket/bdTestSocket.cpp bdString/bdString.cpp bdThread/bdMutex.cpp bdThread/bdRunnable.cpp bdThread/bdSemaphore.cpp bdThread/bdSignal.cpp bdThread/bdThread.cpp bdTiming/bdStopwatch.cpp bdUtilities/bdBase64.cpp bdUtilities/bdBitOperations.cpp bdUtilities/bdBytePacker.cpp bdUtilities/bdRandom.cpp bdUtilities/bdStringEscape.cpp bdUtilities/bdTrulyRandom.cpp 
+OBJS		= $(SOURCE:.cpp=-psp.o)
+
+AS		= psp-g++
+CC		= psp-g++
+LD		= psp-g++
+AR		= psp-ar
+RANLIB		= psp-ranlib
+RM		= /bin/rm -f
+
+CPPFLAGS	= -Wall -fno-exceptions -fno-common -fmessage-length=1000 -fdiagnostics-show-location=once -pipe $(INCS) -DBD_PLATFORM_PSP_ADHOC
+
+TARGET		= ../lib/psp-adhoc/release/libbdcore.a
+
+ifdef DEBUG
+CPPFLAGS	+= -g
+OBJ_DIR		= $(DW_ROOT)/obj/psp-adhoc/debug
+TARGET		= ../lib/psp-adhoc/debug/libbdcore.a
+endif
+
+OBJS_ABSOLUTE	= $(OBJS:%=${OBJ_DIR}/%)
+
+all: depend $(TARGET)
+
+clean:
+	$(RM) ${OBJS_ABSOLUTE} $(TARGET)
+
+$(TARGET): ${OBJS_ABSOLUTE}
+	$(AR) rcs $(TARGET) $(OBJS_ABSOLUTE)
+
+$(OBJ_DIR)/%-psp-psp.o: %-psp.cpp
+	if [ ! -d $(OBJ_DIR)/`dirname $*` ] ; then mkdir -p $(OBJ_DIR)/`dirname $*`; fi
+	$(CC) -c $(CPPFLAGS) $*-psp.cpp -o $(OBJ_DIR)/$*-psp-psp.o
+
+$(OBJ_DIR)/%-psp.o: %.cpp
+	if [ ! -d $(OBJ_DIR)/`dirname $*` ] ; then mkdir -p $(OBJ_DIR)/`dirname $*`; fi
+	$(CC) -c $(CPPFLAGS) $*.cpp -o $(OBJ_DIR)/$*-psp.o
+
+$(OBJ_DIR)/%-ps2-psp.o: %-ps2.cpp
+	if [ ! -d $(OBJ_DIR)/`dirname $*` ] ; then mkdir -p $(OBJ_DIR)/`dirname $*`; fi
+	$(CC) -c $(CPPFLAGS) $*-ps2.cpp -o $(OBJ_DIR)/$*-ps2-psp.o
+
+depend:
+	$(RM) .depend
+	makedepend -f- -- $(CPPFLAGS) -- $(SOURCE) 2>> /dev/null > .depend
+
+-include .depend

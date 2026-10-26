@@ -1,0 +1,49 @@
+#include "..\\psCommon.h"
+#include "..\\psHDR.h"
+
+extern float4		g_vSettings			: register(CCP_RENDER_SETTINGS);
+extern float4		g_vDepthScale		: register(CCP_RENDER_SETTINGS_1);
+extern float4		g_vSamples0123		: register(CCP_RENDER_SETTINGS_2);
+extern sampler2D	g_tColour			: register(s0);
+extern sampler2D	g_tDepth			: register(s1);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+float GetViewSpaceDepth(float fDepth)
+{
+	return g_vDepthScale.x / (g_vDepthScale.y - fDepth);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	// get the centre pixel
+	float4 vColour = tex2D(g_tColour, input.m_TexCoord);
+	float vDepth = GetViewSpaceDepth( tex2D(g_tDepth, input.m_TexCoord).x );
+
+	// sample a 3x3 kernel
+	float4 vDepths0, vDepths1;
+	vDepths0.x = GetViewSpaceDepth( tex2D(g_tDepth, input.m_TexCoord - g_vSamples0123.xy ) );
+	vDepths0.y = GetViewSpaceDepth( tex2D(g_tDepth, input.m_TexCoord - g_vSamples0123.zw ) );
+	vDepths0.z = GetViewSpaceDepth( tex2D(g_tDepth, input.m_TexCoord + g_vSamples0123.xy ) );
+	vDepths0.w = GetViewSpaceDepth( tex2D(g_tDepth, input.m_TexCoord + g_vSamples0123.zw ) );
+	
+	float4 vDepthDiff0 = step(g_vSettings.x, vDepths0 - vDepth);
+
+	float fWeight = 1.0f / (1.0f + dot(vDepthDiff0, float4(1.0f, 1.0f, 1.0f, 1.0f)));
+
+	vDepthDiff0 *= fWeight;
+	vColour *= fWeight;
+	
+	// grab each colour
+	float4 vColour0 = tex2D(g_tColour, input.m_TexCoord - g_vSamples0123.xy) * vDepthDiff0.x;
+	float4 vColour1 = tex2D(g_tColour, input.m_TexCoord - g_vSamples0123.zw) * vDepthDiff0.y;
+	float4 vColour2 = tex2D(g_tColour, input.m_TexCoord + g_vSamples0123.xy) * vDepthDiff0.z;
+	float4 vColour3 = tex2D(g_tColour, input.m_TexCoord + g_vSamples0123.zw) * vDepthDiff0.w;
+	
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	output.colour = vColour + vColour0 + vColour1 + vColour2 + vColour3;
+	return output;
+}

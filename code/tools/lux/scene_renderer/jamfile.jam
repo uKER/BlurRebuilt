@@ -1,0 +1,36 @@
+SubDir TOP Code Tools Lux Scene_Renderer ;
+
+IncludePath
+$(SUBDIR)/..
+$(SUBDIR)/include
+$(SUBDIR)/../lux_common/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/spatial_hierarchy/include
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+\"$(DXSDK_PATH)/include\"
+;
+
+SRC =
+Camera.cpp
+D3dImageLoader.cpp
+#D3dPrimitives3D.cpp
+D3dShaderManager.cpp
+D3dTextureManager.cpp
+D3DWindow.cpp
+DebugRender.cpp
+GenericSceneRenderer.cpp
+GenericShaderOperations.cpp
+HierachyRenderer.cpp
+LightmapShaderProperties.cpp
+ObjectRenderingBatch.cpp
+ObjectRenderingFragment.cpp
+SceneRenderer.cpp
+ShaderProperties.cpp
+SinCos.cpp
+TargetCamera.cpp
+VertexBuffer.cpp
+ViewGrid.cpp
+;
+
+Library scene_renderer : source/scene_renderer/$(SRC) : stdafx.cpp ;

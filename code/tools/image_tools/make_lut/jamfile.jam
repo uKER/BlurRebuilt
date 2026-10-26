@@ -1,0 +1,67 @@
+SubDir TOP Code tools image_tools make_lut ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+USE_SOLVER2 = 1 ;
+
+if $(USE_SOLVER2) != 1
+{
+#echo define solver 1 ;
+}
+else
+{
+#echo define solver 2 ;
+	Define USE_SOLVER_2 ;
+}
+
+# Uncomment to enable the check of sceneconverter file time during the export (debugging)
+# Define CHECK_SCENECONVERTER_FILE_TIME ;
+
+# needed for speedtree
+#LINKLIBS += 
+#	$(TOP)/libs/vendor/speedtree/4.0/lib/VC8/Release/SpeedTreeRT.lib 
+#	$(TOP)/libs/vendor/xerces/2.5.0/lib/xerces-c_2.lib ;
+
+IncludePath
+./source
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/common/misc_shared/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+Lut.cpp
+MakeLut.cpp
+;
+
+LinkLibraries make_lut : 
+	attk	
+	system 
+	misc_shared
+	core
+	$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+		
+if $(PLATFORM) = PC
+{
+	SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+}
+
+
+Application make_lut : $(SRC) : stdafx.cpp ;
+ExportVcproj make_lut ;
+
+#include $(TOP)/code/mercury/library/graphics/shader/fx.jam ;
+
+EmbedManifest $(TOP)/code/tools/image_tools/make_lut/bin/make_lut.exe : make_lut.exe ;
+
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Tools Attk Attk ;

@@ -1,0 +1,118 @@
+GRAPHICS_SRC = 
+[ Batch
+Graphics/Effects/VehicleWheel.cpp
+Graphics/Effects/ExhaustEffect.cpp
+Graphics/Effects/ParticleTrail.cpp
+Graphics/Lighting/PointLights.cpp
+Graphics/Lighting/Prepass.cpp
+Graphics/Lighting/SpotLights.cpp
+Graphics/Lighting/TaskManager.cpp
+Graphics/AmaxSpecialFX.cpp
+Graphics/CarLightSettings.cpp
+Graphics/CutSceneLights.cpp
+Graphics/HDR.cpp
+Graphics/LightFlareSettings.cpp
+Graphics/NormalBuffer.cpp
+Graphics/PostFxLensFlare.cpp
+Graphics/PostFxMatrix.cpp
+Graphics/PostFxSettings.cpp
+Graphics/PostSpecialFX.cpp
+Graphics/SplashCameraSpecialFX.cpp
+Graphics/RoadTrackSettings.cpp
+Graphics/ShadowSettings.cpp
+Graphics/Wind.cpp
+: StdAfx.h ]
+;
+
+if $(PLATFORM) = PS3
+{
+	SRC += Graphics/Lighting/JobQueuePrepassWorker.cpp ;
+
+	SPUSRC =
+		<SPU>Graphics/Lighting/JobQueuePrepassWorker.cpp
+	;
+
+	AddSPUModule Amax : jobqueueprepassworker : $(SPUSRC) ;
+
+	SRC += Graphics/TonemapSPU.cpp ;
+	SPUSRC =
+		<SPU>Graphics/TonemapSPU.cpp
+	;
+
+	LinkLibraries TonemapSpu : $(SCE_PS3_ROOT)/target/spu/lib/libm.a ;
+	
+	AddSPUModule Amax : TonemapSpu : $(SPUSRC) ;
+}
+
+if $(PLATFORM) = PS3
+{
+	FXCFLAGS on [ OBJfromSRC <HDRU32>psToneMapCustom.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=3" ;
+	FXCFLAGS on [ OBJfromSRC <MotionBlurHDRU32>psToneMapCustom.psh ] = "-po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <ReducedAlphaHDRU32>psToneMapCustom.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=81" ;
+	FXCFLAGS on [ OBJfromSRC <ReducedAlphaMotionBlurHDRU32>psToneMapCustom.psh ] = "-po OutColorPrec=fp16 -O2" ;
+	FXCFLAGS on [ OBJfromSRC <DepthOfFieldHDRU32>psToneMapCustom.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=3" ;
+	FXCFLAGS on [ OBJfromSRC <1>psPointLights.psh ] = "-po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <2>psPointLights.psh ] = "-po OutColorPrec=fp16 -O2" ;
+	FXCFLAGS on [ OBJfromSRC <3>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=42" ;
+	FXCFLAGS on [ OBJfromSRC <4>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=15 -po randomSeed=94" ;
+	FXCFLAGS on [ OBJfromSRC <5>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=12 -po randomSeed=7" ;
+	FXCFLAGS on [ OBJfromSRC <6>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=12 -po randomSeed=33" ;
+	FXCFLAGS on [ OBJfromSRC <7>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=14 -po randomSeed=0" ;
+	FXCFLAGS on [ OBJfromSRC <8>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=11 -po randomSeed=3" ;
+	FXCFLAGS on [ OBJfromSRC <9>psPointLights.psh ] = "-po OutColorPrec=fp16 -O2" ;
+	FXCFLAGS on [ OBJfromSRC <10>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=14 -po randomSeed=54" ;
+	FXCFLAGS on [ OBJfromSRC <11>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=12 -po randomSeed=0" ;
+	FXCFLAGS on [ OBJfromSRC <12>psPointLights.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=11 -po randomSeed=60" ;
+	FXCFLAGS on [ OBJfromSRC psSpotLight.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=38" ;
+	FXCFLAGS on [ OBJfromSRC <Projected>psSpotLight.psh ] = "-po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Volume>psSpotLight.psh ] = "-po OutColorPrec=fp16 -O2" ;
+}
+
+GRAPHICS_SHADERS +=
+Graphics/Shaders/vsPointLights.vsh
+Graphics/Shaders/vsSpotLight.vsh
+Graphics/Shaders/vsFakeEnvironmentLight.vsh
+Graphics/Shaders/psFakeEnvironmentLight.psh
+;
+
+GRAPHICS_SHADERS += [ Shader Graphics/Shaders/psPointLights.psh :
+						"<1>-DONE"
+						"<2>-DTWO"
+						"<3>-DTHREE"
+						"<4>-DFOUR"
+						"<5>-DFIVE"
+						"<6>-DSIX"
+						"<7>-DSEVEN"
+						"<8>-DEIGHT"
+						"<9>-DNINE"
+						"<10>-DTEN"
+						"<11>-DELEVEN"
+						"<12>-DTWELVE" ] ;
+
+GRAPHICS_SHADERS += [ Shader Graphics/Shaders/psSpotLight.psh :
+						""
+						"<Projected>-DPROJECTED"
+						"<Volume>-DVOLUME" ] ;
+
+GRAPHICS_SHADERS += [ Shader Graphics/Shaders/psToneMapCustom.psh :
+							" "
+							"<HDR>-DHDR"
+							"<HDRU32>-DHDRU32"
+							"<ReducedAlpha>-DREDUCED_ALPHA"
+							"<ReducedAlphaHDR>-DREDUCED_ALPHA -DHDR"
+							"<ReducedAlphaHDRU32>-DREDUCED_ALPHA -DHDRU32"
+							"<MotionBlur> -DMOTION_BLUR"
+							"<MotionBlurHDR>-DHDR -DMOTION_BLUR"
+							"<MotionBlurHDRU32>-DHDRU32 -DMOTION_BLUR"
+							"<ReducedAlphaMotionBlur> -DREDUCED_ALPHA -DMOTION_BLUR"
+							"<ReducedAlphaMotionBlurHDR>-DREDUCED_ALPHA -DHDR -DMOTION_BLUR"
+							"<ReducedAlphaMotionBlurHDRU32>-DREDUCED_ALPHA -DHDRU32 -DMOTION_BLUR"
+							"<DepthOfField> -DDEPTH_OF_FIELD"
+							"<DepthOfFieldHDR>-DHDR -DDEPTH_OF_FIELD"
+							"<DepthOfFieldHDRU32>-DHDRU32 -DDEPTH_OF_FIELD"
+							"<LargeScreenshot> -DLARGE_SCREENSHOT"
+							"<LargeScreenshotHDR>-DHDR -DLARGE_SCREENSHOT"
+							"<LargeScreenshotHDRU32>-DHDRU32 -DLARGE_SCREENSHOT"
+							"<ExtraFX>-DEXTRA_FX -DHDR -DMOTION_BLUR"
+							"<ExtraFXU32>-DEXTRA_FX -DHDRU32 -DMOTION_BLUR"
+					] ;

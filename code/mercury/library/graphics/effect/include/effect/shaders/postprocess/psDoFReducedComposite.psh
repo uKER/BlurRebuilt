@@ -1,0 +1,23 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+sampler2D	g_tBlur			: register(s0);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	output.m_Colour = tex2D(g_tBlur, input.m_TexCoord);
+	
+	return output;
+}

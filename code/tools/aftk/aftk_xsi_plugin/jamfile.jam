@@ -1,0 +1,80 @@
+SubDir TOP Code tools aftk aftk_xsi_plugin ;
+
+SupportedTargets WIN32_TOOL ;
+
+Define IMPORTEXPORT_EXPORTS __XSI_PLUGIN __XSI_PLUGIN_ ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+TOOLS = $(TOP)/Code/Tools ;
+
+##disable incremental linking for smaller binaries
+if $(BUILD) = Release
+{
+	for f in $(LINKFLAGS)
+	{
+		if $(f) != /INCREMENTAL
+		{
+			NEWLINKFLAGS += $(f) ;
+		}
+	}
+	
+	LINKFLAGS = $(NEWLINKFLAGS) ;
+	LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+}
+
+
+IncludePath
+./source
+$(MERCURY)/Common/Misc_Shared/include
+$(TOP)/Code/Common
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(TOOLS)/Aftk/Aftk/include
+$(TOP)/libs/vendor/xsi_sdk/5.11/include
+$(TOP)/Code/Vendor
+;
+
+SRC =
+source/export_command.cpp
+source/helper.cpp
+source/import_command.cpp
+source/importexport.cpp
+source/importexport_menu.cpp
+source/importexport_prop.cpp
+source/xsiutility.cpp
+source/export/materialexport.cpp
+source/export/sceneexport.cpp
+source/export/scenemeshnodeexport.cpp
+source/export/scenenodeexport.cpp
+source/export/scenenodeexporthelper.cpp
+;
+
+xsilibs = sicppsdk.lib sicoresdk.lib xsiftk.lib ;
+
+LINKLIBS +=	$(TOP)/libs/vendor/xsi_sdk/5.11/lib/nt-x86/$(xsilibs) ;
+			
+CCFLAGS += /Zc:wchar_t- /D "IMPORTEXPORT_EXPORTS" /D "__XSI_PLUGIN" /D "__XSI_PLUGIN_" ;
+			
+LINKFLAGS += /DLL ;
+
+LinkLibraries aftk_xsi_plugin : 
+	core 
+	system 
+	aftk	
+	misc_shared
+	zlib
+	$(AFTK_LIBRARY) ;
+
+DLL aftk_xsi_plugin : $(SRC) : XSIA3DExportPCH.cpp ;
+
+ExportVcproj aftk_xsi_plugin ;
+
+#Copy $(BIZARRE_ROOT)/tools/art_tools/xsi/packages/Application/Plugins/A3DImportExport.dll : aftk_xsi_plugin.exe ;
+EmbedManifestDLL $(BIZARRE_ROOT)/tools/art_tools/xsi/packages/Application/Plugins/A3DImportExport.dll : aftk_xsi_plugin.exe ;
+
+SubInclude TOP Code Vendor Zlib Current_Mercury ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Tools Aftk Aftk ;

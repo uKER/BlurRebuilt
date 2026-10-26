@@ -1,0 +1,196 @@
+SubDir TOP Code Mercury Library Common System ;
+
+if $(USERNAME) = kmacleod { Define USER_KMACLEOD ; }
+
+IncludePath 
+$(SUBDIR)/include
+$(TOP)/Code/Vendor/CxxTest/Current
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/Common/xt2/include
+;
+
+SRC = 
+debug/Debug.cpp
+debug/TestDebugVariables.cpp
+debug/Variables.cpp
+debug/VariablesNet.cpp
+debug/DebugViewLog.cpp
+debug/debugrender/DebugRenderItem.cpp
+debug/debugrender/NullDebugRender.cpp
+debug/log/AutoConfigure.cpp
+debug/log/ConfigReader.cpp
+debug/log/DebugLevel.cpp
+debug/log/FileSystem.cpp
+debug/log/Filter.cpp
+debug/log/Format.cpp
+debug/log/Logger.cpp
+debug/log/LogManager.cpp
+debug/log/NetworkRepeater.cpp
+debug/log/ThreadContext.cpp
+debug/log/subscribers/ConsoleSubscriber.cpp
+debug/log/subscribers/DebugViewSubscriber.cpp
+debug/log/subscribers/E-MailSubscriber.cpp
+debug/log/subscribers/LogFileSubscriber.cpp
+debug/log/subscribers/SocketServerSubscriber.cpp
+debug/log/subscribers/SocketSubscriber.cpp
+debug/log/subscribers/SubscriberCommon.cpp
+debug/log/subscribers/SubscriberManager.cpp
+debug/metadebug/DefaultMetaDebugNotify.cpp
+debug/metadebug/MetaDebug.cpp
+debug/metadebug/MetaDebugAttributeList.cpp
+debug/metadebug/MetaDebugLog.cpp
+debug/metadebug/MetaDebugRender.cpp
+artery/Artery.cpp
+artery/ArteryMessage.cpp
+artery/ArteryPeer.cpp
+artery/ArteryService.cpp
+artery/ArterySync.cpp
+network/Address.cpp
+network/Connection.cpp
+network/Service.cpp
+network/SMTPClient.cpp
+network/Socket.cpp
+perf/Profiler.cpp
+perf/ProfilerBackend.cpp
+perf/ProfilerNetworkCode.cpp
+perf/CPUTiming.cpp
+perf/Timing.cpp
+perf/ProfilerUtil.cpp
+XML/XmlBlockParser.cpp
+XML/XmlDom.cpp
+XML/XmlDomBaseNode.cpp
+XML/XmlDomContent.cpp
+XML/XmlDomElement.cpp
+XML/XmlDomUtility.cpp
+Xml/XmlParser.cpp
+time/ScopedTimer.cpp
+time/Time.cpp
+serialise/C_File.cpp
+serialise/C_FileBlock.cpp
+serialise/C_FileSystem.cpp
+serialise/C_MemoryStream.cpp
+serialise/FilePath.cpp
+serialise/FileSystemGlobals.cpp
+serialise/I_FileSystem.cpp
+serialise/FsPerfLogger.cpp
+shell/ShellExec.cpp
+scheduler/jobqueue.cpp
+scheduler/jobqueue_kernel.cpp
+scheduler/jobqueue_mem.cpp
+scheduler/cache.cpp
+memory/BlockAllocator.cpp
+memory/CallStack.cpp
+memory/MemoryTracker.cpp
+memory/VirtualMemory.cpp
+memory/MemoryBuffer.cpp
+misc/Base64.cpp
+misc/BtlStringUtil.cpp
+misc/Platform.cpp
+misc/Random.cpp
+misc/StringUtil.cpp
+misc/SharedString.cpp
+io/async.cpp
+io/AsyncFile.cpp
+io/IoDevice.cpp
+io/IoFile.cpp
+io/IoRequest.cpp
+io/IoService.cpp
+;
+
+
+PS3SRC = 
+scheduler/jobqueue_ps3.cpp
+Perf/ProfilerPS3.cpp
+Perf/ProfilerSPU.cpp
+artery/BkSocket.cpp
+;
+
+PCSRC =
+artery/wsSocket.cpp
+scheduler/jobqueue_xenon.cpp
+misc/Progress.cpp
+debug/log/executerfeedback.cpp
+;
+
+SRC += $($(PLATFORM)SRC) ;
+SRC = source/$(SRC) ;
+SRC = [ Batch $(SRC) : SystemPch.h ] ;
+SRC += source/debug/BuildStamp.cpp # don't batch this to fix problem with C# apps
+source/scheduler/jobqueue_task_queue_lf.cpp
+source/automation/Automation.cpp
+source/datalogging/DataLogging.cpp ;
+
+
+if $(PLATFORM) = PS3
+{
+	AdditionalObjects system : jobqueue_kernel_spu ;
+	LINKLIBS += $(SCE_PS3_ROOT)/target/ppu/lib/libfios.a ;
+	#required by fios
+	LINKLIBS += $(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub.a ;
+}
+Library system : $(SRC) : SystemPch.cpp : SystemPch.h ;
+
+
+if $(PLATFORM) = PS3
+{
+SPULIBS = atomic dma spurs sync sheap ;
+SPULIBS = $(SCE_PS3_ROOT)/target/spu/lib/lib$(SPULIBS).a ;
+
+# Compile the SPU scheduler kernel module and add it into the system library
+SRC =
+source/scheduler/entry_pm.cpp
+source/Perf/ProfilerSPU.cpp
+source/scheduler/jobqueue_mem.cpp
+source/scheduler/tl_ps3_spu_assert.cpp
+source/scheduler/jobqueue_kernel.cpp
+source/scheduler/jobqueue_task_queue_lf.cpp
+;
+SRC = <scheduler_kernel_spu>$(SRC) ;
+SrcOptim $(SRC) : "-Os -mbranch-hints -fno-exceptions -x c++ -fno-rtti -DGLOBAL_DEBUG_MESSAGE_LEVEL=0 -DSPURS_JOB -DJOBQUEUE_KERNEL -DTL_PLAT_PS3_SPU -DTL_DISABLE_CONFIG_TESTS -fno-zero-initialized-in-bss" ;
+SrcOptim <scheduler_kernel_spu>source/scheduler/jobqueue_task_queue_lf.cpp : "-Os -mbranch-hints -fno-exceptions -x c++ -fno-rtti -DGLOBAL_DEBUG_MESSAGE_LEVEL=0 -DSPURS_JOB -DJOBQUEUE_KERNEL -DTL_PLAT_PS3_SPU -DTL_DISABLE_CONFIG_TESTS -fno-zero-initialized-in-bss" ;
+
+LinkLibraries jobqueue_kernel_spu : $(SPULIBS) ;
+SPUApplication jobqueue_kernel_spu : $(SRC) : : : -T$(SUBDIR)/source/scheduler/entry_pm.ld  -nostartfiles -fstack-limit-symbol=__stack_limit -Wl,--defsym,__stack_limit=$(SPU_STACK_LIMIT) ;
+	
+# Compile the SPU scheduler job module library, which is linked against by scheduler job modules
+SRC =
+source/Perf/ProfilerSPU.cpp
+source/scheduler/jobqueue_mem.cpp
+source/scheduler/tl_ps3_spu_assert.cpp
+source/scheduler/cache.cpp
+;
+SRC = <scheduler_joblib_spu>$(SRC) ;
+if $(BUILD) = "Debug" || $(BUILD) = "Release"
+{
+	SrcOptim $(SRC) : -Os ;
+}
+else
+{
+	SrcOptim $(SRC) : "-O3 -ffast-math -mvector-simplify -mbranch-hints -fif-conversion --param inline-unit-growth=10000 --param large-function-growth=10000 --param max-inline-insns-single=10000 -fno-exceptions -x c++ -fno-rtti -DSPURS_JOB -DTL_PLAT_PS3_SPU -DTL_DISABLE_CONFIG_TESTS -fno-zero-initialized-in-bss" ;
+}
+
+SPULibrary scheduler_joblib_spu : $(SRC) ;
+
+}
+
+SRC =
+;
+
+###### Unit test
+PS3SRC =
+test/scheduler/testscheduler.cpp(SPU)
+;
+PCSRC =
+;
+
+TESTS =
+test/scheduler/testscheduler.cpp
+;
+
+CxxTest system : $(TESTS) : $($(PLATFORM)SRC) ;
+LinkLibraries system : core system ;
+
+SubInclude TOP Code Mercury Library Common Core ;

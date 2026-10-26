@@ -1,0 +1,49 @@
+<RDF Version="XPR2">
+
+<Texture 
+	Name	=	"TestTexture"
+	Source	=	"textures\tracks.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"TestTexture2"
+	Source	=	"textures\fresnel.tga"
+	Format	=	"D3DFMT_L8"
+	Width	=	"256"
+	Height	=	"1"
+	Levels	=	"1"
+/>
+
+<Texture
+	Name		=	"TextAlphaTexture"
+	Source		=	"textures\test1.tga"
+	AlphaSource	=	"textures\alpha.tga"
+	Format		=	"D3DFMT_DXT5"
+	Levels		=	"0"
+/>
+
+<ArrayTexture
+	Name	=	"TestArrayTexture"
+	Source	=	"textures\array1.tga"
+	Source	=	"textures\array2.tga"
+	Source	=	"textures\array3.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+	
+<Cubemap 
+	Name	= "TestReflection"
+	Source0 = "reflection\Reflection_c00.tga"
+	Source1 = "reflection\Reflection_c01.tga"
+	Source2 = "reflection\Reflection_c02.tga"
+	Source3 = "reflection\Reflection_c03.tga"
+	Source4 = "reflection\Reflection_c04.tga"
+	Source5 = "reflection\Reflection_c05.tga"
+	Format	= "D3DFMT_DXT1"
+	Size	= "128"
+	Levels	= "1" 
+/>
+
+</RDF>

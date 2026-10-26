@@ -1,0 +1,14 @@
+UIEnums =
+{
+	--
+}
+
+if UIHardware.WideScreen() then
+	SCREEN_WIDTH = (640 * (4 / 3)) + 0.5 -- 853.333
+	SCREEN_LEFT = ((640 - SCREEN_WIDTH) / 2) - 0.25
+	SCREEN_RIGHT = SCREEN_LEFT + SCREEN_WIDTH
+else
+	SCREEN_LEFT = 0
+	SCREEN_WIDTH = 640
+	SCREEN_RIGHT = SCREEN_LEFT + SCREEN_WIDTH
+end

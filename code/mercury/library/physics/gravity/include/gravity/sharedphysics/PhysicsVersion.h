@@ -1,0 +1,7 @@
+#ifndef PHYSICSVERSION_H
+#define PHYSICSVERSION_H
+
+const U32 GRAVITY_CURRENT_VERSION = 10;
+
+
+#endif

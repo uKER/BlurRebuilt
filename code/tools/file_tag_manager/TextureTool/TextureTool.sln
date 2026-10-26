@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextureTool", "TextureTool.csproj", "{43BB7F42-6EF4-4E51-916F-740C96ADEC5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeImageWrapper", "..\FreeImageWrapper\FreeImageWrapper.csproj", "{41E7B6C5-737B-4C04-84BB-1CB1EFC0078E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFolderBrowser", "..\CustomFolderBrowser\CustomFolderBrowser.csproj", "{EB3AA11F-216E-4125-AFBD-993100203325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderBrowser", "..\FolderBrowser\FolderBrowser.csproj", "{062B732D-43BF-4E97-97DD-731876DC0C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActorSystemPlusLibrary", "..\ActorSystemLibrary\ActorSystemPlusLibrary.csproj", "{24574FA5-AA8F-4CC8-A731-C3516C3F3CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexpHelper", "..\RegexpHelper\RegexpHelper.csproj", "{0118F73C-7370-49DE-829C-D7A899CC8F4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43BB7F42-6EF4-4E51-916F-740C96ADEC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BB7F42-6EF4-4E51-916F-740C96ADEC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BB7F42-6EF4-4E51-916F-740C96ADEC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BB7F42-6EF4-4E51-916F-740C96ADEC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E7B6C5-737B-4C04-84BB-1CB1EFC0078E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E7B6C5-737B-4C04-84BB-1CB1EFC0078E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E7B6C5-737B-4C04-84BB-1CB1EFC0078E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41E7B6C5-737B-4C04-84BB-1CB1EFC0078E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3AA11F-216E-4125-AFBD-993100203325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3AA11F-216E-4125-AFBD-993100203325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3AA11F-216E-4125-AFBD-993100203325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3AA11F-216E-4125-AFBD-993100203325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{062B732D-43BF-4E97-97DD-731876DC0C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062B732D-43BF-4E97-97DD-731876DC0C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062B732D-43BF-4E97-97DD-731876DC0C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062B732D-43BF-4E97-97DD-731876DC0C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24574FA5-AA8F-4CC8-A731-C3516C3F3CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24574FA5-AA8F-4CC8-A731-C3516C3F3CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24574FA5-AA8F-4CC8-A731-C3516C3F3CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24574FA5-AA8F-4CC8-A731-C3516C3F3CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0118F73C-7370-49DE-829C-D7A899CC8F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0118F73C-7370-49DE-829C-D7A899CC8F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0118F73C-7370-49DE-829C-D7A899CC8F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0118F73C-7370-49DE-829C-D7A899CC8F4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

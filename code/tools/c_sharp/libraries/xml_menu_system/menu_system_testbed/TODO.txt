@@ -1,0 +1,78 @@
+
+
+Menu Layout.
+
+Do all layout manually.														Done.
+Ensure evey control inherits from Container_Base.							Done.
+Process layout info. when regenerating layout.								Done.
+
+Refactor OnChange callback.													Done.
+
+Parameters. Introduce the attribute 'internal_name'.						Trivial.
+Make sure this internal name is unique.										.
+
+Removing 'Parameter' type:
+	Remove parameter classes from the project.								Done.
+	Create an 'int' type as a container.									Done.
+	Remove the groupBox from containerBase.									Done.
+	Sort out funny business with 'ValueChanged' callbacks.					Done.
+	Sort out efficient way to update the layout of the menu.				Done.
+
+Make parameters work as plugins.											Not doing.
+
+Tree view.																	Done.
+
+Parameters:
+	int																		Done.
+	slider int																Done.
+	float																	Done.
+	slider float															Done.
+	bool																	Done.
+	string																	Done.
+	enum																	Done.
+	flags group (bool and enum contents)									.
+	tab control																.
+	colour picker															.
+	
+	unknown parameter														Done.
+	'do something' parameter												.
+	-	Comms interface to external world.									.
+	
+Inheritance																	Done.
+Populate enums from external list?											.
+
+Statusbar																	Done.
+
+Make an example menu.														.
+	
+Write some useful accessor functions:										Started.
+	GetValue(path)															.
+	SetValue(path)?															.
+	GetType(path)															.
+	GetAttribute(path)														.
+	
+Write a function to strip the attributes of each menu string				.
+down to a predetermined set.
+Write this set into the menu definition.
+
+Speed up menu creation														.
+
+Write a wizard to create a container?										.
+	
+Write a container application.												1/2.
+
+Put a debug flag into the menu definition that will open a window
+and report any problems.
+
+
+
+===================================================
+
+Document plugin creation.
+
+Document project.
+
+Write user guide.
+
+Integrate with Maya.
+

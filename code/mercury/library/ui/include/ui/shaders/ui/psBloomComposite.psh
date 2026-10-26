@@ -1,0 +1,24 @@
+#include "..\psCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+
+struct PS_INPUT
+{
+	float2 tex			: TEXCOORD0;			/* texture co-ordinates */
+};
+
+struct PS_OUTPUT
+{
+	float4 col			: COLOR;
+};
+
+PS_OUTPUT main (PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+	float4 ui				= tex2D(g_Texture0, input.tex);
+	float4 bl				= tex2D(g_Texture1, input.tex);
+		   output.col		= ui * ui.w + bl;
+		   output.col.w		= ui.w;	
+	return output;
+}

@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="NetTest"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+<Platform Name="Xbox 360"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Debug\" IntermediateDirectory="obj\Win32\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32\Debug\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Release\" IntermediateDirectory="obj\Win32\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32\Release\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Speed\" IntermediateDirectory="obj\Win32\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32\Speed\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Profile\" IntermediateDirectory="obj\Win32\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32\Profile\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Master\" IntermediateDirectory="obj\Win32\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32\Master\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Debug\" IntermediateDirectory="obj\Xbox_360\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Xbox_360\Debug\NetTest.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\Mercury" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Release_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Release\" IntermediateDirectory="obj\Xbox_360\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Xbox_360\Release\NetTest.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\Mercury" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Speed_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Speed\" IntermediateDirectory="obj\Xbox_360\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Xbox_360\Speed\NetTest.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\Mercury" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Profile_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Profile\" IntermediateDirectory="obj\Xbox_360\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Xbox_360\Profile\NetTest.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\Mercury" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Master_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Master\" IntermediateDirectory="obj\Xbox_360\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Xbox_360\Master\NetTest.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\Mercury" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Debug_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Debug\" IntermediateDirectory="obj\Ps3\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Ps3\Debug\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Release\" IntermediateDirectory="obj\Ps3\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Ps3\Release\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Speed\" IntermediateDirectory="obj\Ps3\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Ps3\Speed\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Profile\" IntermediateDirectory="obj\Ps3\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Ps3\Profile\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Master\" IntermediateDirectory="obj\Ps3\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Ps3\Master\NetTest.exe"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__"
+				IncludeSearchPath="..\..\..\..\code\genesis\library\include;..\..\..\..\code\mercury\library\common\btl\include;..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\misc_shared\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\vendor\demonware\1.9;..\..\..\..\code\vendor\demonware\1.9\external\libtomcrypt\src\headers;..\..\..\..\code\vendor\lua\current\src;..\..\..\..\code\vendor\zlib\current_mercury;..\..\library\network\include;nettestxenon;nettestxenon\include;source"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="NetTest" Filter="\">
+<File RelativePath="StdAfx.cpp"></File>
+<File RelativePath="StdAfx.h"></File>
+<File RelativePath="jamfile.jam"></File>
+<Filter Name="NetTestPC" Filter="\">
+<File RelativePath="NetTestPC\Main.cpp"></File>
+<File RelativePath="NetTestPC\Main.h"></File>
+</Filter>
+<Filter Name="NetTestPS3" Filter="\">
+<File RelativePath="NetTestPS3\Main.cpp"></File>
+<File RelativePath="NetTestPS3\Main.h"></File>
+</Filter>
+<Filter Name="NetTestXenon" Filter="\">
+<File RelativePath="NetTestXenon\Main.cpp"></File>
+<File RelativePath="NetTestXenon\Main.h"></File>
+</Filter>
+<Filter Name="Source" Filter="\">
+<File RelativePath="source\netSection.cpp"></File>
+<File RelativePath="source\netSection.h"></File>
+<Filter Name="netApp" Filter="\">
+<File RelativePath="source\netApp\netApp.cpp"></File>
+<File RelativePath="source\netApp\netApp.h"></File>
+<Filter Name="netAppState" Filter="\">
+<File RelativePath="source\netApp\netAppState\netAppState.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_BeginOnline.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_BeginSystemLink.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_CreateGame.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_CreateParty.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_EndGame.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinGame.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinInvite.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinParty.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinPartyHost.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_LeaveLinkMode.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_MatchmakeGame.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_QuitGame.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_StartGame.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_Startup.cpp"></File>
+<File RelativePath="source\netApp\netAppState\netAppState.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_BeginOnline.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_BeginSystemLink.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_CreateGame.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_CreateParty.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_EndGame.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinGame.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinInvite.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinParty.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_JoinPartyHost.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_LeaveLinkMode.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_MatchmakeGame.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_QuitGame.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_StartGame.h"></File>
+<File RelativePath="source\netApp\netAppState\netAppState_Startup.h"></File>
+</Filter>
+<Filter Name="netAppTasks" Filter="\">
+<File RelativePath="source\netApp\netAppTasks\netAppTask.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_BeginLinkMode.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_BeginSystemLinkGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_CreateGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_CreateParty.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_DeactivateParty.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_EndGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinInvite.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinParty.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinPartyHost.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_LeaveLinkMode.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_MatchmakeGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_QuitGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_ReactivateParty.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_ReserveGameSlots.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_SetupPlayers.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_StartGame.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_Startup.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_VerifyGameSlots.cpp"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_BeginLinkMode.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_BeginSystemLinkGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_CreateGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_CreateParty.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_DeactivateParty.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_EndGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinInvite.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinParty.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_JoinPartyHost.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_LeaveLinkMode.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_MatchmakeGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_QuitGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_ReactivateParty.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_ReserveGameSlots.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_SetupPlayers.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_StartGame.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_Startup.h"></File>
+<File RelativePath="source\netApp\netAppTasks\netAppTask_VerifyGameSlots.h"></File>
+</Filter>
+</Filter>
+<Filter Name="netConnect" Filter="\">
+<File RelativePath="source\netConnect\netConnection.cpp"></File>
+<File RelativePath="source\netConnect\netConnectionGraph.cpp"></File>
+<File RelativePath="source\netConnect\netMessage.cpp"></File>
+<File RelativePath="source\netConnect\netNetMessage.cpp"></File>
+<File RelativePath="source\netConnect\netConnection.h"></File>
+<File RelativePath="source\netConnect\netConnectionGraph.h"></File>
+<File RelativePath="source\netConnect\netEventMigration.h"></File>
+<File RelativePath="source\netConnect\netMessage.h"></File>
+<File RelativePath="source\netConnect\netMigrationInfo.h"></File>
+<File RelativePath="source\netConnect\netNetMessage.h"></File>
+</Filter>
+<Filter Name="netCore" Filter="\">
+<File RelativePath="source\netCore\netEnums.cpp"></File>
+<File RelativePath="source\netCore\netPlatform_360.cpp"></File>
+<File RelativePath="source\netCore\netTime.cpp"></File>
+<File RelativePath="source\netCore\netEnums.h"></File>
+<File RelativePath="source\netCore\netPlatform.h"></File>
+<File RelativePath="source\netCore\netTime.h"></File>
+<Filter Name="netEvents" Filter="\">
+<File RelativePath="source\netCore\netEvents\netEvent.cpp"></File>
+<File RelativePath="source\netCore\netEvents\netEventStack.cpp"></File>
+<File RelativePath="source\netCore\netEvents\netEvent.h"></File>
+<File RelativePath="source\netCore\netEvents\netEventStack.h"></File>
+</Filter>
+<Filter Name="netSocket" Filter="\">
+<File RelativePath="source\netCore\netSocket\netSocket.cpp"></File>
+<File RelativePath="source\netCore\netSocket\netSocket.h"></File>
+</Filter>
+<Filter Name="netStats" Filter="\">
+<File RelativePath="source\netCore\netStats\netLog.cpp"></File>
+<File RelativePath="source\netCore\netStats\netStats.cpp"></File>
+<File RelativePath="source\netCore\netStats\netLog.h"></File>
+<File RelativePath="source\netCore\netStats\netStats.h"></File>
+</Filter>
+<Filter Name="netTask" Filter="\">
+<File RelativePath="source\netCore\netTask\netTask.cpp"></File>
+<File RelativePath="source\netCore\netTask\netTaskStack.cpp"></File>
+<File RelativePath="source\netCore\netTask\netTask.h"></File>
+<File RelativePath="source\netCore\netTask\netTaskStack.h"></File>
+</Filter>
+</Filter>
+<Filter Name="netEntities" Filter="\">
+<File RelativePath="source\netEntities\netConnectionData.cpp"></File>
+<File RelativePath="source\netEntities\netGameData.cpp"></File>
+<File RelativePath="source\netEntities\netGameDataEntity.cpp"></File>
+<File RelativePath="source\netEntities\netGamePeerData.cpp"></File>
+<File RelativePath="source\netEntities\netGamePlayerData.cpp"></File>
+<File RelativePath="source\netEntities\netGraphData.cpp"></File>
+<File RelativePath="source\netEntities\netGraphJoinData.cpp"></File>
+<File RelativePath="source\netEntities\netGroupData.cpp"></File>
+<File RelativePath="source\netEntities\netHostData.cpp"></File>
+<File RelativePath="source\netEntities\netMigrationData.cpp"></File>
+<File RelativePath="source\netEntities\netPadData.cpp"></File>
+<File RelativePath="source\netEntities\netPartyData.cpp"></File>
+<File RelativePath="source\netEntities\netPartyDataEntity.cpp"></File>
+<File RelativePath="source\netEntities\netPartyPeerData.cpp"></File>
+<File RelativePath="source\netEntities\netPartyPlayerData.cpp"></File>
+<File RelativePath="source\netEntities\netPeerData.cpp"></File>
+<File RelativePath="source\netEntities\netPlayerData.cpp"></File>
+<File RelativePath="source\netEntities\netWorld.cpp"></File>
+<File RelativePath="source\netEntities\netConnectionData.h"></File>
+<File RelativePath="source\netEntities\netGameData.h"></File>
+<File RelativePath="source\netEntities\netGameDataEntity.h"></File>
+<File RelativePath="source\netEntities\netGamePeerData.h"></File>
+<File RelativePath="source\netEntities\netGamePlayerData.h"></File>
+<File RelativePath="source\netEntities\netGraphData.h"></File>
+<File RelativePath="source\netEntities\netGraphJoinData.h"></File>
+<File RelativePath="source\netEntities\netGroupData.h"></File>
+<File RelativePath="source\netEntities\netHostData.h"></File>
+<File RelativePath="source\netEntities\netMigrationData.h"></File>
+<File RelativePath="source\netEntities\netPadData.h"></File>
+<File RelativePath="source\netEntities\netPartyData.h"></File>
+<File RelativePath="source\netEntities\netPartyDataEntity.h"></File>
+<File RelativePath="source\netEntities\netPartyPeerData.h"></File>
+<File RelativePath="source\netEntities\netPartyPlayerData.h"></File>
+<File RelativePath="source\netEntities\netPeerData.h"></File>
+<File RelativePath="source\netEntities\netPlayerData.h"></File>
+<File RelativePath="source\netEntities\netWorld.h"></File>
+</Filter>
+<Filter Name="netGame" Filter="\">
+<File RelativePath="source\netGame\Factory.cpp"></File>
+<File RelativePath="source\netGame\GameWorld.cpp"></File>
+<File RelativePath="source\netGame\Factory.h"></File>
+<File RelativePath="source\netGame\GameEnums.h"></File>
+<File RelativePath="source\netGame\GameWorld.h"></File>
+<Filter Name="gameActors" Filter="\">
+<File RelativePath="source\netGame\gameActors\GameActor.cpp"></File>
+<File RelativePath="source\netGame\gameActors\GameActor.h"></File>
+</Filter>
+</Filter>
+<Filter Name="netGroup" Filter="\">
+<File RelativePath="source\netGroup\netActors.cpp"></File>
+<File RelativePath="source\netGroup\netData.cpp"></File>
+<File RelativePath="source\netGroup\netGroup.cpp"></File>
+<File RelativePath="source\netGroup\netGroup_Game.cpp"></File>
+<File RelativePath="source\netGroup\netGroup_Party.cpp"></File>
+<File RelativePath="source\netGroup\netActors.h"></File>
+<File RelativePath="source\netGroup\netData.h"></File>
+<File RelativePath="source\netGroup\netGroup.h"></File>
+<File RelativePath="source\netGroup\netGroup_Game.h"></File>
+<File RelativePath="source\netGroup\netGroup_Party.h"></File>
+</Filter>
+<Filter Name="netMediator" Filter="\">
+<File RelativePath="source\netMediator\netAppMediator.cpp"></File>
+<File RelativePath="source\netMediator\netGameMediator.cpp"></File>
+<File RelativePath="source\netMediator\netPartyMediator.cpp"></File>
+<File RelativePath="source\netMediator\netAppMediator.h"></File>
+<File RelativePath="source\netMediator\netGameMediator.h"></File>
+<File RelativePath="source\netMediator\netPartyMediator.h"></File>
+</Filter>
+<Filter Name="netSerialise" Filter="\">
+<File RelativePath="source\netSerialise\netSerialise.cpp"></File>
+<File RelativePath="source\netSerialise\netSerialise.h"></File>
+</Filter>
+<Filter Name="netServices" Filter="\">
+<File RelativePath="source\netServices\netServices.cpp"></File>
+<File RelativePath="source\netServices\netServices.h"></File>
+<Filter Name="netFriends" Filter="\">
+<File RelativePath="source\netServices\netFriends\netFriends.cpp"></File>
+<File RelativePath="source\netServices\netFriends\netFriends.h"></File>
+</Filter>
+<Filter Name="netLAN" Filter="\">
+<File RelativePath="source\netServices\netLAN\netDiscovery.cpp"></File>
+<File RelativePath="source\netServices\netLAN\netDiscovery.h"></File>
+</Filter>
+<Filter Name="netProfiles" Filter="\">
+<File RelativePath="source\netServices\netProfiles\netProfileManager.cpp"></File>
+<File RelativePath="source\netServices\netProfiles\netProfileManager.h"></File>
+</Filter>
+<Filter Name="netSession" Filter="\">
+<File RelativePath="source\netServices\netSession\netSession.cpp"></File>
+<File RelativePath="source\netServices\netSession\netSessionEnumerator.cpp"></File>
+<File RelativePath="source\netServices\netSession\netSessionList.cpp"></File>
+<File RelativePath="source\netServices\netSession\netSessionParams.cpp"></File>
+<File RelativePath="source\netServices\netSession\netSession.h"></File>
+<File RelativePath="source\netServices\netSession\netSessionEnumerator.h"></File>
+<File RelativePath="source\netServices\netSession\netSessionList.h"></File>
+<File RelativePath="source\netServices\netSession\netSessionParams.h"></File>
+</Filter>
+</Filter>
+<Filter Name="netState" Filter="\">
+<File RelativePath="source\netState\AckSystem.cpp"></File>
+<File RelativePath="source\netState\GameState.cpp"></File>
+<File RelativePath="source\netState\StateManager.cpp"></File>
+<File RelativePath="source\netState\AckSystem.h"></File>
+<File RelativePath="source\netState\GameState.h"></File>
+<File RelativePath="source\netState\StateEnums.h"></File>
+<File RelativePath="source\netState\StateManager.h"></File>
+<Filter Name="Compression" Filter="\">
+<File RelativePath="source\netState\Compression\EntityCompressor.cpp"></File>
+<File RelativePath="source\netState\Compression\EntityCompressor.h"></File>
+</Filter>
+<Filter Name="NetEntity" Filter="\">
+<File RelativePath="source\netState\NetEntity\BufferedEntity.cpp"></File>
+<File RelativePath="source\netState\NetEntity\EntityHeader.cpp"></File>
+<File RelativePath="source\netState\NetEntity\EntityState.cpp"></File>
+<File RelativePath="source\netState\NetEntity\EntityStateBuffer.cpp"></File>
+<File RelativePath="source\netState\NetEntity\NetEntity.cpp"></File>
+<File RelativePath="source\netState\NetEntity\BufferedEntity.h"></File>
+<File RelativePath="source\netState\NetEntity\EntityHeader.h"></File>
+<File RelativePath="source\netState\NetEntity\EntityState.h"></File>
+<File RelativePath="source\netState\NetEntity\EntityStateBuffer.h"></File>
+<File RelativePath="source\netState\NetEntity\NetEntity.h"></File>
+</Filter>
+<Filter Name="NetState" Filter="\">
+<File RelativePath="source\netState\NetState\AuthNetState.cpp"></File>
+<File RelativePath="source\netState\NetState\NetState.cpp"></File>
+<File RelativePath="source\netState\NetState\RemNetState.cpp"></File>
+<File RelativePath="source\netState\NetState\AuthNetState.h"></File>
+<File RelativePath="source\netState\NetState\NetState.h"></File>
+<File RelativePath="source\netState\NetState\NetStates.h"></File>
+<File RelativePath="source\netState\NetState\RemNetState.h"></File>
+</Filter>
+<Filter Name="Utils" Filter="\">
+<File RelativePath="source\netState\Utils\GameStateDataAnalyser.cpp"></File>
+<File RelativePath="source\netState\Utils\GameStateDataAnalyser.h"></File>
+</Filter>
+</Filter>
+<Filter Name="netStream" Filter="\">
+<File RelativePath="source\netStream\netBuffer.cpp"></File>
+<File RelativePath="source\netStream\netStream.cpp"></File>
+<File RelativePath="source\netStream\netVector.cpp"></File>
+<File RelativePath="source\netStream\netArray.h"></File>
+<File RelativePath="source\netStream\netBuffer.h"></File>
+<File RelativePath="source\netStream\netStream.h"></File>
+<File RelativePath="source\netStream\netVector.h"></File>
+<Filter Name="netPacket" Filter="\">
+<File RelativePath="source\netStream\netPacket\netPacket.cpp"></File>
+<File RelativePath="source\netStream\netPacket\netPacketPool.cpp"></File>
+<File RelativePath="source\netStream\netPacket\netSegment.cpp"></File>
+<File RelativePath="source\netStream\netPacket\netSegmentedStream.cpp"></File>
+<File RelativePath="source\netStream\netPacket\netSegmentPool.cpp"></File>
+<File RelativePath="source\netStream\netPacket\netPacket.h"></File>
+<File RelativePath="source\netStream\netPacket\netPacketPool.h"></File>
+<File RelativePath="source\netStream\netPacket\netSegment.h"></File>
+<File RelativePath="source\netStream\netPacket\netSegmentedStream.h"></File>
+<File RelativePath="source\netStream\netPacket\netSegmentPool.h"></File>
+</Filter>
+<Filter Name="netVars" Filter="\">
+<File RelativePath="source\netStream\netVars\netStreamVars.cpp"></File>
+<File RelativePath="source\netStream\netVars\netStreamVars.h"></File>
+<File RelativePath="source\netStream\netVars\netStreamVars.inl"></File>
+</Filter>
+</Filter>
+<Filter Name="Ui" Filter="\">
+<File RelativePath="source\ui\FileSystem.cpp"></File>
+<File RelativePath="source\ui\OverloadNew.cpp"></File>
+<File RelativePath="source\ui\PolyTest.cpp"></File>
+<File RelativePath="source\ui\SectionUI.cpp"></File>
+<File RelativePath="source\ui\UiInputs.cpp"></File>
+<File RelativePath="source\ui\UiManager.cpp"></File>
+<File RelativePath="source\ui\UiMessageImp.cpp"></File>
+<File RelativePath="source\ui\UiMessageStack.cpp"></File>
+<File RelativePath="source\ui\FileSystem.h"></File>
+<File RelativePath="source\ui\OverloadNew.h"></File>
+<File RelativePath="source\ui\PolyTest.h"></File>
+<File RelativePath="source\ui\SectionUI.h"></File>
+<File RelativePath="source\ui\UiInputs.h"></File>
+<File RelativePath="source\ui\UiManager.h"></File>
+<File RelativePath="source\ui\UiMessage.h"></File>
+<File RelativePath="source\ui\UiMessageImp.h"></File>
+<File RelativePath="source\ui\UiMessageStack.h"></File>
+<Filter Name="Gadgets" Filter="\">
+<File RelativePath="source\ui\gadgets\UIPanel.cpp"></File>
+<File RelativePath="source\ui\gadgets\UIPanel.h"></File>
+</Filter>
+<Filter Name="Game" Filter="\">
+<File RelativePath="source\ui\Game\GameDataFinder.cpp"></File>
+<File RelativePath="source\ui\Game\GameInterface.cpp"></File>
+<File RelativePath="source\ui\Game\GameVariableStore.cpp"></File>
+<File RelativePath="source\ui\Game\GameDataFinder.h"></File>
+<File RelativePath="source\ui\Game\GameInterface.h"></File>
+<File RelativePath="source\ui\Game\GameVariableStore.h"></File>
+<Filter Name="Lua_Scripts" Filter="\">
+<File RelativePath="source\ui\Game\Lua_Scripts\UIEnums.lua"></File>
+<File RelativePath="source\ui\Game\Lua_Scripts\UIFontSequences.lua"></File>
+<File RelativePath="source\ui\Game\Lua_Scripts\UIGlobals.lua"></File>
+<File RelativePath="source\ui\Game\Lua_Scripts\UISetup.lua"></File>
+<Filter Name="Popups" Filter="\">
+<File RelativePath="source\ui\Game\Lua_Scripts\Popups\GUIBank.lua"></File>
+</Filter>
+<Filter Name="Screens" Filter="\">
+<File RelativePath="source\ui\Game\Lua_Scripts\Screens\GUIBank.lua"></File>
+<File RelativePath="source\ui\Game\Lua_Scripts\Screens\Main.lua"></File>
+<File RelativePath="source\ui\Game\Lua_Scripts\Screens\Multiplayer.lua"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Tables" Filter="\">
+<File RelativePath="source\ui\tables\UiLuaTableNetwork.cpp"></File>
+<File RelativePath="source\ui\tables\UiLuaTableNetwork.h"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="XLast" Filter="\">
+<File RelativePath="XLast\Bizarre_Sample.spa.h"></File>
+</Filter>
+</Filter>
+<Filter Name="Network" Filter="\">
+<File RelativePath="..\..\Library\Network\StdAfx.cpp"></File>
+<File RelativePath="..\..\Library\Network\StdAfx.h"></File>
+<File RelativePath="..\..\Library\Network\jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\Library\Network\include\network\BandwidthEvaluator.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ByteStream.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\CommunicatorManager.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\CommunicatorPacket.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\CommunicatorPacketCache.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\Core.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\DemonwareSession.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\DemonwareStats.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\DemonwareTask.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\Friends.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\Network.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\Nonce.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\PerUserServerStorageReader.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\PerUserServerStorageWriter.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ScoreboardAttachmentReader.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ScoreboardAttachmentWriter.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ScoreboardReaderByRank.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ScoreboardReaderByUsers.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ScoreboardStructures.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\ScoreboardWriter.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\Securekey.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\Session.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\SessionCommandNotification.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\SessionDeletion.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\SessionEnumerator.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\SessionParameter.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\SystemHeaders.h"></File>
+<File RelativePath="..\..\Library\Network\include\network\UnreliableSocket.h"></File>
+<Filter Name="Pc" Filter="\">
+<File RelativePath="..\..\Library\Network\source\network\pc\AsyncTask_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\BandwidthEvaluator_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\CommunicatorManager_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\Core_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\Friends_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\PerUserServerStorageReader_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\PerUserServerStorageWriter_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\ScoreboardAttachmentReader_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\ScoreboardAttachmentWriter_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\ScoreboardReaderByRank_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\ScoreboardReaderByUsers_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\ScoreboardWriter_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\SessionDeletion_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\SessionEnumerator_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\Session_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\UnreliableSocket_pc.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\AsyncTask_pc.h"></File>
+<File RelativePath="..\..\Library\Network\source\network\pc\SessionCommand_pc.h"></File>
+</Filter>
+<Filter Name="Ps3" Filter="\">
+<File RelativePath="..\..\Library\Network\source\network\ps3\BandwidthEvaluator_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\CommunicatorManager_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\Core_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\Friends_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\PerUserServerStorageReader_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\PerUserServerStorageWriter_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\ScoreboardAttachmentReader_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\ScoreboardAttachmentWriter_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\ScoreboardReaderByRank_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\ScoreboardReaderByUsers_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\ScoreboardWriter_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\SessionDeletion_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\SessionEnumerator_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\Session_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\ps3\UnreliableSocket_ps3.cpp"></File>
+</Filter>
+<Filter Name="Shared" Filter="\">
+<File RelativePath="..\..\Library\Network\source\network\shared\CommunicatorPacketCache.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\shared\DemonwareTask.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\shared\Network.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\shared\RemoteTalker.h"></File>
+<File RelativePath="..\..\Library\Network\source\network\shared\SessionCommand_demonware.h"></File>
+</Filter>
+<Filter Name="SystemProfile" Filter="\">
+<File RelativePath="..\..\Library\Network\include\SystemProfile\GameInvite.h"></File>
+<File RelativePath="..\..\Library\Network\include\SystemProfile\SystemProfile.h"></File>
+<File RelativePath="..\..\Library\Network\include\SystemProfile\SystemProfileManager.h"></File>
+<Filter Name="Pc" Filter="\">
+<File RelativePath="..\..\Library\Network\source\SystemProfile\pc\SystemProfilemanager_pc.cpp"></File>
+</Filter>
+<Filter Name="Ps3" Filter="\">
+<File RelativePath="..\..\Library\Network\source\SystemProfile\ps3\SystemProfilemanager_ps3.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\SystemProfile\ps3\NpFriendStorage.h"></File>
+</Filter>
+<Filter Name="Xenon" Filter="\">
+<File RelativePath="..\..\Library\Network\source\SystemProfile\xenon\SystemProfilemanager_xenon.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Xenon" Filter="\">
+<File RelativePath="..\..\Library\Network\source\network\xenon\AsyncTask_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\BandwidthEvaluator_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\CommunicatorManager_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\Core_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\Friends_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\PerUserServerStorageReader_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\PerUserServerStorageWriter_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\ScoreboardAttachmentReader_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\ScoreboardAttachmentWriter_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\ScoreboardReaderByRank_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\ScoreboardReaderByUsers_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\ScoreboardWriter_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\SessionDeletion_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\SessionEnumerator_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\Session_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\UnreliableSocket_xenon.cpp"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\AsyncTask_xenon.h"></File>
+<File RelativePath="..\..\Library\Network\source\network\xenon\SessionCommand_xenon.h"></File>
+</Filter>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

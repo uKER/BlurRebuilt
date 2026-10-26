@@ -1,0 +1,390 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	BuildSystem="vsbuild">
+	<Config
+		Name="Debug"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/debug/libbdcore.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -g -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<Config
+		Name="Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/release/libbdcore.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<CustomFolders>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+		</Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters="">
+		</Folder>
+	</CustomFolders>
+	<Files AutoFolders="PackageView">
+<F N="bdCore.cpp"/>
+<F N="bdCore.h"/>
+<Folder Name = "bdContainers">
+<F N="bdContainers/bdArray.h"/>
+<F N="bdContainers/bdArray.inl"/>
+<F N="bdContainers/bdBitBuffer.cpp"/>
+<F N="bdContainers/bdBitBuffer.h"/>
+<F N="bdContainers/bdBitBuffer.inl"/>
+<F N="bdContainers/bdBitBufferTypes.h"/>
+<F N="bdContainers/bdByteBuffer.cpp"/>
+<F N="bdContainers/bdByteBuffer.h"/>
+<F N="bdContainers/bdByteBuffer.inl"/>
+<F N="bdContainers/bdCircularBuffer.h"/>
+<F N="bdContainers/bdCircularBuffer.inl"/>
+<F N="bdContainers/bdFastArray.h"/>
+<F N="bdContainers/bdFastArray.inl"/>
+<F N="bdContainers/bdHashMap.cpp"/>
+<F N="bdContainers/bdHashMap.h"/>
+<F N="bdContainers/bdHashMap.inl"/>
+<F N="bdContainers/bdLinkedList.h"/>
+<F N="bdContainers/bdLinkedList.inl"/>
+<F N="bdContainers/bdNonce.h"/>
+<F N="bdContainers/bdNonce.inl"/>
+<F N="bdContainers/bdPriorityHeap.h"/>
+<F N="bdContainers/bdPriorityHeap.inl"/>
+<F N="bdContainers/bdPriorityQueue.h"/>
+<F N="bdContainers/bdPriorityQueue.inl"/>
+<F N="bdContainers/bdQueue.h"/>
+<F N="bdContainers/bdQueue.inl"/>
+<F N="bdContainers/bdRedBlackTree.h"/>
+<F N="bdContainers/bdRedBlackTree.inl"/>
+<F N="bdContainers/bdSequenceNumber.cpp"/>
+<F N="bdContainers/bdSequenceNumber.h"/>
+<F N="bdContainers/bdSequenceNumberStore.cpp"/>
+<F N="bdContainers/bdSequenceNumberStore.h"/>
+<F N="bdContainers/bdSet.h"/>
+<F N="bdContainers/bdSet.inl"/>
+<F N="bdContainers/bdSingleton.cpp"/>
+<F N="bdContainers/bdSingleton.h"/>
+<F N="bdContainers/bdSingleton.inl"/>
+</Folder>
+<Folder Name = "bdCrypto">
+<F N="bdCrypto/bdCryptoConfig.h"/>
+<F N="bdCrypto/bdCryptoUtils.cpp"/>
+<F N="bdCrypto/bdCryptoUtils.h"/>
+<F N="bdCrypto/bdCypher.cpp"/>
+<F N="bdCrypto/bdCypher.h"/>
+<F N="bdCrypto/bdCypher3Des.cpp"/>
+<F N="bdCrypto/bdCypher3Des.h"/>
+<F N="bdCrypto/bdECCKey.cpp"/>
+<F N="bdCrypto/bdECCKey.h"/>
+<F N="bdCrypto/bdHash.cpp"/>
+<F N="bdCrypto/bdHash.h"/>
+<F N="bdCrypto/bdHashTiger192.cpp"/>
+<F N="bdCrypto/bdHashTiger192.h"/>
+<F N="bdCrypto/bdHMac.cpp"/>
+<F N="bdCrypto/bdHMac.h"/>
+<F N="bdCrypto/bdHMacSHA1.cpp"/>
+<F N="bdCrypto/bdHMacSHA1.h"/>
+<F N="bdCrypto/bdRSAKey.cpp"/>
+<F N="bdCrypto/bdRSAKey.h"/>
+</Folder>
+<Folder Name = "bdMemory">
+<F N="bdMemory/bdAlignedOffsetMemory.cpp"/>
+<F N="bdMemory/bdAlignedOffsetMemory.h"/>
+<F N="bdMemory/bdDefaultMemory.h"/>
+<F N="bdMemory/bdMallocMemory-std.h"/>
+<F N="bdMemory/bdMallocMemory.cpp"/>
+<F N="bdMemory/bdMallocMemory.h"/>
+<F N="bdMemory/bdMemory-std.h"/>
+<F N="bdMemory/bdMemory.cpp"/>
+<F N="bdMemory/bdMemory.h"/>
+<F N="bdMemory/bdMemory.inl"/>
+</Folder>
+<Folder Name = "bdReference">
+<F N="bdReference/bdReferencable.cpp"/>
+<F N="bdReference/bdReferencable.h"/>
+<F N="bdReference/bdReferencable.inl"/>
+<F N="bdReference/bdReference.h"/>
+<F N="bdReference/bdReference.inl"/>
+</Folder>
+<Folder Name = "bdSocket">
+<F N="bdSocket/bdAddr.cpp"/>
+<F N="bdSocket/bdAddr.h"/>
+<F N="bdSocket/bdCommonAddr.cpp"/>
+<F N="bdSocket/bdCommonAddr.h"/>
+<F N="bdSocket/bdCommonAddrInfo.cpp"/>
+<F N="bdSocket/bdCommonAddrInfo.h"/>
+<F N="bdSocket/bdDefaultSocket.h"/>
+<F N="bdSocket/bdEndpoint.cpp"/>
+<F N="bdSocket/bdEndpoint.h"/>
+<F N="bdSocket/bdInetAddr.cpp"/>
+<F N="bdSocket/bdInetAddr.h"/>
+<F N="bdSocket/bdMACAddr.cpp"/>
+<F N="bdSocket/bdMACAddr.h"/>
+<F N="bdSocket/bdPort.h"/>
+<F N="bdSocket/bdSecurityID.cpp"/>
+<F N="bdSocket/bdSecurityID.h"/>
+<F N="bdSocket/bdSecurityInfo.cpp"/>
+<F N="bdSocket/bdSecurityInfo.h"/>
+<F N="bdSocket/bdSecurityKey.cpp"/>
+<F N="bdSocket/bdSecurityKey.h"/>
+<F N="bdSocket/bdSocket.cpp"/>
+<F N="bdSocket/bdSocket.h"/>
+<F N="bdSocket/bdSocketConfig.h"/>
+<F N="bdSocket/bdStreamSocket.cpp"/>
+<F N="bdSocket/bdStreamSocket.h"/>
+<F N="bdSocket/bdTestSocket.cpp"/>
+<F N="bdSocket/bdTestSocket.h"/>
+</Folder>
+<Folder Name = "bdString">
+<F N="bdString/bdString.cpp"/>
+<F N="bdString/bdString.h"/>
+</Folder>
+<Folder Name = "bdThread">
+<F N="bdThread/bdMutex.cpp"/>
+<F N="bdThread/bdMutex.h"/>
+<F N="bdThread/bdRunnable.cpp"/>
+<F N="bdThread/bdRunnable.h"/>
+<F N="bdThread/bdSemaphore.cpp"/>
+<F N="bdThread/bdSemaphore.h"/>
+<F N="bdThread/bdSignal.cpp"/>
+<F N="bdThread/bdSignal.h"/>
+<F N="bdThread/bdThread.cpp"/>
+<F N="bdThread/bdThread.h"/>
+</Folder>
+<Folder Name = "bdTiming">
+<F N="bdTiming/bdStopwatch.cpp"/>
+<F N="bdTiming/bdStopwatch.h"/>
+</Folder>
+<Folder Name = "bdUtilities">
+<F N="bdUtilities/bdBase64.cpp"/>
+<F N="bdUtilities/bdBase64.h"/>
+<F N="bdUtilities/bdBitOperations.cpp"/>
+<F N="bdUtilities/bdBitOperations.h"/>
+<F N="bdUtilities/bdBytePacker.cpp"/>
+<F N="bdUtilities/bdBytePacker.h"/>
+<F N="bdUtilities/bdComparisonFunctors.h"/>
+<F N="bdUtilities/bdFactory.h"/>
+<F N="bdUtilities/bdFactory.inl"/>
+<F N="bdUtilities/bdRandom.cpp"/>
+<F N="bdUtilities/bdRandom.h"/>
+<F N="bdUtilities/bdSort.h"/>
+<F N="bdUtilities/bdSort.inl"/>
+<F N="bdUtilities/bdStringEscape.cpp"/>
+<F N="bdUtilities/bdStringEscape.h"/>
+<F N="bdUtilities/bdTrulyRandom.cpp"/>
+<F N="bdUtilities/bdTrulyRandom.h"/>
+</Folder>
+	</Files>
+</Project>

@@ -1,0 +1,49 @@
+#include "..\psCommon.h"
+#include "psUiLightCommon.h"
+
+sampler2D	g_Texture0			: register(s0); // texture
+sampler2D	g_Texture1			: register(s1); // texture
+float		g_Settings			: register(CCP_SETTINGS);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float4 MyWorldPosition		: TEXCOORD3;
+	float2 TexCoord0			: TEXCOORD0;
+#if defined( SAMPLERS_2 )
+	float2 TexCoord1			: TEXCOORD1;
+#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 ); // RGBA planes
+	
+	float3 rgb = IN.Colour.rgb * tex0.rgb;
+	float3 p1 = pow( rgb, 2.2 / g_Settings.x );
+	
+	OUT.Colour.rgb = p1;
+	OUT.Colour.a = IN.Colour.a * tex0.a;
+
+#if defined( SAMPLERS_2 )
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 ); // RGBA planes
+	
+#if defined( SAMPLERS_2_IAA )
+	float a = (tex1.r + tex1.g + tex1.b) / 3;
+	OUT.Colour.a *= a;
+#else
+	OUT.Colour *= tex2D( g_Texture1, IN.TexCoord1 );
+#endif // SAMPLERS_2_IAA
+#endif // SAMPLERS_2
+
+	OUT.Colour = CombineFog( OUT.Colour, LightColour( IN.MyWorldPosition ) );
+	
+	return OUT;
+}

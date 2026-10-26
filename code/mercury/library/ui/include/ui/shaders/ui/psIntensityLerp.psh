@@ -1,0 +1,79 @@
+#include "..\psCommon.h"
+
+float4	g_ColFrom				: register(CCP_COLFROM); // Colour lerp
+float4	g_ColTo					: register(CCP_COLTO); // Colour lerp
+
+#ifdef _AM_PERKS_
+float4		g_Settings			: register( CCP_SETTINGS );
+#define		g_fIntensity		g_Settings.x
+#define		g_ColFill			g_ColTo
+#define		g_ColGlow			g_ColFrom
+#endif
+
+sampler2D	g_Texture0			: register(s0);				// texture
+#ifdef _AM_DAMAGE_BAR_
+sampler2D	g_Texture1			: register(s1);
+#endif
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float2 TexCoord0			: TEXCOORD0;
+#ifdef _AM_DAMAGE_BAR_
+	float2 TexCoord1			: TEXCOORD1;
+#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+// --------------------------------------
+// TODO - move amax shaders into own file
+// --------------------------------------
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 ); // RGBA planes
+	
+	float intensity = ( tex0.r + tex0.g + tex0.b ) / 3;
+
+#ifdef _AM_PERKS_
+	if ( intensity < 0.4f )
+	{
+		OUT.Colour = g_ColGlow;
+		OUT.Colour.a = intensity * 1.5f;
+	}
+	else if ( intensity >= 0.4f && intensity <= 0.6f )
+	{
+		OUT.Colour = lerp( g_ColGlow, g_ColFill, ( intensity - 0.4f ) * 5.0f );
+		OUT.Colour.a = saturate( intensity * 1.25f );
+	}
+	else
+	{
+		OUT.Colour = g_ColFill;	
+		OUT.Colour.a = intensity;
+	}
+	
+	OUT.Colour *= IN.Colour;
+	OUT.Colour.rgb += g_fIntensity;
+	
+	return OUT;
+#endif
+
+	OUT.Colour = lerp( g_ColFrom, g_ColTo, intensity );
+	OUT.Colour.a = IN.Colour.a * tex0.a;
+	
+#ifdef _AM_DAMAGE_BAR_
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 );
+	float i2 = ( tex1.r + tex1.g + tex1.b ) / 3;
+	
+	if ( i2 > IN.Colour.r )
+		OUT.Colour = float4( 0.0f, 0.0f, 0.0f, 0.0f );
+#endif
+	
+	return OUT;
+}

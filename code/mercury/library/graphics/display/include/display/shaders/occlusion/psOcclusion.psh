@@ -1,0 +1,15 @@
+#include "..\\psCommon.h"
+
+struct PS_OUTPUT
+{
+	float4 Colour0			: COLOR0;
+};
+
+PS_OUTPUT main()
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	OUT.Colour0 = float4(1.f, 1.f, 1.f, 1.f);
+	
+	return OUT;
+}

@@ -1,0 +1,3 @@
+jam -a docs
+pause
+

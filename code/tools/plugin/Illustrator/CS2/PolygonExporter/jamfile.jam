@@ -1,0 +1,59 @@
+SubDir TOP Code Tools Plugins Illustrator CS2 PolygonExporter ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+MT = \"$(MSVCDIR)\\mt\" /nologo ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Ui/include
+$(MERCURY)/UI
+$(MERCURY)/Graphics/Display/include
+
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/IllustratorAPI\""
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/IllustratorAPI/ADM\""
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/IllustratorAPI/Illustrator\""
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/IllustratorAPI/PICA_SP\""
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/IllustratorAPI/Illustrator/Legacy\""
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/SampleCode/Common\""
+"\"C:/Program Files/Adobe/Adobe Illustrator CS SDK/SampleCode/Common/INCLUDES\""
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC =
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobeColour.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobeGroup.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobePoint.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobePolygon.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/Data/UIAdobeData.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/Data/UIAdobeDataManager.cpp
+$(MERCURY)/UI/Source/Ui/UILogger.cpp
+source/PluginHandler.cpp
+source/PluginMain.cpp
+source/PolygonExporter.cpp
+"C:/Program Files/Adobe/Adobe Illustrator CS SDK/SampleCode/Common/SOURCE/stringutils.cpp"
+;
+
+RC =
+polygonexporter.rc
+;
+
+Define WIN_ENV ;
+
+LinkLibraries polygonexporter : core system ;
+
+DLL polygonexporter : <src>$(SRC) <rc>$(RC) ;
+ExportVcproj polygonexporter ;
+Copy "C:/Program Files/Adobe/Illustrator CS/Plug-ins/Dev/polygonexporter.aip" : polygonexporter.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

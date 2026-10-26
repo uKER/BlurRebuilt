@@ -1,0 +1,183 @@
+SubDir TOP Code Mercury Library Audio SPU ;
+
+IncludePath
+\"$(SN_PS3_PATH)/spu/include/sn\"
+\"$(SCE_PS3_ROOT)/target/spu/include\"
+\"$(SCE_PS3_ROOT)/target/common/include\"
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/core/source
+$(TOP)/code/mercury/library/common/core
+$(SUBDIR)/../source
+;
+
+SRC =
+[ Batch
+../../common/core/source/maths/hvec/VectorConst.cpp
+../../common/core/source/maths/hvec/Trigonometry.cpp
+../../common/core/source/maths/hvec/TableCos.cpp
+../../common/core/source/maths/hvec/TableArcTan.cpp
+../../common/core/source/maths/hvec/Simd.cpp
+../../common/core/source/maths/hvec/new/VF32.cpp
+../../common/core/source/maths/hvec/constants.cpp
+../source/common/3dMaths.cpp 
+../source/ComponentContainer.cpp 
+../source/core/core.cpp 
+../source/core/decoder.cpp 
+../source/Definition.cpp 
+../source/core/dspcompressor.cpp 
+../source/core/dspdelay.cpp 
+../source/core/dspsend.cpp 
+../source/core/dspiirhighpass1storder.cpp 
+../source/core/dspiirlowpass1storder.cpp 
+../source/core/dspiirlowpass2ndorder.cpp 
+../source/core/dspiirpeakeq.cpp 
+../source/core/dspspectralreverb.cpp 
+../source/core/dspflanger.cpp 
+../source/core/dsppitchshift.cpp 
+../source/core/dsprmslevel.cpp 
+../source/core/dspsaturator.cpp 
+../source/core/dspbitcrusher.cpp 
+../source/core/dspringmodulator.cpp 
+../source/core/generator.cpp 
+../source/core/return.cpp 
+../source/Instance.cpp 
+../source/InstanceUpdate.cpp 
+#../source/SystemCommon.cpp # included from main.cpp
+./SystemSPU.cpp 
+../source/common/Util.cpp
+]
+;
+
+OVL0SRC = 
+[ Batch
+../source/components/ActionIn.cpp 
+../source/components/ActionOut.cpp 
+../source/components/Array.cpp 
+../source/components/Component.cpp 
+../source/components/Cone.cpp 
+../source/components/ControlInput.cpp 
+../source/components/ControlOutput.cpp 
+../source/components/DebugPrint.cpp 
+../source/components/DopplerShift.cpp 
+../source/components/Envelope.cpp 
+../source/components/EventInput.cpp 
+../source/components/EventOutput.cpp 
+../source/components/CoordinateInput.cpp 
+../source/components/CoordinateOutput.cpp 
+../source/components/Exponent.cpp 
+../source/components/GateSwitch.cpp 
+../source/components/Gradient.cpp 
+../source/components/LowPass.cpp 
+../source/components/Max.cpp 
+../source/components/Min.cpp 
+../source/components/MonoAudioInput.cpp 
+../source/components/MonoAudioOutput.cpp 
+../source/components/MonoCompressor.cpp 
+../source/components/MonoDelay.cpp 
+../source/components/MonoSend.cpp
+../source/components/MonoReturn.cpp
+../source/components/StereoSend.cpp
+../source/components/StereoReturn.cpp
+../source/components/MonoHighPass.cpp 
+../source/components/SurroundHighPass.cpp 
+../source/components/MonoSpectralReverb.cpp  
+../source/components/MonoLoopingSound.cpp 
+../source/components/MonoLowPass.cpp 
+../source/components/MonoOneShotSound.cpp 
+../source/components/MonoOneShotSoundTable.cpp 
+../source/components/MonoPeakEQ.cpp 
+../source/components/SurroundFlanger.cpp 
+../source/components/MonoRMSLevel.cpp 
+../source/components/MonoSaturator.cpp 
+../source/components/SurroundBitCrusher.cpp 
+../source/components/MonoRingModulator.cpp 
+../source/components/SurroundRingModulator.cpp 
+../source/components/MonoToMonoMixer.cpp 
+../source/components/MonoToStereoMixer.cpp 
+../source/components/MonoToSurroundLFEMixer.cpp 
+../source/components/MonoToSurroundMixer.cpp 
+../source/components/ParameterIn.cpp 
+../source/components/ParameterOut.cpp 
+../source/components/PiecewiseLinearFunction.cpp 
+../source/components/Product.cpp 
+../source/components/QuadToSurroundMixer.cpp 
+../source/components/Random.cpp 
+../source/components/Rolloff.cpp 
+../source/components/SampleAndHold.cpp 
+../source/components/Script.cpp 
+../source/components/Selector.cpp 
+../source/components/Source.cpp 
+../source/components/Spring.cpp 
+../source/components/StereoAudioInput.cpp 
+../source/components/StereoAudioOutput.cpp 
+../source/components/StereoCompressor.cpp 
+../source/components/StereoHighPass.cpp 
+../source/components/StereoLoopingSound.cpp 
+../source/components/StereoLowPass.cpp 
+../source/components/StereoOneShotSound.cpp 
+../source/components/StereoOneShotSoundTable.cpp 
+../source/components/StereoRMSLevel.cpp 
+../source/components/StereoSaturator.cpp 
+../source/components/StereoToMonoMixer.cpp 
+../source/components/StereoToQuadMixer.cpp 
+../source/components/StereoToStereoMixer.cpp 
+../source/components/StereoToSurroundMixer.cpp 
+../source/components/Sum.cpp 
+../source/components/SurroundAudioInput.cpp 
+../source/components/SurroundAudioOutput.cpp 
+../source/components/SurroundCompressor.cpp 
+../source/components/SurroundLFEAudioInput.cpp 
+../source/components/SurroundLFEAudioOutput.cpp 
+../source/components/SurroundLFEToSurroundLFEMixer.cpp 
+../source/components/SurroundLowPass.cpp 
+../source/components/SurroundResonantLowPass.cpp 
+../source/components/SurroundRMSLevel.cpp 
+../source/components/SurroundSaturator.cpp 
+../source/components/SurroundToSurroundLFEMixer.cpp 
+../source/components/SurroundToSurroundMixer.cpp 
+../source/components/Timer.cpp 
+../source/components/Variable.cpp 
+../source/components/Vector.cpp 
+../source/components/VectorIn.cpp 
+../source/components/VectorNearestPointOnLine.cpp 
+../source/components/ImpactFilter.cpp 
+../source/components/MessageDelay.cpp 
+]
+;
+
+OVL1SRC =
+[ Batch
+../source/core/dspeffect.cpp 
+../source/core/input.cpp 
+../source/core/output.cpp 
+]
+../source/Object.cpp 
+../source/core/decoderadpcm4bit.cpp 
+../source/core/decoderpcms16.cpp 
+../source/core/Mixer.cpp 
+../source/core/wave.cpp 
+;
+
+Define AUDIO_SPU ;
+Define OVERRIDE_SPU_ALLOCS ;
+
+#SRC += <OVL1>$(OVL0SRC) <OVL2>$(OVL1SRC) ;
+SRC += $(OVL0SRC) $(OVL1SRC) ;
+
+SrcOptim $(SRC) : "-Os" ;
+#SrcOptim ../source/Object.cpp : "-O0" ;
+#SrcOptim ../source/Definition.cpp : Off ;
+#SrcOptim ../source/InstanceUpdate.cpp : Off ;
+#SrcOptim ../source/core/decoderpcms16.cpp : Off ;
+SrcOptim ../source/core/decoderadpcm4bit.cpp : "-O2" ; 
+#SrcOptim ../source/core/Mixer.cpp : "-O2" ; 
+#SrcOptim ../source/core/wave.cpp  : "-O2" ; 
+
+LinkLibraries audio_spu_ps3 : $(SCE_PS3_ROOT)/target/spu/lib/libm.a ;
+
+# use a linker script and a custom commandline to link the SPU program with overlays
+SPUModule audio_spu_ps3 : $(SRC) ;
+
+#Depends all : audio_spu_ps3.self ;
+

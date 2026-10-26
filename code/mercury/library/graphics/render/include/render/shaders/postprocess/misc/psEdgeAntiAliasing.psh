@@ -1,0 +1,73 @@
+#include "../../psCommon.h"
+
+sampler2D	colourTexture	: register(s0);
+sampler2D	depthTexture	: register(s1);
+#if defined(NORMALS)
+sampler2D	normalTexture	: register(s2);
+#endif
+
+float4		g_vPixelSize	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vSettings		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_1);
+float4		g_vDepth		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_2);
+
+#define		g_fPixelWidth	g_vPixelSize.x
+#define		g_fPixelHeight	g_vPixelSize.y
+
+struct PS_OUTPUT
+{
+	float4 colour	: COLOR0; 
+};
+
+struct VS_OUTPUT
+{
+    float2 uv		: TEXCOORD0;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float	fDepthCentre	= SampleDepthBuffer(depthTexture, input.uv, g_vDepth);
+	
+	float4	vDepth0123;
+	vDepth0123.x	= SampleDepthBuffer(depthTexture, input.uv + float2(-g_fPixelWidth, -g_fPixelHeight), g_vDepth);
+	vDepth0123.y	= SampleDepthBuffer(depthTexture, input.uv + float2(-g_fPixelWidth, +g_fPixelHeight), g_vDepth);
+	vDepth0123.z	= SampleDepthBuffer(depthTexture, input.uv + float2(+g_fPixelWidth, +g_fPixelHeight), g_vDepth);
+	vDepth0123.w	= SampleDepthBuffer(depthTexture, input.uv + float2(+g_fPixelWidth, -g_fPixelHeight), g_vDepth);
+	
+	float4	vDepthDeltas	= abs(vDepth0123 - fDepthCentre);
+	
+	float2	vMaxDeltas		= max(vDepthDeltas.xy, vDepthDeltas.zw);
+	float2	vMinDeltas		= max(min(vDepthDeltas.xy, vDepthDeltas.zw), 0.001f);
+	
+	float2	vResults		= step(vMinDeltas * g_vSettings.x, vMaxDeltas);
+
+#if defined(NORMALS)
+	real3	vNormalCentre	= tex2D(normalTexture, input.uv).xyz;
+	real3	vNormal0		= tex2D(normalTexture, input.uv + float2(-g_fPixelWidth, -g_fPixelHeight)).xyz;
+	real3	vNormal1		= tex2D(normalTexture, input.uv + float2(-g_fPixelWidth, +g_fPixelHeight)).xyz;
+	real3	vNormal2		= tex2D(normalTexture, input.uv + float2(+g_fPixelWidth, +g_fPixelHeight)).xyz;
+	real3	vNormal3		= tex2D(normalTexture, input.uv + float2(+g_fPixelWidth, -g_fPixelHeight)).xyz;
+
+	real4	vNormalProducts;
+	vNormalProducts.x		= dot(vNormal0, vNormalCentre);
+	vNormalProducts.y		= dot(vNormal1, vNormalCentre);
+	vNormalProducts.z		= dot(vNormal2, vNormalCentre);
+	vNormalProducts.w		= dot(vNormal3, vNormalCentre);
+	
+	real2	vNormalDeltas	= abs(vNormalProducts.xy - vNormalProducts.zw);
+	
+	vResults				= max(vResults, step(g_vSettings.y, vNormalDeltas));
+#endif
+
+	float	fWeight			= dot(vResults, g_vSettings.z);	
+	
+	output.colour = 0.0f;
+	output.colour += tex2D(colourTexture, input.uv + float2(-g_fPixelWidth, -g_fPixelHeight) * fWeight);
+	output.colour += tex2D(colourTexture, input.uv + float2(-g_fPixelWidth, +g_fPixelHeight) * fWeight);
+	output.colour += tex2D(colourTexture, input.uv + float2(+g_fPixelWidth, -g_fPixelHeight) * fWeight);
+	output.colour += tex2D(colourTexture, input.uv + float2(+g_fPixelWidth, +g_fPixelHeight) * fWeight);
+	output.colour *= 0.25f;
+
+	return output;
+}

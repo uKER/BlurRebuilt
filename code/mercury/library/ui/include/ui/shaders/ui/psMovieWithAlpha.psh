@@ -1,0 +1,32 @@
+#include "..\psCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float2 TexCoord0			: TEXCOORD0;
+	float2 TexCoord1			: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 );
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 );
+	
+	OUT.Colour.rgb = tex0.rgb;
+	
+	OUT.Colour.a = ( tex1.r + tex1.g + tex1.b ) / 3;
+	
+	OUT.Colour *= IN.Colour;
+	
+	return OUT;
+}

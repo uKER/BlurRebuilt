@@ -1,0 +1,15 @@
+xt
+	field devkitPath "devkit:\particles_xe\"
+	field name "Test"
+	block packs
+		block pack2E661B2B
+			array filters
+				field  "Effects"
+				field  "Events"
+				field  "WorldEvents"
+			end
+			field id "2E661B2B"
+			field name "Particles"
+		end
+	end
+end

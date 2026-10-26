@@ -1,0 +1,20 @@
+SubDir TOP code mercury library util wx_shared ;
+
+IncludePath
+	$(SUBDIR)/include
+	$(SUBDIR)/source
+	$(TOP)/Code/Mercury/Library/Common/Core/include
+	$(TOP)/Code/Mercury/Library/Common/System/include
+	$(TOP)/Code/Mercury/Library/Common/Xt2/include
+	$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+	$(TOP)/libs/vendor/wxwidgets/2.8.6/include/msvc
+	$(TOP)/libs/vendor/wxwidgets/2.8.6/include/
+	$(TOP)/libs/vendor/wxwidgets/2.8.6/contrib/include
+;
+
+SRC = 
+	./source/wx_shared/Log.cpp
+	./source/wx_shared/MenuBuilder.cpp
+;
+
+Library wx_shared : $(SRC) : stdafx.cpp ;

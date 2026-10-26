@@ -1,0 +1,68 @@
+#include "..\..\psConstants.h"
+#include "..\..\psCommon.h"
+
+sampler2D textureMap : register(s0);
+
+float4 g_vTaps[9] : register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+struct PS_OUTPUT
+{
+	float4 colour     : COLOR0; 
+};
+
+struct VS_OUTPUT
+{
+    float4 position	: POSITION;		//Pixel position (world-view-proj space)  
+    float2 uv		: TEXCOORD0;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT)0;
+  
+	float3 sample = 0.0f;
+
+#if defined(XB2)
+	float3 sample0 = 0.0f;
+	float3 sample1 = 0.0f;
+	float3 sample2 = 0.0f;
+	float3 sample3 = 0.0f;
+	float3 sample4 = 0.0f;
+	float3 sample5 = 0.0f;
+	float ninth = 1.0f / 9.0f;
+	float2 uv = input.uv;
+	asm
+	{
+		tfetch2D sample0.xyz_, uv, textureMap, OffsetX = -1.0, OffsetY = -1.0
+		tfetch2D sample1.xyz_, uv, textureMap, OffsetX =  0.0, OffsetY = -1.0
+		tfetch2D sample2.xyz_, uv, textureMap, OffsetX = +1.0, OffsetY = -1.0
+		tfetch2D sample3.xyz_, uv, textureMap, OffsetX = -1.0, OffsetY =  0.0
+		tfetch2D sample4.xyz_, uv, textureMap, OffsetX =  0.0, OffsetY =  0.0
+		tfetch2D sample5.xyz_, uv, textureMap, OffsetX = +1.0, OffsetY =  0.0
+		// exec		
+		mad sample.xyz_, ninth.xxx, sample0.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample1.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample2.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample3.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample4.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample5.xyz, sample.xyz
+		// exec
+		tfetch2D sample0.xyz_, uv, textureMap, OffsetX = -1.0, OffsetY = +1.0
+		tfetch2D sample1.xyz_, uv, textureMap, OffsetX =  0.0, OffsetY = +1.0
+		tfetch2D sample2.xyz_, uv, textureMap, OffsetX = +1.0, OffsetY = +1.0
+		// exec
+		mad sample.xyz_, ninth.xxx, sample0.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample1.xyz, sample.xyz
+		mad sample.xyz_, ninth.xxx, sample2.xyz, sample.xyz
+	};	
+#else
+	for(int i = 0; i < 9; ++i)
+	{
+		sample += g_vTaps[i].w * tex2D(textureMap, input.uv + g_vTaps[i].xy).rgb;
+	}
+#endif
+	
+	output.colour = float4(sample, 1.0f);
+	
+	return output;
+}

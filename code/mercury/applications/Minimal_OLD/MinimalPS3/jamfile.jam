@@ -1,0 +1,43 @@
+echo "Building Minimal Testapp for PS3" ;
+
+if $(PLATFORM) != PS3
+{
+	EXIT Wrong platform selected. ;
+}
+
+SubDir TOP Code Mercury Applications Minimal MinimalPS3 ;
+
+SUBDIRHDRS = 
+./include
+$(TOP)/Code/Mercury/Library/Core/include
+$(TOP)/Code/Mercury/Library/System/include
+$(TOP)/Code/Mercury/Library/Display/include
+$(TOP)/Code/Mercury/Library/Render/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/Libs/Vendor/dx9sdk/current/include
+;
+
+SRC =
+#../../../library/samples/source/section/SectionSchedulerTest.cpp
+#../../../library/samples/source/section/SectionSchedulerTest.spu_cpp
+../../../library/samples/source/section/SectionSkyDome.cpp
+./Main.cpp
+;
+
+LinkLibraries MinimalPS3 :
+		core system display render zlib samples
+		;
+		
+LINKLIBS += ;
+
+LINKFLAGS += ;
+
+Main MinimalPS3 : $(SRC) ; #: stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Core ;
+SubInclude TOP Code Mercury Library System ;
+SubInclude TOP Code Mercury Library Display ;
+SubInclude TOP Code Mercury Library Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+

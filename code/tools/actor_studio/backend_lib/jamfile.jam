@@ -1,0 +1,166 @@
+SubDir TOP Code Tools actor_studio backend_lib ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+VENDOR = $(TOP)/Code/Vendor ;
+
+IncludePath
+$(MERCURY)/Common/Core/Include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Xt2/include
+$(MERCURY)/Common/Misc_Shared/Include
+$(MERCURY)/Physics/Gravity/Include
+$(MERCURY)/Util/Tools_Shared/include
+$(MERCURY)/Util/Xt_Shared/include
+$(VENDOR)/sigslot/include
+$(VENDOR)/python/2.6/include
+$(VENDOR)/python/2.6/PC
+$(TOP)/libs/vendor/boost
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkut/aftkutlib/include
+$(TOP)/code/tools/actor_studio/backend_lib/include
+$(TOP)/code/tools/svn_wrapper/include
+$(TOP)/code/tools/ab_wrapper/include
+$(TOP)/code/tools/file_tag_db/file_tag_db/include
+$(TOP)/code/tools/aftkconv/include
+;
+
+GAMEPLAYEDITORLIB_AFTKSRC =
+source/editorlib/aftk/AftkRef.cpp
+source/editorlib/aftk/AftkRefHelpers.cpp
+source/editorlib/aftk/AftkRefManager.cpp
+source/editorlib/aftk/AftkCollisionBuilder.cpp
+;
+
+GAMEPLAYEDITORLIB_COLLISIONSRC =
+source/editorlib/collision/CollisionHelpers.cpp
+source/editorlib/collision/CollisionManager.cpp
+source/editorlib/collision/CollisionScene.cpp
+;
+
+GAMEPLAYEDITORLIB_COMMANDSRC =
+source/editorlib/command/CommandFactory.cpp
+source/editorlib/command/CommandProcessor.cpp
+source/editorlib/command/ICommand.cpp
+source/editorlib/command/argument/Argument.cpp
+source/editorlib/command/argument/ArgumentDatabase.cpp
+source/editorlib/command/argument/ArgumentParser.cpp
+source/editorlib/command/argument/Syntax.cpp
+source/editorlib/command/dg_cmd/CopyCmd.cpp
+source/editorlib/command/dg_cmd/CreateXtNodeCmd.cpp
+source/editorlib/command/dg_cmd/CreateAnimationCmd.cpp
+source/editorlib/command/dg_cmd/CreateGroupCmd.cpp
+source/editorlib/command/dg_cmd/DuplicateCmd.cpp
+source/editorlib/command/dg_cmd/ExportCmd.cpp
+source/editorlib/command/dg_cmd/DeleteCmd.cpp
+source/editorlib/command/dg_cmd/ParentCmd.cpp
+source/editorlib/command/dg_cmd/PasteCmd.cpp
+source/editorlib/command/dg_cmd/RenameCmd.cpp
+source/editorlib/command/dg_cmd/SelectCmd.cpp
+source/editorlib/command/dg_cmd/XFormCmd.cpp
+source/editorlib/command/ext_actors_cmd/ExtActorsOfflineRefreshCmd.cpp
+source/editorlib/command/ext_actors_cmd/ExtActorsRefreshCmd.cpp
+source/editorlib/command/ext_actors_cmd/ExtActorsRefresh.cpp
+source/editorlib/command/io_cmd/FileCmd.cpp
+source/editorlib/command/misc_cmd/QuitCmd.cpp
+source/editorlib/command/misc_cmd/RedoCmd.cpp
+source/editorlib/command/misc_cmd/UndoCmd.cpp
+source/editorlib/command/misc_cmd/StoreChangesCmd.cpp
+source/editorlib/command/misc_cmd/GetLatestReferencesCmd.cpp
+source/editorlib/command/xt_cmd/BuildLevelPackCmd.cpp
+source/editorlib/command/xt_cmd/XtDbCmd.cpp
+;
+
+GAMEPLAYEDITORLIB_CONTEXTSRC =
+source/editorlib/context/DeleteContextMapping.cpp
+source/editorlib/context/EditorContext.cpp
+;
+
+GAMEPLAYEDITORLIB_DGSRC =
+source/editorlib/dg/XtNodeHelpers.cpp
+source/editorlib/dg/SceneXtActorNode.cpp
+source/editorlib/dg/Attr/Connection.cpp
+source/editorlib/dg/Attr/NullPlug.cpp
+source/editorlib/dg/Attr/PlugHelpers.cpp
+source/editorlib/dg/DgXtGameDataNode.cpp
+source/editorlib/dg/DgManager.cpp
+source/editorlib/dg/DgNodeBase.cpp
+source/editorlib/dg/DgNodeHelpers.cpp
+source/editorlib/dg/IDgObject.cpp
+source/editorlib/dg/DgXtNodeBase.cpp
+source/editorlib/dg/DgXtCompNode.cpp
+source/editorlib/dg/DgXtPropNodeBase.cpp
+source/editorlib/dg/SceneAftkNode.cpp
+source/editorlib/dg/SceneAftkActorNode.cpp
+source/editorlib/dg/SceneNode.cpp
+source/editorlib/dg/SceneNodeHelpers.cpp
+source/editorlib/dg/SceneXtNode.cpp
+source/editorlib/dg/SceneXtNodeBase.cpp
+source/editorlib/dg/UpdateSignaller.cpp
+;
+
+GAMEPLAYEDITORLIB_LEVELSRC =
+source/editorlib/level/Animation.cpp
+source/editorlib/level/Layer.cpp
+source/editorlib/level/LayerManager.cpp
+source/editorlib/level/LevelBase.cpp
+source/editorlib/level/LevelHelpers.cpp
+source/editorlib/level/LevelManager.cpp
+source/editorlib/level/LevelPack.cpp
+source/editorlib/level/ReferenceLevel.cpp
+source/editorlib/level/XtLevel.cpp
+;
+
+GAMEPLAYEDITORLIB_MISCSRC =
+source/editorlib/misc/AsyncHelpers.cpp
+source/editorlib/misc/Clipboard.cpp
+source/editorlib/misc/GuidManager.cpp
+source/editorlib/misc/NodeId.cpp
+source/editorlib/misc/Selection.cpp
+source/editorlib/misc/StringUtil.cpp
+source/editorlib/misc/SelectionHelpers.cpp
+source/editorlib/misc/UndoManager.cpp
+source/editorlib/misc/Verification.cpp
+source/editorlib/misc/XtScratchData.cpp
+;
+
+GAMEPLAYEDITORLIB_NETWORKSRC =
+source/editorlib/network/NetworkManager.cpp
+source/editorlib/network/NetSendHack.cpp
+;
+
+GAMEPLAYEDITORLIB_PYTHONSRC =
+source/editorlib/python/GlobalFuncs.cpp
+source/editorlib/python/PythonHelpers.cpp
+source/editorlib/python/PythonManager.cpp
+source/editorlib/python/XtFuncs.cpp
+;
+
+GAMEPLAYEDITORLIB_XTSRC =
+source/editorlib/xt/XtDirty.cpp
+source/editorlib/xt/XtFieldHelper.cpp
+source/editorlib/xt/XtHelpers.cpp
+source/editorlib/xt/XtLarvaHelper.cpp
+source/editorlib/xt/XtManager.cpp
+source/editorlib/xt/XtObject.cpp
+source/editorlib/xt/XtMergeHelpers.cpp
+source/editorlib/xt/XtTypeDatabase.cpp
+source/editorlib/xt/XtTypeDatabaseHelpers.cpp
+source/editorlib/xt/XtUserData.cpp
+source/editorlib/xt/XtVisualisation.cpp
+source/editorlib/xt/XtVisualisationHelpers.cpp
+source/editorlib/xt/export/XtBuildLevelPack.cpp
+;
+
+GAMEPLAYEDITORLIBSRC =
+source/editorlib/Core.cpp
+source/editorlib/CoreConfig.cpp
+source/editorlib/GlobalSignals.cpp
+;
+
+Define Py_RELEASE ;
+
+Library backend_lib : $(GAMEPLAYEDITORLIB_AFTKSRC) $(GAMEPLAYEDITORLIB_COLLISIONSRC) $(GAMEPLAYEDITORLIB_COMMANDSRC) $(GAMEPLAYEDITORLIB_CONTEXTSRC) $(GAMEPLAYEDITORLIB_DGSRC) $(GAMEPLAYEDITORLIB_LEVELSRC) $(GAMEPLAYEDITORLIB_MISCSRC) $(GAMEPLAYEDITORLIB_NETWORKSRC) $(GAMEPLAYEDITORLIB_PYTHONSRC) $(GAMEPLAYEDITORLIB_XTSRC) $(GAMEPLAYEDITORLIBSRC) : stdafx.cpp ;
+
+ExportVcproj backend_lib ;
+
+

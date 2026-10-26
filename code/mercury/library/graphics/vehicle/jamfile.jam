@@ -1,0 +1,113 @@
+SubDir TOP Code Mercury Library Graphics Vehicle ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Graphics/Dynamic/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/Common/xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Camera2/include
+$(TOP)/Code/Mercury/Library/Util/Input/include
+$(TOP)/Code/Mercury/Library/Util/Resource/include
+$(TOP)/Code/Mercury/Library/GameSys/Framework/include
+$(TOP)/Code/Mercury/Library/GameSys/Game_Resource/include
+$(TOP)/Code/Mercury/Library/Graphics/Portal/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Graphics/FX/include
+$(TOP)/Code/Mercury/Library/Graphics/world_render/include
+$(TOP)/Code/Mercury/Library/Graphics/vehicle/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+$(TOP)/Code/Mercury/Library/Physics/racingphysics/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)include\" ;
+}
+
+SRC =
+[ Batch
+source/VehicleModel.cpp
+source/VehicleModelManager.cpp
+source/Layer.cpp
+source/RenderLayer.cpp
+source/GameLayer.cpp
+source/MessageHandler.cpp
+source/Setup.cpp
+source/Input.cpp
+source/CodeProcessor.cpp
+source/Component.cpp
+source/Damage/DamageLayer.cpp
+source/Damage/CollisionInfo.cpp
+source/Damage/DamageBehaviours.cpp
+source/Damage/Node.cpp
+source/Damage/NodeLayer.cpp
+source/Db/VehicleXt.cpp
+source/utils/DebugLog.cpp
+source/utils/Curve.cpp
+source/livery/Canvas.cpp
+source/livery/Layer.cpp
+source/livery/LiveryEditor.cpp
+source/livery/LiveryEditorUI.cpp
+source/livery/Debug.cpp
+source/customisation/PaintEditor.cpp
+source/material/Material.cpp
+source/effects/lights.cpp
+source/effects/wheels.cpp
+source/effects/DirtLayer.cpp
+: VehiclePCH.h ]
+;
+
+if $(DISABLE_BATCHING) = 1
+{
+	SRC = [ AutoGrist $(SRC) ] ;
+}
+
+if $(PLATFORM) = PS3
+{
+	SRC += 
+		source/Damage/SPU/SPUDamageLightWeightImpact.cpp
+		source/Damage/SPU/SPUDamageJob.cpp
+		source/Damage/SPU/SPURepairJob.cpp
+		source/Damage/SPU/SPUDamageLightWeightLayer.cpp
+		source/Damage/SPU/SPUDamageContext.cpp
+	;
+	
+	SPUSRC =
+		<SPU>source/Damage/SPU/SPUDamageJob.cpp
+		<SPU>source/Damage/SPU/SPUDamageLightWeightImpact.cpp
+		<SPU>source/Damage/SPU/SPUDamageLightWeightLayer.cpp
+	;
+	
+	LinkLibraries spudamage : $(SCE_PS3_ROOT)/target/spu/lib/libm.a ;
+	
+	#SrcOptim $(SPUSRC) : -O2 ;
+	AddSPUModule vehicle : spudamage : $(SPUSRC) ;
+    # TODO: [Stove] Enable strict aliasing! :)
+    #CCFLAGS on [ OBJfromSRC <SPU>Source/Prepass/SPU/JobQueueWorker.cpp ] = -g -fno-exceptions -ffast-math -fms-extensions -mfloat=fast  ;
+
+	SPUSRC =
+		<SPU>source/Damage/SPU/SPURepairJob.cpp
+	;
+	SrcOptim $(SPUSRC) : -O0 ;
+	AddSPUModule vehicle : spurepair : $(SPUSRC) ;
+}
+
+# if $(USERNAME) = cwright
+# {
+# 	Optim Off ;
+# 	echo OPTIMISATIONS ARE _OFF_ FOR Vehicle code ;
+# }
+
+Includes [ FGristFiles $(SRC) ] ;
+
+
+Library vehicle : $(SRC) $($(PLATFORM)SRC) : VehiclePCH.cpp ;
+
+SubInclude TOP Code Mercury Library Graphics Spu ;

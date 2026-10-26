@@ -1,0 +1,32 @@
+SubDir TOP Code Mercury Library GameSys Lod ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/GameSys/Lod/Include
+;
+
+#Optim Off ;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/LodManager.cpp
+./source/LodInterface.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library lod : $(SRC) $($(PLATFORM)SRC) : LodPch.cpp : LodPch.h ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;

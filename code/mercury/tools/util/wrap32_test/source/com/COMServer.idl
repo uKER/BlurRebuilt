@@ -1,0 +1,88 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(3A25EAE3-D61C-4F3D-876E-FB4484215A43),
+	dual,
+	nonextensible,
+	helpstring("IServerWrapper"),
+	pointer_default(unique)
+]
+interface IServerWrapper : IDispatch{
+	[
+		id(1), 
+		helpstring("Wrapper for XMemCreateCompressionContext method xdk64_dll.dll"), 
+		helpcontext(1)
+	]
+	HRESULT XGTileTextureLevel(
+		[in] UINT callingPID, 
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGTileSurface(
+		[in] UINT callingPID, 
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGGetMipTailLevelOffset(
+		[in] UINT callingPID, 
+		[in] UINT sharedMemoryID,
+		[out,retval] UINT* result);
+
+	HRESULT XGGetTextureDesc(
+		[in] UINT callingPID, 
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGGetMipTailBaseLevel(
+		[in] UINT callingPID, 
+		[in] UINT sharedMemoryID,
+		[out,retval] UINT* result);
+
+	HRESULT XGSetTextureHeader(
+		[in] UINT callingPID, 
+		[in] UINT sharedMemoryID,
+		[out,retval] UINT* result);
+
+	HRESULT XGEndianSwapSurface(
+		[in] UINT callingPID,
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGCopySurface(
+		[in] UINT callingPID,
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGTileVolume(
+		[in] UINT callingPID,
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGSetVolumeTextureHeader(
+		[in] UINT callingPID,
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGSetCubeTextureHeader(
+		[in] UINT callingPID,
+		[in] UINT sharedMemoryID);
+
+	HRESULT XGGetBlockDimensions(
+		[in] UINT callingPID,
+		[in] UINT sharedMemoryID);
+
+
+};
+
+[
+	uuid(D8512517-560A-4353-A3AC-7D1CFE81505A),
+	version(1.0),
+	helpstring("COMServer 1.0")
+]
+library COMServerLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(AE14D6C6-2E7E-484D-A621-E62611B75B42),
+		helpstring("Wrap32 Class")
+	]
+	coclass Wrap32
+	{
+		[default] interface IServerWrapper;
+	};
+};

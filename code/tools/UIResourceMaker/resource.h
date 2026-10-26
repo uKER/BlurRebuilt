@@ -1,0 +1,123 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ generated include file.
+// Used by UIMaker2.rc
+//
+#define Info                            0
+#define IDR_MANIFEST                    1
+#define ID_CONFIG                       9
+#define IDD_ABOUTBOX                    100
+#define IDP_OLE_INIT_FAILED             100
+#define IDD_LANG_BOX                    101
+#define IDR_MAINFRAME                   128
+#define IDR_UIMaker2TYPE                129
+#define ID_PAULSBIT_BUILD               129
+#define IDR_ADDMENU                     129
+#define ID_PAULSBIT_SHOWTEXTURES        130
+#define ID_XML_EDIT                     138
+#define ID_BUTTON_BUNDLE_EA             139
+#define ID_BUTTON_COPY_EA_TO_CONSOLE    140
+#define ID_ADDMENU_ADDTEXT              143
+#define ID_ADDMENU_ADDMOVIE             144
+#define ID_ADDMENU_ADDFLOWBAR           145
+#define ID_ADDMENU_ADDGRAPHIC           146
+#define ID_ADDMENU_ANIMATION            147
+#define ID_EFFECTS_ADDMOVE              148
+#define ID_EFFECTS_ADDSIZE              149
+#define ID_EFFECTS_ADDCOLOUR            150
+#define IDR_CHECKINMENU                 151
+#define IDR_CHECKOUTMENU                152
+#define ID_CHECKINMENU_CHECKINFILE      153
+#define ID_CHECKOUTMENU_CHECKOUT        154
+#define ID_CHECKOUTMENU_GETLATESTVERSION 155
+#define ID_CHECKINMENU_GETLATESTVERSION 156
+#define IDB_BITMAP_TICK                 159
+#define IDB_BITMAP_CROSS                160
+#define IDB_BITMAP_FOLDER               161
+#define ID_EFFECTS_ADDTEXTUREMOVE       162
+#define IDB_BITMAP_SCREEN               162
+#define ID_EFFECTS_ADDTEXTURESIZE       163
+#define IDB_BITMAP_SCREEN1              163
+#define IDB_BITMAP_AREA                 163
+#define ID_EFFECTS_ADDBLUR              164
+#define ID_VARIABLESELECT_ADDHORIZONTALELEMENTS 166
+#define ID_EFFECTS_ADDROTATE            167
+#define ID_ADDMENU_ADDLINE              168
+#define ID_ADDMENU_ADDMODEL             170
+#define ID_ADDMENU_ADDTIMER             171
+#define ID_ADDMENU_STATIC               172
+#define ID_ADDMENU_STATIC173            173
+#define ID_ADDMENU_INFO                 174
+#define ID_INFO_ADDINFOGRAPHIC          175
+#define ID_INFO_ADDINFOTEXT             176
+#define ID_INFO_ADDINFOMODEL            177
+#define ID_INFO_ADDINFOMOVIE            178
+#define ID_INFO_ADDINFOLINE             179
+#define IDC_EDIT3                       1003
+#define IDC_EDIT4                       1004
+#define IDC_EDIT5                       1005
+#define IDC_CHECK1                      1006
+#define IDC_CHECK2                      1007
+#define IDC_EDIT6                       1008
+#define IDC_EDIT7                       1009
+#define IDC_EDIT8                       1010
+#define IDC_EDIT9                       1011
+#define IDC_EDIT10                      1012
+#define IDC_EDIT11                      1013
+#define IDC_EDIT12                      1014
+#define IDC_EDIT13                      1015
+#define IDC_EDIT14                      1016
+#define IDC_EDIT15                      1017
+#define IDC_EDIT16                      1018
+#define IDC_EDIT17                      1019
+#define IDC_EDIT18                      1020
+#define IDC_EDIT19                      1021
+#define IDC_EDIT20                      1022
+#define IDC_EDIT21                      1023
+#define IDC_EDIT22                      1024
+#define IDC_EDIT23                      1025
+#define IDC_ENGLISH                     1026
+#define IDC_EDIT24                      1026
+#define IDC_ITALIAN                     1027
+#define IDC_IPADDRESS1                  1027
+#define IDC_FRENCH                      1028
+#define IDC_JAPANESE                    1029
+#define IDC_RADIO1                      1029
+#define IDC_SPANISH                     1030
+#define IDC_RADIO2                      1030
+#define IDC_GERMAN                      1031
+#define IDC_KOREAN                      1032
+#define IDC_CHINESE                     1033
+#define IDC_PORTUGUESE                  1034
+#define ID_BUTTON_BUILD                 32773
+#define ID_BUTTON_COPYLUA               32774
+#define ID_BUTTON32787                  32787
+#define ID_BUTTON_CONFIG                32787
+#define ID_SHOWFONTS                    32789
+#define ID_BUTTON_LANG                  32793
+#define ID_VARIABLESELECT_ADDVARIABLESELECT 32795
+#define ID_VARIABLESELECT_ADDRADIALELEMENTS 32796
+#define ID_VARIABLESELECT_ADDVERTICALELEMENTS 32797
+#define ID_CHECKINMENU_GOTOTHISSCREEN   32798
+#define ID_CHECKOUTMENU_GOTOTHISSCREEN  32799
+#define ID_ADD_TEXT_KEY                 32800
+#define ID_BUTTON_RECONNECT             32802
+#define ID_BUTTON_COPYTEXT              32803
+#define ID_BUTTON_MAKE_KOR              32806
+#define ID_BUTTON_MAKE_TCH              32807
+#define ID_BUTTON_MAKE_JPN              32808
+#define ID_BUTTON_COPY_TO_SERVER        32809
+#define ID_BUTTON_BUNDLE                32810
+#define ID_BUTTON_COPY_TO_CONSOLE       32811
+#define id_button                       32812
+#define ID_XML_BUNDLE                   32819
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        181
+#define _APS_NEXT_COMMAND_VALUE         32813
+#define _APS_NEXT_CONTROL_VALUE         1031
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif

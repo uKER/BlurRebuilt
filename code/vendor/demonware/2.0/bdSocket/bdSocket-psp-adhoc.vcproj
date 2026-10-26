@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="bdSocket"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="PSP Debug|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/debug"
+			IntermediateDirectory="../obj/psp-adhoc-sn/debug/bdSocket"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="PSP Release|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/release"
+			IntermediateDirectory="../obj/psp-adhoc-sn/release/bdSocket"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<File RelativePath="bdAddressMap-psp-adhoc.cpp"></File>
+<File RelativePath="bdAddressMap.h"></File>
+<File RelativePath="bdAddrHandle.h"></File>
+<File RelativePath="bdAddrHandleRefWrapper-psp-adhoc.cpp"></File>
+<File RelativePath="bdAddrHandleRefWrapper.h"></File>
+<File RelativePath="bdPacketInterceptor.cpp"></File>
+<File RelativePath="bdPacketInterceptor.h"></File>
+<File RelativePath="bdSecurityKeyMap.cpp"></File>
+<File RelativePath="bdSecurityKeyMap.h"></File>
+<File RelativePath="bdSecurityKeyMapListener.h"></File>
+<File RelativePath="bdServiceBandwidthArbitrator.cpp"></File>
+<File RelativePath="bdServiceBandwidthArbitrator.h"></File>
+<File RelativePath="bdSocketRouter-psp-adhoc.cpp"></File>
+<File RelativePath="bdSocketRouter.h"></File>
+<File RelativePath="bdSocketRouterConfig.cpp"></File>
+<File RelativePath="bdSocketRouterConfig.h"></File>
+<Filter Name = "bdNAT" Filter="">
+<File RelativePath="bdNAT\bdIPDiscoveryConfig.cpp"></File>
+<File RelativePath="bdNAT\bdIPDiscoveryConfig.h"></File>
+<File RelativePath="bdNAT\bdNATTypeDiscoveryConfig.cpp"></File>
+<File RelativePath="bdNAT\bdNATTypeDiscoveryConfig.h"></File>
+</Filter>
+<Filter Name = "bdRelay" Filter="">
+<File RelativePath="bdRelay\bdRelayPacket.h"></File>
+<File RelativePath="bdRelay\bdRelayRouteManager.cpp"></File>
+<File RelativePath="bdRelay\bdRelayRouteManager.h"></File>
+<File RelativePath="bdRelay\bdRelaySocketRouter.cpp"></File>
+<File RelativePath="bdRelay\bdRelaySocketRouter.h"></File>
+<Filter Name = "bdPacket" Filter="">
+<File RelativePath="bdRelay\bdPacket\bdRelayerInfo.cpp"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayerInfo.h"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayFinal.cpp"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayFinal.h"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayForward.cpp"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayForward.h"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayHeader.cpp"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayHeader.h"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayRouteAdd.cpp"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayRouteAdd.h"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayRouteRemove.cpp"></File>
+<File RelativePath="bdRelay\bdPacket\bdRelayRouteRemove.h"></File>
+</Filter>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

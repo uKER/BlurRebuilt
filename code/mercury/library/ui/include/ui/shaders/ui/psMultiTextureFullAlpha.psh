@@ -1,0 +1,48 @@
+#include "..\psCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+sampler2D	g_Texture2			: register(s2);
+
+const float4 low  = { 0,0,0,0 };
+const float4 high = { 1,1,1,1 };
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float2 TexCoord0			: TEXCOORD0;
+#if defined( _SAMPLERS_2 )
+	float2 TexCoord1			: TEXCOORD1;
+#endif
+#if  defined( _SAMPLERS_3 )
+	float2 TexCoord2			: TEXCOORD2;
+#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	OUT.Colour = IN.Colour;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 );
+	
+	OUT.Colour *= tex0;
+	
+#if defined( _SAMPLERS_2 ) || defined( _SAMPLERS_3 )
+	OUT.Colour *= tex2D( g_Texture1, IN.TexCoord1 );
+#endif // _SAMPLERS_2
+		
+#if defined( _SAMPLERS_3 ) 
+	float4 tex2 = tex2D( g_Texture2, IN.TexCoord2 );
+	tex2.a = tex0.a;
+	OUT.Colour = saturate( OUT.Colour + tex2 );
+#endif // _SAMPLERS_3
+	
+	return OUT;
+}

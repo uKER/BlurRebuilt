@@ -1,0 +1,21 @@
+#include "..\\psConstants.h"
+#include "..\\psCommon.h"
+
+struct PS_INPUT
+{
+	float2 Texcoord0			: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour0				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	OUT.Colour0 = float4(IN.Texcoord0.x / IN.Texcoord0.y, 0.f, 0.f, 0.f);
+	
+	return OUT;
+}

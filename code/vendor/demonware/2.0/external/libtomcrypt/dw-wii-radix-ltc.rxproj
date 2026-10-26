@@ -1,0 +1,1369 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{498C62EC-E13E-4447-9693-8448A1D234A2}">
+		<version>1</version>
+		<display-name>LibTomCrypt</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+			<alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+			<alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+			<alias uuid="{A92DF2FD-A4CE-11DA-8C4E-00C04F28D986}">Dictionary4</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+			<!-- C++ specific settings -->
+			<setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+				<simple>false</simple>
+			</setting>
+			<setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+				<simple>true</simple>
+			</setting>
+			<setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+				<simple>true</simple>
+			</setting>
+			<!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>./src/headers</simple>
+					<simple>../libtommath</simple>
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+				</array>
+			</setting>
+			<setting entry="booleans" uuid-alias="Dictionary2">
+				<simple>true</simple>
+			</setting>
+			<setting entry="userCompileSwitches" uuid-alias="Dictionary">
+				<simple>-DLTC_SOURCE</simple>
+			</setting>
+			<setting entry="finalOutputName" uuid-alias="Dictionary3">
+				<simple>libtomcrypt.a</simple>
+			</setting>
+			<setting entry="projectLinkType" uuid-alias="Dictionary4">
+				<simple>1</simple>
+			</setting>
+		</settings>
+		<files>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+			<file file-tag="des.c:1">
+				<path>${Project}/src/ciphers/des.c</path>
+			</file>
+			<file file-tag="blowfish.c:1">
+				<path>${Project}/src/ciphers/blowfish.c</path>
+			</file>
+			<file file-tag="aes.c:1">
+				<path>${Project}/src/ciphers/aes/aes.c</path>
+			</file>
+			<file file-tag="ccm_memory.c:1">
+				<path>${Project}/src/encauth/ccm/ccm_memory.c</path>
+			</file>
+			<file file-tag="ccm_test.c:1">
+				<path>${Project}/src/encauth/ccm/ccm_test.c</path>
+			</file>
+			<file file-tag="eax_addheader.c:1">
+				<path>${Project}/src/encauth/eax/eax_addheader.c</path>
+			</file>
+			<file file-tag="eax_decrypt.c:1">
+				<path>${Project}/src/encauth/eax/eax_decrypt.c</path>
+			</file>
+			<file file-tag="eax_decrypt_verify_memory.c:1">
+				<path>${Project}/src/encauth/eax/eax_decrypt_verify_memory.c</path>
+			</file>
+			<file file-tag="eax_done.c:1">
+				<path>${Project}/src/encauth/eax/eax_done.c</path>
+			</file>
+			<file file-tag="eax_encrypt.c:1">
+				<path>${Project}/src/encauth/eax/eax_encrypt.c</path>
+			</file>
+			<file file-tag="eax_encrypt_authenticate_memory.c:1">
+				<path>${Project}/src/encauth/eax/eax_encrypt_authenticate_memory.c</path>
+			</file>
+			<file file-tag="eax_init.c:1">
+				<path>${Project}/src/encauth/eax/eax_init.c</path>
+			</file>
+			<file file-tag="eax_test.c:1">
+				<path>${Project}/src/encauth/eax/eax_test.c</path>
+			</file>
+			<file file-tag="gcm_add_aad.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_add_aad.c</path>
+			</file>
+			<file file-tag="gcm_add_iv.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_add_iv.c</path>
+			</file>
+			<file file-tag="gcm_done.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_done.c</path>
+			</file>
+			<file file-tag="gcm_gf_mult.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_gf_mult.c</path>
+			</file>
+			<file file-tag="gcm_init.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_init.c</path>
+			</file>
+			<file file-tag="gcm_memory.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_memory.c</path>
+			</file>
+			<file file-tag="gcm_mult_h.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_mult_h.c</path>
+			</file>
+			<file file-tag="gcm_process.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_process.c</path>
+			</file>
+			<file file-tag="gcm_reset.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_reset.c</path>
+			</file>
+			<file file-tag="gcm_test.c:1">
+				<path>${Project}/src/encauth/gcm/gcm_test.c</path>
+			</file>
+			<file file-tag="nls_memory.c:1">
+				<path>${Project}/src/encauth/nls/nls_memory.c</path>
+			</file>
+			<file file-tag="nlsfast.c:1">
+				<path>${Project}/src/encauth/nls/nlsfast.c</path>
+			</file>
+			<file file-tag="ocb_decrypt.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_decrypt.c</path>
+			</file>
+			<file file-tag="ocb_decrypt_verify_memory.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_decrypt_verify_memory.c</path>
+			</file>
+			<file file-tag="ocb_done_decrypt.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_done_decrypt.c</path>
+			</file>
+			<file file-tag="ocb_done_encrypt.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_done_encrypt.c</path>
+			</file>
+			<file file-tag="ocb_encrypt.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_encrypt.c</path>
+			</file>
+			<file file-tag="ocb_encrypt_authenticate_memory.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_encrypt_authenticate_memory.c</path>
+			</file>
+			<file file-tag="ocb_init.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_init.c</path>
+			</file>
+			<file file-tag="ocb_ntz.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_ntz.c</path>
+			</file>
+			<file file-tag="ocb_shift_xor.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_shift_xor.c</path>
+			</file>
+			<file file-tag="ocb_test.c:1">
+				<path>${Project}/src/encauth/ocb/ocb_test.c</path>
+			</file>
+			<file file-tag="s_ocb_done.c:1">
+				<path>${Project}/src/encauth/ocb/s_ocb_done.c</path>
+			</file>
+			<file file-tag="cfb_encrypt.c:1">
+				<path>${Project}/src/modes/cfb/cfb_encrypt.c</path>
+			</file>
+			<file file-tag="cfb_getiv.c:1">
+				<path>${Project}/src/modes/cfb/cfb_getiv.c</path>
+			</file>
+			<file file-tag="cfb_setiv.c:1">
+				<path>${Project}/src/modes/cfb/cfb_setiv.c</path>
+			</file>
+			<file file-tag="cfb_start.c:1">
+				<path>${Project}/src/modes/cfb/cfb_start.c</path>
+			</file>
+			<file file-tag="ctr_decrypt.c:1">
+				<path>${Project}/src/modes/ctr/ctr_decrypt.c</path>
+			</file>
+			<file file-tag="ctr_done.c:1">
+				<path>${Project}/src/modes/ctr/ctr_done.c</path>
+			</file>
+			<file file-tag="ctr_encrypt.c:1">
+				<path>${Project}/src/modes/ctr/ctr_encrypt.c</path>
+			</file>
+			<file file-tag="ctr_getiv.c:1">
+				<path>${Project}/src/modes/ctr/ctr_getiv.c</path>
+			</file>
+			<file file-tag="ctr_setiv.c:1">
+				<path>${Project}/src/modes/ctr/ctr_setiv.c</path>
+			</file>
+			<file file-tag="ctr_start.c:1">
+				<path>${Project}/src/modes/ctr/ctr_start.c</path>
+			</file>
+			<file file-tag="ecb_decrypt.c:1">
+				<path>${Project}/src/modes/ecb/ecb_decrypt.c</path>
+			</file>
+			<file file-tag="ecb_done.c:1">
+				<path>${Project}/src/modes/ecb/ecb_done.c</path>
+			</file>
+			<file file-tag="ecb_encrypt.c:1">
+				<path>${Project}/src/modes/ecb/ecb_encrypt.c</path>
+			</file>
+			<file file-tag="ecb_start.c:1">
+				<path>${Project}/src/modes/ecb/ecb_start.c</path>
+			</file>
+			<file file-tag="lrw_decrypt.c:1">
+				<path>${Project}/src/modes/lrw/lrw_decrypt.c</path>
+			</file>
+			<file file-tag="lrw_done.c:1">
+				<path>${Project}/src/modes/lrw/lrw_done.c</path>
+			</file>
+			<file file-tag="lrw_encrypt.c:1">
+				<path>${Project}/src/modes/lrw/lrw_encrypt.c</path>
+			</file>
+			<file file-tag="lrw_getiv.c:1">
+				<path>${Project}/src/modes/lrw/lrw_getiv.c</path>
+			</file>
+			<file file-tag="lrw_process.c:1">
+				<path>${Project}/src/modes/lrw/lrw_process.c</path>
+			</file>
+			<file file-tag="lrw_setiv.c:1">
+				<path>${Project}/src/modes/lrw/lrw_setiv.c</path>
+			</file>
+			<file file-tag="lrw_start.c:1">
+				<path>${Project}/src/modes/lrw/lrw_start.c</path>
+			</file>
+			<file file-tag="lrw_test.c:1">
+				<path>${Project}/src/modes/lrw/lrw_test.c</path>
+			</file>
+			<file file-tag="ofb_decrypt.c:1">
+				<path>${Project}/src/modes/ofb/ofb_decrypt.c</path>
+			</file>
+			<file file-tag="ofb_done.c:1">
+				<path>${Project}/src/modes/ofb/ofb_done.c</path>
+			</file>
+			<file file-tag="ofb_encrypt.c:1">
+				<path>${Project}/src/modes/ofb/ofb_encrypt.c</path>
+			</file>
+			<file file-tag="ofb_getiv.c:1">
+				<path>${Project}/src/modes/ofb/ofb_getiv.c</path>
+			</file>
+			<file file-tag="ofb_setiv.c:1">
+				<path>${Project}/src/modes/ofb/ofb_setiv.c</path>
+			</file>
+			<file file-tag="ofb_start.c:1">
+				<path>${Project}/src/modes/ofb/ofb_start.c</path>
+			</file>
+			<file file-tag="der_decode_bit_string.c:1">
+				<path>${Project}/src/pk/asn1/der/bit/der_decode_bit_string.c</path>
+			</file>
+			<file file-tag="der_encode_bit_string.c:1">
+				<path>${Project}/src/pk/asn1/der/bit/der_encode_bit_string.c</path>
+			</file>
+			<file file-tag="der_length_bit_string.c:1">
+				<path>${Project}/src/pk/asn1/der/bit/der_length_bit_string.c</path>
+			</file>
+			<file file-tag="der_decode_choice.c:1">
+				<path>${Project}/src/pk/asn1/der/choice/der_decode_choice.c</path>
+			</file>
+			<file file-tag="der_decode_ia5_string.c:1">
+				<path>${Project}/src/pk/asn1/der/ia5/der_decode_ia5_string.c</path>
+			</file>
+			<file file-tag="der_encode_ia5_string.c:1">
+				<path>${Project}/src/pk/asn1/der/ia5/der_encode_ia5_string.c</path>
+			</file>
+			<file file-tag="der_length_ia5_string.c:1">
+				<path>${Project}/src/pk/asn1/der/ia5/der_length_ia5_string.c</path>
+			</file>
+			<file file-tag="der_decode_integer.c:1">
+				<path>${Project}/src/pk/asn1/der/integer/der_decode_integer.c</path>
+			</file>
+			<file file-tag="der_encode_integer.c:1">
+				<path>${Project}/src/pk/asn1/der/integer/der_encode_integer.c</path>
+			</file>
+			<file file-tag="der_length_integer.c:1">
+				<path>${Project}/src/pk/asn1/der/integer/der_length_integer.c</path>
+			</file>
+			<file file-tag="der_decode_object_identifier.c:1">
+				<path>${Project}/src/pk/asn1/der/object_identifier/der_decode_object_identifier.c</path>
+			</file>
+			<file file-tag="der_encode_object_identifier.c:1">
+				<path>${Project}/src/pk/asn1/der/object_identifier/der_encode_object_identifier.c</path>
+			</file>
+			<file file-tag="der_length_object_identifier.c:1">
+				<path>${Project}/src/pk/asn1/der/object_identifier/der_length_object_identifier.c</path>
+			</file>
+			<file file-tag="der_decode_octet_string.c:1">
+				<path>${Project}/src/pk/asn1/der/octet/der_decode_octet_string.c</path>
+			</file>
+			<file file-tag="der_encode_octet_string.c:1">
+				<path>${Project}/src/pk/asn1/der/octet/der_encode_octet_string.c</path>
+			</file>
+			<file file-tag="der_length_octet_string.c:1">
+				<path>${Project}/src/pk/asn1/der/octet/der_length_octet_string.c</path>
+			</file>
+			<file file-tag="der_decode_printable_string.c:1">
+				<path>${Project}/src/pk/asn1/der/printable_string/der_decode_printable_string.c</path>
+			</file>
+			<file file-tag="der_encode_printable_string.c:1">
+				<path>${Project}/src/pk/asn1/der/printable_string/der_encode_printable_string.c</path>
+			</file>
+			<file file-tag="der_length_printable_string.c:1">
+				<path>${Project}/src/pk/asn1/der/printable_string/der_length_printable_string.c</path>
+			</file>
+			<file file-tag="der_decode_sequence_ex.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_decode_sequence_ex.c</path>
+			</file>
+			<file file-tag="der_decode_sequence_flexi.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_decode_sequence_flexi.c</path>
+			</file>
+			<file file-tag="der_decode_sequence_multi.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_decode_sequence_multi.c</path>
+			</file>
+			<file file-tag="der_encode_sequence_ex.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_encode_sequence_ex.c</path>
+			</file>
+			<file file-tag="der_encode_sequence_multi.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_encode_sequence_multi.c</path>
+			</file>
+			<file file-tag="der_length_sequence.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_length_sequence.c</path>
+			</file>
+			<file file-tag="der_sequence_free.c:1">
+				<path>${Project}/src/pk/asn1/der/sequence/der_sequence_free.c</path>
+			</file>
+			<file file-tag="der_encode_set.c:1">
+				<path>${Project}/src/pk/asn1/der/set/der_encode_set.c</path>
+			</file>
+			<file file-tag="der_encode_setof.c:1">
+				<path>${Project}/src/pk/asn1/der/set/der_encode_setof.c</path>
+			</file>
+			<file file-tag="der_decode_short_integer.c:1">
+				<path>${Project}/src/pk/asn1/der/short_integer/der_decode_short_integer.c</path>
+			</file>
+			<file file-tag="der_encode_short_integer.c:1">
+				<path>${Project}/src/pk/asn1/der/short_integer/der_encode_short_integer.c</path>
+			</file>
+			<file file-tag="der_length_short_integer.c:1">
+				<path>${Project}/src/pk/asn1/der/short_integer/der_length_short_integer.c</path>
+			</file>
+			<file file-tag="der_decode_utctime.c:1">
+				<path>${Project}/src/pk/asn1/der/utctime/der_decode_utctime.c</path>
+			</file>
+			<file file-tag="der_encode_utctime.c:1">
+				<path>${Project}/src/pk/asn1/der/utctime/der_encode_utctime.c</path>
+			</file>
+			<file file-tag="der_length_utctime.c:1">
+				<path>${Project}/src/pk/asn1/der/utctime/der_length_utctime.c</path>
+			</file>
+			<file file-tag="dsa_decrypt_key.c:1">
+				<path>${Project}/src/pk/dsa/dsa_decrypt_key.c</path>
+			</file>
+			<file file-tag="dsa_encrypt_key.c:1">
+				<path>${Project}/src/pk/dsa/dsa_encrypt_key.c</path>
+			</file>
+			<file file-tag="dsa_export.c:1">
+				<path>${Project}/src/pk/dsa/dsa_export.c</path>
+			</file>
+			<file file-tag="dsa_free.c:1">
+				<path>${Project}/src/pk/dsa/dsa_free.c</path>
+			</file>
+			<file file-tag="dsa_import.c:1">
+				<path>${Project}/src/pk/dsa/dsa_import.c</path>
+			</file>
+			<file file-tag="dsa_make_key.c:1">
+				<path>${Project}/src/pk/dsa/dsa_make_key.c</path>
+			</file>
+			<file file-tag="dsa_shared_secret.c:1">
+				<path>${Project}/src/pk/dsa/dsa_shared_secret.c</path>
+			</file>
+			<file file-tag="dsa_sign_hash.c:1">
+				<path>${Project}/src/pk/dsa/dsa_sign_hash.c</path>
+			</file>
+			<file file-tag="dsa_verify_hash.c:1">
+				<path>${Project}/src/pk/dsa/dsa_verify_hash.c</path>
+			</file>
+			<file file-tag="dsa_verify_key.c:1">
+				<path>${Project}/src/pk/dsa/dsa_verify_key.c</path>
+			</file>
+			<file file-tag="ecc.c:1">
+				<path>${Project}/src/pk/ecc/ecc.c</path>
+			</file>
+			<file file-tag="ecc_decrypt_key.c:1">
+				<path>${Project}/src/pk/ecc/ecc_decrypt_key.c</path>
+			</file>
+			<file file-tag="ecc_encrypt_key.c:1">
+				<path>${Project}/src/pk/ecc/ecc_encrypt_key.c</path>
+			</file>
+			<file file-tag="ecc_export.c:1">
+				<path>${Project}/src/pk/ecc/ecc_export.c</path>
+			</file>
+			<file file-tag="ecc_free.c:1">
+				<path>${Project}/src/pk/ecc/ecc_free.c</path>
+			</file>
+			<file file-tag="ecc_get_size.c:1">
+				<path>${Project}/src/pk/ecc/ecc_get_size.c</path>
+			</file>
+			<file file-tag="ecc_import.c:1">
+				<path>${Project}/src/pk/ecc/ecc_import.c</path>
+			</file>
+			<file file-tag="ecc_make_key.c:1">
+				<path>${Project}/src/pk/ecc/ecc_make_key.c</path>
+			</file>
+			<file file-tag="ecc_shared_secret.c:1">
+				<path>${Project}/src/pk/ecc/ecc_shared_secret.c</path>
+			</file>
+			<file file-tag="ecc_sign_hash.c:1">
+				<path>${Project}/src/pk/ecc/ecc_sign_hash.c</path>
+			</file>
+			<file file-tag="ecc_sizes.c:1">
+				<path>${Project}/src/pk/ecc/ecc_sizes.c</path>
+			</file>
+			<file file-tag="ecc_test.c:1">
+				<path>${Project}/src/pk/ecc/ecc_test.c</path>
+			</file>
+			<file file-tag="ecc_verify_hash.c:1">
+				<path>${Project}/src/pk/ecc/ecc_verify_hash.c</path>
+			</file>
+			<file file-tag="ltc_ecc_is_valid_idx.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_is_valid_idx.c</path>
+			</file>
+			<file file-tag="ltc_ecc_map.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_map.c</path>
+			</file>
+			<file file-tag="ltc_ecc_mulmod.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_mulmod.c</path>
+			</file>
+			<file file-tag="ltc_ecc_mulmod_timing.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_mulmod_timing.c</path>
+			</file>
+			<file file-tag="ltc_ecc_points.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_points.c</path>
+			</file>
+			<file file-tag="ltc_ecc_projective_add_point.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_projective_add_point.c</path>
+			</file>
+			<file file-tag="ltc_ecc_projective_dbl_point.c:1">
+				<path>${Project}/src/pk/ecc/ltc_ecc_projective_dbl_point.c</path>
+			</file>
+			<file file-tag="katja_decrypt_key.c:1">
+				<path>${Project}/src/pk/katja/katja_decrypt_key.c</path>
+			</file>
+			<file file-tag="katja_encrypt_key.c:1">
+				<path>${Project}/src/pk/katja/katja_encrypt_key.c</path>
+			</file>
+			<file file-tag="katja_export.c:1">
+				<path>${Project}/src/pk/katja/katja_export.c</path>
+			</file>
+			<file file-tag="katja_exptmod.c:1">
+				<path>${Project}/src/pk/katja/katja_exptmod.c</path>
+			</file>
+			<file file-tag="katja_free.c:1">
+				<path>${Project}/src/pk/katja/katja_free.c</path>
+			</file>
+			<file file-tag="katja_import.c:1">
+				<path>${Project}/src/pk/katja/katja_import.c</path>
+			</file>
+			<file file-tag="katja_make_key.c:1">
+				<path>${Project}/src/pk/katja/katja_make_key.c</path>
+			</file>
+			<file file-tag="pkcs_1_i2osp.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_i2osp.c</path>
+			</file>
+			<file file-tag="pkcs_1_mgf1.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_mgf1.c</path>
+			</file>
+			<file file-tag="pkcs_1_oaep_decode.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_oaep_decode.c</path>
+			</file>
+			<file file-tag="pkcs_1_oaep_encode.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_oaep_encode.c</path>
+			</file>
+			<file file-tag="pkcs_1_os2ip.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_os2ip.c</path>
+			</file>
+			<file file-tag="pkcs_1_pss_decode.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_pss_decode.c</path>
+			</file>
+			<file file-tag="pkcs_1_pss_encode.c:1">
+				<path>${Project}/src/pk/pkcs1/pkcs_1_pss_encode.c</path>
+			</file>
+			<file file-tag="rsa_decrypt_key.c:1">
+				<path>${Project}/src/pk/rsa/rsa_decrypt_key.c</path>
+			</file>
+			<file file-tag="rsa_encrypt_key.c:1">
+				<path>${Project}/src/pk/rsa/rsa_encrypt_key.c</path>
+			</file>
+			<file file-tag="rsa_export.c:1">
+				<path>${Project}/src/pk/rsa/rsa_export.c</path>
+			</file>
+			<file file-tag="rsa_exptmod.c:1">
+				<path>${Project}/src/pk/rsa/rsa_exptmod.c</path>
+			</file>
+			<file file-tag="rsa_free.c:1">
+				<path>${Project}/src/pk/rsa/rsa_free.c</path>
+			</file>
+			<file file-tag="rsa_import.c:1">
+				<path>${Project}/src/pk/rsa/rsa_import.c</path>
+			</file>
+			<file file-tag="rsa_make_key.c:1">
+				<path>${Project}/src/pk/rsa/rsa_make_key.c</path>
+			</file>
+			<file file-tag="rsa_sign_hash.c:1">
+				<path>${Project}/src/pk/rsa/rsa_sign_hash.c</path>
+			</file>
+			<file file-tag="rsa_verify_hash.c:1">
+				<path>${Project}/src/pk/rsa/rsa_verify_hash.c</path>
+			</file>
+			<file file-tag="fortuna.c:1">
+				<path>${Project}/src/prngs/fortuna.c</path>
+			</file>
+			<file file-tag="rc4.c:1">
+				<path>${Project}/src/prngs/rc4.c</path>
+			</file>
+			<file file-tag="rng_get_bytes.c:1">
+				<path>${Project}/src/prngs/rng_get_bytes.c</path>
+			</file>
+			<file file-tag="rng_make_prng.c:1">
+				<path>${Project}/src/prngs/rng_make_prng.c</path>
+			</file>
+			<file file-tag="sprng.c:1">
+				<path>${Project}/src/prngs/sprng.c</path>
+			</file>
+			<file file-tag="yarrow.c:1">
+				<path>${Project}/src/prngs/yarrow.c</path>
+			</file>
+			<file file-tag="chc.c:1">
+				<path>${Project}/src/hashes/chc/chc.c</path>
+			</file>
+			<file file-tag="tiger.c:1">
+				<path>${Project}/src/hashes/tiger.c</path>
+			</file>
+			<file file-tag="sha1.c:1">
+				<path>${Project}/src/hashes/sha1.c</path>
+			</file>
+			<file file-tag="md5.c:1">
+				<path>${Project}/src/hashes/md5.c</path>
+			</file>
+			<file file-tag="hash_file.c:1">
+				<path>${Project}/src/hashes/helper/hash_file.c</path>
+			</file>
+			<file file-tag="hash_filehandle.c:1">
+				<path>${Project}/src/hashes/helper/hash_filehandle.c</path>
+			</file>
+			<file file-tag="hash_memory.c:1">
+				<path>${Project}/src/hashes/helper/hash_memory.c</path>
+			</file>
+			<file file-tag="hash_memory_multi.c:1">
+				<path>${Project}/src/hashes/helper/hash_memory_multi.c</path>
+			</file>
+			<file file-tag="sha256.c:1">
+				<path>${Project}/./src/hashes/sha2/sha256.c</path>
+			</file>
+			<file file-tag="tomcrypt.h:1">
+				<path>${Project}/src/headers/tomcrypt.h</path>
+			</file>
+			<file file-tag="tomcrypt_cipher.h:1">
+				<path>${Project}/src/headers/tomcrypt_cipher.h</path>
+			</file>
+			<file file-tag="tomcrypt_cfg.h:1">
+				<path>${Project}/src/headers/tomcrypt_cfg.h</path>
+			</file>
+			<file file-tag="tomcrypt_argchk.h:1">
+				<path>${Project}/src/headers/tomcrypt_argchk.h</path>
+			</file>
+			<file file-tag="tomcrypt_custom.h:1">
+				<path>${Project}/src/headers/tomcrypt_custom.h</path>
+			</file>
+			<file file-tag="tomcrypt_hash.h:1">
+				<path>${Project}/src/headers/tomcrypt_hash.h</path>
+			</file>
+			<file file-tag="tomcrypt_mac.h:1">
+				<path>${Project}/src/headers/tomcrypt_mac.h</path>
+			</file>
+			<file file-tag="tomcrypt_macros.h:1">
+				<path>${Project}/src/headers/tomcrypt_macros.h</path>
+			</file>
+			<file file-tag="tomcrypt_math.h:1">
+				<path>${Project}/src/headers/tomcrypt_math.h</path>
+			</file>
+			<file file-tag="tomcrypt_misc.h:1">
+				<path>${Project}/src/headers/tomcrypt_misc.h</path>
+			</file>
+			<file file-tag="tomcrypt_pk.h:1">
+				<path>${Project}/src/headers/tomcrypt_pk.h</path>
+			</file>
+			<file file-tag="tomcrypt_pkcs.h:1">
+				<path>${Project}/src/headers/tomcrypt_pkcs.h</path>
+			</file>
+			<file file-tag="tomcrypt_prng.h:1">
+				<path>${Project}/src/headers/tomcrypt_prng.h</path>
+			</file>
+			<file file-tag="hmac_done.c:1">
+				<path>${Project}/src/mac/hmac/hmac_done.c</path>
+			</file>
+			<file file-tag="hmac_file.c:1">
+				<path>${Project}/src/mac/hmac/hmac_file.c</path>
+			</file>
+			<file file-tag="hmac_init.c:1">
+				<path>${Project}/src/mac/hmac/hmac_init.c</path>
+			</file>
+			<file file-tag="hmac_memory.c:1">
+				<path>${Project}/src/mac/hmac/hmac_memory.c</path>
+			</file>
+			<file file-tag="hmac_memory_multi.c:1">
+				<path>${Project}/src/mac/hmac/hmac_memory_multi.c</path>
+			</file>
+			<file file-tag="hmac_process.c:1">
+				<path>${Project}/src/mac/hmac/hmac_process.c</path>
+			</file>
+			<file file-tag="hmac_test.c:1">
+				<path>${Project}/src/mac/hmac/hmac_test.c</path>
+			</file>
+			<file file-tag="omac_done.c:1">
+				<path>${Project}/src/mac/omac/omac_done.c</path>
+			</file>
+			<file file-tag="omac_file.c:1">
+				<path>${Project}/src/mac/omac/omac_file.c</path>
+			</file>
+			<file file-tag="omac_init.c:1">
+				<path>${Project}/src/mac/omac/omac_init.c</path>
+			</file>
+			<file file-tag="omac_memory.c:1">
+				<path>${Project}/src/mac/omac/omac_memory.c</path>
+			</file>
+			<file file-tag="omac_memory_multi.c:1">
+				<path>${Project}/src/mac/omac/omac_memory_multi.c</path>
+			</file>
+			<file file-tag="omac_process.c:1">
+				<path>${Project}/src/mac/omac/omac_process.c</path>
+			</file>
+			<file file-tag="omac_test.c:1">
+				<path>${Project}/src/mac/omac/omac_test.c</path>
+			</file>
+			<file file-tag="pelican.c:1">
+				<path>${Project}/src/mac/pelican/pelican.c</path>
+			</file>
+			<file file-tag="pelican_memory.c:1">
+				<path>${Project}/src/mac/pelican/pelican_memory.c</path>
+			</file>
+			<file file-tag="pelican_test.c:1">
+				<path>${Project}/src/mac/pelican/pelican_test.c</path>
+			</file>
+			<file file-tag="pmac_done.c:1">
+				<path>${Project}/src/mac/pmac/pmac_done.c</path>
+			</file>
+			<file file-tag="pmac_file.c:1">
+				<path>${Project}/src/mac/pmac/pmac_file.c</path>
+			</file>
+			<file file-tag="pmac_init.c:1">
+				<path>${Project}/src/mac/pmac/pmac_init.c</path>
+			</file>
+			<file file-tag="pmac_memory.c:1">
+				<path>${Project}/src/mac/pmac/pmac_memory.c</path>
+			</file>
+			<file file-tag="pmac_memory_multi.c:1">
+				<path>${Project}/src/mac/pmac/pmac_memory_multi.c</path>
+			</file>
+			<file file-tag="pmac_ntz.c:1">
+				<path>${Project}/src/mac/pmac/pmac_ntz.c</path>
+			</file>
+			<file file-tag="pmac_process.c:1">
+				<path>${Project}/src/mac/pmac/pmac_process.c</path>
+			</file>
+			<file file-tag="pmac_shift_xor.c:1">
+				<path>${Project}/src/mac/pmac/pmac_shift_xor.c</path>
+			</file>
+			<file file-tag="pmac_test.c:1">
+				<path>${Project}/src/mac/pmac/pmac_test.c</path>
+			</file>
+			<file file-tag="ltm_desc.c:1">
+				<path>${Project}/src/math/ltm_desc.c</path>
+			</file>
+			<file file-tag="multi.c:1">
+				<path>${Project}/src/math/multi.c</path>
+			</file>
+			<file file-tag="rand_prime.c:1">
+				<path>${Project}/src/math/rand_prime.c</path>
+			</file>
+			<file file-tag="tfm_desc.c:1">
+				<path>${Project}/src/math/tfm_desc.c</path>
+			</file>
+			<file file-tag="burn_stack.c:1">
+				<path>${Project}/src/misc/burn_stack.c</path>
+			</file>
+			<file file-tag="error_to_string.c:1">
+				<path>${Project}/src/misc/error_to_string.c</path>
+			</file>
+			<file file-tag="zeromem.c:1">
+				<path>${Project}/src/misc/zeromem.c</path>
+			</file>
+			<file file-tag="base64_decode.c:1">
+				<path>${Project}/src/misc/base64/base64_decode.c</path>
+			</file>
+			<file file-tag="base64_encode.c:1">
+				<path>${Project}/src/misc/base64/base64_encode.c</path>
+			</file>
+			<file file-tag="crypt.c:1">
+				<path>${Project}/src/misc/crypt/crypt.c</path>
+			</file>
+			<file file-tag="crypt_argchk.c:1">
+				<path>${Project}/src/misc/crypt/crypt_argchk.c</path>
+			</file>
+			<file file-tag="crypt_cipher_descriptor.c:1">
+				<path>${Project}/src/misc/crypt/crypt_cipher_descriptor.c</path>
+			</file>
+			<file file-tag="crypt_cipher_is_valid.c:1">
+				<path>${Project}/src/misc/crypt/crypt_cipher_is_valid.c</path>
+			</file>
+			<file file-tag="crypt_find_cipher.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_cipher.c</path>
+			</file>
+			<file file-tag="crypt_find_cipher_any.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_cipher_any.c</path>
+			</file>
+			<file file-tag="crypt_find_cipher_id.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_cipher_id.c</path>
+			</file>
+			<file file-tag="crypt_find_hash.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_hash.c</path>
+			</file>
+			<file file-tag="crypt_find_hash_any.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_hash_any.c</path>
+			</file>
+			<file file-tag="crypt_find_hash_id.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_hash_id.c</path>
+			</file>
+			<file file-tag="crypt_find_hash_oid.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_hash_oid.c</path>
+			</file>
+			<file file-tag="crypt_find_prng.c:1">
+				<path>${Project}/src/misc/crypt/crypt_find_prng.c</path>
+			</file>
+			<file file-tag="crypt_hash_descriptor.c:1">
+				<path>${Project}/src/misc/crypt/crypt_hash_descriptor.c</path>
+			</file>
+			<file file-tag="crypt_hash_is_valid.c:1">
+				<path>${Project}/src/misc/crypt/crypt_hash_is_valid.c</path>
+			</file>
+			<file file-tag="crypt_ltc_mp_descriptor.c:1">
+				<path>${Project}/src/misc/crypt/crypt_ltc_mp_descriptor.c</path>
+			</file>
+			<file file-tag="crypt_prng_descriptor.c:1">
+				<path>${Project}/src/misc/crypt/crypt_prng_descriptor.c</path>
+			</file>
+			<file file-tag="crypt_prng_is_valid.c:1">
+				<path>${Project}/src/misc/crypt/crypt_prng_is_valid.c</path>
+			</file>
+			<file file-tag="crypt_register_cipher.c:1">
+				<path>${Project}/src/misc/crypt/crypt_register_cipher.c</path>
+			</file>
+			<file file-tag="crypt_register_hash.c:1">
+				<path>${Project}/src/misc/crypt/crypt_register_hash.c</path>
+			</file>
+			<file file-tag="crypt_register_prng.c:1">
+				<path>${Project}/src/misc/crypt/crypt_register_prng.c</path>
+			</file>
+			<file file-tag="crypt_unregister_cipher.c:1">
+				<path>${Project}/src/misc/crypt/crypt_unregister_cipher.c</path>
+			</file>
+			<file file-tag="crypt_unregister_hash.c:1">
+				<path>${Project}/src/misc/crypt/crypt_unregister_hash.c</path>
+			</file>
+			<file file-tag="crypt_unregister_prng.c:1">
+				<path>${Project}/src/misc/crypt/crypt_unregister_prng.c</path>
+			</file>
+			<file file-tag="pkcs_5_1.c:1">
+				<path>${Project}/src/misc/pkcs5/pkcs_5_1.c</path>
+			</file>
+			<file file-tag="pkcs_5_2.c:1">
+				<path>${Project}/src/misc/pkcs5/pkcs_5_2.c</path>
+			</file>
+			<file file-tag="cbc_decrypt.c:1">
+				<path>${Project}/src/modes/cbc/cbc_decrypt.c</path>
+			</file>
+			<file file-tag="cbc_done.c:1">
+				<path>${Project}/src/modes/cbc/cbc_done.c</path>
+			</file>
+			<file file-tag="cbc_encrypt.c:1">
+				<path>${Project}/src/modes/cbc/cbc_encrypt.c</path>
+			</file>
+			<file file-tag="cbc_getiv.c:1">
+				<path>${Project}/src/modes/cbc/cbc_getiv.c</path>
+			</file>
+			<file file-tag="cbc_setiv.c:1">
+				<path>${Project}/src/modes/cbc/cbc_setiv.c</path>
+			</file>
+			<file file-tag="cbc_start.c:1">
+				<path>${Project}/src/modes/cbc/cbc_start.c</path>
+			</file>
+			<file file-tag="cfb_decrypt.c:1">
+				<path>${Project}/src/modes/cfb/cfb_decrypt.c</path>
+			</file>
+			<file file-tag="cfb_done.c:1">
+				<path>${Project}/src/modes/cfb/cfb_done.c</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+					<mixed-group group-tag="ciphers:1">
+						<label>ciphers</label>
+						<group-items>
+							<mixed-group group-tag="aes:2">
+								<label>aes</label>
+								<group-items>
+									<file-ref>aes.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<file-ref>des.c:1</file-ref>
+							<file-ref>blowfish.c:1</file-ref>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="encauth:1">
+						<label>encauth</label>
+						<group-items>
+							<mixed-group group-tag="ccm:1">
+								<label>ccm</label>
+								<group-items>
+									<file-ref>ccm_memory.c:1</file-ref>
+									<file-ref>ccm_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="eax:2">
+								<label>eax</label>
+								<group-items>
+									<file-ref>eax_addheader.c:1</file-ref>
+									<file-ref>eax_decrypt.c:1</file-ref>
+									<file-ref>eax_decrypt_verify_memory.c:1</file-ref>
+									<file-ref>eax_done.c:1</file-ref>
+									<file-ref>eax_encrypt.c:1</file-ref>
+									<file-ref>eax_encrypt_authenticate_memory.c:1</file-ref>
+									<file-ref>eax_init.c:1</file-ref>
+									<file-ref>eax_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="gcm:2">
+								<label>gcm</label>
+								<group-items>
+									<file-ref>gcm_add_aad.c:1</file-ref>
+									<file-ref>gcm_add_iv.c:1</file-ref>
+									<file-ref>gcm_done.c:1</file-ref>
+									<file-ref>gcm_gf_mult.c:1</file-ref>
+									<file-ref>gcm_init.c:1</file-ref>
+									<file-ref>gcm_memory.c:1</file-ref>
+									<file-ref>gcm_mult_h.c:1</file-ref>
+									<file-ref>gcm_process.c:1</file-ref>
+									<file-ref>gcm_reset.c:1</file-ref>
+									<file-ref>gcm_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="nls:2">
+								<label>nls</label>
+								<group-items>
+									<file-ref>nls_memory.c:1</file-ref>
+									<file-ref>nlsfast.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="ocb:2">
+								<label>ocb</label>
+								<group-items>
+									<file-ref>ocb_decrypt.c:1</file-ref>
+									<file-ref>ocb_decrypt_verify_memory.c:1</file-ref>
+									<file-ref>ocb_done_decrypt.c:1</file-ref>
+									<file-ref>ocb_done_encrypt.c:1</file-ref>
+									<file-ref>ocb_encrypt.c:1</file-ref>
+									<file-ref>ocb_encrypt_authenticate_memory.c:1</file-ref>
+									<file-ref>ocb_init.c:1</file-ref>
+									<file-ref>ocb_ntz.c:1</file-ref>
+									<file-ref>ocb_shift_xor.c:1</file-ref>
+									<file-ref>ocb_test.c:1</file-ref>
+									<file-ref>s_ocb_done.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="hashes:1">
+						<label>hashes</label>
+						<group-items>
+							<mixed-group group-tag="chc:2">
+								<label>chc</label>
+								<group-items>
+									<file-ref>chc.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="helper:2">
+								<label>helper</label>
+								<group-items>
+									<file-ref>hash_file.c:1</file-ref>
+									<file-ref>hash_filehandle.c:1</file-ref>
+									<file-ref>hash_memory.c:1</file-ref>
+									<file-ref>hash_memory_multi.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="sha2:2">
+								<label>sha2</label>
+								<group-items>
+									<file-ref>sha256.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<file-ref>md5.c:1</file-ref>
+							<file-ref>sha1.c:1</file-ref>
+							<file-ref>tiger.c:1</file-ref>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="headers:1">
+						<label>headers</label>
+						<group-items>
+							<file-ref>tomcrypt.h:1</file-ref>
+							<file-ref>tomcrypt_argchk.h:1</file-ref>
+							<file-ref>tomcrypt_cfg.h:1</file-ref>
+							<file-ref>tomcrypt_cipher.h:1</file-ref>
+							<file-ref>tomcrypt_custom.h:1</file-ref>
+							<file-ref>tomcrypt_hash.h:1</file-ref>
+							<file-ref>tomcrypt_mac.h:1</file-ref>
+							<file-ref>tomcrypt_macros.h:1</file-ref>
+							<file-ref>tomcrypt_math.h:1</file-ref>
+							<file-ref>tomcrypt_misc.h:1</file-ref>
+							<file-ref>tomcrypt_pk.h:1</file-ref>
+							<file-ref>tomcrypt_pkcs.h:1</file-ref>
+							<file-ref>tomcrypt_prng.h:1</file-ref>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="mac:1">
+						<label>mac</label>
+						<group-items>
+							<mixed-group group-tag="hmac:2">
+								<label>hmac</label>
+								<group-items>
+									<file-ref>hmac_done.c:1</file-ref>
+									<file-ref>hmac_file.c:1</file-ref>
+									<file-ref>hmac_init.c:1</file-ref>
+									<file-ref>hmac_memory.c:1</file-ref>
+									<file-ref>hmac_memory_multi.c:1</file-ref>
+									<file-ref>hmac_process.c:1</file-ref>
+									<file-ref>hmac_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="omac:2">
+								<label>omac</label>
+								<group-items>
+									<file-ref>omac_done.c:1</file-ref>
+									<file-ref>omac_file.c:1</file-ref>
+									<file-ref>omac_init.c:1</file-ref>
+									<file-ref>omac_memory.c:1</file-ref>
+									<file-ref>omac_memory_multi.c:1</file-ref>
+									<file-ref>omac_process.c:1</file-ref>
+									<file-ref>omac_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="pelican:2">
+								<label>pelican</label>
+								<group-items>
+									<file-ref>pelican.c:1</file-ref>
+									<file-ref>pelican_memory.c:1</file-ref>
+									<file-ref>pelican_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="pmac:2">
+								<label>pmac</label>
+								<group-items>
+									<file-ref>pmac_done.c:1</file-ref>
+									<file-ref>pmac_file.c:1</file-ref>
+									<file-ref>pmac_init.c:1</file-ref>
+									<file-ref>pmac_memory.c:1</file-ref>
+									<file-ref>pmac_memory_multi.c:1</file-ref>
+									<file-ref>pmac_ntz.c:1</file-ref>
+									<file-ref>pmac_process.c:1</file-ref>
+									<file-ref>pmac_shift_xor.c:1</file-ref>
+									<file-ref>pmac_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="math:1">
+						<label>math</label>
+						<group-items>
+							<file-ref>ltm_desc.c:1</file-ref>
+							<file-ref>multi.c:1</file-ref>
+							<file-ref>rand_prime.c:1</file-ref>
+							<file-ref>tfm_desc.c:1</file-ref>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="misc:1">
+						<label>misc</label>
+						<group-items>
+							<mixed-group group-tag="base64:2">
+								<label>base64</label>
+								<group-items>
+									<file-ref>base64_decode.c:1</file-ref>
+									<file-ref>base64_encode.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="crypt:2">
+								<label>crypt</label>
+								<group-items>
+									<file-ref>crypt.c:1</file-ref>
+									<file-ref>crypt_argchk.c:1</file-ref>
+									<file-ref>crypt_cipher_descriptor.c:1</file-ref>
+									<file-ref>crypt_cipher_is_valid.c:1</file-ref>
+									<file-ref>crypt_find_cipher.c:1</file-ref>
+									<file-ref>crypt_find_cipher_any.c:1</file-ref>
+									<file-ref>crypt_find_cipher_id.c:1</file-ref>
+									<file-ref>crypt_find_hash.c:1</file-ref>
+									<file-ref>crypt_find_hash_any.c:1</file-ref>
+									<file-ref>crypt_find_hash_id.c:1</file-ref>
+									<file-ref>crypt_find_hash_oid.c:1</file-ref>
+									<file-ref>crypt_find_prng.c:1</file-ref>
+									<file-ref>crypt_hash_descriptor.c:1</file-ref>
+									<file-ref>crypt_hash_is_valid.c:1</file-ref>
+									<file-ref>crypt_ltc_mp_descriptor.c:1</file-ref>
+									<file-ref>crypt_prng_descriptor.c:1</file-ref>
+									<file-ref>crypt_prng_is_valid.c:1</file-ref>
+									<file-ref>crypt_register_cipher.c:1</file-ref>
+									<file-ref>crypt_register_hash.c:1</file-ref>
+									<file-ref>crypt_register_prng.c:1</file-ref>
+									<file-ref>crypt_unregister_cipher.c:1</file-ref>
+									<file-ref>crypt_unregister_hash.c:1</file-ref>
+									<file-ref>crypt_unregister_prng.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="pkcs5:2">
+								<label>pkcs5</label>
+								<group-items>
+									<file-ref>pkcs_5_1.c:1</file-ref>
+									<file-ref>pkcs_5_2.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<file-ref>burn_stack.c:1</file-ref>
+							<file-ref>error_to_string.c:1</file-ref>
+							<file-ref>zeromem.c:1</file-ref>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="modes:1">
+						<label>modes</label>
+						<group-items>
+							<mixed-group group-tag="cbc:2">
+								<label>cbc</label>
+								<group-items>
+									<file-ref>cbc_decrypt.c:1</file-ref>
+									<file-ref>cbc_done.c:1</file-ref>
+									<file-ref>cbc_encrypt.c:1</file-ref>
+									<file-ref>cbc_getiv.c:1</file-ref>
+									<file-ref>cbc_setiv.c:1</file-ref>
+									<file-ref>cbc_start.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="cfb:2">
+								<label>cfb</label>
+								<group-items>
+									<file-ref>cfb_decrypt.c:1</file-ref>
+									<file-ref>cfb_done.c:1</file-ref>
+									<file-ref>cfb_encrypt.c:1</file-ref>
+									<file-ref>cfb_getiv.c:1</file-ref>
+									<file-ref>cfb_setiv.c:1</file-ref>
+									<file-ref>cfb_start.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="ctr:2">
+								<label>ctr</label>
+								<group-items>
+									<file-ref>ctr_decrypt.c:1</file-ref>
+									<file-ref>ctr_done.c:1</file-ref>
+									<file-ref>ctr_encrypt.c:1</file-ref>
+									<file-ref>ctr_getiv.c:1</file-ref>
+									<file-ref>ctr_setiv.c:1</file-ref>
+									<file-ref>ctr_start.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="ecb:2">
+								<label>ecb</label>
+								<group-items>
+									<file-ref>ecb_decrypt.c:1</file-ref>
+									<file-ref>ecb_done.c:1</file-ref>
+									<file-ref>ecb_encrypt.c:1</file-ref>
+									<file-ref>ecb_start.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="lrw:2">
+								<label>lrw</label>
+								<group-items>
+									<file-ref>lrw_decrypt.c:1</file-ref>
+									<file-ref>lrw_done.c:1</file-ref>
+									<file-ref>lrw_encrypt.c:1</file-ref>
+									<file-ref>lrw_getiv.c:1</file-ref>
+									<file-ref>lrw_process.c:1</file-ref>
+									<file-ref>lrw_setiv.c:1</file-ref>
+									<file-ref>lrw_start.c:1</file-ref>
+									<file-ref>lrw_test.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="ofb:2">
+								<label>ofb</label>
+								<group-items>
+									<file-ref>ofb_decrypt.c:1</file-ref>
+									<file-ref>ofb_done.c:1</file-ref>
+									<file-ref>ofb_encrypt.c:1</file-ref>
+									<file-ref>ofb_getiv.c:1</file-ref>
+									<file-ref>ofb_setiv.c:1</file-ref>
+									<file-ref>ofb_start.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="pk:1">
+						<label>pk</label>
+						<group-items>
+							<mixed-group group-tag="asn1:2">
+								<label>asn1</label>
+								<group-items>
+									<mixed-group group-tag="der:2">
+										<label>der</label>
+										<group-items>
+											<mixed-group group-tag="bit:2">
+												<label>bit</label>
+												<group-items>
+													<file-ref>der_decode_bit_string.c:1</file-ref>
+													<file-ref>der_encode_bit_string.c:1</file-ref>
+													<file-ref>der_length_bit_string.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="choice:2">
+												<label>choice</label>
+												<group-items>
+													<file-ref>der_decode_choice.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="ia5:2">
+												<label>ia5</label>
+												<group-items>
+													<file-ref>der_decode_ia5_string.c:1</file-ref>
+													<file-ref>der_encode_ia5_string.c:1</file-ref>
+													<file-ref>der_length_ia5_string.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="integer:2">
+												<label>integer</label>
+												<group-items>
+													<file-ref>der_decode_integer.c:1</file-ref>
+													<file-ref>der_encode_integer.c:1</file-ref>
+													<file-ref>der_length_integer.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="object_identifier:2">
+												<label>object_identifier</label>
+												<group-items>
+													<file-ref>der_decode_object_identifier.c:1</file-ref>
+													<file-ref>der_encode_object_identifier.c:1</file-ref>
+													<file-ref>der_length_object_identifier.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="octet:2">
+												<label>octet</label>
+												<group-items>
+													<file-ref>der_decode_octet_string.c:1</file-ref>
+													<file-ref>der_encode_octet_string.c:1</file-ref>
+													<file-ref>der_length_octet_string.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="printable_string:2">
+												<label>printable_string</label>
+												<group-items>
+													<file-ref>der_decode_printable_string.c:1</file-ref>
+													<file-ref>der_encode_printable_string.c:1</file-ref>
+													<file-ref>der_length_printable_string.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="sequence:2">
+												<label>sequence</label>
+												<group-items>
+													<file-ref>der_decode_sequence_ex.c:1</file-ref>
+													<file-ref>der_decode_sequence_flexi.c:1</file-ref>
+													<file-ref>der_decode_sequence_multi.c:1</file-ref>
+													<file-ref>der_encode_sequence_ex.c:1</file-ref>
+													<file-ref>der_encode_sequence_multi.c:1</file-ref>
+													<file-ref>der_length_sequence.c:1</file-ref>
+													<file-ref>der_sequence_free.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="set:2">
+												<label>set</label>
+												<group-items>
+													<file-ref>der_encode_set.c:1</file-ref>
+													<file-ref>der_encode_setof.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="short_integer:2">
+												<label>short_integer</label>
+												<group-items>
+													<file-ref>der_decode_short_integer.c:1</file-ref>
+													<file-ref>der_encode_short_integer.c:1</file-ref>
+													<file-ref>der_length_short_integer.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+											<mixed-group group-tag="utctime:2">
+												<label>utctime</label>
+												<group-items>
+													<file-ref>der_decode_utctime.c:1</file-ref>
+													<file-ref>der_encode_utctime.c:1</file-ref>
+													<file-ref>der_length_utctime.c:1</file-ref>
+												</group-items>
+											</mixed-group>
+										</group-items>
+									</mixed-group>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="dsa:2">
+								<label>dsa</label>
+								<group-items>
+									<file-ref>dsa_decrypt_key.c:1</file-ref>
+									<file-ref>dsa_encrypt_key.c:1</file-ref>
+									<file-ref>dsa_export.c:1</file-ref>
+									<file-ref>dsa_free.c:1</file-ref>
+									<file-ref>dsa_import.c:1</file-ref>
+									<file-ref>dsa_make_key.c:1</file-ref>
+									<file-ref>dsa_shared_secret.c:1</file-ref>
+									<file-ref>dsa_sign_hash.c:1</file-ref>
+									<file-ref>dsa_verify_hash.c:1</file-ref>
+									<file-ref>dsa_verify_key.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="ecc:2">
+								<label>ecc</label>
+								<group-items>
+									<file-ref>ecc.c:1</file-ref>
+									<file-ref>ecc_decrypt_key.c:1</file-ref>
+									<file-ref>ecc_encrypt_key.c:1</file-ref>
+									<file-ref>ecc_export.c:1</file-ref>
+									<file-ref>ecc_free.c:1</file-ref>
+									<file-ref>ecc_get_size.c:1</file-ref>
+									<file-ref>ecc_import.c:1</file-ref>
+									<file-ref>ecc_make_key.c:1</file-ref>
+									<file-ref>ecc_shared_secret.c:1</file-ref>
+									<file-ref>ecc_sign_hash.c:1</file-ref>
+									<file-ref>ecc_sizes.c:1</file-ref>
+									<file-ref>ecc_test.c:1</file-ref>
+									<file-ref>ecc_verify_hash.c:1</file-ref>
+									<file-ref>ltc_ecc_is_valid_idx.c:1</file-ref>
+									<file-ref>ltc_ecc_map.c:1</file-ref>
+									<file-ref>ltc_ecc_mulmod.c:1</file-ref>
+									<file-ref>ltc_ecc_mulmod_timing.c:1</file-ref>
+									<file-ref>ltc_ecc_points.c:1</file-ref>
+									<file-ref>ltc_ecc_projective_add_point.c:1</file-ref>
+									<file-ref>ltc_ecc_projective_dbl_point.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="katja:2">
+								<label>katja</label>
+								<group-items>
+									<file-ref>katja_decrypt_key.c:1</file-ref>
+									<file-ref>katja_encrypt_key.c:1</file-ref>
+									<file-ref>katja_export.c:1</file-ref>
+									<file-ref>katja_exptmod.c:1</file-ref>
+									<file-ref>katja_free.c:1</file-ref>
+									<file-ref>katja_import.c:1</file-ref>
+									<file-ref>katja_make_key.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="pkcs1:2">
+								<label>pkcs1</label>
+								<group-items>
+									<file-ref>pkcs_1_i2osp.c:1</file-ref>
+									<file-ref>pkcs_1_mgf1.c:1</file-ref>
+									<file-ref>pkcs_1_oaep_decode.c:1</file-ref>
+									<file-ref>pkcs_1_oaep_encode.c:1</file-ref>
+									<file-ref>pkcs_1_os2ip.c:1</file-ref>
+									<file-ref>pkcs_1_pss_decode.c:1</file-ref>
+									<file-ref>pkcs_1_pss_encode.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+							<mixed-group group-tag="rsa:2">
+								<label>rsa</label>
+								<group-items>
+									<file-ref>rsa_decrypt_key.c:1</file-ref>
+									<file-ref>rsa_encrypt_key.c:1</file-ref>
+									<file-ref>rsa_export.c:1</file-ref>
+									<file-ref>rsa_exptmod.c:1</file-ref>
+									<file-ref>rsa_free.c:1</file-ref>
+									<file-ref>rsa_import.c:1</file-ref>
+									<file-ref>rsa_make_key.c:1</file-ref>
+									<file-ref>rsa_sign_hash.c:1</file-ref>
+									<file-ref>rsa_verify_hash.c:1</file-ref>
+								</group-items>
+							</mixed-group>
+						</group-items>
+					</mixed-group>
+					<mixed-group group-tag="prngs:1">
+						<label>prngs</label>
+						<group-items>
+							<file-ref>fortuna.c:1</file-ref>
+							<file-ref>rc4.c:1</file-ref>
+							<file-ref>rng_get_bytes.c:1</file-ref>
+							<file-ref>rng_make_prng.c:1</file-ref>
+							<file-ref>sprng.c:1</file-ref>
+							<file-ref>yarrow.c:1</file-ref>
+						</group-items>
+					</mixed-group>
+					<file-ref>tomcrypt.c:1</file-ref>
+					<file-ref>tomcrypt_cipher.c:1</file-ref>
+					<file-ref>tomcrypt_cfg.c:1</file-ref>
+					<file-ref>tomcrypt_argchk.c:1</file-ref>
+					<file-ref>tomcrypt_custom.c:1</file-ref>
+					<file-ref>tomcrypt_hash.c:1</file-ref>
+					<file-ref>tomcrypt_mac.c:1</file-ref>
+					<file-ref>tomcrypt_macros.c:1</file-ref>
+					<file-ref>tomcrypt_math.c:1</file-ref>
+					<file-ref>tomcrypt_misc.c:1</file-ref>
+					<file-ref>tomcrypt_pk.c:1</file-ref>
+					<file-ref>tomcrypt_pkcs.c:1</file-ref>
+					<file-ref>tomcrypt_prng.c:1</file-ref>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+		<targets>
+			<target>
+				<name>Debug</name>
+				<settings>
+					<setting entry="intermediateOutput" uuid-alias="Dictionary3">
+						<simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+					</setting>
+					<setting entry="finalOutputDir" uuid-alias="Dictionary3">
+						<simple>../../lib/wii-radix/${TargetName}</simple>
+					</setting>
+					<setting entry="finalOutputName" uuid-alias="Dictionary3">
+						<simple>libtomcrypt.a</simple>
+					</setting>
+				</settings>
+			</target>
+			<target>
+				<name>Release</name>
+				<settings>
+					<setting entry="intermediateOutput" uuid-alias="Dictionary3">
+						<simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+					</setting>
+					<setting entry="finalOutputDir" uuid-alias="Dictionary3">
+						<simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+					</setting>
+					<setting entry="finalOutputName" uuid-alias="Dictionary3">
+						<simple>libtomcrypt.a</simple>
+					</setting>
+				</settings>
+			</target>
+		</targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>

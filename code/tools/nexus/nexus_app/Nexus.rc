@@ -1,0 +1,630 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_NexusTYPE           ICON                    "res\\NexusDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  25, 25
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_SELECTIONMODE_OBJECT
+    BUTTON      ID_SELECTIONMODE_POLYGON
+    BUTTON      ID_SELECTIONMODE_POINT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Import...",                   ID_FILE_IMPORT
+        MENUITEM "Export...",                   ID_FILE_EXPORT
+        MENUITEM "Export Selection...",         ID_FILE_EXPORTSELECTION, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT, INACTIVE
+        MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW, INACTIVE
+        MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP, INACTIVE
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM SEPARATOR
+        POPUP "Selection Mode"
+        BEGIN
+            MENUITEM "Object",                      ID_SELECTIONMODE_OBJECT
+            MENUITEM "Face",                        ID_SELECTIONMODE_POLYGON
+            MENUITEM "Point",                       ID_SELECTIONMODE_POINT
+        END
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Show Grid",                   ID_VIEW_SHOWGRID
+        POPUP "Heads Up Display"
+        BEGIN
+            MENUITEM "Poly Count",                  ID_VIEW_POLYCOUNT
+            MENUITEM "Animation Details",           ID_VIEW_ANIMATIONDETAILS
+            MENUITEM "Camera Details",              ID_HEADSUPDISPLAY_CAMERADETAILS
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Output Window",              ID_VIEW_OUTPUT_TOOLBAR
+        MENUITEM "Scene Graph",                 ID_VIEW_RIGHT_TOOLBAR
+        MENUITEM "&Toolbar",                    ID_Menu
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        POPUP "Show / Hide Nodes"
+        BEGIN
+            MENUITEM "Meshes",                      ID_SHOW_MESHES
+            MENUITEM "Instances",                   ID_SHOW_INSTANCES
+            MENUITEM "Splines",                     ID_SHOW_SPLINES
+            MENUITEM "Lights",                      ID_SHOW_LIGHTS
+            MENUITEM "Point Lights",                ID_SHOW_POINTLIGHTS
+            MENUITEM "Spot Lights",                 ID_SHOW_SPOTLIGHTS
+            MENUITEM "Directional Lights",          ID_SHOW_DIRECTIONALLIGHTS
+            MENUITEM "Area Lights",                 ID_SHOW_AREALIGHTS
+            MENUITEM "Joints",                      ID_SHOW_JOINTS
+            MENUITEM "Nulls",                       ID_SHOW_NULLS
+        END
+        MENUITEM "Scene Bounding Box",          ID_VIEW_SCENEBOUNDINGBOX
+        MENUITEM SEPARATOR
+        POPUP "Selection Info"
+        BEGIN
+            MENUITEM "Output Object Info on Selection", ID_SELECTIONINFO_SHOWNODEINFOONSELECTION
+            MENUITEM "Output Face Info on Selection", ID_SELECTIONINFO_SHOWFACEINFOONSELECTION
+        END
+    END
+    POPUP "Shading"
+    BEGIN
+        MENUITEM "Solid",                       ID_SHADING_SMOOTHSHADEALL
+        MENUITEM "Wireframe",                   ID_SHADING_WIREFRAMEALL
+        MENUITEM "Points",                      ID_SHADING_POINTSALL
+        MENUITEM SEPARATOR
+        MENUITEM "Backface Culling",            ID_SHADING_BACKFACECULLING
+        MENUITEM "Texturing",                   ID_SHADING_TEXTURING
+        MENUITEM "Crop Sheet",                  ID_SHADING_CROPSHEET
+        MENUITEM "Show Weighting",              ID_SHADING_SHOWWEIGHTING
+        MENUITEM "Show UV0",                    ID_SHADING_SHOWUV0
+        MENUITEM "Show UV1",                    ID_SHADING_SHOWUV1
+        MENUITEM SEPARATOR
+        MENUITEM "Skinning",                    ID_SHADING_FIXEDFUNCTIONSKINNING
+    END
+    POPUP "Lighting"
+    BEGIN
+        MENUITEM "Default Lighting",            ID_LIGHTING_DEFAULTLIGHTING
+        MENUITEM "Use All Lights",              ID_LIGHTING_USEALLLIGHTS, INACTIVE
+    END
+    POPUP "Rendering"
+    BEGIN
+        MENUITEM "Normals",                     ID_RENDERING_VERTEXNORMALS
+        POPUP "Tangent Space"
+        BEGIN
+            MENUITEM "UV Set 0",                    ID_TANGENTSPACE_UVSET0
+            MENUITEM "UV Set 1",                    ID_TANGENTSPACE_UVSET1
+            MENUITEM "UV Set 2",                    ID_TANGENTSPACE_UVSET2
+            MENUITEM "UV Set 3",                    ID_TANGENTSPACE_UVSET3
+            MENUITEM "UV Set 4",                    ID_TANGENTSPACE_UVSET4
+        END
+        MENUITEM "Axes",                        ID_RENDERING_AXES
+        MENUITEM SEPARATOR
+        POPUP "Lightmap &Type"
+        BEGIN
+            MENUITEM "&Full Colour",                ID_LIGHTMAPTYPE_FULLCOLOUR
+            MENUITEM "2-Channel &DXT1",             ID_LIGHTMAPTYPE_2
+            MENUITEM "2-Channel A8L8",              ID_LIGHTMAPTYPE_3
+            MENUITEM "Multiplied",                  ID_LIGHTMAPTYPE_MULTIPLIED
+        END
+    END
+    POPUP "&Tasks"
+    BEGIN
+        MENUITEM "Output Scene Bounds",         ID_TASKS_OUTPUTSCENEBOUNDS
+        MENUITEM "Output Selected Object Info", ID_TASKS_OUTPUTSELECTIONSTATS
+        MENUITEM "Repair Scene",                ID_TASKSREPAIRSCENE
+        MENUITEM "Calculate Tangent Space",     ID_TASKS_CALCULATEVERTEXTANGENTSPACEFORSCENE
+        MENUITEM "Weld Mesh",                   ID_TASKS_WELDMESH
+        MENUITEM "Remove Duplicate Meshes",     ID_TASKS_REMOVEDUPLICATEMESHES
+        MENUITEM "Create Instances",            ID_TASKS_CREATEINSTANCES
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About Nexus...",             ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 268, 143
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Nexus"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         132,IDC_STATIC,"Static",SS_BITMAP,11,17,77,94
+    LTEXT           "Version",IDC_ABOUTVERSION,102,18,119,8,SS_NOPREFIX
+    LTEXT           "(C) 2004-2005 Bizarre Creations",IDC_STATIC,102,84,119,8
+    DEFPUSHBUTTON   "OK",IDOK,210,114,50,16,WS_GROUP
+    LTEXT           "Ken MacLeod",IDC_STATIC,102,96,108,12
+    LTEXT           "Aftk Details",IDC_ABOUTAFTK,102,30,156,54
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Bizarre Creations"
+            VALUE "FileDescription", "Nexus - Asset Preview Tool"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "Nexus"
+            VALUE "LegalCopyright", "(c) Bizarre Creations 2004-2005.  All rights reserved."
+            VALUE "OriginalFilename", "Nexus.exe"
+            VALUE "ProductName", "Nexus"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 261
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Nexus\n\nNexus\nAbstract 3D (*.a3d)\n.a3d\nNexus.Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Nexus"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_SHOWGRID        "Toggles the grid on and off"
+    ID_SHADING_SHOWWEIGHTING 
+                            "Shows the first three vertex weights using vertex colouring"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SHADING_POINTSALL    "Enable point rendering"
+    ID_SHADING_TEXTURING    "Toggle texture display"
+    ID_SHADING_BACKFACECULLING "Toggle backface culling"
+    ID_SHADING_WIREFRAMEALL "Enable wireframe rendering"
+    ID_RENDERING_VERTEXNORMALS "Toggles the display of vertex normals"
+    ID_RENDERING_AXES       "Toggles the display of node axes"
+    ID_LIGHTMAPTYPE_FULLCOLOUR 
+                            "Displays lightmaps without special interpretation of the colour channels"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SHADING_SMOOTHSHADEALL "Enable smooth shaded rendering"
+    ID_LIGHTING_DEFAULTLIGHTING "Enabled simple real-time lighting"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\bizarre_icon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BIZLOGO             BITMAP                  "res\\bizarrelogo.bmp"
+IDB_BITMAP2             BITMAP                  "res\\bitmap2.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PROGRESS DIALOGEX 0, 0, 310, 78
+STYLE DS_SETFONT | DS_MODALFRAME | DS_NOIDLEMSG | DS_FIXEDSYS | WS_CAPTION
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CAPTION "Please wait..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,132,54,50,14
+    CONTROL         "",IDC_PROGRESS_BAR,"msctls_progress32",WS_BORDER,6,30,300,14
+    LTEXT           "",IDC_PROGESS_TEXT,7,7,299,17
+END
+
+IDD_TANGENT_SPACE_OPTIONS DIALOGEX 0, 0, 250, 202
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Calculate Tangents and Binormals"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_CTB_MAGSPIN,"msctls_updown32",UDS_ALIGNRIGHT | UDS_ARROWKEYS,168,30,11,14
+    DEFPUSHBUTTON   "OK",IDOK,66,180,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,132,180,50,14
+    LTEXT           "Angular tolerance",IDC_STATIC,18,54,58,8
+    LTEXT           "Weld distance threshold",IDC_STATIC,18,121,78,8
+    LTEXT           "Magnitude tolerance",IDC_STATIC,18,30,66,8
+    EDITTEXT        IDC_CTB_MAGEDIT,126,30,42,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_CTB_ANGLESPIN,"msctls_updown32",UDS_ALIGNRIGHT | UDS_ARROWKEYS,168,54,11,14
+    EDITTEXT        IDC_CTB_ANGLEEDIT,126,54,42,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_WELDDISTANCESPIN,"msctls_updown32",UDS_ALIGNRIGHT | UDS_ARROWKEYS,168,121,11,14
+    EDITTEXT        IDC_CTB_WELDDISTANCE_EDIT,126,121,42,14,ES_AUTOHSCROLL
+    CONTROL         "Normalise tangent space vectors",IDC_CTB_NORMALISECHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,78,121,10
+    GROUPBOX        "Tangent Space Generation",IDC_STATIC,12,12,228,84
+    GROUPBOX        "Mesh Welding",IDC_STATIC,12,108,228,60
+    LTEXT           "(0..180 degs)",IDC_STATIC,186,54,45,8
+    CONTROL         "Weld mesh prior to tangent space calculation",IDC_CTB_WELDMESHCHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,145,159,10
+END
+
+IDD_MESH_WELD_OPTIONS DIALOGEX 0, 0, 190, 77
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Mesh Welding"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,36,54,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,102,54,50,14
+    GROUPBOX        "Mesh Welding",IDC_STATIC,6,6,180,36
+    LTEXT           "Weld distance threshold",IDC_STATIC2,12,18,78,8
+    CONTROL         "",IDC_MW_WELDDISTANCESPIN,"msctls_updown32",UDS_ALIGNRIGHT | UDS_ARROWKEYS,162,18,11,14
+    EDITTEXT        IDC_MW_WELDDISTANCE_EDIT,120,18,42,14,ES_AUTOHSCROLL
+END
+
+IDD_COMMAND_VIEW DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CONTROL | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Go",IDOK,129,74,50,14
+    EDITTEXT        IDC_COMMAND_VIEW_INPUT,7,74,117,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_COMMAND_VIEW_REDIT,"RichEdit20A",ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | WS_BORDER | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP,7,7,172,62
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PROGRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 71
+    END
+
+    IDD_TANGENT_SPACE_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 243
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+    END
+
+    IDD_MESH_WELD_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 183
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 70
+    END
+
+    IDD_COMMAND_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\Nexus.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\Nexus.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

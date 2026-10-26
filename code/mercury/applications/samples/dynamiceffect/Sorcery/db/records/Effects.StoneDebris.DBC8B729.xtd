@@ -1,0 +1,39 @@
+xt
+	field __id "DBC8B729"
+	field __name "Effects.StoneDebris"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+	end
+	array animation
+	end
+	field blendMode "Alpha"
+	array children
+	end
+	field collisions "None"
+	array colourCurveA
+	end
+	array colourCurveRGB
+	end
+	field constantAmount "200"
+	field diffuseTexture "a0_Debris_Stone"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	field freezeAmount "200"
+	field friction "5"
+	block light
+	end
+	block limitSize
+	end
+	field name "StoneDebris"
+	field restitution ".25"
+	field shape "Quad"
+	array sizeCurveX
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

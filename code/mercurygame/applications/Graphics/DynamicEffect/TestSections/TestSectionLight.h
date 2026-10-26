@@ -1,0 +1,77 @@
+#ifndef TEST_SECTION_LIGHT_H
+#define TEST_SECTION_LIGHT_H
+
+#ifdef _MSC_VER
+#pragma once
+#endif
+
+#include <TestSections/TestSection.h>
+#include "Render/Sky/SkyDome.h"
+#include "Render/PostProcess/Manager.h"
+#include "Render/PostProcess/HDR/HDR.h"
+#include "Dynamic/Handle.h"
+#include "Dynamic/Node.h"
+#include "Dynamic/Light/Enums.h"
+#include "Dynamic/Light/Light.h"
+
+namespace DynamicEffect { class C_Renderer; }
+namespace DynamicEffect { namespace Light { class C_Manager; } }
+namespace Render { namespace Debug { class C_DebugRenderSys; } }
+
+class C_TestLight
+{
+public:
+	MathsStorage::Float3A16	m_vPosition;
+	F32						m_fExpiryTime;
+	MathsStorage::Float4A16	m_vRotation;
+	MathsStorage::Float4A16	m_vColour;
+	MathsStorage::Float4A16	m_vCentre;
+	MathsStorage::Float4A16	m_vSize;
+	DynamicEffect::Light::LightHandle m_hLight;
+	U32						m_iVisibility;
+};
+
+class C_TestSectionLight : public Framework::C_TestSection
+{
+public:
+
+	C_TestSectionLight(const Util::C_String& name);
+	~C_TestSectionLight();
+
+	bool OnCreate();
+	bool OnCreateVolatile();
+	void OnDestroyVolatile();
+	void OnDestroy();
+	
+	void OnUpdate();
+	void OnPreRender();
+	void OnRender3DViewWithAA(const S32 viewIndex);
+	void OnRender3DViewWithoutAA(const S32 viewIndex);
+	void OnBeginPostEffects();
+	void OnEndPostEffects();
+	void OnResize();
+
+private:
+
+	void SetupPostProcess();
+
+private:
+
+	Render::Sky::C_SkyDome				m_SkyDome;
+	PostProcess::C_Manager*				m_pPostProcessMgr;
+	PostProcess::C_HighDynamicRange*	m_pPostProcessHdr;
+
+	DynamicEffect::C_Renderer*			m_pDynamicEffectRenderer;
+	DynamicEffect::Light::C_Manager*	m_pLightManager;
+
+	Render::Debug::C_DebugRenderSys*	m_pDebugRenderSys;
+
+//	Ut::Vector<C_TestLight>				m_TestLights;
+
+	DynamicEffect::Light::LightHandle	m_hSunLight;
+	DynamicEffect::C_Node				m_SunNode;
+
+	Display::C_OcclusionQueryRender		m_OcclusionQueryRender;
+};
+
+#endif // TEST_SECTION_LIGHT_H

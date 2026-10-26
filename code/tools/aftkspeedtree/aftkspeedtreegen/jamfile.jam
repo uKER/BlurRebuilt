@@ -1,0 +1,68 @@
+
+SubDir TOP Code Tools aftkspeedtree aftkspeedtreegen ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkspeedtree/aftkspeedtree/include
+$(TOP)/code/vendor/tclap/current
+./
+;
+
+
+
+LINKLIBS += ws2_32.lib psapi.lib xsiftk.lib SpeedTreeRT_Eval_Yup.lib xerces-c_2.lib ;
+LINKFLAGS += /SUBSYSTEM:CONSOLE
+	/LIBPATH:$(TOP)/libs/vendor/xsiftk/5.11/lib 
+	/LIBPATH:$(TOP)/libs/vendor/xerces/2.5.0/lib
+	/LIBPATH:$(TOP)/libs/vendor/speedtree/4.1e/lib/VC8/Release
+;
+
+
+SRC =
+./aftkspeedtreeapp.cpp
+;
+
+if $(BUILD) = Release
+{
+	## why can't I do this...
+	##INCREMENTAL_LINKING = 0 ;
+	## or this
+	##LINKFLAGS -= /INCREMENTAL ;
+	
+	for f in $(LINKFLAGS)
+	{
+		if $(f) != /INCREMENTAL
+		{
+			NEWLINKFLAGS += $(f) ;
+		}
+	}
+	
+	LINKFLAGS = $(NEWLINKFLAGS) ;
+	LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+}
+
+LinkLibraries aftkspeedtreegen :
+	core system misc_shared tools_shared aftk aftkutlib aftkspeedtree zlib
+;
+		
+Application aftkspeedtreegen : $(SRC) : stdafx.cpp ;
+
+Depends aftkspeedtreegen.exe : $(TOP)/bin/tools_wip/win32/aftkspeedtreegen/ ;
+MkDir $(TOP)/bin/tools_wip/win32/aftkspeedtreegen/ ;
+EmbedManifest $(TOP)/bin/tools_wip/win32/aftkspeedtreegen/aftkspeedtreegen.exe : aftkspeedtreegen.exe ;
+
+ExportVcproj aftkspeedtreegen ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common misc_shared ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code tools aftk aftk ;
+SubInclude TOP code tools aftkut aftkutlib ;
+SubInclude TOP code tools aftkspeedtree aftkspeedtree ;
+SubInclude TOP code vendor zlib current_mercury ;

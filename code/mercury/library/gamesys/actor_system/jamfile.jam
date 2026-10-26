@@ -1,0 +1,67 @@
+SubDir TOP Code Mercury Library GameSys Actor_System ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+;
+
+SRC = 
+source/Actor.cpp
+source/ActorComponent.cpp
+source/ActorCreation.cpp
+source/ActorCreationList.cpp
+source/ActorDebug.cpp
+source/ActorFactory.cpp
+source/ActorList.cpp
+source/ActorMessages.cpp
+source/ActorMessaging.cpp
+source/ActorPerf.cpp
+source/ActorSerialisation.cpp
+source/ActorSys.cpp
+source/GameComponent.cpp
+source/GameComponentFactory.cpp
+source/HandleManager.cpp
+source/StaggerManager.cpp
+source/SystemProxyGroup.cpp
+;
+
+SRC = [ Batch $(SRC) : ActorSystemPch.h ] ;
+
+if $(BUILD) = Debug || $(BUILD) = Release
+{
+	if $(USERNAME) = mcraig || $(USERNAME) = ocooper
+	{
+		Define ACTOR_SYSTEM_OPTIMIZE_OFF ;
+		echo Optimisations are OFF for actor_system code ;
+	}
+}
+
+Library actor_system : $(SRC) : ActorSystemPch.cpp : ActorSystemPch.h ;
+
+
+###### Unit test
+
+TESTS =
+test/TestHandle.h
+;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/Code/Vendor/CxxTest/Current
+;
+
+CxxTest actor_system : $(TESTS) ;
+LinkLibraries actor_system : actor_system core misc_shared system xtgame zlib ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Vendor Zlib Current_Mercury ;

@@ -1,0 +1,39 @@
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psColour.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+real4		g_vSkySettings		: register(CCP_RENDER_SETTINGS);
+real4		g_vFogColour		: register(CCP_RENDER_SETTINGS_1);
+
+sampler2D	g_tAlbedo			: register(s0);
+
+#define		g_fIntensity		g_vSkySettings.y
+#define		g_fPixelWidth		g_vPixelSize.z
+#define		g_fPixelHeight		g_vPixelSize.w
+
+struct PS_INPUT
+{
+#ifdef PLATFORM_PS3
+	float4  m_TexCoord  : TEXCOORD0_CENTROID;
+#else
+	float4	m_TexCoord	: COLOR0;
+#endif
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	real4	vSample			= h4tex2D(g_tAlbedo, input.m_TexCoord.xy);
+
+#if defined(ALPHA)
+	real3	vSkyColour		= vSample.rgb * vSample.a * g_fIntensity;
+#else
+	real3	vSkyColour		= vSample.rgb * vSample.a * vSample.a * g_fIntensity;
+#endif
+	real3	vColour			= lerp(vSkyColour, g_vFogColour.rgb, input.m_TexCoord.z);
+
+	output = GetExposure(real4(vColour, vSample.a));
+	output.colour.xyz = output.colour.xyz * input.m_TexCoord.w;
+	return output;
+}

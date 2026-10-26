@@ -1,0 +1,29 @@
+SubDir TOP Code Mercury Library Graphics TextureResource ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/Render/Include
+$(MERCURY)/gamesys/game_resource/Include
+$(MERCURY)/util/resource/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/TextureResource.cpp
+;
+
+Library textureresource : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

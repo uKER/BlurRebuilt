@@ -1,0 +1,97 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+#define		NUM_TAPS	12
+
+float4		g_vTaps[NUM_TAPS/2]			: register(c0);
+float4		g_vTapDistances[NUM_TAPS/4]	: register(c6);
+float4		g_vDepth					: register(c12);
+
+sampler2D	g_tColour					: register(s0);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+real GetDistanceToFocusPlane(real fAlpha)
+{
+	return saturate(2.0f * abs(4.0f * fAlpha - 2.0f) - 2.0f);
+}
+
+real GetFocusDepth(real fAlpha)
+{
+	return saturate((4.0f * fAlpha - 2.0f) / 1.5f);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+
+	real4	vColour			= tex2D(g_tColour, input.m_TexCoord);
+
+	real4	vFocalDistance	= GetDistanceToFocusPlane(vColour.a);
+	real	fFocusAmount	= vFocalDistance.a;
+			vFocalDistance	= saturate(vFocalDistance + 0.2f);
+	real4	vFocalDepth		= GetFocusDepth(vColour.a);
+
+	float4	vUV				= float4(input.m_TexCoord, input.m_TexCoord);
+	real4	vTotalWeights	= vFocalDistance;
+			vTotalWeights	= vTotalWeights * vTotalWeights;
+			vTotalWeights	= vTotalWeights * 0.25f;
+	real3	vTotal			= vColour * vTotalWeights * 4.0f;
+
+	for (int i = 0; i < NUM_TAPS / 4; ++i)
+	{
+		float4	vUV0			= vUV + g_vTaps[i*2 + 0];
+		float4	vUV1			= vUV + g_vTaps[i*2 + 1];
+		
+		real4	vColourSample0	= tex2D(g_tColour, vUV0.xy);
+		real4	vColourSample1	= tex2D(g_tColour, vUV0.zw);
+		real4	vColourSample2	= tex2D(g_tColour, vUV1.xy);
+		real4	vColourSample3	= tex2D(g_tColour, vUV1.zw);
+		
+		real	fFocalDistance0	= GetDistanceToFocusPlane(vColourSample0.a);
+		real	fFocalDistance1	= GetDistanceToFocusPlane(vColourSample1.a);
+		real	fFocalDistance2	= GetDistanceToFocusPlane(vColourSample2.a);
+		real	fFocalDistance3	= GetDistanceToFocusPlane(vColourSample3.a);
+		
+		real	fFocusDepth0	= GetFocusDepth(vColourSample0.a);
+		real	fFocusDepth1	= GetFocusDepth(vColourSample1.a);
+		real	fFocusDepth2	= GetFocusDepth(vColourSample2.a);
+		real	fFocusDepth3	= GetFocusDepth(vColourSample3.a);
+		
+		real4	vDistances		= float4(fFocalDistance0, fFocalDistance1, fFocalDistance2, fFocalDistance3);
+				vDistances		= saturate(vDistances + 0.3f);
+		real4	vDepths			= float4(fFocusDepth0, fFocusDepth1, fFocusDepth2, fFocusDepth3);
+		
+		real4	vCoC			= vDepths > vFocalDepth ? vFocalDistance : vDistances;
+		real4	vWeights		= saturate((vCoC - g_vTapDistances[i]) * 15.0f);
+				vWeights		= vWeights;
+				vTotalWeights	= vTotalWeights + vWeights;
+		
+		vTotal += vColourSample0.rgb * vWeights.x;
+		vTotal += vColourSample1.rgb * vWeights.y;
+		vTotal += vColourSample2.rgb * vWeights.z;
+		vTotal += vColourSample3.rgb * vWeights.w;
+	}
+
+	real	fTotalWeightSummed	= dot(vTotalWeights, 1.0f);
+
+	output.m_Colour = float4(vTotal.xyz / fTotalWeightSummed, fFocusAmount);
+
+#else
+
+	output.m_Colour = 0.0f;
+
+#endif
+
+	return output;
+}

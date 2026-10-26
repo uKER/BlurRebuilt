@@ -1,0 +1,274 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{25AE280A-A0C1-4BAE-9606-16E62406AD8D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProfilingApplication</RootNamespace>
+    <AssemblyName>perfview2</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>true</GenerateManifests>
+    <ApplicationIcon>Resources\clock_32.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CaptureData.cs" />
+    <Compile Include="CaptureView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CaptureView.designer.cs">
+      <DependentUpon>CaptureView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorPaletteDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ColorPaletteDlg.Designer.cs">
+      <DependentUpon>ColorPaletteDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionDialog.designer.cs">
+      <DependentUpon>ConnectionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CounterPropertiesDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CounterPropertiesDlg.Designer.cs">
+      <DependentUpon>CounterPropertiesDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomCounterDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomCounterDlg.Designer.cs">
+      <DependentUpon>CustomCounterDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExpressionEvaluator.cs" />
+    <Compile Include="GraphChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GraphView.Designer.cs">
+      <DependentUpon>GraphView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphViewConfigDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphViewConfigDlg.Designer.cs">
+      <DependentUpon>GraphViewConfigDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HierarchyView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HierarchyView.designer.cs">
+      <DependentUpon>HierarchyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainApp.designer.cs">
+      <DependentUpon>MainApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryFragmentationChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MemoryFragmentationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemoryFragmentationView.Designer.cs">
+      <DependentUpon>MemoryFragmentationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryNodeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemoryNodeView.Designer.cs">
+      <DependentUpon>MemoryNodeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemoryTrackerData.cs" />
+    <Compile Include="MruStripMenu.cs">
+    </Compile>
+    <Compile Include="NetworkCommunication.cs" />
+    <Compile Include="PerfViewFile.cs" />
+    <Compile Include="ProfileBarsChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CaptureView.resx">
+      <DependentUpon>CaptureView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectionDialog.resx">
+      <DependentUpon>ConnectionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphView.resx">
+      <DependentUpon>GraphView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HierarchyView.resx">
+      <DependentUpon>HierarchyView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainApp.resx">
+      <DependentUpon>MainApp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ReceivingDataDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReceivingDataDlg.Designer.cs">
+      <DependentUpon>ReceivingDataDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Symbols.cs" />
+    <Compile Include="ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindow.Designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserSettings.cs">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\mercury\library\common\system\system_pc_managed_2005.vcproj">
+      <Project>{533C54CD-7CD0-4CFF-9870-98F2EF157EF7}</Project>
+      <Name>system_pc_managed</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtendedListViews\ExtendedListViews.csproj">
+      <Project>{36202DE0-590A-43D4-A99D-55412CAD71C8}</Project>
+      <Name>ExtendedListViews</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj">
+      <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
+      <Name>WinFormsUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="XDevkit">
+      <Guid>{D7A62FA2-524F-4F0D-8025-E72F9FF3EFF6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\black.PNG" />
+    <EmbeddedResource Include="Resources\black_tick.PNG" />
+    <EmbeddedResource Include="Resources\blue.PNG" />
+    <EmbeddedResource Include="Resources\blue_tick.PNG" />
+    <EmbeddedResource Include="Resources\green.PNG" />
+    <EmbeddedResource Include="Resources\green_tick.PNG" />
+    <EmbeddedResource Include="Resources\orange.PNG" />
+    <EmbeddedResource Include="Resources\orange_tick.PNG" />
+    <EmbeddedResource Include="Resources\red.PNG" />
+    <EmbeddedResource Include="Resources\red_tick.PNG" />
+    <EmbeddedResource Include="Resources\silver.PNG" />
+    <EmbeddedResource Include="Resources\silver_tick.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Add.png" />
+    <EmbeddedResource Include="Resources\Configurator.png" />
+    <EmbeddedResource Include="Resources\Open.png" />
+    <EmbeddedResource Include="Resources\Right1.png" />
+    <EmbeddedResource Include="Resources\Save.png" />
+    <EmbeddedResource Include="Resources\Save_As.png" />
+    <EmbeddedResource Include="Resources\Save_As_d.png" />
+    <EmbeddedResource Include="Resources\Save_d.png" />
+    <EmbeddedResource Include="Resources\Zoom_in.png" />
+    <EmbeddedResource Include="Resources\Zoom_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CounterPropertiesDlg.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CounterPropertiesDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomCounterDlg.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CustomCounterDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphViewConfigDlg.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GraphViewConfigDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemoryFragmentationView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MemoryFragmentationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemoryNodeView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MemoryNodeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceivingDataDlg.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ReceivingDataDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\clock_32.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,70 @@
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+
+
+
+#define PI_2 6.283185307179586476925286766559f
+
+
+
+extern float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+extern float4		g_vPixelSize	: register(CCP_RENDER_SETTINGS_1);
+extern sampler2D	g_tHeightField	: register(s0);
+
+#define g_vScale	g_vSettings.xy
+#define g_fGravity	g_vSettings.z
+#define g_fTime		g_vSettings.w
+
+
+
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+
+
+// we're trying to evaluate
+// h(k, t) = h0(k) * exp(iw(|k|)t) + h0*(-k) * exp(iw(|k|)t)
+// where h0 is the height field from the texture
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	// calculate vK and fK
+	float2	vK	= (input.m_TexCoord - 0.5f - g_vPixelSize.xy * 0.5f) * g_vScale * PI_2;
+	float	fK	= length(vK);
+
+	// evaluate the dispersion relation
+	float	wk	= sqrt(g_fGravity * fK);
+	float	wkt	= wk * g_fTime;
+	float	sinwkt, coswkt;
+	sincos(wkt, sinwkt, coswkt);
+
+	// sample the height field texture twice
+	float4	h0k;
+	h0k.xy	= tex2D(g_tHeightField, input.m_TexCoord).xy;
+	h0k.zw	= tex2D(g_tHeightField, 1.0f - input.m_TexCoord + g_vPixelSize.xy).xy;
+	
+	// compose
+	float4	h0kcoswkt	= h0k * coswkt * float4(1.0f, 1.0f, 1.0f, -1.0f);
+	float4	h0ksinwkt	= h0k * sinwkt * float4(1.0f, -1.0f, -1.0f, -1.0f);
+	
+	output.m_Colour.xy	= h0kcoswkt.xy + h0kcoswkt.zw + h0ksinwkt.yx + h0ksinwkt.wz;
+
+#if defined(DIFFERENTIAL)
+	float2 dx = output.m_Colour.yx * vK.x * float2(-1.0f, 1.0f) / fK;
+	float2 dy = output.m_Colour.xy * vK.y * float2(-1.0f, -1.0f) / fK;
+	
+	output.m_Colour.xy = dx + dy;
+#endif
+
+	return output;
+}

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="GameplayEditorLib"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+<Platform Name="x64"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Debug\" IntermediateDirectory="obj\Win32_tool\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32_tool\Debug\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Release\" IntermediateDirectory="obj\Win32_tool\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32_tool\Release\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Speed\" IntermediateDirectory="obj\Win32_tool\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32_tool\Speed\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Profile\" IntermediateDirectory="obj\Win32_tool\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32_tool\Profile\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32_tool\Master\" IntermediateDirectory="obj\Win32_tool\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=WIN32_TOOL $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32_tool\Master\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Debug\" IntermediateDirectory="obj\Win64_tool\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win64_tool\Debug\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Release\" IntermediateDirectory="obj\Win64_tool\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win64_tool\Release\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Speed\" IntermediateDirectory="obj\Win64_tool\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win64_tool\Speed\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Profile\" IntermediateDirectory="obj\Win64_tool\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win64_tool\Profile\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN64_TOOL|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win64_tool\Master\" IntermediateDirectory="obj\Win64_tool\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=WIN64_TOOL $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win64_tool\Master\GameplayEditorLib.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\code\mercury\library\common\core\include;..\..\..\code\mercury\library\common\system\include;..\..\..\code\tools\aftk\aftk\include;..\..\..\code\tools\gameplayeditorlib\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="GameplayEditorLib" Filter="\">
+<File RelativePath="stdafx.cpp"></File>
+<File RelativePath="stdafx.h"></File>
+<File RelativePath="jamfile.jam"></File>
+<Filter Name="Source" Filter="\">
+<Filter Name="Editorlib" Filter="\">
+<File RelativePath="include\editorlib\Callbacks.h"></File>
+<File RelativePath="include\editorlib\Core.h"></File>
+<File RelativePath="include\editorlib\Definitions.h"></File>
+<File RelativePath="include\editorlib\EditorLib.h"></File>
+<File RelativePath="include\editorlib\Level.h"></File>
+<File RelativePath="source\editorlib\Core.cpp"></File>
+<File RelativePath="source\editorlib\Level.cpp"></File>
+<File RelativePath="source\editorlib\stdafx.cpp"></File>
+<Filter Name="Aftk" Filter="\">
+<File RelativePath="include\editorlib\aftk\AftkRef.h"></File>
+<File RelativePath="include\editorlib\aftk\AftkRefManager.h"></File>
+<File RelativePath="source\editorlib\aftk\AftkRef.cpp"></File>
+<File RelativePath="source\editorlib\aftk\AftkRefManager.cpp"></File>
+</Filter>
+<Filter Name="Command" Filter="\">
+<File RelativePath="include\editorlib\command\CommandFactory.h"></File>
+<File RelativePath="include\editorlib\command\CommandProcessor.h"></File>
+<File RelativePath="include\editorlib\command\Commands.h"></File>
+<File RelativePath="include\editorlib\command\ICommand.h"></File>
+<File RelativePath="include\editorlib\command\CommandFactory.inl"></File>
+<File RelativePath="source\editorlib\command\CommandFactory.cpp"></File>
+<File RelativePath="source\editorlib\command\CommandProcessor.cpp"></File>
+<Filter Name="Argument" Filter="\">
+<File RelativePath="include\editorlib\command\argument\Argument.h"></File>
+<File RelativePath="include\editorlib\command\argument\ArgumentDatabase.h"></File>
+<File RelativePath="include\editorlib\command\argument\ArgumentParser.h"></File>
+<File RelativePath="include\editorlib\command\argument\Syntax.h"></File>
+<File RelativePath="source\editorlib\command\argument\Argument.cpp"></File>
+<File RelativePath="source\editorlib\command\argument\ArgumentDatabase.cpp"></File>
+<File RelativePath="source\editorlib\command\argument\ArgumentParser.cpp"></File>
+<File RelativePath="source\editorlib\command\argument\Syntax.cpp"></File>
+</Filter>
+<Filter Name="Dg" Filter="\">
+<File RelativePath="include\editorlib\command\dg\CreateActorCmd.h"></File>
+<File RelativePath="include\editorlib\command\dg\CreateCmd.h"></File>
+<File RelativePath="include\editorlib\command\dg\DeleteCmd.h"></File>
+<File RelativePath="include\editorlib\command\dg\RenameCmd.h"></File>
+<File RelativePath="include\editorlib\command\dg\SelectCmd.h"></File>
+<File RelativePath="include\editorlib\command\dg\SetAttrCmd.h"></File>
+<File RelativePath="include\editorlib\command\dg\XFormCmd.h"></File>
+</Filter>
+<Filter Name="Dg_cmd" Filter="\">
+<File RelativePath="source\editorlib\command\dg_cmd\CreateActorCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\dg_cmd\CreateCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\dg_cmd\DeleteCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\dg_cmd\RenameCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\dg_cmd\SelectCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\dg_cmd\XFormCmd.cpp"></File>
+</Filter>
+<Filter Name="Io" Filter="\">
+<File RelativePath="include\editorlib\command\io\ConfigFileCmd.h"></File>
+<File RelativePath="include\editorlib\command\io\FileCmd.h"></File>
+<File RelativePath="include\editorlib\command\io\SceneFileCmd.h"></File>
+</Filter>
+<Filter Name="Io_cmd" Filter="\">
+<File RelativePath="source\editorlib\command\io_cmd\FileCmd.cpp"></File>
+</Filter>
+<Filter Name="Misc_cmd" Filter="\">
+<File RelativePath="include\editorlib\command\misc_cmd\QuitCmd.h"></File>
+<File RelativePath="include\editorlib\command\misc_cmd\RedoCmd.h"></File>
+<File RelativePath="include\editorlib\command\misc_cmd\UndoCmd.h"></File>
+<File RelativePath="source\editorlib\command\misc_cmd\QuitCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\misc_cmd\RedoCmd.cpp"></File>
+<File RelativePath="source\editorlib\command\misc_cmd\UndoCmd.cpp"></File>
+</Filter>
+<Filter Name="Xt" Filter="\">
+<File RelativePath="include\editorlib\command\xt\XtDbCmd.h"></File>
+</Filter>
+<Filter Name="Xt_cmd" Filter="\">
+<File RelativePath="source\editorlib\command\xt_cmd\XtDbCmd.cpp"></File>
+</Filter>
+</Filter>
+<Filter Name="Dg" Filter="\">
+<File RelativePath="include\editorlib\dg\DG.h"></File>
+<File RelativePath="include\editorlib\dg\DGActorNode.h"></File>
+<File RelativePath="include\editorlib\dg\DgManager.h"></File>
+<File RelativePath="include\editorlib\dg\DgNodeFactory.h"></File>
+<File RelativePath="include\editorlib\dg\DGNodeIterator.h"></File>
+<File RelativePath="include\editorlib\dg\DynamicPlug.h"></File>
+<File RelativePath="include\editorlib\dg\IDGNode.h"></File>
+<File RelativePath="include\editorlib\dg\IDgObject.h"></File>
+<File RelativePath="include\editorlib\dg\IPlug.h"></File>
+<File RelativePath="include\editorlib\dg\NullPlug.h"></File>
+<File RelativePath="include\editorlib\dg\PlugUtil.h"></File>
+<File RelativePath="include\editorlib\dg\SceneActorInstanceNode.h"></File>
+<File RelativePath="include\editorlib\dg\SceneActorNode.h"></File>
+<File RelativePath="include\editorlib\dg\SceneActorSplineNode.h"></File>
+<File RelativePath="include\editorlib\dg\SceneAftkNode.h"></File>
+<File RelativePath="include\editorlib\dg\SceneNode.h"></File>
+<File RelativePath="include\editorlib\dg\SceneNodeHelpers.h"></File>
+<File RelativePath="include\editorlib\dg\SceneNodeIterator.h"></File>
+<File RelativePath="include\editorlib\dg\StaticPlug.h"></File>
+<File RelativePath="include\editorlib\dg\DgNodeFactory.inl"></File>
+<File RelativePath="include\editorlib\dg\DgNodeIterator.inl"></File>
+<File RelativePath="include\editorlib\dg\SceneNodeIterator.inl"></File>
+<File RelativePath="include\editorlib\dg\StaticPlug.inl"></File>
+<File RelativePath="source\editorlib\dg\DgActorNode.cpp"></File>
+<File RelativePath="source\editorlib\dg\DgManager.cpp"></File>
+<File RelativePath="source\editorlib\dg\DgNodeFactory.cpp"></File>
+<File RelativePath="source\editorlib\dg\DynamicPlug.cpp"></File>
+<File RelativePath="source\editorlib\dg\IDGNode.cpp"></File>
+<File RelativePath="source\editorlib\dg\IDgObject.cpp"></File>
+<File RelativePath="source\editorlib\dg\IPlug.cpp"></File>
+<File RelativePath="source\editorlib\dg\NullPlug.cpp"></File>
+<File RelativePath="source\editorlib\dg\SceneActorNode.cpp"></File>
+<File RelativePath="source\editorlib\dg\SceneAftkNode.cpp"></File>
+<File RelativePath="source\editorlib\dg\SceneNode.cpp"></File>
+<File RelativePath="source\editorlib\dg\SceneNodeHelpers.cpp"></File>
+</Filter>
+<Filter Name="Misc" Filter="\">
+<File RelativePath="include\editorlib\misc\Attribute.h"></File>
+<File RelativePath="include\editorlib\misc\GuidManager.h"></File>
+<File RelativePath="include\editorlib\misc\Selection.h"></File>
+<File RelativePath="include\editorlib\misc\Status.h"></File>
+<File RelativePath="include\editorlib\misc\StringUtil.h"></File>
+<File RelativePath="include\editorlib\misc\Status.inl"></File>
+<File RelativePath="include\editorlib\misc\StringUtil.inl"></File>
+<File RelativePath="source\editorlib\misc\Attribute.cpp"></File>
+<File RelativePath="source\editorlib\misc\GuidManager.cpp"></File>
+<File RelativePath="source\editorlib\misc\Selection.cpp"></File>
+<File RelativePath="source\editorlib\misc\StringUtil.cpp"></File>
+</Filter>
+<Filter Name="Xt" Filter="\">
+<File RelativePath="include\editorlib\xt\XtBlockIdHelper.h"></File>
+<File RelativePath="include\editorlib\xt\XtChange.h"></File>
+<File RelativePath="include\editorlib\xt\XtDefinitions.h"></File>
+<File RelativePath="include\editorlib\xt\XtDgActorDatabase.h"></File>
+<File RelativePath="include\editorlib\xt\XtDomHelper.h"></File>
+<File RelativePath="include\editorlib\xt\XtDomInterface.h"></File>
+<File RelativePath="include\editorlib\xt\XtFieldHelper.h"></File>
+<File RelativePath="include\editorlib\xt\XtHelpers.h"></File>
+<File RelativePath="include\editorlib\xt\XtManager.h"></File>
+<File RelativePath="include\editorlib\xt\XtNullStorage.h"></File>
+<File RelativePath="include\editorlib\xt\XtSemanticHelper.h"></File>
+<File RelativePath="include\editorlib\xt\XtDomInterface.inl"></File>
+<File RelativePath="source\editorlib\xt\XtBlockIdHelper.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtDgActorDatabase.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtDomHelper.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtDomInterface.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtFieldHelper.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtHelpers.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtManager.cpp"></File>
+<File RelativePath="source\editorlib\xt\XtSemanticHelper.cpp"></File>
+<Filter Name="Export" Filter="\">
+<File RelativePath="include\editorlib\xt\Export\IExport.h"></File>
+</Filter>
+</Filter>
+</Filter>
+<Filter Name="Xt_common" Filter="\">
+<File RelativePath="include\xt_common\Weak.h"></File>
+<File RelativePath="include\xt_common\WeakInterface.h"></File>
+<File RelativePath="source\xt_common\Weak.cpp"></File>
+</Filter>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

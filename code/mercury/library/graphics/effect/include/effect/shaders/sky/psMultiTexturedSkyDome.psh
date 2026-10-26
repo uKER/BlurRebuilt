@@ -1,0 +1,61 @@
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psColour.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+float4		g_vSkySettings		: register(CCP_RENDER_SETTINGS);
+float4		g_vFogColour		: register(CCP_RENDER_SETTINGS_1);
+float4		g_vFogSettings		: register(CCP_RENDER_SETTINGS_2);
+float4		g_vAdjust			: register(CCP_RENDER_SETTINGS_3);
+float4		g_vBlackSettings	: register(CCP_RENDER_SETTINGS_4);
+
+sampler2D	g_tBackground		: register(s0);
+sampler2D	g_tForeground		: register(s1);
+
+#define		g_fBgRotation		g_vSkySettings.x
+#define		g_fBgIntensity		g_vSkySettings.y
+#define		g_fFgRotation		g_vSkySettings.z
+#define		g_fFgIntensity		g_vSkySettings.w
+
+#define		g_fFogAlpha			g_vFogSettings.x
+#define		g_fFogTop			g_vFogSettings.y
+#define		g_fFogPower			g_vFogSettings.z
+
+#define		g_fBlackHeight		g_vBlackSettings.x
+#define		g_fBlackSize		g_vBlackSettings.y
+
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float2	vBgUv			= input.m_TexCoord.xy + float2(g_fBgRotation, 0.0f);
+	float4	vBgSample		= tex2D(g_tBackground, vBgUv);
+	float3	vBgColour		= vBgSample.rgb * vBgSample.a * g_fBgIntensity;
+
+	float2	vFgUv			= input.m_TexCoord.xy + float2(g_fFgRotation, 0.0f);
+	float4	vFgSample		= tex2D(g_tForeground, vFgUv);
+	float3	vFgColour		= vFgSample.rgb * vFgSample.a * g_fFgIntensity;
+	
+	float3	vSkyColour		= vBgColour * (1.0f - vFgSample.a) + vFgColour;
+	
+	float3	vFogColour		= g_vFogColour.rgb;
+	float	fFogIntensity	= saturate((input.m_TexCoord.y + g_fFogTop - 1.0f) / g_fFogTop);
+			fFogIntensity	= pow(fFogIntensity, g_fFogPower);
+			fFogIntensity	= fFogIntensity * g_fFogAlpha;
+	
+	float3	vColour			= lerp(vSkyColour, vFogColour, fFogIntensity);
+			vColour			= AdjustSaturation(vColour, g_vAdjust.xyz);
+			vColour			= AdjustContrast(vColour, g_vAdjust.w);
+
+	float	fBlackBlend		= saturate((g_fBlackHeight - input.m_TexCoord.y) * g_fBlackSize);
+	
+	output = GetExposure(float4(vColour, 1.0f));
+	output.colour.xyz = output.colour.xyz * fBlackBlend;
+	
+	return output;
+}

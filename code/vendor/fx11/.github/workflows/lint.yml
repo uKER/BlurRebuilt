@@ -1,0 +1,45 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+#
+# http://go.microsoft.com/fwlink/?LinkId=271568
+
+name: Lint
+
+on:
+  pull_request:
+    branches: "main"
+    paths-ignore:
+      - LICENSE
+      - build/*.in
+
+permissions: {}
+
+jobs:
+  analyze:
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Lint Code Base
+        uses: super-linter/super-linter/slim@61abc07d755095a68f4987d1c2c3d1d64408f1f9 # v8.5.0
+        env:
+          DEFAULT_BRANCH: origin/main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IGNORE_GITIGNORED_FILES: true
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_CHECKOV: true
+          VALIDATE_EDITORCONFIG: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_JSON: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_GITLEAKS: true
+          VALIDATE_YAML: true

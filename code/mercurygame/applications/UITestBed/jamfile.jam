@@ -1,0 +1,212 @@
+echo "Building UITestBed for $(PLATFORM)" ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+SubDir TOP Code MercuryGame Applications UITestBed ;
+
+if $(BUILD) != Speed && $(BUILD) != Master && $(BUILD) != Profile
+{
+	if $(USERNAME) = dgill || $(USERNAME) = wbrown || $(USERNAME) = pereid
+	{
+		Optim Off ;
+		echo OPTIMISATIONS ARE _OFF_ FOR GameUI ;
+	}
+}
+
+IncludePath 
+UI
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/movie/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/network/include
+$(TOP)/code/mercury/library/ui/include
+$(TOP)/code/mercury/library/util/lua_shared/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+$(TOP)/code/vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/demonware/2.0/external/curl-7.19.2/include
+$(TOP)/code/vendor/demonware/2.0/external/openssl-0.9.8i/include
+$(TOP)/code/vendor/lua/lua-5.1.4/src
+$(TOP)/code/vendor/zlib/current_mercury
+$(TOP)/code/mercury/library/graphics/textureresource/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/gamesys/testsections/include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+$(TOP)/libs/vendor/bink/1.9n
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+LINKFLAGS += /NODEFAULTLIB:LIBCMTD /NODEFAULTLIB:LIBCMT ;
+}
+
+SRC =
+Main.cpp
+UI/FileSystem.cpp
+UI/SectionUI.cpp
+UI/UiManager.cpp
+UI/Game/GameDataFinder.cpp
+UI/Game/GameVariableStore.cpp
+UI/Game/Gadgets/UIColourPicker.cpp
+UI/Game/Gadgets/UITestList.cpp
+UI/Game/Gadgets/UIVinylScene.cpp
+UI/Game/Gadgets/UIVinylPreview.cpp
+UI/Game/Gadgets/UIVinylStripBar.cpp
+UI/Game/Gadgets/VinylManager.cpp
+UI/Game/Gadgets/VinylList.cpp
+UI/Game/Lua_Interface/Lua_GameProfile.cpp
+UI/Game/Lua_Interface/Lua_VinylEditor.cpp
+UI/Game/VinylEditorDataFinder.cpp
+;
+
+LUASRC = 
+./UI/Game/Lua_Scripts/UIEnums.lua
+./UI/Game/Lua_Scripts/UIFontSequences.lua
+./UI/Game/Lua_Scripts/UISetup.lua
+./UI/Game/Lua_Scripts/UIGlobals.lua
+./UI/Game/Lua_Scripts/Screens/GUIBank.lua
+./UI/Game/Lua_Scripts/Screens/Blank.lua
+./UI/Game/Lua_Scripts/Screens/FriendsList.lua
+./UI/Game/Lua_Scripts/Screens/Keyboard.lua
+./UI/Game/Lua_Scripts/Screens/Main.lua
+./UI/Game/Lua_Scripts/Screens/Marketplace.lua
+./UI/Game/Lua_Scripts/Screens/VinylEditor.lua
+./UI/Game/Lua_Scripts/Screens/Profile/AsyncEnumerate.lua
+./UI/Game/Lua_Scripts/Screens/Profile/AsyncLoad.lua
+./UI/Game/Lua_Scripts/Screens/Profile/AsyncSave.lua
+./UI/Game/Lua_Scripts/Screens/Profile/Main.lua
+;
+
+EXCLUDE_LUA = [ GLOB UI/Game/Lua_Scripts/Debug : *.lua ] ;
+ExcludeFromSourceControl $(EXCLUDE_LUA) ;
+
+XENONLIBS = 
+$(XENONSDK)/lib/xbox/xparty
+$(TOP)/libs/vendor/bink/1.9n/binkxenon 
+;
+
+PS3LIBS = 
+$(TOP)/libs/vendor/bink/1.9n/binkps3 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_licensearea_stub.a 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np2_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libl10n_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libvoice_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libhttp_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libhttp_util_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libssl_stub 
+;
+
+PCLIBS = $(TOP)/libs/vendor/bink/1.9n/binkw32 ;
+
+if $(PLATFORM) = XENON
+{
+	LINKLIBS += xmp.lib ;
+}
+
+DEMONWARE_LIBS = bdConnection bdCore bdLobby bdSocket bdPlatform bdNet bdExampleCommonLobby ;
+DEMONWARE_ENCRYPTION_LIBS = libtomcrypt libtommath ;
+DEMONWARE_HTTP_LIBS = ssleay32 libeay32 libcurl ;
+
+if $(BUILD) = Debug
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/debug/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/debug-mt/$(DEMONWARE_HTTP_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/debug/$(DEMONWARE_LIBS).lib ;
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/release-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+}
+else
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/ps3-sn/release/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/win32-vs8/release-mt/$(DEMONWARE_HTTP_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/2.0/lib/xenon-vs8/release/$(DEMONWARE_LIBS).lib ;
+	}
+}
+
+LinkLibraries UITestBed :
+	core 
+	system
+	display 
+	display2
+	camera2
+	input
+	liblua 
+	lua_shared 
+	misc_shared 
+	render 
+	movie 
+	ui 
+	xtgame 
+	zlib 
+	framework 
+	network 
+	testsections
+	debugsystems
+	$($(PLATFORM)LIBS) 
+	textureresource
+	resource 
+;
+		
+LUABundle UITestBed : $(LUASRC) : ./Ui/Game/LUA_Scripts ;
+Application UITestBed : $(SRC) ; #: StdAfx.cpp ;
+ExportVcproj UITestBed ;
+
+ImportCP include/ui/shaders/vsConstants.h : TOP Code Mercury Library UI ;
+ImportCP include/ui/shaders/psConstants.h : TOP Code Mercury Library UI ;
+
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Gamesys TestSections ;
+SubInclude TOP Code Mercury Library Gamesys DebugSystems ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;
+SubInclude TOP Code Mercury Library Graphics Movie ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Network ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Ui ;
+SubInclude TOP Code Mercury Library Util Lua_Shared ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+SubInclude TOP code vendor lua Lua-5.1.4 ;
+SubInclude TOP code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Graphics textureresource ;

@@ -1,0 +1,45 @@
+SubDir TOP Code tools maya_plugins MayaToSorcery ;
+SupportedTargets WIN32_TOOL ;
+
+AFTK_MAYA = 1 ;
+
+Define NT_PLUGIN REQUIRE_IOSTREAM ;
+
+IncludePath
+$(TOP)/code/tools/svn_wrapper/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/libs/vendor/xbox360_xdk/6132/include/win32/vs2005
+$(TOP)/libs/vendor/maya/2008/include
+;
+
+LINKLIBS += ws2_32.lib
+	$(TOP)/libs/vendor/maya/2008/lib/foundation.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMaya.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMayaUI.lib
+	$(TOP)/code/tools/svn_wrapper/lib/svn_wrapper_lib.lib
+	$(TOP)/libs/vendor/xbox360_xdk/6132/lib/win32/vs2005/xbdm.lib
+	
+;
+
+LINKFLAGS += /DLL /export:initializePlugin /export:uninitializePlugin ;
+
+SRC =
+./MayaToSorcery/MayaToSorcery.cpp
+./MayaToSorcery/pluginMain.cpp
+;
+
+LinkLibraries MayaToSorcery :
+		core system xttool
+		;
+		
+DLL MayaToSorcery : $(SRC) ;
+
+ExportVcproj MayaToSorcery ;
+
+EmbedManifestDLL $(BIZARRE_ROOT)/tools/art_tools/maya/plugins/2008/mayaToSorcery.mll : MayaToSorcery.exe ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common xt2 ;

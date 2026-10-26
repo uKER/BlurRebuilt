@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirCompactAndDelete", "DirCompactAndDelete\DirCompactAndDelete.csproj", "{0AD639AB-9E5A-441C-8190-F3BDB8E18B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misc", "..\Managed Helper Libraries\Misc\Misc.csproj", "{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AD639AB-9E5A-441C-8190-F3BDB8E18B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD639AB-9E5A-441C-8190-F3BDB8E18B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD639AB-9E5A-441C-8190-F3BDB8E18B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD639AB-9E5A-441C-8190-F3BDB8E18B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6055A38F-7FB2-4E76-8A45-AC8C20A083CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

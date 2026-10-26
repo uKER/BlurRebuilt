@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<actor_system>
+	<enums>
+		<enum name="Wrap type">
+			"WRAP"
+			"MIRROR"
+			"CLAMP"
+			"BORDER"
+			"MIRRORONCE"
+		</enum>
+	</enums>
+
+	<actor name = "texture">
+		<param name = "Mipmap bias" type = "int" default = "0" />
+		<param name = "Wrap behaviour" type = "enum" values = "Wrap type" default = "WRAP" />
+		<param name = "Size clamp" type = "int" default = "0" />
+		<param name = "Use alpha shadow" type = "bool" default = "false" />
+		<param name = "Exclude" type = "bool" default = "false" />
+		<param name = "Force alpha channel" type = "bool" default = "false" />
+		<param name = "Don't stream texture" type = "bool" default = "false" />	
+	</actor>
+</actor_system>

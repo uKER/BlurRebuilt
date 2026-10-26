@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_ps3", "..\core\core_ps3.vcproj", "{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_ps3", "..\system\system_ps3.vcproj", "{C80C5BE6-5263-489C-B608-D5B37FD43A94}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "display_ps3", "display_ps3.vcproj", "{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4} = {5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94} = {C80C5BE6-5263-489C-B608-D5B37FD43A94}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Master|Win32 = Master|Win32
+		Profile|Win32 = Profile|Win32
+		PS3 Debug|Win32 = PS3 Debug|Win32
+		PS3 Release|Win32 = PS3 Release|Win32
+		Release|Win32 = Release|Win32
+		Speed|Win32 = Speed|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Debug|Win32.Build.0 = Debug|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Master|Win32.ActiveCfg = Master|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Master|Win32.Build.0 = Master|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Profile|Win32.ActiveCfg = Profile|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Profile|Win32.Build.0 = Profile|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.PS3 Debug|Win32.ActiveCfg = Debug|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.PS3 Debug|Win32.Build.0 = Debug|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.PS3 Release|Win32.ActiveCfg = Release|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.PS3 Release|Win32.Build.0 = Release|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Release|Win32.ActiveCfg = Release|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Release|Win32.Build.0 = Release|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Speed|Win32.ActiveCfg = Speed|Win32
+		{5FC2E833-EF8A-4101-BEDD-95E8FDDED1F4}.Speed|Win32.Build.0 = Speed|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Debug|Win32.Build.0 = Debug|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Master|Win32.ActiveCfg = Master|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Master|Win32.Build.0 = Master|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Profile|Win32.ActiveCfg = Profile|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Profile|Win32.Build.0 = Profile|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.PS3 Debug|Win32.ActiveCfg = Debug|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.PS3 Debug|Win32.Build.0 = Debug|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.PS3 Release|Win32.ActiveCfg = Release|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.PS3 Release|Win32.Build.0 = Release|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Release|Win32.ActiveCfg = Release|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Release|Win32.Build.0 = Release|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Speed|Win32.ActiveCfg = Speed|Win32
+		{C80C5BE6-5263-489C-B608-D5B37FD43A94}.Speed|Win32.Build.0 = Speed|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Debug|Win32.ActiveCfg = PS3 Debug|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Debug|Win32.Build.0 = PS3 Debug|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Master|Win32.ActiveCfg = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Master|Win32.Build.0 = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Profile|Win32.ActiveCfg = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Profile|Win32.Build.0 = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.PS3 Debug|Win32.ActiveCfg = PS3 Debug|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.PS3 Debug|Win32.Build.0 = PS3 Debug|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.PS3 Release|Win32.ActiveCfg = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.PS3 Release|Win32.Build.0 = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Release|Win32.ActiveCfg = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Release|Win32.Build.0 = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Speed|Win32.ActiveCfg = PS3 Release|Win32
+		{3DFDD633-5F7C-43BF-85F1-708E657DEFAB}.Speed|Win32.Build.0 = PS3 Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

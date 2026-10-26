@@ -1,0 +1,26 @@
+#include "..\\psCommon.h"
+
+sampler2D g_AlbedoTexture	: register(s0);
+
+struct PS_INPUT
+{
+	float4 Colour0			: COLOR0;
+	float4 Texcoord0		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour0			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float4 albedoColour = tex2D(g_AlbedoTexture, IN.Texcoord0.xy);
+	
+	OUT.Colour0.xyz = IN.Colour0.xyz * albedoColour.xyz;
+	OUT.Colour0.w = IN.Colour0.w * albedoColour.w;
+	
+	return OUT;
+}

@@ -1,0 +1,61 @@
+#include "psConstants.h"
+#include "Common.h"
+
+sampler2D	g_DiffuseTexture		: register(s0);
+sampler2D	g_NormalMapTexture		: register(s1);
+
+float4 g_Colour						: register(CCP_DISPLAY_COLOUR);
+float g_VertexColourScale			: register(CCP_AFTKRENDER_VTX_LIGHTING_SCALE);
+
+PS_OUTPUT main(VS_OUTPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)1;
+
+#ifdef NDOTL
+	OUT.Colour.xyz = IN.Texcoord1.xyz;
+#endif
+
+#ifdef SHL
+	float4 diffuseLighting = IN.Colour;
+	
+	float sunFactor = IN.Colour.b;
+	float skyFactor = IN.Colour.g;
+	
+	float3 directionalLight = sunFactor.xxx;
+	float3 skyColour = skyFactor.xxx;
+
+	diffuseLighting.rgb = directionalLight + skyColour;
+
+	OUT.Colour.xyz = /*g_VertexColourScale.xxx*/ diffuseLighting;
+#endif
+
+#ifdef COLOUR
+	OUT.Colour = OUT.Colour*g_Colour;
+#endif
+
+#ifdef VERTEXCOLOUR
+	OUT.Colour = OUT.Colour*IN.Colour;
+#endif
+
+#ifdef VERTEXCOLOURLIGHTING
+	//Vertex colour lighting from lux
+	//used to bake lighting of objects into low lod billboards
+	//fudge values to compensate for in-game lighting of billboard quads
+	float fudgeFactor = 0.5f;
+	float skyOcclusion = saturate(IN.Texcoord2.y);
+	float sunOcclusion = 0.25f*IN.Texcoord1.x;
+	OUT.Colour.rgb = fudgeFactor + OUT.Colour;
+	OUT.Colour.rgb += skyOcclusion;
+	OUT.Colour.rgb += sunOcclusion;
+	OUT.Colour = OUT.Colour * IN.Colour;
+#endif
+
+#ifdef TEXTURED
+	OUT.Colour = OUT.Colour*tex2D(g_DiffuseTexture, IN.Texcoord0.xy);
+#endif
+
+#ifdef XRAY
+	OUT.Colour.w *= (1.f-IN.Texcoord1.x + 0.1f);
+#endif
+	return OUT;
+}

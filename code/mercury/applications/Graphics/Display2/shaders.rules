@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Shader Project Compiler"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="Shader Project Compiler"
+			DisplayName="Shader Project Compiler"
+			CommandLine="&quot;..\..\..\..\..\bin\build_tools\ShaderProjectCompiler.exe&quot; &quot;$(ConfigurationName)&quot; &quot;$(InputPath)&quot; &quot;$(ProjectDir)$(ProjectName).xml&quot;"
+			Outputs="$(InputDir)$(ConfigurationName)/$(InputName).obj"
+			FileExtensions="*.vsh;*.psh;*.fx"
+			ExecutionDescription="Performing Custom Build Step - $(InputPath)"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

@@ -1,0 +1,37 @@
+14:49:07  JAM - JAM Build Utility
+14:49:07  02/03/2009(08:50)
+14:49:07 Build PC: JANVANWS (jvanvalburg)
+14:49:07 Revision: 17951
+14:49:07 Running on: LLOWRIWS
+14:49:07 fopen Z:\llwright_workspace_display2\depcache readfile rb
+14:49:07 newer <Code!Mercury!Library!Common!System>i_binarystream.inl
+14:49:07 newer <Code!Mercury!Library!Common!System>source\serialise\I_FileSystem.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>system\serialise\memory_file_system\c_memoryfileentry.h
+14:49:07 newer <Code!Mercury!Library!Common!System>system\serialise\memory_file_system\c_memorydirectoryentry.h
+14:49:07 newer <Code!Mercury!Library!Common!System>source\serialise\memory_file_system\C_MemoryDirectoryEntry.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>source\serialise\memory_file_system\C_MemoryFileEntry.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>system\serialise\memory_file_system\c_memoryfilesystem.h
+14:49:07 newer <Code!Mercury!Library!Common!System>source\serialise\memory_file_system\C_MemoryFileSystem.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>system\shell\shellexec.h
+14:49:07 newer <Code!Mercury!Library!Common!System>system\network.h
+14:49:07 newer <Code!Mercury!Library!Common!System>system\misc\progress.h
+14:49:07 newer <Code!Mercury!Library!Common!System>source\shell\ShellExec.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>source\scheduler\jobqueue.cpp
+14:49:07 missing <Code!Mercury!Library!Common!System>.f04bb7d880e85b4d4f12ca120bb6e903.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>core\threads\spurwlock.h
+14:49:07 newer <Code!Mercury!Library!Common!System>system\perf\perfevent.h
+14:49:07 newer <Code!Mercury!Library!Common!System>jobqueue_kernel_ps3.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>jobqueue_kernel_xenon.cpp
+14:49:07 newer <Code!Mercury!Library!Common!System>source\scheduler\jobqueue_kernel.cpp
+14:49:07 (Additional causes suppressed)
+14:49:07 <Code!Mercury!Applications!Graphics!TestDisplay>obj\PS3\Debug\StdAfx.h.gch
+14:49:07 <Code!Mercury!Applications!Graphics!TestDisplay>obj\PS3\Debug\spu_Mesh.o
+14:49:07 .\obj\PS3\Debug\__generated__buildstamp.o
+14:49:07 jobqueue_kernel_spu.elf
+14:49:11 meshmodule.self
+14:49:11 meshmodule.o
+14:49:11 meshmodule.elf
+14:49:12 <Code!Mercury!Applications!Graphics!TestDisplay>obj\PS3\Debug\Main.o
+14:49:12 <Code!Mercury!Applications!Graphics!TestDisplay>obj\PS3\Debug\Mesh.o
+14:49:17 TestDisplay.self
+14:49:19 fopen Z:\llwright_workspace_display2\depcache writefile wb

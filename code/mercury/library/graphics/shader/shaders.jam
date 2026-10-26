@@ -1,0 +1,195 @@
+# Set up the include paths
+
+SHADERDIR = [ FSubDirPath TOP Code Mercury Library Graphics Shader ] ;
+
+IncludePath 
+$(SHADERDIR)/include
+$(SHADERDIR)/include/shader
+;
+
+# To be included in any Mercury/MercuryGame application that needs shaders
+
+CPFile $(SHADERDIR)/include/shader/psConstants.cp ;
+CPFile $(SHADERDIR)/include/shader/psTextures.sp ;
+CPFile $(SHADERDIR)/include/shader/vsConstants.cv ;
+
+rule ExpandWithLighting
+{
+	return
+	[ Expand
+		" "
+		"<_LB>-D BASIS_LIGHTING "
+		"<_LC>-D RGB_LIGHTING "
+		"<_LD>-D DIRECTIONAL_LIGHTING "
+		:
+		[ Combinations $(<) ]
+	] ;
+}
+
+rule ExpandWithSkinning
+{
+	return [ Expand "<_skin>-D ENABLE_SKINNING " : [ ExpandWithLighting $(<) ] ] ;
+}
+
+rule MercuryGameEffect
+{
+	Effects $(SHADERDIR)/source/$(<) : [ ExpandWithLighting $(>) ] ;
+}
+
+# common optimisations
+NO_BUMP	= "<_NB>-D NO_BUMPMAP " ;
+NO_LMAP	= "<_NL>-D NO_LIGHTMAP " ;
+NO_SPEC	= "<_NS>-D NO_SPECULARMAP " ;
+NO_VTXCOL = "<_NV>-D NO_VTXCOL " ;
+
+# Default shader
+
+Effects
+$(SHADERDIR)/source/Default.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+# Skinning shader
+
+Effects
+$(SHADERDIR)/source/Default_Skin.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NE>-D NO_EMISSIVE "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+# Common shaders
+
+Effects
+$(SHADERDIR)/source/BlendColour.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+]
+;
+
+Effects
+$(SHADERDIR)/source/BlendNormal.fx
+$(SHADERDIR)/source/Flow.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+Effects
+$(SHADERDIR)/source/Water.fx
+:
+[ ExpandWithLighting
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+Effects
+$(SHADERDIR)/source/Puddle.fx
+$(SHADERDIR)/source/RoadSurface.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+Effects
+$(SHADERDIR)/source/RefractionMap.fx
+:
+[ ExpandWithLighting
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+### shaders with skinned versions
+
+Effects
+$(SHADERDIR)/source/Fabric.fx
+:
+[ ExpandWithSkinning
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+Effects
+$(SHADERDIR)/source/Eye.fx
+$(SHADERDIR)/source/Skin.fx
+:
+[ ExpandWithSkinning
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+Effects
+$(SHADERDIR)/source/Hair.fx
+:
+[ ExpandWithSkinning
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+Effects
+$(SHADERDIR)/source/Invalid.fx
+:
+[ ExpandWithLighting ]
+;
+
+MercuryGameEffect SunGlow.fx ;
+
+MercuryGameEffect ScreenFacingSprite.fx LightFlare.fx BillBoard.fx : $(NO_BUMP) ;
+
+MercuryGameEffect Emissive.fx ;
+
+MercuryGameEffect Additive.fx ;
+
+MercuryGameEffect VertexColours.fx ;
+
+# Tree shaders
+# These are currently the same shaders as ScreenFacingSprite and Default
+
+MercuryGameEffect SpeedTree.fx SpeedTreeLeaf.fx : $(NO_BUMP) ;
+
+# Simple and debug shaders
+
+Effects
+$(SHADERDIR)/source/SimpleColoured.fx
+$(SHADERDIR)/source/SimpleTextured.fx
+$(SHADERDIR)/source/SimpleVertexColours.fx
+;
+
+Effects
+$(SHADERDIR)/source/DebugLumels.fx
+$(SHADERDIR)/source/DebugNormal.fx
+;
+
+if $(GAME_DIR) && $(PLATFORM) = PC
+{
+	echo Sorcery exporting ;
+	SorceryFX $(GAME_DIR)/sorcery/main/schema/MercuryGame/Graphics/default_fx.txt : $(SHADERDIR)/source/Default.fx ;
+}

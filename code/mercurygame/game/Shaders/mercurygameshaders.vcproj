@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="MercuryGameShaders"
+	ProjectGUID="{645DEB23-AEBC-4CF4-9EDC-D60E2ADB72AF}"
+	Keyword="MakeFileProj"
+	>
+	<Platforms>
+<Platform Name="Win32"/>
+<Platform Name="Xbox 360"/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+				<Configuration
+			Name="Debug_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Debug\" IntermediateDirectory="obj\Win32\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Win32\Debug\MercuryGameShaders.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Release\" IntermediateDirectory="obj\Win32\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Win32\Release\MercuryGameShaders.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Speed\" IntermediateDirectory="obj\Win32\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Win32\Speed\MercuryGameShaders.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Profile\" IntermediateDirectory="obj\Win32\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Win32\Profile\MercuryGameShaders.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_WIN32|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Win32\Master\" IntermediateDirectory="obj\Win32\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=WIN32 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Win32\Master\MercuryGameShaders.exe"
+				PreprocessorDefinitions="PLATFORM_PC;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Debug\" IntermediateDirectory="obj\Ps3\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Ps3\Debug\MercuryGameShaders.self"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__;SN_TARGET_PS3"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Release_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Release\" IntermediateDirectory="obj\Ps3\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Ps3\Release\MercuryGameShaders.self"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__;SN_TARGET_PS3"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Speed_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Speed\" IntermediateDirectory="obj\Ps3\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Ps3\Speed\MercuryGameShaders.self"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__;SN_TARGET_PS3"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Profile_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Profile\" IntermediateDirectory="obj\Ps3\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Ps3\Profile\MercuryGameShaders.self"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__;SN_TARGET_PS3"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Master_PS3|Win32"
+			ConfigurationType="0"
+			OutputDirectory="bin\Ps3\Master\" IntermediateDirectory="obj\Ps3\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=PS3 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Ps3\Master\MercuryGameShaders.self"
+				PreprocessorDefinitions="PLATFORM_PS3;__GNUC__;SN_TARGET_PS3"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+		 </Configuration>
+		<Configuration
+			Name="Debug_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Debug\" IntermediateDirectory="obj\Xbox_360\Debug\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Debug clean"
+				Output="bin\Xbox_360\Debug\MercuryGameShaders.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\MercuryGame" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Release_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Release\" IntermediateDirectory="obj\Xbox_360\Release\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Release clean"
+				Output="bin\Xbox_360\Release\MercuryGameShaders.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\MercuryGame" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Speed_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Speed\" IntermediateDirectory="obj\Xbox_360\Speed\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Speed clean"
+				Output="bin\Xbox_360\Speed\MercuryGameShaders.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\MercuryGame" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Profile_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Profile\" IntermediateDirectory="obj\Xbox_360\Profile\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Profile clean"
+				Output="bin\Xbox_360\Profile\MercuryGameShaders.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\MercuryGame" DeploymentType="0" />
+ </Configuration>
+		<Configuration
+			Name="Master_XBOX_360|Xbox 360"
+			ConfigurationType="0"
+			OutputDirectory="bin\Xbox_360\Master\" IntermediateDirectory="obj\Xbox_360\Master\"
+ InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master "
+				ReBuildCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master -a "
+				CleanCommandLine="jam -sTARGET=XBOX_360 $(JAMOPTS) -sBUILD=Master clean"
+				Output="bin\Xbox_360\Master\MercuryGameShaders.xex"
+				PreprocessorDefinitions="PLATFORM_XENON;_XBOX_VER=200;_MSC_VER=1400"
+				IncludeSearchPath="..\..\..\..\code\mercury\library\common\core\include;..\..\..\..\code\mercury\library\common\system\include;..\..\..\..\code\mercury\library\common\xt2\include;..\..\..\..\code\mercury\library\graphics\display\include;..\..\..\..\code\mercury\library\graphics\display2\include;..\..\..\..\code\mercury\library\graphics\fx\include;..\..\..\mercury\library\graphics\shader;..\..\..\mercury\library\graphics\shader\include;c:\program files\microsoft directx sdk (november 2008)\include"
+				ForcedIncludes=""
+				AssemblySearchPath=""
+				ForcedUsingAssemblies=""
+				CompileAsManaged=""
+			/>
+				<Tool Name="VCX360DeploymentTool" RemoteRoot="devkit:\MercuryGame" DeploymentType="0" />
+ </Configuration>
+
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+<Filter Name="MercuryGameShaders" Filter="\">
+<File RelativePath="jamfile.jam"></File>
+<File RelativePath="buildlog.txt"></File>
+</Filter>
+<Filter Name="Shader" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\stdafx.cpp"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\stdafx.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\fx.jam"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\jamfile.jam"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\shaders.jam"></File>
+<Filter Name="Source" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\Constants.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\Core.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\Globals.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\psconstants.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\pstextures.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\vsconstants.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\vsConstants.cv"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\psConstants.cp"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\psTextures.sp"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Additive.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\BillBoard.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\BlendColour.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\BlendNormal.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\DebugLumels.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\DebugNormal.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Default.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Default_Skin.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Emissive.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Eye.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Fabric.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Flow.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Hair.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Invalid.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\LightFlare.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Puddle.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\RefractionMap.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\RoadSurface.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\ScreenFacingSprite.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\SimpleColoured.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\SimpleTextured.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\SimpleVertexColours.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Skin.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\SpeedTree.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\SpeedTreeLeaf.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\SunGlow.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\VertexColours.fx"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\Water.fx"></File>
+<Filter Name="Common" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Debug.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Defines.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Fog.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Hdr.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Lighting.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Material.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Parameters.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Pixel.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Surface.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Transform.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\common\Vertex.h"></File>
+</Filter>
+<Filter Name="Envsettings" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\envsettings\CubemapSettings.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\envsettings\FogSettings.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\envsettings\LightingSettings.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\envsettings\CubemapSettings.cpp"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\envsettings\FogSettings.cpp"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\envsettings\LightingSettings.cpp"></File>
+</Filter>
+<Filter Name="Evaluatesh" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\evaluatesh\EvaluateSH.cpp"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\source\evaluatesh\EvaluateSH.h"></File>
+</Filter>
+<Filter Name="Lighting" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\lighting\Dynamic.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\lighting\Equations.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\lighting\Lightmap.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\lighting\Shadow.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\lighting\SphericalHarmonics.h"></File>
+</Filter>
+<Filter Name="Material" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\material\Colour.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\material\Normal.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\material\Specular.h"></File>
+</Filter>
+<Filter Name="Misc" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\misc\ColourOp.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\misc\Resolve.h"></File>
+</Filter>
+<Filter Name="Scene" Filter="\">
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\scene\BasisLighting.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\scene\DefaultLighting.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\scene\DirectionalLighting.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\scene\RGBLighting.h"></File>
+<File RelativePath="..\..\..\Mercury\Library\Graphics\Shader\include\shader\scene\SunSkyLighting.h"></File>
+</Filter>
+</Filter>
+</Filter>
+
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

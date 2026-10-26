@@ -1,0 +1,34 @@
+xt
+	field __version "10"
+	block build
+		block deployment
+			block x360
+				field method "copy-x360"
+				field root "DEVKIT:\uitestbed\image\xt\"
+				field stage "x360"
+			end
+		end
+		block platforms
+			block x360
+				field endian "big"
+			end
+		end
+		block staging
+			block x360
+				field platform "x360"
+				field root "%db%\export\360\"
+			end
+		end
+		block structure
+			field localisation "%record%.loc"
+			field packs "%pack%.bin"
+		end
+	end
+	block languages
+		block english
+			field code "en"
+		end
+	end
+	field name "UITestBed"
+	field sendAllOnConnect "0"
+end

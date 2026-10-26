@@ -1,0 +1,71 @@
+﻿
+Car automation
+
+	- Take shots on tacky background to give better contrast of issues
+	- Better lighting on vehicle
+	- Take damage shots
+	- Take picture of top down + bottom up
+	- Disable light trails
+
+
+- Circuit
+	- AI?
+	- Start positions?
+	- All cars ok in start pos?
+	- Store which cars we use in tests
+
+
+
+
+
+
+
+
+
+- Flag on the kit to say we need to reboot before doing anything (i.e. memory check needs fresh kit)
+
+- Memory check for leaks across races
+
+- PS3 support
+
+
+- QA tests
+	- Dash - loads with 20 cars and plays for 30 secs
+	- Full - In/Out of level 20 times - Restarts 20 times
+
+
+
+
+
+Low:
+
+- Chain jobs together so they run on a single kit (i.e. memory leak check)
+
+
+
+
+
+- More advanced features
+    - Get kits we can use from a server
+    - Have data on kits prepared for us to our needs
+    - Put results into database
+    
+Job types
+	- Sequence - try out a number of races in order (say memory leak detection)
+	- Just make sure this combo loads
+	
+
+JobID - SubID
+
+Job - Test all circuits load - 40 tests
+	Sub - Load london
+	Sub - Load new york
+	Sub - Load vegas
+	
+	Report - 39 / 40 passed
+	
+	
+Create job request...
+	Priority
+	Platform Type
+	Number of separate jobs (how many kits we require)

@@ -1,0 +1,29 @@
+SubDir TOP Code Mercury Tools Samples cmd_line_tool ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+source/Application.cpp
+source/Main.cpp
+;
+
+LINKLIBS += ws2_32.lib ;
+LinkLibraries cmd_line_tool : core system tools_shared ;
+		
+Application cmd_line_tool : $(SRC) : stdafx.cpp ;
+ExportVcproj cmd_line_tool ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+

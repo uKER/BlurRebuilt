@@ -1,0 +1,200 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../../include/xtwin/resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "../../include/xtwin/resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_XTWIN_CONNECTTO DIALOGEX 0, 0, 228, 133
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Connect to..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "&Local",IDC_XTWIN_LOCAL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,7,7,32,10
+    CONTROL         "&Remote",IDC_XTWIN_REMOTE,"Button",BS_AUTORADIOBUTTON,7,41,41,10
+    CONTROL         "&Custom",IDC_XTWIN_CUSTOM,"Button",BS_AUTORADIOBUTTON,7,75,40,10
+    LTEXT           "&Method:",IDC_XTWIN_METHOD_TEXT,12,25,28,8
+    COMBOBOX        IDC_XTWIN_METHOD,46,23,67,166,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Host:",IDC_XTWIN_HOST_TEXT,22,59,18,8
+    COMBOBOX        IDC_XTWIN_HOST,46,57,175,239,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Address:",IDC_XTWIN_ADDRESS_TEXT,12,93,30,8
+    EDITTEXT        IDC_XTWIN_ADDRESS,46,91,106,14,ES_AUTOHSCROLL
+    LTEXT           "&Port:",IDC_XTWIN_PORT_TEXT,158,93,17,8
+    EDITTEXT        IDC_XTWIN_PORT,181,91,40,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,116,111,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,171,111,50,14
+END
+
+IDD_XTWIN_SVN_LOGIN DIALOGEX 0, 0, 260, 129
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Subversion Authentication"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Static",IDC_XTWIN_AUTH_NOTICE,7,7,246,38
+    LTEXT           "&Username:",IDC_STATIC,7,54,36,8
+    EDITTEXT        IDC_XTWIN_USERNAME,49,52,204,14,ES_AUTOHSCROLL
+    LTEXT           "&Password:",IDC_STATIC,7,74,34,8
+    EDITTEXT        IDC_XTWIN_PASSWORD,49,72,204,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "&Remember Password",IDC_XTWIN_REMEMBER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,49,92,83,10
+    DEFPUSHBUTTON   "OK",IDOK,147,108,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,108,50,14
+END
+
+IDD_XTWIN_LOC_STRING DIALOGEX 0, 0, 297, 202
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Localised String"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Name:",IDC_STATIC,7,9,22,8
+    EDITTEXT        IDC_XTWIN_NAME,52,7,238,14,ES_AUTOHSCROLL
+    LTEXT           "&Language:",IDC_STATIC,7,29,35,8
+    COMBOBOX        IDC_XTWIN_LANGUAGE,52,27,116,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Text:",IDC_STATIC,7,48,18,8
+    EDITTEXT        IDC_XTWIN_TEXT,52,46,238,90,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "Co&mment:",IDC_STATIC,7,144,34,8
+    EDITTEXT        IDC_XTWIN_COMMENT,52,142,238,34,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,184,182,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,240,182,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_XTWIN_FIELD_ERROR   BITMAP                  "FieldError.bmp"
+IDB_XTWIN_FIELD_WARNING BITMAP                  "FieldWarning.bmp"
+IDB_XTWIN_FIELD_INFO    BITMAP                  "FieldInfo.bmp"
+IDB_XTWIN_FIELD_QUESTION BITMAP                  "FieldQuestion.bmp"
+IDB_XTWIN_CHECKBOX      BITMAP                  "CheckBox.bmp"
+IDB_XTWIN_EMPTYBOX      BITMAP                  "EmptyBox.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_XTWIN_SPLITH        CURSOR                  "SplitH.cur"
+IDC_XTWIN_SPLITV        CURSOR                  "SplitV.cur"
+IDC_XTWIN_CROSS         CURSOR                  "Cross.cur"
+IDC_XTWIN_GRIDDOWN      CURSOR                  "GridDown.cur"
+IDC_XTWIN_GRIDRIGHT     CURSOR                  "GridRight.cur"
+IDC_XTWIN_GRIDCELLADD   CURSOR                  "GridCellAdd.cur"
+IDC_XTWIN_GRAPHPOINTER  CURSOR                  "GraphPointer.cur"
+IDC_XTWIN_GRIDCELL      CURSOR                  "GridCell.cur"
+IDC_XTWIN_GRIDSIZEX     CURSOR                  "GridSizeX.cur"
+IDC_XTWIN_GRIDSIZEY     CURSOR                  "GridSizeY.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_XTWIN_SVN_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 253
+        VERTGUIDE, 43
+        VERTGUIDE, 49
+        VERTGUIDE, 197
+        VERTGUIDE, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 122
+        HORZGUIDE, 45
+        HORZGUIDE, 52
+        HORZGUIDE, 66
+        HORZGUIDE, 72
+        HORZGUIDE, 86
+        HORZGUIDE, 92
+        HORZGUIDE, 102
+        HORZGUIDE, 108
+    END
+
+    IDD_XTWIN_LOC_STRING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 290
+        VERTGUIDE, 45
+        VERTGUIDE, 52
+        VERTGUIDE, 234
+        VERTGUIDE, 240
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 195
+        HORZGUIDE, 21
+        HORZGUIDE, 27
+        HORZGUIDE, 39
+        HORZGUIDE, 46
+        HORZGUIDE, 136
+        HORZGUIDE, 142
+        HORZGUIDE, 176
+        HORZGUIDE, 182
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

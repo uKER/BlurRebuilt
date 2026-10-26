@@ -1,0 +1,42 @@
+xt
+	array ColourStyles
+	end
+	array Elements
+		block 
+			field __id "UIEl9C2BE1BF"
+			field __type "UIStaticGraphic"
+			field justify "TopLeft"
+			field layer "0"
+			field panel "0"
+			block pos
+				field x "320"
+				field y "240"
+				field z "0"
+			end
+			block rot
+				field x "0"
+				field y "0"
+				field z "0"
+			end
+			block scale
+				field x "1"
+				field y "1"
+				field z "1"
+			end
+			block size
+				field x "256"
+				field y "256"
+				field z "1"
+			end
+			array textures
+			end
+		end
+	end
+	array FontStyles
+	end
+	field Name "Main"
+	field __id "3B63CD99"
+	field __name "Screens.Main"
+	field __pack "F2519802"
+	field __type "UIScreen"
+end

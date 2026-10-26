@@ -1,0 +1,123 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AftkUtApp", "AftkUtApp\AftkUtApp.vcproj", "{977411C2-75DA-4663-BEDC-AF4DE41D88AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{661BB307-31CE-4D19-9181-BB3B2939199D} = {661BB307-31CE-4D19-9181-BB3B2939199D}
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9} = {9634D64A-F9D4-490B-BF97-AEBD078679F9}
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A} = {DC11B76D-4309-4D38-B99C-BD8A88E02F0A}
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D} = {E5E293F0-C22E-446B-95A1-DC6DB86C252D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_pc", "..\..\mercury/library/common/core\core_pc.vcproj", "{9634D64A-F9D4-490B-BF97-AEBD078679F9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Aftk", "..\aftk\aftk\Aftk.vcproj", "{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AftkUt", "AftkUtLib\aftkut.vcproj", "{E5E293F0-C22E-446B-95A1-DC6DB86C252D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc", "..\..\mercury/library/common/system\system_pc.vcproj", "{661BB307-31CE-4D19-9181-BB3B2939199D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug Maya 7.0 Win32 = Debug Maya 7.0 Win32
+		Debug Win32 = Debug Win32
+		Debug Win64 = Debug Win64
+		Release Cygwin = Release Cygwin
+		Release Maya 7.0 Win32 = Release Maya 7.0 Win32
+		Release Win32 = Release Win32
+		Release Win64 = Release Win64
+		Release YDL = Release YDL
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Debug Maya 7.0 Win32.ActiveCfg = Debug Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Debug Maya 7.0 Win32.Build.0 = Debug Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Debug Win32.ActiveCfg = Debug Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Debug Win32.Build.0 = Debug Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Debug Win64.ActiveCfg = Debug Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Debug Win64.Build.0 = Debug Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Cygwin.ActiveCfg = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Cygwin.Build.0 = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Maya 7.0 Win32.ActiveCfg = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Maya 7.0 Win32.Build.0 = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Win32.ActiveCfg = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Win32.Build.0 = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Win64.ActiveCfg = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release Win64.Build.0 = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release YDL.ActiveCfg = Release Win32|Win32
+		{977411C2-75DA-4663-BEDC-AF4DE41D88AC}.Release YDL.Build.0 = Release Win32|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug Maya 7.0 Win32.ActiveCfg = Debug Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug Maya 7.0 Win32.Build.0 = Debug Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug Win32.ActiveCfg = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug Win32.Build.0 = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug Win64.ActiveCfg = Debug Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug Win64.Build.0 = Debug Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Cygwin.ActiveCfg = Release Cygwin|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Cygwin.Build.0 = Release Cygwin|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Maya 7.0 Win32.ActiveCfg = Release Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Maya 7.0 Win32.Build.0 = Release Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Win32.ActiveCfg = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Win32.Build.0 = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Win64.ActiveCfg = Release Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release Win64.Build.0 = Release Win64|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release YDL.ActiveCfg = Release YDL|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release YDL.Build.0 = Release YDL|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug Maya 7.0 Win32.ActiveCfg = Debug Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug Maya 7.0 Win32.Build.0 = Debug Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug Win32.ActiveCfg = Debug Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug Win32.Build.0 = Debug Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug Win64.ActiveCfg = Debug Win64|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Debug Win64.Build.0 = Debug Win64|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Cygwin.ActiveCfg = Release Cygwin|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Cygwin.Build.0 = Release Cygwin|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Maya 7.0 Win32.ActiveCfg = Release Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Maya 7.0 Win32.Build.0 = Release Maya 7.0 Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Win32.ActiveCfg = Release Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Win32.Build.0 = Release Win32|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Win64.ActiveCfg = Release Win64|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release Win64.Build.0 = Release Win64|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release YDL.ActiveCfg = Release YDL|Win32
+		{DC11B76D-4309-4D38-B99C-BD8A88E02F0A}.Release YDL.Build.0 = Release YDL|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Debug Maya 7.0 Win32.ActiveCfg = Debug Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Debug Maya 7.0 Win32.Build.0 = Debug Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Debug Win32.ActiveCfg = Debug Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Debug Win32.Build.0 = Debug Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Debug Win64.ActiveCfg = Debug Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Debug Win64.Build.0 = Debug Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Cygwin.ActiveCfg = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Cygwin.Build.0 = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Maya 7.0 Win32.ActiveCfg = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Maya 7.0 Win32.Build.0 = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Win32.ActiveCfg = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Win32.Build.0 = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Win64.ActiveCfg = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release Win64.Build.0 = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release YDL.ActiveCfg = Release Win32|Win32
+		{E5E293F0-C22E-446B-95A1-DC6DB86C252D}.Release YDL.Build.0 = Release Win32|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug Maya 7.0 Win32.ActiveCfg = Debug Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug Maya 7.0 Win32.Build.0 = Debug Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug Win32.ActiveCfg = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug Win32.Build.0 = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug Win64.ActiveCfg = Debug Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug Win64.Build.0 = Debug Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Cygwin.ActiveCfg = Release Cygwin|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Cygwin.Build.0 = Release Cygwin|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Maya 7.0 Win32.ActiveCfg = Release Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Maya 7.0 Win32.Build.0 = Release Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Win32.ActiveCfg = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Win32.Build.0 = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Win64.ActiveCfg = Release Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release Win64.Build.0 = Release Win64|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release YDL.ActiveCfg = Release YDL|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release YDL.Build.0 = Release YDL|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

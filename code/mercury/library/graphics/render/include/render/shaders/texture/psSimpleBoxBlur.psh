@@ -1,0 +1,380 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+#if defined(TAPS_5)
+#	define TAPS 5
+#elif defined(TAPS_7)
+#	define TAPS 7
+#elif defined(TAPS_9)
+#	define TAPS 9
+#elif defined(TAPS_11)
+#	define TAPS 11
+#elif defined(TAPS_13)
+#	define TAPS 13
+#endif
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tColour		: register(s0);
+
+#define		g_vOffset		g_vSettings.xy
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+float4 GaussianBlurX_5Taps(float2 vUV)
+{
+#if defined(XB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetX = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetX = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetX = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetX = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetX = +2.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4);
+}
+
+float4 GaussianBlurX_7Taps(float2 vUV)
+{
+#if defined(XB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetX = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetX = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetX = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetX = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetX = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetX = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetX = +3.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6);
+}
+
+float4 GaussianBlurX_9Taps(float2 vUV)
+{
+#if defined(XB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6, vSample7;
+	float4	vSample8;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetX = -4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetX = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetX = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetX = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetX = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetX = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetX = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample7, vUV, g_tColour, OffsetX = +3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample8, vUV, g_tColour, OffsetX = +4.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -4.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample7	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+	float4	vSample8	= tex2D(g_tColour, vUV + +4.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6 + vSample7 + vSample8);
+}
+
+float4 GaussianBlurX_11Taps(float2 vUV)
+{
+#if defined(XB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6, vSample7;
+	float4	vSample8, vSample9, vSample10;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetX = -5.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetX = -4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetX = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetX = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetX = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetX = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetX = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample7, vUV, g_tColour, OffsetX = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample8, vUV, g_tColour, OffsetX = +3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample9, vUV, g_tColour, OffsetX = +4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample10, vUV, g_tColour, OffsetX = +5.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -5.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -4.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample7	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample8	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+	float4	vSample9	= tex2D(g_tColour, vUV + +4.0f * g_vOffset);
+	float4	vSample10	= tex2D(g_tColour, vUV + +5.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6 + vSample7 + vSample8 + vSample9 + vSample10);
+}
+
+float4 GaussianBlurX_13Taps(float2 vUV)
+{
+#if defined(XB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6, vSample7;
+	float4	vSample8, vSample9, vSample10, vSample11;
+	float4	vSample12;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetX = -6.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetX = -5.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetX = -4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetX = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetX = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetX = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetX = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample7, vUV, g_tColour, OffsetX = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample8, vUV, g_tColour, OffsetX = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample9, vUV, g_tColour, OffsetX = +3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample10, vUV, g_tColour, OffsetX = +4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample11, vUV, g_tColour, OffsetX = +5.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample12, vUV, g_tColour, OffsetX = +6.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -6.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -5.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -4.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample7	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample8	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample9	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+	float4	vSample10	= tex2D(g_tColour, vUV + +4.0f * g_vOffset);
+	float4	vSample11	= tex2D(g_tColour, vUV + +5.0f * g_vOffset);	
+	float4	vSample12	= tex2D(g_tColour, vUV + +6.0f * g_vOffset);	
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6 + vSample7 + vSample8 + vSample9 + vSample10 + vSample11 + vSample12);
+}
+
+float4 GaussianBlurY_5Taps(float2 vUV)
+{
+#if defined(YB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetY = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetY = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetY = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetY = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetY = +2.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4);
+}
+
+float4 GaussianBlurY_7Taps(float2 vUV)
+{
+#if defined(YB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetY = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetY = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetY = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetY = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetY = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetY = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetY = +3.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6);
+}
+
+float4 GaussianBlurY_9Taps(float2 vUV)
+{
+#if defined(YB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6, vSample7;
+	float4	vSample8;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetY = -4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetY = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetY = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetY = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetY = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetY = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetY = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample7, vUV, g_tColour, OffsetY = +3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample8, vUV, g_tColour, OffsetY = +4.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -4.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample7	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+	float4	vSample8	= tex2D(g_tColour, vUV + +4.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6 + vSample7 + vSample8);
+}
+
+float4 GaussianBlurY_11Taps(float2 vUV)
+{
+#if defined(YB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6, vSample7;
+	float4	vSample8, vSample9, vSample10;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetY = -5.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetY = -4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetY = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetY = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetY = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetY = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetY = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample7, vUV, g_tColour, OffsetY = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample8, vUV, g_tColour, OffsetY = +3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample9, vUV, g_tColour, OffsetY = +4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample10, vUV, g_tColour, OffsetY = +5.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -5.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -4.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample7	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample8	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+	float4	vSample9	= tex2D(g_tColour, vUV + +4.0f * g_vOffset);
+	float4	vSample10	= tex2D(g_tColour, vUV + +5.0f * g_vOffset);
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6 + vSample7 + vSample8 + vSample9 + vSample10);
+}
+
+float4 GaussianBlurY_13Taps(float2 vUV)
+{
+#if defined(YB2)
+	float4	vSample0, vSample1, vSample2, vSample3;
+	float4	vSample4, vSample5, vSample6, vSample7;
+	float4	vSample8, vSample9, vSample10, vSample11;
+	float4	vSample12;
+	asm
+	{
+		tfetch2D vSample0, vUV, g_tColour, OffsetY = -6.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample1, vUV, g_tColour, OffsetY = -5.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample2, vUV, g_tColour, OffsetY = -4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample3, vUV, g_tColour, OffsetY = -3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample4, vUV, g_tColour, OffsetY = -2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample5, vUV, g_tColour, OffsetY = -1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample6, vUV, g_tColour, OffsetY = +0.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample7, vUV, g_tColour, OffsetY = +1.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample8, vUV, g_tColour, OffsetY = +2.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample9, vUV, g_tColour, OffsetY = +3.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample10, vUV, g_tColour, OffsetY = +4.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample11, vUV, g_tColour, OffsetY = +5.0, MinFilter=point, MagFilter=point
+		tfetch2D vSample12, vUV, g_tColour, OffsetY = +6.0, MinFilter=point, MagFilter=point
+	};
+#else
+	float4	vSample0	= tex2D(g_tColour, vUV + -6.0f * g_vOffset);
+	float4	vSample1	= tex2D(g_tColour, vUV + -5.0f * g_vOffset);
+	float4	vSample2	= tex2D(g_tColour, vUV + -4.0f * g_vOffset);
+	float4	vSample3	= tex2D(g_tColour, vUV + -3.0f * g_vOffset);
+	float4	vSample4	= tex2D(g_tColour, vUV + -2.0f * g_vOffset);
+	float4	vSample5	= tex2D(g_tColour, vUV + -1.0f * g_vOffset);
+	float4	vSample6	= tex2D(g_tColour, vUV + +0.0f * g_vOffset);
+	float4	vSample7	= tex2D(g_tColour, vUV + +1.0f * g_vOffset);
+	float4	vSample8	= tex2D(g_tColour, vUV + +2.0f * g_vOffset);
+	float4	vSample9	= tex2D(g_tColour, vUV + +3.0f * g_vOffset);
+	float4	vSample10	= tex2D(g_tColour, vUV + +4.0f * g_vOffset);
+	float4	vSample11	= tex2D(g_tColour, vUV + +5.0f * g_vOffset);	
+	float4	vSample12	= tex2D(g_tColour, vUV + +6.0f * g_vOffset);	
+#endif
+    return (1.0f / TAPS) * (vSample0 + vSample1 + vSample2 + vSample3 + vSample4 + vSample5 + vSample6 + vSample7 + vSample8 + vSample9 + vSample10 + vSample11 + vSample12);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#if defined(HORIZONTAL)
+	#if defined(TAPS_5)
+		output.m_Colour = GaussianBlurX_5Taps(input.m_TexCoord);
+	#elif defined(TAPS_7)
+		output.m_Colour = GaussianBlurX_7Taps(input.m_TexCoord);
+	#elif defined(TAPS_9)
+		output.m_Colour = GaussianBlurX_9Taps(input.m_TexCoord);
+	#elif defined(TAPS_11)
+		output.m_Colour = GaussianBlurX_11Taps(input.m_TexCoord);
+	#elif defined(TAPS_13)
+		output.m_Colour = GaussianBlurX_13Taps(input.m_TexCoord);
+	#endif
+#elif defined(VERTICAL)
+	#if defined(TAPS_5)
+		output.m_Colour = GaussianBlurY_5Taps(input.m_TexCoord);
+	#elif defined(TAPS_7)
+		output.m_Colour = GaussianBlurY_7Taps(input.m_TexCoord);
+	#elif defined(TAPS_9)
+		output.m_Colour = GaussianBlurY_9Taps(input.m_TexCoord);
+	#elif defined(TAPS_11)
+		output.m_Colour = GaussianBlurY_11Taps(input.m_TexCoord);
+	#elif defined(TAPS_13)
+		output.m_Colour = GaussianBlurY_13Taps(input.m_TexCoord);
+	#endif
+#endif
+
+	return output;
+}

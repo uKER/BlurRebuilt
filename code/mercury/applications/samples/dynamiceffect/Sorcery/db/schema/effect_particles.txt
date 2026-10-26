@@ -1,0 +1,268 @@
+// enumerations
+
+enum Particle_BlendMode
+{
+	Additive,
+	Alpha,
+	AlphaAndAdditive,
+	AlphaAdditive,
+	AlphaSubtractive,
+	AlphaFilterColour,
+	AlphaFilterTexture,
+	Subtractive,
+	None,
+	AlphaTest,
+	AlphaMask
+};
+
+enum Particle_Shape
+{
+	Beam,
+	CappedBeam,
+	CappedBeamNoLifeScale,
+	Sprite,
+	DirectionalSprite,
+	RotatingSprite,
+	SoftRotatingSprite,
+	VolumetricRotatingSprite,
+	Quad,
+	Decal,
+	PointSprite,
+	Cube,
+	Pyramid,
+	Mesh,
+	None
+};
+
+enum Particle_E_LimitSize
+{
+	NoLimit,
+	Clamp,
+	AlphaFade
+};
+
+enum Particle_Sort
+{
+	PerBlock,
+	PerParticle
+};
+
+enum Particle_Collision
+{
+	None,
+	Planar,
+	Full
+};
+
+enum Particle_PhysicsBehaviour
+{
+	Default,
+	SplineFollower
+};
+
+enum Particle_EmitterOrientation
+{
+	Local,
+	World
+};
+
+enum Particle_EmitterSpace
+{
+	World,
+	Local
+};
+
+enum Particle_EmitterDistribution
+{
+	Point,
+	Line,
+	Sphere,
+	Capsule,
+	Box,
+	Mesh,
+	Spline
+};
+
+enum Particle_EmitterSpawn
+{
+	Normal,
+	Burst,
+	Persistent
+};
+
+enum Particle_EmitterColourMode
+{
+	SingleColour,
+	LerpColour,
+	LerpChannels
+};
+
+enum Particle_Child
+{
+	Trail,
+	Death,
+	Collision,
+	CollisionOnce
+};
+
+// helper classes
+
+[Horizontal]
+type Particle_LimitSize
+{
+	Particle_E_LimitSize	type;
+	f32			begin;
+	f32			max;
+};
+
+[Horizontal]
+type Particle_SpawnAmount
+{
+	f32 value;
+	f32 variation;
+	f32 distance;
+	bool disable;
+};
+
+[Horizontal]
+type Particle_Cone
+{
+	f32 outer;
+	f32 inner;
+};
+
+// records
+
+type Particle_Effect_RenderParams
+{
+	sz8						diffuseTexture;
+	sz8						bumpTexture;
+	Effect_Atlas			atlas;
+	
+	Particle_Shape			shape;
+	sz8						shapeName;
+	
+	Particle_BlendMode		blendMode;
+	Effect_Colour			filterColour;
+	Particle_Sort			sort;
+	Effect_Light			light;
+	Particle_LimitSize		limitSize;
+	f32						depthBias;
+	f32						cullDistance;
+	u32						freezeAmount;
+	
+	[Data(path: sizeCurveX, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:100)]
+    control Graph;
+	Effect_HermiteKeyFrame[] sizeCurveX;
+	
+    [Data(path: sizeCurveY, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:100)]
+    control Graph;
+	Effect_HermiteKeyFrame[] sizeCurveY;
+	
+    [Data(path: sizeCurveZ, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:100)]
+    control Graph;
+	Effect_HermiteKeyFrame[] sizeCurveZ;
+
+    [Data(path: animation, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:100)]
+    control Graph;
+	Effect_HermiteKeyFrame[] animation; 
+
+	Effect_ColourTime[] colourOverTime;
+
+    [Data(path: colourCurveA, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:100)]
+	control Graph;
+	Effect_HermiteKeyFrame[] colourCurveA;
+};
+
+type Particle_Effect_PhysicsParams
+{
+	Particle_PhysicsBehaviour				behaviour;
+	Particle_Collision					collisions;
+	f32							gravity;
+	f32							airResistance;
+	f32							restitution;
+	f32							friction;
+	bool							dieOnImpact;
+};
+
+[Record] type Particle_Effect
+{
+	sz8 name;
+	
+	Particle_Effect_RenderParams		render;
+	Particle_Effect_PhysicsParams		physics;
+	Particle_ChildEmitter[]				children;
+};
+
+type Particle_Emitter_SpawnParams
+{
+	Particle_EmitterSpawn			type;
+	Particle_EmitterSpace			space;
+	Particle_SpawnAmount			amount;
+	Particle_Cone					cone;
+	Effect_F32Vec3					position;
+	Effect_F32Vec3					direction;
+	Particle_EmitterDistribution	distribution;
+	Effect_F32Vec3					distributionSize;
+	Particle_EmitterOrientation		orientation;
+};
+
+type Particle_Emitter_AnimationParams
+{
+	bool							repeating;
+	Effect_F32Variation				time;
+	Effect_F32Variation				duration;
+};
+
+type Particle_Emitter_ParticleParams
+{
+	Effect_F32Variation			life;
+	Effect_F32Variation			size;
+	Effect_F32Variation			speed;
+	Effect_F32Variation			speedInherited;
+	Effect_F32Vec3Variation		Rotation;
+	Effect_F32Vec3Variation		Spin;
+	Particle_EmitterColourMode	colourMode;
+	Effect_Colour				colour;
+	Effect_Colour				colour2;
+	Effect_F32Variation			force;
+};
+
+type Particle_Emitter_MiscParams
+{
+	Effect_F32Vec3MinMax 		boundingBox;
+	f32							emitRadius;
+	f32							expiryTime;
+	u32							particlesPerBlock;
+};
+	
+type Particle_Emitter
+{
+	Particle_Effect& effect;
+	
+	Particle_Emitter_SpawnParams		spawn;
+	Particle_Emitter_AnimationParams	animation;
+	Particle_Emitter_ParticleParams		particle;
+	Particle_Emitter_MiscParams			misc;
+};
+
+type Particle_ChildEmitter
+{
+	Particle_Child		type;
+	Effect_F32MinMax	intensitySpeed;
+	Particle_Emitter 	child;
+};
+
+[Record] type Particle_Event
+{
+	sz8 name;
+	Effect_F32Variation duration;
+	bool repeating;
+	Particle_Emitter[] emitters;
+};
+
+[Record] type Particle_WorldEvent
+{
+	Particle_Event& event;
+	Effect_F32Vec3 position;
+};

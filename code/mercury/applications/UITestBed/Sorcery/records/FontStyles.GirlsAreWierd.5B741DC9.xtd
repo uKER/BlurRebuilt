@@ -1,0 +1,11 @@
+xt
+	field __id "5B741DC9"
+	field __name "FontStyles.GirlsAreWierd"
+	field __pack "F2519802"
+	field __type "UIFontStyle"
+	field dropshadow "8"
+	field font "Verdana"
+	field name "G"
+	field shader "2"
+	field tracking "0"
+end

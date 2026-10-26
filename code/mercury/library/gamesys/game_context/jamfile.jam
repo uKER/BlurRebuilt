@@ -1,0 +1,26 @@
+SubDir TOP Code Mercury Library GameSys Game_Context ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+Define USE_SOLVER_2 ;
+
+SRC = 
+source/dummy.cpp
+;
+
+Library game_context : $(SRC) $($(PLATFORM)SRC) : GameContextPch.cpp : GameContextPch.h ;

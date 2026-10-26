@@ -1,0 +1,71 @@
+echo "Building Amax shaders for $(PLATFORM)" ;
+
+SubDir TOP Code Amax Game Shaders ;
+
+SupportedTargets WIN32 PS3 ;
+
+SHADER_HASH_FILE = $(TOP)/Code/Amax/Game/Shaders/shader_hash.txt ;
+
+# AmaxShaders project setup
+
+ExportVcproj AmaxShaders ;
+StoreVcprojInfo AmaxShaders ;
+
+# Compile the shaders into Amax
+
+SetGameFolder $(BIZARRE_ROOT)/Amax ;
+include $(TOP)/code/amax/game/shaders/shaders.jam ;
+
+MERCURYSHADERDIR = [ FSubDirPath TOP Code Mercury Library Graphics Shader ] ;
+CPFile $(MERCURYSHADERDIR)/include/shader/psConstants.cp ;
+CPFile $(MERCURYSHADERDIR)/include/shader/psTextures.sp ;
+CPFile $(MERCURYSHADERDIR)/include/shader/vsConstants.cv ;
+
+include $(TOP)/code/mercury/library/graphics/vehicle/shaders.jam ;
+
+AmaxEffect Perks/MeshEffect.fx ;
+AmaxEffect Perks/MeshEffectCull.fx ;
+AmaxEffect Perks/MeshEffectRefract.fx ;
+AmaxEffect Perks/MeshEffectUVDistort.fx ;
+AmaxEffect Perks/MeshEffectNoDepth.fx ;
+AmaxEffect Perks/MeshEffectCullNoDepth.fx ;
+AmaxEffect Perks/MeshEffectUVDistortNoDepth.fx ;
+AmaxEffect Perks/MeshEffectUVDistortCullNoDepth.fx ;
+AmaxEffect Perks/MeshEffectUVDistortCull.fx ;
+AmaxEffect Perks/MeshEffectDLayer.fx ;
+AmaxEffect Perks/MeshEffectDLayerUVDist.fx ;
+AmaxEffect Perks/MeshEffectDLayerNDepth.fx ;
+AmaxEffect Perks/MeshEffectDLayerUVDistNDepth.fx ;
+AmaxEffect Perks/MeshEffectDLayerCullNDepth.fx ;
+AmaxEffect Perks/MeshEffectDLayerUVDistCullNDepth.fx ;
+AmaxEffect Perks/MeshEffectDLayerCull.fx ;
+AmaxEffect Perks/MeshEffectDLayerUVDistCull.fx ;
+
+AmaxSkinnedEffect Perks/MeshEffect.fx ;
+AmaxSkinnedEffect Perks/MeshEffectCull.fx ;
+AmaxSkinnedEffect Perks/MeshEffectRefract.fx ;
+AmaxSkinnedEffect Perks/MeshEffectUVDistort.fx ;
+AmaxSkinnedEffect Perks/MeshEffectNoDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectCullNoDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectUVDistortNoDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectUVDistortCullNoDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectUVDistortCull.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayer.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayerUVDist.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayerNDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayerUVDistNDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayerCullNDepth.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayerCull.fx ;
+AmaxSkinnedEffect Perks/MeshEffectDLayerUVDistCull.fx ;
+
+AmaxEffect Racification/Racification.fx ;
+AmaxEffect Racification/RacificationNoCull.fx ;
+AmaxEffect Racification/RacificationUVDistort.fx ;
+AmaxEffect Racification/RacificationUVDistortNoCull.fx ;
+AmaxEffect Racification/RacificationDLayer.fx ;
+AmaxEffect Racification/RacificationDLayerNoCull.fx ;
+
+# Include the shader library
+
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Graphics Vehicle ;

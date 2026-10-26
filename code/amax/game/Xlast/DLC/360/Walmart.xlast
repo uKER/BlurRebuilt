@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-16" standalone="no"?>
+<XboxLiveSubmissionProject Version="2.0.11164.2">
+	<ContentProject clsid="{AED6156D-A870-4FF7-924F-F375495A222A}" Name="Walmart Preorder Pack" TitleID="41560845" TitleName="Blur" ActivationDate="06/04/2009" PubOfferingID="0000002" PubBitFlags="FFFFFFFF" HasCost="false" IsMarketplace="true" AllowProfileTransfer="true" AllowDeviceTransfer="true" DashIconPath="C:\DLC\360\orange.png" TitleIconPath="C:\DLC\360\orange.png" ContentType="0x00000002">
+		<LanguageSettings clsid="{F5BA1EE2-D217-447C-93C7-3C7AA6F25DD5}">
+			<Language clsid="{6424EAA3-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Walmart Preorder Pack" Description="Contains the Walmart preorder unlocks"/>
+			<Language clsid="{6424EAA5-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Walmart-Vorbestellpaket" Description="Beinhaltet die Freischaltobjekte für Walmart-Vorbesteller"/>
+			<Language clsid="{6424EAA6-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Pack précommande Walmart" Description="Les bonus déverrouillés par le pack de précommande de Walmart"/>
+			<Language clsid="{6424EAA7-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Pack de reserva de Walmart" Description="Contiene los desbloqueos por reservar en Walmart."/>
+			<Language clsid="{6424EAA8-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Pacchetto preordine Walmart" Description="Contiene gli oggetti sbloccabili prenotando il gioco presso i punti vendita Walmart."/>
+		</LanguageSettings>
+		<Contents clsid="{0D8B38B9-F5A8-4050-8F8D-81F67E3B2456}">
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack Walmart ToC.bin" TargetName="ToC.bin"/>
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack Walmart.bin" TargetName="DLCPackWalmart.bin"/>
+		</Contents>
+		<ContentOffers clsid="{146485F0-DCD7-4AB1-97E1-9B0E64150499}">
+			<ContentOffer clsid="{4AF8FE5B-CCF2-4C23-852F-D91A94AE0E24}" friendlyName="WalmartRetailUnlock" title="Walmart Retail Unlock" sellText="" licenseMask="0x00000001" contentCategory="0x00000001" visibility="1" previewOfferId="0x00000000" offerId="0x00000000" banner=".\package\dlcbanner.png" licenseLevel="2" consumable="false"/>
+		</ContentOffers>
+	</ContentProject>
+</XboxLiveSubmissionProject>

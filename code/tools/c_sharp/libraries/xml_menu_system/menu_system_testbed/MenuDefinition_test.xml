@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<menu_system>
+
+	<enums>
+		<enum name="Colour">
+			"black"
+			"blue"
+			"magenta"
+			"red"
+			"green"
+			"cyan"
+			"yellow"
+			"white"
+		</enum>
+		<enum name="LightType">
+			"Infinite"
+			"Ambient"
+			"Point"
+			"Spot"
+			"Hemisphere"
+		</enum>
+		<enum name = "gender">
+			"Male"
+			"Female"
+		</enum>
+	</enums>
+
+	<reference>
+		<container name = "new_tree_item" type = "tree_node">
+			<container name="Dave" type ="bool" default="true" />
+			<container name="Brian" type ="bad type" default="true" pre_format ="cr;" />
+			<container name="Peter" type ="bool" default="true" pre_format ="cr;" />
+			<container name = "Wilson" type = "basic" pre_format ="cr;"/>		
+		</container>
+		
+		<container name = "Inherited_stuff" type = "basic" >
+			<container name="First bool" type ="bool" default="true" />
+			<container name="Second bool" type ="bad type" default="true" pre_format ="cr;" />
+			<container name="Third bool" type ="bool" default="true" pre_format ="cr;" />
+			<container name = "Test_inherit" type = "basic" pre_format ="cr;">
+				<container name = "Testval" type = "int" min = "5" max = "9" default = "4" pre_format ="cr;"/>
+				<inherit name = "fingers crossed" path = "Inherited stuff.Test inherit.Testval"/>
+			</container>
+		</container>
+	</reference>
+
+	<container name = "ROOT CONTAINER" type ="dropdown" value ="Weather">
+		<container name = "A group of things" type = "basic">
+			<inherit path="Inherited_stuff.Test_inherit" name = "inherit 1"/>
+			<container name="First bool" type ="bool" default="true" pre_format ="cr;" />
+			<inherit path="Inherited stuff.Test inherit.fingers crossed" name = "inherit 2"/>
+			<container name="Silly" type ="rogue type" default="true" pre_format ="cr;" />
+			<container name="Second bool" type ="bool" default="false" />
+			<container name="First parameter" type ="int" default="5" min = "-2" max = "2" />
+			<container name="First string" type ="string" default="A first string" pre_format ="cr;"/>
+			<container name="Second string" type ="text" default="A second string" pre_format ="cr;"/>
+			<container name="Second parameter" type ="float" default="12.2" min = "-22.2" max = "23.3" />
+			<container name="Third parameter" type="int" default="4"  pre_format ="cr;"/>
+			<container name = "Do it" type = "action_button" command = "some command"/>
+		</container>
+		<container name="Select actor" type="tree" default = "Robot\hello">
+			<inherit path="new_tree_item" name="3" />
+			<inherit path="new_tree_item" name="4" />
+			<container name="Robot" type="tree_node" >
+
+				<container name = "My enum" type = "enum" values = "LightType" default = "Point" />
+				<container name="AI method" type="int" default="0"/>
+				<container name="Num. bullets1" type="int" default="10" pre_format ="cr;xtab(50);ytab(20);"/>
+				<container name="Num. bullets2" type="int" default="10" pre_format ="cr;xtab(90);ytab(20);"/>
+				<container name="Num. bullets3" type="int" default="10" pre_format ="cr;xtab(130);ytab(60);" />
+				<container name = "hello" type = "tree_node" >
+					<container name="int 1" type="int" default="10" pre_format ="cr"/>
+					<container name="int 2" type="int" default="10" pre_format ="cr"/>
+					<container name="int 3" type="int" default="10" pre_format ="cr"/>
+					<container name="int 4" type="int" default="10" pre_format ="cr"/>
+
+					<container name = "nested tree" type = "tree" pre_format ="cr" post_format = "cr">
+						<container name = "Tree item" type = "tree_node">
+							<container name="bont 1" type="int" default="10" pre_format ="cr"/>
+							<container name="bont 2" type="int" default="10" pre_format ="cr"/>
+							<container name="bont 3" type="int" default="10" pre_format ="cr"/>
+							<container name="bont 4" type="int" default="10" pre_format ="cr"/>
+						</container>
+					</container>
+					<container name = "A group of things" type = "basic">
+						<container name="int 5" type="int" default="10" pre_format ="cr"/>
+						<container name="int 6" type="int" default="10" pre_format ="cr"/>
+						<container name="int 7" type="int" default="10" pre_format ="cr"/>
+						<container name="int 8" type="int" default="10" pre_format ="cr"/>
+						<container name="int 9" type="int" default="10" pre_format ="cr"/>
+						<container name="int 10" type="int" default="10" pre_format ="cr"/>
+					</container>
+				</container>
+			</container>
+			<container name="Swan" type="tree_node">
+				<container name="sex" type="enum" values = "gender" default="0"/>
+				<container name="Beak length" type="int" default="10"/>
+			</container>
+		</container>
+	
+		<container name="Weather" type="dropdown" value = "Weather 2">
+			<container name="Temperature" type="int" default="0" pre_format ="cr;"/>
+			<container name="Preferred temperature" type="int" default="0"/>
+			<container name = "Weather 1" type = "basic">
+				<container name="Rain" type="int" default="0"/>
+				<container name="Temperature" type="int" default="10"/>
+			</container>
+			<container name="Rogue placement" type="int" default="10" pre_format ="cr;"/>
+			<container name = "Weather 2" type = "basic">
+				<container name="Rain" type="int" default="0" pre_format ="cr;"/>
+				<container name="Temperature" type="int" default="10" pre_format ="cr;xtab(40);ytab(20);"/>
+				<container name="wind" type="int" default="0" pre_format ="cr;xtab(90);ytab(20);"/>
+				<container name="sun index" type="int" default="10" pre_format ="cr;"/>
+			</container>
+			<container name="Rogue placement 2" type="int" default="10"/>
+		</container>
+		<container name="Last parameter" type ="int" default="2"/>
+	</container>
+	
+</menu_system>

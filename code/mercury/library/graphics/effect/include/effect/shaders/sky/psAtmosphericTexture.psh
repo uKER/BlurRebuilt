@@ -1,0 +1,96 @@
+#include "../psCommon.h"
+
+float4	g_vSunDirection		: register(CCP_RENDER_SETTINGS);
+float4	g_vCoefficients		: register(CCP_RENDER_SETTINGS_1);
+float4	g_vRadiusSamples	: register(CCP_RENDER_SETTINGS_2);
+float4	g_vInvWavelength	: register(CCP_RENDER_SETTINGS_3);
+
+#define	g_fKr4Pi				g_vCoefficients.x
+#define	g_fKm4Pi				g_vCoefficients.y
+#define	g_fRayleighScale		g_vCoefficients.z
+#define g_fMieScale				g_vCoefficients.w
+#define	g_fOuterRadius			g_vRadiusSamples.x
+#define	g_fInnerRadius			g_vRadiusSamples.y
+#define	g_fScale				g_vRadiusSamples.z
+#define	g_fSamples				g_vRadiusSamples.w
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+float3 OpticalDepth(in float3 vBegin, in float3 vEnd, in int nSamples)
+{
+	float3	vRay			= vEnd - vBegin;
+	float3	vSampleRay		= vRay / nSamples;
+	float3	vSamplePoint	= vBegin + vSampleRay * 0.5f;
+	float	fSampleLength	= length(vSampleRay);
+	float	fScaledLength	= fSampleLength * g_fScale;
+	
+	float2	vIntegral		= 0.0f;
+	for (int iSample = 0; iSample < nSamples; ++iSample)
+	{
+		float	fScaledHeight	= g_fScale * (g_fInnerRadius - length(vSamplePoint));
+		vIntegral.x		+= exp(g_fRayleighScale * fScaledHeight);
+		vIntegral.y		+= exp(g_fMieScale * fScaledHeight);
+		vSamplePoint	+= vSampleRay;
+	}
+	
+	return (g_fKr4Pi * g_vInvWavelength.xyz * vIntegral.x + g_fKm4Pi * vIntegral.y) * fScaledLength;
+}
+
+void InScattering(in float3 vEye, in float3 vPosition, in int nSamples, out float3 vRayleigh, out float3 vMie)
+{
+	float3	vRay				= vPosition - vEye;
+	float3	vSampleRay			= vRay / nSamples;
+	float3	vSamplePoint		= vEye + vSampleRay * 0.5f;
+	float	fSampleLength		= length(vSampleRay);
+	float	fScaledLength		= fSampleLength * g_fScale;
+	
+	vRayleigh = 0.0f;
+	vMie = 0.0f;
+	for (int iSample = 0; iSample < nSamples; ++iSample)
+	{
+		float	fPDotD				= dot(vSamplePoint, g_vSunDirection.xyz);
+		float	fLambda				= -fPDotD + sqrt(fPDotD * fPDotD - dot(vSamplePoint, vSamplePoint) + g_fOuterRadius * g_fOuterRadius);
+		float3	vSunPos				= vSamplePoint + fLambda * g_vSunDirection.xyz;
+		float3	vSunOpticalDepth	= OpticalDepth(vSamplePoint, vSunPos, nSamples);
+		float3	vCameraOpticalDepth	= OpticalDepth(vSamplePoint, vEye, nSamples);
+		float3	vAttenuation		= exp(-vSunOpticalDepth - vCameraOpticalDepth);
+		float	fScaledHeight		= g_fScale * (g_fInnerRadius - length(vSamplePoint));
+		vRayleigh		+= exp(g_fRayleighScale * fScaledHeight) * vAttenuation;
+		vMie			+= exp(g_fMieScale * fScaledHeight) * vAttenuation;
+		vSamplePoint	+= vSampleRay;
+	}
+
+	vRayleigh	*= fScaledLength;
+	vMie		*= fScaledLength;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float2	fXZY		= float2(6.283185307f, 0.392699081698724f) * input.m_TexCoord;
+	float3	vEye		= float3(0.0f, g_fInnerRadius, 0.0f);
+	float3	vPosition;
+	vPosition.x			= sin(fXZY.y) * cos(fXZY.x);
+	vPosition.y			= cos(fXZY.y);
+	vPosition.z			= sin(fXZY.y) * sin(fXZY.x);
+	vPosition			*= g_fOuterRadius;
+	
+	float3 vRayleigh	= 0.0f;
+	float3 vMie			= 0.0f;
+#ifndef PS_2_0
+	InScattering(vEye, vPosition, g_fSamples, vRayleigh, vMie);
+#endif
+	
+	output.m_Colour = float4(0.5f * (vRayleigh + vMie), 1.0f);
+	
+	return output;
+}

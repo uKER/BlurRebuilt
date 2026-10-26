@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdLobby</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdAuthService-wii.cpp:1"><path>${project}\bdAuthService-wii.cpp</path></file>
+<file file-tag="bdAuthService.cpp:1"><path>${project}\bdAuthService.cpp</path></file>
+<file file-tag="bdAuthService.h:1"><path>${project}\bdAuthService.h</path></file>
+<file file-tag="bdAuthTicket.cpp:1"><path>${project}\bdAuthTicket.cpp</path></file>
+<file file-tag="bdAuthTicket.h:1"><path>${project}\bdAuthTicket.h</path></file>
+<file file-tag="bdLobbyConnection.cpp:1"><path>${project}\bdLobbyConnection.cpp</path></file>
+<file file-tag="bdLobbyConnection.h:1"><path>${project}\bdLobbyConnection.h</path></file>
+<file file-tag="bdLobbyConnectionListener.cpp:1"><path>${project}\bdLobbyConnectionListener.cpp</path></file>
+<file file-tag="bdLobbyConnectionListener.h:1"><path>${project}\bdLobbyConnectionListener.h</path></file>
+<file file-tag="bdLobbyErrorCode.h:1"><path>${project}\bdLobbyErrorCode.h</path></file>
+<file file-tag="bdLobbyErrorCodes.h:1"><path>${project}\bdLobbyErrorCodes.h</path></file>
+<file file-tag="bdLobbyEventHandler.cpp:1"><path>${project}\bdLobbyEventHandler.cpp</path></file>
+<file file-tag="bdLobbyEventHandler.h:1"><path>${project}\bdLobbyEventHandler.h</path></file>
+<file file-tag="bdLobbyService.cpp:1"><path>${project}\bdLobbyService.cpp</path></file>
+<file file-tag="bdLobbyService.h:1"><path>${project}\bdLobbyService.h</path></file>
+<file file-tag="bdWiiAuthInfo.h:1"><path>${project}\bdWiiAuthInfo.h</path></file>
+<file file-tag="bdContentStreaming.cpp:1"><path>${project}\bdContentStreaming\bdContentStreaming.cpp</path></file>
+<file file-tag="bdContentStreaming.h:1"><path>${project}\bdContentStreaming\bdContentStreaming.h</path></file>
+<file file-tag="bdContentStreamingStatsInfo.cpp:1"><path>${project}\bdContentStreaming\bdContentStreamingStatsInfo.cpp</path></file>
+<file file-tag="bdContentStreamingStatsInfo.h:1"><path>${project}\bdContentStreaming\bdContentStreamingStatsInfo.h</path></file>
+<file file-tag="bdFileID.cpp:1"><path>${project}\bdContentStreaming\bdFileID.cpp</path></file>
+<file file-tag="bdFileID.h:1"><path>${project}\bdContentStreaming\bdFileID.h</path></file>
+<file file-tag="bdFileMetaData.cpp:1"><path>${project}\bdContentStreaming\bdFileMetaData.cpp</path></file>
+<file file-tag="bdFileMetaData.h:1"><path>${project}\bdContentStreaming\bdFileMetaData.h</path></file>
+<file file-tag="bdQuotaUsage.cpp:1"><path>${project}\bdContentStreaming\bdQuotaUsage.cpp</path></file>
+<file file-tag="bdQuotaUsage.h:1"><path>${project}\bdContentStreaming\bdQuotaUsage.h</path></file>
+<file file-tag="bdURL.cpp:1"><path>${project}\bdContentStreaming\bdURL.cpp</path></file>
+<file file-tag="bdURL.h:1"><path>${project}\bdContentStreaming\bdURL.h</path></file>
+<file file-tag="bdContentUnlock.cpp:1"><path>${project}\bdContentUnlock\bdContentUnlock.cpp</path></file>
+<file file-tag="bdContentUnlock.h:1"><path>${project}\bdContentUnlock\bdContentUnlock.h</path></file>
+<file file-tag="bdUnlockContentInfo.cpp:1"><path>${project}\bdContentUnlock\bdUnlockContentInfo.cpp</path></file>
+<file file-tag="bdUnlockContentInfo.h:1"><path>${project}\bdContentUnlock\bdUnlockContentInfo.h</path></file>
+<file file-tag="bdCounter.cpp:1"><path>${project}\bdCounter\bdCounter.cpp</path></file>
+<file file-tag="bdCounter.h:1"><path>${project}\bdCounter\bdCounter.h</path></file>
+<file file-tag="bdCounterValue.cpp:1"><path>${project}\bdCounter\bdCounterValue.cpp</path></file>
+<file file-tag="bdCounterValue.h:1"><path>${project}\bdCounter\bdCounterValue.h</path></file>
+<file file-tag="bdFacebook.cpp:1"><path>${project}\bdFacebook\bdFacebook.cpp</path></file>
+<file file-tag="bdFacebook.h:1"><path>${project}\bdFacebook\bdFacebook.h</path></file>
+<file file-tag="bdFriendInfo.cpp:1"><path>${project}\bdFriends\bdFriendInfo.cpp</path></file>
+<file file-tag="bdFriendInfo.h:1"><path>${project}\bdFriends\bdFriendInfo.h</path></file>
+<file file-tag="bdFriendProposal.cpp:1"><path>${project}\bdFriends\bdFriendProposal.cpp</path></file>
+<file file-tag="bdFriendProposal.h:1"><path>${project}\bdFriends\bdFriendProposal.h</path></file>
+<file file-tag="bdFriends.cpp:1"><path>${project}\bdFriends\bdFriends.cpp</path></file>
+<file file-tag="bdFriends.h:1"><path>${project}\bdFriends\bdFriends.h</path></file>
+<file file-tag="bdGroupInfo.cpp:1"><path>${project}\bdFriends\bdGroupInfo.cpp</path></file>
+<file file-tag="bdGroupInfo.h:1"><path>${project}\bdFriends\bdGroupInfo.h</path></file>
+<file file-tag="bdGroup.cpp:1"><path>${project}\bdGroup\bdGroup.cpp</path></file>
+<file file-tag="bdGroup.h:1"><path>${project}\bdGroup\bdGroup.h</path></file>
+<file file-tag="bdGroupCount.cpp:1"><path>${project}\bdGroup\bdGroupCount.cpp</path></file>
+<file file-tag="bdGroupCount.h:1"><path>${project}\bdGroup\bdGroupCount.h</path></file>
+<file file-tag="bdGroupID.cpp:1"><path>${project}\bdGroup\bdGroupID.cpp</path></file>
+<file file-tag="bdGroupID.h:1"><path>${project}\bdGroup\bdGroupID.h</path></file>
+<file file-tag="bdHTTPWrapper.h:1"><path>${project}\bdHTTPWrapper\bdHTTPWrapper.h</path></file>
+<file file-tag="bdHTTPWrapper.inl:1"><path>${project}\bdHTTPWrapper\bdHTTPWrapper.inl</path></file>
+<file file-tag="bdKeyArchive.cpp:1"><path>${project}\bdKeyArchive\bdKeyArchive.cpp</path></file>
+<file file-tag="bdKeyArchive.h:1"><path>${project}\bdKeyArchive\bdKeyArchive.h</path></file>
+<file file-tag="bdKeyValuePair.cpp:1"><path>${project}\bdKeyArchive\bdKeyValuePair.cpp</path></file>
+<file file-tag="bdKeyValuePair.h:1"><path>${project}\bdKeyArchive\bdKeyValuePair.h</path></file>
+<file file-tag="bdLink.cpp:1"><path>${project}\bdLinkCode\bdLink.cpp</path></file>
+<file file-tag="bdLink.h:1"><path>${project}\bdLinkCode\bdLink.h</path></file>
+<file file-tag="bdLinkCode.cpp:1"><path>${project}\bdLinkCode\bdLinkCode.cpp</path></file>
+<file file-tag="bdLinkCode.h:1"><path>${project}\bdLinkCode\bdLinkCode.h</path></file>
+<file file-tag="bdAuthCommon.cpp:1"><path>${project}\bdLobbyCommon\bdAuthCommon.cpp</path></file>
+<file file-tag="bdAuthCommon.h:1"><path>${project}\bdLobbyCommon\bdAuthCommon.h</path></file>
+<file file-tag="bdLobbyServicesCommon.h:1"><path>${project}\bdLobbyCommon\bdLobbyServicesCommon.h</path></file>
+<file file-tag="bdTaskResult.cpp:1"><path>${project}\bdLobbyCommon\bdTaskResult.cpp</path></file>
+<file file-tag="bdTaskResult.h:1"><path>${project}\bdLobbyCommon\bdTaskResult.h</path></file>
+<file file-tag="bdBandwidthTest.cpp:1"><path>${project}\bdLSGServices\bdBandwidthTest.cpp</path></file>
+<file file-tag="bdBandwidthTest.h:1"><path>${project}\bdLSGServices\bdBandwidthTest.h</path></file>
+<file file-tag="bdBandwidthTestResults.cpp:1"><path>${project}\bdLSGServices\bdBandwidthTestResults.cpp</path></file>
+<file file-tag="bdBandwidthTestResults.h:1"><path>${project}\bdLSGServices\bdBandwidthTestResults.h</path></file>
+<file file-tag="bdLSGServices.h:1"><path>${project}\bdLSGServices\bdLSGServices.h</path></file>
+<file file-tag="bdMatchMaking.cpp:1"><path>${project}\bdMatchMaking\bdMatchMaking.cpp</path></file>
+<file file-tag="bdMatchMaking.h:1"><path>${project}\bdMatchMaking\bdMatchMaking.h</path></file>
+<file file-tag="bdMatchMakingInfo.cpp:1"><path>${project}\bdMatchMaking\bdMatchMakingInfo.cpp</path></file>
+<file file-tag="bdMatchMakingInfo.h:1"><path>${project}\bdMatchMaking\bdMatchMakingInfo.h</path></file>
+<file file-tag="bdPerformanceValue.cpp:1"><path>${project}\bdMatchMaking\bdPerformanceValue.cpp</path></file>
+<file file-tag="bdPerformanceValue.h:1"><path>${project}\bdMatchMaking\bdPerformanceValue.h</path></file>
+<file file-tag="bdSessionID.cpp:1"><path>${project}\bdMatchMaking\bdSessionID.cpp</path></file>
+<file file-tag="bdSessionID.h:1"><path>${project}\bdMatchMaking\bdSessionID.h</path></file>
+<file file-tag="bdSessionInvite.cpp:1"><path>${project}\bdMatchMaking\bdSessionInvite.cpp</path></file>
+<file file-tag="bdSessionInvite.h:1"><path>${project}\bdMatchMaking\bdSessionInvite.h</path></file>
+<file file-tag="bdSessionParams.cpp:1"><path>${project}\bdMatchMaking\bdSessionParams.cpp</path></file>
+<file file-tag="bdSessionParams.h:1"><path>${project}\bdMatchMaking\bdSessionParams.h</path></file>
+<file file-tag="bdBlockedUser.cpp:1"><path>${project}\bdMessaging\bdBlockedUser.cpp</path></file>
+<file file-tag="bdBlockedUser.h:1"><path>${project}\bdMessaging\bdBlockedUser.h</path></file>
+<file file-tag="bdChannelInfo.cpp:1"><path>${project}\bdMessaging\bdChannelInfo.cpp</path></file>
+<file file-tag="bdChannelInfo.h:1"><path>${project}\bdMessaging\bdChannelInfo.h</path></file>
+<file file-tag="bdChannelMember.cpp:1"><path>${project}\bdMessaging\bdChannelMember.cpp</path></file>
+<file file-tag="bdChannelMember.h:1"><path>${project}\bdMessaging\bdChannelMember.h</path></file>
+<file file-tag="bdLobbyMessageType.h:1"><path>${project}\bdMessaging\bdLobbyMessageType.h</path></file>
+<file file-tag="bdMailBody.cpp:1"><path>${project}\bdMessaging\bdMailBody.cpp</path></file>
+<file file-tag="bdMailBody.h:1"><path>${project}\bdMessaging\bdMailBody.h</path></file>
+<file file-tag="bdMailHeader.cpp:1"><path>${project}\bdMessaging\bdMailHeader.cpp</path></file>
+<file file-tag="bdMailHeader.h:1"><path>${project}\bdMessaging\bdMailHeader.h</path></file>
+<file file-tag="bdMessaging.cpp:1"><path>${project}\bdMessaging\bdMessaging.cpp</path></file>
+<file file-tag="bdMessaging.h:1"><path>${project}\bdMessaging\bdMessaging.h</path></file>
+<file file-tag="bdNotification.cpp:1"><path>${project}\bdMessaging\bdNotification.cpp</path></file>
+<file file-tag="bdNotification.h:1"><path>${project}\bdMessaging\bdNotification.h</path></file>
+<file file-tag="bdProfileInfo.cpp:1"><path>${project}\bdProfiles\bdProfileInfo.cpp</path></file>
+<file file-tag="bdProfileInfo.h:1"><path>${project}\bdProfiles\bdProfileInfo.h</path></file>
+<file file-tag="bdProfiles.cpp:1"><path>${project}\bdProfiles\bdProfiles.cpp</path></file>
+<file file-tag="bdProfiles.h:1"><path>${project}\bdProfiles\bdProfiles.h</path></file>
+<file file-tag="bdRemoteTask.cpp:1"><path>${project}\bdRemoteTaskManager\bdRemoteTask.cpp</path></file>
+<file file-tag="bdRemoteTask.h:1"><path>${project}\bdRemoteTaskManager\bdRemoteTask.h</path></file>
+<file file-tag="bdRemoteTaskManager.cpp:1"><path>${project}\bdRemoteTaskManager\bdRemoteTaskManager.cpp</path></file>
+<file file-tag="bdRemoteTaskManager.h:1"><path>${project}\bdRemoteTaskManager\bdRemoteTaskManager.h</path></file>
+<file file-tag="bdArbitratedStatsInfo.cpp:1"><path>${project}\bdStats\bdArbitratedStatsInfo.cpp</path></file>
+<file file-tag="bdArbitratedStatsInfo.h:1"><path>${project}\bdStats\bdArbitratedStatsInfo.h</path></file>
+<file file-tag="bdSessionNonce.cpp:1"><path>${project}\bdStats\bdSessionNonce.cpp</path></file>
+<file file-tag="bdSessionNonce.h:1"><path>${project}\bdStats\bdSessionNonce.h</path></file>
+<file file-tag="bdStats.cpp:1"><path>${project}\bdStats\bdStats.cpp</path></file>
+<file file-tag="bdStats.h:1"><path>${project}\bdStats\bdStats.h</path></file>
+<file file-tag="bdStatsInfo.cpp:1"><path>${project}\bdStats\bdStatsInfo.cpp</path></file>
+<file file-tag="bdStatsInfo.h:1"><path>${project}\bdStats\bdStatsInfo.h</path></file>
+<file file-tag="bdFileData.cpp:1"><path>${project}\bdStorage\bdFileData.cpp</path></file>
+<file file-tag="bdFileData.h:1"><path>${project}\bdStorage\bdFileData.h</path></file>
+<file file-tag="bdFileInfo.cpp:1"><path>${project}\bdStorage\bdFileInfo.cpp</path></file>
+<file file-tag="bdFileInfo.h:1"><path>${project}\bdStorage\bdFileInfo.h</path></file>
+<file file-tag="bdGetFilesResult.cpp:1"><path>${project}\bdStorage\bdGetFilesResult.cpp</path></file>
+<file file-tag="bdGetFilesResult.h:1"><path>${project}\bdStorage\bdGetFilesResult.h</path></file>
+<file file-tag="bdStorage.cpp:1"><path>${project}\bdStorage\bdStorage.cpp</path></file>
+<file file-tag="bdStorage.h:1"><path>${project}\bdStorage\bdStorage.h</path></file>
+<file file-tag="bdTag.cpp:1"><path>${project}\bdTags\bdTag.cpp</path></file>
+<file file-tag="bdTag.h:1"><path>${project}\bdTags\bdTag.h</path></file>
+<file file-tag="bdTagQueryParams.cpp:1"><path>${project}\bdTags\bdTagQueryParams.cpp</path></file>
+<file file-tag="bdTagQueryParams.h:1"><path>${project}\bdTags\bdTagQueryParams.h</path></file>
+<file file-tag="bdTags.cpp:1"><path>${project}\bdTags\bdTags.cpp</path></file>
+<file file-tag="bdTags.h:1"><path>${project}\bdTags\bdTags.h</path></file>
+<file file-tag="bdTagsArray.cpp:1"><path>${project}\bdTags\bdTagsArray.cpp</path></file>
+<file file-tag="bdTagsArray.h:1"><path>${project}\bdTags\bdTagsArray.h</path></file>
+<file file-tag="bdTeamInfo.cpp:1"><path>${project}\bdTeams\bdTeamInfo.cpp</path></file>
+<file file-tag="bdTeamInfo.h:1"><path>${project}\bdTeams\bdTeamInfo.h</path></file>
+<file file-tag="bdTeamMember.cpp:1"><path>${project}\bdTeams\bdTeamMember.cpp</path></file>
+<file file-tag="bdTeamMember.h:1"><path>${project}\bdTeams\bdTeamMember.h</path></file>
+<file file-tag="bdTeamMemberProfile.cpp:1"><path>${project}\bdTeams\bdTeamMemberProfile.cpp</path></file>
+<file file-tag="bdTeamMemberProfile.h:1"><path>${project}\bdTeams\bdTeamMemberProfile.h</path></file>
+<file file-tag="bdTeamProfile.cpp:1"><path>${project}\bdTeams\bdTeamProfile.cpp</path></file>
+<file file-tag="bdTeamProfile.h:1"><path>${project}\bdTeams\bdTeamProfile.h</path></file>
+<file file-tag="bdTeamProposal.cpp:1"><path>${project}\bdTeams\bdTeamProposal.cpp</path></file>
+<file file-tag="bdTeamProposal.h:1"><path>${project}\bdTeams\bdTeamProposal.h</path></file>
+<file file-tag="bdTeams.cpp:1"><path>${project}\bdTeams\bdTeams.cpp</path></file>
+<file file-tag="bdTeams.h:1"><path>${project}\bdTeams\bdTeams.h</path></file>
+<file file-tag="bdTitleStats.cpp:1"><path>${project}\bdTitleUtilities\bdTitleStats.cpp</path></file>
+<file file-tag="bdTitleStats.h:1"><path>${project}\bdTitleUtilities\bdTitleStats.h</path></file>
+<file file-tag="bdTitleUtilities.cpp:1"><path>${project}\bdTitleUtilities\bdTitleUtilities.cpp</path></file>
+<file file-tag="bdTitleUtilities.h:1"><path>${project}\bdTitleUtilities\bdTitleUtilities.h</path></file>
+<file file-tag="bdVerifyString.cpp:1"><path>${project}\bdTitleUtilities\bdVerifyString.cpp</path></file>
+<file file-tag="bdVerifyString.h:1"><path>${project}\bdTitleUtilities\bdVerifyString.h</path></file>
+<file file-tag="bdTwitter.cpp:1"><path>${project}\bdTwitter\bdTwitter.cpp</path></file>
+<file file-tag="bdTwitter.h:1"><path>${project}\bdTwitter\bdTwitter.h</path></file>
+<file file-tag="bdRatingInfo.cpp:1"><path>${project}\bdVoteRank\bdRatingInfo.cpp</path></file>
+<file file-tag="bdRatingInfo.h:1"><path>${project}\bdVoteRank\bdRatingInfo.h</path></file>
+<file file-tag="bdVoteRank.cpp:1"><path>${project}\bdVoteRank\bdVoteRank.cpp</path></file>
+<file file-tag="bdVoteRank.h:1"><path>${project}\bdVoteRank\bdVoteRank.h</path></file>
+<file file-tag="bdVoteRankStatsInfo.cpp:1"><path>${project}\bdVoteRank\bdVoteRankStatsInfo.cpp</path></file>
+<file file-tag="bdVoteRankStatsInfo.h:1"><path>${project}\bdVoteRank\bdVoteRankStatsInfo.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdAuthService-wii.cpp:1</file-ref>
+<file-ref>bdAuthService.cpp:1</file-ref>
+<file-ref>bdAuthService.h:1</file-ref>
+<file-ref>bdAuthTicket.cpp:1</file-ref>
+<file-ref>bdAuthTicket.h:1</file-ref>
+<file-ref>bdLobbyConnection.cpp:1</file-ref>
+<file-ref>bdLobbyConnection.h:1</file-ref>
+<file-ref>bdLobbyConnectionListener.cpp:1</file-ref>
+<file-ref>bdLobbyConnectionListener.h:1</file-ref>
+<file-ref>bdLobbyErrorCode.h:1</file-ref>
+<file-ref>bdLobbyErrorCodes.h:1</file-ref>
+<file-ref>bdLobbyEventHandler.cpp:1</file-ref>
+<file-ref>bdLobbyEventHandler.h:1</file-ref>
+<file-ref>bdLobbyService.cpp:1</file-ref>
+<file-ref>bdLobbyService.h:1</file-ref>
+<file-ref>bdWiiAuthInfo.h:1</file-ref>
+<mixed-group group-tag="bdContentStreaming:1"><label>bdContentStreaming</label><group-items>
+<file-ref>bdContentStreaming.cpp:1</file-ref>
+<file-ref>bdContentStreaming.h:1</file-ref>
+<file-ref>bdContentStreamingStatsInfo.cpp:1</file-ref>
+<file-ref>bdContentStreamingStatsInfo.h:1</file-ref>
+<file-ref>bdFileID.cpp:1</file-ref>
+<file-ref>bdFileID.h:1</file-ref>
+<file-ref>bdFileMetaData.cpp:1</file-ref>
+<file-ref>bdFileMetaData.h:1</file-ref>
+<file-ref>bdQuotaUsage.cpp:1</file-ref>
+<file-ref>bdQuotaUsage.h:1</file-ref>
+<file-ref>bdURL.cpp:1</file-ref>
+<file-ref>bdURL.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdContentUnlock:1"><label>bdContentUnlock</label><group-items>
+<file-ref>bdContentUnlock.cpp:1</file-ref>
+<file-ref>bdContentUnlock.h:1</file-ref>
+<file-ref>bdUnlockContentInfo.cpp:1</file-ref>
+<file-ref>bdUnlockContentInfo.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdCounter:1"><label>bdCounter</label><group-items>
+<file-ref>bdCounter.cpp:1</file-ref>
+<file-ref>bdCounter.h:1</file-ref>
+<file-ref>bdCounterValue.cpp:1</file-ref>
+<file-ref>bdCounterValue.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdFacebook:1"><label>bdFacebook</label><group-items>
+<file-ref>bdFacebook.cpp:1</file-ref>
+<file-ref>bdFacebook.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdFriends:1"><label>bdFriends</label><group-items>
+<file-ref>bdFriendInfo.cpp:1</file-ref>
+<file-ref>bdFriendInfo.h:1</file-ref>
+<file-ref>bdFriendProposal.cpp:1</file-ref>
+<file-ref>bdFriendProposal.h:1</file-ref>
+<file-ref>bdFriends.cpp:1</file-ref>
+<file-ref>bdFriends.h:1</file-ref>
+<file-ref>bdGroupInfo.cpp:1</file-ref>
+<file-ref>bdGroupInfo.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdGroup:1"><label>bdGroup</label><group-items>
+<file-ref>bdGroup.cpp:1</file-ref>
+<file-ref>bdGroup.h:1</file-ref>
+<file-ref>bdGroupCount.cpp:1</file-ref>
+<file-ref>bdGroupCount.h:1</file-ref>
+<file-ref>bdGroupID.cpp:1</file-ref>
+<file-ref>bdGroupID.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdHTTPWrapper:1"><label>bdHTTPWrapper</label><group-items>
+<file-ref>bdHTTPWrapper.h:1</file-ref>
+<file-ref>bdHTTPWrapper.inl:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdKeyArchive:1"><label>bdKeyArchive</label><group-items>
+<file-ref>bdKeyArchive.cpp:1</file-ref>
+<file-ref>bdKeyArchive.h:1</file-ref>
+<file-ref>bdKeyValuePair.cpp:1</file-ref>
+<file-ref>bdKeyValuePair.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdLinkCode:1"><label>bdLinkCode</label><group-items>
+<file-ref>bdLink.cpp:1</file-ref>
+<file-ref>bdLink.h:1</file-ref>
+<file-ref>bdLinkCode.cpp:1</file-ref>
+<file-ref>bdLinkCode.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdLobbyCommon:1"><label>bdLobbyCommon</label><group-items>
+<file-ref>bdAuthCommon.cpp:1</file-ref>
+<file-ref>bdAuthCommon.h:1</file-ref>
+<file-ref>bdLobbyServicesCommon.h:1</file-ref>
+<file-ref>bdTaskResult.cpp:1</file-ref>
+<file-ref>bdTaskResult.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdLSGServices:1"><label>bdLSGServices</label><group-items>
+<file-ref>bdBandwidthTest.cpp:1</file-ref>
+<file-ref>bdBandwidthTest.h:1</file-ref>
+<file-ref>bdBandwidthTestResults.cpp:1</file-ref>
+<file-ref>bdBandwidthTestResults.h:1</file-ref>
+<file-ref>bdLSGServices.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdMatchMaking:1"><label>bdMatchMaking</label><group-items>
+<file-ref>bdMatchMaking.cpp:1</file-ref>
+<file-ref>bdMatchMaking.h:1</file-ref>
+<file-ref>bdMatchMakingInfo.cpp:1</file-ref>
+<file-ref>bdMatchMakingInfo.h:1</file-ref>
+<file-ref>bdPerformanceValue.cpp:1</file-ref>
+<file-ref>bdPerformanceValue.h:1</file-ref>
+<file-ref>bdSessionID.cpp:1</file-ref>
+<file-ref>bdSessionID.h:1</file-ref>
+<file-ref>bdSessionInvite.cpp:1</file-ref>
+<file-ref>bdSessionInvite.h:1</file-ref>
+<file-ref>bdSessionParams.cpp:1</file-ref>
+<file-ref>bdSessionParams.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdMessaging:1"><label>bdMessaging</label><group-items>
+<file-ref>bdBlockedUser.cpp:1</file-ref>
+<file-ref>bdBlockedUser.h:1</file-ref>
+<file-ref>bdChannelInfo.cpp:1</file-ref>
+<file-ref>bdChannelInfo.h:1</file-ref>
+<file-ref>bdChannelMember.cpp:1</file-ref>
+<file-ref>bdChannelMember.h:1</file-ref>
+<file-ref>bdLobbyMessageType.h:1</file-ref>
+<file-ref>bdMailBody.cpp:1</file-ref>
+<file-ref>bdMailBody.h:1</file-ref>
+<file-ref>bdMailHeader.cpp:1</file-ref>
+<file-ref>bdMailHeader.h:1</file-ref>
+<file-ref>bdMessaging.cpp:1</file-ref>
+<file-ref>bdMessaging.h:1</file-ref>
+<file-ref>bdNotification.cpp:1</file-ref>
+<file-ref>bdNotification.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdProfiles:1"><label>bdProfiles</label><group-items>
+<file-ref>bdProfileInfo.cpp:1</file-ref>
+<file-ref>bdProfileInfo.h:1</file-ref>
+<file-ref>bdProfiles.cpp:1</file-ref>
+<file-ref>bdProfiles.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdRemoteTaskManager:1"><label>bdRemoteTaskManager</label><group-items>
+<file-ref>bdRemoteTask.cpp:1</file-ref>
+<file-ref>bdRemoteTask.h:1</file-ref>
+<file-ref>bdRemoteTaskManager.cpp:1</file-ref>
+<file-ref>bdRemoteTaskManager.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdStats:1"><label>bdStats</label><group-items>
+<file-ref>bdArbitratedStatsInfo.cpp:1</file-ref>
+<file-ref>bdArbitratedStatsInfo.h:1</file-ref>
+<file-ref>bdSessionNonce.cpp:1</file-ref>
+<file-ref>bdSessionNonce.h:1</file-ref>
+<file-ref>bdStats.cpp:1</file-ref>
+<file-ref>bdStats.h:1</file-ref>
+<file-ref>bdStatsInfo.cpp:1</file-ref>
+<file-ref>bdStatsInfo.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdStorage:1"><label>bdStorage</label><group-items>
+<file-ref>bdFileData.cpp:1</file-ref>
+<file-ref>bdFileData.h:1</file-ref>
+<file-ref>bdFileInfo.cpp:1</file-ref>
+<file-ref>bdFileInfo.h:1</file-ref>
+<file-ref>bdGetFilesResult.cpp:1</file-ref>
+<file-ref>bdGetFilesResult.h:1</file-ref>
+<file-ref>bdStorage.cpp:1</file-ref>
+<file-ref>bdStorage.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdTags:1"><label>bdTags</label><group-items>
+<file-ref>bdTag.cpp:1</file-ref>
+<file-ref>bdTag.h:1</file-ref>
+<file-ref>bdTagQueryParams.cpp:1</file-ref>
+<file-ref>bdTagQueryParams.h:1</file-ref>
+<file-ref>bdTags.cpp:1</file-ref>
+<file-ref>bdTags.h:1</file-ref>
+<file-ref>bdTagsArray.cpp:1</file-ref>
+<file-ref>bdTagsArray.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdTeams:1"><label>bdTeams</label><group-items>
+<file-ref>bdTeamInfo.cpp:1</file-ref>
+<file-ref>bdTeamInfo.h:1</file-ref>
+<file-ref>bdTeamMember.cpp:1</file-ref>
+<file-ref>bdTeamMember.h:1</file-ref>
+<file-ref>bdTeamMemberProfile.cpp:1</file-ref>
+<file-ref>bdTeamMemberProfile.h:1</file-ref>
+<file-ref>bdTeamProfile.cpp:1</file-ref>
+<file-ref>bdTeamProfile.h:1</file-ref>
+<file-ref>bdTeamProposal.cpp:1</file-ref>
+<file-ref>bdTeamProposal.h:1</file-ref>
+<file-ref>bdTeams.cpp:1</file-ref>
+<file-ref>bdTeams.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdTitleUtilities:1"><label>bdTitleUtilities</label><group-items>
+<file-ref>bdTitleStats.cpp:1</file-ref>
+<file-ref>bdTitleStats.h:1</file-ref>
+<file-ref>bdTitleUtilities.cpp:1</file-ref>
+<file-ref>bdTitleUtilities.h:1</file-ref>
+<file-ref>bdVerifyString.cpp:1</file-ref>
+<file-ref>bdVerifyString.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdTwitter:1"><label>bdTwitter</label><group-items>
+<file-ref>bdTwitter.cpp:1</file-ref>
+<file-ref>bdTwitter.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdVoteRank:1"><label>bdVoteRank</label><group-items>
+<file-ref>bdRatingInfo.cpp:1</file-ref>
+<file-ref>bdRatingInfo.h:1</file-ref>
+<file-ref>bdVoteRank.cpp:1</file-ref>
+<file-ref>bdVoteRank.h:1</file-ref>
+<file-ref>bdVoteRankStatsInfo.cpp:1</file-ref>
+<file-ref>bdVoteRankStatsInfo.h:1</file-ref>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

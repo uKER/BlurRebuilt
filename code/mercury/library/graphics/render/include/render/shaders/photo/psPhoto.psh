@@ -1,0 +1,42 @@
+#include "..\psCommon.h"
+
+sampler2D g_PhotoTexture  : register(s0);
+sampler2D g_ScreenTexture : register(s1);
+
+float4 g_AdjustParam : register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+struct PS_INPUT
+{
+	float2 uv : TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+  float4 colour : COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+  PS_OUTPUT output = (PS_OUTPUT)0;
+
+  float2 suv;
+  suv.x = input.uv.x;
+  suv.y = g_AdjustParam.z + input.uv.y * g_AdjustParam.w;
+
+  float4 photo  = tex2D(g_PhotoTexture, input.uv);
+  float4 screen = tex2D(g_ScreenTexture, suv);
+
+  // Random noise based on texture coordinates
+  float rn = suv.x * 1280.0 * (17.0 / 7.0);
+  rn += suv.y * 720.0 * (29.0 / 23.0);
+  rn += g_AdjustParam.x;
+  rn -= floor(rn);
+  rn = rn * 2 - 1;
+
+  float scale = g_AdjustParam.y / 512.0;
+
+  output.colour = photo + (screen + rn * scale) / g_AdjustParam.y;
+  output.colour.a = 1;
+
+  return output;
+}

@@ -1,0 +1,26 @@
+SubDir TOP Code Mercury Library Util Spatial_Hierarchy ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+$(TOP)/Code/Tools/Attk/Attk/Include
+;
+
+SRC =
+#FlatScene.cpp
+#HierachyNode.cpp
+#HierachyNodeIterator.cpp
+Kd-Tree-batch.cpp
+Kd-Tree.cpp
+Kd-TreeBuilder.cpp
+Light-Tree.cpp
+Object.cpp
+Primitive.cpp
+#SerializeKdTree.cpp
+SpatialHierarchy.cpp
+UserDataIterator.cpp
+;
+
+Library spatial_hierarchy : source/spatial_hierarchy/$(SRC) : stdafx.cpp ;

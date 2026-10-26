@@ -1,0 +1,22 @@
+SubDir TOP Code Mercury Library Graphics SPU ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library spu : stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;

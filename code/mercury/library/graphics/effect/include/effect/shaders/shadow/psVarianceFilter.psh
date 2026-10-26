@@ -1,0 +1,59 @@
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+#include "psVarianceFilter.h"
+
+float4		g_vPixelSize	: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tShadowMap	: register(s0);
+
+#define		g_fPixelWidth	g_vPixelSize.x
+#define		g_fPixelHeight	g_vPixelSize.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+#if defined(XB2)
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+#if defined(HORIZONTAL) && defined(FIVE)
+	output.m_Colour = VarianceGaussianBlurXFromDepth_5Taps(g_tShadowMap, input.m_TexCoord);
+#elif defined(HORIZONTAL) && defined(SEVEN)
+	output.m_Colour = VarianceGaussianBlurXFromDepth_7Taps(g_tShadowMap, input.m_TexCoord);
+#elif defined(VERTICAL) && defined(FIVE)
+	output.m_Colour = VarianceGaussianBlurY_5Taps(g_tShadowMap, input.m_TexCoord);
+#elif defined(VERTICAL) && defined(SEVEN)
+	output.m_Colour = VarianceGaussianBlurY_7Taps(g_tShadowMap, input.m_TexCoord);
+#endif
+
+	return output;
+}
+
+#else
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+#if defined(HORIZONTAL) && defined(FIVE)
+	output.m_Colour = VarianceGaussianBlurFromDepth_5Taps(g_tShadowMap, input.m_TexCoord, float2(g_fPixelWidth, 0.0f));
+#elif defined(HORIZONTAL) && defined(SEVEN)
+	output.m_Colour = VarianceGaussianBlurFromDepth_7Taps(g_tShadowMap, input.m_TexCoord, float2(g_fPixelWidth, 0.0f));
+#elif defined(VERTICAL) && defined(FIVE)
+	output.m_Colour = VarianceGaussianBlur_5Taps(g_tShadowMap, input.m_TexCoord, float2(0.0f, g_fPixelHeight));
+#elif defined(VERTICAL) && defined(SEVEN)
+	output.m_Colour = VarianceGaussianBlur_7Taps(g_tShadowMap, input.m_TexCoord, float2(0.0f, g_fPixelHeight));
+#endif
+
+	return output;
+}
+
+#endif

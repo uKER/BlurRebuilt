@@ -1,0 +1,18 @@
+RACER_NET_SRC = 
+Network/Message/NetMessage.cpp
+Network/Message/NetMessageReliableInBox.cpp
+Network/Message/NetMessageReliableOutBox.cpp
+Network/Router/NetRouterBase.cpp
+Network/Router/NetRouter_$(PLATFORM).cpp
+Network/Core/NetServices.cpp
+Network/Core/NetTimer.cpp
+Network/Core/NetRace.cpp
+Network/Core/NetParty.cpp
+Network/Core/NetLogger.cpp
+Network/Core/NetSessionKeyTracker.cpp
+Network/Player/NetPlayer.cpp
+Network/Player/NetPlayerManager.cpp
+Network/Player/NetPlayerConnection.cpp
+Network/Lan/NetLanDiscovery.cpp
+PlatformCallbacks/PlatformCallbacks_$(PLATFORM).cpp
+;

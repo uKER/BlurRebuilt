@@ -1,0 +1,83 @@
+SubDir TOP Code Mercury Library ai air ;
+
+if $(USERNAME) = dwood || $(USERNAME) = pkerby
+{
+	Optim Off ;
+} 
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/ai/air/include
+;
+
+ComponentPath = ./source/ComponentSystem ;
+UtilityPath = ./source/utilityai ;
+PIDPath = ./source/pidcontrollerai ;
+SystemPath = ./source/system ;
+DataPath = ./source/data ;
+DriverPath = ./source/driverai ;
+TimePath = ./source/gameservertime ;
+ParamPath = ./source/paramsai ;
+SpeedTrackerPath = ./source/speedtracker ;
+SplineFollowerPath = ./source/splinefollower ;
+SplineTrackerPath = ./source/splinetracker ;
+TrackDataPath = ./source/trackdata ;
+VehicleLogicPath = ./source/vehiclelogic ;
+VehicleStatePath = ./source/vehiclestate ;
+AvoidancePath = ./source/avoidance ;
+AccelBrakePath = ./source/accelbrakecontroller ;
+RaceDirectorPath = ./source/racedirector ;
+ControlsStatePath = ./source/controlsstate ;
+DebugAIPath = ./source/debugtools ;
+RecoveryPath = ./source/recovery ;
+RubberBandingPath = ./source/rubberbanding ;
+IntroOutroSplineAIPath = ./source/introoutrosplineai ;
+SplinePath = ./source/spline ;
+
+
+SRC = $(ComponentPath)/Chash.cpp
+$(ComponentPath)/CObjectManager.cpp
+$(ComponentPath)/ComponentIterators.cpp
+$(ComponentPath)/Globals.cpp
+$(ComponentPath)/IComponent.cpp
+$(UtilityPath)/Utilityai.cpp
+$(PIDPath)/Cpidcontrollerai.cpp
+$(SystemPath)/Csystemai.cpp
+$(DataPath)/cdata.cpp
+$(DriverPath)/cdriverai.cpp
+$(TimePath)/cgameservertime.cpp
+$(ParamPath)/cparamsai.cpp
+$(SpeedTrackerPath)/cspeedtracker.cpp
+$(SplineFollowerPath)/csplinefollower.cpp
+$(SplineTrackerPath)/csplinetracker.cpp
+$(TrackDataPath)/ctrackdata.cpp
+$(TrackDataPath)/trackdata.cpp
+$(VehicleLogicPath)/cvehiclelogic.cpp
+$(VehicleStatePath)/cvehiclestate.cpp
+$(AvoidancePath)/cavoidance.cpp
+$(AvoidancePath)/cavoidanceBasic.cpp
+$(AccelBrakePath)/caccelbrakecontroller.cpp
+$(RaceDirectorPath)/cracedirector.cpp
+$(ControlsStatePath)/ccontrolstate.cpp
+$(DebugAIPath)/cdebugai.cpp
+$(RecoveryPath)/crecoveryai.cpp
+$(RubberBandingPath)/crubberbandingai.cpp
+$(IntroOutroSplineAIPath)/cintrooutrosplineai.cpp
+$(SplinePath)/cspline.cpp
+
+;
+
+PCSRC =
+;
+
+
+PS3SRC = 
+;
+
+SRC = [ Batch $(SRC) : stdafx.h ] ;
+
+Library air : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

@@ -1,0 +1,33 @@
+xt
+	field __id "3EF8AE9D"
+	field __name "Effects.ImpactGlow"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+		field y "0"
+	end
+	field blendMode "Additive"
+	array children
+	end
+	array colourCurveA
+	end
+	array colourCurveRGB
+		block 
+			field time "0.000"
+			field value "2"
+		end
+		block 
+			field time "1.000"
+			field value "0"
+		end
+	end
+	field diffuseTexture "Flare"
+	field name "ImpactGlow"
+	field shape "Sprite"
+	array sizeCurveX
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

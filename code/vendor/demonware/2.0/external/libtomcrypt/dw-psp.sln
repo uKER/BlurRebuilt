@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtomcrypt", "dw-psp-ltc.vcproj", "{94F5B87A-CF28-4EAF-BA02-F325180F8058}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		PSP Debug = PSP Debug
+		PSP Release = PSP Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{94F5B87A-CF28-4EAF-BA02-F325180F8058}.PSP Debug.ActiveCfg = PSP Debug|Win32
+		{94F5B87A-CF28-4EAF-BA02-F325180F8058}.PSP Debug.Build.0 = PSP Debug|Win32
+		{94F5B87A-CF28-4EAF-BA02-F325180F8058}.PSP Release.ActiveCfg = PSP Release|Win32
+		{94F5B87A-CF28-4EAF-BA02-F325180F8058}.PSP Release.Build.0 = PSP Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

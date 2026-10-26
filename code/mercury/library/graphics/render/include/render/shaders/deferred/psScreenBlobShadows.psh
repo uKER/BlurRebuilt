@@ -1,0 +1,76 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+#include "../psHDR.h"
+
+float4x4	g_ShadowPlaneSpaceMatrix	: register(CCP_RENDER_SETTINGS);
+float4		g_vDepth					: register(CCP_RENDER_SETTINGS_4);
+float4		g_PixelOffset				: register(CCP_RENDER_SETTINGS_5);
+float4		g_ShadowMult				: register(CCP_RENDER_SETTINGS_6);
+
+sampler2D	g_tDepth		: register(s0);
+sampler2D	g_tShadow		: register(s1);
+sampler2D	g_tStencil		: register(s2);
+
+struct PS_INPUT
+{
+#if defined(BLUR_DX11)
+	// [Blur2PC] DX11 links stage registers as well as semantics. Match the
+	// position output preceding TEXCOORD0 in vsScreenBlobShadows.
+	float4 m_Position : SV_Position;
+#endif
+	real4	m_Screen	: TEXCOORD0;
+};
+
+#if PLATFORM_PS3
+PS_OUTPUT main(PS_INPUT input, in float4 wpos:WPOS)
+#else
+PS_OUTPUT main(PS_INPUT input)
+#endif
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#if PLATFORM_PS3
+	float2	vUV				= (input.m_Screen.xy * wpos.w);
+#else
+	float2	vUV				= (input.m_Screen.xy / input.m_Screen.w);
+#endif
+
+
+	#if defined(BLUR2PC)
+	// [Blur2PC] Retail PC (Blur.exe 1.2 psScreenBlobShadowR/G/B/A, ps_2_0 bytecode): every read at the
+	// offset UV, the depth taken as |r| (the PC depth texture holds negative values over the cars), and
+	// the car mask read from the stencil texture's blue channel as on Xbox. The PS3 path's depth alpha
+	// reads 1 from the PC R32F depth texture and masked every pixel. C_BlobShadows::Render binds the
+	// stencil texture at s2 (retail's window stencil copy, board T062; unbound, it reads 0: no mask).
+	float2	vSampleUV			= vUV + g_PixelOffset.xy;
+	float	fZ					= abs(tex2D(g_tDepth, vSampleUV).r);
+	float3	shadowSpacePosition	= mul(float4(vSampleUV, fZ, 1.0f) * ScaleDepth(fZ, g_vDepth), (float4x3) g_ShadowPlaneSpaceMatrix);
+	#else
+	float3	shadowSpacePosition	= GetWorldPosition(g_tDepth, vUV, g_vDepth, (float4x3) g_ShadowPlaneSpaceMatrix);
+	#endif
+
+	#if defined(XB2)
+	float fMask = (1.f - tex2D(g_tStencil, vUV + g_PixelOffset.xy).b);
+	#elif defined(BLUR2PC)
+	real fMask = (1.h - h4tex2D(g_tStencil, vSampleUV).b);
+	#else
+	real fMask = (1.h - h4tex2D(g_tDepth, vUV + g_PixelOffset.xy).a); //in Ps3 read from depth buffer
+	#endif
+		
+	#if defined(BLOB_CHANNEL_R)
+	// [Blur2PC] Retail PC channel variants psScreenBlobShadowR/G/B/A (Blur.exe 1.2): blob textures hold
+	// one shadow per channel, as on the consoles, which pick the channel with a texture remap instead.
+	real shadowCol = h4tex2D(g_tShadow, shadowSpacePosition.xy).r;
+	#elif defined(BLOB_CHANNEL_G)
+	real shadowCol = h4tex2D(g_tShadow, shadowSpacePosition.xy).g;
+	#elif defined(BLOB_CHANNEL_B)
+	real shadowCol = h4tex2D(g_tShadow, shadowSpacePosition.xy).b;
+	#else
+	real shadowCol = h4tex2D(g_tShadow, shadowSpacePosition.xy).a;
+	#endif
+	real shadowFactor = saturate(abs(shadowSpacePosition.z));
+	real fShadow = fMask * shadowCol * (real)((1.f - shadowFactor * shadowFactor) * g_ShadowMult.x);
+	output.colour = real4(0.h, 0.h, 0.h, fShadow);
+	
+	return output;
+}

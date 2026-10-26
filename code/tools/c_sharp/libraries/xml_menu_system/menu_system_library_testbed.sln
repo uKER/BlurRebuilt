@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "menu_system_library", "menu_system_library\menu_system_library.csproj", "{980A03A0-6136-4FF4-9EA6-352E443135C0}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "menu_system_testbed", "menu_system_testbed\menu_system_testbed.csproj", "{A0E79012-AA8E-4132-AAF9-F693A72B2BBB}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xml_helper", "..\xml_helper\xml_helper.csproj", "{64001E62-266B-4086-A5B7-7A36C9EDB481}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windows_messages", "..\windows_messages\windows_messages.csproj", "{EA8D9A01-4CBA-458A-A459-2811A4E3975B}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{980A03A0-6136-4FF4-9EA6-352E443135C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980A03A0-6136-4FF4-9EA6-352E443135C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980A03A0-6136-4FF4-9EA6-352E443135C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980A03A0-6136-4FF4-9EA6-352E443135C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E79012-AA8E-4132-AAF9-F693A72B2BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E79012-AA8E-4132-AAF9-F693A72B2BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E79012-AA8E-4132-AAF9-F693A72B2BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E79012-AA8E-4132-AAF9-F693A72B2BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64001E62-266B-4086-A5B7-7A36C9EDB481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64001E62-266B-4086-A5B7-7A36C9EDB481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64001E62-266B-4086-A5B7-7A36C9EDB481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64001E62-266B-4086-A5B7-7A36C9EDB481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA8D9A01-4CBA-458A-A459-2811A4E3975B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

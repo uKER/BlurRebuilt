@@ -1,0 +1,35 @@
+SubDir TOP Code Mercury Tools Graphics Mesh2Export ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Mesh2/include
+;
+
+SRC =
+Main.cpp
+Export.cpp
+MSH.cpp
+D3D.cpp
+X.cpp
+XtoMSH.cpp
+;
+
+LinkLibraries Mesh2Export :
+		core system
+		;
+		
+if $(PLATFORM) = PC
+{
+	SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+}
+
+Application Mesh2Export : $(SRC) : StdAfx.cpp ;
+ExportVcproj Mesh2Export ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

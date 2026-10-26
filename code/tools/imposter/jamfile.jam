@@ -1,0 +1,120 @@
+
+SubDir TOP Code Tools imposter ;
+
+IMPOSTER_STATIC = 1 ;
+
+DXSDK = [ ConvertDOSPath $(DXSDK_PATH) ] ;
+
+SupportedTargets WIN32_TOOL WIN32_TOOL_2008 ;
+
+IncludePath
+\"$(DXSDK)/include\"
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkut/aftkutlib/include
+$(TOP)/code/tools/aftkrender/aftkrender
+$(TOP)/code/tools/aftkrender/aftkrender/include
+$(TOP)/code/tools/attk/attk/include
+$(TOP)/code/tools/imposter/include
+$(TOP)/code/tools/file_tag_db/file_tag_db/include
+$(TOP)/code/vendor/tclap/current
+;
+
+SUBDIRHDRS += \"$(DXSDK)/include\" ;
+#LINKLIBS += dbghelp.lib dxerr.lib d3d9.lib d3dx9.lib ws2_32.lib dinput8.lib dxguid.lib psapi.lib opengl32.lib glu32.lib xsiftk.lib devil_win32_dynamic_2005.lib comctl32.lib rpcrt4.lib msimg32.lib CubeMapGenLib.lib ;
+
+##disable incremental linking for smaller exes
+if $(BUILD) = Release
+{
+	for f in $(LINKFLAGS)
+	{
+		if $(f) != /INCREMENTAL
+		{
+			NEWLINKFLAGS += $(f) ;
+		}
+	}
+	
+	LINKFLAGS = $(NEWLINKFLAGS) ;
+	LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+}
+
+
+SRC =
+	source/imposter/ImposterImageHandle.cpp
+	source/imposter/ImposterProcess.cpp
+	source/imposter/ImposterRenderer.cpp
+	source/imposter/ImposterUtils.cpp
+	
+	source/textureatlas/pack/BinaryTreePack.cpp
+	source/textureatlas/pack/HorizonPack.cpp
+;
+
+
+if $(IMPOSTER_STATIC) = 1
+{
+	Library imposter : $(SRC) : ImposterPch.cpp ;
+}
+else
+{
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 ;
+	ObjectDefines $(SRC) : IMPOSTER_DLL_EXPORT ;
+
+	LinkLibraries imposter : 
+		core system display misc_shared tools_shared display aftk aftkutlib attk aftkrender file_tag_db zlib 
+		"$(DXSDK_PATH)/lib/x86/d3d9" "$(DXSDK_PATH)/lib/x86/d3dx9" "$(DXSDK_PATH)/lib/x86/dinput8" "$(DXSDK_PATH)/lib/x86/dxguid" "$(DXSDK_PATH)/lib/x86/dxerr"
+		"$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk.lib" 
+	;
+
+	DLL imposter : $(SRC) : ImposterPch.cpp ;
+}
+
+
+{
+	SRC_APP =
+		./source/ImposterApp.cpp
+		./resource.rc
+	;
+
+	if $(IMPOSTER_STATIC) = 1
+	{
+		LinkLibraries imposter_create : 
+			core system display misc_shared tools_shared display display2 aftk aftkutlib attk aftkrender file_tag_db imposter zlib 
+			"$(DXSDK_PATH)/lib/x86/d3d9" "$(DXSDK_PATH)/lib/x86/d3dx9" "$(DXSDK_PATH)/lib/x86/dinput8" "$(DXSDK_PATH)/lib/x86/dxguid" "$(DXSDK_PATH)/lib/x86/dxerr"
+			"$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk.lib"
+		;
+	}
+	else
+	{
+		LinkLibraries imposter_create : 
+			core system misc_shared tools_shared aftk aftkutlib imposter zlib
+			"$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk.lib"
+		;
+	}
+	
+	LINKFLAGS += /SUBSYSTEM:CONSOLE ;
+	Application imposter_create : $(SRC_APP) ;
+
+	Depends imposter_create.exe : $(TOP)/bin/tools_wip/win32/imposter/ ;
+	MkDir $(TOP)/bin/tools_wip/win32/imposter/ ;
+	EmbedManifest $(TOP)/bin/tools_wip/win32/imposter/imposter_create.exe : imposter_create.exe ;
+
+	ExportVcproj imposter_create ;
+}
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP Code Mercury Library common Misc_Shared ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code mercury library graphics display ;
+SubInclude TOP code mercury library graphics display2 ;
+SubInclude TOP code tools aftk aftk ;
+SubInclude TOP code tools aftkut aftkutlib ;
+SubInclude TOP code tools attk attk ;
+SubInclude TOP code tools aftkrender aftkrender ;
+SubInclude TOP code tools file_tag_db file_tag_db ;
+SubInclude TOP code vendor zlib current_mercury ;

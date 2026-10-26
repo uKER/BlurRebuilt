@@ -1,0 +1,48 @@
+xt
+	field __id "EB42F1F1"
+	field __name "Effects.Sparks"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+		field y "-6"
+	end
+	array animation
+	end
+	field blendMode "Additive"
+	array children
+	end
+	field collisions "None"
+	array colourCurveA
+	end
+	array colourCurveRGB
+		block 
+			field time "0.000"
+			field value "1"
+		end
+		block 
+			field time ".9"
+			field value "1"
+		end
+		block 
+			field time "1.000000"
+			field value "1.017442"
+		end
+	end
+	field diffuseTexture "Flare"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	block light
+	end
+	block limitSize
+	end
+	field name "Sparks"
+	field shape "CappedBeam"
+	array sizeCurveX
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+end

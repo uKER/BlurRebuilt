@@ -1,0 +1,61 @@
+SubDir TOP Code Tools UberCopy ;
+
+SupportedTargets WIN32_TOOL ;
+
+Define FILEPATH_PRESERVE_CASE ;
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+\"$(XENONSDK)/include/win32/vs2005\"
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+source/ubercopy/Main.cpp
+source/ubercopy/Ubercopy.cpp
+;
+
+##disable incremental linking for smaller exes
+if $(BUILD) = Release
+{
+	## why can't I do this...
+	##INCREMENTAL_LINKING = 0 ;
+	## or this
+	##LINKFLAGS -= /INCREMENTAL ;
+	
+	for f in $(LINKFLAGS)
+	{
+		if $(f) != /INCREMENTAL
+		{
+			NEWLINKFLAGS += $(f) ;
+		}
+	}
+	
+	LINKFLAGS = $(NEWLINKFLAGS) ;
+	LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+}
+
+LINKLIBS +=  xbdm.lib ;
+LINKFLAGS += /LIBPATH:\"$(XEDK_PATH)/lib/win32/vs2005\" ;
+	
+LinkLibraries ubercopy : core system tools_shared ;
+		
+Application ubercopy : $(SRC) : stdafx.cpp ;
+ExportVcproj ubercopy ;
+
+Depends $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ubercopy/ubercopy.exe : $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ubercopy/ ;
+MkDir $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ubercopy/ ;
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/ubercopy/ubercopy.exe : ubercopy.exe ;
+
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+

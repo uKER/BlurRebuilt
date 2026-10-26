@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="UTF-16" standalone="no"?>
+<XboxLiveSubmissionProject Version="2.0.6534.3" xmlns="http://www.xboxlive.com/xlast">
+	<GameConfigProject clsid="{77E1A64F-5837-489B-AF8E-E4BA0FDACE7D}" name="Bizarre Sample" titleName="Mercury Sample" multiplayer="false" projectVersion="1.00.0074.0" titleId="0x534507DD" titleType="1" schemaVersion="1.04.0000.0">
+		<ProductInformation offlinePlayersMax="4" systemLinkPlayersMax="16" livePlayersMax="16" publisherStringId="2" developerStringId="3" sellTextStringId="4" genreTextStringId="5">
+			<Genre genreId="102000000"/>
+			<Platform name="Xbox 360" id="2"/>
+		</ProductInformation>
+		<LocalizedStrings clsid="{BB833025-27FE-4BBD-87B6-DECD32039CED}" nextId="165" defaultLocale="en-US">
+			<SupportedLocale locale="en-US"/>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32768" friendlyName="X_STRINGID_TITLENAME">
+				<Translation locale="en-US">Sample</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32517" friendlyName="X_STRINGID_RANK">
+				<Translation locale="en-US">Rank</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32515" friendlyName="X_STRINGID_GAMERNAME">
+				<Translation locale="en-US">Gamer Name</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32519" friendlyName="X_STRINGID_GAMER_ZONE">
+				<Translation locale="en-US">Gamer Zone</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32520" friendlyName="X_STRINGID_GAMER_COUNTRY">
+				<Translation locale="en-US">Gamer Country</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32521" friendlyName="X_STRINGID_LANGUAGE">
+				<Translation locale="en-US">Language</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32522" friendlyName="X_STRINGID_GAMER_RATING">
+				<Translation locale="en-US">Gamer Rating</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32523" friendlyName="X_STRINGID_GAMER_MU">
+				<Translation locale="en-US">Gamer Mu</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32524" friendlyName="X_STRINGID_GAMER_SIGMA">
+				<Translation locale="en-US">Gamer Sigma</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32525" friendlyName="X_STRINGID_GAMER_PUID">
+				<Translation locale="en-US">Gamer PUID</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32526" friendlyName="X_STRINGID_AFFILIATE_VALUE">
+				<Translation locale="en-US">Affiliate Value</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32527" friendlyName="X_STRINGID_GAMER_HOSTNAME">
+				<Translation locale="en-US">Gamer Host Name</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32528" friendlyName="X_STRINGID_PLATFORM_TYPE">
+				<Translation locale="en-US">Platform Type</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32529" friendlyName="X_STRINGID_PLATFORM_LOCK">
+				<Translation locale="en-US">Platform Lock</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32512" friendlyName="X_STRINGID_GAMETYPE">
+				<Translation locale="en-US">Game Type</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32513" friendlyName="X_STRINGID_RANKED">
+				<Translation locale="en-US">Ranked Match</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32514" friendlyName="X_STRINGID_STANDARD">
+				<Translation locale="en-US">Player Match</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="2" friendlyName="Publisher">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="3" friendlyName="developer">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="4" friendlyName="sell">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="5" friendlyName="genre">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="6" friendlyName="MP TEST">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="7" friendlyName="achievement 1_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="8" friendlyName="achievement 1_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="9" friendlyName="acheivement 2_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="10" friendlyName="acheivement 2_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="11" friendlyName="acheivement 3_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="12" friendlyName="acheivement 3_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="13" friendlyName="acheivement 4_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="14" friendlyName="acheivement 4_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="15" friendlyName="acheivement 5_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="16" friendlyName="acheivement 5_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="20" friendlyName="MP_TRUESKILL_1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="21" friendlyName="MP_PARTY">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="22" friendlyName="MP_GAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="23" friendlyName="MP_GAME_1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="24" friendlyName="MP_GAME_2">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="25" friendlyName="MP_GAME_3">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="26" friendlyName="MP_GAME_4">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="27" friendlyName="MAP_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="28" friendlyName="map 1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="29" friendlyName="MM_Map_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="30" friendlyName="MM_MaxPlayers_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="31" friendlyName="MM_GameType_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32" friendlyName="map1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="33" friendlyName="map2">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="34" friendlyName="map3">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="35" friendlyName="map4">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="36" friendlyName="map5">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="37" friendlyName="map6">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="38" friendlyName="map7">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="39" friendlyName="map8">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="40" friendlyName="map9">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="41" friendlyName="map10">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="43" friendlyName="Pre_online_party">
+				<Translation locale="en-US">In online party</Translation>
+				<Presence/>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="44" friendlyName="Pre_online_game">
+				<Translation locale="en-US">In online game</Translation>
+				<Presence/>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="45" friendlyName="MODE_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="46" friendlyName="mode_1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="47" friendlyName="gametype1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="48" friendlyName="GAMEMODE_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="49" friendlyName="RULE_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="50" friendlyName="rule1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="51" friendlyName="CTX_GameType_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="52" friendlyName="game type 1">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="53" friendlyName="game type default">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="54" friendlyName="gametype_one">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="55" friendlyName="gametype_two">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="56" friendlyName="gametype_three">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="57" friendlyName="gametype_four">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="58" friendlyName="GAME_MAP_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="59" friendlyName="map_default">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="60" friendlyName="map_one">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="61" friendlyName="map_two">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="62" friendlyName="map_three">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="63" friendlyName="map_four">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="64" friendlyName="map_five">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="65" friendlyName="map_six">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="66" friendlyName="map_seven">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="67" friendlyName="map_eight">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="68" friendlyName="map_nine">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="69" friendlyName="map_10">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="70" friendlyName="CTX_GameMap_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="71" friendlyName="Pre_frontend">
+				<Translation locale="en-US">In menus</Translation>
+				<Presence/>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="72" friendlyName="Pre_campaign">
+				<Translation locale="en-US">In campaign</Translation>
+				<Presence/>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="73" friendlyName="achievement 6_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="74" friendlyName="achievement 6_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="75" friendlyName="achievement 7_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="76" friendlyName="achievement 7_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="77" friendlyName="achievement 8_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="78" friendlyName="achievement 8_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="79" friendlyName="achievement 9_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="80" friendlyName="achievement 9_DESC">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="81" friendlyName="game mode default">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="82" friendlyName="gamemode_one">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="83" friendlyName="gamemode_2">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="84" friendlyName="gamemode_3">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="85" friendlyName="gamemode_four">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="86" friendlyName="gamemode_three">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="87" friendlyName="gamemode_two">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="88" friendlyName="gamemode_party">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="89" friendlyName="MM_PARTY_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="90" friendlyName="party">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="91" friendlyName="Light Weapons">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="92" friendlyName="Heavy Weapons">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="93" friendlyName="Objectives">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="94" friendlyName="Frags">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="95" friendlyName="CTX_GameRule_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="96" friendlyName="Capture The Flag">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="97" friendlyName="Team Deathmatch">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="98" friendlyName="Assault">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="99" friendlyName="Party">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="100" friendlyName="MM_GameRule_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="101" friendlyName="MM_FreeSlots_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="102" friendlyName="Free Slots">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="103" friendlyName="MM_SkillLow_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="104" friendlyName="MM_SkillHigh_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="105" friendlyName="Domination">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="106" friendlyName="table001_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32518" friendlyName="X_STRINGID_RANKCOL">
+				<Translation locale="en-US">Rank</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="32516" friendlyName="X_STRINGID_GAMERNAMECOL">
+				<Translation locale="en-US">Gamer Name</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="107" friendlyName="Leaderboard001_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="108" friendlyName="Leaderboard002_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="109" friendlyName="Leaderboard003_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="110" friendlyName="Leaderboard004_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="111" friendlyName="Leaderboard005_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="112" friendlyName="template_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="113" friendlyName="scoreboard_rating_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="114" friendlyName="LB_1_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="115" friendlyName="LB_2_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="116" friendlyName="LB_3_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="117" friendlyName="LB_4_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="118" friendlyName="LB_5_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="119" friendlyName="LB_6_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="120" friendlyName="LB_8_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="121" friendlyName="LB_9_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="122" friendlyName="LB_10_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="123" friendlyName="LB_11_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="124" friendlyName="Objective">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="125" friendlyName="Zone">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="126" friendlyName="EXPERIENCE_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="127" friendlyName="Experience">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="128" friendlyName="LB_EXPERIENCE_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="129" friendlyName="EXPERIENCE">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="130" friendlyName="LBC_POINTS_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="131" friendlyName="LBC_PLAYERRANK_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="132" friendlyName="Rank">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="133" friendlyName="Points">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="134" friendlyName="LBC_GAMESPLAYED_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="135" friendlyName="Games Played">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="136" friendlyName="LBC_GAMESWON_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="137" friendlyName="Games WOn">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="138" friendlyName="LBC_OBJECTIVES_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="139" friendlyName="LBC_KILLS_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="140" friendlyName="Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="141" friendlyName="LBC_ASSISTS_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="142" friendlyName="Assists">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="143" friendlyName="LBC_DEATHS_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="144" friendlyName="Deaths">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="145" friendlyName="LBC_HEADSHOTS_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="146" friendlyName="Headshots">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="147" friendlyName="LBC_WEAPONKILL00_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="148" friendlyName="Knife Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="149" friendlyName="LBC_WEAPONKILLS01_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="150" friendlyName="LBC_WEAPONKILLS02_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="151" friendlyName="LBC_WEAPONKILLS03_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="152" friendlyName="LBC_WEAPONKILLS04_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="153" friendlyName="LBC_WEAPONKILLS05_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="154" friendlyName="Pistol Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="155" friendlyName="Shotgun Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="156" friendlyName="SMG Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="157" friendlyName="Assault Rifle Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="158" friendlyName="Sniper Rifle Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="159" friendlyName="LBC_WEAPONKILL06_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="160" friendlyName="Grenade Kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="161" friendlyName="LBC_WEAPONKILLS07_C4S_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="162" friendlyName="C4 kills">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="163" friendlyName="LBC_EXPERIENCE_NAME">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+			<LocalizedString clsid="{F88D7D87-B2C0-452D-977D-297D70400AFF}" id="164" friendlyName="Experience Rating">
+				<Translation locale="en-US">&lt;String text&gt;</Translation>
+			</LocalizedString>
+		</LocalizedStrings>
+		<Presence clsid="{4EDB88EF-4341-49E4-B0AC-80CEA33F8EB8}" nextContextValue="8">
+			<PresenceMode clsid="{B94DA191-595F-40BB-99F1-3A78DAD90D9F}" stringId="43" contextValue="3" friendlyName="Pre_online_party"/>
+			<PresenceMode clsid="{B94DA191-595F-40BB-99F1-3A78DAD90D9F}" stringId="44" contextValue="2" friendlyName="Pre_online_game"/>
+			<PresenceMode clsid="{B94DA191-595F-40BB-99F1-3A78DAD90D9F}" stringId="71" contextValue="0" friendlyName="Pre_frontend"/>
+			<PresenceMode clsid="{B94DA191-595F-40BB-99F1-3A78DAD90D9F}" stringId="72" contextValue="1" friendlyName="Pre_campaign"/>
+		</Presence>
+		<Properties clsid="{84CF9B0C-8512-4E46-B20F-D26A55A7AC6E}" nextId="29">
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10008001" stringId="32517" dataSize="4" friendlyName="RANK">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x40008002" stringId="32515" dataSize="0" friendlyName="GAMERNAME"/>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10008101" stringId="32519" dataSize="4" friendlyName="GAMERZONE">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10008102" stringId="32520" dataSize="4" friendlyName="GAMERCOUNTRY">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10008103" stringId="32521" dataSize="4" friendlyName="LANGUAGE">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x50008104" stringId="32522" dataSize="4" friendlyName="GAMERRATING">
+				<Format decimals="2"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x30008105" stringId="32523" dataSize="8" friendlyName="GAMERMU">
+				<Format decimals="2"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x30008106" stringId="32524" dataSize="8" friendlyName="GAMERSIGMA">
+				<Format decimals="2"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20008107" stringId="32525" dataSize="8" friendlyName="GAMERPUID">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20008108" stringId="32526" dataSize="8" friendlyName="AFFILIATEVALUE">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x40008109" stringId="32527" dataSize="0" friendlyName="GAMERHOSTNAME"/>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10008201" stringId="32528" dataSize="4" friendlyName="PLATFORMTYPE">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10008202" stringId="32529" dataSize="4" friendlyName="PLATFORMLOCK">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000001" stringId="29" dataSize="4" friendlyName="MM_Map">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000002" stringId="30" dataSize="4" friendlyName="MM_MaxPlayers">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000003" stringId="31" dataSize="4" friendlyName="MM_GameType">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000004" stringId="89" dataSize="4" friendlyName="MM_PARTY">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000005" stringId="100" dataSize="4" friendlyName="MM_GameRule">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000006" stringId="101" dataSize="4" friendlyName="MM_FreeSlots">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000007" stringId="103" dataSize="4" friendlyName="MM_SkillLow">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x10000008" stringId="104" dataSize="4" friendlyName="MM_SkillHigh">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000009" stringId="113" dataSize="8" friendlyName="scoreboard_rating">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000000A" stringId="127" dataSize="8" friendlyName="LBC_EXPERIENCE_RATING">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000000B" stringId="133" dataSize="8" friendlyName="LBC_POINTS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x1000000C" stringId="132" dataSize="4" friendlyName="LBC_PLAYERRANK">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000000D" stringId="135" dataSize="8" friendlyName="LBC_GAMESPLAYED">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000000E" stringId="137" dataSize="8" friendlyName="LBC_GAMESWON">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000000F" stringId="93" dataSize="8" friendlyName="LBC_OBJECTIVES">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000010" stringId="140" dataSize="8" friendlyName="LBC_KILLS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000011" stringId="142" dataSize="8" friendlyName="LBC_ASSISTS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000012" stringId="144" dataSize="8" friendlyName="LBC_DEATHS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000013" stringId="146" dataSize="8" friendlyName="LBC_HEADSHOTS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000014" stringId="148" dataSize="8" friendlyName="LBC_WEAPONKILLS00_KNIVES">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000015" stringId="154" dataSize="8" friendlyName="LBC_WEAPONKILLS01_PISTOLS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000016" stringId="155" dataSize="8" friendlyName="LBC_WEAPONKILLS02_SHOTGUNS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000017" stringId="156" dataSize="8" friendlyName="LBC_WEAPONKILLS03_SMGS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000018" stringId="157" dataSize="8" friendlyName="LBC_WEAPONKILLS04_ASSAULTS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x20000019" stringId="158" dataSize="8" friendlyName="LBC_WEAPONKILLS05_SNIPERS">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000001A" stringId="160" dataSize="8" friendlyName="LBC_WEAPONKILLS06_GRENADES">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000001B" stringId="162" dataSize="8" friendlyName="LBC_WEAPONKILLS07_C4S">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+			<Property clsid="{43CE4FA7-6DE9-4F37-A929-49BFE63CBAAA}" id="0x2000001C" stringId="163" dataSize="8" friendlyName="LBC_EXPERIENCE">
+				<Format hours="false" minutes="false" seconds="false" milliseconds="false"/>
+			</Property>
+		</Properties>
+		<Contexts clsid="{7F6BA3D8-BB76-46CC-AD28-A4E0C8D6E1EF}" nextId="0x00000009">
+			<Context clsid="{7F343825-DBB8-4BC0-ACF2-533263622341}" stringId="32512" friendlyName="GAME_TYPE" id="0x0000800A" defaultValue="0">
+				<ContextValue friendlyName="RANKED" value="0" stringId="32513"/>
+				<ContextValue friendlyName="STANDARD" value="1" stringId="32514"/>
+			</Context>
+			<Context clsid="{7F343825-DBB8-4BC0-ACF2-533263622341}" stringId="70" friendlyName="CTX_GameMap" id="0x00000007" defaultValue="0">
+				<ContextValue friendlyName="map_default" value="0" stringId="59"/>
+				<ContextValue friendlyName="map_1" value="1" stringId="60"/>
+				<ContextValue friendlyName="map_2" value="2" stringId="61"/>
+				<ContextValue friendlyName="map_3" value="3" stringId="62"/>
+				<ContextValue friendlyName="map_4" value="4" stringId="63"/>
+				<ContextValue friendlyName="map_5" value="5" stringId="64"/>
+				<ContextValue friendlyName="map_6" value="6" stringId="65"/>
+				<ContextValue friendlyName="map_7" value="7" stringId="66"/>
+				<ContextValue friendlyName="map_8" value="8" stringId="67"/>
+				<ContextValue friendlyName="map_9" value="9" stringId="68"/>
+				<ContextValue friendlyName="map_10" value="10" stringId="69"/>
+			</Context>
+			<Context clsid="{7F343825-DBB8-4BC0-ACF2-533263622341}" stringId="95" friendlyName="CTX_GameRule" id="0x00000008">
+				<ContextValue friendlyName="CTX_GAMERULE_CTF" value="0" stringId="96"/>
+				<ContextValue friendlyName="CTX_GAMERULE_TDM" value="1" stringId="97"/>
+				<ContextValue friendlyName="CTX_GAMERULE_OBJECTIVE" value="2" stringId="124"/>
+				<ContextValue friendlyName="CTX_GAMERULE_ZONE" value="3" stringId="125"/>
+			</Context>
+		</Contexts>
+		<GameModes clsid="{A4C90625-725A-4DD2-B26B-E7F33F9DA808}" defaultValue="0">
+			<GameMode friendlyName="PARTY" value="0" stringId="99" drawProbability="10"/>
+			<GameMode friendlyName="CTF" value="1" stringId="96" drawProbability="10"/>
+			<GameMode friendlyName="TDM" value="2" stringId="97" drawProbability="10"/>
+			<GameMode friendlyName="OBJECTIVE" value="3" stringId="124" drawProbability="10"/>
+			<GameMode friendlyName="ZONE" value="4" stringId="125" drawProbability="10"/>
+		</GameModes>
+		<Images clsid="{5B5F14C2-99F6-409A-BE85-15137524035C}">
+			<Image id="32768" friendlyName="X_IMAGEID_GAME">
+				<Path>.\gameimage.png</Path>
+			</Image>
+			<Image id="32772" friendlyName="X_IMAGEID_GAME_MARKETPLACE">
+				<Path>.\marketplace.png</Path>
+			</Image>
+			<Image id="32773" friendlyName="X_IMAGEID_GAME_BOXART">
+				<Path>.\boxart.PNG</Path>
+			</Image>
+			<Image id="32774" friendlyName="X_IMAGEID_GAME_BKGND">
+				<Path>.\background.PNG</Path>
+			</Image>
+		</Images>
+		<GamerPictures clsid="{3A23EFFB-83E1-415E-A7F2-1BD3004F83F5}"/>
+		<Achievements clsid="{42B49E61-A989-4D38-A1E3-74859D420C15}" nextId="10">
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="1" titleStringId="7" descriptionStringId="8" showUnachieved="true" achievementType="Completion" friendlyName="achievement 1" cred="10" imageId="32768" unachievedStringId="8"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="2" titleStringId="9" descriptionStringId="10" showUnachieved="true" achievementType="Completion" friendlyName="acheivement 2" cred="10" imageId="32768" unachievedStringId="10"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="3" titleStringId="11" descriptionStringId="12" showUnachieved="true" achievementType="Completion" friendlyName="acheivement 3" cred="10" imageId="32768" unachievedStringId="12"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="4" titleStringId="13" descriptionStringId="14" showUnachieved="true" achievementType="Completion" friendlyName="acheivement 4" cred="10" imageId="32768" unachievedStringId="14"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="5" titleStringId="15" descriptionStringId="16" showUnachieved="true" achievementType="Completion" friendlyName="acheivement 5" cred="10" imageId="32768" unachievedStringId="16"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="6" titleStringId="73" descriptionStringId="74" showUnachieved="true" achievementType="Completion" friendlyName="achievement 6" cred="10" imageId="32768" unachievedStringId="74"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="7" titleStringId="75" descriptionStringId="76" showUnachieved="true" achievementType="Completion" friendlyName="achievement 7" cred="10" imageId="32768" unachievedStringId="76"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="8" titleStringId="77" descriptionStringId="78" showUnachieved="true" achievementType="Completion" friendlyName="achievement 8" cred="10" imageId="32768" unachievedStringId="78"/>
+			<Achievement clsid="{3B0C2ED0-B7E7-4129-B35D-A90639E96DAC}" id="9" titleStringId="79" descriptionStringId="80" showUnachieved="true" achievementType="Completion" friendlyName="achievement 9" cred="920" imageId="32768" unachievedStringId="80"/>
+		</Achievements>
+		<Matchmaking clsid="{9D99E88A-2774-422A-8558-9B7487A37732}">
+			<Constants clsid="{9DEE98C4-441C-4103-861B-464DF03B36B1}" nextId="0"/>
+			<Schema clsid="{7134D48F-9957-4515-850B-A7426E51345F}">
+				<Attribute id="0x0000800A"/>
+				<Attribute id="0x0000800B"/>
+				<Attribute id="0x10008101"/>
+				<Attribute id="0x10008102"/>
+				<Attribute id="0x10008103"/>
+				<Attribute id="0x50008104"/>
+				<Attribute id="0x30008105"/>
+				<Attribute id="0x30008106"/>
+				<Attribute id="0x20008107"/>
+				<Attribute id="0x20008108"/>
+				<Attribute id="0x40008109"/>
+				<Attribute id="0x10008201"/>
+				<Attribute id="0x10008202"/>
+				<Attribute id="0x10000001"/>
+				<Attribute id="0x10000005"/>
+				<Attribute id="0x10000006"/>
+				<Attribute id="0x10000007"/>
+				<Attribute id="0x10000008"/>
+			</Schema>
+			<Queries clsid="{50783AEA-2512-4F78-938B-F8DB911A0F9A}" nextId="0">
+				<Query clsid="{7FEE4CB1-F3F0-48BF-9CA1-F1B2306E32E3}" id="0" friendlyName="Default Query" maxResults="25" type="Normal" qosProbe="false" groupBy="0xFFFFFFFF">
+					<Parameters>
+						<Parameter id="0x10000001"/>
+						<Parameter id="0x10000005"/>
+						<Parameter id="0x10000006"/>
+						<Parameter id="0x10000007"/>
+						<Parameter id="0x10000008"/>
+					</Parameters>
+					<Filters>
+						<Filter left="0x10000005" leftType="Attribute" op="==" right="0x10000005" rightType="Parameter"/>
+						<Filter left="0x10000001" leftType="Attribute" op="==" right="0x10000001" rightType="Parameter"/>
+						<Filter left="0x10000007" leftType="Attribute" op="&lt;=" right="0x10000008" rightType="Parameter"/>
+						<Filter left="0x10000008" leftType="Attribute" op="&gt;=" right="0x10000007" rightType="Parameter"/>
+						<Filter left="0x10000006" leftType="Attribute" op="&gt;=" right="0x10000006" rightType="Parameter"/>
+					</Filters>
+					<SortOperations/>
+					<Returns>
+						<Return id="0x0000800A" type="Normal" ordinal="0"/>
+						<Return id="0x0000800B" type="Normal" ordinal="1"/>
+					</Returns>
+				</Query>
+			</Queries>
+		</Matchmaking>
+		<StatsViews clsid="{7FD2B836-2D93-490B-96C9-AEE936158AE8}" nextViewId="13">
+			<StatsView clsid="{6B341F2D-7A8A-43BC-AABF-949D6B9F28C7}" id="1" stringId="127" resetType="Never" friendlyName="EXPERIENCE" entryExpiration="0" hidden="false" arbitrated="true" onlineOnly="false" topEntries="4294967295" maxAttachments="0" viewType="Leaderboard">
+				<Columns>
+					<Field ordinal="0" stringId="164" hidden="false" friendlyName="Experience Rating" attributeId="65534">
+						<Property id="0x2000000A">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="1" stringId="127" hidden="false" friendlyName="Experience" attributeId="18">
+						<Property id="0x2000001C">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="2" stringId="32518" hidden="false" friendlyName="Rank" attributeId="65535">
+						<Property id="0x10008001">
+							<Aggregation type="Last"/>
+						</Property>
+					</Field>
+					<Field ordinal="3" stringId="32516" hidden="false" friendlyName="Gamer Name" attributeId="65533">
+						<Property id="0x40008002">
+							<Aggregation type="Last"/>
+						</Property>
+					</Field>
+					<Field ordinal="4" stringId="133" hidden="false" friendlyName="Points" attributeId="1">
+						<Property id="0x2000000B">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="5" stringId="132" hidden="false" friendlyName="Player Rank" attributeId="2">
+						<Property id="0x1000000C">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="6" stringId="135" hidden="false" friendlyName="Games played" attributeId="3">
+						<Property id="0x2000000D">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="7" stringId="137" hidden="false" friendlyName="Games Won" attributeId="4">
+						<Property id="0x2000000E">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="8" stringId="93" hidden="false" friendlyName="Objectives" attributeId="5">
+						<Property id="0x2000000F">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="9" stringId="142" hidden="false" friendlyName="Assists" attributeId="6">
+						<Property id="0x20000011">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="10" stringId="146" hidden="false" friendlyName="Headshots" attributeId="7">
+						<Property id="0x20000013">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="11" stringId="144" hidden="false" friendlyName="Deaths" attributeId="8">
+						<Property id="0x20000012">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="12" stringId="140" hidden="false" friendlyName="Kills" attributeId="9">
+						<Property id="0x20000010">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="13" stringId="148" hidden="false" friendlyName="Knife Kills" attributeId="10">
+						<Property id="0x20000014">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="14" stringId="154" hidden="false" friendlyName="Pistol Kills" attributeId="11">
+						<Property id="0x20000015">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="15" stringId="155" hidden="false" friendlyName="Shotgun Kills" attributeId="12">
+						<Property id="0x20000016">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="16" stringId="156" hidden="false" friendlyName="SNG Kills" attributeId="13">
+						<Property id="0x20000017">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="17" stringId="157" hidden="false" friendlyName="Assault Rifle Kills" attributeId="14">
+						<Property id="0x20000018">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="18" stringId="158" hidden="false" friendlyName="Sniper Rifle Kills" attributeId="15">
+						<Property id="0x20000019">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="19" stringId="160" hidden="false" friendlyName="Grenade Kills" attributeId="16">
+						<Property id="0x2000001A">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+					<Field ordinal="20" stringId="162" hidden="false" friendlyName="C4 Kills" attributeId="17">
+						<Property id="0x2000001B">
+							<Aggregation type="Max"/>
+						</Property>
+					</Field>
+				</Columns>
+			</StatsView>
+		</StatsViews>
+	</GameConfigProject>
+</XboxLiveSubmissionProject>

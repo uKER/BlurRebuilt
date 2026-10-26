@@ -1,0 +1,19 @@
+SubDir TOP Code Tools File_Tag_Db File_Tag_Db ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+SRC =
+source/file_tag_db/GenericAttribute.cpp
+source/file_tag_db/MetaManager.cpp
+source/file_tag_db/MetaTag.cpp
+source/file_tag_db/Tag.cpp
+source/file_tag_db/TagDB.cpp
+source/file_tag_db/TagDBManager.cpp
+source/file_tag_db/TagDBSax.cpp
+;
+
+Library file_tag_db : $(SRC) : stdafx.cpp ;

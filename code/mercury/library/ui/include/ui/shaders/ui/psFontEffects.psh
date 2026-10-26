@@ -1,0 +1,70 @@
+#include "..\psCommon.h"
+
+//struct Settings
+//{
+	//float4	m_Intensity;
+	//float4	m_Alpha;
+	//float4	m_TextureUse;
+//};
+//Settings g_Settings				: register(CCP_SETTINGS);
+
+sampler2D	g_Texture0			: register(s0); // font texture
+sampler2D	g_Texture1			: register(s1); // outline texture
+sampler2D	g_Texture2			: register(s2); // piping texture
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	#if defined(BLUR_DX11) // [Blur1PCDX11] D3D11 links stages by register; keep the slot the vertex shader writes.
+	float4 MyWorldPosition		: TEXCOORD3;
+	#endif
+	float2 TexCoord0			: TEXCOORD0;
+	float2 TexCoord1			: TEXCOORD1;
+	float2 TexCoord2			: TEXCOORD2;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 ); // RGBA planes
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 ); // Multiply texture
+	float4 tex2 = tex2D( g_Texture2, IN.TexCoord2 ); // Multiply texture
+	
+	OUT.Colour = tex0 * tex1 * tex2 * IN.Colour;
+		
+	/*
+	float3 intensity = tex0.xyz * g_Settings.m_Intensity.xyz;
+	
+	// Mult each parts intensity 
+	float3 _i0 = intensity * (1.0f -	g_Settings.m_TextureUse.xyz);
+	float3 _i1 = intensity *			g_Settings.m_TextureUse.xyz;
+	
+	// Alpha
+	float3 alpha = tex0.xyz * g_Settings.m_Alpha.xyz;
+	
+	// Each textures intensity is the 3 parts added together
+	float i0 = _i0[0] + _i0[1] + _i0[2];
+	float i1 = _i1[0] + _i1[1] + _i1[2];
+	float a = alpha[0] + alpha[1] + alpha[2];
+	
+	float4 col =
+	{
+		(i0 * tex1[0]) + (i1 * tex2[0]),
+		(i0 * tex1[1]) + (i1 * tex2[1]),
+		(i0 * tex1[2]) + (i1 * tex2[2]),
+		a * tex0[3] * tex1[3] * tex2[3],
+	};
+	
+	// Todo - maybe mult with tex3 for bling effect?
+
+	OUT.Colour = IN.Colour * col;
+	*/
+	
+	return OUT;
+}

@@ -1,0 +1,31 @@
+#define ALPHA
+#define ALPHA_PREMULTIPLY
+
+#include "dynamic\shaders\psCommon.h"
+#include "render\shaders\psFog.h"
+#include "render\shaders\psHDR.h"
+
+
+sampler2D textureMap : register(s0);
+
+struct VS_OUTPUT
+{
+	float4 position	: POSITION0;
+	float4 colour	: TEXCOORD0;
+	float2 uv		: TEXCOORD1;
+};
+
+PS_OUTPUT main(VS_OUTPUT input)
+{
+	float4 tex = tex2D(textureMap, input.uv);
+
+	float4 colour = input.colour * tex;
+	
+	#ifdef MULTIPLY
+	PS_OUTPUT output;
+	output.colour = lerp(1.0f, tex, input.colour.a);
+	return output;
+	#else
+	return GetExposure(colour);
+	#endif
+}

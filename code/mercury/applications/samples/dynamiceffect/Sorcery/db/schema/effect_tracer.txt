@@ -1,0 +1,24 @@
+// enums
+
+enum Tracer_Shape
+{
+	BeamCapped,
+};
+
+enum Tracer_Shader
+{
+	Default,
+	Temperature,
+};
+
+// records
+
+[Record] type Tracer_Effect
+{
+	sz8		name;
+	Tracer_Shape	shapeType;
+	Tracer_Shader	shader;
+	sz8		texture;
+	Effect_F32Dim2	size;
+	bool		fade;
+};

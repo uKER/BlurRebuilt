@@ -1,0 +1,412 @@
+IncludePath 
+$(TOP)/Code/Vendor/demonware/1.9
+$(TOP)/code/vendor/demonware/1.9/external/libtomcrypt/src/headers
+;
+
+DEMONWARE_BASE = $(TOP)/code/vendor/demonware/1.9 ;
+
+BD_CONNECTION = 
+$(DEMONWARE_BASE)/bdConnection/bdConnection.cpp
+$(DEMONWARE_BASE)/bdConnection/bdConnectionlistener.cpp
+$(DEMONWARE_BASE)/bdConnection/bdConnectionStatistics.cpp
+$(DEMONWARE_BASE)/bdConnection/bdConnectionStore.cpp
+$(DEMONWARE_BASE)/bdConnection/bdConnectionStoreConfig.cpp
+$(DEMONWARE_BASE)/bdConnection/bdLoopbackConnection.cpp
+$(DEMONWARE_BASE)/bdConnection/bdunicastConnection.cpp
+$(DEMONWARE_BASE)/bdConnection/bdDispatch/bdDispatcher.cpp
+$(DEMONWARE_BASE)/bdConnection/bdDispatch/bdDispatchInterceptor.cpp
+$(DEMONWARE_BASE)/bdConnection/bdMessage/bdMessage.cpp
+$(DEMONWARE_BASE)/bdConnection/bdMessage/bdReceivedMessage.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdCookie.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdCookieAckChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdCookieEchoChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdDataChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdHeartbeatAckChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdHeartbeatChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdInitAckChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdInitChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdPacket.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdSAckChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdShutdownAckChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdShutdownChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdPacket/bdShutdownCompleteChunk.cpp
+$(DEMONWARE_BASE)/bdConnection/bdWindow/bdReliableReceiveWindow.cpp
+$(DEMONWARE_BASE)/bdConnection/bdWindow/bdReliableSendWindow.cpp
+$(DEMONWARE_BASE)/bdConnection/bdWindow/bdUnReliableReceiveWindow.cpp
+$(DEMONWARE_BASE)/bdConnection/bdWindow/bdUnReliableSendWindow.cpp
+;
+
+BD_EXAMPLE_COMMON_LOBBY_PC =
+$(DEMONWARE_BASE)/bdExample/bdExampleCommonLobby/bdExampleCommonLobby.cpp
+;
+
+BD_EXAMPLE_COMMON_LOBBY_PS3 =
+$(DEMONWARE_BASE)/bdExample/bdExampleCommonLobby/bdExampleCommonLobby.cpp
+;
+
+BD_EXAMPLE_COMMON_LOBBY_XENON =
+$(DEMONWARE_BASE)/bdExample/bdExampleCommonLobby/bdExampleCommonLobby.cpp
+$(DEMONWARE_BASE)/bdExample/bdExampleCommonLobby/LiveServices-xenon.cpp
+;
+
+BD_CORE_PC = 
+$(DEMONWARE_BASE)/bdCore/bdCore.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdBitBuffer.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdByteBuffer.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdHashMap.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSequenceNumber.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSequenceNumberStore.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSingleton.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCryptoUtils.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCypher.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCypher3Des.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdECCKey.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHash.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHashTiger192.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHMac.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHMacSHA1.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdAlignedOffsetMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdDebugMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdMallocMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdReference/bdReferencable.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddrInfo.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddrRefWrapper.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdInetAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityID.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityInfo.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityKey.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdStreamSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdTestSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdThreadedSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdString/bdString.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdMutex.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdRunnable.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdSemaphore.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdSignal.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdThread.cpp
+$(DEMONWARE_BASE)/bdCore/bdTiming/bdShortTimer.cpp
+$(DEMONWARE_BASE)/bdCore/bdTiming/bdStopwatch.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBase64.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBitOperations.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBytePacker.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdRandom.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdStringEscape.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdTrulyRandom.cpp
+;
+
+BD_CORE_PS3 = 
+$(DEMONWARE_BASE)/bdCore/bdCore.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdBitBuffer.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdByteBuffer.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdHashMap.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSequenceNumber.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSequenceNumberStore.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSingleton.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCryptoUtils.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCypher.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCypher3Des.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdECCKey.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHash.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHashTiger192.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHMac.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHMacSHA1.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdAlignedOffsetMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdDebugMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdMallocMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdReference/bdReferencable.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddrInfo.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddrRefWrapper.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdInetAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityID.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityInfo.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityKey.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdStreamSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdTestSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdString/bdString.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdMutex.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdRunnable.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdSemaphore.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdSignal.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdThread.cpp
+$(DEMONWARE_BASE)/bdCore/bdTiming/bdShortTimer.cpp
+$(DEMONWARE_BASE)/bdCore/bdTiming/bdStopwatch.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBase64.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBitOperations.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBytePacker.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdRandom.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdStringEscape.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdTrulyRandom.cpp
+;
+
+BD_CORE_XENON = 
+$(DEMONWARE_BASE)/bdCore/bdCore.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdBitBuffer.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdByteBuffer.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdHashMap.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSequenceNumber.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSequenceNumberStore.cpp
+$(DEMONWARE_BASE)/bdCore/bdContainers/bdSingleton.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCypher.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdCypher3Des.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHash.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHMac.cpp
+$(DEMONWARE_BASE)/bdCore/bdCrypto/bdHMacSHA1.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdAlignedOffsetMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdDebugMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdMallocMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdMemory/bdMemory.cpp
+$(DEMONWARE_BASE)/bdCore/bdReference/bdReferencable.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddr-xbox.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdCommonAddrInfo-xbox.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdInetAddr.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSecurityInfo.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdStreamSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdSocket/bdTestSocket.cpp
+$(DEMONWARE_BASE)/bdCore/bdString/bdString.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdMutex.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdRunnable.cpp
+$(DEMONWARE_BASE)/bdCore/bdThread/bdThread.cpp
+$(DEMONWARE_BASE)/bdCore/bdTiming/bdShortTimer.cpp
+$(DEMONWARE_BASE)/bdCore/bdTiming/bdStopwatch.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBase64.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBitOperations.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdBytePacker.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdRandom.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdStringEscape.cpp
+$(DEMONWARE_BASE)/bdCore/bdUtilities/bdTrulyRandom.cpp
+;
+
+BD_LOBBY_PC = 
+$(DEMONWARE_BASE)/bdLobby/bdAuthService.cpp
+$(DEMONWARE_BASE)/bdLobby/bdAuthTicket.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyConnection.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyConnectionListener.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyService.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdChannelChat.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdChannelInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdGetChannelMembersResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdGetChannelsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdFriends.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetBlockListResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetFriendsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetGroupedFriendsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetGroupNamesResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetProposalListResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdArchiveKey.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdArchiveValue.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdKeyArchive.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdKeyPairDict.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdAuthCommon.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdCustomQueryParams.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdQueryParams.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdQueryResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLSGServices/bdBandwidthTest.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLSGServices/bdBandwidthTestResults.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMatchMaking/bdMatchMaking.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMatchMaking/bdMatchMakingInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMatchMaking/bdSessionCreateResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdGetMessagesResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdLobbyMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdLobbyMessageFactory.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageStore.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdChannelChatMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdChannelNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdFriendCustomMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdFriendSessionInvitationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdFriendshipProposalMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdMMPlayerDisconnectMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdProfileInfoUpdatedMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamCustomMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamInfoUpdatedMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamInvitationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamSessionInvitationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamWideNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdUserNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformance.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformanceInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformanceValue.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformanceValueResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdProfiles/bdCheckProfileExistsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdProfiles/bdProfileInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdProfiles/bdProfiles.cpp
+$(DEMONWARE_BASE)/bdLobby/bdRemoteTaskManager/bdRemoteTask.cpp
+$(DEMONWARE_BASE)/bdLobby/bdRemoteTaskManager/bdRemoteTaskManager.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStartArbitratedSessionResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStats.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStatsInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStatsSubmission.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdWriteMultiStatsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdGetFileResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdListFilesResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdLobbyFile.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdLobbyFileHeader.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdStorage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdUploadFileResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdCheckTeamMembershipResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdCreateTeamResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdGetTeamMembersResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdGetTeamsProposalListResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeam.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeamInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeamMember.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeamMemberInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeams.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdAdUnit.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdTitleStatsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdTitleUtilities.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdUnitTracker.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdVerifyStringResult.cpp
+;
+
+BD_LOBBY_PS3 =
+$(DEMONWARE_BASE)/bdLobby/bdAuthService-ps3.cpp
+$(DEMONWARE_BASE)/bdLobby/bdAuthService.cpp
+$(DEMONWARE_BASE)/bdLobby/bdAuthTicket.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyConnection.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyConnectionListener.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyService.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPS3AuthInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdChannelChat.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdChannelInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdGetChannelMembersResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdChannelChat/bdGetChannelsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdFriends.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetBlockListResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetFriendsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetGroupedFriendsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetGroupNamesResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdFriends/bdGetProposalListResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdArchiveKey.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdArchiveValue.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdKeyArchive.cpp
+$(DEMONWARE_BASE)/bdLobby/bdKeyArchive/bdKeyPairDict.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdAuthCommon.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdCustomQueryParams.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdQueryParams.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLobbyCommon/bdQueryResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLSGServices/bdBandwidthTest.cpp
+$(DEMONWARE_BASE)/bdLobby/bdLSGServices/bdBandwidthTestResults.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMatchMaking/bdMatchMaking.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMatchMaking/bdMatchMakingInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMatchMaking/bdSessionCreateResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdGetMessagesResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdLobbyMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdLobbyMessageFactory.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageStore.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdChannelChatMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdChannelNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdFriendCustomMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdFriendSessionInvitationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdFriendshipProposalMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdMMPlayerDisconnectMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdProfileInfoUpdatedMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamCustomMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamInfoUpdatedMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamInvitationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamSessionInvitationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdTeamWideNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdMessageStore/bdMessageTypes/bdUserNotificationMessage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformance.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformanceInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformanceValue.cpp
+$(DEMONWARE_BASE)/bdLobby/bdPerformance/bdPerformanceValueResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdProfiles/bdCheckProfileExistsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdProfiles/bdProfileInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdProfiles/bdProfiles.cpp
+$(DEMONWARE_BASE)/bdLobby/bdRemoteTaskManager/bdRemoteTask.cpp
+$(DEMONWARE_BASE)/bdLobby/bdRemoteTaskManager/bdRemoteTaskManager.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStartArbitratedSessionResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStats.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStatsInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdStatsSubmission.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStats/bdWriteMultiStatsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdGetFileResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdListFilesResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdLobbyFile.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdLobbyFileHeader.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdStorage.cpp
+$(DEMONWARE_BASE)/bdLobby/bdStorage/bdUploadFileResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdCheckTeamMembershipResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdCreateTeamResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdGetTeamMembersResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdGetTeamsProposalListResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeam.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeamInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeamMember.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeamMemberInfo.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTeams/bdTeams.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdAdUnit.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdTitleStatsResult.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdTitleUtilities.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdUnitTracker.cpp
+$(DEMONWARE_BASE)/bdLobby/bdTitleUtilities/bdVerifyStringResult.cpp 
+;
+
+BD_LOBBY_XENON = 
+;
+
+DEMONWARE_SRC = 
+$(BD_CONNECTION)
+$(BD_CORE_$(PLATFORM))
+$(BD_EXAMPLE_COMMON_LOBBY_$(PLATFORM))
+$(BD_LOBBY_$(PLATFORM))
+;
+
+DEMONWARE_LIBS =  
+bdSocket 
+bdPlatform 
+bdNet 
+;
+
+DEMONWARE_ENCRYPTION_LIBS = 
+libtomcrypt 
+libtommath 
+;
+
+if $(BUILD) = Master || $(BUILD) = Speed || $(BUILD) = Profile || $(BUILD) = Release
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/ps3-sn/release/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/ps3-sn/release/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/win32-vs8/release-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/win32-vs8/release-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/xenon-vs8/release/$(DEMONWARE_LIBS).lib ;
+	}
+}
+else
+{
+	if $(PLATFORM) = PS3
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/ps3-sn/debug/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/ps3-sn/debug/$(DEMONWARE_ENCRYPTION_LIBS).a ;
+	}
+	if $(PLATFORM) = PC
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/win32-vs8/debug-mt/$(DEMONWARE_LIBS).lib ;
+	 	LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/win32-vs8/debug-mt/$(DEMONWARE_ENCRYPTION_LIBS).lib ;
+	}
+	if $(PLATFORM) = XENON
+	{
+		LINKLIBS += $(TOP)/code/vendor/demonware/1.9/lib/xenon-vs8/debug/$(DEMONWARE_LIBS).lib ;
+	}
+}

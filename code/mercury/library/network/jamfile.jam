@@ -1,0 +1,65 @@
+SubDir TOP Code Mercury Library Network ;
+
+if $(USERNAME) = dworswick || $(USERNAME) = pereid || $(USERNAME) = pkerby
+{
+	Optim Off ;
+} 
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/amax/game
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/demonware/2.0/external/curl-7.19.2/include
+$(TOP)/code/vendor/demonware/2.0/external/openssl-0.9.8i/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(GFWLSDK_PATH)\include\" \"$(DXSDK_PATH)\include\" ;
+}
+
+NETPATH = ./source/network/$(PLATFORM)/ ;
+PROFILEPATH = ./source/systemprofile/$(PLATFORM)/ ;
+
+SRC =
+./source/network/shared/DataMiningWriter.cpp
+./source/network/shared/Network.cpp
+./source/network/shared/DemonwareTask.cpp
+./source/network/shared/CommunicatorVoiceBuffer.cpp
+$(PROFILEPATH)/SystemProfilemanager_$(PLATFORM).cpp
+$(NETPATH)/BandwidthEvaluator_$(PLATFORM).cpp
+$(NETPATH)/CommunicatorManager_$(PLATFORM).cpp
+$(NETPATH)/Core_$(PLATFORM).cpp
+$(NETPATH)/FriendEnumerator_$(PLATFORM).cpp
+$(NETPATH)/PendingFriendEnumerator_$(PLATFORM).cpp
+$(NETPATH)/ScoreboardAttachmentReader_$(PLATFORM).cpp
+$(NETPATH)/ScoreboardAttachmentWriter_$(PLATFORM).cpp
+$(NETPATH)/UnreliableSocket_$(PLATFORM).cpp
+$(NETPATH)/PerUserServerStorageReader_$(PLATFORM).cpp
+$(NETPATH)/PerUserServerStorageWriter_$(PLATFORM).cpp
+$(NETPATH)/PublisherServerStorageReader_$(PLATFORM).cpp
+$(NETPATH)/PlayerSkillWriter_$(PLATFORM).cpp
+$(NETPATH)/PlayerSkillReader_$(PLATFORM).cpp
+$(NETPATH)/ScoreboardReaderByUsers_$(PLATFORM).cpp
+$(NETPATH)/ScoreboardReaderByRank_$(PLATFORM).cpp
+$(NETPATH)/ScoreboardWriter_$(PLATFORM).cpp
+$(NETPATH)/Session_$(PLATFORM).cpp
+$(NETPATH)/SessionDeletion_$(PLATFORM).cpp
+$(NETPATH)/SessionEnumerator_$(PLATFORM).cpp
+;
+
+PCSRC =
+$(NETPATH)/AsyncTask_PC.cpp
+;
+
+
+PS3SRC =
+$(PROFILEPATH)/NpThreadedFriendEnumerator.cpp
+;
+
+Library network : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

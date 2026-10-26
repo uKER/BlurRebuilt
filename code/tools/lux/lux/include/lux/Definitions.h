@@ -1,0 +1,59 @@
+#ifndef LUX_DEFINITIONS_H
+#define LUX_DEFINITIONS_H
+
+namespace LUX
+{
+	enum LuxModelTypeEnum
+	{
+		LUX_MODEL_TYPE_UNKNOWN				= 0,
+		LUX_MODEL_TYPE_GLOBALILLUMINATION	= 5,
+
+		LUX_MODEL_TYPE_COUNT
+	};
+
+	enum LuxLightTypeEnum
+	{
+		LUX_LIGHT_TYPE_UNKNOWN				= 0,
+		LUX_LIGHT_TYPE_DIRECTIONAL			= 1,
+		LUX_LIGHT_TYPE_POINT				= 2,
+		LUX_LIGHT_TYPE_SPOTLIGHT			= 3,
+		LUX_LIGHT_TYPE_HEMISPHERE			= 4,
+		LUX_LIGHT_TYPE_AREA					= 5,
+		LUX_LIGHT_TYPE_HEMISPHERE2			= 6,
+		LUX_LIGHT_TYPE_BOUNCEGATHER			= 7,
+
+		LUX_LIGHT_TYPE_COUNT
+	};
+
+	enum LuxModelSimpleMethodEnum
+	{
+		LUX_MODEL_SIMPLE_METHOD_N_DOT_L		= 0,
+		LUX_MODEL_SIMPLE_METHOD_HEMISPHERE	= 1,
+
+		LUX_MODEL_METHOD_COUNT
+	};
+
+	enum LuxModelBakeTargetEnum
+	{
+		LUX_MODEL_BAKE_TARGET_VERTEX		= 0,
+		LUX_MODEL_BAKE_TARGET_LIGHTMAP		= 1,
+
+		LUX_MODEL_BAKE_TARGET_COUNT
+	};
+
+	enum LuxLightMapFileTypeEnum
+	{
+		LUX_LIGHT_MAP_FILE_TYPE_BMP			= 0,
+		LUX_LIGHT_MAP_FILE_TYPE_TGA			= 1,
+		LUX_LIGHT_MAP_FILE_TYPE_DDS			= 2,
+
+		LUX_LIGHT_MAP_FILE_TYPE_COUNT
+	};
+
+	#define LIGHT_MAP_UV_SET_NAME			"luxlightmap"
+	#define OVERRIDE_LIGHT_MAP_UV_SET_NAME	"overridelightmap"
+}
+
+extern bool gbDebugMode;
+
+#endif

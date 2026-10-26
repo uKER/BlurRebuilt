@@ -1,0 +1,75 @@
+#include "..\\psCommon.h"
+
+float4		g_Colour			: register(CCP_DISPLAY_COLOUR);
+sampler2D	g_Texture0			: register(s0);
+
+struct PS_INPUT
+{
+	#ifdef USE_VERTEXCOLOUR
+	float4 Colour0				: COLOR0;
+	#else
+	float2 Texcoord0			: TEXCOORD0;
+	#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour0				: COLOR0;
+};
+
+#if !defined(USE_COLOUR) 
+PS_OUTPUT main(PS_INPUT IN)	// Only want the input for the texture case.
+#else
+PS_OUTPUT main()
+#endif
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+#if defined(USE_VERTEXCOLOUR)
+	{
+		OUT.Colour0 = IN.Colour0;
+	}
+#elif defined(USE_COLOUR)
+	{
+		OUT.Colour0 = g_Colour;
+	}
+#elif defined(USE_TEXTURE)
+	{
+		OUT.Colour0 = tex2D(g_Texture0, IN.Texcoord0);
+	}
+#elif defined(USE_TEXTURE_RGB)
+	{
+		OUT.Colour0.rgb = tex2D(g_Texture0, IN.Texcoord0).rgb;
+		OUT.Colour0.a = 1.0f;
+	}
+#elif defined(USE_TEXTURE_R)
+	{
+		OUT.Colour0.rgb = tex2D(g_Texture0, IN.Texcoord0).r;
+		OUT.Colour0.a = 1.0f;
+	}
+#elif defined(USE_TEXTURE_G)
+	{
+		OUT.Colour0.rgb = tex2D(g_Texture0, IN.Texcoord0).g;
+		OUT.Colour0.a = 1.0f;
+	}
+#elif defined(USE_TEXTURE_B)
+	{
+		OUT.Colour0.rgb = tex2D(g_Texture0, IN.Texcoord0).b;
+		OUT.Colour0.a = 1.0f;
+	}
+#elif defined(USE_TEXTURE_A)
+	{
+		OUT.Colour0.rgb = tex2D(g_Texture0, IN.Texcoord0).a;
+		OUT.Colour0.a = 1.0f;
+	}
+#elif defined(USE_TEXTURE_D)
+	{
+		float3 depthBytes = round(tex2D(g_Texture0, IN.Texcoord0).rgb * 255.0f);
+		float3 depthScale = float3(65536.0f, 256.0f, 1.0f) / 16777215.0f;		
+		OUT.Colour0.rgb = dot(depthBytes, depthScale);
+		OUT.Colour0.a = 1.0f;
+	}
+#endif
+
+	return OUT;
+}

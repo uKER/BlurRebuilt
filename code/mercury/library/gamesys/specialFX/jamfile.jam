@@ -1,0 +1,52 @@
+SubDir TOP Code Mercury Library GameSys SpecialFX ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/Render/Include
+$(TOP)/code/mercury/library/graphics/world_render/Include
+$(TOP)/code/mercury/library/graphics/RenderingData/include
+$(TOP)/code/mercury/library/graphics/SceneGraph/include
+$(TOP)/code/mercury/library/graphics/dynamic/include
+$(TOP)/code/mercury/library/GameSys/resource_utils/Include
+$(TOP)/code/mercury/library/GameSys/SpecialFX/Include
+$(TOP)/code/mercury/library/graphics/TextureResource/Include
+$(TOP)/code/mercury/library/animation/include
+$(TOP)/code/mercury/library/GameSys/Animated_Model/Include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/gamesys/game_context/include
+$(TOP)/code/mercury/library/gamesys/game_resource/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/util/input/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+source/AnimatedMesh.cpp
+source/LightSpecialFX.cpp
+source/ParticleSpecialFX.cpp
+source/SpecialFX.cpp
+source/SpotLightSpecialFX.cpp
+source/FlareSpecialFX.cpp
+source/RumbleSpecialFX.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library specialFX : $(SRC) $($(PLATFORM)SRC) : SpecialFXPch.cpp : SpecialFXPch.h ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;

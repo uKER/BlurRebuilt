@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dw-win32-ltc", "dw-win32-vc8-ltc.vcproj", "{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dw-win32-ltm", "..\libtommath\dw-win32-vs8-ltm.vcproj", "{2A75F67F-EF69-4628-9F6C-F58CC66CD170}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug-mt|Win32 = Debug-mt|Win32
+		Debug-mt-dll|Win32 = Debug-mt-dll|Win32
+		Release-mt|Win32 = Release-mt|Win32
+		Release-mt-dll|Win32 = Release-mt-dll|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt|Win32.ActiveCfg = Debug-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt|Win32.Build.0 = Debug-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt-dll|Win32.ActiveCfg = Debug-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Debug-mt-dll|Win32.Build.0 = Debug-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt|Win32.ActiveCfg = Release-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt|Win32.Build.0 = Release-mt|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt-dll|Win32.ActiveCfg = Release-mt-dll|Win32
+		{BC78D24B-264A-4C9D-965B-2BCC6EA98F24}.Release-mt-dll|Win32.Build.0 = Release-mt-dll|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Debug-mt|Win32.ActiveCfg = Debug-mt|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Debug-mt|Win32.Build.0 = Debug-mt|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Debug-mt-dll|Win32.ActiveCfg = Debug-mt-dll|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Debug-mt-dll|Win32.Build.0 = Debug-mt-dll|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Release-mt|Win32.ActiveCfg = Release-mt|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Release-mt|Win32.Build.0 = Release-mt|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Release-mt-dll|Win32.ActiveCfg = Release-mt-dll|Win32
+		{2A75F67F-EF69-4628-9F6C-F58CC66CD170}.Release-mt-dll|Win32.Build.0 = Release-mt-dll|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

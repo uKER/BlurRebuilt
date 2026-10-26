@@ -1,0 +1,55 @@
+SubDir TOP Code Amax Tools Animation_Converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/animation/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/Main.cpp
+;
+
+AFTK_FBX = 1 ;
+
+LINKLIBS +=  ws2_32.lib ;
+LinkLibraries animation_converter :
+  core
+  system
+  tools_shared
+  aftk_fbx
+  animation_tools
+  $(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk
+  $(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2005
+;
+
+Application animation_converter : $(SRC) : stdafx.cpp ;
+
+#TOOL_DIR = $(BIZARRE_ROOT)/amax/tools_wip/win32/animation_converter ;
+#TOOL_DIR = $(BIZARRE_ROOT)/Nightwing/tools_wip/win32/animation_converter ;
+TOOL_DIR = $(BIZARRE_ROOT)/Amax/tools_wip/win32/animation_converter ;
+Depends $(TOOL_DIR)/animation_converter.exe : $(TOOL_DIR)/ ;
+MkDir $(TOOL_DIR)/ ;
+
+EmbedManifest $(TOOL_DIR)/animation_converter.exe : animation_converter.exe ;
+
+ExportVcproj animation_converter ;
+
+
+
+SubInclude TOP Code Mercury Library Animation ;
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Aftk Aftk ;
+

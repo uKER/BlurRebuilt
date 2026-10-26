@@ -1,0 +1,145 @@
+SubDir TOP Code Mercury Library Graphics Fx ;
+
+StoreVcprojInfo fx ;
+
+# enable SPU Bus error checking code
+SUBDIRSPUBERR = 1 ;
+
+Define FX_ALLOW_INCLUDE ;
+
+# the game-side code for loading compiled .fx files
+
+IncludePath
+$(SUBDIR)/include
+$(SUBDIR)/source
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+;
+
+SRC =
+source/FxContext.cpp
+source/Effect.cpp
+source/EnvironmentSettings.cpp
+source/EnvironmentFloat.cpp
+source/EnvironmentColour.cpp
+source/EnvironmentString.cpp
+source/Fx.cpp
+source/Fxb.cpp
+source/Shared.cpp
+source/Shaders.cpp
+source/System.cpp
+source/SamplerStates.cpp
+source/RenderStates.cpp
+source/Structs.cpp
+source/Manager.cpp
+source/DebugVariables.cpp
+source/Technique.cpp
+source/FxStatistics.cpp
+source/RenderMutex.cpp
+;
+
+SRC = [ Batch $(SRC) : stdafx.h ] ;
+
+
+if $(PLATFORM) = PS3
+{
+
+SPUSRC =
+<spu>source/FxContext.cpp
+;
+
+if $(BUILD) = "Debug" || $(BUILD) = "Release"
+{
+       SrcOptim $(SPUSRC) : -Os ;
+}
+SPULibrary fx_spu : $(SPUSRC) ;
+
+}
+
+
+if $(CFG_CONVERTER) = 1
+{
+Define NGL_TOOL ;
+# tool-side code for exporting .fx files
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+# Library paths for directx SDK and Xenon SDK are different for 64-bit
+if $(WIN64) = 1
+{
+       DXLIB = "$(DXSDK_PATH)/Lib/x64" ;
+       XLIB = "$(XENONSDK)/lib/x64/vs2008" ;
+       Define _X64_ ;
+}
+else
+{
+       DXLIB = "$(DXSDK_PATH)/Lib/x86" ;
+       XLIB = "$(XENONSDK)/lib/win32/vs2008" ;
+}
+
+IncludePath
+$(SUBDIR)/source
+\"$(SCE_PS3_ROOT)/host-win32/Cg/include\" # for cg/Cg.h
+\"$(SCE_PS3_ROOT)/target/ppu/src/cgb/include\" # for cgb_format.h
+#\"$(SCE_PS3_ROOT)/target/ppu/include\" # for gcm.h
+;
+
+# the main library contains some common utility code
+SRC =
+<conv>source/fxb.cpp
+source/Fxb_export.cpp
+;
+
+ObjectCcFlags source/Targets/pcfx.cpp : -I\"$(DXSDK_PATH)/include\" ;
+ObjectCcFlags source/Targets/ps3fx.cpp : -I\"$(DXSDK_PATH)/include\" ;
+ObjectCcFlags source/Targets/xefx.cpp : -I\"$(XENONSDK)/include/win32/vs2005\" ;
+
+# the FX exporting code for Xenon and PC go into separate DLLS which statically link with different versions of D3D9
+FXSRC =
+source/fxTools/static_strings.cpp
+source/fxTools/util.cpp
+source/fxTools/fxFile.cpp
+source/fxTools/Eval.cpp
+;
+
+ObjectDefines source/targets/pcfx.cpp source/targets/xefx.cpp source/targets/ps3fx.cpp : DLL_EXPORT CFG_CONVERTER=1 ;
+
+SrcDefine $(FXSRC) $(SRC) : FX_INCLUDE_DEVICE_TOOLS_ENUMS NGL_TOOL CFG_CONVERTER=1 ;
+
+
+LinkLibraries pcfx : core system "$(DXLIB)/d3d9" "$(DXLIB)/d3dx9" "$(DXLIB)/dinput8" "$(DXLIB)/dxguid" "$(DXLIB)/dxerr" ;
+LinkLibraries xefx : core system "$(XLIB)/d3d9" "$(XLIB)/d3dx9" "$(XLIB)/xgraphics" ;
+LinkLibraries ps3fx : core system "$(DXLIB)/d3d9" "$(DXLIB)/d3dx9" ;
+
+DLL pcfx : $(FXSRC) source/targets/pcfx.cpp ;
+DLL xefx : $(FXSRC) source/targets/xefx.cpp ;
+DLL ps3fx : $(FXSRC) source/targets/ps3fx.cpp ;
+
+Library fxConv : $(SRC) : stdafx.cpp ;
+
+}
+
+
+if $(PLATFORM) = PC
+{
+	   IncludePath \"$(DXSDK_PATH)/include\" ;
+	   Define NGL_GPU_D3D_PC NGL_GPU_D3D NGL_GPU_D3D9 ;
+}
+Define NGL_GPU_ONLY ;
+
+Library fx : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;
+
+
+
+if $(CFG_CONVERTER) = 1
+{
+# we need these to link the DLLs
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+}
+
+
+

@@ -1,0 +1,3 @@
+EnvironmentTextureSampler	g_sVehicleEnvironmentTexture	0	MIN_MAG_MIP_LINEAR
+LightEnvironmentTextureSampler	g_sLightEnvironmentTexture	1	MIN_MAG_MIP_LINEAR
+MeshTextureSampler	g_MeshTexture	1	MIN_MAG_MIP_LINEAR

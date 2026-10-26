@@ -1,0 +1,415 @@
+SubDir TOP Code Mercury Library Graphics Dynamic ;
+
+IncludePath
+$(SUBDIR)
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/FX/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/code/mercury/library/common/xt2/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC =
+[ Batch
+source/Block.cpp
+source/Interface.cpp
+source/ManagerInterface.cpp
+source/Renderer.cpp
+source/RenderNode.cpp
+source/TextureCoords.cpp
+source/DynamicVertexBuffer.cpp
+source/View.cpp
+source/cloth/Cloth.cpp
+source/fog/EffectInterface.cpp
+source/fog/Manager.cpp
+source/fog/generic/BasicManager.cpp
+source/fog/shape/All.cpp
+source/generic/XtInterface.cpp
+source/light/EffectInterface.cpp
+source/light/Manager.cpp
+source/light/Util.cpp
+source/light/generic/Shape2dBeam.cpp
+source/light/generic/Shape2dCross.cpp
+source/light/generic/Shape2dQuad.cpp
+source/light/generic/Shape3dBeam.cpp
+source/light/generic/Shape3dBeamCapped.cpp
+source/light/generic/Shape3dDecal.cpp
+source/light/generic/Shape3dQuad.cpp
+source/light/generic/XtInterface.cpp
+source/minimal/Minimal.cpp
+: StdAFx.h ]
+[ Batch
+source/particle/Block.cpp
+source/particle/EffectInterface.cpp
+source/particle/Effect3D.cpp
+source/particle/Emitter.cpp
+source/particle/EmitterList.cpp
+source/particle/Event.cpp
+: StdAfx.h ]
+[ Batch
+source/particle/EventInstance.cpp
+source/particle/EventInstanceHandleNamed.cpp
+source/particle/Force.cpp
+source/particle/Manager.cpp
+source/particle/Particle.cpp
+source/particle/SpawnMesh.cpp
+source/particle/Spawn.cpp
+source/particle/SpawnerInterface.cpp
+source/particle/SuperEffect.cpp
+source/particle/SuperSpawn.cpp
+source/particle/UserParticleLibrary.cpp
+source/particle/build/Sort.cpp
+source/particle/build/JobQueueDynamicVertexBufferBatcher.cpp
+<PPU>source/particle/build/VertexBuild.cpp
+<PPU>source/particle/build/VertexBuildShape2D.cpp
+<PPU>source/particle/build/VertexBuildShape3D.cpp
+<PPU>source/particle/build/VertexBuildSpriteRotating.cpp
+source/particle/shape/Beam.cpp
+source/particle/shape/BeamCapped.cpp
+source/particle/shape/Cube.cpp
+source/particle/shape/Decal.cpp
+source/particle/shape/Line.cpp
+source/particle/shape/Point.cpp
+source/particle/shape/PointLine.cpp
+source/particle/shape/PointSprite.cpp
+source/particle/shape/PointSpriteLine.cpp
+source/particle/shape/Pyramid.cpp
+source/particle/shape/Quad.cpp
+source/particle/shape/QuadAngleFade.cpp
+source/particle/shape/QuadAngleFadeLimitSize.cpp
+source/particle/shape/Sprite.cpp
+source/particle/shape/SpriteDirection.cpp
+source/particle/shape/SpriteLimitSize.cpp
+source/particle/shape/SpriteRotatingDefault.cpp
+source/particle/shape/SpriteRotatingLimitSize.cpp
+source/particle/shape/SpriteRotatingSoft.cpp
+source/particle/shape/SpriteRotatingSoftLimitSize.cpp
+source/particle/shape/UserShape3D.cpp
+: StdAfx.h ]
+source/particle/Generic/XtInterface.cpp
+source/particle/Generic/All.cpp
+source/particle/Generic/All2.cpp
+source/particle/Generic/All3.cpp
+[ Batch
+source/strip/EffectInterface.cpp
+source/strip/Emitter.cpp
+source/strip/Manager.cpp
+source/strip/Generic/Beam.cpp
+source/tracer/Manager.cpp
+source/tracer/EffectInterface.cpp
+source/tracer/Generic/XtInterface.cpp
+source/tracer/Generic/ShapeBeamCapped.cpp
+source/track/Track.cpp
+source/track/XtInterface.cpp
+source/track/Emitter.cpp
+: StdAfx.h ]
+;
+
+
+
+if $(DISABLE_BATCHING) = 1
+{
+	SRC = [ AutoGrist $(SRC) ] ;
+}
+
+SHADERSRC =
+include/dynamic/shaders/cloth/vsCloth.vsh
+include/dynamic/shaders/minimal/vsMinimal.vsh
+include/dynamic/shaders/strip/vsStrip.vsh
+include/dynamic/shaders/tracer/vsTracer.vsh
+include/dynamic/shaders/track/vsTrack.vsh
+;
+
+SHADERSRC += [ Shaders include/dynamic/shaders/cloth/psCloth.psh
+						include/dynamic/shaders/minimal/psMinimal.psh
+						include/dynamic/shaders/strip/psStrip.psh :
+						" "
+						"<HDR>-DHDR" 
+						"<HDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shaders include/dynamic/shaders/fog/vsFogVolume.vsh
+						include/dynamic/shaders/fog/vsFogCuboid.vsh
+						include/dynamic/shaders/fog/vsFogCylinder.vsh
+						include/dynamic/shaders/fog/vsFogEllipsoid.vsh :
+						"<Front>-DFRONT_FACES"
+						"<Back>-DBACK_FACES" ] ;
+SHADERSRC += [ Shaders include/dynamic/shaders/fog/psFogVolume.psh
+						 include/dynamic/shaders/fog/psFogCuboid.psh
+						 include/dynamic/shaders/fog/psFogCylinder.psh
+						 include/dynamic/shaders/fog/psFogEllipsoid.psh :
+						"<Front>-DFRONT_FACES"
+						"<FrontHDR>-DFRONT_FACES -DHDR"
+						"<FrontHDRU32>-DFRONT_FACES -DHDRU32"
+						"<FrontHDRU32Alpha>-DFRONT_FACES -DHDRU32 -DWRITE_ALPHA" 
+						"<Back>-DBACK_FACES"
+						"<BackHDR>-DBACK_FACES -DHDR"
+						"<BackHDRU32>-DBACK_FACES -DHDRU32"
+						"<BackHDRU32Alpha>-DBACK_FACES -DHDRU32 -DWRITE_ALPHA" ] ;
+SHADERSRC += [ Shaders include/dynamic/shaders/light/vsLight.vsh :
+						"<Default2d>-DVS_2D"
+						"<Default3d>-DVS_3D" ] ;
+SHADERSRC += [ Shaders include/dynamic/shaders/light/psLight.psh :
+						"<Default> "
+						"<DefaultHDR>-DHDR" 
+						"<DefaultHDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shader include/dynamic/shaders/tracer/psTracer.psh :
+						"<Default>-DDEFAULT_TEXTURE"
+						"<DefaultHDR>-DDEFAULT_TEXTURE -DHDR" 
+						"<DefaultHDRU32>-DDEFAULT_TEXTURE -DHDRU32"
+						"<Temperature>-DTEMPERATURE_TEXTURE"
+						"<TemperatureHDR>-DTEMPERATURE_TEXTURE -DHDR" 
+						"<TemperatureHDRU32>-DTEMPERATURE_TEXTURE -DHDRU32" ] ;
+SHADERSRC += [ Shaders include/dynamic/shaders/track/psTrack.psh :
+						"<Alpha> "
+						"<AlphaHDR>-DHDR" 
+						"<AlphaHDRU32>-DHDRU32"
+						"<Multiply>-DMULTIPLY" ] ;
+												
+local _types = 			"<>"
+						"<A8>-DA8"
+						"<PointSprite>-DPOINTSPRITE"
+						"<NormalMap>-DNORMALMAP"
+						"<Soft>-DDEPTH -DSOFT"
+						"<SoftA8>-DA8 -DSOFT -DDEPTH"
+						"<Decal>-DDECAL -DDEPTH" ;
+local _modes =			"<>"
+						"<HeightFog> -DHEIGHTFOG"
+						"<HDR> -DHDR"
+						"<HDRU32> -DHDRU32" ;
+SHADERSRC += [ Shader include/dynamic/shaders/particles/psParticle.psh :
+						[ Expand "$(_types)" : "$(_modes)" ] ] ;
+						
+_types =				"<UVW>-DUVW"
+						"<Decal>-DDEPTH -DDECAL"
+						"<Soft>-DDEPTH -DSOFT"
+						"<PointSprite>-DPOINTSPRITE"
+						"<>"
+						"<NormalMap>-DNORMALMAP"
+						"<NdotL>-DNDOTL"
+						"<2D>-DTWOD" ;
+_modes =				"<>"
+						"<PointLights> -DPOINTLIGHTS" ;
+SHADERSRC += [ Shader include/dynamic/shaders/particles/vsParticle.vsh :
+						[ Expand "$(_types)" : "$(_modes)" ] ] ;
+
+SPU_PARTICLE_VERTEXBUILD_SHAPE2D =
+	<SPU>source/Block.cpp
+	<SPU>source/particle/build/Sort.cpp
+	<SPU>source/particle/build/VertexBuildShape2D.cpp
+	<SPU>source/particle/shape/Beam.cpp
+	<SPU>source/particle/shape/BeamCapped.cpp
+	<SPU>source/particle/shape/Point.cpp
+	<SPU>source/particle/shape/PointLine.cpp
+	<SPU>source/particle/shape/PointSprite.cpp
+	<SPU>source/particle/shape/PointSpriteLine.cpp
+	<SPU>source/particle/shape/Sprite.cpp
+	<SPU>source/particle/shape/SpriteDirection.cpp
+	<SPU>source/particle/shape/SpriteLimitSize.cpp
+;
+
+SPU_PARTICLE_VERTEXBUILD_SPRITEROTATING =
+	<SPU>source/Block.cpp
+	<SPU>source/particle/build/Sort.cpp
+	<SPU>source/particle/build/VertexBuildSpriteRotating.cpp
+	<SPU>source/particle/shape/SpriteRotatingDefault.cpp
+	<SPU>source/particle/shape/SpriteRotatingLimitSize.cpp
+	<SPU>source/particle/shape/SpriteRotatingSoft.cpp
+	<SPU>source/particle/shape/SpriteRotatingSoftLimitSize.cpp
+;
+	
+SPU_PARTICLE_VERTEXBUILD_SHAPE3D =
+	<SPU>source/Block.cpp
+	<SPU>source/particle/build/Sort.cpp
+	<SPU>source/particle/build/VertexBuildShape3D.cpp
+	<SPU>source/particle/shape/Cube.cpp
+	<SPU>source/particle/shape/Decal.cpp
+	<SPU>source/particle/shape/Pyramid.cpp
+	<SPU>source/particle/shape/Quad.cpp
+	<SPU>source/particle/shape/QuadAngleFade.cpp
+	<SPU>source/particle/shape/QuadAngleFadeLimitSize.cpp
+	<SPU>source/particle/shape/UserShape3D.cpp
+;	
+
+					
+SPU_PARTICLE_UPDATE_SHAPE2DCOLLISION = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU__UP>source/particle/generic/Shape2DCollision.cpp
+;
+
+SPU_PARTICLE_SPAWN_SHAPE2DCOLLISION = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU>source/particle/Spawn.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+	<SPU__SP>source/particle/generic/Shape2DCollision.cpp
+;
+
+SPU_PARTICLE_UPDATE_SHAPE3DCOLLISION = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU__UP>source/particle/generic/Shape3DCollision.cpp
+;
+
+SPU_PARTICLE_SPAWN_SHAPE3DCOLLISION = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU>source/particle/Spawn.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+	<SPU__SP>source/particle/generic/Shape3DCollision.cpp
+;
+
+SPU_PARTICLE_UPDATE_SHAPE2DSIMPLE = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU__UP>source/particle/generic/Shape2DSimple.cpp
+;
+
+SPU_PARTICLE_SPAWN_SHAPE2DSIMPLE = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU>source/particle/Spawn.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+	<SPU__SP>source/particle/generic/Shape2DSimple.cpp
+;
+
+SPU_PARTICLE_UPDATE_SHAPE3DSIMPLE = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU__UP>source/particle/generic/Shape3DSimple.cpp
+;
+
+SPU_PARTICLE_SPAWN_SHAPE3DSIMPLE = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU>source/particle/Spawn.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+	<SPU__SP>source/particle/generic/Shape3DSimple.cpp
+;
+
+SPU_PARTICLE_UPDATE_SPRITEROTATING = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU__UP>source/particle/generic/SpriteRotating.cpp
+;
+
+SPU_PARTICLE_SPAWN_SPRITEROTATING = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU>source/particle/Spawn.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+	<SPU__SP>source/particle/generic/SpriteRotating.cpp
+;
+
+SPU_PARTICLE_UPDATE_SPRITEROTATINGCOLLISION = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU__UP>source/particle/generic/SpriteRotatingCollision.cpp
+;
+
+SPU_PARTICLE_SPAWN_SPRITEROTATINGCOLLISION = 
+	<SPU>source/Block.cpp
+	<SPU1>source/particle/Block.cpp
+	<SPU>source/particle/Spawn.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+	<SPU__SP>source/particle/generic/SpriteRotatingCollision.cpp
+;
+
+SPU_PARTICLE_EMITTERUPDATE = 
+	<SPU>source/particle/Emitter.cpp
+	<SPU>source/particle/SpawnMesh.cpp
+	<SPU>$(TOP)/Code/Mercury/Library/Common/System/Source/Misc/Random.cpp
+;
+
+SrcOptim $(SPU_PARTICLE_VERTEXBUILD_SHAPE3D) : -Os ;
+
+if $(PLATFORM) = PS3
+{
+	ObjectDefines <SPU__SP>source/particle/generic/Shape2DCollision.cpp : SPU_SPAWN ;
+	ObjectDefines <SPU__SP>source/particle/generic/Shape2DSimple.cpp : SPU_SPAWN ;
+	ObjectDefines <SPU__SP>source/particle/generic/Shape3DSimple.cpp : SPU_SPAWN ;
+	ObjectDefines <SPU__SP>source/particle/generic/Shape3DCollision.cpp : SPU_SPAWN ;
+	ObjectDefines <SPU__SP>source/particle/generic/SpriteRotating.cpp : SPU_SPAWN ;
+	ObjectDefines <SPU__SP>source/particle/generic/SpriteRotatingCollision.cpp : SPU_SPAWN ;
+}
+
+LinkLibraries	dynamic_particle_vertexbuild_shape2D
+				dynamic_particle_vertexbuild_shape3D
+				dynamic_particle_vertexbuild_spriterotating
+				
+				dynamic_particle_update_shape2dsimple
+				dynamic_particle_spawn_shape2dsimple
+				
+				dynamic_particle_update_shape2dcollision
+				dynamic_particle_spawn_shape2dcollision
+				
+				dynamic_particle_update_shape3dsimple
+				dynamic_particle_spawn_shape3dsimple
+				
+				dynamic_particle_update_shape3dcollision
+				dynamic_particle_spawn_shape3dcollision
+				
+				dynamic_particle_update_spriterotating
+				dynamic_particle_spawn_spriterotating
+				
+				dynamic_particle_update_spriterotatingcollision
+				dynamic_particle_spawn_spriterotatingcollision
+				
+				dynamic_particle_emitterupdate : core_spu $(SCE_PS3_ROOT)/target/spu/lib/libm.a ;
+
+AddSPUModule dynamic : dynamic_particle_vertexbuild_shape2D : $(SPU_PARTICLE_VERTEXBUILD_SHAPE2D) ;
+AddSPUModule dynamic : dynamic_particle_vertexbuild_shape3D : $(SPU_PARTICLE_VERTEXBUILD_SHAPE3D) ;
+AddSPUModule dynamic : dynamic_particle_vertexbuild_spriterotating : $(SPU_PARTICLE_VERTEXBUILD_SPRITEROTATING) ;
+
+AddSPUModule dynamic : dynamic_particle_update_shape2dcollision : $(SPU_PARTICLE_UPDATE_SHAPE2DCOLLISION) ;
+AddSPUModule dynamic : dynamic_particle_spawn_shape2dcollision : $(SPU_PARTICLE_SPAWN_SHAPE2DCOLLISION) ;
+
+AddSPUModule dynamic : dynamic_particle_update_shape2dsimple : $(SPU_PARTICLE_UPDATE_SHAPE2DSIMPLE) ;
+AddSPUModule dynamic : dynamic_particle_spawn_shape2dsimple : $(SPU_PARTICLE_SPAWN_SHAPE2DSIMPLE) ;
+
+AddSPUModule dynamic : dynamic_particle_update_shape3dcollision : $(SPU_PARTICLE_UPDATE_SHAPE3DCOLLISION) ;
+AddSPUModule dynamic : dynamic_particle_spawn_shape3dcollision : $(SPU_PARTICLE_SPAWN_SHAPE3DCOLLISION) ;
+
+AddSPUModule dynamic : dynamic_particle_update_shape3dsimple : $(SPU_PARTICLE_UPDATE_SHAPE3DSIMPLE) ;
+AddSPUModule dynamic : dynamic_particle_spawn_shape3dsimple : $(SPU_PARTICLE_SPAWN_SHAPE3DSIMPLE) ;
+
+AddSPUModule dynamic : dynamic_particle_update_spriterotating : $(SPU_PARTICLE_UPDATE_SPRITEROTATING) ;
+AddSPUModule dynamic : dynamic_particle_spawn_spriterotating : $(SPU_PARTICLE_SPAWN_SPRITEROTATING) ;
+
+AddSPUModule dynamic : dynamic_particle_update_spriterotatingcollision : $(SPU_PARTICLE_UPDATE_SPRITEROTATINGCOLLISION) ;
+AddSPUModule dynamic : dynamic_particle_spawn_spriterotatingcollision : $(SPU_PARTICLE_SPAWN_SPRITEROTATINGCOLLISION) ;
+
+AddSPUModule dynamic : dynamic_particle_emitterupdate : $(SPU_PARTICLE_EMITTERUPDATE) ;
+
+ImportCP render\\shaders\\psConstants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP psConstants.h : TOP Code Mercury Library Graphics Display ;
+
+ImportCP dynamic\\shaders\\constants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP dynamic\\shaders\\constants.h : TOP Code Mercury Library Graphics Display ;
+
+CPFile include/dynamic/shaders/psConstants.cp ;
+CPFile include/dynamic/shaders/vsConstants.cv ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library dynamic : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Display ;

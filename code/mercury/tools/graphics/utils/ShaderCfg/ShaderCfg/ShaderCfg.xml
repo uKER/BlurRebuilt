@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+******************************************************
+*** Test Shader Config File
+******************************************************
+-->
+
+<!-- ************** -->
+<!-- Shader Defines -->
+<!-- ************** -->
+
+<Define 
+	name ="UseAlbedo" 
+	define = "USE_ALBEDO" 
+	value =""
+	vertex_shader ="true"
+	pixel_shader ="true"
+	text_id="Tex"
+	/>
+
+<Define 
+	name ="UseCubeMap" 
+	define = "USE_CUBEMAP" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Cub"
+	/>
+
+<Define
+	name ="UseHighlight"
+	define = "USE_HIGHLIGHT"
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Hlt"
+	/>
+
+<Define 
+	name ="UseNormalMap" 
+	define = "USE_NORMALMAP" 
+	value =""
+	vertex_shader ="true"
+	pixel_shader ="true"
+	text_id="Nrm"
+	/>
+
+<Define 
+	name ="UseEmissive" 
+	define = "USE_EMISSIVE" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Emi"
+	/>
+
+<Define 
+	name ="UseNightEmissive" 
+	define = "USE_NIGHT_EMISSIVE" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="NEm"
+	/>
+
+
+<Define 
+	name ="UseSkinShader" 
+	define = "SKIN_SHADER" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Ski"
+	/>
+
+<Define 
+	name ="UseEyeShader" 
+	define = "EYE_SHADER" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Eye"
+	/>
+
+<Define 
+	name ="UseFabricShader" 
+	define = "MATERIAL_SHADER" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Fab"
+	/>
+
+<Define 
+	name ="UseFlowShader" 
+	define = "FLOW_SHADER" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="Flo"
+	/>
+
+<Define 
+	name ="UseSkinnedMesh" 
+	define = "USE_SKINNED_MESH" 
+	value =""
+	vertex_shader ="true"
+	pixel_shader ="false"
+	text_id="Skn"
+	/>
+
+<Define 
+	name ="UseScale" 
+	define = "USE_SCALE" 
+	value =""
+	vertex_shader ="true"
+	pixel_shader ="false"
+	text_id="Sca"
+	/>
+
+
+<Define 
+	name ="UseDefaultLighting" 
+	define = "USE_DEFAULT_LIGHTING" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="LDe"
+	/>
+
+<Define 
+	name ="UseSHLighting" 
+	define = "USE_SH_LIGHTING" 
+	value =""
+	vertex_shader ="false"
+	pixel_shader ="true"
+	text_id="LSH"
+	/>
+
+<Define 
+	name ="UseLightmapLighting" 
+	define = "USE_LIGHTMAP" 
+	value =""
+	vertex_shader ="true"
+	pixel_shader ="true"
+	text_id="LLm"
+	/>
+
+<Define 
+	name ="UseSunglowLighting" 
+	define = "SUNGLOW_SHADER" 
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="Sun"
+	/>
+
+<Define 
+	name ="UseGlowLighting" 
+	define = "USE_GLOW" 
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="Glo"
+	/>
+
+<Define 
+	name ="PointLights1" 
+	define = "NUM_POINT_LIGHTS_1" 
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="Pl1"
+	/>
+
+<Define 
+	name ="PointLights4" 
+	define = "NUM_POINT_LIGHTS_4" 
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="Pl4"
+	/>
+
+<Define 
+	name ="UseShadowMap" 
+	define = "USE_SHADOWMAP" 
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="true"
+	text_id="Sm1"
+  />
+
+<Define 
+	name ="UseBlendmodeSolid" 
+	define = "USE_BLENDMODE_SOLID" 
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="BSo"
+  />
+
+<Define
+	name ="UseBlendmodePunchthrough"
+	define = "USE_BLENDMODE_PUNCHTHROUGH"
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="BPt"
+  />
+
+<Define
+	name ="UseBlendmodeAlpha"
+	define = "USE_BLENDMODE_ALPHA"
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="BAl"
+  />
+
+<Define
+	name ="NoSunLighting"
+	define = "NO_SUN_LIGHTING"
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="LNS"
+  />
+
+<Define
+	name ="NoInteriorLighting"
+	define = "NO_INTERIOR_LIGHTING"
+	value =""
+	pixel_shader ="true"
+	vertex_shader ="false"
+	text_id="LNI"
+  />
+
+<!-- **************** -->
+<!-- Shader Fragments -->
+<!-- **************** -->
+
+<Fragment name = "Default" >
+	<Condition type ="Required" id = "Def"/>
+  <!-- <Condition type "Exclude" id "SomeId"/> -->
+  <!-- <Condition type "Mutex" id "SomeOtherFragment"/> -->
+</Fragment>
+
+<Fragment name = "Textured" >
+	<Condition type ="Required" id= "Tex"/>
+
+	<Define name = "UseAlbedo" />
+</Fragment>
+
+<Fragment name = "CubeMap" >
+	<Condition type ="Required" id= "Cub"/>
+
+	<Define name = "UseCubeMap" />
+</Fragment>
+
+<Fragment name = "Highlight" >
+	<Condition type ="Required" id= "Hlt"/>
+
+	<Define name = "UseHighlight" />
+</Fragment>
+
+<Fragment name = "NormalMap" >
+	<Condition type ="Required" id= "Nrm"/>
+
+	<Define name = "UseNormalMap" />
+</Fragment>
+
+<Fragment name = "Emissive" >
+	<Condition type ="Required" id = "Emi"/>
+
+	<Define name = "UseEmissive" />
+</Fragment>
+
+<Fragment name = "Night_Emissive">
+
+	<Condition type ="Required" id = "NEm"/>
+  <Condition type ="Mutex" id = "Night_Emissive"/>
+  <Condition type ="Mutex" id = "Skinned"/>
+
+  <Define name = "UseNightEmissive" />
+</Fragment>
+
+<Fragment name = "SkinShader" >
+	<Condition type ="Required" id= "Ski"/>
+
+  <Condition type ="Exclude" id= "LightMp"/>
+  <Condition type ="Exclude" id= "Lmp"/>
+
+  <Define name = "UseAlbedo" />
+	<Define name = "UseCubeMap" />
+  <Define name = "UseHighlight" />
+	<Define name = "UseNormalMap" />
+	<Define name = "UseSkinShader" />
+</Fragment>
+<Fragment name = "Fabric">
+	<Condition type ="Required" id= "Fab"/>
+
+	<Define name = "UseAlbedo" />
+  <Define name = "UseCubeMap" />
+  <Define name = "UseHighlight" />
+  <Define name = "UseNormalMap" />
+  <Define name = "UseFabricShader" />
+</Fragment>
+
+<Fragment name = "Eye" >
+  <Condition type ="Required" id= "Eye"/>
+
+  <Condition type ="Exclude" id= "LightMp"/>
+  <Condition type ="Exclude" id= "Lmp"/>
+
+  <Define name = "UseAlbedo" />
+  <Define name = "UseCubeMap" />
+  <Define name = "UseHighlight" />
+	<Define name = "UseNormalMap" />
+	<Define name = "UseEyeShader" />
+</Fragment>
+
+<Fragment name = "Flo" >
+  <Condition type ="Required" id= "Flo"/>
+  <Condition type ="Required" id= "LightMp"/>
+
+  <Condition type ="Mutex"    id= "Skinned"/>
+
+  <Condition type ="Mutex"    id= "Flo"/>
+
+  <Define name = "UseAlbedo" />
+  <Define name = "UseCubeMap" />
+  <Define name = "UseHighlight" />
+  <Define name = "UseNormalMap" />
+  <Define name = "UseFlowShader" />
+</Fragment>
+
+
+<Fragment name = "Glow" >
+	<Condition type ="Required" id= "Glo"/>
+
+  <Define name = "UseAlbedo" />
+  <Define name = "UseGlowLighting" />
+</Fragment>
+
+<Fragment name = "SunGlow" >
+	<Condition type ="Required" id= "Sun"/>
+  <Condition type ="Mutex"    id= "Skinned"/>
+
+  <Define name = "UseAlbedo" />
+	<Define name = "UseSunglowLighting" />
+</Fragment>
+
+<Fragment name = "Default_Lighting" >
+  <Condition type ="Required" id= "LightDe"/>
+
+  <Define name ="UseDefaultLighting" />
+</Fragment>
+
+<Fragment name = "Default_Lighting2" >
+  <Condition type ="Required" id= "LightMp"/>
+  <Condition type ="Required" id= "LDe"/>
+
+  <Define name ="UseDefaultLighting" />
+</Fragment>
+
+<Fragment name = "SH_Lighting" >
+	<Condition type ="Required" id= "LightSh"/>
+
+	<Define name ="UseSHLighting" />
+</Fragment>
+
+<Fragment name = "Lightmap_Lighting" >
+  <Condition type ="Required" id= "LightMp"/>
+  <Condition type ="Required" id= "Lmp"/>
+  
+  <Condition type ="Mutex"    id= "Skinned"/>
+  <Condition type ="Mutex"    id= "Glow"/>
+  <Condition type ="Mutex"    id= "SunGlow"/>
+
+  <Define name ="UseLightmapLighting" />
+</Fragment>
+
+<Fragment name = "Scaled">
+	<Condition type ="Required" id= "Sca"/>
+
+	<Define name = "UseScale" />
+</Fragment>
+
+<Fragment name = "Skinned">
+	<Condition type ="Required" id= "Skn"/>
+
+	<Define name = "UseSkinnedMesh" />
+</Fragment>
+
+<Fragment name = "PointLights1">
+  <Condition type ="Required" id= "Pl1"/>
+  <Condition type ="Mutex" id= "Glow"/>
+  <Condition type ="Mutex" id= "SunGlow"/>
+
+  <Define name = "PointLights1" />
+</Fragment>
+
+<Fragment name = "PointLights4">
+  <Condition type ="Required" id= "Pl4"/>
+  <Condition type ="Mutex" id= "Glow"/>
+  <Condition type ="Mutex" id= "SunGlow"/>
+
+  <Define name = "PointLights4" />
+</Fragment>
+
+<Fragment name = "ShadowMap">
+  <Condition type ="Required" id= "Sm1"/>
+
+  <Define name = "UseShadowMap" />
+</Fragment>
+
+<Fragment name = "BlendmodeSolid">
+  <Condition type ="Required" id= "BSo"/>
+
+  <Define name = "UseBlendmodeSolid" />
+</Fragment>
+
+<Fragment name = "BlendmodePunchthrough">
+  <Condition type ="Required" id= "BPt"/>
+
+  <Define name = "UseBlendmodePunchthrough" />
+</Fragment>
+
+<Fragment name = "BlendmodeAlpha">
+  <Condition type ="Required" id= "BAl"/>
+
+  <Define name = "UseBlendmodeAlpha" />
+</Fragment>
+
+<Fragment name = "NoSunLighting">
+  <Condition type ="Required" id= "LightMpNoSun"/>
+
+  <Define name = "NoSunLighting" />
+</Fragment>
+
+<Fragment name = "NoInteriorLighting">
+  <Condition type ="Required" id= "LightMpNoInt"/>
+
+  <Define name = "NoInteriorLighting" />
+</Fragment>
+ 

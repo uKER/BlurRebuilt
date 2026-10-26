@@ -1,0 +1,25 @@
+
+SubDir TOP Code Tools aftkspeedtree aftkspeedtree ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkut/aftkutlib/include
+$(TOP)/code/tools/aftkspeedtree/aftkspeedtree/include
+$(TOP)/libs/vendor/speedtree/4.1e/include
+$(TOP)/libs/vendor/xerces/2.5.0/src/
+;
+
+SRC =
+./source/aftkspeedtree/AftkSpeedTree.cpp
+./source/aftkspeedtree/AftkSpeedTreeCleanup.cpp
+./source/aftkspeedtree/AftkSpeedTreeData.cpp
+./source/aftkspeedtree/AftkSpeedTreeInstance.cpp
+./source/aftkspeedtree/AftkSpeedTreeLodProcessor.cpp
+./source/aftkspeedtree/AftkSpeedTreeMesh.cpp
+./source/aftkspeedtree/AftkSpeedTreeUtility.cpp
+;
+
+Library aftkspeedtree : $(SRC) : stdafx.cpp ;

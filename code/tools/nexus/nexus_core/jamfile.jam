@@ -1,0 +1,36 @@
+SubDir TOP Code Tools Nexus Nexus_core ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(SUBDIR)/include
+$(SUBDIR)/source
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/common
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/code/Tools/Aftkut/AftkUtLib/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/Code/Tools/tex_atlas/include
+$(TOP)/Code/Tools/file_tag_db/file_tag_db/include
+$(TOP)/Code/Tools/nexus/nexus_core/include
+$(TOP)/Code/Tools/nexus/nexus_render/include
+$(TOP)/Code/vendor/lua/lua-5.0.2/include
+$(TOP)/libs/vendor/prof-uis/2.26/include
+\"$(DXSDK_PATH)/include\" 
+;
+SRC =
+source/nexus_core/AftkTasks.cpp
+source/nexus_core/AftkUtTasks.cpp
+source/nexus_core/AlienBrainTasks.cpp
+source/nexus_core/Core.cpp
+source/nexus_core/CSGenTasks.cpp
+source/nexus_core/GlobalTasks.cpp
+source/nexus_core/MayaTasks.cpp
+source/nexus_core/Progress.cpp
+;
+
+Library nexus_core : $(SRC) : stdafx.cpp ;

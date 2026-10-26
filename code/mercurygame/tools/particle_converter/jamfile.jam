@@ -1,0 +1,37 @@
+SubDir TOP Code MercuryGame Tools particle_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+CFG_CONVERTER = 1 ;
+Define CFG_CONVERTER=1 ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/code/mercury/library/graphics/dynamic/include
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/Main.cpp
+source/PreProcScene.cpp
+source/ParticleConverter.cpp
+;
+
+LinkLibraries particle_converter : core misc_shared system tools_shared aftk zlib $(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+		
+Application particle_converter : $(SRC) : stdafx.cpp ;
+ExportVcproj particle_converter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Aftk Aftk ;

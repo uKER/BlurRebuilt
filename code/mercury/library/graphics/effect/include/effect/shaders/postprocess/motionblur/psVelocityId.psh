@@ -1,0 +1,67 @@
+#include "Effect/Shaders/Constants.h"
+#include "..\..\psCommon.h"
+
+#if defined(PLATFORM_PS3) || defined(PLATFORM_PC)
+#define USE_MATRIX_TEXTURE
+#endif
+
+float4		g_vSettings		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vIdMask		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_1);
+float4		g_vDepthScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_2);
+#if !defined(USE_MATRIX_TEXTURE)
+float4x4	g_mPalette[32]	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_4);
+#endif
+
+sampler2D	g_tDepth		: register(s0);
+sampler2D	g_tId			: register(s1);
+#if defined(USE_MATRIX_TEXTURE)
+sampler2D	g_tMatrices		: register(s2);
+#endif
+
+#define		g_fMax			g_vSettings.x
+#define		g_fMatrixStep	g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+	
+	float		fDepth			= SampleDepthBuffer(g_tDepth, input.m_TexCoord, g_vDepthScale);
+	float4		vId				= tex2D(g_tId, input.m_TexCoord);
+	float		fId				= dot(g_vIdMask, vId);
+#if defined(USE_MATRIX_TEXTURE)
+	float		fU				= fId * 255.0f * 4.0f * g_fMatrixStep;
+	float4x4	mTransform;
+				mTransform[0]	= tex2D(g_tMatrices, float2(fU + 0.5f * g_fMatrixStep, 0.5f));
+				mTransform[1]	= tex2D(g_tMatrices, float2(fU + 1.5f * g_fMatrixStep, 0.5f));
+				mTransform[2]	= tex2D(g_tMatrices, float2(fU + 2.5f * g_fMatrixStep, 0.5f));
+				mTransform[3]	= tex2D(g_tMatrices, float2(fU + 3.5f * g_fMatrixStep, 0.5f));
+#else
+	int			iId				= round(fId * 255.0f);
+	float4x4	mTransform		= g_mPalette[iId];
+#endif
+	
+	float4		vPosition		= float4(input.m_TexCoord.x * fDepth, input.m_TexCoord.y * fDepth, fDepth, 1.0f);
+				vPosition		= mul(vPosition, mTransform);
+				vPosition.xy	/= vPosition.w;
+	
+	float2		vDelta			= vPosition.xy - input.m_TexCoord;
+				vDelta			= saturate(0.5f * vDelta * (1.0f / g_fMax) + 0.5f);
+				
+	output.m_Colour = float4(vDelta, 0.0f, 1.0f);
+
+#endif
+
+	return output;
+}

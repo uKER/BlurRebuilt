@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="bdNet"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="PSP Debug|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/debug"
+			IntermediateDirectory="../obj/psp-adhoc-sn/debug/bdNet"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="PSP Release|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/release"
+			IntermediateDirectory="../obj/psp-adhoc-sn/release/bdNet"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<File RelativePath="bdNet-psp-adhoc.cpp"></File>
+<File RelativePath="bdNet.h"></File>
+<File RelativePath="bdNetStartParams.cpp"></File>
+<File RelativePath="bdNetStartParams.h"></File>
+<Filter Name = "bdLANDiscovery" Filter="">
+<File RelativePath="bdLANDiscovery\bdGameInfo.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdGameInfo.h"></File>
+<File RelativePath="bdLANDiscovery\bdGameInfoFactory.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdGameInfoFactory.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscovery.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryClient-psp-adhoc.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryClient.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryListener.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryListener.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryServer-psp-adhoc.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryServer.h"></File>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

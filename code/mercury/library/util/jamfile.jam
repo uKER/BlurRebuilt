@@ -1,0 +1,5 @@
+SubDir TOP Code Mercury Library Util ;
+
+SubInclude TOP Code Mercury Library Util input ;
+SubInclude TOP Code Mercury Library Util PakFileSystem ;
+#SubInclude TOP Code Mercury Library Util spatial_hierarchy ;

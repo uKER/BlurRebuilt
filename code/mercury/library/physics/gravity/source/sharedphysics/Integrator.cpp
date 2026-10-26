@@ -1,0 +1,5 @@
+#include "StdAfx.h"
+#include "gravity/sharedphysics/RigidBody.h"
+//#include "gravity/sharedphysics/RigidBody.inl"
+#include "gravity/sharedphysics/Integrator.h"
+//#include "gravity/sharedphysics/Integrator.inl"

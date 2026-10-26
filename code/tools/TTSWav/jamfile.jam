@@ -1,0 +1,34 @@
+SubDir TOP Code Tools TTSWav ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/util/tools_shared/include
+$(TOP)/code/vendor/tclap/current
+$(TOP)/libs/vendor/ms_speech_sdk/5.1/include
+;
+
+SRC =
+source/TTSWav.cpp
+source/Main.cpp
+;
+
+LINKLIBS += sapi.lib ;
+LINKFLAGS += /LIBPATH:$(TOP)/libs/vendor/ms_speech_sdk/5.1/lib/i386 ;
+
+CCFLAGS += "/Zc:wchar_t-" ;	##without this MS Speech won't work
+
+LinkLibraries TTSWav : core system tools_shared ;
+		
+Application TTSWav : $(SRC) : stdafx.cpp ;
+ExportVcproj TTSWav ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+

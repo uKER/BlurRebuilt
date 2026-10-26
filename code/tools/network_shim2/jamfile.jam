@@ -1,0 +1,47 @@
+SubDir TOP Code Tools Network_Shim2 ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/code/tools/aftkconv/include
+;
+
+SRC =
+source/GetLatestTools.cpp
+source/Main.cpp
+source/NetworkShim.cpp
+source/Options.cpp
+source/Utility.cpp
+source/actions/Action.cpp
+source/actions/AftkSceneCollectionAction.cpp
+source/actions/ScmAction.cpp
+source/actions/UberCopyAction.cpp
+source/assets/AftkSceneCollection.cpp
+source/helpers/XmlHelper.cpp
+source/processes/AlienBrainWrapper.cpp
+source/processes/NexusExportWrapper.cpp
+source/processes/SubversionWrapper.cpp
+source/processes/UberCopyWrapper.cpp
+;
+
+LINKLIBS += ws2_32.lib ;
+LinkLibraries network_shim2 : core system tools_shared file_tag_db ;
+		
+Application network_shim2 : $(SRC) : stdafx.cpp ;
+Depends $(BIZARRE_ROOT)/tools/common_tools_wip/win32/network_shim/network_shim2.exe : $(BIZARRE_ROOT)/tools/common_tools_wip/win32/network_shim/ ;
+MkDir $(BIZARRE_ROOT)/tools/common_tools_wip/win32/network_shim/ ;
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/network_shim/network_shim2.exe : network_shim2.exe ;
+
+ExportVcproj network_shim2 ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP code tools file_tag_db file_tag_db ;

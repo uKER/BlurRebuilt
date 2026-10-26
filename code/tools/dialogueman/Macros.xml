@@ -1,0 +1,19 @@
+<root>
+	<vars>
+		<var name="BIZARRE_PROJECT" value="Amax"/>
+		<var name="BIZARRE_BRANCH_VERSION" value="Retail"/>
+		<var name="BIZARRE_SERVER_NAME" value=""/>
+		<var name="BIZARRE_COMMON_TOOLS" value="tools\common_tools" />
+		<var name="BIZARRE_COMMON_BIN" value="tools\common_bin" />
+
+		<var name ="BIZARRE_TITLE" value="Amax"/>
+        	<var name ="BIZARRE_BUILDSERVER" value="%BIZARRE_SERVER_NAME%\Amax\Game\Retail"/>
+        	<var name ="BIZARRE_BUILDBANK" value="%BIZARRE_SERVER_NAME%\Amax\Builds"/>
+        	<var name ="BIZARRE_LEVELPATH" value="levels"/>
+        	<var name ="BIZARRE_EXPORTPATH" value="%BIZARRE_SERVER_NAME%\alienbrainWork\Amax\working"/>
+        	<var name ="BIZARRE_EXPORTPATH2" value="levels"/>
+        	<var name ="BIZARRE_BUILDSTORE" value="%BIZARRE_SERVER_NAME%\BUILDSTORE"/>
+		<var name ="BIZARRE_EXCEL" value="%BIZARRE_SERVER_NAME%\Amax\BuildManagement\Files"/>
+	</vars>
+	
+</root>

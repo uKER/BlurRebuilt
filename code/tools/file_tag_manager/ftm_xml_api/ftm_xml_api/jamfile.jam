@@ -1,0 +1,18 @@
+SubDir TOP Code Tools File_Tag_Manager Ftm_Xml_Api Ftm_Xml_Api ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Common
+$(TOP)/libs/vendor/xerces/2.5.0/src
+;
+
+Define _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE ;
+
+SRC =
+ftmwrapper.cpp
+TexDatabase.cpp
+;
+
+Library ftm_xml_api : source/ftm_xml_api/$(SRC) : stdafx.cpp ;

@@ -1,0 +1,41 @@
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+float4		g_vSunDir				: register(CCP_RENDER_SETTINGS);
+float4		g_vRayleighSunIntensity	: register(CCP_RENDER_SETTINGS_1);
+float4		g_vMieSunIntensity		: register(CCP_RENDER_SETTINGS_2);
+float4		g_vMieG					: register(CCP_RENDER_SETTINGS_3);
+sampler2D	g_tRayleigh				: register(s0);
+sampler2D	g_tMie					: register(s1);
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+	float3	m_ViewVector	: TEXCOORD1;
+};
+
+float GetMiePhase(float fCos, float fCos2)
+{
+	return g_vMieG.x * (1.0f + fCos2) / pow(g_vMieG.y - g_vMieG.z * fCos, 1.5f);
+}
+
+float GetRayleighPhase(float fCos2)
+{
+	return 0.75f + 0.75f * fCos2;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float3	vRayleighColour	= tex2D(g_tRayleigh, input.m_TexCoord).rgb * g_vRayleighSunIntensity.rgb;
+	float3	vMieColour		= tex2D(g_tMie, input.m_TexCoord).rgb * g_vMieSunIntensity.rgb;
+
+	float	fCos			= dot(g_vSunDir.xyz, normalize(input.m_ViewVector.xyz));
+	float	fCos2			= fCos * fCos;
+
+	float	fMiePhase		= GetMiePhase(fCos, fCos2);
+	float	fRayleighPhase	= GetRayleighPhase(fCos2);
+	
+	float3	vColour			= fRayleighPhase * vRayleighColour + fMiePhase * vMieColour;
+	
+	return GetExposure(float4(vColour, 1.0f));
+}

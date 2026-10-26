@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompileTimeAnalysis", "CompileTimeAnalysis.csproj", "{962AFB25-A9A9-48F0-BDF5-4F94FC822E11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelXML", "..\Managed Helper Libraries\ExcelXML\ExcelXML.csproj", "{9AF9E184-19A6-4813-A108-AD6AE78B692F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{962AFB25-A9A9-48F0-BDF5-4F94FC822E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962AFB25-A9A9-48F0-BDF5-4F94FC822E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962AFB25-A9A9-48F0-BDF5-4F94FC822E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962AFB25-A9A9-48F0-BDF5-4F94FC822E11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AF9E184-19A6-4813-A108-AD6AE78B692F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AF9E184-19A6-4813-A108-AD6AE78B692F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AF9E184-19A6-4813-A108-AD6AE78B692F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AF9E184-19A6-4813-A108-AD6AE78B692F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

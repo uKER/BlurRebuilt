@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UtilityExamples", "Containers.vcproj", "{C6EAE945-3E01-4152-B03F-7CC3B409E124}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug_MS_x86_32 = Debug_MS_x86_32
+		Release_GCC_PPC_64 = Release_GCC_PPC_64
+		Release_GCC_x86_32 = Release_GCC_x86_32
+		Release_MS_x86_32 = Release_MS_x86_32
+		Release_MS_x86_64 = Release_MS_x86_64
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Debug_MS_x86_32.ActiveCfg = Debug_MS_x86_32|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Debug_MS_x86_32.Build.0 = Debug_MS_x86_32|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_GCC_PPC_64.ActiveCfg = Release_GCC_PPC_64|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_GCC_PPC_64.Build.0 = Release_GCC_PPC_64|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_GCC_x86_32.ActiveCfg = Release_GCC_x86_32|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_GCC_x86_32.Build.0 = Release_GCC_x86_32|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_MS_x86_32.ActiveCfg = Release_MS_x86_32|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_MS_x86_32.Build.0 = Release_MS_x86_32|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_MS_x86_64.ActiveCfg = Release_MS_x86_64|Win32
+		{C6EAE945-3E01-4152-B03F-7CC3B409E124}.Release_MS_x86_64.Build.0 = Release_MS_x86_64|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

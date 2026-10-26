@@ -1,0 +1,31 @@
+xt
+	field __id "CBEA74DA"
+	field __name "ColourStyles.Purple"
+	field __pack "F2519802"
+	field __type "UIColourStyle"
+	block bottom_left
+		field a "1"
+		field b "0.816"
+		field g "0.0588"
+		field r "0.588"
+	end
+	block bottom_right
+		field a "1"
+		field b "0.816"
+		field g "0.0588"
+		field r "0.588"
+	end
+	field name "Purple"
+	block top_left
+		field a "1.000"
+		field b "0.816"
+		field g "0.0588"
+		field r "0.588"
+	end
+	block top_right
+		field a "1"
+		field b "0.816"
+		field g "0.0588"
+		field r "0.588"
+	end
+end

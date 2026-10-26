@@ -1,0 +1,77 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vSettings	: register(CCP_RENDER_SETTINGS);
+float4		g_vScale	: register(CCP_RENDER_SETTINGS_1);
+float4		g_vBias		: register(CCP_RENDER_SETTINGS_2);
+float4		g_vFar		: register(CCP_RENDER_SETTINGS_3);
+float4		g_vDepth	: register(CCP_RENDER_SETTINGS_4);
+
+sampler2D	g_tColour	: register(s0);
+sampler2D	g_tSmall	: register(s1);
+sampler2D	g_tLarge	: register(s2);
+sampler2D	g_tDepth	: register(s3);
+
+#define		g_vPixelSize	g_vSettings.xy
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+real4 GetSmallBlurSample(float2 uv)
+{
+	real4	vUV0	= uv.xyxy + float4(-1.5f, -0.5f, -0.5f, +1.5f) * g_vSettings.xyxy;
+	real4	vUV1	= uv.xyxy + float4(+0.5f, -1.5f, +1.5f, +0.5f) * g_vSettings.xyxy;
+	real4	vColour = 0.0f;
+			vColour	+= tex2D(g_tColour, vUV0.xy);
+			vColour	+= tex2D(g_tColour, vUV0.zw);
+			vColour	+= tex2D(g_tColour, vUV1.xy);
+			vColour	+= tex2D(g_tColour, vUV1.zw);
+			vColour *= 4.0f / 17.0f;
+	return	vColour;
+}
+
+real4 GetMediumBlurSample(float2 uv)
+{
+	return tex2D(g_tSmall, uv);
+}
+
+real4 GetLargeBlurSample(float2 uv)
+{
+	return tex2D(g_tLarge, uv);
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	real4	vSmall		= GetSmallBlurSample(input.m_TexCoord);
+	real4	vMedium		= GetMediumBlurSample(input.m_TexCoord);
+	real4	vLarge		= GetLargeBlurSample(input.m_TexCoord);
+
+	float	fDepth		= SampleDepthBuffer(g_tDepth, input.m_TexCoord, g_vDepth);
+	
+	real	fNearCoC	= vMedium.a;
+	real	fFarCoC		= saturate(g_vFar.x * fDepth + g_vFar.y);
+	real	fCoC		= max(fNearCoC, fFarCoC * g_vFar.z);
+	
+	real4	vWeights	= saturate(fCoC * g_vScale + g_vBias);
+			vWeights.yz	= min(vWeights.yz, 1.0f - vWeights.xy);
+	
+	real3	vColour		= vWeights.y * vSmall.rgb + vWeights.z * vMedium.rgb + vWeights.w * vLarge.rgb;
+	real	fAlpha		= dot(vWeights.yzw, float3(16.0f / 17.0f, 1.0f, 1.0f));
+
+#if defined(XB2)
+			vColour		= vColour * 32.0f;
+#endif
+
+	output.m_Colour		= real4(vColour, fAlpha);
+
+	return output;
+}

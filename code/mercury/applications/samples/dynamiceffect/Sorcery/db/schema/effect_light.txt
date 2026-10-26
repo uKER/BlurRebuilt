@@ -1,0 +1,63 @@
+// enums
+
+enum Light_Shape
+{
+	Beam2d,
+	Cross2d,
+	Quad2d,
+	Beam3d,
+	BeamCapped3d,
+	Decal3d,
+	Quad3d,
+};
+
+enum Light_Occlusion
+{
+	None,
+	Query,
+	Custom,
+};
+
+// helper classes
+
+type Light_Instance
+{
+	Light_Effect&	effect;
+	Effect_F32Vec3	transform0;
+	Effect_F32Vec3	transform1;
+	Effect_F32Dim2	size;
+	f32		intensity;
+	u32		textureId;
+};
+
+// records
+
+[Record] type Light_Effect
+{
+	sz8		name;
+	Light_Shape	shapeType;
+	sz8		texture;
+	Effect_U32Dim2	atlasSize;
+	f32		cullDistance;
+
+    [Data(path: viewCurve, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:200)]
+    control Graph;
+	Effect_HermiteKeyFrame[] viewCurve;
+
+    [Data(path: distanceCurve, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:200)]
+    control Graph;
+	Effect_HermiteKeyFrame[] distanceCurve;
+
+    [Data(path: positionCurve, xField:time, yField:value, tanIn:inTangent, tanOut:outTangent, xMin:0, xMax:1, yMin:0, yMax:1, xSize:400, ySize:200)]
+    control Graph;
+	Effect_HermiteKeyFrame[] positionCurve;
+
+};
+
+[Record] type Light_Object
+{
+	sz8			name;
+	Effect_F32Vec3		size;
+	Light_Occlusion		occlusion;
+	Light_Instance[]	instances;
+};

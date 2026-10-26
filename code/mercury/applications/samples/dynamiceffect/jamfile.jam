@@ -1,0 +1,71 @@
+SubDir TOP Code Mercury Applications Samples DynamicEffect ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+./dynamiceffect_$(PLATFORM)
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Graphics/Display/include
+$(MERCURY)/Graphics/Dynamic/include
+$(MERCURY)/Graphics/Render/include
+$(MERCURY)/Samples/include
+$(MERCURY)/Common/Misc_Shared/include
+$(MERCURY)/Common/Xt2/include
+;
+
+Define OBJ_SHADERS ;
+
+SRC =
+./DynamicEffect_$(PLATFORM)/main.cpp
+#./source/Sprite2D.cpp
+./source/CustomHDR.cpp
+./source/ClothRenderer.cpp
+$(MERCURY)/samples/source/GameFunctionality.cpp
+$(MERCURY)/samples/source/section/SectionParticles.cpp
+$(MERCURY)/samples/source/section/SectionPostEffects.cpp
+$(MERCURY)/samples/source/section/SectionSkyDome.cpp
+$(MERCURY)/samples/source/section/SectionLightEffect.cpp
+$(MERCURY)/samples/source/section/SectionTracerFire.cpp
+$(MERCURY)/samples/source/section/SectionDynamicEffect.cpp
+<1>$(MERCURY)/graphics/dynamic/source/generic/XtInterface.cpp
+<2>$(MERCURY)/graphics/dynamic/source/light/Generic/XtInterface.cpp
+<3>$(MERCURY)/graphics/dynamic/source/particle/Generic/XtInterface.cpp
+<4>$(MERCURY)/graphics/dynamic/source/tracer/Generic/XtInterface.cpp
+;
+
+LinkLibraries DynamicEffect :
+		core system display dynamic render zlib samples misc_shared xtgame
+		;
+		
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+XenonRemoteLocation dynamiceffect ;
+
+Application DynamicEffect : $(SRC) ;
+ExportVcproj DynamicEffect ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Dynamic ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+
+
+
+######
+
+# TODO: fix precompiled headers

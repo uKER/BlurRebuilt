@@ -1,0 +1,150 @@
+SubDir TOP code mercury library common xtwin ;
+
+# SupportedTargets WIN32_TOOL WIN32_TOOL_2008 ;
+
+XDK = [ ConvertDOSPath $(XEDK) ] ;
+
+IncludePath
+	$(SUBDIR)/include
+	$(SUBDIR)/source
+	$(TOP)/Code/Mercury/Library/Common/Core/include
+	$(TOP)/Code/Mercury/Library/Common/System/include
+	$(TOP)/Code/Mercury/Library/Common/Xt2/include
+	$(TOP)/Code/Tools/svn_wrapper/include
+	\"$(XDK)/include/win32/vs2005\"
+;
+
+SRC_WIN = 
+	./source/CommonControls/ColourPalette.cpp
+	./source/CommonControls/ColourSwatch.cpp
+	./source/CommonDialogs/ConnectTo.cpp
+	./source/CommonDialogs/ConflictWin.cpp	
+	./source/CommonDialogs/CommitWin.cpp	
+	./source/CommonDialogs/SvnAuthDlg.cpp
+	./source/CommonDialogs/ConnectTargetsDlg.cpp
+	./source/CommonDialogs/LocTextDlg.cpp
+	./source/CommonDialogs/SvnXt.cpp
+	./source/CommonDialogs/VisualConflictResolver.cpp
+	./source/Core/AsyncOpWin.cpp
+	./source/Core/SendEmail.cpp
+	./source/Core/WndClasses.cpp
+	./source/Core/WndCore.cpp
+	./source/Core/RegWrap.cpp
+	./source/Chart/Chart.cpp
+	./source/DeskWindow/SplitPane.cpp
+	./source/DeskWindow/DwTab.cpp
+	./source/DeskWindow/DwSplit.cpp
+	./source/DeskWindow/DwRoot.cpp
+	./source/DeskWindow/DwPane.cpp
+	./source/DeskWindow/DwItem.cpp
+	./source/DeskWindow/DwHost.cpp
+	./source/DeskWindow/DeskWindow.cpp
+	./source/Explorer/Explorer.cpp
+	./source/Finder/FcCombo.cpp
+	./source/Finder/FcCompare.cpp
+	./source/Finder/FcEdit.cpp
+	./source/Finder/FcSelectField.cpp
+	./source/Finder/FcSelectType.cpp
+	./source/Finder/FcSelectRecord.cpp
+	./source/Finder/Finder.cpp
+	./source/Finder/FinderControl.cpp
+	./source/Finder/FinderRow.cpp
+	./source/Finder/FrDependsOn.cpp
+	./source/Finder/FrExpression.cpp
+	./source/Finder/FrRecordOfType.cpp
+	./source/Finder/FrRecordsNamed.cpp
+	./source/Finder/FrUsingLocString.cpp
+	./source/GridView/GridColumn.cpp
+	./source/GridView/GridRow.cpp
+	./source/GridView/GridView.cpp
+	./source/HyperView/HyperView.cpp
+	./source/NodeGraph/NodeGraph.cpp
+	./source/NodeGraph/NgConnection.cpp
+	./source/NodeGraph/NgDiagram.cpp
+	./source/NodeGraph/NgMath.cpp
+	./source/NodeGraph/NgNode.cpp
+	./source/NodeGraph/NgPin.cpp
+	./source/Scarab/NodeGraph/ScarabDomNodeGraph.cpp
+	./source/Scarab/NodeGraph/SnNgBuild.cpp
+	./source/Scarab/NodeGraph/SnNgPin.cpp
+	./source/Scarab/NodeGraph/SnNgNode.cpp
+	./source/Scarab/NodeGraph/SnNgConnection.cpp
+	./source/Scarab/ScarabBuild.cpp
+	./source/Scarab/ScarabForm.cpp
+	./source/Scarab/ScarabId.cpp
+	./source/Scarab/ScarabNode.cpp
+	./source/Scarab/SnArray.cpp
+	./source/Scarab/SnArrayHeader.cpp
+	./source/Scarab/SnBool.cpp
+	./source/Scarab/SnColourSwatch.cpp
+	./source/Scarab/SnControl.cpp
+	./source/Scarab/SnEnum.cpp
+	./source/Scarab/SnFlagBool.cpp
+	./source/Scarab/SnFlags.cpp
+	./source/Scarab/SnFlatArray.cpp
+	./source/Scarab/SnFloat.cpp
+	./source/Scarab/SnGothamWeather.cpp
+	./source/Scarab/SnGroup.cpp
+	./source/Scarab/SnChart.cpp
+	./source/Scarab/SnGridArray.cpp
+	./source/Scarab/SnHandle.cpp
+	./source/Scarab/SnInfo.cpp
+	./source/Scarab/SnInt.cpp
+	./source/Scarab/SnLocString.cpp
+	./source/Scarab/SnPropertySheet.cpp
+	./source/Scarab/SnPtr.cpp
+	./source/Scarab/SnPtrCompactHeader.cpp
+	./source/Scarab/SnPtrHeader.cpp
+	./source/Scarab/SnRecord.cpp
+	./source/Scarab/SnString.cpp
+	./source/Scarab/SnGradient.cpp
+	./source/Scarab/SnStrictPtr.cpp
+	./source/Scarab/SnStruct.cpp
+	./source/Scarab/SnWeakPtr.cpp
+	./source/Scarab/SnNodeGraph.cpp
+	./source/Scarab/SnWideString.cpp
+	./source/Scarab/SnSequencer.cpp
+	./source/Scarab/SnSequencerHeader.cpp
+	./source/Scarab/ScarabMisc.cpp
+	./source/Scarab/ScarabScrollPanel.cpp
+	./source/Scarab/ScarabPanel.cpp
+	./source/Scarab/SnUserRef.cpp
+	./source/Scarab/Timeline/ScarabTimeline.cpp
+	./source/Scarab/Timeline/SnTimeline.cpp
+	./source/Scarab/Timeline/SnTlRow.cpp
+	./source/Scarab/Timeline/SnTlKey.cpp
+	./source/Scarab/Timeline/SnTlBuilder.cpp
+	./source/Scarab/DopeSheet/ScarabDopeSheet.cpp
+	./source/Scarab/DopeSheet/SnDopeSheet.cpp
+	./source/Scarab/DopeSheet/SnDsRow.cpp
+	./source/Scarab/DopeSheet/SnDsKey.cpp
+	./source/Scarab/DopeSheet/SnDsBuilder.cpp
+	./source/Sequencer/Sequencer.cpp
+	./source/Sequencer/SequencerItem.cpp
+	./source/Timeline/Timeline.cpp
+	./source/Timeline/TimelineDiagram.cpp
+	./source/Timeline/TimelineRow.cpp
+	./source/Timeline/TimelineKey.cpp
+	./source/DopeSheet/DopeSheet.cpp
+	./source/DopeSheet/DopeSheetDiagram.cpp
+	./source/DopeSheet/DopeSheetRow.cpp
+	./source/DopeSheet/DopeSheetKey.cpp
+	./source/PropertySheet/PropertySheet.cpp
+	./source/PropertySheet/PsControl.cpp
+	./source/PropertySheet/PsDiagram.cpp
+	./source/PropertySheet/PsEdit.cpp
+	./source/PropertySheet/PsRow.cpp
+	./source/TimelineChart/TimelineChart.cpp
+	./source/TreeCtrl/TreeCtrl.cpp
+;
+
+SRC_RES = 
+	./source/Resource/xtwin_pc.rc
+	./source/Resource/Resource.cpp
+;
+
+StoreVcprojInfo xtwin : flat ;
+# StoreVcprojInfo xtwinres : flat ;
+
+Library xtwin : $(SRC_WIN) : ./source/Core/XtWinPch.cpp : Core/XtWinPch.h  ;
+# DLL xtwinres : $(SRC_RES) ;

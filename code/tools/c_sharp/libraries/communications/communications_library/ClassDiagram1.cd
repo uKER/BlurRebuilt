@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="comms_tcp.CommsListener">
+    <Position X="2" Y="4" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>CommsListener.cs</FileName>
+      <HashCode>AAAACAQAAIAAQEAAACAAEAAAgAEABhAAAIABAQQABAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="comms_tcp.CommsClient">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CommsClient.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAIAIAAAAAAAAAABAAgAACAAAACAAAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="comms_tcp.TcpDataCallbackEventArgs" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>CommsGlobal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAgAAAAIAAAAAEAAAAABAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="comms_tcp.cGlobal" Collapsed="true">
+    <Position X="18" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CommsGlobal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="comms_tcp.CommsProtocolJan" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>CommsProtocolJan.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAgAAAAIgAAACAAABAQAAAAEAACACAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="comms_tcp.CommsProtocolKeith" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>CommsProtocolKeith.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAgAAAAIgAAACAAABAQAAAAAAAAACAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="comms_tcp.CommsServer&lt;Protocol&gt;" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>CommsServer.cs</FileName>
+      <HashCode>IIABQAAAAECAAAAAAAAACgDAQAAAAAAAEAACCAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="comms_tcp.GotMessageEventArgs" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ICommsProtocol.cs</FileName>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="comms_tcp.TcpConnectionCallbackEventArgs" Collapsed="true">
+    <Position X="9.75" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>CommsGlobal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="comms_tcp.ICommsProtocol">
+    <Position X="13.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>ICommsProtocol.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAgAAAAAgAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="comms_tcp.DataCallbackDelegate" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>CommsGlobal.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="comms_tcp.ConnectionStateChangedDelegate">
+    <Position X="16.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>CommsGlobal.cs</FileName>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="comms_tcp.GotMessageDelegate" Collapsed="true">
+    <Position X="4.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ICommsProtocol.cs</FileName>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Delegate>
+</ClassDiagram>

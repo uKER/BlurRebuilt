@@ -1,0 +1,20 @@
+#include "..\..\psCommon.h"
+
+float4		g_vClear				: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+struct PS_INPUT
+{
+	float2 uv				: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour					: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+	output.colour = g_vClear;
+	return output;
+}

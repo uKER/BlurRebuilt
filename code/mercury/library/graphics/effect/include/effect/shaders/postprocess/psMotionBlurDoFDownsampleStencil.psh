@@ -1,0 +1,32 @@
+#include "../psConstants.h"
+#include "../psCommon.h"
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tDepthStencil	: register(s1);
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0; 
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{ 
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float3	vColour	= tex2D(g_tColour, input.m_TexCoord).rgb;
+		
+#if defined(XB2)
+	float fStencil	= tex2D(g_tDepthStencil, input.m_TexCoord).b;
+#else
+	float fStencil	= tex2D(g_tDepthStencil, input.m_TexCoord).a;
+#endif
+
+	output.m_Colour	= float4(vColour, fStencil);
+
+	return output;
+}

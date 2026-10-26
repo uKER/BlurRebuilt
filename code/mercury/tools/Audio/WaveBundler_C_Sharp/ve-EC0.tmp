@@ -1,0 +1,132 @@
+using System;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Collections;
+using System.IO;
+
+namespace WaveBundler
+{
+	[XmlRoot("wavebank")]
+	public class WaveBankIniFile 
+	{
+		private ArrayList listWaves;
+
+		public WaveBankIniFile() 
+		{
+			listWaves = new ArrayList();
+		}
+
+		[XmlElement("wave")]
+		public WaveElement[] Waves 
+		{
+			get 
+			{
+				WaveElement[] waves = new WaveElement[ listWaves.Count ];
+				listWaves.CopyTo( waves );
+				return waves;
+			}
+			set 
+			{
+				if( value == null ) return;
+				WaveElement[] waves = (WaveElement[])value;
+				listWaves.Clear();
+				foreach( WaveElement wave in waves )
+					listWaves.Add( wave );
+			}
+		}
+
+		public int AddItem( WaveElement waves ) 
+		{
+			return listWaves.Add( waves );
+		}
+	}
+
+	public class WaveElement 
+	{
+		[XmlAttribute("filename")] public string filename;
+		[XmlAttribute("internalName")] public string internalName;
+
+		public WaveElement() {	}
+
+		public WaveElement( string fname, string intname ) 
+		{
+			filename = fname;
+			internalName = intname;
+		}
+	}
+
+	/// <summary>
+	/// Summary description for Class1.
+	/// </summary>
+	class Class1
+	{
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
+		[STAThread]
+		static void Main(string[] args)
+		{
+			Console.WriteLine("\nWaveBundler v0.1\n");
+			
+			if (args.Length == 0)
+			{
+				Console.WriteLine("Usage: WaveBundler xmlfile [xmlfile2] [xmlfile3] [more files...]");
+				return;
+			}
+
+			Console.WriteLine("Processing {0} files...", args.Length); 
+			for (int i=0; i < args.Length; i++)
+			{
+				Console.WriteLine("Processing file {0}", args[i]); 
+				ProcessIniFile(args[i]);
+			}
+		}
+
+		// process an xml ini file and build a wavebank
+		public static int ProcessIniFile(string fileName)
+		{
+			XmlSerializer s = new XmlSerializer( typeof( WaveBankIniFile ) );
+			WaveBankIniFile bankFile;
+			TextReader r;
+
+			try
+			{
+				r = new StreamReader( fileName );
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Sorry, something went wrong. Info:\n\n\"{0}\"", e.GetBaseException().Message);
+				return 0;
+			}
+
+			// read the xml data into our WaveBankIniFile class
+			try
+			{
+				bankFile = (WaveBankIniFile)s.Deserialize( r );
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Sorry, something went wrong. Info:\n\n\"{0}\"", e.GetBaseException().Message);
+				return 1;
+			}
+
+			r.Close();
+
+			return 1;
+		}
+
+		public static string GetKeyValue(XmlNode node, string strKey)
+		{
+			string strRetval = null;
+			if(node != null)
+			{
+				XmlNode attr = node.Attributes.GetNamedItem(strKey);
+				if(attr != null)
+				{
+					strRetval = attr.Value;
+				}
+			}
+			return strRetval;
+		}
+	}
+}

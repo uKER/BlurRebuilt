@@ -1,0 +1,3 @@
+jam -j2 -sTARGET=WIN32_TOOL -sBUILD=Release
+jam -j2 -sTARGET=WIN32_TOOL -sBUILD=Debug
+

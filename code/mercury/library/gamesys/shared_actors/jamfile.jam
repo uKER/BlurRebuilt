@@ -1,0 +1,142 @@
+SubDir TOP Code Mercury Library GameSys Shared_Actors ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/gamesys/actor_system/include
+$(TOP)/code/mercury/library/gamesys/animated_model/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/game_context/include
+$(TOP)/code/mercury/library/gamesys/game_debug/include
+$(TOP)/code/mercury/library/gamesys/game_physics/include
+$(TOP)/code/mercury/library/gamesys/game_resource/include
+$(TOP)/code/mercury/library/gamesys/resource_utils/include
+$(TOP)/code/mercury/library/gamesys/specialfx/include
+$(TOP)/code/mercury/library/gamesys/actor_studio_msg_game/include
+$(TOP)/code/mercury/library/gamesys/lod/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/util/actor_studio_msg_shared/include
+$(TOP)/code/mercury/library/physics/gravity/include
+$(TOP)/code/mercury/library/animation/include
+$(TOP)/code/mercury/library/graphics/world_render/include
+$(TOP)/code/mercury/library/graphics/scenegraph/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/graphics/renderingdata/include
+$(TOP)/code/mercury/library/graphics/dynamic/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/portal/include
+$(TOP)/code/mercury/library/audio/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+source/ActorDamage.cpp
+source/ActorPhysics.cpp
+source/SharedActorBase.cpp
+source/SharedActorMessages.cpp
+source/SharedActorTypes.cpp
+source/SharedActorUtils.cpp
+source/XtActorBase.cpp
+source/XtActorCreation.cpp
+source/XtActorMessages.cpp
+source/XtExpressionEval.cpp
+source/XtDialogue.cpp
+source/XtLevelAnimation.cpp
+source/XtSharedActorMessages.cpp
+source/XtSharedLevelActorParams.cpp
+
+# Shared Actors
+source/ActorCreation/AnimationActorsCreate.cpp
+source/ActorCreation/AnimatedObjectActorsCreate.cpp
+source/ActorCreation/ConstraintActorCreate.cpp
+source/ActorCreation/GroupActorsCreate.cpp
+source/ActorCreation/MessageActorsCreate.cpp
+source/ActorCreation/SplineActorCreate.cpp
+source/ActorCreation/SystemActorsCreate.cpp
+source/ActorImpl/AnimatedObjectActors.cpp
+source/ActorImpl/AnimationActors.cpp
+source/ActorImpl/ConstraintActor.cpp
+source/ActorImpl/GroupActors.cpp
+source/ActorImpl/MessageActors.cpp
+source/ActorImpl/SplineActor.cpp
+source/ActorImpl/SystemActors.cpp
+source/ActorMessages/ConstraintActorMessages.cpp
+source/ActorMessages/GroupActorMessages.cpp
+source/ActorDef/BasePhysicalObjectDef.cpp
+
+# Shared Components
+source/Components/SharedComponents.cpp
+source/Components/Creation/AnimationControllerCreate.cpp
+source/Components/Creation/AnimatedObjectComponentsCreate.cpp
+source/Components/Creation/LogicComponentsCreate.cpp
+source/Components/Creation/MessageComponentsCreate.cpp
+source/Components/Creation/ModelResourceComponentCreate.cpp
+source/Components/Creation/MovementComponentsCreate.cpp
+source/Components/Creation/RenderComponentsCreate.cpp
+source/Components/Creation/ResourceLoaderCreate.cpp
+source/Components/Creation/TrackingCreate.cpp
+source/Components/Creation/TriggerCreate.cpp
+source/Components/Creation/BaseElementManagerComponentsCreate.cpp
+source/Components/Creation/PhysicsBodyComponentCreate.cpp
+source/Components/Impl/AnimatedObjectComponents.cpp
+source/Components/Impl/AnimatedShaderParams.cpp
+source/Components/Impl/AnimationController.cpp
+source/Components/Impl/LogicComponents.cpp
+source/Components/Impl/MessageComponents.cpp
+source/Components/Impl/ModelResourceComponent.cpp
+source/Components/Impl/MovementComponents.cpp
+source/Components/Impl/MovementKinematicSpline.cpp
+source/Components/Impl/MovementSpline.cpp
+source/Components/Impl/RenderComponents.cpp
+source/Components/Impl/ResourceLoaderImpl.cpp
+source/Components/Impl/TrackingImpl.cpp
+source/Components/Impl/TriggerImpl.cpp
+source/Components/Impl/UpdateManager.cpp
+source/Components/Impl/BaseElementManagerComponents.cpp
+source/Components/Impl/PhysicsBodyComponent.cpp
+source/Components/Interfaces/I_ModelCustomiser.cpp
+source/Components/Interfaces/I_ModelResource.cpp
+source/Components/Interfaces/I_ResourceLoader.cpp
+source/Components/Interfaces/I_Tracking.cpp
+source/Components/Interfaces/I_Trigger.cpp
+source/Components/Messages/AnimatedObjectMessages.cpp
+source/Components/Messages/LogicMessages.cpp
+source/Components/Messages/MovementMessages.cpp
+source/Components/Messages/ElementManagerMessages.cpp
+source/Components/Messages/MessageComponentMessages.cpp
+source/Components/Messages/PhysicsMessages.cpp
+source/Components/Messages/RenderMessages.cpp
+
+# Type Wrappers
+source/TypeWrappers/SplineVec3Wrapper.cpp
+
+# Utility
+source/Utility/LightSamplerUtils.cpp
+source/Utility/ModelResourceUsage.cpp
+source/Utility/PhysicsBodyUserData.cpp
+source/Utility/VisibilityDetection.cpp
+source/Utility/XtHandleSerialisation.cpp
+
+;
+
+SRC = [ Batch $(SRC) : SharedActorsPch.h ] ;
+
+if $(BUILD) = Debug || $(BUILD) = Release
+{
+	if $(USERNAME) = mbell || $(USERNAME) = mcraig || $(USERNAME) = philliard
+	{
+		Define SHARED_ACTORS_OPTIMIZE_OFF ;
+		echo Optimisations are OFF for shared_actors code ;
+	}
+}
+
+Library shared_actors : $(SRC) : SharedActorsPch.cpp : SharedActorsPch.h ;

@@ -1,0 +1,32 @@
+SubDir TOP Code amax tools make_font ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./source
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Tools/Attk/Attk/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+;
+
+SRC =
+source/Make_Font.cpp
+;
+
+LINKLIBS +=  ws2_32.lib ;
+LinkLibraries make_font : core system attk misc_shared tools_shared ;
+		
+Application make_font : $(SRC) : stdafx.cpp ;
+ExportVcproj make_font ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Mercury Library Common misc_shared ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;

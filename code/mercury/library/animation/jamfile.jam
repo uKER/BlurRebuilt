@@ -1,0 +1,193 @@
+SubDir TOP Code Mercury Library Animation ;
+
+SUBDIRHDRS =
+$(SUBDIR)/include
+$(SUBDIR)/source
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/tools/aftk/aftk/include
+;
+
+Define ANIMATION_ALLOW_INCLUDE ;
+
+SRC =
+source/common/AnimationMaths.cpp
+source/common/MemoryBlock.cpp
+source/common/JointTransform.cpp
+source/common/ObjectTransform.cpp
+source/common/Stats.cpp
+source/common/StringId.cpp
+source/common/StringUtil.cpp
+source/common/StringTable.cpp
+source/cycle/Cycle.cpp
+source/cycle/CycleInstance.cpp
+source/cycle/CycleMapping.cpp
+source/deferred/CommandList.cpp
+source/deferred/CommandProcessor.cpp
+source/ik/IkChain.cpp
+source/ik/WalkController.cpp
+source/ik/SteeringController.cpp
+source/pose/BlendFunctions.cpp
+source/pose/EventLogger.cpp
+source/pose/Pose.cpp
+source/pose/PoseFieldMask.cpp
+source/pose/PoseFormat.cpp
+source/pose/PoseLayout.cpp
+source/pose/PoseMapping.cpp
+source/pose/PoseMatrixCache.cpp
+source/pose/PoseMirror.cpp
+source/pose/PoseStack.cpp
+source/pose/SkeletonPose.cpp
+source/resource/CycleResource.cpp
+source/resource/SkeletonResource.cpp
+source/skeleton/DynamicJointConstraints.cpp
+source/skeleton/JointWeights.cpp
+source/skeleton/Skeleton.cpp
+source/skeleton/SkeletonConstraints.cpp
+source/skeleton/SkeletonInstance.cpp
+source/skeleton/StaticJointConstraints.cpp
+source/skeleton/WindParams.cpp
+source/skeleton/WindGenerator.cpp
+source/task/EvaluationState.cpp
+source/task/EvaluationTask.cpp
+source/task/EvaluationTaskModule.cpp
+source/task/TaskManager.cpp
+source/util/DebugRender.cpp
+source/util/Player.cpp
+;
+
+
+SRC_TOOL =
+<tool>$(SRC)
+source/tools/CompressedCurveUtils.cpp
+source/tools/CompressionParameters.cpp
+source/tools/ConstraintHelpers.cpp
+source/tools/Curve.cpp
+source/tools/CycleBuilder.cpp
+source/tools/ExportConstraints.cpp
+source/tools/KeyReductionUtils.cpp
+source/tools/PatternList.cpp
+source/tools/Scene.cpp
+;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+#StoreVcprojInfo animation : mirror ;
+#StoreVcprojInfo animation_tools : mirror ;
+
+if $(PLATFORM) = PS3
+{
+
+	#
+	# SPU library for animation evaluation tasks.
+	# This could be trimmed down and split up into separate libraries,
+	# although we could just let the linker eliminate dead code.
+	#
+
+	SPUSRC =
+		source/common/AnimationMaths.cpp
+		source/common/JointTransform.cpp
+		source/common/ObjectTransform.cpp
+		source/common/StringId.cpp
+		source/common/MemoryBlock.cpp
+		source/cycle/Cycle.cpp
+		source/cycle/CycleInstance.cpp
+		source/cycle/CycleMapping.cpp
+		source/deferred/CommandList.cpp
+		source/deferred/CommandProcessor.cpp
+		source/ik/IkChain.cpp
+		source/skeleton/StaticJointConstraints.cpp
+		source/skeleton/DynamicJointConstraints.cpp
+		source/skeleton/Skeleton.cpp
+		source/skeleton/SkeletonConstraints.cpp
+		source/skeleton/SkeletonInstance.cpp
+		source/skeleton/WindGenerator.cpp
+		source/pose/BlendFunctions.cpp
+		source/pose/EventLogger.cpp
+		source/pose/PoseLayout.cpp
+		source/pose/PoseMirror.cpp
+		source/pose/PoseMatrixCache.cpp
+		source/pose/PoseStack.cpp
+		source/pose/Pose.cpp
+		source/pose/SkeletonPose.cpp
+		source/task/EvaluationTask.cpp
+	;
+	
+	SPUSRC = <SPU>$(SPUSRC) ;
+	
+	MATHSDIR = $(TOP)/Code/Mercury/Library/Common/Core/Source/Maths ;
+	
+	SPUMATHSSRC = 
+		$(MATHSDIR)/hvec/Constants.cpp
+		$(MATHSDIR)/hvec/VectorConst.cpp
+		#$(MATHSDIR)/hvec/TableBernoulli.cpp
+		#$(MATHSDIR)/hvec/TableTan.cpp
+		$(MATHSDIR)/hvec/TableArcSin.cpp
+		$(MATHSDIR)/hvec/TableArcTan.cpp
+		$(MATHSDIR)/hvec/Trigonometry.cpp
+		$(MATHSDIR)/hvec/new/Euler.cpp
+		$(MATHSDIR)/hvec/new/Mat33.cpp
+		$(MATHSDIR)/hvec/new/Mat43.cpp
+		$(MATHSDIR)/hvec/new/Quaternion.cpp
+		$(MATHSDIR)/hvec/new/Vec4F32.cpp
+		$(MATHSDIR)/hvec/new/VF32.cpp 
+	;
+	
+	SPU_EVAL_TASK_SRC =
+		<SPU>source/task/EvaluationTaskModule.cpp
+	;
+	
+
+	SPUSRC =
+		[ Batch $(SPUSRC) : StdAfx.h : SPU ]
+		<SPU>$(SPUMATHSSRC)
+	;
+
+	if $(BUILD) = Debug
+	{
+		SrcOptim $(SPUSRC) : -Os ;
+		SrcOptim $(SPU_EVAL_TASK_SRC) : -Os ;
+	}
+	
+	#
+	# Build SPU animation library
+	#
+	SPULibrary spu_anim_eval_lib : $(SPUSRC) ; # : <SPU>stdafx.cpp ;
+	
+	#
+	# Build anim_evaluation_task SPU module.
+	#
+	LinkLibraries anim_evaluation_task : spu_anim_eval_lib ;
+	AddSPUModule animation : anim_evaluation_task : $(SPU_EVAL_TASK_SRC) ;
+}
+
+if $(TOOL) 
+{
+	# Animation runtime + tool library
+	Define ANIMATION_TOOL ;
+	Library animation_tools : $(SRC_TOOL) $($(PLATFORM)SRC) : <tool>stdafx.cpp ;
+}
+else
+{
+	# Animation runtime library
+	Library animation : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;
+}
+
+# Unit tests.
+IncludePath
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/Vendor/CxxTest/Current
+;
+
+CxxTest animationlib_test :
+	test/testanimation.h
+;
+
+LinkLibraries animationlib_test : core system animation_tools ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+
+

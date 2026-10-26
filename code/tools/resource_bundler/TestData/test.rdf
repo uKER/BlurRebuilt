@@ -1,0 +1,12 @@
+<RDF Version="XPR2">
+
+<Texture 
+	Name	=	"TestTexture"
+	Source	=	"textures\test.tga"
+	Format	=	"ATI_TC_FORMAT_DXT5"
+	Format	=	"nvD3DFMT_DXT5"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+</RDF>

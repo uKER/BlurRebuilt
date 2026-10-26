@@ -1,0 +1,96 @@
+SubDir TOP code mercury library common xt2 ;
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+IncludePath
+	$(SUBDIR)/include
+	$(SUBDIR)/source
+	$(TOP)/Code/Mercury/Library/Common/Core/include
+	$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+SRC_GAME = 
+	./source/common/XtFlask.cpp
+	./source/game/Xt.cpp
+	./source/game/XtCrc.cpp
+	./source/game/XtFlaskImport.cpp
+	./source/game/XtLib.cpp
+	./source/game/XtNetwork.cpp
+	./source/game/XtSchema.cpp
+	./source/game/XtSchemaFile.cpp
+;
+
+SRC_TOOL =
+	$(SRC_GAME)
+	./source/tool/CryptRandom.cpp
+	./source/tool/DetectDbChanges.cpp
+	./source/tool/Grimoire.cpp
+	./source/tool/XtLog.cpp
+	./source/tool/XtSimpleFile.cpp
+	./source/tool/XtStream.cpp
+	./source/tool/XtString.cpp
+	./source/tool/XtXml.cpp
+	./source/tool/Dom/Elem/ElemArray.cpp
+	./source/tool/Dom/Elem/ElemBase.cpp
+	./source/tool/Dom/Elem/ElemBlock.cpp
+	./source/tool/Dom/Elem/ElemComponent.cpp
+	./source/tool/Dom/Elem/ElemDb.cpp
+	./source/tool/Dom/Elem/ElemField.cpp
+	./source/tool/Dom/Elem/ElemPack.cpp
+	./source/tool/Dom/Elem/ElemRecord.cpp
+	./source/tool/Dom/Elem/ElemRef.cpp
+	./source/tool/Dom/XtBundle.cpp
+	./source/tool/Dom/XtDom.cpp
+	./source/tool/Dom/XtDomConfig.cpp
+	./source/tool/Dom/XtDomDb.cpp
+	./source/tool/Dom/XtDomFile.cpp
+	./source/tool/Dom/XtDomHelpers.cpp
+	./source/tool/Dom/XtDomParse.cpp
+	./source/tool/Dom/XtDomProxy.cpp
+	./source/tool/Merge/XtChange.cpp
+	./source/tool/Merge/XtDiff.cpp
+	./source/tool/Merge/XtMerge.cpp
+	./source/tool/Merge/XtPatch.cpp
+	./source/tool/Export/XtExport.cpp
+	./source/tool/Export/XtFlaskEmit.cpp
+	./source/tool/Export/XtFlaskExport.cpp
+	./source/tool/Export/XtFlaskHelpers.cpp
+	./source/tool/Export/XtFlaskSwizzle.cpp
+	./source/tool/Export/XtLocExport.cpp
+	./source/tool/CustomExport/ExportShaderConst.cpp
+	./source/tool/Sz/SzClass.cpp
+	./source/tool/Sz/SzOps.cpp
+	./source/tool/Schema/ApplyDefaults.cpp
+	./source/tool/Schema/EnsureValidUids.cpp
+	./source/tool/Schema/EvaluateStructuredParam.cpp
+	./source/tool/Schema/EvaluateSummary.cpp
+	./source/tool/Schema/FindDependencies.cpp
+	./source/tool/Schema/Larva.cpp
+	./source/tool/Schema/LarvaFile.cpp
+	./source/tool/Schema/LarvaHelpers.cpp
+	./source/tool/Schema/LarvaVisitors.cpp
+	./source/tool/Schema/MapWeakPtr.cpp
+	./source/tool/Schema/Query.cpp
+	./source/tool/Schema/VisitAllComponents.cpp
+	./source/tool/Schema/VisitAllObjects.cpp
+;
+
+StoreVcprojInfo xttool : flat ;
+StoreVcprojInfo xtgame : flat ;
+
+if $(TOOL) = 1
+{
+	SRC_TOOL = <tool>$(SRC_TOOL) ;
+
+	Define XT_TOOL ;
+
+	IncludePath \"$(XENONSDK)/include/win32/vs2005\" ;
+
+	Library xttool : $(SRC_TOOL) $($(PLATFORM)SRC) : <tool>./source/common/XtPch.cpp : common/XtPch.h ;
+}
+else
+{
+	Define XT_GAME ;
+}
+
+Library xtgame : $(SRC_GAME) $($(PLATFORM)SRC) : ./source/common/XtPch.cpp : common/XtPch.h ;

@@ -1,0 +1,56 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tColour		: register(s0);
+
+#define		g_fPixelWidth	g_vSettings.x
+#define		g_fPixelHeight	g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float4 vColour = 0.0f;
+#if defined(TAPS_16)
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-3.0f * g_fPixelWidth, -3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-3.0f * g_fPixelWidth, -1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-3.0f * g_fPixelWidth, +1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-3.0f * g_fPixelWidth, +3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-1.0f * g_fPixelWidth, -3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-1.0f * g_fPixelWidth, -1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-1.0f * g_fPixelWidth, +1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-1.0f * g_fPixelWidth, +3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+1.0f * g_fPixelWidth, -3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+1.0f * g_fPixelWidth, -1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+1.0f * g_fPixelWidth, +1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+1.0f * g_fPixelWidth, +3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+3.0f * g_fPixelWidth, -3.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+3.0f * g_fPixelWidth, -1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+3.0f * g_fPixelWidth, +1.0f * g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+3.0f * g_fPixelWidth, +3.0f * g_fPixelHeight));
+	vColour *= 0.0625f;
+#elif defined(TAPS_4)
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-g_fPixelWidth, -g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(-g_fPixelWidth, +g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+g_fPixelWidth, -g_fPixelHeight));
+	vColour += tex2D(g_tColour, input.m_TexCoord + float2(+g_fPixelWidth, +g_fPixelHeight));
+	vColour *= 0.25f;
+#elif defined(TAPS_1)
+	vColour += tex2D(g_tColour, input.m_TexCoord);
+#endif
+
+	output.m_Colour = vColour;
+
+	return output;
+}

@@ -1,0 +1,32 @@
+#include "..\psCommon.h"
+#include "psUiLightCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+	float4 MyWorldPosition		: TEXCOORD3;
+	float2 TexCoord0			: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main( PS_INPUT IN )
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 texture_colour = tex2D( g_Texture0, IN.TexCoord0 );
+	
+#ifdef _INTENSITY_AS_ALPHA_
+	texture_colour.a = (texture_colour.r + texture_colour.g + texture_colour.b) / 3;
+	texture_colour.rgb = 1.0f;
+#endif
+
+	OUT.Colour = CombineFog( IN.Colour * texture_colour, LightColour( IN.MyWorldPosition ) );
+	
+	return OUT;
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdGraphics</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdColor.h:1"><path>${project}\bdColor.h</path></file>
+<file file-tag="bdColor.inl:1"><path>${project}\bdColor.inl</path></file>
+<file file-tag="bdDemo.cpp:1"><path>${project}\bdDemo.cpp</path></file>
+<file file-tag="bdDemo.h:1"><path>${project}\bdDemo.h</path></file>
+<file file-tag="bdFont-wii.cpp:1"><path>${project}\bdFont-wii.cpp</path></file>
+<file file-tag="bdFont-wii.h:1"><path>${project}\bdFont-wii.h</path></file>
+<file file-tag="bdGfx-wii.cpp:1"><path>${project}\bdGfx-wii.cpp</path></file>
+<file file-tag="bdGfx-wii.h:1"><path>${project}\bdGfx-wii.h</path></file>
+<file file-tag="bdGfx.cpp:1"><path>${project}\bdGfx.cpp</path></file>
+<file file-tag="bdGfx.h:1"><path>${project}\bdGfx.h</path></file>
+<file file-tag="bdGrid.cpp:1"><path>${project}\bdGrid.cpp</path></file>
+<file file-tag="bdGrid.h:1"><path>${project}\bdGrid.h</path></file>
+<file file-tag="bdMatrix4.h:1"><path>${project}\bdMatrix4.h</path></file>
+<file file-tag="bdMatrix4.inl:1"><path>${project}\bdMatrix4.inl</path></file>
+<file file-tag="bdMesh-wii.cpp:1"><path>${project}\bdMesh-wii.cpp</path></file>
+<file file-tag="bdMesh.cpp:1"><path>${project}\bdMesh.cpp</path></file>
+<file file-tag="bdMesh.h:1"><path>${project}\bdMesh.h</path></file>
+<file file-tag="bdPlatformMath.h:1"><path>${project}\bdPlatformMath.h</path></file>
+<file file-tag="bdPlatformMath.inl:1"><path>${project}\bdPlatformMath.inl</path></file>
+<file file-tag="bdSphere.cpp:1"><path>${project}\bdSphere.cpp</path></file>
+<file file-tag="bdSphere.h:1"><path>${project}\bdSphere.h</path></file>
+<file file-tag="bdVector4.h:1"><path>${project}\bdVector4.h</path></file>
+<file file-tag="bdVector4.inl:1"><path>${project}\bdVector4.inl</path></file>
+<file file-tag="bdVertex.h:1"><path>${project}\bdVertex.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdColor.h:1</file-ref>
+<file-ref>bdColor.inl:1</file-ref>
+<file-ref>bdDemo.cpp:1</file-ref>
+<file-ref>bdDemo.h:1</file-ref>
+<file-ref>bdFont-wii.cpp:1</file-ref>
+<file-ref>bdFont-wii.h:1</file-ref>
+<file-ref>bdGfx-wii.cpp:1</file-ref>
+<file-ref>bdGfx-wii.h:1</file-ref>
+<file-ref>bdGfx.cpp:1</file-ref>
+<file-ref>bdGfx.h:1</file-ref>
+<file-ref>bdGrid.cpp:1</file-ref>
+<file-ref>bdGrid.h:1</file-ref>
+<file-ref>bdMatrix4.h:1</file-ref>
+<file-ref>bdMatrix4.inl:1</file-ref>
+<file-ref>bdMesh-wii.cpp:1</file-ref>
+<file-ref>bdMesh.cpp:1</file-ref>
+<file-ref>bdMesh.h:1</file-ref>
+<file-ref>bdPlatformMath.h:1</file-ref>
+<file-ref>bdPlatformMath.inl:1</file-ref>
+<file-ref>bdSphere.cpp:1</file-ref>
+<file-ref>bdSphere.h:1</file-ref>
+<file-ref>bdVector4.h:1</file-ref>
+<file-ref>bdVector4.inl:1</file-ref>
+<file-ref>bdVertex.h:1</file-ref>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

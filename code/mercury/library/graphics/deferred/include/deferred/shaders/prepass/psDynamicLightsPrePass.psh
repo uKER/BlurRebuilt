@@ -1,0 +1,139 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vPosition[8]	: register(CCP_RENDER_SETTINGS);
+float4		g_vColour[8]	: register(CCP_RENDER_SETTINGS_8);
+float4		g_vDepth		: register(CCP_RENDER_SETTINGS_16);
+
+sampler2D	g_tDepth		: register(s0);
+sampler2D	g_tNormal		: register(s1);
+
+struct PS_INPUT
+{
+#if defined(BLUR_DX11)
+	// [Blur2PC] Match the position register preceding TEXCOORD0 in the native VS.
+	float4 m_Position : SV_Position;
+#endif
+	float4	m_TexCoord	: TEXCOORD0;
+	float3	m_Scale		: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+float3 EvaluatePointLights4(float3 vViewPosition, real3 vViewNormal)
+{
+	float3	vLightColour0	= g_vColour[0].xyz;
+	float3	vLightColour1	= g_vColour[1].xyz;
+	float3	vLightColour2	= g_vColour[2].xyz;
+	float3	vLightColour3	= g_vColour[3].xyz;
+	
+	float3	vLightPosition0	= g_vPosition[0].xyz;
+	float3	vLightPosition1	= g_vPosition[1].xyz;
+	float3	vLightPosition2	= g_vPosition[2].xyz;
+	float3	vLightPosition3	= g_vPosition[3].xyz;
+
+	float4	vLightRadii;
+	vLightRadii.x			= g_vPosition[0].w;
+	vLightRadii.y			= g_vPosition[1].w;
+	vLightRadii.z			= g_vPosition[2].w;
+	vLightRadii.w			= g_vPosition[3].w;
+
+	float3	vLightToWorld0	= vLightPosition0 - vViewPosition;
+	float3	vLightToWorld1	= vLightPosition1 - vViewPosition;
+	float3	vLightToWorld2	= vLightPosition2 - vViewPosition;
+	float3	vLightToWorld3	= vLightPosition3 - vViewPosition;
+	
+	float4	vLightDistances;
+	vLightDistances.x		= dot(vLightToWorld0, vLightToWorld0);
+	vLightDistances.y		= dot(vLightToWorld1, vLightToWorld1);
+	vLightDistances.z		= dot(vLightToWorld2, vLightToWorld2);
+	vLightDistances.w		= dot(vLightToWorld3, vLightToWorld3);
+
+	real4	vLightFalloffs	= 1.0h - saturate(vLightDistances * vLightRadii);
+
+	real4	vLightDotNormals;
+	vLightDotNormals.x		= dot(normalize(vLightToWorld0), vViewNormal);
+	vLightDotNormals.y		= dot(normalize(vLightToWorld1), vViewNormal);
+	vLightDotNormals.z		= dot(normalize(vLightToWorld2), vViewNormal);
+	vLightDotNormals.w		= dot(normalize(vLightToWorld3), vViewNormal);
+
+	real4	vLightFactors	= vLightFalloffs * saturate(vLightDotNormals);
+
+	return vLightColour0 * vLightFactors.x + vLightColour1 * vLightFactors.y + vLightColour2 * vLightFactors.z + vLightColour3 * vLightFactors.w;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float3	vViewPosition0	= GetViewPosition(g_tDepth, input.m_TexCoord.xy, g_vDepth.x, input.m_Scale);
+	real3	vViewNormal0	= tex2D(g_tNormal, input.m_TexCoord.xy).rgb * 2.0f - 1.0f;
+#if defined(MSAA_2)
+	float3	vViewPosition1	= GetViewPosition(g_tDepth, input.m_TexCoord.zw, g_vDepth.x, input.m_Scale);
+	real3	vViewNormal1	= tex2D(g_tNormal, input.m_TexCoord.zw).rgb * 2.0f - 1.0f;
+#endif	
+	
+	real3	vDiffuse = 0.0h;
+	
+#if defined(FOUR) || defined(FIVE) || defined(SIX) || defined(SEVEN) || defined(EIGHT)
+#if defined(MSAA_2) && !defined(PS_2_0)
+	vDiffuse += EvaluatePointLights4(vViewPosition0, vViewNormal0);
+	vDiffuse += EvaluatePointLights4(vViewPosition1, vViewNormal1);
+#else
+	vDiffuse += EvaluatePointLights4(vViewPosition0, vViewNormal0);
+#endif
+#endif
+	
+#if defined(ONE)	
+	int i = 0;
+#elif defined(TWO)
+	for (int i = 0; i < 2; ++i)
+#elif defined(THREE)
+	for (int i = 0; i < 3; ++i)
+#elif defined(FOUR)
+	for (int i = 4; i < 4; ++i)
+#elif defined(FIVE)
+	for (int i = 4; i < 5; ++i)
+#elif defined(SIX)
+	for (int i = 4; i < 6; ++i)
+#elif defined(SEVEN)
+	for (int i = 4; i < 7; ++i)
+#elif defined(EIGHT)
+	for (int i = 4; i < 8; ++i)
+#endif
+	{
+#if !defined(PS_2_0)
+		real3	vLightColour	= g_vColour[i].xyz;
+		float3	vLightPosition	= g_vPosition[i].xyz;
+		float	fLightFalloff	= g_vPosition[i].w;
+		
+		float3	vLightToWorld0		= vLightPosition - vViewPosition0;
+		float	fLightDistance0		= dot(vLightToWorld0, vLightToWorld0);
+		real	fLightFactor0		= 1.0h - saturate(fLightDistance0 * fLightFalloff);
+		real	fLightDotNormal0	= saturate(dot(normalize(vLightToWorld0), vViewNormal0));
+#if defined(MSAA_2)
+		float3	vLightToWorld1		= vLightPosition - vViewPosition1;
+		float	fLightDistance1		= dot(vLightToWorld1, vLightToWorld1);
+		real	fLightFactor1		= 1.0h - saturate(fLightDistance1 * fLightFalloff);
+		real	fLightDotNormal1	= saturate(dot(normalize(vLightToWorld1), vViewNormal1));
+#endif
+
+		vDiffuse += vLightColour * (fLightDotNormal0 * fLightFactor0);
+#if defined(MSAA_2)
+		vDiffuse += vLightColour * (fLightDotNormal1 * fLightFactor1);
+#endif
+#endif
+	}
+	
+#if defined(MSAA_2)
+	output.m_Colour.rgb	= 0.5f * vDiffuse;
+#else
+	output.m_Colour.rgb	= vDiffuse;
+#endif
+	output.m_Colour.a	= 1.0f;
+
+	return output;
+}

@@ -1,0 +1,34 @@
+SubDir TOP Code Tools svn_wrapper ;
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/tools/svn_wrapper/include
+$(TOP)/libs/vendor/svn_win32/1.5.5/include
+$(TOP)/libs/vendor/svn_win32/1.5.5/include/apr
+$(TOP)/libs/vendor/svn_win32/1.5.5/include/apr-iconv
+$(TOP)/libs/vendor/svn_win32/1.5.5/include/apr-util
+$(TOP)/code/mercury/library/common/core/include
+;
+
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += libapr-1.lib libsvn_client-1.lib libsvn_delta-1.lib libsvn_diff-1.lib libsvn_fs-1.lib libsvn_fs_base-1.lib libsvn_fs_fs-1.lib libsvn_ra-1.lib libsvn_ra_local-1.lib libsvn_ra_svn-1.lib libsvn_repos-1.lib libsvn_subr-1.lib libsvn_wc-1.lib libaprutil-1.lib libneon.lib libapriconv-1.lib ws2_32.lib ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 
+	/LIBPATH:$(TOP)/libs/vendor/svn_win32/1.5.5/lib
+	/LIBPATH:$(TOP)/libs/vendor/svn_win32/1.5.5/lib/apr
+	/LIBPATH:$(TOP)/libs/vendor/svn_win32/1.5.5/lib/apr-iconv
+	/LIBPATH:$(TOP)/libs/vendor/svn_win32/1.5.5/lib/apr-util
+	/LIBPATH:$(TOP)/libs/vendor/svn_win32/1.5.5/lib/neon
+;
+
+
+SRC =
+./source/SvnInterface.cpp
+;
+
+Library svn_wrapper : $(SRC) : stdafx.cpp ;
+
+ExportVcproj svn_wrapper ;
+
+SubInclude TOP code mercury library common xt2 ;

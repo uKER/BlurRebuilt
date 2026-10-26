@@ -1,0 +1,259 @@
+SubDir TOP Code Tools Aftk Aftk ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/Code/Common
+$(TOP)/Libs/Vendor/Xsiftk/5.11/h/Core
+$(TOP)/Libs/Vendor/Xsiftk/5.11/h/FTK
+$(MERCURY)/Common/Core/Include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Misc_Shared/include
+$(TOP)/libs/vendor/maya/2008/include
+$(TOP)/libs/vendor/fbx_sdk/2009.1/include
+$(TOP)/libs/vendor/fbx_sdk/2009.1/include/kbaselib
+;
+
+AFTKSRC =
+source/Aftk/AftkAnimationCurveNode.cpp
+source/Aftk/AftkBlendWeightedNode.cpp
+source/Aftk/AftkBlindDataNode.cpp
+source/Aftk/AftkBlobData.cpp
+source/Aftk/AftkBounds.cpp
+source/Aftk/AftkBuildAdjacency.cpp
+source/Aftk/AftkComponentCluster.cpp
+source/Aftk/AftkDistanceDimNode.cpp
+source/Aftk/AftkDynamicPlug.cpp
+source/Aftk/AftkEvaluateSpline.cpp
+source/Aftk/AftkGenericAttribute.cpp
+source/Aftk/AftkGeometry.cpp
+source/Aftk/AftkGlobal.cpp
+source/Aftk/AftkInfluenceClusterNode.cpp
+source/Aftk/AftkInterpolation.cpp
+source/Aftk/AftkIObject.cpp
+source/Aftk/AftkIPlug.cpp
+source/Aftk/AftkLayerNode.cpp
+source/Aftk/AftkLodLevel.cpp
+source/Aftk/AftkMaterialNode.cpp
+source/Aftk/AftkMaths.cpp
+source/Aftk/AftkMemoryManager.cpp
+source/Aftk/AftkMeshCalculateNormals.cpp
+source/Aftk/AftkMeshCalculateTangents.cpp
+source/Aftk/AftkMeshExpandPolygonVertices.cpp
+source/Aftk/AftkMeshRemoveDegenerates.cpp
+source/Aftk/AftkMeshWeld.cpp
+source/Aftk/AftkMeshWeldMemoryManager.cpp
+source/Aftk/AftkNode.cpp
+source/Aftk/AftkNullPlug.cpp
+source/Aftk/AftkPolygon.cpp
+source/Aftk/AftkPolygonCluster.cpp
+source/Aftk/AftkPolygonVertex.cpp
+source/Aftk/AftkRay.cpp
+source/Aftk/AftkScene.cpp
+source/Aftk/AftkLimitMixin.cpp
+source/Aftk/AftkSceneAimConstraintNode.cpp
+source/Aftk/AftkSceneAreaLightNode.cpp
+source/Aftk/AftkSceneCameraNode.cpp
+source/Aftk/AftkSceneConstraintNode.cpp
+source/Aftk/AftkSceneDirectionalLightNode.cpp
+source/Aftk/AftkSceneGeometryNode.cpp
+source/Aftk/AftkSceneHemisphereLightNode.cpp
+source/Aftk/AftkSceneInstanceNode.cpp
+source/Aftk/AftkSceneJointNode.cpp
+source/Aftk/AftkSceneLightNode.cpp
+source/Aftk/AftkSceneLodGroupNode.cpp
+source/Aftk/AftkSceneLookAtConstraintNode.cpp
+source/Aftk/AftkSceneMeshBonedInstanceNode.cpp
+source/Aftk/AftkSceneMeshNode.cpp
+source/Aftk/AftkSceneMeshRemappableNode.cpp
+source/Aftk/AftkSceneMeshRemappedInstanceNode.cpp
+source/Aftk/AftkSceneNode.cpp
+source/Aftk/AftkSceneNonAmbientLightNode.cpp
+source/Aftk/AftkSceneOrientConstraintNode.cpp
+source/Aftk/AftkScenePointConstraintNode.cpp
+source/Aftk/AftkScenePointLightNode.cpp
+source/Aftk/AftkSceneSplineNode.cpp
+source/Aftk/AftkSceneSpotLightNode.cpp
+source/Aftk/AftkSceneXRefNode.cpp
+source/Aftk/AftkShaderImageNode.cpp
+source/Aftk/AftkShaderNode.cpp
+source/Aftk/AftkStatus.cpp
+#source/Aftk/AftkTrans.cpp
+source/Aftk/AftkTriangleIterator.cpp
+source/Aftk/AftkUnitConversionNode.cpp
+source/Aftk/AftkUtility.cpp
+source/Aftk/AftkVertexWeight.cpp
+source/Aftk/AftkWeightEnvelope.cpp
+#source/Aftk/AftkWeldMemoryManager.cpp
+source/Aftk/AftkXRefScene.cpp
+include/Aftk/AftkMeshTriangulate.cpp	### TODO: move this .cpp file from the include directory to the source directory
+;
+
+MAYASRC =
+source/maya_io/MayaIoMain.cpp
+source/maya_io/MayaIoMatrixHelper.cpp
+source/maya_io/MayaIoPolyFlagsHelper.cpp
+source/maya_io/MayaIoUtility.cpp
+source/maya_io/export/MayaIoConnectedDgExport.cpp
+source/maya_io/export/MayaIoDgAnimationCurveExport.cpp
+source/maya_io/export/MayaIoDgNodeExport.cpp
+source/maya_io/export/MayaIoExport.cpp
+source/maya_io/export/MayaIoMaterialExport.cpp
+source/maya_io/export/MayaIoSceneDirectionalLightExport.cpp
+source/maya_io/export/MayaIoSceneInstanceExport.cpp
+source/maya_io/export/MayaIoSceneJointExport.cpp
+source/maya_io/export/MayaIoSceneLightExport.cpp
+source/maya_io/export/MayaIoSceneMeshExport.cpp
+source/maya_io/export/MayaIoSceneNodeExport.cpp
+source/maya_io/export/MayaIoSceneNonAmbientLightExport.cpp
+source/maya_io/export/MayaIoScenePointLightExport.cpp
+source/maya_io/export/MayaIoSceneSplineExport.cpp
+source/maya_io/export/MayaIoSceneSpotLightExport.cpp
+source/maya_io/import/MayaIoAftkMayaMapping.cpp
+source/maya_io/import/MayaIoBindPoseHelper.cpp
+source/maya_io/import/MayaIoConnectedDgImport.cpp
+source/maya_io/import/MayaIoDgAnimationCurveImport.cpp
+source/maya_io/import/MayaIoDgBlendWeightedImport.cpp
+source/maya_io/import/MayaIoDgNodeImport.cpp
+source/maya_io/import/MayaIoDgUnitConversionImport.cpp
+source/maya_io/import/MayaIoDgDistanceDimImport.cpp
+source/maya_io/import/MayaIoImport.cpp
+source/maya_io/import/MayaIoIrmPostProcess.cpp
+source/maya_io/import/MayaIoMaterialHelper.cpp
+source/maya_io/import/MayaIoMaterialImport.cpp
+source/maya_io/import/MayaIoLimitMixinImport.cpp
+source/maya_io/import/MayaIoSceneAimConstraintImport.cpp
+source/maya_io/import/MayaIoSceneAreaLightImport.cpp
+source/maya_io/import/MayaIoSceneCameraImport.cpp
+source/maya_io/import/MayaIoSceneConstraintImport.cpp
+source/maya_io/import/MayaIoSceneCustomActorImport.cpp
+source/maya_io/import/MayaIoSceneCustomLightImport.cpp
+source/maya_io/import/MayaIoSceneDirectionalLightImport.cpp
+source/maya_io/import/MayaIoSceneHemisphereLightImport.cpp
+source/maya_io/import/MayaIoSceneInstanceImport.cpp
+source/maya_io/import/MayaIoSceneJointImport.cpp
+source/maya_io/import/MayaIoSceneLightImport.cpp
+source/maya_io/import/MayaIoSceneLodGroupImport.cpp
+source/maya_io/import/MayaIoSceneLodMeshImport.cpp
+source/maya_io/import/MayaIoSceneLookAtConstraintImport.cpp
+source/maya_io/import/MayaIoSceneMeshBonedInstanceImport.cpp
+source/maya_io/import/MayaIoSceneMeshImport.cpp
+source/maya_io/import/MayaIoSceneNodeImport.cpp
+source/maya_io/import/MayaIoSceneNonAmbientLightImport.cpp
+source/maya_io/import/MayaIoSceneOrientConstraintImport.cpp
+source/maya_io/import/MayaIoScenePointConstraintImport.cpp
+source/maya_io/import/MayaIoScenePointLightImport.cpp
+source/maya_io/import/MayaIoSceneSpeedTreeImport.cpp
+source/maya_io/import/MayaIoSceneSplineImport.cpp
+source/maya_io/import/MayaIoSceneSpotLightImport.cpp
+source/maya_io/import/game_specific/pgr3/MayaIoPGR3GameImport.cpp
+source/maya_io/import/game_specific/pgr4/MayaIoPGR4GameImport.cpp
+source/maya_io/import/game_specific/shitstorm/MayaIoShitstormGameImport.cpp
+;
+
+NATIVESRC =
+source/native_io/NativeAnimationCurve.cpp
+source/native_io/NativeBlendWeightedNode.cpp
+source/native_io/NativeBlindDataNode.cpp
+source/native_io/NativeComponentCluster.cpp
+source/native_io/NativeDiskReader.cpp
+source/native_io/NativeDiskWriter.cpp
+source/native_io/NativeDistanceDimNode.cpp
+source/native_io/NativeDynamicPlug.cpp
+source/native_io/NativeFtk.cpp
+source/native_io/NativeGenericAttribute.cpp
+source/native_io/NativeInfluenceClusterNode.cpp
+source/native_io/NativeIObject.cpp
+source/native_io/NativeIPlug.cpp
+source/native_io/NativeLayerNode.cpp
+source/native_io/NativeMaterialNode.cpp
+source/native_io/NativeNode.cpp
+source/native_io/NativeNullPlug.cpp
+source/native_io/NativePolygon.cpp
+source/native_io/NativePolygonCluster.cpp
+source/native_io/NativePolygonVertex.cpp
+source/native_io/NativeScene.cpp
+source/native_io/NativeLimitMixin.cpp
+source/native_io/NativeSceneAimConstraintNode.cpp
+source/native_io/NativeSceneAreaLightNode.cpp
+source/native_io/NativeSceneCameraNode.cpp
+source/native_io/NativeSceneConstraintNode.cpp
+source/native_io/NativeSceneDirectionalLightNode.cpp
+source/native_io/NativeSceneHemisphereLightNode.cpp
+source/native_io/NativeSceneInstanceNode.cpp
+source/native_io/NativeSceneJointNode.cpp
+source/native_io/NativeSceneLightNode.cpp
+source/native_io/NativeSceneLodGroupNode.cpp
+source/native_io/NativeSceneLookAtConstraintNode.cpp
+source/native_io/NativeSceneMeshBonedInstanceNode.cpp
+source/native_io/NativeSceneMeshNode.cpp
+source/native_io/NativeSceneMeshRemappableNode.cpp
+source/native_io/NativeSceneMeshRemappedInstanceNode.cpp
+source/native_io/NativeSceneNode.cpp
+source/native_io/NativeSceneNonAmbientLightNode.cpp
+source/native_io/NativeSceneOrientConstraintNode.cpp
+source/native_io/NativeScenePointConstraintNode.cpp
+source/native_io/NativeScenePointLightNode.cpp
+source/native_io/NativeSceneSplineNode.cpp
+source/native_io/NativeSceneSpotLightNode.cpp
+source/native_io/NativeSceneXRefNode.cpp
+source/native_io/NativeShaderImageNode.cpp
+source/native_io/NativeShaderNode.cpp
+source/native_io/NativeUnitConversionNode.cpp
+source/native_io/NativeUtility.cpp
+source/native_io/NativeWeightEnvelope.cpp
+source/native_io/NativeXRefScene.cpp
+;
+
+XSISRC =
+source/xsi_io/XsiIoMain.cpp
+source/xsi_io/export/XsiIoAnimationCurveExport.cpp
+source/xsi_io/export/XsiIoAnimationExport.cpp
+source/xsi_io/export/XsiIoMaterialExport.cpp
+source/xsi_io/export/XsiIoSceneExport.cpp
+source/xsi_io/export/XsiIoSceneMeshExport.cpp
+source/xsi_io/export/XsiIoSceneNodeExport.cpp
+source/xsi_io/import/XsiIoAnimationCurveImport.cpp
+source/xsi_io/import/XsiIoAnimationImport.cpp
+source/xsi_io/import/XsiIoMaterialImport.cpp
+source/xsi_io/import/XsiIoSceneIkNodeImport.cpp
+source/xsi_io/import/XsiIoSceneImport.cpp
+source/xsi_io/import/XsiIoSceneMeshImport.cpp
+source/xsi_io/import/XsiIoSceneNodeImport.cpp
+;
+
+FBXSRC = 
+source/fbx_io/FbxIoMain.cpp
+source/fbx_io/FbxIoUtility.cpp
+source/fbx_io/import/FbxIoSceneImport.cpp
+source/fbx_io/import/FbxIoSceneNodeImport.cpp
+source/fbx_io/import/FbxIoAnimationImport.cpp
+source/fbx_io/import/FbxIoAnimationCurveImport.cpp
+;
+
+if $(TARGET) = WIN64_TOOL
+{
+	Library aftk : $(AFTKSRC) $(NATIVESRC) : stdafx.cpp ;
+}
+else
+{
+	if $(AFTK_MAYA) = 1
+	{
+		Define AFTK_MAYA_IO NT_PLUGIN AFTK_MAYA_IO_7_0 AFTK_FBX ;
+	
+		Library aftk_maya : <maya>$(AFTKSRC) <maya>$(NATIVESRC) <maya>$(MAYASRC) <maya>$(XSISRC) <maya>$(FBXSRC) : <maya>stdafx.cpp ;
+	}
+	else if $(AFTK_FBX) = 1
+	{
+		Define AFTK_FBX ;
+		
+		Library aftk_fbx : <fbx>$(AFTKSRC) <fbx>$(NATIVESRC) <fbx>$(XSISRC) <fbx>$(FBXSRC) : <fbx>stdafx.cpp ;	
+	}
+	else
+	{
+		Library aftk : $(AFTKSRC) $(NATIVESRC) $(XSISRC) : stdafx.cpp ;
+	}
+}
+
+ExportVcproj aftk ;

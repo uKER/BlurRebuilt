@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AftkToXml", "AftkToXml.vcproj", "{509E1F52-4A8A-4733-8D46-09ACB1DC72DE}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{509E1F52-4A8A-4733-8D46-09ACB1DC72DE}.Debug.ActiveCfg = Debug|Win32
+		{509E1F52-4A8A-4733-8D46-09ACB1DC72DE}.Debug.Build.0 = Debug|Win32
+		{509E1F52-4A8A-4733-8D46-09ACB1DC72DE}.Release.ActiveCfg = Release|Win32
+		{509E1F52-4A8A-4733-8D46-09ACB1DC72DE}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

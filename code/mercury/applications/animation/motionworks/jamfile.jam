@@ -1,0 +1,180 @@
+SupportedTargets WIN32_TOOL WIN32_TOOL_2008 ;
+
+SubDir TOP Code Mercury Applications Animation MotionWorks ;
+
+#Define WXUSINGDLL ;
+
+IncludePath 
+$(SUBDIR)/source
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/XtWin/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Tools/Aftk/aftk/include
+$(TOP)/Code/Tools/AftkUt/aftkUtLib/include
+#$(TOP)/Libs/Vendor/wxWidgets/2.8.9/include/msvc
+#$(TOP)/Libs/Vendor/wxWidgets/2.8.9/include
+#$(TOP)/Libs/Vendor/wxWidgets/2.8.9/contrib/include
+$(TOP)/Libs/Vendor/wxWidgets/2.8.6/include/msvc
+$(TOP)/Libs/Vendor/wxWidgets/2.8.6/include
+$(TOP)/Libs/Vendor/wxWidgets/2.8.6/contrib/include
+$(TOP)/Code/Vendor/sigslot/include
+$(TOP)/Code/Mercury/Library/Animation/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+
+	# Add include path for wxWidgets setup.h
+	
+#	if $(BUILD) = Debug
+	#{
+		#IncludePath $(TOP)/libs/vendor/wxwidgets/2.8.6/lib/vc_lib/mswd ;
+	#}
+	#else
+	#{
+		#IncludePath $(TOP)/libs/vendor/wxwidgets/2.8.6/lib/vc_lib/mswd ;
+	#}
+
+	# CcFlags /EHsc ;
+
+	Define _CRT_SECURE_NO_WARNINGS ;
+	
+	if $(TARGET) = WIN32_TOOL 
+	{
+		if $(BUILD) = Debug
+		{
+			FBXSDK_LIB = $(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2005 ;
+		}
+		else
+		{
+			FBXSDK_LIB = $(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2005 ;
+		}
+	}
+	else if $(TARGET) = WIN32_TOOL_2008
+	{
+		if $(BUILD) = Debug
+		{
+			FBXSDK_LIB = $(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2008d ;
+		}
+		else
+		{
+			FBXSDK_LIB = $(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2008 ;
+		}
+	}
+
+	LINKLIBS += ws2_32.lib
+				dbghelp.lib
+				psapi.lib
+				comctl32.lib
+				rpcrt4.lib
+				gdiplus.lib
+				msimg32.lib
+				"$(DXSDK_PATH)/Lib/x86/d3d9.lib"
+				"$(DXSDK_PATH)/Lib/x86/d3dx9.lib"
+				"$(DXSDK_PATH)/Lib/x86/dinput8.lib"
+				"$(DXSDK_PATH)/Lib/x86/dxguid.lib"
+				"$(DXSDK_PATH)/Lib/x86/dxerr.lib"
+				"$(TOP)/Libs/Vendor/xsiftk/5.11/lib/XSIFtk.lib"
+				;
+
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 ;
+			    
+	if $(BUILD) = Release
+	{
+		LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+	}
+	
+	if $(BUILD) = Debug
+	{
+		LINKFLAGS += /NODEFAULTLIB:MSVCRT ;
+	}
+}
+  
+
+Define
+OBJ_SHADERS
+;
+
+SRC =
+source/AnimationGraph.cpp
+source/AppSettings.cpp
+source/Camera.cpp
+source/Db.cpp
+source/DynamicsContext.cpp
+source/Gui.cpp
+source/PreviewSection.cpp
+source/PreviewState.cpp
+source/ResourceCache.cpp
+source/SkinnedMesh.cpp
+source/ui/AnimationPreview.cpp
+source/ui/ConstraintsPanel.cpp
+source/ui/CurveViewerPanel.cpp
+source/ui/DynamicsPanel.cpp
+source/ui/Frame.cpp
+source/ui/JointPropertiesPanel.cpp
+source/ui/Main.cpp
+source/ui/OptionsDialogs.cpp
+source/ui/PreviewDisplayWindow.cpp
+source/ui/ProgressImpl.cpp
+source/ui/PropertyTypes.cpp
+source/ui/SkeletonPanel.cpp
+source/ui/TimelinePanel.cpp
+source/ui/XtTreeView.cpp
+source/ui/XtWindow.cpp
+source/ui/DisplayWindow.cpp
+;
+
+SHADER_SRC =
+source/shaders/vsSkinnedMesh.vsh
+source/shaders/psSkinnedMesh.psh
+source/shaders/psFlat.psh
+;
+
+
+CPFile source/shaders/psConstants.cp ;
+CPFile source/shaders/vsConstants.cv ;
+
+AFTK_FBX = 1 ;
+
+AFTK_LIB = aftk ;
+if $(AFTK_FBX) = 1
+{
+	AFTK_LIB = aftk_fbx ;
+}
+
+
+LinkLibraries MotionWorks :	core system display display2 render
+							misc_shared
+							wxcore wxbase wxaui
+							wxtiff wxpng wxjpeg wxzlib wxcontrib
+							$(AFTK_LIB) animation_tools xttool xtwin
+							aftkutlib
+							$(FBXSDK_LIB)
+							;
+		
+Application MotionWorks : $(SRC) $(SHADER_SRC) : stdafx.cpp ;
+
+EmbedManifest ./MotionWorks.exe : MotionWorks.exe ;
+
+ExportVcproj MotionWorks ;
+
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xtwin ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Animation ;
+#SubInclude TOP Libs Vendor wxWidgets 2.8.9 ;
+SubInclude TOP Libs Vendor wxWidgets 2.8.6 ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools AftkUt AftkUtLib ;

@@ -1,0 +1,83 @@
+SubDir TOP Code Tools ResourceBundler ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+XDK = [ ConvertDOSPath $(XEDK) ] ;
+
+Define BUNDLER_APP ;
+
+IncludePath
+\"$(XDK)/include/win32/vs2005\"
+./include
+./source
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/util/tools_shared/include
+../attk/attk/include
+../../vendor/zlib/current_mercury
+../../../libs/vendor/NVIDIA_DDS_Utilities/LIBS/inc
+../../../libs/vendor/ATI_Compress
+../compress_lib/include
+;
+
+SRC =
+source/Bundler.cpp
+source/main.cpp
+source/MemoryDbg.cpp
+source/RDFParse.cpp
+source/Utility.cpp
+source/process_texture/IProcessTexture.cpp
+source/process_texture/ProcessArrayOfTextures2D.cpp
+source/process_texture/ProcessedMipmapChain.cpp
+source/process_texture/ProcessTexture2D.cpp
+source/process_texture/ProcessTexture3D.cpp
+source/process_texture/ProcessTextureArray2D.cpp
+source/process_texture/ProcessTextureCubeMap.cpp
+source/export_resource_header/ExportHeaderTexture.cpp
+source/export_resource_header/ExportHeaderTexture2D.cpp
+source/export_resource_header/ExportHeaderTexture3D.cpp
+source/export_resource_header/ExportHeaderTextureArray2D.cpp
+source/export_resource_header/ExportHeaderTextureCubeMap.cpp
+source/export_resource/IExportTexture.cpp
+source/export_resource/OutputTextureData.cpp
+source/export_resource/Generic/ExportArrayOfTextures2DGeneric.cpp
+source/export_resource/Generic/ExportTexture2DGeneric.cpp
+source/export_resource/Generic/ExportTexture3DGeneric.cpp
+source/export_resource/Generic/ExportTextureArray2DGeneric.cpp
+source/export_resource/Generic/ExportTextureCubeMapGeneric.cpp
+source/export_resource/Generic/ExportTextureFactoryGeneric.cpp
+source/export_resource/Generic/ExportTextureGeneric.cpp
+source/export_resource/360/ExportArrayOfTextures2D360.cpp
+source/export_resource/360/ExportTexture2D360.cpp
+source/export_resource/360/ExportTexture3D360.cpp
+source/export_resource/360/ExportTextureArray2D360.cpp
+source/export_resource/360/ExportTextureCubeMap360.cpp
+source/export_resource/360/ExportTextureFactory360.cpp
+source/export_resource/360/ExportTexture360.cpp
+source/export_resource/Wii/ExportTextureFactoryWii.cpp
+source/export_resource/Wii/ExportArrayOftextures2DWii.cpp
+source/export_resource/Wii/ExportTexture2DWii.cpp
+source/export_resource/Wii/ExportTextureWii.cpp
+source/export_resource/Wii/ExportTextureArray2DWii.cpp
+;
+
+LINKFLAGS += /NODEFAULTLIB:"libc.lib" ;
+LINKLIBS += ws2_32.lib ../../../libs/vendor/devil/1.6.7-mercury/lib/devil_win32_dynamic_2005.lib dbghelp.lib Psapi.lib "$(XDK)/lib/win32/vs2005/d3d9.lib" "$(XDK)/lib/win32/vs2005/xgraphics.lib" "$(XDK)/lib/win32/vs2005/d3dx9.lib" ../../../libs/vendor/ati_compress/1.4/lib/ATI_Compress_MT_DLL_VC8.lib ../../../libs/vendor/squish/1.9/lib/squish.lib ../../../libs/vendor/nvidia_texture_tools/2.0/lib/nvtt.lib ../../../libs/vendor/ati_cubemapgen/lib/cubemapgenlib.lib ;
+LinkLibraries ResourceBundler : core system misc_shared tools_shared attk compress_lib zlib ;
+		
+Application ResourceBundler : $(SRC) ;
+ExportVcproj ResourceBundler ;
+
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/resource_bundler/ResourceBundler.exe : ResourceBundler.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Vendor zlib current_mercury ;
+SubInclude TOP Code Tools compress_lib ;

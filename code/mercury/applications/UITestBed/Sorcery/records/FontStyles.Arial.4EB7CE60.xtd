@@ -1,0 +1,14 @@
+xt
+	field DropShadow "0.5"
+	field FontName "Arial"
+	field StyleName "Default"
+	field __id "4EB7CE60"
+	field __name "FontStyles.Arial"
+	field __pack "F2519802"
+	field __type "UIFontStyle"
+	field dropshadow "0.000"
+	field font "Arial_unicode_ms"
+	field name "Arial"
+	field shader "2"
+	field tracking "0"
+end

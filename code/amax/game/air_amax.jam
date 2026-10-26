@@ -1,0 +1,25 @@
+IncludePath 
+$(TOP)/Code/Amax/Game/AI
+;
+
+AIR_AMAX_SRC = 
+./AI/AI_Amax.cpp
+./AI/AI_AmaxXt.cpp
+./AI/Perks/PerkSystem/cPerkSystem.cpp
+./AI/Perks/PerkLogic/cPerkLogic.cpp
+./AI/Perks/PerkAndSkillUsage/cPerkSkillUsage.cpp
+./AI/Mode/Destruction/cModeDestruction.cpp
+./AI/Mode/FanDemand/cModeFanDemand.cpp
+./AI/Perks/PerkNitro/cPerkNitro.cpp
+./AI/Perks/PerkShock/cPerkShock.cpp
+./AI/Perks/PerkShunt/cPerkShunt.cpp
+./AI/Perks/PerkMine/cPerkMine.cpp
+./AI/Perks/PerkShield/cPerkShield.cpp
+./AI/Perks/PerkBolt/cPerkBolt.cpp
+./AI/Perks/PerkBarge/cPerkBarge.cpp
+./AI/Perks/PerkRepair/cPerkRepair.cpp
+./AI/GameBrain/cGameBrain.cpp
+;
+
+
+AIR_AMAX_SRC = [ Batch $(AIR_AMAX_SRC) : stdafx.h ] ;

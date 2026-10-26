@@ -1,0 +1,134 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 324, 273
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "IP Address:",IDC_STATIC,6,6,66,12
+    EDITTEXT        IDC_EDIT2,78,6,84,12,ES_AUTOHSCROLL
+    LTEXT           "",IDC_TARGET,264,6,60,12
+    PUSHBUTTON      "Connect",IDC_CONNECT,168,6,42,12
+    PUSHBUTTON      "Disconnect",IDC_DISCONNECT,216,6,42,12
+    EDITTEXT        IDC_STATUS,6,78,312,30,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Screenshot",IDC_SCREEN_CAPTURE,6,24,42,12
+    CONTROL         "Photo Movie",IDC_PHOTO_MOVIE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,234,24,66,12
+    COMBOBOX        IDC_COMBO2,120,24,42,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Movie Capture",IDC_MOVIE_CAPTURE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,168,24,60,12
+    LTEXT           "Frames:",IDC_STATIC,6,42,30,12
+    COMBOBOX        IDC_COMBO1,42,42,42,54,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Show Images",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,42,66,12
+    EDITTEXT        IDC_EDIT1,6,60,270,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Open",IDC_FOLDER,282,60,36,12
+    PUSHBUTTON      "Photo",IDC_PHOTO_CAPTURE,54,24,42,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 317
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 263
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "icon1.ico"
+IDI_ICON2               ICON                    "icon2.ico"
+IDI_ICON3               ICON                    "icon3.ico"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

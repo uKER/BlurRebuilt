@@ -1,0 +1,25 @@
+#include "..\..\psCommon.h"
+
+float4	g_vWeightSettings : register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float dist = length(float2(g_vWeightSettings.x, g_vWeightSettings.y) - input.uv) * g_vWeightSettings.z;
+	float weight = saturate(1.0f - dist);
+	
+	output.colour = float4(weight, weight, weight, 1.0f);
+		
+	return output;
+}

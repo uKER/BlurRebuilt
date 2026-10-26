@@ -1,0 +1,90 @@
+SubDir TOP Code Tools Plugins Illustrator CS3 PolygonExporter ;
+
+SupportedTargets WIN32_TOOL ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+# Knock this out when publishing
+Define CFG_ALLOW_OPTIMIZE_OFF_IPF ;
+echo OPTIMISATIONS ARE _OFF_ FOR IPF code ;
+
+IncludePath
+./include
+$(MERCURY)/Common/misc_shared/include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Common/Btl/include
+$(MERCURY)/Ui/include
+$(MERCURY)/UI
+$(MERCURY)/Graphics/Display/include
+$(MERCURY)/Graphics/Display2/include
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/adm
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/ate
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/illustrator
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/illustrator/legacy
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/pica_sp
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/samplecode/common/includes
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC =
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobeColour.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobeGroup.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobePoint.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobePolygon.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/UIAdobePath.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/Ipf/IpfWriter.cpp
+$(MERCURY)/UI/Source/Ui/Illustrator/Ipf/IpfData.cpp
+$(MERCURY)/UI/Source/Ui/UILogger.cpp
+$(MERCURY)/UI/Source/Ui/Graphics/Polygons/UITriangulator.cpp
+$(MERCURY)/UI/Source/Ui/Graphics/Polygons/UIPolygonClasses.cpp
+$(MERCURY)/UI/Source/Ui/Graphics/Polygons/UIClipOperations.cpp
+$(MERCURY)/UI/Source/Ui/Graphics/Polygons/UIHoleResolver.cpp
+source/PluginHandler.cpp
+source/DialogHandler.cpp
+source/MessageHandler.cpp
+source/NotifierHandler.cpp
+source/PluginMain.cpp
+source/PolygonExporter.cpp
+source/Utility.cpp
+source/SceneBounds.cpp
+source/ShapeBuilder.cpp
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/illustrator/IAIFilePath.cpp
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/illustratorapi/illustrator/IAIUnicodeString.cpp
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/samplecode/common/source/SDKAboutPluginsHelper.cpp
+$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/samplecode/common/source/stringUtils.cpp
+;
+
+RC =
+polygonexporter.rc
+;
+
+LINKFLAGS +=
+	/DEF:"$(BIZARRE_GLOBAL_VENDOR)/adobe_illustrator_cs3_sdk/samplecode/common/win/PluginMain.def"
+;
+
+rule link
+{
+    DEPENDS $(<) : [ on $(<) return $(DEF_FILE) ] ;
+}
+
+Define WIN_ENV ;
+
+LinkLibraries polygonexporter : core system misc_shared zlib ;
+
+DLL polygonexporter : <src>$(SRC) <rc>$(RC) ;
+ExportVcproj polygonexporter ;
+
+EmbedManifest "$(BIZARRE_ROOT)/tools/art_tools/illustrator/plugins/polygonexporter.aip" : polygonexporter.exe ;
+
+#Copy "$(BIZARRE_ROOT)/tools/art_tools/illustrator/plugins/polygonexporter.aip" : polygonexporter.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Misc_shared ;
+SubInclude TOP Code Vendor zlib current_mercury ;

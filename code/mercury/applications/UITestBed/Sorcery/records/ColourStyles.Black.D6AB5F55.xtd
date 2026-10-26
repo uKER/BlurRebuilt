@@ -1,0 +1,31 @@
+xt
+	field __id "D6AB5F55"
+	field __name "ColourStyles.Black"
+	field __pack "F2519802"
+	field __type "UIColourStyle"
+	block bottom_left
+		field a "1"
+		field b "0"
+		field g "0"
+		field r "0"
+	end
+	block bottom_right
+		field a "1"
+		field b "0"
+		field g "0"
+		field r "0"
+	end
+	field name "Black"
+	block top_left
+		field a "1"
+		field b "0"
+		field g "0"
+		field r "0"
+	end
+	block top_right
+		field a "1"
+		field b "0"
+		field g "0"
+		field r "0"
+	end
+end

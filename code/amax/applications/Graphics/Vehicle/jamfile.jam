@@ -1,0 +1,97 @@
+echo "Building Vehicle for $(PLATFORM)" ;
+
+SubDir TOP Code MercuryGame Applications Graphics Vehicle ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+XenonRemoteLocation MercuryGame ;
+SetGameFolder $(BIZARRE_ROOT)/MercuryGame ;
+
+IncludePath 
+Vehicle$(_PLATFORM)
+Vehicle$(_PLATFORM)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/graphics/vehicle/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/testsections/include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+$(TOP)/Code/Mercury/Library/Graphics/RenderingData/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Graphics/SceneGraph/include
+$(TOP)/Code/Mercury/Library/Graphics/Shader/include
+$(TOP)/Code/Mercury/Library/Graphics/world_render/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+$(TOP)/Code/Mercury/Library/Gamesys/Game_resource/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+./Main.cpp
+./Vehicle/TestSectionVehicle.cpp
+./../../../../mercury/library/gamesys/testsections/source/TestSectionLivery.cpp
+;
+
+LinkLibraries Vehicle :
+		core 
+		system 
+		display 
+		render 
+		vehicle 
+		camera2 
+		input 
+		resource 
+		framework 
+		testsections 
+		debugsystems 
+		zlib 
+		RenderingData 
+		fx 
+		scenegraph 
+		game_resource 
+		gravity 
+		world_render 
+		misc_shared
+		textureresource
+		;
+			
+Application Vehicle : $(SRC) : stdafx.cpp ;
+
+ExportVcproj Vehicle ;
+
+include $(TOP)/Code/Mercury/Library/Graphics/Shader/fx.jam ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Vehicle ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics world_render ;
+SubInclude TOP Code Mercury Library Graphics TextureResource ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys TestSections ;
+SubInclude TOP Code Mercury Library Gamesys DebugSystems ;
+SubInclude TOP Code Mercury Library Gamesys Game_Resource ;
+SubInclude TOP Code Vendor zlib current_mercury  ;

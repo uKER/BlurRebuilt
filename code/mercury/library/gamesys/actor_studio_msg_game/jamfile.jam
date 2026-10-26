@@ -1,0 +1,19 @@
+SubDir TOP Code Mercury Library GameSys Actor_Studio_Msg_Game ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/gamesys/game_context/include
+$(TOP)/code/mercury/library/gamesys/shared_actors/include
+$(TOP)/code/mercury/library/gamesys/actor_system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/util/actor_studio_msg_shared/include
+;
+
+SRC = 
+./source/ActorStudioMessaging.cpp
+;
+
+Library actor_studio_msg_game : $(SRC) $($(PLATFORM)SRC) : ActorStudioMsgGamePch.cpp : ActorStudioMsgGamePch.h ;

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<RDF Version="XPR2">
+
+<Texture 
+    Name   = "SoftShadowTexture"
+    Source = ".\textures\shadow.tga"
+    Format = "D3DFMT_DXT5"
+    Levels = "0" 
+/>
+
+<Texture 
+	Name	=	"TyreTrackTexture"
+	Source	=	".\textures\tracks.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"SmokeTexture"
+	Source	=	".\textures\smoke.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"SunTexture"
+	Source	=	".\textures\sun.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"HeatHazeTexture"
+	Source	=	".\textures\heathaze.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"LightGlow01"
+	Source	=	".\textures\LightGlow01.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"LightSpike01"
+	Source	=	".\textures\LightSpike01.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"CentreWeightTexture"
+	Source	=	".\textures\CentreWeighting.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"1"
+/>
+
+<Texture 
+	Name	=	"FresnelTexture"
+	Source	=	".\textures\fresnel.tga"
+	Format	=	"D3DFMT_L8"
+	Width	=	"256"
+	Height	=	"1"
+	Levels	=	"1"
+/>
+
+<Texture 
+	Name	=	"DetailTexture"
+	Source	=	".\textures\detail_large.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"LightGlowAlpha"
+	Source	=	".\textures\lightglowalpha02.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"HeadLightTexture"
+	Source	=	".\textures\headlight03.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"SparkTexture"
+	Source	=	".\textures\spark.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"GlassParticlesTexture"
+	Source	=	".\textures\glassparticles.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"PlateTexture"
+	Source	=	".\textures\Plate.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"PlateFontTexture"
+	Source	=	".\textures\Plate_font.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Cubemap 
+    Name   = "CarReflection"
+	Source0 = ".\textures\Car\Reflection_c00.tga"
+	Source1 = ".\textures\Car\Reflection_c01.tga"
+	Source2 = ".\textures\Car\Reflection_c02.tga"
+	Source3 = ".\textures\Car\Reflection_c03.tga"
+	Source4 = ".\textures\Car\Reflection_c04.tga"
+	Source5 = ".\textures\Car\Reflection_c05.tga"
+    Format = "D3DFMT_DXT1"
+    Size   = "128"
+    Levels = "1" 
+/>
+
+<Cubemap 
+    Name   = "CarBlurredReflection"
+	Source0 = ".\textures\Car\BlurredReflection_c00.tga"
+	Source1 = ".\textures\Car\BlurredReflection_c01.tga"
+	Source2 = ".\textures\Car\BlurredReflection_c02.tga"
+	Source3 = ".\textures\Car\BlurredReflection_c03.tga"
+	Source4 = ".\textures\Car\BlurredReflection_c04.tga"
+	Source5 = ".\textures\Car\BlurredReflection_c05.tga"
+    Format = "D3DFMT_DXT1"
+    Size   = "128"
+    Levels = "1" 
+/>
+
+<Texture 
+	Name	=	"BrokenHeadlightTexture"
+	Source	=	".\textures\Car\BrokenHeadlight_07.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"WindscreenDirtTexture"
+	Source	=	".\textures\Car\windscreen_dirt.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"BrokenMirror"
+	Source	=	".\textures\Car\brokenmirror.tga"
+	Format	=	"D3DFMT_DXT1"
+	Levels	=	"0"
+/>
+
+<Texture 
+	Name	=	"VehicleDeformMap"
+	Source	=	".\textures\Car\Vehicle_Deform_Map_01.tga"
+	Format	=	"D3DFMT_DXT5"
+	Levels	=	"0"
+/>
+
+</RDF>
+

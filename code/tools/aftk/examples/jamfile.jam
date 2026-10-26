@@ -1,0 +1,59 @@
+SubDir TOP Code Tools aftk examples ;
+
+AFTK_FBX = 1 ;
+
+SupportedTargets WIN32_TOOL ;
+
+IncludePath
+./source/
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+;
+
+##Define
+##OBJ_SHADERS
+##;
+
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += dbghelp.lib ws2_32.lib xsiftk.lib ;
+if $(AFTK_FBX) = 1
+{
+	LINKLIBS += fbxsdk_md2005d.lib ;
+}
+
+LINKFLAGS += /SUBSYSTEM:CONSOLE /MACHINE:X86 
+	/LIBPATH:\"$(DXSDK_PATH)/lib/x86\" 
+	/LIBPATH:\"$(XEDK_PATH)/lib/win32/vs2005\"
+	/LIBPATH:$(TOP)/libs/vendor/xsiftk/5.11/lib 
+	/LIBPATH:$(TOP)/libs/vendor/fbx_sdk/2009.1/lib
+;
+
+SRC =
+./examples.cpp
+;
+
+if $(AFTK_FBX)
+{
+LinkLibraries AftkExamples :
+	core system tools_shared aftk_fbx 
+;
+}
+else
+{
+LinkLibraries AftkExamples :
+	core system tools_shared aftk 
+;
+}
+
+Application AftkExamples : $(SRC) : stdafx.cpp ;
+
+ExportVcproj AftkExamples ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code tools aftk aftk ;
+

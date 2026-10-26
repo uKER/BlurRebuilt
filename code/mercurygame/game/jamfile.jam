@@ -1,0 +1,233 @@
+SubDir TOP Code MercuryGame Game ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+CheckXDKVersion "Microsoft Xbox 360 SDK 2.0.9328.0" ;
+CheckPS3SDKVersion "280.001" ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+Define USE_SOLVER_2 ;
+Define ENABLE_CROWDS ;
+
+Define LOGFS_ENABLE ;
+Define CFILESYSTEM_CREATE_FUNC_ENABLED ;
+
+IncludePath 
+MercuryGame$(_PLATFORM)
+MercuryGame$(_PLATFORM)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/effect/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/Graphics/Ngl/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/JpegHelper/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/util/logicalfs/include
+$(MERCURY)/util/actor_studio_msg_shared/include
+$(MERCURY)/animation/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/advertising/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/gamesys/game_debug/include
+$(MERCURY)/gamesys/game_physics/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/gamesys/helper_screens/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/audio/include
+$(MERCURY)/gamesys/GameView/include
+$(MERCURY)/gamesys/crowd_system/include
+$(MERCURY)/gamesys/actor_studio_msg_game/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" 
+$(TOP)/libs/vendor/openal/1.1/lib/Win32/OpenAL32.lib 
+$(TOP)/libs/vendor/openal/1.1/lib/Win32/EFX-Util.lib ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+if $(PLATFORM) = XENON
+{
+	LINKLIBS += xmp.lib ;
+}
+
+if $(PLATFORM) = PS3
+{
+	LINKLIBS += "$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_game_stub.a" ;
+	LINKLIBS += "$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub.a" ;
+	LINKLIBS += "$(SCE_PS3_ROOT)/target/ppu/lib/hash/libsha1.a" ;
+}
+
+SRC =
+Main.cpp
+AppPhotoCapture.cpp
+Game/ActorDef/ActorTypes.cpp
+Game/ActorDef/GameActor.cpp
+Game/ActorDef/GameActorList.cpp
+Game/ActorComponents/GameComponents.cpp
+Game/ActorComponents/Creation/RenderComponentsCreate.cpp
+Game/ActorComponents/Creation/PhysicsBodyComponentCreate.cpp
+Game/ActorComponents/Impl/RenderComponents.cpp
+Game/ActorComponents/Impl/PhysicsBodyComponent.cpp
+Game/ActorComponents/Messages/GamePhysicsMessages.cpp
+Game/Game.cpp
+Game/GameActors/AnimationTestActor.cpp
+Game/GameActors/CharacterTestActor.cpp
+Game/GameActors/CollideModelTestActor.cpp
+Game/GameActors/EffectTestActor.cpp
+Game/GameActors/TestActors.cpp
+Game/GameActors/RagdollActor.cpp
+Game/GameActors/VehicleTestActor.cpp
+Game/GameActors/VehicleActor.cpp
+Game/GameControls/GameControls.cpp
+Game/GameDef/GameData.cpp
+Game/GameDef/Materials.cpp
+Game/GameDef/PhysicsConstants.cpp
+Game/GameDef/Polyflags.cpp
+Game/GameWorld/GameWorld.cpp
+Game/GameWorld/GameWorldLayer.cpp
+Game/GameWorld/PhysicsBodyUserDataTypes.cpp
+Game/GameWorld/PostProcessLayer.cpp
+Game/GameWorld/EnvironmentSettings.cpp
+Game/MGCam/CameraActor.cpp
+Game/MGCam/CameraSystem.cpp
+Game/MGCam/CameraSwitcher.cpp
+Game/MGCam/DirectorActor.cpp
+Game/MGCam/MovementDualSpline.cpp
+Game/MGCam/PhysicsChecks.cpp
+Game/MGCam/Sorcery.cpp
+Game/MGCam/VehicleCamera.cpp
+Game/SimpleUi/SimpleUiLayer.cpp
+Game/SystemLayer.cpp
+GameApp.cpp
+GameSystems.cpp
+SchedulerConfig.cpp
+;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+LIBS =  core 
+		system 
+		misc_shared 
+		audio 
+		xtgame 
+		camera2 
+		display 
+		display2 
+		dynamic 
+		effect
+		fx
+		game_debug
+		game_physics
+		game_resource 
+		render
+		RenderingData
+		scenegraph
+		shader
+		RacingPhysics
+		world_render
+		animation
+		input 
+		resource 
+		logicalfs
+		resource_utils
+		framework 
+		actor_system
+		advertising
+		crowd_system
+		debugsystems
+		shared_actors
+		gravity 
+		textureresource
+		vehicle
+		navmesh
+		gameview
+		specialFX
+		animated_model
+		zlib
+		portal
+		helper_screens
+		Jpeg
+		JpegHelper
+		actor_studio_msg_game
+		actor_studio_msg_shared
+		;
+		
+LinkLibraries MercuryGame : $(LIBS) ;
+
+Application MercuryGame : $(SRC) : stdafx.cpp ;
+
+ExportVcproj MercuryGame ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Audio ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Common Misc_shared ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;
+SubInclude TOP Code Mercury Library Graphics Dynamic ;
+SubInclude TOP Code Mercury Library Graphics Effect ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics Portal ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Graphics world_render ;
+SubInclude TOP Code Mercury Library Graphics TextureResource ;
+SubInclude TOP Code Mercury Library Graphics Vehicle ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Physics RacingPhysics ;
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Util JpegHelper ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Util LogicalFs ;
+SubInclude TOP Code Mercury Library Util Actor_Studio_Msg_Shared ;
+SubInclude TOP Code Mercury Library Animation ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys Actor_system ;
+SubInclude TOP Code Mercury Library Gamesys Advertising ;
+SubInclude TOP Code Mercury Library Gamesys Crowd_System ;
+SubInclude TOP Code Mercury Library Gamesys Game_context ;
+SubInclude TOP Code Mercury Library Gamesys Game_physics ;
+SubInclude TOP Code Mercury Library Gamesys Game_resource ;
+SubInclude TOP Code Mercury Library Gamesys Game_debug ;
+SubInclude TOP Code Mercury Library Gamesys DebugSystems ;
+SubInclude TOP Code Mercury Library Gamesys helper_screens ;
+SubInclude TOP Code Mercury Library Gamesys shared_actors ;
+SubInclude TOP Code Mercury Library Gamesys GameView ;
+SubInclude TOP Code Mercury Library Gamesys SpecialFX ;
+SubInclude TOP Code Mercury Library Gamesys Animated_Model ;
+SubInclude TOP Code Mercury Library Gamesys Resource_Utils ;
+SubInclude TOP Code Mercury Library Gamesys Actor_Studio_Msg_Game ;
+SubInclude TOP Code Mercury Library Ai NavMesh ;
+SubInclude TOP libs vendor jpeg version62 ;

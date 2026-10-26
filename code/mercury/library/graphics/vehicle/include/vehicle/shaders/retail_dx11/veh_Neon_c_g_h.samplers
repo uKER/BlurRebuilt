@@ -1,0 +1,4 @@
+DamageInfoTextureSampler	g_sVehicleDamageInfoTexture	0	MIN_MAG_MIP_LINEAR
+DamageVolumeTextureSampler3d	g_sVehicleDamageVolumeTexture	0	MIN_MAG_MIP_LINEAR
+EnvironmentTextureSampler	g_sVehicleEnvironmentTexture	0	MIN_MAG_MIP_LINEAR
+MeshTextureSampler	g_MeshTexture	1	MIN_MAG_MIP_LINEAR

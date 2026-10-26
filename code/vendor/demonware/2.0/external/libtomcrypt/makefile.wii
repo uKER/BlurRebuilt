@@ -1,0 +1,147 @@
+# MAKEFILE for linux GCC
+#
+# Tom St Denis
+# Modified by Clay Culver
+
+# The version
+VERSION=1.10
+
+CODEWARRIOR_INSTALL_ROOT = "C:/Program Files/Metrowerks/CW_RVL/"
+TOOLS_DIR = $(CODEWARRIOR_INSTALL_ROOT)"PowerPC_EABI_Tools/Command_Line_Tools/"
+WII_MSL_COMMON_INCLUDES = $(CODEWARRIOR_INSTALL_ROOT)"PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include"
+WII_PPC_EABI_INCLUDES = $(CODEWARRIOR_INSTALL_ROOT)"PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include"
+
+WII_REVOLUTION_INCLUDES = "C:/RVL_SDK/include/"
+WII_REVO_EX_INCLUDES = "C:/RevoEX/include/"
+
+INCS        =  -I$(WII_MSL_COMMON_INCLUDES) -I$(WII_PPC_EABI_INCLUDES) -I$(WII_REVOLUTION_INCLUDES) -I$(WII_REVO_EX_INCLUDES)
+
+COMPILER_APP = mwcceppc.exe
+LINKER_APP   = mwldeppc.exe
+
+CC = $(TOOLS_DIR)$(COMPILER_APP)
+LD = $(TOOLS_DIR)$(LINKER_APP)
+
+COMPILER_FLAGS = -nodefaults -nolink -library -nosyspath -enum int -Cpp_exceptions off -fp hard  -DGEKKO -D_MSL_CLOCK_T_AVAILABLE -DRVL_OS
+
+C_FLAGS += -c -gccincludes -I./src/headers/ -I../libtommath/ $(INCS) -DLTC_SOURCE  
+C_FLAGS += $(COMPILER_FLAGS)
+
+LIBNAME = libtomcrypt.a
+
+LINKER_FLAGS   = -nodefaults  -library -fp hard -o $(LIBNAME)
+
+all: .depend .link 
+
+# excluded objects, have special rules
+#src/ciphers/aes/aes_enc.o
+
+#List of objects to compile.
+OBJECTS= src/ciphers/anubis.o src/ciphers/blowfish.o \
+src/ciphers/cast5.o src/ciphers/des.o src/ciphers/khazad.o src/ciphers/noekeon.o src/ciphers/rc2.o \
+src/ciphers/rc5.o src/ciphers/rc6.o src/ciphers/safer/safer.o src/ciphers/safer/safer_tab.o \
+src/ciphers/safer/saferp.o src/ciphers/skipjack.o  src/ciphers/xtea.o \
+src/encauth/ccm/ccm_memory.o src/encauth/ccm/ccm_test.o src/encauth/eax/eax_addheader.o \
+src/encauth/eax/eax_decrypt.o src/encauth/eax/eax_decrypt_verify_memory.o src/encauth/eax/eax_done.o \
+src/encauth/eax/eax_encrypt.o src/encauth/eax/eax_encrypt_authenticate_memory.o \
+src/encauth/eax/eax_init.o src/encauth/eax/eax_test.o src/encauth/gcm/gcm_add_aad.o \
+src/encauth/gcm/gcm_add_iv.o src/encauth/gcm/gcm_done.o src/encauth/gcm/gcm_gf_mult.o \
+src/encauth/gcm/gcm_init.o src/encauth/gcm/gcm_memory.o src/encauth/gcm/gcm_mult_h.o \
+src/encauth/gcm/gcm_process.o src/encauth/gcm/gcm_reset.o src/encauth/gcm/gcm_test.o \
+src/encauth/ocb/ocb_decrypt.o src/encauth/ocb/ocb_decrypt_verify_memory.o \
+src/encauth/ocb/ocb_done_decrypt.o src/encauth/ocb/ocb_done_encrypt.o src/encauth/ocb/ocb_encrypt.o \
+src/encauth/ocb/ocb_encrypt_authenticate_memory.o src/encauth/ocb/ocb_init.o src/encauth/ocb/ocb_ntz.o \
+src/encauth/ocb/ocb_shift_xor.o src/encauth/ocb/ocb_test.o src/encauth/ocb/s_ocb_done.o \
+src/hashes/chc/chc.o src/hashes/helper/hash_file.o src/hashes/helper/hash_filehandle.o \
+src/hashes/helper/hash_memory.o src/hashes/helper/hash_memory_multi.o src/hashes/md2.o src/hashes/md4.o \
+src/hashes/md5.o src/hashes/rmd128.o src/hashes/rmd160.o src/hashes/sha1.o \
+src/hashes/tiger.o src/mac/hmac/hmac_done.o \
+src/mac/hmac/hmac_file.o src/mac/hmac/hmac_init.o src/mac/hmac/hmac_memory.o \
+src/mac/hmac/hmac_memory_multi.o src/mac/hmac/hmac_process.o src/mac/hmac/hmac_test.o \
+src/mac/omac/omac_done.o src/mac/omac/omac_file.o src/mac/omac/omac_init.o src/mac/omac/omac_memory.o \
+src/mac/omac/omac_memory_multi.o src/mac/omac/omac_process.o src/mac/omac/omac_test.o \
+src/mac/pelican/pelican.o src/mac/pelican/pelican_memory.o src/mac/pelican/pelican_test.o \
+src/mac/pmac/pmac_done.o src/mac/pmac/pmac_file.o src/mac/pmac/pmac_init.o src/mac/pmac/pmac_memory.o \
+src/mac/pmac/pmac_memory_multi.o src/mac/pmac/pmac_ntz.o src/mac/pmac/pmac_process.o \
+src/mac/pmac/pmac_shift_xor.o src/mac/pmac/pmac_test.o src/math/ltm_desc.o src/math/multi.o \
+src/math/rand_prime.o src/math/tfm_desc.o src/misc/base64/base64_decode.o \
+src/misc/base64/base64_encode.o src/misc/burn_stack.o src/misc/crypt/crypt.o \
+src/misc/crypt/crypt_argchk.o src/misc/crypt/crypt_cipher_descriptor.o \
+src/misc/crypt/crypt_cipher_is_valid.o src/misc/crypt/crypt_find_cipher.o \
+src/misc/crypt/crypt_find_cipher_any.o src/misc/crypt/crypt_find_cipher_id.o \
+src/misc/crypt/crypt_find_hash.o src/misc/crypt/crypt_find_hash_any.o \
+src/misc/crypt/crypt_find_hash_id.o src/misc/crypt/crypt_find_hash_oid.o \
+src/misc/crypt/crypt_find_prng.o src/misc/crypt/crypt_hash_descriptor.o \
+src/misc/crypt/crypt_hash_is_valid.o src/misc/crypt/crypt_ltc_mp_descriptor.o \
+src/misc/crypt/crypt_prng_descriptor.o src/misc/crypt/crypt_prng_is_valid.o \
+src/misc/crypt/crypt_register_cipher.o src/misc/crypt/crypt_register_hash.o \
+src/misc/crypt/crypt_register_prng.o src/misc/crypt/crypt_unregister_cipher.o \
+src/misc/crypt/crypt_unregister_hash.o src/misc/crypt/crypt_unregister_prng.o \
+src/misc/error_to_string.o src/misc/pkcs5/pkcs_5_1.o src/misc/pkcs5/pkcs_5_2.o src/misc/zeromem.o \
+src/modes/cbc/cbc_decrypt.o src/modes/cbc/cbc_done.o src/modes/cbc/cbc_encrypt.o \
+src/modes/cbc/cbc_getiv.o src/modes/cbc/cbc_setiv.o src/modes/cbc/cbc_start.o \
+src/modes/cfb/cfb_decrypt.o src/modes/cfb/cfb_done.o src/modes/cfb/cfb_encrypt.o \
+src/modes/cfb/cfb_getiv.o src/modes/cfb/cfb_setiv.o src/modes/cfb/cfb_start.o \
+src/modes/ctr/ctr_decrypt.o src/modes/ctr/ctr_done.o src/modes/ctr/ctr_encrypt.o \
+src/modes/ctr/ctr_getiv.o src/modes/ctr/ctr_setiv.o src/modes/ctr/ctr_start.o \
+src/modes/ecb/ecb_decrypt.o src/modes/ecb/ecb_done.o src/modes/ecb/ecb_encrypt.o \
+src/modes/ecb/ecb_start.o src/modes/lrw/lrw_decrypt.o src/modes/lrw/lrw_done.o \
+src/modes/lrw/lrw_encrypt.o src/modes/lrw/lrw_getiv.o src/modes/lrw/lrw_process.o \
+src/modes/lrw/lrw_setiv.o src/modes/lrw/lrw_start.o src/modes/lrw/lrw_test.o \
+src/modes/ofb/ofb_decrypt.o src/modes/ofb/ofb_done.o src/modes/ofb/ofb_encrypt.o \
+src/modes/ofb/ofb_getiv.o src/modes/ofb/ofb_setiv.o src/modes/ofb/ofb_start.o \
+src/pk/asn1/der/bit/der_decode_bit_string.o src/pk/asn1/der/bit/der_encode_bit_string.o \
+src/pk/asn1/der/bit/der_length_bit_string.o src/pk/asn1/der/choice/der_decode_choice.o \
+src/pk/asn1/der/ia5/der_decode_ia5_string.o src/pk/asn1/der/ia5/der_encode_ia5_string.o \
+src/pk/asn1/der/ia5/der_length_ia5_string.o src/pk/asn1/der/integer/der_decode_integer.o \
+src/pk/asn1/der/integer/der_encode_integer.o src/pk/asn1/der/integer/der_length_integer.o \
+src/pk/asn1/der/object_identifier/der_decode_object_identifier.o \
+src/pk/asn1/der/object_identifier/der_encode_object_identifier.o \
+src/pk/asn1/der/object_identifier/der_length_object_identifier.o \
+src/pk/asn1/der/octet/der_decode_octet_string.o src/pk/asn1/der/octet/der_encode_octet_string.o \
+src/pk/asn1/der/octet/der_length_octet_string.o \
+src/pk/asn1/der/printable_string/der_decode_printable_string.o \
+src/pk/asn1/der/printable_string/der_encode_printable_string.o \
+src/pk/asn1/der/printable_string/der_length_printable_string.o \
+src/pk/asn1/der/sequence/der_decode_sequence_ex.o \
+src/pk/asn1/der/sequence/der_decode_sequence_flexi.o \
+src/pk/asn1/der/sequence/der_decode_sequence_multi.o \
+src/pk/asn1/der/sequence/der_encode_sequence_ex.o \
+src/pk/asn1/der/sequence/der_encode_sequence_multi.o src/pk/asn1/der/sequence/der_length_sequence.o \
+src/pk/asn1/der/sequence/der_sequence_free.o src/pk/asn1/der/set/der_encode_set.o \
+src/pk/asn1/der/set/der_encode_setof.o src/pk/asn1/der/short_integer/der_decode_short_integer.o \
+src/pk/asn1/der/short_integer/der_encode_short_integer.o \
+src/pk/asn1/der/short_integer/der_length_short_integer.o src/pk/asn1/der/utctime/der_decode_utctime.o \
+src/pk/asn1/der/utctime/der_encode_utctime.o src/pk/asn1/der/utctime/der_length_utctime.o \
+src/pk/dsa/dsa_decrypt_key.o src/pk/dsa/dsa_encrypt_key.o src/pk/dsa/dsa_export.o src/pk/dsa/dsa_free.o \
+src/pk/dsa/dsa_import.o src/pk/dsa/dsa_make_key.o src/pk/dsa/dsa_shared_secret.o \
+src/pk/dsa/dsa_sign_hash.o src/pk/dsa/dsa_verify_hash.o src/pk/dsa/dsa_verify_key.o src/pk/ecc/ecc.o \
+src/pk/ecc/ecc_decrypt_key.o src/pk/ecc/ecc_encrypt_key.o src/pk/ecc/ecc_export.o src/pk/ecc/ecc_free.o \
+src/pk/ecc/ecc_get_size.o src/pk/ecc/ecc_import.o src/pk/ecc/ecc_make_key.o \
+src/pk/ecc/ecc_shared_secret.o src/pk/ecc/ecc_sign_hash.o src/pk/ecc/ecc_sizes.o src/pk/ecc/ecc_test.o \
+src/pk/ecc/ecc_verify_hash.o src/pk/ecc/ltc_ecc_is_valid_idx.o src/pk/ecc/ltc_ecc_map.o \
+src/pk/ecc/ltc_ecc_mulmod.o src/pk/ecc/ltc_ecc_mulmod_timing.o src/pk/ecc/ltc_ecc_points.o \
+src/pk/ecc/ltc_ecc_projective_add_point.o src/pk/ecc/ltc_ecc_projective_dbl_point.o \
+src/pk/katja/katja_decrypt_key.o src/pk/katja/katja_encrypt_key.o src/pk/katja/katja_export.o \
+src/pk/katja/katja_exptmod.o src/pk/katja/katja_free.o src/pk/katja/katja_import.o \
+src/pk/katja/katja_make_key.o src/pk/pkcs1/pkcs_1_i2osp.o src/pk/pkcs1/pkcs_1_mgf1.o \
+src/pk/pkcs1/pkcs_1_oaep_decode.o src/pk/pkcs1/pkcs_1_oaep_encode.o src/pk/pkcs1/pkcs_1_os2ip.o \
+src/pk/pkcs1/pkcs_1_pss_decode.o src/pk/pkcs1/pkcs_1_pss_encode.o src/pk/rsa/rsa_decrypt_key.o \
+src/pk/rsa/rsa_encrypt_key.o src/pk/rsa/rsa_export.o src/pk/rsa/rsa_exptmod.o src/pk/rsa/rsa_free.o \
+src/pk/rsa/rsa_import.o src/pk/rsa/rsa_make_key.o src/pk/rsa/rsa_sign_hash.o \
+src/pk/rsa/rsa_verify_hash.o src/prngs/fortuna.o src/prngs/rc4.o src/prngs/rng_get_bytes.o \
+src/prngs/rng_make_prng.o src/prngs/sober128.o src/prngs/sprng.o src/prngs/yarrow.o \
+src/ciphers/aes/aes.o src/ciphers/twofish/twofish.o src/hashes/whirl/whirl.o \
+src/hashes/sha2/sha512.o src/hashes/sha2/sha256.o
+
+
+SOURCE        = $(OBJECTS:.o=.c)
+OBJECTS_COMPLETE = $(OBJECTS) 
+OBJECTS_COMPLETE +=  src/ciphers/aes/aes_enc.o
+
+.depend:
+	$(CC) $(C_FLAGS) $(INCS) $(SOURCE)
+	$(CC) $(C_FLAGS) -DENCRYPT_ONLY -c src/ciphers/aes/aes.c -o src/ciphers/aes/aes_enc.o
+
+.link:
+	$(LD) $(LINKER_FLAGS) $(OBJECTS_COMPLETE)

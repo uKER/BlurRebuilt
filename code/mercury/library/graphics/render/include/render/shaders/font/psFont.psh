@@ -1,0 +1,33 @@
+#include "..\\psCommon.h"
+
+float4		g_FontShaderParams	: register(CCP_RENDER_SETTINGS);
+sampler2D	g_AlbedoTexture		: register(s0);
+
+
+#define		g_FontAlphaGradientSize			g_FontShaderParams.x
+#define		g_FontAlphaGradientStart		g_FontShaderParams.y
+
+struct PS_INPUT
+{
+	float4 Colour0			: COLOR0;
+	float4 Texcoord0		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour0			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float alpha = tex2D(g_AlbedoTexture, IN.Texcoord0.xy).a;
+	
+	alpha = (alpha >= g_FontAlphaGradientStart)?1.f:saturate( (alpha - g_FontAlphaGradientStart + g_FontAlphaGradientSize) / g_FontAlphaGradientSize);
+	
+	OUT.Colour0.rgb = IN.Colour0.rgb;
+	OUT.Colour0.a = IN.Colour0.a * alpha;
+	
+	return OUT;
+}

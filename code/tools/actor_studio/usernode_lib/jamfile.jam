@@ -1,0 +1,68 @@
+SubDir TOP Code Tools actor_studio usernode_lib ;
+
+Define WXUSINGDLL ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/xtwin/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/xt_shared/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkrender/aftkrender
+$(TOP)/code/tools/aftkrender/aftkrender/include
+$(TOP)/code/tools/actor_studio/editor_app/include
+$(TOP)/code/tools/actor_studio/backend_lib/include
+$(TOP)/code/tools/actor_studio/usernode_lib/include
+$(TOP)/libs/vendor/wxwidgets/2.8.9/include/msvc
+$(TOP)/libs/vendor/wxwidgets/2.8.9/include/
+$(TOP)/libs/vendor/wxwidgets/2.8.9/contrib/include
+$(TOP)/libs/vendor/boost
+$(TOP)/code/vendor/sigslot/include
+;
+
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+
+usernode/propsRC =
+source/usernode/props/animation/DgAnimationPropNode.cpp
+source/usernode/props/animation/DgAnimationPropNodeContexts.cpp
+source/usernode/props/animation/RenderAnimationPropNode.cpp
+source/usernode/props/box/DgBoxPropNode.cpp
+source/usernode/props/box/DgBoxPropNodeContexts.cpp
+source/usernode/props/box/RenderBoxPropNode.cpp
+source/usernode/props/link/DgLinkPropNode.cpp
+source/usernode/props/link/RenderLinkPropNode.cpp
+source/usernode/props/matrix/DgMatrixPropNode.cpp
+source/usernode/props/matrix/DgMatrixPropNodeContexts.cpp
+source/usernode/props/matrix/RenderMatrixPropNode.cpp
+source/usernode/props/sphere/DgSpherePropNode.cpp
+source/usernode/props/sphere/DgSpherePropNodeContexts.cpp
+source/usernode/props/sphere/RenderSpherePropNode.cpp
+source/usernode/props/misc/DgPropContextHelpers.cpp
+source/usernode/props/spline/DgSplinePropNode.cpp
+source/usernode/props/spline/DgSplinePropNodeContexts.cpp
+source/usernode/props/spline/RenderSplinePropNode.cpp
+source/usernode/props/covernode/DgCoverNodePropNode.cpp
+source/usernode/props/covernode/DgCoverNodePropNodeContexts.cpp
+source/usernode/props/covernode/RenderCoverNodePropNode.cpp
+source/usernode/props/rectangle/DgRectanglePropNode.cpp
+source/usernode/props/rectangle/DgRectanglePropNodeContexts.cpp
+source/usernode/props/rectangle/RenderRectanglePropNode.cpp
+source/usernode/props/poly/DgPolyPropNode.cpp
+source/usernode/props/poly/DgPolyPropNodeContexts.cpp
+source/usernode/props/poly/RenderPolyPropNode.cpp
+source/usernode/props/distance/DgDistancePropNode.cpp
+source/usernode/props/distance/RenderDistancePropNode.cpp
+source/usernode/props/radius/DgRadiusPropNode.cpp
+source/usernode/props/radius/RenderRadiusPropNode.cpp
+source/usernode/props/radius/DgRadiusPropNodeContexts.cpp
+source/usernode/Register.cpp
+;
+
+Library usernode_lib : $(usernode/propsRC) : stdafx.cpp ;
+
+ExportVcproj usernode_lib ;

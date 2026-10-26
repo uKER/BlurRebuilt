@@ -1,0 +1,47 @@
+SubDir TOP Code tools maya_plugins CameraExportPlugin ;
+SupportedTargets WIN32_TOOL ;
+
+AFTK_MAYA = 1 ;
+
+IncludePath
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/libs/vendor/maya/2008/include
+;
+
+LINKLIBS += ws2_32.lib
+	$(TOP)/libs/vendor/maya/2008/lib/foundation.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMaya.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMayaUI.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMayaAnim.lib
+	$(TOP)/libs/vendor/fbx_sdk/2009.1/lib/fbxsdk_md2005.lib
+;
+
+LINKFLAGS += /DLL /export:initializePlugin /export:uninitializePlugin ;
+
+SRC =
+AnimSend.cpp
+CamCom.cpp
+Main.cpp
+SceneSend.cpp
+Xenon.cpp
+;
+
+LinkLibraries CameraExportPlugin :
+		core system camera2tool misc_shared aftk_maya $(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk
+		;
+		
+DLL CameraExportPlugin : $(SRC) : stdafx.cpp ;
+ExportVcproj CameraExportPlugin ;
+
+EmbedManifestDLL $(BIZARRE_ROOT)/tools/art_tools/maya/packages/biz_CameraSystem/plugins/2008/cameraexportplugin.mll : CameraExportPlugin.exe ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common misc_shared ;
+SubInclude TOP code mercury library graphics camera2 ;
+SubInclude TOP code tools aftk aftk ;

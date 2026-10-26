@@ -1,0 +1,21 @@
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float4	m_ViewPosition	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+		
+	output.m_Colour	= length(input.m_ViewPosition.xyz);
+	
+	return output;
+}

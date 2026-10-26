@@ -1,0 +1,77 @@
+echo "Building Scene for $(PLATFORM)" ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+SubDir TOP Code MercuryGame Applications Graphics Scene ;
+
+IncludePath 
+SceneGraph$(_PLATFORM)
+SceneGraph$(_PLATFORM)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/Code/Mercury/Library/Common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Misc_shared/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/graphics/effect/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/graphics/renderingdata/include
+$(TOP)/code/mercury/library/graphics/dynamic/include
+$(TOP)/code/mercury/library/graphics/shader/include
+$(TOP)/code/mercury/library/graphics/ngl/include
+$(TOP)/code/mercury/library/graphics/fx/include
+$(TOP)/code/mercury/library/graphics/scenegraph/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/testsections/include
+;
+
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC =
+./Main.cpp
+./../../../../mercury/library/gamesys/testsections/source/TestSectionSkyDome.cpp
+./../../../../mercury/library/gamesys/testsections/source/TestSectionHDR.cpp
+./../../../../mercury/library/gamesys/testsections/source/TestSectionSceneGraph.cpp
+;
+		
+XenonRemoteLocation Scene ;
+
+LinkLibraries Scene :
+		core system display render effect dynamic shader RenderingData fx scenegraph camera2 input framework resource textureresource testsections debugsystems zlib
+		;
+
+
+Application Scene : $(SRC) : stdafx.cpp ;
+
+ExportVcproj Scene ;
+
+include $(TOP)/code/mercury/library/graphics/shader/fx.jam ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Misc_shared ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Effect ;
+SubInclude TOP Code Mercury Library Graphics Shader ;
+SubInclude TOP Code Mercury Library Graphics Dynamic ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics SceneGraph ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;
+SubInclude TOP Code Mercury Library Graphics TextureResource ;
+SubInclude TOP Code Mercury Library Util Input ;
+SubInclude TOP Code Mercury Library Util Resource ;
+SubInclude TOP Code Mercury Library Gamesys Framework ;
+SubInclude TOP Code Mercury Library Gamesys Testsections ;
+SubInclude TOP Code Mercury Library Gamesys Debugsystems ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+

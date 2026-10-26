@@ -1,0 +1,23 @@
+SubDir TOP Code Mercury Library ai navmesh ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/ai/navmesh/include
+$(TOP)/code/mercury/library/common/xt2/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+}
+
+SRC = ./source/NavMesh.cpp
+;
+
+Library navmesh : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

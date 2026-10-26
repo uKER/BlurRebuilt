@@ -1,0 +1,30 @@
+SubDir TOP Code Tools compress_lib ;
+
+Define COMPRESS_LIB_ENABLE_ATI ;
+Define COMPRESS_LIB_ENABLE_X360 ;
+
+IncludePath 
+./include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/tools/attk/attk/include
+$(TOP)/code/tools/compress_lib/include
+$(TOP)/libs/vendor/ati_compress/1.4/include
+$(TOP)/libs/vendor/squish/1.9/include
+$(TOP)/libs/vendor/xbox360_xdk/6132/include/win32
+$(TOP)/libs/vendor/xbox360_xdk/6132/include/win32/vs2005
+$(TOP)/libs/vendor/ati_compress
+$(TOP)/libs/vendor/nvidia_texture_tools/2.0/include
+;
+
+SRC = 
+source/compress_lib/CompressedDataUtil.cpp
+source/compress_lib/CompressLib360.cpp
+source/compress_lib/CompressLibAti.cpp
+source/compress_lib/CompressLibBase.cpp
+source/compress_lib/CompressLibFactory.cpp
+source/compress_lib/CompressLibNVidia.cpp
+source/compress_lib/CompressLibSquish.cpp
+;
+
+Library compress_lib : $(SRC) : stdafx.cpp ;

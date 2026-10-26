@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld", "HelloWorld\HelloWorld.vcproj", "{4F88967B-703C-41C7-BA36-7E89597478CF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua-5.0.2", "lua-5.0.2.vcproj", "{AB068846-4A0C-4963-B9FB-BA7DE7BB268C}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4F88967B-703C-41C7-BA36-7E89597478CF}.Debug.ActiveCfg = Debug|Win32
+		{4F88967B-703C-41C7-BA36-7E89597478CF}.Debug.Build.0 = Debug|Win32
+		{4F88967B-703C-41C7-BA36-7E89597478CF}.Release.ActiveCfg = Release|Win32
+		{4F88967B-703C-41C7-BA36-7E89597478CF}.Release.Build.0 = Release|Win32
+		{AB068846-4A0C-4963-B9FB-BA7DE7BB268C}.Debug.ActiveCfg = Debug|Win32
+		{AB068846-4A0C-4963-B9FB-BA7DE7BB268C}.Debug.Build.0 = Debug|Win32
+		{AB068846-4A0C-4963-B9FB-BA7DE7BB268C}.Release.ActiveCfg = Release|Win32
+		{AB068846-4A0C-4963-B9FB-BA7DE7BB268C}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

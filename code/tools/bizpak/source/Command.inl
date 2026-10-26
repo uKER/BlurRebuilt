@@ -1,0 +1,8 @@
+DEF(E_Command_Unknown, "")
+DEF(E_Command_Create, "c")
+DEF(E_Command_AddUpdate, "a")
+DEF(E_Command_CreateIncremental, "i")
+DEF(E_Command_Delete, "d")
+DEF(E_Command_List, "l")
+DEF(E_Command_Test, "t")
+DEF(E_Command_Extract, "x")

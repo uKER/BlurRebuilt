@@ -1,0 +1,20 @@
+<root              level="Debug"/>
+<!--
+<util.resource     level="Debug"/>
+-->
+
+
+
+<subscriber
+type="console"
+attach="root"
+format="%c\n"
+	/>
+
+
+<subscriber
+type="logfile"
+file=".\new_tech_spec.log"
+attach="root"
+format="[%t %d] %c\n"
+	/>

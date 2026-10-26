@@ -1,0 +1,282 @@
+SubDir TOP Code Tools actor_studio editor_app ;
+
+XENONSDK = [ ConvertDOSPath $(XEDK) ] ;
+DXSDK = [ ConvertDOSPath $(DXSDK_PATH) ] ;
+
+SupportedTargets WIN32_TOOL WIN32_TOOL_2008 ;
+
+Define WXUSINGDLL Py_RELEASE ;
+
+IncludePath
+\"$(DXSDK)/include\"
+\"$(XENONSDK)/include/win32/vs2005\"
+./source/
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/xtwin/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+$(TOP)/code/mercury/library/util/xt_shared/include
+$(TOP)/code/mercury/library/util/xtwin_wx/include
+$(TOP)/code/mercury/library/util/actor_studio_msg_shared/include
+$(TOP)/code/mercury/library/Physics/Gravity/Include
+$(TOP)/code/tools/aftk/aftk/include
+$(TOP)/code/tools/aftkrender/aftkrender
+$(TOP)/code/tools/aftkrender/aftkrender/include
+$(TOP)/code/tools/attk/attk/include
+$(TOP)/code/tools/actor_studio/editor_app/include
+$(TOP)/code/tools/actor_studio/backend_lib/include
+$(TOP)/code/tools/actor_studio/usernode_lib/include
+$(TOP)/code/tools/actor_studio/usercmd_lib/include
+$(TOP)/code/vendor/sigslot/include
+$(TOP)/code/vendor/python/2.6/include
+$(TOP)/code/vendor/python/2.6/PC
+$(TOP)/libs/vendor/nvidia_sdk/9.5/inc
+$(TOP)/libs/vendor/nvidia_cg/1.4.1/include
+$(TOP)/libs/vendor/wxwidgets/2.8.9/include/msvc
+$(TOP)/libs/vendor/wxwidgets/2.8.9/include/
+$(TOP)/libs/vendor/wxwidgets/2.8.9/contrib/include
+$(TOP)/libs/vendor/boost
+$(TOP)/code/tools/svn_wrapper/include
+$(TOP)/code/tools/ab_wrapper/include
+;
+
+##Define
+##OBJ_SHADERS
+##;
+
+
+SUBDIRHDRS += \"$(DXSDK)/include\" ;
+LINKLIBS += dbghelp.lib dxerr.lib d3d9.lib d3dx9.lib ws2_32.lib dinput8.lib dxguid.lib psapi.lib opengl32.lib glu32.lib xsiftk.lib devil_win32_dynamic_2005.lib comctl32.lib rpcrt4.lib xbdm.lib gdiplus.lib msimg32.lib CubeMapGenLib.lib ;
+LINKLIBS += python26.lib ;
+
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 
+	/LIBPATH:\"$(DXSDK)/lib/x86\" 
+	/LIBPATH:\"$(XEDK_PATH)/lib/win32/vs2005\"
+	/LIBPATH:$(TOP)/libs/vendor/xsiftk/5.11/lib 
+	/LIBPATH:$(TOP)/libs/vendor/devil/1.6.7-mercury/lib 
+	/LIBPATH:$(TOP)/libs/vendor/ati_cubemapgen/lib 
+	/LIBPATH:$(TOP)/code/vendor/python/2.6/
+;
+
+##disable incremental linking for smaller exes
+if $(BUILD) = Release
+{
+	## why can't I do this...
+	##INCREMENTAL_LINKING = 0 ;
+	## or this
+	##LINKFLAGS -= /INCREMENTAL ;
+	
+	for f in $(LINKFLAGS)
+	{
+		if $(f) != /INCREMENTAL
+		{
+			NEWLINKFLAGS += $(f) ;
+		}
+	}
+	
+	LINKFLAGS = $(NEWLINKFLAGS) ;
+	LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+}
+
+LINKFLAGS += /FIXED:NO ;
+
+SRC =
+./source/editorapp/App.cpp
+./source/editorapp/Config.cpp
+./source/editorapp/EventLoop.cpp
+./source/editorapp/frame/Frame.cpp
+./source/editorapp/frame/Menus/FrameCreateMenu.cpp
+./source/editorapp/frame/Menus/FrameDisplayMenu.cpp
+./source/editorapp/frame/Menus/FrameEditMenu.cpp
+./source/editorapp/frame/Menus/FrameFileMenu.cpp
+./source/editorapp/frame/Menus/FrameVersionControlMenu.cpp
+./source/editorapp/frame/Menus/FrameMenuBar.cpp
+./source/editorapp/frame/Menus/FrameToolsMenu.cpp
+./source/editorapp/frame/Menus/FrameViewMenu.cpp
+./source/editorapp/frame/Menus/FrameHelpMenu.cpp
+./source/editorapp/components/AnimationDialog.cpp
+./source/editorapp/components/BaseExplorer.cpp
+./source/editorapp/components/CameraPropertyPanel.cpp
+./source/editorapp/components/DbPropertyDialog.cpp
+./source/editorapp/components/DynamicObjectDialog.cpp
+./source/editorapp/components/HypergraphDialog.cpp
+./source/editorapp/components/LevelExplorer.cpp
+./source/editorapp/components/LevelSelectDialog.cpp
+./source/editorapp/components/LevelInfoPanel.cpp
+./source/editorapp/components/LevelPackPanel.cpp
+./source/editorapp/components/NewLevelDialog.cpp
+./source/editorapp/components/Log.cpp
+./source/editorapp/components/Progress.cpp
+./source/editorapp/components/ManipulatorPropertyPanel.cpp
+./source/editorapp/components/ReferenceDialog.cpp
+./source/editorapp/components/SceneNodePropertyPanel.cpp
+./source/editorapp/components/SorceryDialog.cpp
+./source/editorapp/components/SorceryHypergraphPanel.cpp
+./source/editorapp/components/SplitterControl.cpp
+./source/editorapp/components/layer/LayerEditMenuBar.cpp
+./source/editorapp/components/layer/LayerEditPanel.cpp
+./source/editorapp/components/layer/LayerPropertyMenuBar.cpp
+./source/editorapp/components/layer/LayerPropertyPanel.cpp
+./source/editorapp/components/PanelMenu.cpp
+./source/editorapp/components/PropertyDialog.cpp
+./source/editorapp/components/FindDialog.cpp
+./source/editorapp/components/FinderQueries.cpp
+./source/editorapp/components/GroupEditPanel.cpp
+./source/editorapp/components/VerificationPanel.cpp
+./source/editorapp/components/scarab_form/WxScarabForm.cpp
+./source/editorapp/components/scarab_form/WxScarabFormContext.cpp
+./source/editorapp/components/scene_graph/EditorSceneGraphPanel.cpp
+./source/editorapp/components/scene_graph/LayerSceneGraphPanel.cpp
+./source/editorapp/components/scene_graph/SelectionSceneGraphPanel.cpp
+./source/editorapp/components/scene_graph/SceneGraphPanel.cpp
+./source/editorapp/components/scene_graph/SceneGraphFilterMenu.cpp
+./source/editorapp/components/scene_graph/SceneGraphFilter.cpp
+./source/editorapp/components/scene_graph/SceneGraphMenuBar.cpp
+./source/editorapp/components/script_log/ScriptLog.cpp
+./source/editorapp/editor/ActorScene.cpp
+./source/editorapp/editor/ActorSceneNode.cpp
+./source/editorapp/editor/AftkRefScene.cpp
+./source/editorapp/editor/AftkSceneRenderer.cpp
+./source/editorapp/editor/CameraConnection.cpp
+./source/editorapp/editor/GameMessaging.cpp
+./source/editorapp/editor/CameraController.cpp
+./source/editorapp/editor/ComplexRenderer.cpp
+./source/editorapp/editor/DgNodeSelection.cpp
+./source/editorapp/editor/HUDElements.cpp
+./source/editorapp/editor/Primitives.cpp
+./source/editorapp/editor/PropertyVisibilityManager.cpp
+./source/editorapp/editor/RenderCore.cpp
+./source/editorapp/editor/RenderPipeline.cpp
+./source/editorapp/editor/RenderScene.cpp
+./source/editorapp/editor/RenderHelpers.cpp
+./source/editorapp/editor/RenderViewport.cpp
+./source/editorapp/editor/SimpleRenderer.cpp
+./source/editorapp/editor/SpriteRenderer.cpp
+./source/editorapp/editor/VertexRenderer.cpp
+./source/editorapp/editor/collision/CollisionRenderer.cpp
+./source/editorapp/editor/manipulators/AnimationCreateManipulator.cpp
+./source/editorapp/editor/manipulators/ActorCreateManipulator.cpp
+./source/editorapp/editor/manipulators/DropperSelectManipulator.cpp
+./source/editorapp/editor/manipulators/RotateManipulator.cpp
+./source/editorapp/editor/manipulators/Manipulator.cpp
+./source/editorapp/editor/manipulators/MoveManipulator.cpp
+./source/editorapp/editor/manipulators/ScaleManipulator.cpp
+./source/editorapp/editor/manipulators/SelectManipulator.cpp
+./source/editorapp/editor/manipulators/SplineCreateManipulator.cpp
+./source/editorapp/editor/manipulators/PolyCreateManipulator.cpp
+./source/editorapp/editor/manipulators/ManipulatorContextMapping.cpp
+./source/editorapp/editor/manipulators/ManipulatorHelpers.cpp
+./source/editorapp/editor/manipulators/contexts/MoveSceneNodeContext.cpp
+./source/editorapp/editor/manipulators/contexts/RotateSceneNodeContext.cpp
+./source/editorapp/editor/manipulators/contexts/ScaleSceneNodeContext.cpp
+./source/editorapp/editor/manipulators/contexts/SceneNodeContextHelpers.cpp
+./source/editorapp/editor/viewportpanel/ViewportMenuBar.cpp
+./source/editorapp/editor/viewportpanel/ViewportPanel.cpp
+./source/editorapp/editor/viewportpanel/ViewportCameraMenu.cpp
+./source/editorapp/editor/viewportpanel/ViewportRendererMenu.cpp
+./source/editorapp/editor/viewportpanel/ViewportShadingMenu.cpp
+./source/editorapp/input_handlers/ShortcutHandler.cpp
+./source/editorapp/misc/Console.cpp
+./source/editorapp/misc/EvtHandlerHelpers.cpp
+./source/editorapp/misc/MenuBuilder.cpp
+./source/editorapp/misc/MenuHelper.cpp
+./source/editorapp/misc/MemoryOverload.cpp
+./source/editorapp/misc/RecentFiles.cpp
+./source/editorapp/misc/ViewportHelpers.cpp
+./source/editorapp/tasks/LayerTasks.cpp
+./source/editorapp/tasks/LevelTasks.cpp
+./source/editorapp/tasks/UITasks.cpp
+./source/editorapp/properties/CameraProperties.cpp
+./source/editorapp/properties/EditorProperties.cpp
+./source/editorapp/properties/ManipulatorProperties.cpp
+./source/editorapp/properties/PropertyTypes.cpp
+./source/editorapp/properties/SceneNodeProperties.cpp
+./source/editorapp/python/EditorFuncs.cpp
+./source/editorapp/toolbars/ActorToolPanel.cpp
+./source/editorapp/toolbars/ManipulatorToolBar.cpp
+./source/editorapp/toolbars/SelectionToolPanel.cpp
+./source/editorapp/toolbars/SnapToolBar.cpp
+./source/editorapp/toolbars/StandardToolBar.cpp
+./source/editorapp/toolbars/DisplayToolBar.cpp
+./source/editorapp/userdata/UserData.cpp
+./source/editorapp/command/Register.cpp
+./source/editorapp/command/visibility/VisibilityCmd.cpp
+./editor.rc
+;
+
+SHADERSRC = 
+[ Shader ./source/editorapp/editor/shaders/vsInstance.vsh : "<Wireframe> -DWIREFRAME" ]
+[ Shader ./source/editorapp/editor/shaders/vsInstance.vsh : "<Solid> -DSOLID" ]
+[ Shader ./source/editorapp/editor/shaders/psInstance.psh : "<Wireframe> -DWIREFRAME" ]
+[ Shader ./source/editorapp/editor/shaders/psInstance.psh : "<Solid> -DSOLID" ]
+[ Shader ./source/editorapp/editor/shaders/psInstance.psh : "<SolidLit> -DSOLID -DLIT" ]
+[ Shader ./source/editorapp/editor/shaders/vsSprite.vsh : "<Solid> -DSOLID" ]
+[ Shader ./source/editorapp/editor/shaders/psSprite.psh : "<Solid> -DSOLID" ]
+[ Shader ./source/editorapp/editor/shaders/psSprite.psh : "<SolidGreyScale> -DSOLID -DGREYSCALE" ]
+[ Shader ./source/editorapp/editor/shaders/vsSprite.vsh : "<SolidDepthBias> -DSOLID -DDEPTHBIAS" ]
+[ Shader ./source/editorapp/editor/shaders/psSprite.psh : "<SolidDepthBias> -DSOLID -DDEPTHBIAS" ]
+[ Shader ./source/editorapp/editor/shaders/psSprite.psh : "<SolidGreyScaleDepthBias> -DSOLID -DGREYSCALE -DDEPTHBIAS" ]
+;
+
+SRC += $(SHADERSRC) ;
+
+ImportCP render/shaders/vsConstants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP render/shaders/psConstants.h : TOP Code Mercury Library Graphics Render ;
+CPFile ./source/editorapp/editor/shaders/psConstants.cp ;
+CPFile ./source/editorapp/editor/shaders/vsConstants.cv ;
+
+LinkLibraries Editor :
+	core system gravity xttool xtwin xtwin_wx xt_shared misc_shared tools_shared display display2 render aftk aftkutlib attk backend_lib usernode_lib usercmd_lib python_lib aftkrender wxadv wxcore wxbase wxaui wxcontrib wxregex wxtiff wxpng wxjpeg wxzlib file_tag_db svn_wrapper ab_wrapper actor_studio_msg_shared
+;
+		
+Application Editor : $(SRC) : stdafx.cpp ;
+
+ExportVcproj Editor ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library common xt2 ;
+SubInclude TOP code mercury library common xtwin ;
+SubInclude TOP Code Mercury Library common Misc_Shared ;
+SubInclude TOP code mercury library util tools_shared ;
+SubInclude TOP code mercury library util xtwin_wx ;
+SubInclude TOP code mercury library util xt_shared ;
+SubInclude TOP code mercury library util actor_studio_msg_shared ;
+SubInclude TOP code mercury library graphics display ;
+SubInclude TOP code mercury library graphics display2 ;
+SubInclude TOP code mercury library graphics render ;
+SubInclude TOP code mercury library physics gravity ;
+SubInclude TOP code tools aftk aftk ;
+SubInclude TOP code tools aftkut aftkutlib ;
+SubInclude TOP code tools attk attk ;
+SubInclude TOP code tools actor_studio backend_lib ;
+SubInclude TOP code tools actor_studio usernode_lib ;
+SubInclude TOP code tools actor_studio usercmd_lib ;
+SubInclude TOP code tools actor_studio python_lib ;
+SubInclude TOP code tools aftkrender aftkrender ;
+SubInclude TOP code tools file_tag_db file_tag_db ;
+SubInclude TOP code tools svn_wrapper ;
+SubInclude TOP code tools ab_wrapper ;
+SubInclude TOP libs vendor wxwidgets 2.8.9 ;
+
+Depends Editor.exe : $(TOP)/bin/tools_wip/win32/actorstudio/ ;
+MkDir $(TOP)/bin/tools_wip/win32/actorstudio/ ;
+
+EmbedManifest $(TOP)/bin/tools_wip/win32/actorstudio/editor.exe : Editor.exe ;
+
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxadv.dll : wxadv.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxaui.dll : wxaui.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxbase.dll : wxbase.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxcontrib.dll : wxcontrib.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxcore.dll : wxcore.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxhtml.dll : wxhtml.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxmedia.dll : wxmedia.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxnet.dll : wxnet.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxrichtext.dll : wxrichtext.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxxml.dll : wxxml.dll ;
+Copy $(TOP)/bin/tools_wip/win32/actorstudio/wxxrc.dll : wxxrc.dll ;

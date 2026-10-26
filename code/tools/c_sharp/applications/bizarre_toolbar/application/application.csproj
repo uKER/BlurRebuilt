@@ -1,0 +1,168 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2F559A8C-EFD8-43AA-BB46-68B34049511C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>application</RootNamespace>
+    <AssemblyName>application</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="base_gadget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="base_gadget.Designer.cs">
+      <DependentUpon>base_gadget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="helpers.cs" />
+    <Compile Include="toolbar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="toolbar.Designer.cs">
+      <DependentUpon>toolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gadget_frame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gadget_frame.Designer.cs">
+      <DependentUpon>gadget_frame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="base_borderless_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="base_borderless_form.Designer.cs">
+      <DependentUpon>base_borderless_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="base_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="base_form.Designer.cs">
+      <DependentUpon>base_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="application_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="application_form.Designer.cs">
+      <DependentUpon>application_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frame_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frame_form.Designer.cs">
+      <DependentUpon>frame_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gadget_manager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="application_form.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>application_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="base_borderless_form.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>base_borderless_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="base_form.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>base_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="toolbar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>toolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gadget_frame.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>gadget_frame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="base_gadget.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>base_gadget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frame_form.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frame_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="test_gadget.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>test_gadget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="toolbar_client.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>toolbar_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="test_gadget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test_gadget.Designer.cs">
+      <DependentUpon>test_gadget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="toolbar_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="toolbar_client.Designer.cs">
+      <DependentUpon>toolbar_client.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libraries\windows_messages\windows_messages.csproj">
+      <Project>{EA8D9A01-4CBA-458A-A459-2811A4E3975B}</Project>
+      <Name>windows_messages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

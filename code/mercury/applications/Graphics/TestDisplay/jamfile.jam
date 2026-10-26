@@ -1,0 +1,92 @@
+SubDir TOP Code Mercury Applications Graphics TestDisplay ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+IncludePath 
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/mesh2/include
+$(TOP)/code/mercury/applications/graphics/testdisplay
+$(TOP)/code/mercury/applications/graphics/testdisplay/src
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+if $(PLATFORM) = PS3
+{
+	LINKLIBS += "$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub.a" ;
+	LINKLIBS += "$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np2_stub.a" ;
+}
+
+SPUSRC = 
+#<SPU>Mesh.cpp
+#<SPU>../../../library/graphics/display2/source/mesh/Mesh2.cpp
+#<SPU>../../../library/graphics/display2/source/mesh/Mesh2Args.cpp
+#<SPU>../../../library/graphics/display2/source/mesh/Mesh2Render.cpp
+;
+
+LinkLibraries meshmodule : display_spu display2_spu $(SCE_PS3_ROOT)/target/spu/lib/libgcm_spu.a ;
+
+#SrcOptim $(SPUSRC) : -O0 ;
+#AddSPUModule TestDisplay : meshmodule : $(SPUSRC) ;
+
+SRC =
+./Main.cpp
+./src/CoreSystems.cpp
+./src/Scheduler.cpp
+./src/InputBase.cpp
+./src/ApplicationBase.cpp
+./src/Application.cpp
+./src/Timer.cpp
+./src/Camera.cpp
+./src/Sample.cpp
+./src/SampleDefault.cpp
+;
+
+if ( $(PLATFORM) = "XENON" )
+{
+SRC +=
+./src/ApplicationXB2.cpp
+./src/InputXB2.cpp
+;
+}
+
+if ( $(PLATFORM) = "PS3" )
+{
+SRC +=
+./src/ApplicationPS3.cpp
+./src/InputPS3.cpp
+;
+}
+
+if ( $(PLATFORM) = "PC" )
+{
+SRC +=
+./src/ApplicationPC.cpp
+./src/InputPC.cpp
+;
+}
+
+LinkLibraries TestDisplay : 
+		core system display display2 mesh2 zlib
+		;
+
+Application TestDisplay : $(SRC) : StdAfx.cpp ;
+
+ExportVcproj TestDisplay ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Btl ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Display2 ;
+SubInclude TOP Code Mercury Library Graphics Mesh2 ;
+SubInclude TOP Code Vendor zlib current_mercury  ;

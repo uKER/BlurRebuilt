@@ -1,0 +1,15 @@
+# Makefile used by Bamboo for automated builds
+# Please do not edit
+
+debug:
+	cd dwtools-ng && python projgen.py
+	devenv demonware-win32-vc8.sln /build Debug-mt
+	vsibuild demonware-ps3-vc8.sln /build "PS3 Debug"
+	devenv demonware-xenon-vc8.sln /build Debug
+
+release:	
+	cd dwtools-ng && python projgen.py
+	devenv demonware-win32-vc8.sln /build Release-mt 
+	vsibuild demonware-ps3-vc8.sln /build "PS3 Release"
+	devenv demonware-xenon-vc8.sln /build Release
+

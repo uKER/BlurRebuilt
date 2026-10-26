@@ -1,0 +1,87 @@
+#include "..\..\psCommon.h"
+#include "psHDR.h"
+#include "psBloom.h"
+
+sampler2D	feedbackTexture		: register(s4);
+
+float4		g_vFeedbackSettings	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_3);
+
+#define		g_fFeedbackAdd		g_vFeedbackSettings.x
+#define		g_fFeedbackFade		g_vFeedbackSettings.y
+#define		g_fFeedbackOffset	g_vFeedbackSettings.z
+
+#if defined(PLATFORM_PS3)
+#pragma texformat feedbackTexture RGBA8
+#endif
+
+real3 ApplyFeedback(real3 colour, real3 feedback)
+{
+	return max(colour * g_fFeedbackAdd, feedback * g_fFeedbackFade - g_fFeedbackOffset);
+}
+
+real3 GetFeedbackBloom4(float2 uv)
+{
+	real3 colour = 0.0h;
+	real3 bloom0 = tex2D(bloomTexture0, uv).rgb;
+	colour += g_fBloomScale0 * bloom0;
+
+	real3 bloom1 = tex2D(bloomTexture1, uv).rgb;
+	colour += g_fBloomScale1 * bloom1;
+	
+	real3 bloom2 = tex2D(bloomTexture2, uv).rgb;
+	colour += g_fBloomScale2 * bloom2;
+
+	real3 bloom3 = tex2D(bloomTexture3, uv).rgb;
+	colour += g_fBloomScale3 * bloom3;
+
+	real3 feedback = tex2D(feedbackTexture, uv).rgb;
+	colour = ApplyFeedback(colour, feedback);
+
+	return max(colour, 0.0h);
+}
+
+real3 GetFeedbackBloom4Gamma(float2 uv)
+{
+	real3 colour = 0.0h;
+	real3 bloom0 = tex2D(bloomTexture0, uv).rgb;
+	colour += g_fBloomScale0 * bloom0 * bloom0;
+
+	real3 bloom1 = tex2D(bloomTexture1, uv).rgb;
+	colour += g_fBloomScale1 * bloom1 * bloom1;
+	
+	real3 bloom2 = tex2D(bloomTexture2, uv).rgb;
+	colour += g_fBloomScale2 * bloom2 * bloom2;
+
+	real3 bloom3 = tex2D(bloomTexture3, uv).rgb;
+	colour += g_fBloomScale3 * bloom3 * bloom3;
+
+	real3 feedback = tex2D(feedbackTexture, uv).rgb;
+	colour = ApplyFeedback(sqrt(colour), feedback);
+	
+	return max(colour, 0.0h);
+}
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+#ifdef GAMMA
+	output.colour.rgb = GetFeedbackBloom4Gamma(input.uv);
+#else
+	output.colour.rgb = GetFeedbackBloom4(input.uv);
+#endif
+
+	output.colour.a = 1.0h;
+		
+	return output;
+}

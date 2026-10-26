@@ -1,0 +1,37 @@
+xt
+	array Curves
+		block 
+			array Curve
+				block 
+					field __id "UI_H266441D1"
+					field time "0.000000"
+					field value "0"
+				end
+				block 
+					field __id "UI_H2CE33421"
+					field inTangent "9"
+					field outTangent "-87.731991"
+					field time "0.457"
+					field value "1"
+				end
+				block 
+					field __id "UI_HFC1D13C9"
+					field inTangent "68.204289"
+					field time "0.693548"
+					field value "1.023256"
+				end
+				block 
+					field __id "UI_H6E7BBA37"
+					field time "1.000000"
+					field value "-0.011628"
+				end
+			end
+			field Name "The Test Curve"
+			field __id "UI_HF5BF1182"
+		end
+	end
+	field __id "E0A5384B"
+	field __name "Curves.TestCurve"
+	field __pack "F2519802"
+	field __type "UIDef"
+end

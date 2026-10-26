@@ -1,0 +1,22 @@
+Using bdSocketRouter
+
+When sending packets using bdSocketRouter::sendTo()
+the void* buffer has to be formatted in a certain fashion.
+
+The first 2 bytes [0,1] should indicate the size of the encrypted data
+the unencrypted data, can be then be inferred from the packet 
+size.
+
+These functions need to be called every network frame
+ - bdSocketRouter::pump() 
+ - bdSocketRouter::receiveFrom()
+
+Once the connection is established the bdSocketRouter
+needs to have data sent every [BD_SOCKET_TIMEOUT] in order 
+to keep the association alive.
+
+ - bdSocketRouter::sendTo()
+ 
+Using a timer, which is reset every time data is sent
+and triggering a ping otherwise is an efficient way to 
+do this.

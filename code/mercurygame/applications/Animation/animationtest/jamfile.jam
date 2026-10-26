@@ -1,0 +1,81 @@
+echo "Animation Test for $(PLATFORM)" ;
+
+SupportedTargets WIN32 PS3 XBOX_360 ;
+
+SubDir TOP Code Mercurygame Applications Animation AnimationTest ;
+
+IncludePath 
+TestApp$(_PLATFORM)
+TestApp$(_PLATFORM)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/animation/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/render/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/gamesys/testsections/include
+$(TOP)/code/mercury/library/util/resource/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+	#echo $(DXSDK_PATH)/include ;
+	LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+SRC +=
+Source/Actor.cpp
+Source/ActorList.cpp
+Source/AnimationSet.cpp
+Source/Main.cpp
+Source/SkeletonRenderer.cpp
+Source/TestSectionAnimation.cpp
+;
+
+MATHSDIR = $(TOP)/code/mercury/library/common/core/source/maths ;
+
+SPUSRC =
+	<SPU>Source/Actor.cpp
+	<SPU>Source/ActorList.cpp
+;
+
+LinkLibraries actorupdatetask : spu_anim_eval_lib ;
+
+AddSPUModule AnimationTest : actorupdatetask : $(SPUSRC) ;
+
+
+SPUSRC =
+	<SPU>Source/SkeletonRenderer.cpp
+	<SPU>Source/Actor.cpp
+;	
+
+LinkLibraries skeletonrendertask : spu_anim_eval_lib ;
+
+AddSPUModule AnimationTest : skeletonrendertask : $(SPUSRC) ;
+
+LinkLibraries AnimationTest :
+		core system display render camera2 input framework resource testsections debugsystems animation
+		textureresource
+		;
+		
+Application AnimationTest : $(SRC) : stdafx.cpp ;
+
+ExportVcproj AnimationTest ;
+
+SubInclude TOP code mercury library common core ;
+SubInclude TOP code mercury library common system ;
+SubInclude TOP code mercury library graphics display ;
+SubInclude TOP code mercury library graphics render ;
+SubInclude TOP code mercury library graphics camera2 ;
+SubInclude TOP code mercury library util input ;
+SubInclude TOP code mercury library util resource ;
+SubInclude TOP code mercury library gamesys framework ;
+SubInclude TOP code mercury library gamesys testsections ;
+SubInclude TOP code mercury library animation ;
+SubInclude TOP code mercury library gamesys debugsystems ;
+SubInclude TOP code mercury library graphics textureresource ;

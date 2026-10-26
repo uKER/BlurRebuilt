@@ -1,0 +1,35 @@
+#include "..\\psConstants.h"
+#include "..\\psCommon.h"
+
+float4		g_vSettings		: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tHeights		: register(s0);
+
+struct PS_INPUT
+{
+	float2 vTexCoord0		: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 vColour0			: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float4 vHeights0123;
+	vHeights0123.x = tex2D(g_tHeights, IN.vTexCoord0 - float2(g_vSettings.x, 0.0f)).x;
+	vHeights0123.y = tex2D(g_tHeights, IN.vTexCoord0 + float2(g_vSettings.x, 0.0f)).x;
+	vHeights0123.z = tex2D(g_tHeights, IN.vTexCoord0 - float2(0.0f, g_vSettings.y)).x;
+	vHeights0123.w = tex2D(g_tHeights, IN.vTexCoord0 + float2(0.0f, g_vSettings.y)).x;
+
+	float fDX = (vHeights0123.y - vHeights0123.x) * g_vSettings.z;
+	float fDY = (vHeights0123.w - vHeights0123.z) * g_vSettings.z;
+	
+	float3 vNormal = normalize(float3(fDX, 1.0f, fDY));
+	
+	OUT.vColour0 = float4(vNormal * 0.5f + 0.5f, 1.0f);
+		
+	return OUT;
+}

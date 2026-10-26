@@ -1,0 +1,236 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <WinResrc.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include <WinResrc.h>\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_SORCERY MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open...",                    ID_FILE_OPENPROJECT, GRAYED
+        MENUITEM "&Close",                      ID_FILE_CLOSEPROJECT, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVEPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",               ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Find Records...\tCtrl+F",    ID_TOOLS_SEARCH
+        MENUITEM "&Goto Record...\tCtrl+G",     ID_GOTO_RECORD
+    END
+    POPUP "&Build"
+    BEGIN
+        MENUITEM "&Build Project\tF7",          ID_TOOLS_BUILDPROJECT
+        MENUITEM "Build Project (&Data Only)\tShift+F7", ID_TOOLS_BUILDPROJECT_DATAONLY
+        MENUITEM "Build Project (&No Deploy)\tCtrl+F7", ID_TOOLS_BUILDPROJECT_NODEPLOY
+        MENUITEM SEPARATOR
+        MENUITEM "&Platform Filter",            ID_TOOLS_PLATFORMFILTER
+    END
+    POPUP "&Version Control"
+    BEGIN
+        MENUITEM "&Update to Latest",           ID_SUBVERSION_UPDATE
+        MENUITEM "&Commit Changes...",          ID_SUBVERSION_COMMIT
+    END
+    POPUP "&Tools"
+    BEGIN
+        MENUITEM "&Open Db Folder",             ID_TOOLS_OPENDBFOLDER
+        MENUITEM SEPARATOR
+        MENUITEM "&Reload Schema\tF11",         ID_HELP_RELOADSCHEMA
+        MENUITEM "&Compare Schemas",            ID_DEBUG_COMPARETARGETSCHEMA
+        MENUITEM SEPARATOR
+        MENUITEM "&Connect to...\tCtrl+F2",     ID_TOOLS_CONNECTTO
+        MENUITEM "&Work Offline",               ID_TOOLS_WORKOFFLINE
+    END
+    POPUP "&Window"
+    BEGIN
+        MENUITEM "C&lose\tCtrl+F4",             ID_FILE_CLOSE
+        MENUITEM "&Cascade",                    ID_WINDOW_CASCADE
+        MENUITEM "Tile &Vertical",              ID_WINDOW_TILE_VERT
+        MENUITEM "Tile &Horizontal",            ID_WINDOW_TILE_HORZ
+    END
+    POPUP "&Help"
+    BEGIN
+        POPUP "Debug"
+        BEGIN
+            MENUITEM "&Convert Old Data",           ID_TOOLS_CONVERTOLDDATA
+            MENUITEM "&Ensure Unique Uids",         ID_DEBUG_ENSUREUNIQUEUIDS
+            MENUITEM "&Recover Database",           ID_DEBUG_RECOVERDATABASE
+            MENUITEM "&Transfer Open Records\tF8",  ID_DEBUG_TRANSFEROPENRECORDS
+        END
+        MENUITEM "&Send Email",                 ID_HELP_SENDEMAIL
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_SORCERY             ICON                    "Sorcery.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GOTO_RECORD DIALOGEX 0, 0, 211, 47
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Goto Record..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "&Record Id:",IDC_STATIC,7,9,35,8
+    EDITTEXT        IDC_RECORD_ID,48,7,156,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,98,27,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,154,27,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_GOTO_RECORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        VERTGUIDE, 42
+        VERTGUIDE, 48
+        VERTGUIDE, 148
+        VERTGUIDE, 154
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 40
+        HORZGUIDE, 21
+        HORZGUIDE, 27
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDA_SORCERY ACCELERATORS 
+BEGIN
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVEPROJECT,    VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GOTO_RECORD,         VIRTKEY, CONTROL, NOINVERT
+    VK_F11,         ID_HELP_RELOADSCHEMA,   VIRTKEY, NOINVERT
+    VK_F7,          ID_TOOLS_BUILDPROJECT,  VIRTKEY, NOINVERT
+    VK_F7,          ID_TOOLS_BUILDPROJECT_DATAONLY, VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_TOOLS_BUILDPROJECT_NODEPLOY, VIRTKEY, CONTROL, NOINVERT
+    VK_F2,          ID_TOOLS_CONNECTTO,     VIRTKEY, CONTROL, NOINVERT
+    VK_F8,          ID_DEBUG_TRANSFEROPENRECORDS, VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_FILE                BITMAP                  "File.bmp"
+IDB_FOLDER_CLOSED       BITMAP                  "FolderClosed.bmp"
+IDB_FOLDER_HIDDEN_CLOSED BITMAP                  "FolderHiddenClosed.bmp"
+IDB_FOLDER_HIDDEN_OPEN  BITMAP                  "FolderHiddenOpen.bmp"
+IDB_FOLDER_OPEN         BITMAP                  "FolderOpen.bmp"
+IDB_HIDDEN_FILE         BITMAP                  "HiddenFile.bmp"
+IDB_PROJECT             BITMAP                  "Project.bmp"
+IDB_BOX                 BITMAP                  "box.bmp"
+IDB_MODIFIED_FILE       BITMAP                  "FileModified.bmp"
+IDB_CHECKED_OUT_FILE    BITMAP                  "FileCheckedOut.bmp"
+IDB_MODIFIED            BITMAP                  "Modified.bmp"
+IDB_PACK_FOLDER_CLOSED  BITMAP                  "PackFolderClosed.bmp"
+IDB_PACK_FOLDER_OPEN    BITMAP                  "PackFolderOpen.bmp"
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

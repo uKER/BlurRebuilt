@@ -1,0 +1,61 @@
+#include "psConstants.h"
+
+sampler2D	g_DiffuseTexture		: register(s0);
+sampler2D	g_NormalMapTexture		: register(s1);
+
+
+struct VS_OUTPUT
+{
+	float4 Position				: POSITION;
+	float2 Texcoord0			: TEXCOORD0;
+
+#ifdef GEOMETRIC_NORMAL
+	float3 Normal				: TEXCOORD1;
+#endif
+
+#ifdef NORMAL_MAP
+	float3 Normal				: TEXCOORD1;
+	float3 Tangent				: TEXCOORD2;
+	float3 Binormal				: TEXCOORD3;
+#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR0;	
+};
+
+
+PS_OUTPUT main(VS_OUTPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+#ifdef GEOMETRIC_NORMAL
+	float3 normal = normalize(IN.Normal);
+	normal.z = -normal.z;
+	OUT.Colour.xyz = 0.5f*(normal+1.0f);
+	OUT.Colour.a = 1.0f;
+	OUT.Colour.a = tex2D(g_DiffuseTexture, IN.Texcoord0.xy).a;
+#endif
+
+#ifdef NORMAL_MAP
+	float3 tangentSpaceNormal = tex2D(g_NormalMapTexture, IN.Texcoord0.xy).rgb;
+	tangentSpaceNormal = (2*tangentSpaceNormal)-1.0f;
+	
+	// xform into mirrored view space (tangent space of the final billboard)
+	float3 viewNormal = normalize(IN.Normal);
+	float3 viewTangent = normalize(IN.Tangent);
+	float3 viewBinormal = normalize(IN.Binormal);
+	
+	float3x3 tangentToBillboardXform = float3x3(viewTangent, viewBinormal, viewNormal);
+	float3 billboardSpaceNormal = mul(tangentSpaceNormal, tangentToBillboardXform);
+	
+	billboardSpaceNormal = normalize(billboardSpaceNormal);
+	
+	OUT.Colour.xyz = 0.5f*(billboardSpaceNormal+1.0f);
+	OUT.Colour.z = -billboardSpaceNormal.z;
+	OUT.Colour.a = tex2D(g_DiffuseTexture, IN.Texcoord0.xy).a;
+#endif
+
+	return OUT;
+}

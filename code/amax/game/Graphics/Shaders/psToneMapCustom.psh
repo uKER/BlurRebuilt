@@ -1,0 +1,175 @@
+#include "render/shaders/psCommon.h"
+#include "render/shaders/postprocess/hdr/psHDR.h"
+
+sampler2D	filmGrainTexture		: register(s5);
+sampler2D	motionBlurTexture		: register(s6);
+sampler2D	lensEffectsTexture		: register(s7);
+sampler3D	lookupTexture			: register(s8);
+sampler2D	reducedAlphaTexture		: register(s9);
+sampler2D	overlayTexture : register(s10);
+
+#ifdef BLUR_DX11
+// [Blur2PC][HDR] Scene grading must preserve values outside the SDR LUT cube.
+cbuffer BlurHDROutput : register(b12) { float4 g_BlurHDROutput; }
+#endif
+
+#if defined(PS3)
+#pragma texformat colourTexture RGBA8
+#pragma texformat luminanceTexture FLOAT_R32
+#pragma texformat noiseTexture RGBA8
+#pragma texformat bloomTexture RGBA8
+#pragma texformat filmGrainTexture RGBA8
+#pragma texformat motionBlurTexture RGBA8
+#pragma texformat lensEffectsTexture RGBA8
+#pragma texformat lookupTexture RGBA8
+#pragma texformat reducedAlphaTexture RGBA8
+#pragma disablepc all
+#define TONEMAP_COMBINE
+#endif
+
+real4x4		g_mColour				: register(CCP_RENDER_POSTPROCESS_PARAMETERS_2);
+real4		g_vFilmGrain			: register(CCP_RENDER_POSTPROCESS_PARAMETERS_6);
+real4		g_vSpecialFX			: register(CCP_RENDER_POSTPROCESS_PARAMETERS_7);
+real4		g_vBloomScale			: register(CCP_RENDER_POSTPROCESS_PARAMETERS_8);
+real4		g_vColourSep			: register(CCP_RENDER_POSTPROCESS_PARAMETERS_9);
+
+#define		g_vFilmGrainLuminance	g_vFilmGrain.xyz
+#define		g_fFilmGrainAmount		g_vFilmGrain.w
+
+#define		g_fVignetteWeight		g_vSpecialFX.x
+#define		g_fTunnelAmount			g_vSpecialFX.y
+#define		g_vFilmGrainOffset		g_vSpecialFX.z
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	real4	m_Colour	: COLOR0;
+};
+
+real3 ApplyFilmGrainVignette(real3 vColour, float2 vUV, real fDistance)
+{
+	real	fScale	= dot(vColour, g_vFilmGrainLuminance);
+
+	real3	vRandom	= h4tex2D(filmGrainTexture, vUV * g_vNoiseUVScale + g_vFilmGrainOffset).rgb - 0.5h;
+	real3	vResult	= vColour + vRandom * (vColour * (g_fFilmGrainAmount - fScale) + g_fNoiseFactor);
+	real	fDist		= g_fVignetteWeight * fDistance;
+
+	real fPixelIntensity = dot(vResult, real3(0.3h, 0.59h, 0.11h) * 0.65h); // also factor to always darken edge slightly
+	real fFade = -fPixelIntensity * fDist + fDist + 1.0h;
+
+	return vResult * fFade;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	real3	vColour		= h4tex2D(colourTexture, input.m_TexCoord).rgb;
+
+#ifdef EXTRA_FX
+  float2 distort = {g_vColourSep.x, 0};
+  vColour.r = h4tex2D(colourTexture, input.m_TexCoord - distort).r;
+  vColour.b = h4tex2D(colourTexture, input.m_TexCoord + distort).b;
+
+  float overlay = g_vColourSep.z;
+  if (overlay > 0)
+    vColour += h4tex2D(overlayTexture, input.m_TexCoord) * g_vColourSep.z;
+
+  float blockiness = g_vColourSep.y;
+  if (blockiness > 0)
+  {
+    float2 uv = input.m_TexCoord;
+    float2 ruv = uv * float2(80, 45) / 128 + float2(blockiness * 7.123, 0);
+    float rand = h4tex2D(filmGrainTexture, ruv).r;
+    if (rand.x < blockiness)
+    {
+      float2 duv = float2(0.625, 0) + input.m_TexCoord * float2(-0.25, 1);
+      vColour = h4tex2D(colourTexture, duv);
+    }
+  }
+#endif
+
+#ifndef LARGE_SCREENSHOT
+	float2	vScreenCoord	= input.m_TexCoord;
+#else
+	float2	vScreenCoord	= input.m_TexCoord - 0.5f;
+			vScreenCoord	= vScreenCoord * g_vBloomScale.z;
+			vScreenCoord	= vScreenCoord - g_vBloomScale.xy + 0.5f;	
+#endif
+
+	real	fDistance	= dot(vScreenCoord - 0.5h, vScreenCoord - 0.5h);
+#ifndef LARGE_SCREENSHOT
+	real	fScale		= fDistance * g_fTunnelAmount;
+#else
+	real	fScale		= 0.0h;
+#endif
+
+#ifdef MOTION_BLUR
+	real4	vBlur		= h4tex2D(motionBlurTexture, vScreenCoord);
+			vColour		= lerp(vColour, vBlur.rgb, max(vBlur.a, fScale));
+#endif
+
+#ifdef REDUCED_ALPHA
+	real4	vReducedAlpha = h4tex2D(reducedAlphaTexture, input.m_TexCoord);
+	vColour.rgb = vReducedAlpha.rgb + vColour.rgb * vReducedAlpha.a;
+#endif
+	
+	//Lensflare texture
+	float4 lensEffects = h4tex2D(lensEffectsTexture, vScreenCoord);
+	vColour.rgb = vColour.rgb * lensEffects.a +  lensEffects.rgb;
+
+#ifdef HDR
+	vColour = vColour * vColour;
+#else
+	#ifdef HDRU32
+		vColour = vColour * vColour;
+	#else
+		float	fLuminance	= h4tex2D(luminanceTexture, real2(0.5h, 0.5h)).r;
+		vColour = ApplyToneMapping(vColour, fLuminance);
+	#endif
+#endif
+
+	real3	vBloom	= GetBloomCombine(vScreenCoord);
+	
+#ifdef LARGE_SCREENSHOT
+	vBloom *= g_vBloomScale.w;
+#endif
+
+	vColour = vColour + vBloom * vBloom;
+
+#ifndef TONEMAP_COMBINE
+	#ifdef BLUR_DX11
+	if (g_BlurHDROutput.x > 0) vColour = max(vColour, 0.0);
+	#endif
+	vColour	= ApplyGamma(vColour);
+#endif
+
+#ifndef PS_2_0
+	#ifdef BLUR_DX11
+	float hdrGradeScale = g_BlurHDROutput.x > 0 ? max(1.0, max(vColour.r, max(vColour.g, vColour.b))) : 1.0;
+	vColour /= hdrGradeScale;
+	#endif
+	real3	vUVW	= vColour.rgb * (31.0h / 32.0h) + (0.5h / 32.0h);
+			vColour	= tex3Dlod(lookupTexture, real4(vUVW, 0.0h)).rgb;
+
+#ifndef TONEMAP_COMBINE
+	#ifdef BLUR_DX11
+	vColour = g_BlurHDROutput.x > 0 ? max(mul(real4(vColour, 1.0h), g_mColour).rgb, 0.0) : saturate(mul(real4(vColour, 1.0h), g_mColour).rgb);
+	#else
+	vColour = saturate(mul(real4(vColour, 1.0h), g_mColour).rgb);
+	#endif
+#endif
+	vColour	= ApplyFilmGrainVignette(vColour, vScreenCoord, fDistance);
+	#ifdef BLUR_DX11
+	vColour *= hdrGradeScale;
+	#endif
+#endif
+
+	output.m_Colour = real4(vColour, 1.0h);
+
+	return output;
+}

@@ -1,0 +1,36 @@
+/*---------------------------------------------------------------------------------------
+	File	: vsPolygonTrail.vsh
+
+	Desc	: 
+---------------------------------------------------------------------------------------*/
+
+#include "..\psCommon.h"
+#include "psUiLightCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+	float2 TexCoord0			: TEXCOORD0;
+	//float4 WorldPosition		: TEXCOORD1;
+};
+
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+
+PS_OUTPUT main( PS_INPUT IN )
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 textureColour = tex2D( g_Texture0, IN.TexCoord0 );
+
+	OUT.Colour = IN.Colour * textureColour;
+	
+	return OUT;
+}

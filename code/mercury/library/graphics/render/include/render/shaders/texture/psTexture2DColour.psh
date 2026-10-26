@@ -1,0 +1,36 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+float4		g_vRed		: register(CCP_RENDER_SETTINGS);
+float4		g_vGreen	: register(CCP_RENDER_SETTINGS_1);
+float4		g_vBlue		: register(CCP_RENDER_SETTINGS_2);
+float4		g_vAlpha	: register(CCP_RENDER_SETTINGS_3);
+float4		g_vBias		: register(CCP_RENDER_SETTINGS_4);
+sampler2D	g_tColour	: register(s0);
+
+struct PS_INPUT
+{
+	float4	m_Colour	: COLOR0;
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output;
+	
+	float2 uv = input.m_TexCoord;
+	float4 vColour = tex2D(g_tColour, uv);
+	output.m_Colour.r = dot(vColour, g_vRed);
+	output.m_Colour.g = dot(vColour, g_vGreen);
+	output.m_Colour.b = dot(vColour, g_vBlue);
+	output.m_Colour.a = dot(vColour, g_vAlpha);
+	output.m_Colour += g_vBias;
+	output.m_Colour = saturate(output.m_Colour);
+
+	return output;
+}

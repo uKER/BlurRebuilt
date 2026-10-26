@@ -1,0 +1,36 @@
+#include "..\psCommon.h"
+
+sampler2D	g_Texture0			: register(s0); // font texture
+sampler2D	g_Texture1			: register(s1); // mult 1
+sampler2D	g_Texture2			: register(s2); // mult 2
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float2 TexCoord0			: TEXCOORD0;
+	float2 TexCoord1			: TEXCOORD1;
+	float2 TexCoord2			: TEXCOORD2;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 ); // RGBA planes
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 ); // Multiply texture
+	float4 tex2 = tex2D( g_Texture2, IN.TexCoord2 ); // Multiply texture
+	
+	float4	tmp;
+	
+	tmp.rgb = tex0.a;
+	tmp.a	= (tex0.r + tex0.g + tex0.b) / 3;
+	
+	OUT.Colour = tmp * tex1 * tex2 * IN.Colour;
+	
+	return OUT;
+}

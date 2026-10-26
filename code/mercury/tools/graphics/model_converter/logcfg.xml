@@ -1,0 +1,14 @@
+<root              level="Debug"/>
+
+<subscriber
+type="console"
+attach="root"
+format="%c\n"
+	/>
+
+<subscriber
+type="logfile"
+file="temp.log"
+attach="root"
+format="(%e secs) %c\n"
+	/>

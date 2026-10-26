@@ -1,0 +1,85 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+"IDC_ATVI_ICON"		ICON			"./icons/editor.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+"IDC_CURSOR_TILTPAN"      CURSOR                  "./cursors/camtiltpan.cur"
+"IDC_CURSOR_INVALID"      CURSOR                  "./cursors/caminvalid.ani"
+"IDC_CURSOR_TRACK"        CURSOR                  "./cursors/camtrack.cur"
+"IDC_CURSOR_DOLLY"        CURSOR                  "./cursors/camdolly.cur"
+"IDC_CURSOR_EXTENT"       CURSOR                  "./cursors/camextent.cur"
+"IDC_CURSOR_ACTORCREATE"  CURSOR                  "./cursors/actorcreate.cur"
+"IDC_CURSOR_DROPPERSELECT" CURSOR                 "./cursors/dropperselect.cur"
+"IDC_CURSOR_DROPPERSELECTLINK" CURSOR             "./cursors/dropperselectlink.cur"
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.\0"
+END
+
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,87 @@
+SubDir TOP Code Mercury Library Graphics Portal ;
+
+IncludePath
+$(SUBDIR)/..
+$(SUBDIR)
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+;
+
+# Need AFTK for data building.
+if $(CFG_CONVERTER) = 1
+{
+IncludePath
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/code/Tools/Aftkut/AftkUtLib/include
+$(TOP)/Code/MercuryGame/Tools/converter_shared/converter_shared/include
+$(TOP)/Code/Common/
+;
+}
+
+
+# Main batch for run-time.
+SRC = 
+[ Batch
+	source/Blocker.cpp
+	<PPU>source/BSPContainer.cpp
+	<PPU>source/BSPRegion.cpp
+	<PPU>source/BSPSplitPlane.cpp
+	source/DeferredBlocker.cpp
+	source/DeferredTracer.cpp
+	source/DeferredTracerFunctorBase.cpp
+	<PPU>source/DeferredTracerJob.cpp
+	source/Portal.cpp
+	<PPU>source/Ray.cpp
+	source/Room.cpp
+	source/RoomContainmentSpace.cpp
+	source/RoomContainmentSubSpace.cpp
+	source/RoomGrid.cpp
+	source/RoomGridCell.cpp
+	source/RoomPolygon.cpp
+	source/System.cpp
+	source/SystemContainmentQuery.cpp
+	<PPU>source/TraceResults.cpp
+	source/ViewPolygon.cpp 
+: StdAfx.h ]
+;
+
+# Add a 2nd batch for tool only with the builder code.
+if $(CFG_CONVERTER) = 1
+{
+SRC +=
+[ Batch 
+	source/Builder.cpp
+	source/BuilderEdge.cpp
+	source/BuilderRoom.cpp
+	source/BuilderRoomContainmentSpace.cpp
+	source/BuilderRoomContainmentSubSpace.cpp
+	source/BuilderRoomGrid.cpp
+	source/BuilderRoomGridCell.cpp
+	source/BuilderPolygon.cpp
+	source/BuilderPortal.cpp
+	source/BuilderVertex.cpp
+: StdAfx.h ]
+;
+}
+SRC = [ AutoGrist $(SRC) ] ;
+
+
+# SPU elf for raytracer.
+SPUSRC =
+	<SPU>source/BSPContainer.cpp
+	<SPU>source/BSPRegion.cpp
+	<SPU>source/BSPSplitPlane.cpp
+	<SPU>source/DeferredTracerJob.cpp
+	<SPU>source/Ray.cpp
+	<SPU>source/TraceResults.cpp
+;
+AddSPUModule portal : deferredtracerjob : $(SPUSRC) ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library portal : $(SRC) : stdafx.cpp ;

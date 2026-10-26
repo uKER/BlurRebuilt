@@ -1,0 +1,50 @@
+xt
+	field __id "C39782BB"
+	field __name "Light.SunCross"
+	field __pack "2E661B2B"
+	field __type "Light_Effect"
+	block atlasSize
+		field height "8"
+		field width "1"
+	end
+	field cullDistance "1000"
+	array distanceCurve
+		block 
+			field __id "EffeF0F4B751"
+			field time "0.000000"
+			field value "1.000000"
+		end
+		block 
+			field __id "Effe1379851D"
+			field time "1.000000"
+			field value "1.000000"
+		end
+	end
+	field name "SunCross"
+	array positionCurve
+		block 
+			field __id "Effe8A17985E"
+			field time "0.000000"
+			field value "1.000000"
+		end
+		block 
+			field __id "Effe93B7A009"
+			field time "1.000000"
+			field value "1.000000"
+		end
+	end
+	field shapeType "Cross2d"
+	field texture "Light_Effects"
+	array viewCurve
+		block 
+			field __id "Effe8710373E"
+			field time "0.000000"
+			field value "1.000000"
+		end
+		block 
+			field __id "Effe80758802"
+			field time "1.000000"
+			field value "1.000000"
+		end
+	end
+end

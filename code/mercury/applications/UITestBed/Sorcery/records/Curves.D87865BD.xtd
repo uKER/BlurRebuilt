@@ -1,0 +1,56 @@
+xt
+	array Curves
+		block 
+			array Curve
+				block 
+					field __id "UI_HB239A9F1"
+					field outTangent "-81.404358"
+				end
+				block 
+					field __id "UI_HF64B649D"
+					field inTangent "81.042473"
+					field time "1.000000"
+					field value "1"
+				end
+			end
+			field Name "CameraZTest"
+			field __id "UI_H84143D44"
+		end
+		block 
+			array Curve
+				block 
+					field __id "UI_H2D7B1EF1"
+					field outTangent "82.221088"
+				end
+				block 
+					field __id "UI_H2E39393B"
+					field inTangent "0.000000"
+					field time "1.000000"
+					field value "1"
+				end
+			end
+			field Name "CameraXTest"
+			field __id "UI_H3CF04356"
+		end
+		block 
+			array Curve
+				block 
+					field __id "UI_H9ECF5442"
+					field outTangent "-7.045348"
+				end
+				block 
+					field __id "UI_HD5941154"
+					field inTangent "0.000000"
+					field time "1.000000"
+					field value "1"
+				end
+			end
+			field Name "CameraRotZTest"
+			field __id "UI_HDEF15E03"
+		end
+	end
+	field __id "D87865BD"
+	field __name "Curves"
+	field __pack "F2519802"
+	field __type "UIDef"
+end

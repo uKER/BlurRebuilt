@@ -1,0 +1,78 @@
+#include "../psCommon.h"
+
+sampler2D diffuseMap : register(s0);
+
+#ifdef SHEET
+float4	g_UVScale	: register(CCP_EFFECT_RAIN_HEIGHT);
+#endif
+
+#ifdef OCCLUSION
+sampler2D heightMap0 : register(s1);
+sampler2D heightMap1 : register(s2);
+
+float4x4 g_mHeightMapMatrix0 : register(CCP_EFFECT_RAIN_OCCLUSION_MATRIX0);
+float4x4 g_mHeightMapMatrix1 : register(CCP_EFFECT_RAIN_OCCLUSION_MATRIX1);
+#endif
+
+struct PS_OUTPUT
+{
+	float4 RGBColor0     : COLOR0; 
+};
+
+#ifdef SHEET
+struct VS_OUTPUT
+{
+	float4 uv0			: TEXCOORD0;
+	float4 uv1			: TEXCOORD1;
+    float4 colour		: COLOR0;		//Diffuse texture
+};
+#else
+struct VS_OUTPUT
+{
+	float2 uv			: TEXCOORD0;
+    float4 colour		: COLOR0;		//Diffuse texture
+    
+    #ifdef OCCLUSION
+    float3 worldPosition : TEXCOORD1;
+    #endif
+};
+#endif
+
+PS_OUTPUT main(VS_OUTPUT input) 
+{ 
+    PS_OUTPUT output = (PS_OUTPUT)0;
+   
+	#ifdef SHEET
+		float4 diffuse0 = tex2D(diffuseMap, input.uv0.xy);
+		float4 diffuse1 = tex2D(diffuseMap, input.uv0.zw);
+		float4 diffuse2 = tex2D(diffuseMap, input.uv1.xy);
+		float4 diffuse3 = tex2D(diffuseMap, input.uv1.zw);
+	
+		output.RGBColor0.rgb = (diffuse0.rgb + diffuse1.rgb + diffuse2.rgb + diffuse3.rgb) * 0.25f * input.colour.rgb;
+		output.RGBColor0.a = (diffuse0.a + diffuse1.a + diffuse2.a + diffuse3.a) * 0.25f * input.colour.a;
+	#else
+		output.RGBColor0 = tex2D(diffuseMap, input.uv).rrrr;
+		output.RGBColor0 *= input.colour;
+		
+		#ifdef OCCLUSION
+			float3 uv = mul(float4(input.worldPosition, 1.0f), g_mHeightMapMatrix0).xyz;
+			float height = tex2D(heightMap0, uv.xz).x;
+			float3 uvclamp = saturate(uv);
+			if(uvclamp.x == uv.x && uvclamp.z == uv.z && uv.y < height)
+				output.RGBColor0 = 0.0f;
+				
+			#ifdef OCCLUSION2	
+				uv = mul(float4(input.worldPosition, 1.0f), g_mHeightMapMatrix1).xyz;
+				height = tex2D(heightMap1, uv.xz).x;
+				uvclamp = saturate(uv);
+				if(uvclamp.x == uv.x && uvclamp.z == uv.z && uv.y < height)
+					output.RGBColor0 = 0.0f;
+			#endif
+		#endif
+				
+	#endif
+	
+	output.RGBColor0 = ApplyGain(output.RGBColor0);
+	
+	return output;
+}

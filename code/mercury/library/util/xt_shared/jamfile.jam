@@ -1,0 +1,18 @@
+SubDir TOP code mercury library util xt_shared ;
+
+IncludePath
+	$(SUBDIR)/include
+	$(SUBDIR)/source
+	$(TOP)/Code/Mercury/Library/Common/Core/include
+	$(TOP)/Code/Mercury/Library/Common/System/include
+	$(TOP)/Code/Mercury/Library/Common/Xt2/include
+	$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+;
+
+SRC = 
+	./source/xt_shared/XtObject.cpp
+	./source/xt_shared/XtObjectImpl.cpp	
+	./source/xt_shared/XtDirty.cpp
+;
+
+Library xt_shared : $(SRC) : stdafx.cpp ;

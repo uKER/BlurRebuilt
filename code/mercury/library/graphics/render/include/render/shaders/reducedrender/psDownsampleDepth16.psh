@@ -1,0 +1,58 @@
+#include "../psCommon.h"
+#include "../psConstants.h"
+
+#if defined(XB2)
+#define CmpFunc min
+#elif defined(PS3)
+#define CmpFunc min
+#else
+#define CmpFunc max
+#endif
+
+float4		g_vSettings	: register(CCP_RENDER_SETTINGS);
+sampler2D	g_tDepth	: register(s1);
+
+#define		g_fPixelWidth	g_vSettings.x
+#define		g_fPixelHeight	g_vSettings.y
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+	float	m_Depth		: DEPTH0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float	fDepth00	= SampleDepthBuffer(g_tDepth, input.m_TexCoord);
+	float	fDepth10	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(g_fPixelWidth, 0.0f));
+	float	fDepth20	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(2.0f * g_fPixelWidth, 0.0f));
+	float	fDepth30	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(3.0f * g_fPixelWidth, 0.0f));
+	float	fDepth01	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(0.0f, g_fPixelHeight));
+	float	fDepth11	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(g_fPixelWidth, g_fPixelHeight));
+	float	fDepth21	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(2.0f * g_fPixelWidth, g_fPixelHeight));
+	float	fDepth31	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(3.0f * g_fPixelWidth, g_fPixelHeight));
+	float	fDepth02	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(0.0f, 2.0f * g_fPixelHeight));
+	float	fDepth12	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(g_fPixelWidth, 2.0f * g_fPixelHeight));
+	float	fDepth22	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(2.0f * g_fPixelWidth, 2.0f * g_fPixelHeight));
+	float	fDepth32	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(3.0f * g_fPixelWidth, 2.0f * g_fPixelHeight));
+	float	fDepth03	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(0.0f, 3.0f * g_fPixelHeight));
+	float	fDepth13	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(g_fPixelWidth, 3.0f * g_fPixelHeight));
+	float	fDepth23	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(2.0f * g_fPixelWidth, 3.0f * g_fPixelHeight));
+	float	fDepth33	= SampleDepthBuffer(g_tDepth, input.m_TexCoord + float2(3.0f * g_fPixelWidth, 3.0f * g_fPixelHeight));
+	
+	float	fDepth0		= CmpFunc(CmpFunc(fDepth00, fDepth10), CmpFunc(fDepth20, fDepth30));
+	float	fDepth1		= CmpFunc(CmpFunc(fDepth01, fDepth11), CmpFunc(fDepth21, fDepth31));
+	float	fDepth2		= CmpFunc(CmpFunc(fDepth02, fDepth12), CmpFunc(fDepth22, fDepth32));
+	float	fDepth3		= CmpFunc(CmpFunc(fDepth03, fDepth13), CmpFunc(fDepth23, fDepth33));
+	
+	output.m_Depth		= CmpFunc(CmpFunc(fDepth0, fDepth1), CmpFunc(fDepth2, fDepth3));
+	
+	return output;
+}

@@ -1,0 +1,231 @@
+#include "stdafx.h"
+
+#include <display.h>
+
+#include "fx/Effect.h"
+#include "fx/Shared.h"
+#include "fx/System.h"
+
+//
+// Scary access to Xenon D3D internals for writing to the ring buffer directly.
+//
+// Example:
+//   gpuOwnMultiple(D3DTAG_INDEX(D3DTAG_DEPTHCONTROL), D3DREG_MASK_BIT(D3DTAG_DEPTHCONTROL));
+//   DWORD* push = gpuBeginPush();
+//   GPU_DEPTHCONTROL dc;
+//   dc.dword = 0;
+//   gpuPush(push, GPUOP_REGISTER(GPUREG_DEPTHCONTROL, 1));
+//   gpuPush(push, dc.dword);
+//   gpuEndPush(push);
+//   ...drawprimitive here
+//   gpuDisownMultiple(D3DREG_MASK_BIT(D3DTAG_DEPTHCONTROL));
+//
+namespace D3D
+{
+	class CDevice : public D3DDevice
+	{
+	public:
+		unsigned long* __cdecl BeginRing(void);
+		unsigned long* __cdecl BeginRingBig(unsigned long size);
+		void __cdecl EndRing(unsigned long* ring);
+		void __cdecl PutRaw(unsigned long* ring);
+	};
+
+	UINT64 SetPending_Shaders(CDevice *pDevice, UINT64 PendingMask2);
+};
+
+#define GPUPTYPE_REG 0 // Does not support predicate bit.
+#define GPUPTYPE_NOP 2 // Does not support predicate bit. Possibly used for more than just NOPs.
+#define GPUPTYPE_CMD 3
+#define GPUPACKET(ptype, dwords, dest, predicate) (DWORD)( ((ptype)<<30) | ((dwords)<<16) | (dest) | (predicate) )
+
+#define GPUOP(opcode, dwords, predicate) GPUPACKET( GPUPTYPE_CMD, (dwords)-1, (opcode) << 8, predicate )
+#define GPUOP_REGISTER(reg, dwords)      GPUPACKET( GPUPTYPE_REG, (dwords)-1, reg, 0 )
+#define GPUOP_NOP                        GPUPACKET( GPUPTYPE_NOP, 0, 0, 0 )
+
+#define GPUOP_VERTEX_CONSTANTS_BASE 0
+#define GPUOP_PIXEL_CONSTANTS_BASE 0x400
+
+namespace FX
+{
+
+/// delete an effect
+void ReleaseEffect(I_Effect *pEffect)
+{
+	delete (Effect*)pEffect;
+}
+
+__vector4 OpSetVectorConsts;
+
+/// initialise the FX system
+void Initialise()
+{
+	// Build set constants opcode.
+	GPUCOMMAND_SET_CONSTANT Sc = { 0 };
+	Sc.Offset = GPUOP_VERTEX_CONSTANTS_BASE + 0*4;
+	Sc.Id = GPUCONSTANTID_ALU;
+
+	// Write set constants push buffer command (with NOP padding to maintain alignment).
+	OpSetVectorConsts.u[0] = GPUOP_NOP;
+	OpSetVectorConsts.u[1] = GPUOP_NOP;
+	OpSetVectorConsts.u[2] = GPUOP(GPUCOMMANDOP_SET_CONSTANT, 4*4+1, 0);
+	OpSetVectorConsts.u[3] = Sc.dword[0];
+
+	g_System.Initialise();
+}
+
+/// free the FX system
+void Shutdown()
+{
+	g_System.Shutdown();
+}
+
+/// set a parameter value
+void SetParameter(Parameter *pParam, const void *pData)
+{
+	memcpy(pParam->Data, pData, pParam->Size*4);
+	pParam->bDirty = 1;
+}
+
+FORCE_INLINE void ngliFXBeginPass_SetVectorConsts(DWORD*& _push, int iConst, const void *pData, int NVectorConsts)
+{
+	Maths::HVec4* __restrict out = (Maths::HVec4* __restrict)_push;
+
+	*out++ = (Maths::HVec4&)OpSetVectorConsts;
+
+	Maths::HVec4* __restrict pIn = (Maths::HVec4* __restrict)pData;
+	for (int i=0; i<NVectorConsts; i+=4)
+	{
+		Maths::HVec4 value = pIn[0];
+		out[0] = value;
+		value = pIn[1];
+		out[1] = value;
+		value = pIn[2];
+		out[2] = value;
+		value = pIn[3];
+		out[3] = value;
+		out += 4;
+		pIn += 4;
+	}
+
+	_push = (DWORD*)out;
+}
+
+FORCE_INLINE void ngliFXBeginPass_SetVectorConsts1(DWORD*& _push, const void *pData)
+{
+	Maths::HVec4* __restrict out = (Maths::HVec4* __restrict)_push;
+	Maths::HVec4* __restrict pIn = (Maths::HVec4* __restrict)pData;
+
+	*out++ = (Maths::HVec4&)OpSetVectorConsts;
+
+	Maths::HVec4 value = pIn[0];
+	out[0] = value;
+	value = pIn[1];
+	out[1] = value;
+	value = pIn[2];
+	out[2] = value;
+	value = pIn[3];
+	out[3] = value;
+	out += 4;
+
+	_push = (DWORD*)out;
+}
+
+FORCE_INLINE DWORD* gpuBeginPush() 
+{ 
+	return ((D3D::CDevice*)g_System.m_pD3D)->BeginRing(); 
+}
+
+FORCE_INLINE DWORD* gpuBeginPushBig(unsigned long size) 
+{ 
+	return ((D3D::CDevice*)g_System.m_pD3D)->BeginRingBig(size); 
+}
+
+FORCE_INLINE void gpuEndPush(DWORD* ring) 
+{ 
+	((D3D::CDevice*)g_System.m_pD3D)->PutRaw(ring);
+	((D3D::CDevice*)g_System.m_pD3D)->EndRing(ring);
+}
+
+FORCE_INLINE void gpuPush(DWORD* __restrict &ring, DWORD val) 
+{ 
+	storewordupdate(val, 4, ring); 
+}
+
+FORCE_INLINE void gpuPush(DWORD* __restrict &ring, float val) 
+{ 
+	storefloatupdate(val, 4, ring); 
+}
+
+// Aligns ring buffer to 16byte push buffer boundary, to allow for AltiVec stores.
+// Note: gpuDev->m_pRing points 4 bytes *before* the current ring buffer position to allow use of 
+//   "storewordupdate", which preincrements the pointer before writing.
+// We're going to disable that little feature right away (see the +1) as we'll be using AltiVec copies 
+//   and want aligned pointers.
+FORCE_INLINE DWORD* gpuBeginPushBigAligned(int size)
+{
+	DWORD* __restrict push = gpuBeginPushBig(size);
+	push[1] = GPUOP_NOP;
+	push[2] = GPUOP_NOP;
+	push[3] = GPUOP_NOP;
+	return (DWORD*)(((U32)push+16)&0xfffffff0);
+}
+
+FORCE_INLINE void gpuEndPushAligned(DWORD* push)
+{
+	gpuEndPush(push-1);
+}
+
+
+/// set a parameter value during Begin-End pass
+void SetParameterImmediate(Parameter *pParam, const void *pData)
+{
+	IDirect3DDevice9 *pD3D = g_System.m_pD3D;
+/*
+	if (pParam->iHandle == 0 && pParam->Type == NGLFX_PARAM_MATRIX)
+	{
+		pD3D->SetVertexShaderConstantF(0, (F32*)pData, 4);
+
+//		DWORD* __restrict push = gpuBeginPushBigAligned(16 + 4*sizeof(DWORD) + 4*sizeof(Maths::HVec4));
+
+//		ngliFXBeginPass_SetVectorConsts1( push, pData );
+
+//		gpuEndPushAligned(push);
+		return;
+	}
+*/
+	if (pParam->bShared)
+		memcpy(pParam->Data, pData, pParam->Size*4);
+	if (pParam->iHandle == (U8)-1)
+		return;
+	if (pParam->Type == NGLFX_PARAM_SAMPLER)
+	{
+		pParam->Sampler->Texture = *(gpuTexture**)pData;
+		g_System.SetTexture(pParam->iHandle, pParam->Sampler);
+	}
+	else if (pParam->Type != NGLFX_PARAM_NONE)
+	{
+		DWORD c = ((DWORD)pParam->Size)/4;
+		pD3D->SetVertexShaderConstantF(pParam->iHandle, (F32*)pData, c);
+		pD3D->SetPixelShaderConstantF(pParam->iHandle, (F32*)pData, c);
+	}
+
+}
+
+/// get shared parameter
+Parameter *GetSharedParameter(const char *pszName)
+{
+	Parameter *p = g_SharedEffect.GetSharedParameterByName(pszName);
+	if (p)
+		return p;
+	else
+		return g_System.GetNullParameter();
+}
+
+/// invalidate the FX system's internal render state/shader constant cache
+void InvalidateState()
+{
+	// TODO: program this (if it's needed)
+}
+
+} // namespace FX

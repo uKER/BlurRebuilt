@@ -1,0 +1,59 @@
+SupportedTargets WIN32_TOOL WIN32_TOOL_2008 ;
+
+SubDir TOP Code Tools Bizpakwin ;
+
+IncludePath 
+$(SUBDIR)/source
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Libs/Vendor/wxWidgets/2.8.9/include/msvc
+$(TOP)/Libs/Vendor/wxWidgets/2.8.9/include
+$(TOP)/Libs/Vendor/wxWidgets/2.8.9/contrib/include
+;
+
+IncludePath \"$(DXSDK_PATH)/include\" ;
+Define _CRT_SECURE_NO_WARNINGS ;
+
+LINKLIBS += ws2_32.lib
+			dbghelp.lib
+			psapi.lib
+			comctl32.lib
+			rpcrt4.lib
+			gdiplus.lib
+			msimg32.lib
+			;
+
+#LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 ;
+		    
+#if $(BUILD) = Release
+#{
+#	LINKFLAGS += /RELEASE /OPT:REF /OPT:ICF ;
+#}
+
+#if $(BUILD) = Debug
+#{
+#	LINKFLAGS += /NODEFAULTLIB:MSVCRT ;
+#}
+
+
+SRC =
+source/main.cpp
+;
+
+LinkLibraries BizPakWin :	core system 
+							wxcore wxbase wxaui
+							wxtiff wxpng wxjpeg wxzlib wxcontrib
+							;
+		
+Application BizPakWin : $(SRC) : stdafx.cpp ;
+
+EmbedManifest ./BizPakWin.exe : BizPakWin.exe ;
+
+ExportVcproj BizPakWin ;
+
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Libs Vendor wxWidgets 2.8.9 ;
+

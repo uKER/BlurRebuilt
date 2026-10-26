@@ -1,0 +1,51 @@
+xt
+	field __id "400CDD43"
+	field __name "Light.SunFlare"
+	field __pack "2E661B2B"
+	field __type "Light_Effect"
+	block atlasSize
+		field height "8"
+		field width "1"
+	end
+	field cullDistance "1000"
+	array distanceCurve
+		block 
+			field __id "Effe15871276"
+			field outTangent "0"
+			field time "0.000000"
+			field value "1.000000"
+		end
+		block 
+			field __id "Effe38A1984E"
+			field time "1.000000"
+			field value "1.000000"
+		end
+	end
+	field name "SunFlare"
+	array positionCurve
+		block 
+			field __id "Effe1D317B76"
+			field time "0.000000"
+			field value "1.000000"
+		end
+		block 
+			field __id "Effe0BC9E385"
+			field time "1.000000"
+			field value "1.000000"
+		end
+	end
+	field shapeType "Quad2d"
+	field texture "Light_Effects"
+	array viewCurve
+		block 
+			field __id "EffeA929ABFC"
+			field time "0.000000"
+			field value "1.000000"
+		end
+		block 
+			field __id "Effe391FBE40"
+			field time "1.000000"
+			field value "1.000000"
+		end
+	end
+end

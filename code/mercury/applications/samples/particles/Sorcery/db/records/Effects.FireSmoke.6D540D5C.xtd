@@ -1,0 +1,80 @@
+xt
+	field __id "6D540D5C"
+	field __name "Effects.FireSmoke"
+	field __pack "2E661B2B"
+	field __type "Particle_Effect"
+	block acceleration
+		field y "1"
+		field z "0"
+	end
+	field airResistance "1"
+	array animation
+	end
+	field blendMode "Alpha"
+	array children
+	end
+	array colourCurveA
+		block 
+			field time "0.000"
+			field value "0"
+		end
+		block 
+			field time "0.150538"
+			field value "1.000000"
+		end
+		block 
+			field time "0.827957"
+			field value "1.000000"
+		end
+		block 
+			field time "1.000000"
+			field value "0.000000"
+		end
+	end
+	array colourCurveRGB
+	end
+	array colourOverTime
+	end
+	field diffuseTexture "Smoke05"
+	block emissiveColour
+	end
+	block filterColour
+	end
+	block light
+	end
+	block limitSize
+		field begin "0.1"
+		field end "0.25"
+		field max "0.3"
+		field start "0.1"
+		field type "AlphaFade"
+	end
+	field name "Smoke_Fire"
+	field shape "RotatingSprite"
+	array sizeCurveX
+		block 
+			field time "0.000"
+			field value "0"
+		end
+		block 
+			field inTangent "81.821719"
+			field outTangent "80.570734"
+			field time "0.093"
+			field value "1"
+		end
+		block 
+			field time "0.494624"
+			field value "2.063953"
+		end
+		block 
+			field inTangent "-81.065974"
+			field time "1.000000"
+			field value "0.000000"
+		end
+	end
+	array sizeCurveY
+	end
+	array sizeCurveZ
+	end
+	field sort "PerParticle"
+end

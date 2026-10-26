@@ -1,0 +1,28 @@
+# [Blur2PC] Blur 1 retail PC, fast path: boot -> start screen -> career tier 1 event 1 -> race, then drive.
+# Runs with any phase's run_script.ps1:  run_script.ps1 -Script <copy of this file>
+# Every step waits on game state, so there is no padding for slow loads. Times after a `wait`
+# count from the moment it came true. Screens and waits are logged to automation.log.
+0 lua Blur2PC.Run([[C:\AIProjects\Blur2PC\Blur1PC\tools\blur2pc_automation\quickrace.lua]])
+
+# start screen: press start once it takes input, then let the profile load
+0 wait 120 Blur2PC_PressStartReady()
+0 lua Blur2PC_PressStart()
+0 wait 60 Blur2PC_QuickRaceReady()
+0 shot start.png
+0 lua Blur2PC_QuickRace(1, 1)
+
+# race load; skip the vista fly-by as soon as the game offers it
+0 wait 180 UIScreen.GetCurrentScreen() == [[ingame\introvista.lua]] and GUI.show_skip == true
+0 shot vista.png
+0 tap RETURN
+0 wait 60 Blur2PC.RaceState() == "Starting"
+0 shot grid.png
+0 wait 30 Blur2PC.RaceState() == "Racing"
+0 down Q # throttle, keyboard layout 1 (T103); older builds throttle on UP
+0 down UP
+6 shot drive1.png
+12 shot drive2.png
+18 shot drive3.png
+19 up Q
+19 up UP
+20 quit

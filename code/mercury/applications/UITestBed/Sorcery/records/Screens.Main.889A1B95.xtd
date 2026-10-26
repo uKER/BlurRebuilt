@@ -1,0 +1,54 @@
+xt
+	array ColourStyles
+	end
+	array Elements
+		block 
+			field __id "UIGa9B1A89B6"
+			field __type "UIStaticGraphic"
+			field justify "TopLeft"
+			field layer "0"
+			field panel "0"
+			block pos
+				field x "320"
+				field y "240"
+				field z "0"
+			end
+			block rot
+				field x "0"
+				field y "0"
+				field z "0"
+			end
+			block scale
+				field x "1"
+				field y "1"
+				field z "1"
+			end
+			block size
+				field x "256"
+				field y "256"
+				field z "1"
+			end
+			array textures
+				block 
+					field __id "UITe63D617B0"
+					field name "Mesh4"
+					block pos
+						field u "0"
+						field v "0"
+					end
+					block size
+						field u "1"
+						field v "1"
+					end
+				end
+			end
+		end
+	end
+	array FontStyles
+	end
+	field Name "Main.lua"
+	field __id "889A1B95"
+	field __name "Screens.Main"
+	field __pack "F2519802"
+	field __type "UIScreen"
+end

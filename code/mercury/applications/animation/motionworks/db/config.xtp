@@ -1,0 +1,18 @@
+xt
+block
+	__version field "20"
+	build block
+		deployment block
+		;
+		platforms block
+		;
+		staging block
+		;
+		structure block
+			packs field "%pack%.bin"
+		;
+	;
+
+	name field "Motionworks"
+	sendAllOnConnect field "0"
+;

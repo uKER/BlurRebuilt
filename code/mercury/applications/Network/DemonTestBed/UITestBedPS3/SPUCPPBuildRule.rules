@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="SPU CPP Compiler"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="CompileSPUProgram"
+			DisplayName="Compile SPU Program"
+			CommandLine=".\source\scheduler\make_jobqueue_module.bat [$ModuleFileName] [$ObjectFileName]  [inputs] [$Extracompileroptions]"
+			Outputs="[$ObjectFileName]"
+			AdditionalDependencies="[inputs]"
+			FileExtensions="*.spu_cpp"
+			ExecutionDescription="Executing tool..."
+			>
+			<Properties>
+				<StringProperty
+					Name="ObjectFilename"
+					DisplayName="ObjectFilename"
+				/>
+				<StringProperty
+					Name="ModuleFilename"
+					DisplayName="ModuleFilename"
+				/>
+				<StringProperty
+					Name="Extracompileroptions"
+					DisplayName="Extra compiler options"
+				/>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

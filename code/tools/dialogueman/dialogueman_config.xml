@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialogueman>
+	<xtdb path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/sorcery3/main" />
+	<locid name="%DIALOGUE RECORD%_%CHARACTER%_%UID%" />
+	<export path="C:/alienbrainWork/%BIZARRE_PROJECT%/Design/Single Player/Scripts/DialogueManagerExports" />
+	<audioxml path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/assets/audio/audioXML/VO_%DIALOGUE RECORD%.xml" />
+	<bankpc path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/assets/audio/bankPC/BANK_PC_%DIALOGUE RECORD%.xml" />
+	<bank360 path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/assets/audio/bank360/BANK_360_%DIALOGUE RECORD%.xml" />
+	<bankps3 path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/assets/audio/bankPS3/BANK_PS3_%DIALOGUE RECORD%.xml" />
+	
+	<!-- 
+  Speaker values: ("LH Michael" | "LH Michelle" ... see Speech Settings under Control Panel), 
+  Speed values: (-10, +10), 
+  Volume values: (0, 100) 
+  -->
+  
+	<tts path="%BIZARRE_ROOT%/%BIZARRE_PROJECT%/assets/audio/tts_placeholder/%CHARACTER%" fileName="%NAME%.wav" defaultSpeaker="LH Michael" defaultSpeed="0" defaultVolume="100">
+	  <voice character="BOND" speaker="LH Michael" speed="-10" volume="100" />
+	  <voice character="DIPLOMAT" speaker="LH Michael" speed="2" volume="80" />
+	  <voice character="GENERAL" speaker="LH Michael" speed="2" volume="100" />
+	  <voice character="GORGEOUS GREEK WAITRESS" speaker="LH Michelle" speed="7" volume="100" />
+	</tts>
+	
+</dialogueman>

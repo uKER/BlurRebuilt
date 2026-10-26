@@ -1,0 +1,28 @@
+#include "..\\psCommon.h"
+
+struct PS_INPUT
+{
+	#if defined(BLUR_DX11) // [Blur1PCDX11] Explicit interpolator on D3D11.
+	float4 Colour0			: TEXCOORD0;
+	#else
+	float4 Colour0			: COLOR0;
+	#endif
+};
+
+struct PS_OUTPUT
+{
+	#if defined(BLUR_DX11) // [Blur1PCDX11] D3D11 render-target semantic.
+	float4 Colour0			: SV_Target;
+	#else
+	float4 Colour0			: COLOR0;
+	#endif
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	OUT.Colour0 = IN.Colour0;
+	
+	return OUT;
+}

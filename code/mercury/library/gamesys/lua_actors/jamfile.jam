@@ -1,0 +1,22 @@
+SubDir TOP Code Mercury Library GameSys Lua_Actors ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/gamesys/actor_system/include
+$(TOP)/code/mercury/library/gamesys/shared_actors/include
+$(TOP)/code/vendor/lua/current/src
+;
+
+SRC = 
+source/LuaActor.cpp
+source/LuaActorCreate.cpp
+source/LuaActorMessages.cpp
+source/LuaActorScript.cpp
+source/LuaActorUtils.cpp
+;
+
+Library lua_actors : $(SRC) : LuaActorsPch.cpp : LuaActorsPch.h ;

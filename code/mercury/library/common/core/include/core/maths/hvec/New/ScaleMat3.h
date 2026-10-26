@@ -1,0 +1,101 @@
+#if defined( SOFT_MATHS )
+#ifndef SOFT_MATHS_HVEC_NEW_SCALEMAT3_H
+#define SOFT_MATHS_HVEC_NEW_SCALEMAT3_H
+#define INCLUDE_THIS
+#endif
+#else
+#ifndef MATHS_HVEC_NEW_SCALEMAT3_H
+#define MATHS_HVEC_NEW_SCALEMAT3_H
+#define INCLUDE_THIS
+#endif
+#endif
+
+#if defined( INCLUDE_THIS )
+#undef INCLUDE_THIS
+
+namespace Maths
+{
+/// @addtogroup ScaleMat3
+/// @{
+
+/// Make ScaleMat3 from 3 float elements
+NOALIAS __forceinline const ScaleMat3 MakeScaleMat3( const F32& sx, const F32& sy, const F32& sz );
+
+/// Make ScaleMat3 from 3 VF32 elements
+NOALIAS __forceinline const ScaleMat3 MakeScaleMat3( const VF32 VECREF sx, const VF32 VECREF sy, const VF32 VECREF sz );
+
+/// Make ScaleMat3 from a diagonal vector (3 element)
+NOALIAS __forceinline const ScaleMat3 MakeScaleMat3( const Vector3 PCREF scale );
+
+/// ScaleMat3 constants
+template <> struct Const< ScaleMat3 > 
+{
+    NOALIAS __forceinline static const ScaleMat3 Zero();     ///< Constant ScaleMat3(0,0,0)
+    NOALIAS __forceinline static const ScaleMat3 Identity(); ///< Constant ScaleMat3(1,1,1)
+};
+
+/// Get Vector3 from a ScaleMat3
+NOALIAS __forceinline const Vector3 GetScale( const ScaleMat3 PCREF m );
+
+/// Set Diagonal vector of a ScaleMat3
+NOALIAS __forceinline void SetScale( ScaleMat3* pDst, const Vector3 PCREF scale );
+
+/// Get SX from a ScaleMat3
+NOALIAS __forceinline const VF32 GetSX( const ScaleMat3 PCREF m );
+
+/// Get SY from a ScaleMat3
+NOALIAS __forceinline const VF32 GetSY( const ScaleMat3 PCREF m );
+
+/// Get SZ from a ScaleMat3
+NOALIAS __forceinline const VF32 GetSZ( const ScaleMat3 PCREF m );
+
+/// Get SX from a ScaleMat3
+NOALIAS __forceinline const VF32 X( const ScaleMat3 PCREF m );
+
+/// Get SY from a ScaleMat3
+NOALIAS __forceinline const VF32 Y( const ScaleMat3 PCREF m );
+
+/// Get SZ from a ScaleMat3
+NOALIAS __forceinline const VF32 Z( const ScaleMat3 PCREF m );
+
+/// ScaleMat3 Inverse (faster but only 22 bit precision)
+NOALIAS __forceinline const ScaleMat3 Inverse( const ScaleMat3 PCREF m );
+
+/// ScaleMat3 Inverse (slower but full 24 bit precision)
+NOALIAS __forceinline const ScaleMat3 Inverse24( const ScaleMat3 PCREF m );
+
+
+/// ScaleMat3 Finite test
+NOALIAS __forceinline const VBool Finite( const ScaleMat3 PCREF m );
+
+
+/// ScaleMat3 * VF32 Right Multiplication
+NOALIAS __forceinline const ScaleMat3 operator * ( const ScaleMat3 PCREF a, const VF32 VECREF b );
+
+/// ScaleMat3 * VF32 Left Multiplication
+NOALIAS __forceinline const ScaleMat3 operator * ( const VF32 VECREF a, const ScaleMat3 PCREF b );
+
+
+/// ScaleMat3 * Mat33 Right Multiplication
+NOALIAS __forceinline const Mat33 operator * ( const ScaleMat3 PCREF a, const Mat33 MATREF b );
+
+/// ScaleMat3 * Mat33 Left Multiplication
+NOALIAS __forceinline const Mat33 operator * ( const Mat33 MATREF a, const ScaleMat3 PCREF b );
+
+
+/// ScaleMat3 * ShearMat3 Right Multiplication
+NOALIAS __forceinline const Mat33 operator * ( const ScaleMat3 PCREF a, const ShearMat3& b );
+
+/// ScaleMat3 * ShearMat3 Left Multiplication
+NOALIAS __forceinline const Mat33 operator * ( const ShearMat3& a, const ScaleMat3 PCREF b );
+
+
+
+
+
+/// @}
+}; // namespace Maths
+
+#endif // #if defined( INCLUDE_THIS )
+
+

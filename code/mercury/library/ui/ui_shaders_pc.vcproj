@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="ui_shaders_pc"
+	ProjectGUID="{42E73601-B91C-4443-8369-59EA4BEF7998}"
+	RootNamespace="ui_shaders_pc"
+	Keyword="Win32Proj"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="./lib"
+			IntermediateDirectory="./obj/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="10"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="./lib"
+			IntermediateDirectory="./obj/$(ProjectName)/$(ConfigurationName)"
+			ConfigurationType="10"
+			CharacterSet="1"
+			WholeProgramOptimization="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Shaders"
+			>
+			<File
+				RelativePath=".\include\ui\shaders\psCommon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ui\shaders\psConstants.cp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\psConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\psConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\include\ui\shaders\psConstants.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ui\shaders\vsCommon.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ui\shaders\vsConstants.cv"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\vsConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Performing Custom Build Step - $(InputFileName)"
+						CommandLine="..\..\..\..\bin\build_tools\bscc &quot;$(InputPath)&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="..\mercury/library/graphics/display\include\display\shaders\vsConstants.h"
+						Outputs="$(InputDir)$(InputName).h"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\include\ui\shaders\vsConstants.h"
+				>
+			</File>
+			<Filter
+				Name="UI"
+				>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psBlobbyFont.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psFontEffects.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psFontIntensityAsAlpha.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psFontIntensityOutline.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psGreyScale.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psMovie.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psMovieWithAlpha.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psMultiTexture.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_2&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_3&#x0D;&#x0A;&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_2&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_3&#x0D;&#x0A;&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psMultiTextureFullAlpha.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_2&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_3&#x0D;&#x0A;&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)2&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_2&#x0D;&#x0A;..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)3&quot; &quot;$(InputPath)&quot; /P ps_3_0 /D SAMPLERS_3&#x0D;&#x0A;&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader;$(InputDir)pcd3d9\$(InputName)2.shader;$(InputDir)pcd3d9\$(InputName)3.shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psNormalMapOffset.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\psPixelLight.psh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P ps_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\psConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\vsFontEffects.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\vsMultiTexture.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\vsNormalMapOffset.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\include\ui\shaders\ui\vsPixelLight.vsh"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+							Description="Performing Custom Build Step - $(InputFileName)"
+							CommandLine="..\..\..\..\bin\build_tools\bsc pcd3d9 &quot;$(InputName)&quot; &quot;$(InputPath)&quot; /P vs_3_0&#x0D;&#x0A;"
+							AdditionalDependencies="$(InputDir)..\vsConstants.h"
+							Outputs="$(InputDir)pcd3d9\$(InputName).shader"
+						/>
+					</FileConfiguration>
+				</File>
+			</Filter>
+		</Filter>
+		<File
+			RelativePath=".\vsi.nul"
+			>
+			<FileConfiguration
+				Name="Debug|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Release|Win32"
+				ExcludedFromBuild="true"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="PS3 Debug|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="PS3 Release|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug -O1 (First Stage Of Optimisation)|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug (O1)|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug (02)|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+			<FileConfiguration
+				Name="Debug (03)|Win32"
+				>
+				<Tool
+					Name="VCCustomBuildTool"
+					Description=""
+					CommandLine="echo &gt;nul&#x0D;&#x0A;"
+					Outputs="$(IntDir)\vsi.out"
+				/>
+			</FileConfiguration>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

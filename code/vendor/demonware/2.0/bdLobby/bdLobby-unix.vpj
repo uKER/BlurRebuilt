@@ -1,0 +1,444 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	BuildSystem="vsbuild">
+	<Config
+		Name="Debug"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/debug/libbdlobby.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -g -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<Config
+		Name="Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/release/libbdlobby.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<CustomFolders>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+		</Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters="">
+		</Folder>
+	</CustomFolders>
+	<Files AutoFolders="PackageView">
+<F N="bdAuthService.cpp"/>
+<F N="bdAuthService.h"/>
+<F N="bdAuthTicket.cpp"/>
+<F N="bdAuthTicket.h"/>
+<F N="bdLobbyConnection.cpp"/>
+<F N="bdLobbyConnection.h"/>
+<F N="bdLobbyConnectionListener.cpp"/>
+<F N="bdLobbyConnectionListener.h"/>
+<F N="bdLobbyErrorCode.h"/>
+<F N="bdLobbyErrorCodes.h"/>
+<F N="bdLobbyEventHandler.cpp"/>
+<F N="bdLobbyEventHandler.h"/>
+<F N="bdLobbyService.cpp"/>
+<F N="bdLobbyService.h"/>
+<F N="bdPS3AuthInfo.cpp"/>
+<F N="bdPS3AuthInfo.h"/>
+<F N="bdWiiAuthInfo.h"/>
+<Folder Name = "bdContentStreaming">
+<F N="bdContentStreaming/bdContentStreaming.cpp"/>
+<F N="bdContentStreaming/bdContentStreaming.h"/>
+<F N="bdContentStreaming/bdContentStreamingStatsInfo.cpp"/>
+<F N="bdContentStreaming/bdContentStreamingStatsInfo.h"/>
+<F N="bdContentStreaming/bdFileID.cpp"/>
+<F N="bdContentStreaming/bdFileID.h"/>
+<F N="bdContentStreaming/bdFileMetaData.cpp"/>
+<F N="bdContentStreaming/bdFileMetaData.h"/>
+<F N="bdContentStreaming/bdQuotaUsage.cpp"/>
+<F N="bdContentStreaming/bdQuotaUsage.h"/>
+<F N="bdContentStreaming/bdURL.cpp"/>
+<F N="bdContentStreaming/bdURL.h"/>
+</Folder>
+<Folder Name = "bdContentUnlock">
+<F N="bdContentUnlock/bdContentUnlock.cpp"/>
+<F N="bdContentUnlock/bdContentUnlock.h"/>
+<F N="bdContentUnlock/bdUnlockContentInfo.cpp"/>
+<F N="bdContentUnlock/bdUnlockContentInfo.h"/>
+</Folder>
+<Folder Name = "bdCounter">
+<F N="bdCounter/bdCounter.cpp"/>
+<F N="bdCounter/bdCounter.h"/>
+<F N="bdCounter/bdCounterValue.cpp"/>
+<F N="bdCounter/bdCounterValue.h"/>
+</Folder>
+<Folder Name = "bdFacebook">
+<F N="bdFacebook/bdFacebook.cpp"/>
+<F N="bdFacebook/bdFacebook.h"/>
+</Folder>
+<Folder Name = "bdFriends">
+<F N="bdFriends/bdFriendInfo.cpp"/>
+<F N="bdFriends/bdFriendInfo.h"/>
+<F N="bdFriends/bdFriendProposal.cpp"/>
+<F N="bdFriends/bdFriendProposal.h"/>
+<F N="bdFriends/bdFriends.cpp"/>
+<F N="bdFriends/bdFriends.h"/>
+<F N="bdFriends/bdGroupInfo.cpp"/>
+<F N="bdFriends/bdGroupInfo.h"/>
+</Folder>
+<Folder Name = "bdGroup">
+<F N="bdGroup/bdGroup.cpp"/>
+<F N="bdGroup/bdGroup.h"/>
+<F N="bdGroup/bdGroupCount.cpp"/>
+<F N="bdGroup/bdGroupCount.h"/>
+<F N="bdGroup/bdGroupID.cpp"/>
+<F N="bdGroup/bdGroupID.h"/>
+</Folder>
+<Folder Name = "bdHTTPWrapper">
+<F N="bdHTTPWrapper/bdHTTPWrapper.cpp"/>
+<F N="bdHTTPWrapper/bdHTTPWrapper.h"/>
+<F N="bdHTTPWrapper/bdHTTPWrapper.inl"/>
+</Folder>
+<Folder Name = "bdKeyArchive">
+<F N="bdKeyArchive/bdKeyArchive.cpp"/>
+<F N="bdKeyArchive/bdKeyArchive.h"/>
+<F N="bdKeyArchive/bdKeyValuePair.cpp"/>
+<F N="bdKeyArchive/bdKeyValuePair.h"/>
+</Folder>
+<Folder Name = "bdLinkCode">
+<F N="bdLinkCode/bdLink.cpp"/>
+<F N="bdLinkCode/bdLink.h"/>
+<F N="bdLinkCode/bdLinkCode.cpp"/>
+<F N="bdLinkCode/bdLinkCode.h"/>
+</Folder>
+<Folder Name = "bdLobbyCommon">
+<F N="bdLobbyCommon/bdAuthCommon.cpp"/>
+<F N="bdLobbyCommon/bdAuthCommon.h"/>
+<F N="bdLobbyCommon/bdLobbyServicesCommon.h"/>
+<F N="bdLobbyCommon/bdTaskResult.cpp"/>
+<F N="bdLobbyCommon/bdTaskResult.h"/>
+</Folder>
+<Folder Name = "bdLSGServices">
+<F N="bdLSGServices/bdBandwidthTest.cpp"/>
+<F N="bdLSGServices/bdBandwidthTest.h"/>
+<F N="bdLSGServices/bdBandwidthTestResults.cpp"/>
+<F N="bdLSGServices/bdBandwidthTestResults.h"/>
+<F N="bdLSGServices/bdLSGServices.h"/>
+</Folder>
+<Folder Name = "bdMatchMaking">
+<F N="bdMatchMaking/bdMatchMaking.cpp"/>
+<F N="bdMatchMaking/bdMatchMaking.h"/>
+<F N="bdMatchMaking/bdMatchMakingInfo.cpp"/>
+<F N="bdMatchMaking/bdMatchMakingInfo.h"/>
+<F N="bdMatchMaking/bdPerformanceValue.cpp"/>
+<F N="bdMatchMaking/bdPerformanceValue.h"/>
+<F N="bdMatchMaking/bdSessionID.cpp"/>
+<F N="bdMatchMaking/bdSessionID.h"/>
+<F N="bdMatchMaking/bdSessionInvite.cpp"/>
+<F N="bdMatchMaking/bdSessionInvite.h"/>
+<F N="bdMatchMaking/bdSessionParams.cpp"/>
+<F N="bdMatchMaking/bdSessionParams.h"/>
+</Folder>
+<Folder Name = "bdMessaging">
+<F N="bdMessaging/bdBlockedUser.cpp"/>
+<F N="bdMessaging/bdBlockedUser.h"/>
+<F N="bdMessaging/bdChannelInfo.cpp"/>
+<F N="bdMessaging/bdChannelInfo.h"/>
+<F N="bdMessaging/bdChannelMember.cpp"/>
+<F N="bdMessaging/bdChannelMember.h"/>
+<F N="bdMessaging/bdLobbyMessageType.h"/>
+<F N="bdMessaging/bdMailBody.cpp"/>
+<F N="bdMessaging/bdMailBody.h"/>
+<F N="bdMessaging/bdMailHeader.cpp"/>
+<F N="bdMessaging/bdMailHeader.h"/>
+<F N="bdMessaging/bdMessaging.cpp"/>
+<F N="bdMessaging/bdMessaging.h"/>
+<F N="bdMessaging/bdNotification.cpp"/>
+<F N="bdMessaging/bdNotification.h"/>
+</Folder>
+<Folder Name = "bdProfiles">
+<F N="bdProfiles/bdProfileInfo.cpp"/>
+<F N="bdProfiles/bdProfileInfo.h"/>
+<F N="bdProfiles/bdProfiles.cpp"/>
+<F N="bdProfiles/bdProfiles.h"/>
+</Folder>
+<Folder Name = "bdRemoteTaskManager">
+<F N="bdRemoteTaskManager/bdRemoteTask.cpp"/>
+<F N="bdRemoteTaskManager/bdRemoteTask.h"/>
+<F N="bdRemoteTaskManager/bdRemoteTaskManager.cpp"/>
+<F N="bdRemoteTaskManager/bdRemoteTaskManager.h"/>
+</Folder>
+<Folder Name = "bdStats">
+<F N="bdStats/bdArbitratedStatsInfo.cpp"/>
+<F N="bdStats/bdArbitratedStatsInfo.h"/>
+<F N="bdStats/bdSessionNonce.cpp"/>
+<F N="bdStats/bdSessionNonce.h"/>
+<F N="bdStats/bdStats.cpp"/>
+<F N="bdStats/bdStats.h"/>
+<F N="bdStats/bdStatsInfo.cpp"/>
+<F N="bdStats/bdStatsInfo.h"/>
+</Folder>
+<Folder Name = "bdStorage">
+<F N="bdStorage/bdFileData.cpp"/>
+<F N="bdStorage/bdFileData.h"/>
+<F N="bdStorage/bdFileInfo.cpp"/>
+<F N="bdStorage/bdFileInfo.h"/>
+<F N="bdStorage/bdGetFilesResult.cpp"/>
+<F N="bdStorage/bdGetFilesResult.h"/>
+<F N="bdStorage/bdStorage.cpp"/>
+<F N="bdStorage/bdStorage.h"/>
+</Folder>
+<Folder Name = "bdTags">
+<F N="bdTags/bdTag.cpp"/>
+<F N="bdTags/bdTag.h"/>
+<F N="bdTags/bdTagQueryParams.cpp"/>
+<F N="bdTags/bdTagQueryParams.h"/>
+<F N="bdTags/bdTags.cpp"/>
+<F N="bdTags/bdTags.h"/>
+<F N="bdTags/bdTagsArray.cpp"/>
+<F N="bdTags/bdTagsArray.h"/>
+</Folder>
+<Folder Name = "bdTeams">
+<F N="bdTeams/bdTeamInfo.cpp"/>
+<F N="bdTeams/bdTeamInfo.h"/>
+<F N="bdTeams/bdTeamMember.cpp"/>
+<F N="bdTeams/bdTeamMember.h"/>
+<F N="bdTeams/bdTeamMemberProfile.cpp"/>
+<F N="bdTeams/bdTeamMemberProfile.h"/>
+<F N="bdTeams/bdTeamProfile.cpp"/>
+<F N="bdTeams/bdTeamProfile.h"/>
+<F N="bdTeams/bdTeamProposal.cpp"/>
+<F N="bdTeams/bdTeamProposal.h"/>
+<F N="bdTeams/bdTeams.cpp"/>
+<F N="bdTeams/bdTeams.h"/>
+</Folder>
+<Folder Name = "bdTitleUtilities">
+<F N="bdTitleUtilities/bdTitleStats.cpp"/>
+<F N="bdTitleUtilities/bdTitleStats.h"/>
+<F N="bdTitleUtilities/bdTitleUtilities.cpp"/>
+<F N="bdTitleUtilities/bdTitleUtilities.h"/>
+<F N="bdTitleUtilities/bdVerifyString.cpp"/>
+<F N="bdTitleUtilities/bdVerifyString.h"/>
+</Folder>
+<Folder Name = "bdTwitter">
+<F N="bdTwitter/bdTwitter.cpp"/>
+<F N="bdTwitter/bdTwitter.h"/>
+</Folder>
+<Folder Name = "bdVoteRank">
+<F N="bdVoteRank/bdRatingInfo.cpp"/>
+<F N="bdVoteRank/bdRatingInfo.h"/>
+<F N="bdVoteRank/bdVoteRank.cpp"/>
+<F N="bdVoteRank/bdVoteRank.h"/>
+<F N="bdVoteRank/bdVoteRankStatsInfo.cpp"/>
+<F N="bdVoteRank/bdVoteRankStatsInfo.h"/>
+</Folder>
+	</Files>
+</Project>

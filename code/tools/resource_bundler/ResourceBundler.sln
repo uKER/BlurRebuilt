@@ -1,0 +1,63 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceBundler", "BizarreBundler.vcproj", "{1994143F-1689-4709-BCD0-56953553265A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{661BB307-31CE-4D19-9181-BB3B2939199D} = {661BB307-31CE-4D19-9181-BB3B2939199D}
+		{DA906BFA-0572-424A-898D-8FF67EF6FCB5} = {DA906BFA-0572-424A-898D-8FF67EF6FCB5}
+		{8400C83E-2671-4C63-9876-3C79BDD09D82} = {8400C83E-2671-4C63-9876-3C79BDD09D82}
+		{F0EA95BC-96CF-4EA2-BA2B-391864605B99} = {F0EA95BC-96CF-4EA2-BA2B-391864605B99}
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9} = {9634D64A-F9D4-490B-BF97-AEBD078679F9}
+		{490DAFA7-CB98-4211-8270-4A0A68A28F86} = {490DAFA7-CB98-4211-8270-4A0A68A28F86}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Attk", "..\attk\attk\attk_2005.vcproj", "{8400C83E-2671-4C63-9876-3C79BDD09D82}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_pc", "..\..\mercury/library/common/core\core_pc_2005.vcproj", "{9634D64A-F9D4-490B-BF97-AEBD078679F9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "system_pc", "..\..\mercury/library/common/system\system_pc_2005.vcproj", "{661BB307-31CE-4D19-9181-BB3B2939199D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CompressLib_2005", "..\compress_lib\CompressLib_2005.vcproj", "{F0EA95BC-96CF-4EA2-BA2B-391864605B99}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib_pc", "..\..\vendor\zlib\current_mercury\zlib_pc.vcproj", "{490DAFA7-CB98-4211-8270-4A0A68A28F86}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tools_shared", "..\..\mercury/library/util/tools_shared\tools_shared.vcproj", "{DA906BFA-0572-424A-898D-8FF67EF6FCB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1994143F-1689-4709-BCD0-56953553265A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1994143F-1689-4709-BCD0-56953553265A}.Debug|Win32.Build.0 = Debug|Win32
+		{1994143F-1689-4709-BCD0-56953553265A}.Release|Win32.ActiveCfg = Release|Win32
+		{1994143F-1689-4709-BCD0-56953553265A}.Release|Win32.Build.0 = Release|Win32
+		{8400C83E-2671-4C63-9876-3C79BDD09D82}.Debug|Win32.ActiveCfg = Debug Win32|Win32
+		{8400C83E-2671-4C63-9876-3C79BDD09D82}.Debug|Win32.Build.0 = Debug Win32|Win32
+		{8400C83E-2671-4C63-9876-3C79BDD09D82}.Release|Win32.ActiveCfg = Release Win32|Win32
+		{8400C83E-2671-4C63-9876-3C79BDD09D82}.Release|Win32.Build.0 = Release Win32|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Debug|Win32.Build.0 = Debug|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release|Win32.ActiveCfg = Release|Win32
+		{9634D64A-F9D4-490B-BF97-AEBD078679F9}.Release|Win32.Build.0 = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Debug|Win32.Build.0 = Debug|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release|Win32.ActiveCfg = Release|Win32
+		{661BB307-31CE-4D19-9181-BB3B2939199D}.Release|Win32.Build.0 = Release|Win32
+		{F0EA95BC-96CF-4EA2-BA2B-391864605B99}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F0EA95BC-96CF-4EA2-BA2B-391864605B99}.Debug|Win32.Build.0 = Debug|Win32
+		{F0EA95BC-96CF-4EA2-BA2B-391864605B99}.Release|Win32.ActiveCfg = Release|Win32
+		{F0EA95BC-96CF-4EA2-BA2B-391864605B99}.Release|Win32.Build.0 = Release|Win32
+		{490DAFA7-CB98-4211-8270-4A0A68A28F86}.Debug|Win32.ActiveCfg = Debug|Win32
+		{490DAFA7-CB98-4211-8270-4A0A68A28F86}.Debug|Win32.Build.0 = Debug|Win32
+		{490DAFA7-CB98-4211-8270-4A0A68A28F86}.Release|Win32.ActiveCfg = Release|Win32
+		{490DAFA7-CB98-4211-8270-4A0A68A28F86}.Release|Win32.Build.0 = Release|Win32
+		{DA906BFA-0572-424A-898D-8FF67EF6FCB5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA906BFA-0572-424A-898D-8FF67EF6FCB5}.Debug|Win32.Build.0 = Debug|Win32
+		{DA906BFA-0572-424A-898D-8FF67EF6FCB5}.Release|Win32.ActiveCfg = Release|Win32
+		{DA906BFA-0572-424A-898D-8FF67EF6FCB5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

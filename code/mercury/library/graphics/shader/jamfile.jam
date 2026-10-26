@@ -1,0 +1,25 @@
+SubDir TOP Code Mercury Library Graphics Shader ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC =
+source/envsettings/LightingSettings.cpp
+source/envsettings/FogSettings.cpp
+source/envsettings/CubemapSettings.cpp
+source/evaluatesh/EvaluateSH.cpp
+;
+
+Library shader : $(SRC) : stdafx.cpp ;

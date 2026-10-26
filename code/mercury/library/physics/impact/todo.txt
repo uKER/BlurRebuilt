@@ -1,0 +1,100 @@
+******** swept compound sphere object vs convex hull ********
+
+1) swept sphere vs convex hull
+- need previous position of the sphere
+ need previous position + orientation of object(?)
+ (store on object?)
+- 
+
+
+
+
+TODO LIST FOR INTEGRATION INTO GOTHAM
+
+* deallocate memory for deactivated islands -> test
+* compound sphere objects (for collision against cars)
+* implement collision callbacks (when a car hits a cone)
+
+TODO LIST
+
+-- bugs --
+
+-- features --
+* add gotham barrier infinite plane collision
+* implement contact-reduction code
+* need a way to load/save convex hulls?
+* implement collision filters (don't collide certain objects against eachother)
+* general tidying up
+* add support for spheres
+* check memory overhead
+
+-- speedups --
+* remove duplicate trimesh edge contact points
+* think about something that can avoid doing SAT + Clipping + contact emitting
+  this is the only way left to get any major speedup out of the collision system
+* figure out how to make the twist-friction / friction manifold solver work properly
+* maybe some way to optimize taking into account all the normals of a contact pair point in the same direction
+* split polygon into tris and then clip those and then reduct contact points???
+* potential speedup by storing ConvexBase::Points in SOA format
+
+----------------------------------------
+
+- make a template class that's an indexed array, where you can quickly find an empty slot
+- e.g. insert, returns an index
+
+------------- memory layout optimization
+-> want collisionpairs and associated bodies near eachother
+first thing that happens is follow ptr to CP then follow to 2 bodies then check their active status
+collisionpair array??? some way to have collisionpairs closer together in memory
+store collisionpair on one of the bodies???
+
+design for:
+
+rename ConvexTri -> ConvexPoly
+max 4 verts
+infinite plane is ConvexPoly with FLT_MAX for Y coordinates
+also allows speedup -> processing quads
+
+need ConvexTri::GetPolygon function
+
+con: more memory usage; 12 bytes per tri
+
+
+TOI
+
+for an island
+
+0) instead of setting car position, we set velocity to get us to the wanted position within 1/30th of a frame
+1) detect TOI for continuous collision bodies (taking into account maximum penetration)
+2) scale timestep down accordingly
+3) LOOP until timestep = 1
+
+
+
+* we need a maximum allowed penetration
+* continuous collision detection produces a full-timestep penetration
+* step backwards and forwards until we find time of maximum penetration
+
+need another alternative function to "Collide"; "Penetration"
+
+
+
+update step will look like this:
+1) Exact TOI calculation (time-of-'overlap > 20cm')
+2) Update POS to TOI
+3) Solve for current position
+4) LOOP if neccesary
+5) update broadphase to be Pos + vel * fulltimestep
+
+--- new broadphase will be calculated containing possible collisions for the current velocities
+--- next iteration bodies will be timestepped to the new pos + velocities contained in the broadphase
+
+
+CHANGES:
+
+A) change order of solve, pos update, etc. ***DONE***
+B) change broadphase to use pos + vel, remove "old pos" stuff ***DONE***
+C) remove continuous sphere vs convex collision detection -> always use fallback instead
+C) implement Sphere vs Convex Hull distance calculation
+D) implement TOI phase
+

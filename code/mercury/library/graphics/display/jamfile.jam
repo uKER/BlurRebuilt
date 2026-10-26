@@ -1,0 +1,243 @@
+SubDir TOP Code Mercury Library Graphics Display ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Vendor/zlib/current_mercury
+;
+
+Define
+OBJ_SHADERS
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = ./source/core/Debug.cpp
+./source/buffer/DynamicVB.cpp
+./source/buffer/DynamicVertexBuffer.cpp
+./source/buffer/IndexBuffer.cpp
+./source/buffer/VertexBuffer.cpp
+./source/buffer/VertexDeclarations.cpp
+./source/buffer/VertexFormat.cpp
+./source/device/Device.cpp
+./source/device/DeviceBase.cpp
+./source/device/DeviceDebug.cpp
+./source/device/DeviceContext.cpp
+./source/manager/Manager.cpp
+./source/manager/ManagerBase.cpp
+./source/memory/RingBufferAllocator.cpp
+./source/memory/Memory.cpp
+./source/memory/MemoryDebug.cpp
+./source/memory/MemoryGraphics.cpp
+./source/memory/MemorySystem.cpp
+./source/memory/MemoryTracker.cpp
+./source/render/BasicRender.cpp
+./source/render/DebugRender.cpp
+./source/render/FontRender.cpp
+./source/render/HeapRender.cpp
+./source/render/MemoryRender.cpp
+./source/render/MenuRender.cpp
+./source/render/Render.cpp
+./source/render/ResourceRender.cpp
+./source/render/SystemRender.cpp
+./source/render/TextureRender.cpp
+./source/render/TimingRender.cpp
+./source/render/CommandBufferRender.cpp
+./source/resource/Resource.cpp
+./source/shader/PixelShaders.cpp
+./source/shader/PixelShaderUtils.cpp
+./source/shader/VertexShaders.cpp
+./source/shader/VertexShaderUtils.cpp
+./source/texture/Texture.cpp
+./source/texture/Texture2DUtils.cpp
+./source/texture/Texture3DUtils.cpp
+./source/texture/TextureCubeUtils.cpp
+./source/texture/TextureParams.cpp
+./source/texture/TextureUtils.cpp
+./source/texture/dds/DDSTextureUtils.cpp
+./source/texture/tga/TGATextureUtils.cpp
+./source/texture/bmp/BMPTextureUtils.cpp
+./source/utils/DebugLog.cpp
+./source/utils/File.cpp
+./source/utils/Globals.cpp
+./source/utils/Perf.cpp
+./source/utils/Rect.cpp
+./source/utils/Renderer.cpp
+./source/utils/Screenshot.cpp
+./source/utils/Vector.cpp
+./source/surface/SurfaceUtils.cpp
+./source/occlusion/OcclusionQuery.cpp
+./source/view/View.cpp
+./source/view/ViewFrustum.cpp
+./source/view/Viewport.cpp
+./source/view/ViewSettings.cpp
+./source/view/ViewSetup.cpp
+./source/game/Game.cpp
+./source/timing/GPUTiming.cpp
+./source/window/WindowBase.cpp
+./source/DisplayToDisplay2.cpp
+./source/context/Context_Base.cpp
+;
+
+RESOURCEBUNDLESRC =
+./source/bundler/ResourceBundleReader.cpp
+./source/bundler/ResourceBundleReaderImpl1.cpp
+./source/bundler/ResourceBundleReaderImpl2.cpp
+./source/bundler/ResourceBundleReaderImpl3.cpp
+./source/bundler/ResourceBundleSingle.cpp
+;
+
+if ( $(PLATFORM) = "PS3" )
+{
+SRC +=
+./source/buffer/gcm/GCMCommandBuffer.cpp
+./source/buffer/gcm/GCMDebugCommandBuffer.cpp
+./source/buffer/gcm/GCMDefaultCommandBuffer.cpp
+./source/buffer/gcm/GCMDeferredCommandBufferManager.cpp
+./source/buffer/gcm/GCMIndexBuffer.cpp
+./source/buffer/gcm/GCMUserFifo.cpp
+./source/buffer/gcm/GCMVertexBuffer.cpp
+#./source/buffer/gcm/GCMVertexBufferPatched.cpp
+./source/buffer/gcm/GCMVertexDeclaration.cpp
+./source/device/gcm/GCM.cpp
+./source/device/gcm/GCMDebug.cpp
+./source/device/gcm/GCMDevice.cpp
+./source/device/gcm/GCMDevice_Downsample.cpp
+./source/device/gcm/GCMDeviceBuffers.cpp
+./source/device/gcm/GCMDeviceParams.cpp
+./source/device/gcm/GCMDeviceStates.cpp
+./source/device/gcm/GCMDeviceMarkers.cpp
+./source/manager/gcm/GCMDebug.cpp
+./source/manager/gcm/GCMManager.cpp
+./source/shader/gcm/GCMPixelShader.cpp
+./source/shader/gcm/GCMVertexShader.cpp
+./source/shader/gcm/GCMVertexShaderCache.cpp
+./source/texture/gcm/GCMRenderTexture2D.cpp
+./source/texture/gcm/GCMRenderTextureCube.cpp
+./source/texture/gcm/GCMTexture.cpp
+./source/texture/gcm/GCMTexture2D.cpp
+./source/texture/gcm/GCMTexture3D.cpp
+./source/texture/gcm/GCMTextureCube.cpp
+./source/texture/gcm/GCMTextureLoad.cpp
+./source/memory/gcm/GCMMemoryManager.cpp
+./source/memory/MemoryLinearBuffer.cpp
+./source/memory/gcm/GCMRingBuffer.cpp
+#./source/memory/MemoryRingBuffer.cpp
+./source/utils/gcm/GCMMatrix.cpp
+./source/surface/gcm/GCMSurface.cpp
+./source/occlusion/GCM/GCMOcclusionQuery.cpp
+./source/utils/gcm/libp3x.cpp
+./source/window/gcm/GCMWindow.cpp
+./source/context/Context_PS3.cpp
+;
+}
+
+# [Blur2PC][x64] D3D9SRC (the D3D9 device shared by PC and Xbox 360) is removed.
+
+if $(PLATFORM) = "PC"
+{
+# [Blur2PC][x64] the D3D9 device sources are removed; cmake/dx11.cmake adds the D3D11 backend
+SRC +=
+./source/context/Context_PC.cpp
+;
+
+}
+
+
+SHADERS =
+./include/display/shaders/occlusion/psOcclusion.psh
+./include/display/shaders/occlusion/vsOcclusion.vsh
+./include/display/shaders/render/psBasicRenderColoured.psh
+./include/display/shaders/render/psBasicRenderTextured.psh
+./include/display/shaders/render/vsBasicRenderColoured2D.vsh
+./include/display/shaders/render/vsBasicRenderColoured3D.vsh
+./include/display/shaders/render/vsBasicRenderTextured2D.vsh
+./include/display/shaders/render/vsBasicRenderTextured3D.vsh
+./include/display/shaders/render/vsFontRender.vsh
+./include/display/shaders/render/psFontRender.psh
+./include/display/shaders/render/vsZCull.vsh
+./include/display/shaders/render/psZCull.psh
+;
+
+if $(PLATFORM) != PS3
+{
+SHADERS +=
+./include/display/shaders/test/psTest.psh
+./include/display/shaders/test/vsTest.vsh
+;
+}
+
+if $(PLATFORM) = PS3
+{
+SRC +=
+./source/memory/MemoryManager2.cpp
+;
+}
+
+SHADERS += [ Shader ./include/display/shaders/render/psDefault.psh :
+	"<VertexColour>-DUSE_VERTEXCOLOUR"
+	"<Colour>-DUSE_COLOUR"
+	"<Texture>-DUSE_TEXTURE"
+	"<TextureRGB>-DUSE_TEXTURE_RGB"
+	"<TextureR>-DUSE_TEXTURE_R"
+	"<TextureG>-DUSE_TEXTURE_G"
+	"<TextureB>-DUSE_TEXTURE_B"
+	"<TextureA>-DUSE_TEXTURE_A"
+	"<TextureD>-DUSE_TEXTURE_D" ] ;
+
+SHADERS += [ Shader ./include/display/shaders/render/vsDefault_XY.vsh :
+	"<>-DUSE_DEFAULT"
+	"<VertexColour>-DUSE_VERTEXCOLOUR" ] ;
+	
+SHADERS += [ Shader ./include/display/shaders/render/psTextureRender.psh :
+	"<RGB>-DRGB"
+	"<A>-DA" ] ;
+
+if ( $(PLATFORM) = PS3 )
+{
+SHADERS += [ Shader ./include/display/shaders/render/psDownsample.psh :
+	"<Default>-DUSE_DEFAULT"
+	"<Fast>-DUSE_FAST"
+	"<Texture4xAA>-DUSE_TEXTURE_4XAA"
+	"<Texture2xAA>-DUSE_TEXTURE_2XAA"
+	"<Texture2x2>-DUSE_TEXTURE_2X2"
+	"<Depth>-DUSE_DEPTH"
+	"<ColAndDep>-DUSE_TEXTURE_2XAA -DUSE_DEPTH"
+	"<Quincunx>-DUSE_QUINCUNX"
+	"<QuincunxAlt>-DUSE_QUINCUNX_ALT"
+	"<QuincunxShifted>-DUSE_QUINCUNX_SHIFTED" ] ;
+}
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+SRC += [ Batch $(RESOURCEBUNDLESRC) : StdAfx.h ] ;
+
+SRC += $(SHADERS) ;
+
+CPFile include/display/shaders/psConstants.cp ;
+CPFile include/display/shaders/vsConstants.cv ;
+ImportCP display/shaders/psConstants.h display/shaders/vsConstants.h : TOP Code Mercury Library Graphics Display ;
+
+Library display : $(SRC) : stdafx.cpp ;
+
+if $(PLATFORM) = PS3
+{
+SPUSRC =
+<spu>./source/device/DeviceContext.cpp
+<spu>./source/context/Context_Base.cpp
+<spu>./source/context/Context_PS3.cpp
+<spu>./source/DisplayToDisplay2.cpp
+<spu>./source/memory/RingBufferAllocator.cpp
+<spu>./source/memory/gcm/GCMRingBuffer.cpp
+;
+
+SrcOptim $(SPUSRC) : -Os ;
+
+SPULibrary display_spu : $(SPUSRC) ;
+}

@@ -1,0 +1,49 @@
+# Set up the include paths
+
+VEHICLESHADERDIR = [ FSubDirPath TOP Code Mercury Library Graphics Vehicle  Source Shaders ] ;
+MERCURYSHADERDIR = [ FSubDirPath TOP Code Mercury Library Graphics Shader ] ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/graphics/vehicle/include
+$(VEHICLESHADERDIR)/include
+$(MERCURYSHADERDIR)/include
+;
+
+rule ExpandWithLighting
+{
+	return
+	[ Expand
+		[ Combinations $(<) ]
+		:
+		" "
+#		"<_LD>-D DAY_LIGHTING "
+		"<_LN>-D NIGHT_LIGHTING "
+	] ;
+}
+
+rule VehicleEffect
+{
+	Effects $(VEHICLESHADERDIR)/$(<) : [ ExpandWithLighting $(>) ] ;
+}
+
+VEH_NO_ALBEDO		= "<_a>-D _NO_ALBEDO " ;			# "<_Na>-D _NO_ALBEDO " ;
+VEH_NO_BUMP			= "<_b>-D _NO_BUMP " ;				# "<_Nb>-D _NO_BUMP " ;
+VEH_NO_CONTROL_POINTS		= "<_c>-D _NO_CONTROL_POINTS " ;	# "<_Nbo>-D _NO_CONTROL_POINTS " ;
+VEH_NO_DENT			= "<_d>-D _NO_DENT " ;				# "<_Nd>-D _NO_DENT " ;
+VEH_NO_SCRATCH		= "<_f>-D _NO_SCRATCH_DAMAGE " ;	# "<_Ns>-D _NO_SCRATCH_DAMAGE " ;
+VEH_NO_SWAP			= "<_g>-D _NO_SWAP_DAMAGE " ;		# "<_Nst>-D _NO_SWAP_DAMAGE " ;
+VEH_NO_TARGETS		= "<_h>-D _NO_MORPH_TARGETS " ;		# "<_Nt>-D _NO_MORPH_TARGETS " ;
+
+VehicleEffect veh_default.fx : $(VEH_NO_ALBEDO) $(VEH_NO_BUMP) $(VEH_NO_CONTROL_POINTS) $(VEH_NO_SCRATCH) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_matt.fx : $(VEH_NO_ALBEDO) $(VEH_NO_BUMP) $(VEH_NO_CONTROL_POINTS) $(VEH_NO_SCRATCH) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_glass.fx : $(VEH_NO_ALBEDO) $(VEH_NO_CONTROL_POINTS) $(VEH_NO_DENT) $(VEH_NO_SCRATCH) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_paint.fx : $(VEH_NO_ALBEDO) $(VEH_NO_BUMP) $(VEH_NO_CONTROL_POINTS) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_paintM.fx : $(VEH_NO_ALBEDO) $(VEH_NO_BUMP) $(VEH_NO_CONTROL_POINTS) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_alpha.fx : $(VEH_NO_CONTROL_POINTS) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_neon.fx : $(VEH_NO_CONTROL_POINTS) $(VEH_NO_SWAP) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_alloy.fx : $(VEH_NO_ALBEDO) $(VEH_NO_BUMP) $(VEH_NO_SCRATCH) ;
+VehicleEffect veh_light.fx : $(VEH_NO_CONTROL_POINTS) $(VEH_NO_TARGETS) ;
+VehicleEffect veh_shadow.fx ;
+
+
+

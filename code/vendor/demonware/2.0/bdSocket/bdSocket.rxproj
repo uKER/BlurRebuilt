@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdSocket</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdAddressMap.cpp:1"><path>${project}\bdAddressMap.cpp</path></file>
+<file file-tag="bdAddressMap.h:1"><path>${project}\bdAddressMap.h</path></file>
+<file file-tag="bdAddrHandle.cpp:1"><path>${project}\bdAddrHandle.cpp</path></file>
+<file file-tag="bdAddrHandle.h:1"><path>${project}\bdAddrHandle.h</path></file>
+<file file-tag="bdAddrHandleRefWrapper.cpp:1"><path>${project}\bdAddrHandleRefWrapper.cpp</path></file>
+<file file-tag="bdAddrHandleRefWrapper.h:1"><path>${project}\bdAddrHandleRefWrapper.h</path></file>
+<file file-tag="bdPacketInterceptor.cpp:1"><path>${project}\bdPacketInterceptor.cpp</path></file>
+<file file-tag="bdPacketInterceptor.h:1"><path>${project}\bdPacketInterceptor.h</path></file>
+<file file-tag="bdSecurityKeyMap.cpp:1"><path>${project}\bdSecurityKeyMap.cpp</path></file>
+<file file-tag="bdSecurityKeyMap.h:1"><path>${project}\bdSecurityKeyMap.h</path></file>
+<file file-tag="bdSecurityKeyMapListener.h:1"><path>${project}\bdSecurityKeyMapListener.h</path></file>
+<file file-tag="bdServiceBandwidthArbitrator.cpp:1"><path>${project}\bdServiceBandwidthArbitrator.cpp</path></file>
+<file file-tag="bdServiceBandwidthArbitrator.h:1"><path>${project}\bdServiceBandwidthArbitrator.h</path></file>
+<file file-tag="bdSocketRouter.cpp:1"><path>${project}\bdSocketRouter.cpp</path></file>
+<file file-tag="bdSocketRouter.h:1"><path>${project}\bdSocketRouter.h</path></file>
+<file file-tag="bdSocketRouterConfig.cpp:1"><path>${project}\bdSocketRouterConfig.cpp</path></file>
+<file file-tag="bdSocketRouterConfig.h:1"><path>${project}\bdSocketRouterConfig.h</path></file>
+<file file-tag="bdDTLSAssociation.cpp:1"><path>${project}\bdDTLS\bdDTLSAssociation.cpp</path></file>
+<file file-tag="bdDTLSAssociation.h:1"><path>${project}\bdDTLS\bdDTLSAssociation.h</path></file>
+<file file-tag="bdDTLSPackets.h:1"><path>${project}\bdDTLS\bdDTLSPackets.h</path></file>
+<file file-tag="bdDTLSCookieAck.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSCookieAck.cpp</path></file>
+<file file-tag="bdDTLSCookieAck.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSCookieAck.h</path></file>
+<file file-tag="bdDTLSCookieEcho.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSCookieEcho.cpp</path></file>
+<file file-tag="bdDTLSCookieEcho.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSCookieEcho.h</path></file>
+<file file-tag="bdDTLSData.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSData.cpp</path></file>
+<file file-tag="bdDTLSData.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSData.h</path></file>
+<file file-tag="bdDTLSError.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSError.cpp</path></file>
+<file file-tag="bdDTLSError.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSError.h</path></file>
+<file file-tag="bdDTLSHeader.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSHeader.cpp</path></file>
+<file file-tag="bdDTLSHeader.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSHeader.h</path></file>
+<file file-tag="bdDTLSInit.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSInit.cpp</path></file>
+<file file-tag="bdDTLSInit.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSInit.h</path></file>
+<file file-tag="bdDTLSInitAck.cpp:1"><path>${project}\bdDTLS\bdPacket\bdDTLSInitAck.cpp</path></file>
+<file file-tag="bdDTLSInitAck.h:1"><path>${project}\bdDTLS\bdPacket\bdDTLSInitAck.h</path></file>
+<file file-tag="bdIPDiscoveryClient.cpp:1"><path>${project}\bdNAT\bdIPDiscoveryClient.cpp</path></file>
+<file file-tag="bdIPDiscoveryClient.h:1"><path>${project}\bdNAT\bdIPDiscoveryClient.h</path></file>
+<file file-tag="bdIPDiscoveryConfig.cpp:1"><path>${project}\bdNAT\bdIPDiscoveryConfig.cpp</path></file>
+<file file-tag="bdIPDiscoveryConfig.h:1"><path>${project}\bdNAT\bdIPDiscoveryConfig.h</path></file>
+<file file-tag="bdIPDiscoveryServer.cpp:1"><path>${project}\bdNAT\bdIPDiscoveryServer.cpp</path></file>
+<file file-tag="bdIPDiscoveryServer.h:1"><path>${project}\bdNAT\bdIPDiscoveryServer.h</path></file>
+<file file-tag="bdNAT.h:1"><path>${project}\bdNAT\bdNAT.h</path></file>
+<file file-tag="bdNATTravClient.cpp:1"><path>${project}\bdNAT\bdNATTravClient.cpp</path></file>
+<file file-tag="bdNATTravClient.h:1"><path>${project}\bdNAT\bdNATTravClient.h</path></file>
+<file file-tag="bdNATTravClientData.cpp:1"><path>${project}\bdNAT\bdNATTravClientData.cpp</path></file>
+<file file-tag="bdNATTravClientData.h:1"><path>${project}\bdNAT\bdNATTravClientData.h</path></file>
+<file file-tag="bdNATTravListener.cpp:1"><path>${project}\bdNAT\bdNATTravListener.cpp</path></file>
+<file file-tag="bdNATTravListener.h:1"><path>${project}\bdNAT\bdNATTravListener.h</path></file>
+<file file-tag="bdNATTravServer.cpp:1"><path>${project}\bdNAT\bdNATTravServer.cpp</path></file>
+<file file-tag="bdNATTravServer.h:1"><path>${project}\bdNAT\bdNATTravServer.h</path></file>
+<file file-tag="bdNATTypeDiscoveryClient.cpp:1"><path>${project}\bdNAT\bdNATTypeDiscoveryClient.cpp</path></file>
+<file file-tag="bdNATTypeDiscoveryClient.h:1"><path>${project}\bdNAT\bdNATTypeDiscoveryClient.h</path></file>
+<file file-tag="bdNATTypeDiscoveryConfig.cpp:1"><path>${project}\bdNAT\bdNATTypeDiscoveryConfig.cpp</path></file>
+<file file-tag="bdNATTypeDiscoveryConfig.h:1"><path>${project}\bdNAT\bdNATTypeDiscoveryConfig.h</path></file>
+<file file-tag="bdNATTypeDiscoveryServer.cpp:1"><path>${project}\bdNAT\bdNATTypeDiscoveryServer.cpp</path></file>
+<file file-tag="bdNATTypeDiscoveryServer.h:1"><path>${project}\bdNAT\bdNATTypeDiscoveryServer.h</path></file>
+<file file-tag="bdIPDiscoveryPacket.cpp:1"><path>${project}\bdNAT\bdPacket\bdIPDiscoveryPacket.cpp</path></file>
+<file file-tag="bdIPDiscoveryPacket.h:1"><path>${project}\bdNAT\bdPacket\bdIPDiscoveryPacket.h</path></file>
+<file file-tag="bdIPDiscoveryPacketReply.cpp:1"><path>${project}\bdNAT\bdPacket\bdIPDiscoveryPacketReply.cpp</path></file>
+<file file-tag="bdIPDiscoveryPacketReply.h:1"><path>${project}\bdNAT\bdPacket\bdIPDiscoveryPacketReply.h</path></file>
+<file file-tag="bdNATTraversalPacket.cpp:1"><path>${project}\bdNAT\bdPacket\bdNATTraversalPacket.cpp</path></file>
+<file file-tag="bdNATTraversalPacket.h:1"><path>${project}\bdNAT\bdPacket\bdNATTraversalPacket.h</path></file>
+<file file-tag="bdNATTypeDiscoveryPacket.cpp:1"><path>${project}\bdNAT\bdPacket\bdNATTypeDiscoveryPacket.cpp</path></file>
+<file file-tag="bdNATTypeDiscoveryPacket.h:1"><path>${project}\bdNAT\bdPacket\bdNATTypeDiscoveryPacket.h</path></file>
+<file file-tag="bdNATTypeDiscoveryPacketReply.cpp:1"><path>${project}\bdNAT\bdPacket\bdNATTypeDiscoveryPacketReply.cpp</path></file>
+<file file-tag="bdNATTypeDiscoveryPacketReply.h:1"><path>${project}\bdNAT\bdPacket\bdNATTypeDiscoveryPacketReply.h</path></file>
+<file file-tag="bdQoS.h:1"><path>${project}\bdQoS\bdQoS.h</path></file>
+<file file-tag="bdQoSProbe.cpp:1"><path>${project}\bdQoS\bdQoSProbe.cpp</path></file>
+<file file-tag="bdQoSProbe.h:1"><path>${project}\bdQoS\bdQoSProbe.h</path></file>
+<file file-tag="bdQoSProbeListener.cpp:1"><path>${project}\bdQoS\bdQoSProbeListener.cpp</path></file>
+<file file-tag="bdQoSProbeListener.h:1"><path>${project}\bdQoS\bdQoSProbeListener.h</path></file>
+<file file-tag="bdQoSRemoteAddr.h:1"><path>${project}\bdQoS\bdQoSRemoteAddr.h</path></file>
+<file file-tag="bdQoSReplyPacket.cpp:1"><path>${project}\bdQoS\bdPacket\bdQoSReplyPacket.cpp</path></file>
+<file file-tag="bdQoSReplyPacket.h:1"><path>${project}\bdQoS\bdPacket\bdQoSReplyPacket.h</path></file>
+<file file-tag="bdQoSRequestPacket.cpp:1"><path>${project}\bdQoS\bdPacket\bdQoSRequestPacket.cpp</path></file>
+<file file-tag="bdQoSRequestPacket.h:1"><path>${project}\bdQoS\bdPacket\bdQoSRequestPacket.h</path></file>
+<file file-tag="bdRelayPacket.h:1"><path>${project}\bdRelay\bdRelayPacket.h</path></file>
+<file file-tag="bdRelayRouteManager.cpp:1"><path>${project}\bdRelay\bdRelayRouteManager.cpp</path></file>
+<file file-tag="bdRelayRouteManager.h:1"><path>${project}\bdRelay\bdRelayRouteManager.h</path></file>
+<file file-tag="bdRelaySocketRouter.cpp:1"><path>${project}\bdRelay\bdRelaySocketRouter.cpp</path></file>
+<file file-tag="bdRelaySocketRouter.h:1"><path>${project}\bdRelay\bdRelaySocketRouter.h</path></file>
+<file file-tag="bdRelayerInfo.cpp:1"><path>${project}\bdRelay\bdPacket\bdRelayerInfo.cpp</path></file>
+<file file-tag="bdRelayerInfo.h:1"><path>${project}\bdRelay\bdPacket\bdRelayerInfo.h</path></file>
+<file file-tag="bdRelayFinal.cpp:1"><path>${project}\bdRelay\bdPacket\bdRelayFinal.cpp</path></file>
+<file file-tag="bdRelayFinal.h:1"><path>${project}\bdRelay\bdPacket\bdRelayFinal.h</path></file>
+<file file-tag="bdRelayForward.cpp:1"><path>${project}\bdRelay\bdPacket\bdRelayForward.cpp</path></file>
+<file file-tag="bdRelayForward.h:1"><path>${project}\bdRelay\bdPacket\bdRelayForward.h</path></file>
+<file file-tag="bdRelayHeader.cpp:1"><path>${project}\bdRelay\bdPacket\bdRelayHeader.cpp</path></file>
+<file file-tag="bdRelayHeader.h:1"><path>${project}\bdRelay\bdPacket\bdRelayHeader.h</path></file>
+<file file-tag="bdRelayRouteAdd.cpp:1"><path>${project}\bdRelay\bdPacket\bdRelayRouteAdd.cpp</path></file>
+<file file-tag="bdRelayRouteAdd.h:1"><path>${project}\bdRelay\bdPacket\bdRelayRouteAdd.h</path></file>
+<file file-tag="bdRelayRouteRemove.cpp:1"><path>${project}\bdRelay\bdPacket\bdRelayRouteRemove.cpp</path></file>
+<file file-tag="bdRelayRouteRemove.h:1"><path>${project}\bdRelay\bdPacket\bdRelayRouteRemove.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdAddressMap.cpp:1</file-ref>
+<file-ref>bdAddressMap.h:1</file-ref>
+<file-ref>bdAddrHandle.cpp:1</file-ref>
+<file-ref>bdAddrHandle.h:1</file-ref>
+<file-ref>bdAddrHandleRefWrapper.cpp:1</file-ref>
+<file-ref>bdAddrHandleRefWrapper.h:1</file-ref>
+<file-ref>bdPacketInterceptor.cpp:1</file-ref>
+<file-ref>bdPacketInterceptor.h:1</file-ref>
+<file-ref>bdSecurityKeyMap.cpp:1</file-ref>
+<file-ref>bdSecurityKeyMap.h:1</file-ref>
+<file-ref>bdSecurityKeyMapListener.h:1</file-ref>
+<file-ref>bdServiceBandwidthArbitrator.cpp:1</file-ref>
+<file-ref>bdServiceBandwidthArbitrator.h:1</file-ref>
+<file-ref>bdSocketRouter.cpp:1</file-ref>
+<file-ref>bdSocketRouter.h:1</file-ref>
+<file-ref>bdSocketRouterConfig.cpp:1</file-ref>
+<file-ref>bdSocketRouterConfig.h:1</file-ref>
+<mixed-group group-tag="bdDTLS:1"><label>bdDTLS</label><group-items>
+<file-ref>bdDTLSAssociation.cpp:1</file-ref>
+<file-ref>bdDTLSAssociation.h:1</file-ref>
+<file-ref>bdDTLSPackets.h:1</file-ref>
+<mixed-group group-tag="bdPacket:1"><label>bdPacket</label><group-items>
+<file-ref>bdDTLSCookieAck.cpp:1</file-ref>
+<file-ref>bdDTLSCookieAck.h:1</file-ref>
+<file-ref>bdDTLSCookieEcho.cpp:1</file-ref>
+<file-ref>bdDTLSCookieEcho.h:1</file-ref>
+<file-ref>bdDTLSData.cpp:1</file-ref>
+<file-ref>bdDTLSData.h:1</file-ref>
+<file-ref>bdDTLSError.cpp:1</file-ref>
+<file-ref>bdDTLSError.h:1</file-ref>
+<file-ref>bdDTLSHeader.cpp:1</file-ref>
+<file-ref>bdDTLSHeader.h:1</file-ref>
+<file-ref>bdDTLSInit.cpp:1</file-ref>
+<file-ref>bdDTLSInit.h:1</file-ref>
+<file-ref>bdDTLSInitAck.cpp:1</file-ref>
+<file-ref>bdDTLSInitAck.h:1</file-ref>
+</group-items></mixed-group>
+</group-items></mixed-group>
+<mixed-group group-tag="bdNAT:1"><label>bdNAT</label><group-items>
+<file-ref>bdIPDiscoveryClient.cpp:1</file-ref>
+<file-ref>bdIPDiscoveryClient.h:1</file-ref>
+<file-ref>bdIPDiscoveryConfig.cpp:1</file-ref>
+<file-ref>bdIPDiscoveryConfig.h:1</file-ref>
+<file-ref>bdIPDiscoveryServer.cpp:1</file-ref>
+<file-ref>bdIPDiscoveryServer.h:1</file-ref>
+<file-ref>bdNAT.h:1</file-ref>
+<file-ref>bdNATTravClient.cpp:1</file-ref>
+<file-ref>bdNATTravClient.h:1</file-ref>
+<file-ref>bdNATTravClientData.cpp:1</file-ref>
+<file-ref>bdNATTravClientData.h:1</file-ref>
+<file-ref>bdNATTravListener.cpp:1</file-ref>
+<file-ref>bdNATTravListener.h:1</file-ref>
+<file-ref>bdNATTravServer.cpp:1</file-ref>
+<file-ref>bdNATTravServer.h:1</file-ref>
+<file-ref>bdNATTypeDiscoveryClient.cpp:1</file-ref>
+<file-ref>bdNATTypeDiscoveryClient.h:1</file-ref>
+<file-ref>bdNATTypeDiscoveryConfig.cpp:1</file-ref>
+<file-ref>bdNATTypeDiscoveryConfig.h:1</file-ref>
+<file-ref>bdNATTypeDiscoveryServer.cpp:1</file-ref>
+<file-ref>bdNATTypeDiscoveryServer.h:1</file-ref>
+<mixed-group group-tag="bdPacket:1"><label>bdPacket</label><group-items>
+<file-ref>bdIPDiscoveryPacket.cpp:1</file-ref>
+<file-ref>bdIPDiscoveryPacket.h:1</file-ref>
+<file-ref>bdIPDiscoveryPacketReply.cpp:1</file-ref>
+<file-ref>bdIPDiscoveryPacketReply.h:1</file-ref>
+<file-ref>bdNATTraversalPacket.cpp:1</file-ref>
+<file-ref>bdNATTraversalPacket.h:1</file-ref>
+<file-ref>bdNATTypeDiscoveryPacket.cpp:1</file-ref>
+<file-ref>bdNATTypeDiscoveryPacket.h:1</file-ref>
+<file-ref>bdNATTypeDiscoveryPacketReply.cpp:1</file-ref>
+<file-ref>bdNATTypeDiscoveryPacketReply.h:1</file-ref>
+</group-items></mixed-group>
+</group-items></mixed-group>
+<mixed-group group-tag="bdQoS:1"><label>bdQoS</label><group-items>
+<file-ref>bdQoS.h:1</file-ref>
+<file-ref>bdQoSProbe.cpp:1</file-ref>
+<file-ref>bdQoSProbe.h:1</file-ref>
+<file-ref>bdQoSProbeListener.cpp:1</file-ref>
+<file-ref>bdQoSProbeListener.h:1</file-ref>
+<file-ref>bdQoSRemoteAddr.h:1</file-ref>
+<mixed-group group-tag="bdPacket:1"><label>bdPacket</label><group-items>
+<file-ref>bdQoSReplyPacket.cpp:1</file-ref>
+<file-ref>bdQoSReplyPacket.h:1</file-ref>
+<file-ref>bdQoSRequestPacket.cpp:1</file-ref>
+<file-ref>bdQoSRequestPacket.h:1</file-ref>
+</group-items></mixed-group>
+</group-items></mixed-group>
+<mixed-group group-tag="bdRelay:1"><label>bdRelay</label><group-items>
+<file-ref>bdRelayPacket.h:1</file-ref>
+<file-ref>bdRelayRouteManager.cpp:1</file-ref>
+<file-ref>bdRelayRouteManager.h:1</file-ref>
+<file-ref>bdRelaySocketRouter.cpp:1</file-ref>
+<file-ref>bdRelaySocketRouter.h:1</file-ref>
+<mixed-group group-tag="bdPacket:1"><label>bdPacket</label><group-items>
+<file-ref>bdRelayerInfo.cpp:1</file-ref>
+<file-ref>bdRelayerInfo.h:1</file-ref>
+<file-ref>bdRelayFinal.cpp:1</file-ref>
+<file-ref>bdRelayFinal.h:1</file-ref>
+<file-ref>bdRelayForward.cpp:1</file-ref>
+<file-ref>bdRelayForward.h:1</file-ref>
+<file-ref>bdRelayHeader.cpp:1</file-ref>
+<file-ref>bdRelayHeader.h:1</file-ref>
+<file-ref>bdRelayRouteAdd.cpp:1</file-ref>
+<file-ref>bdRelayRouteAdd.h:1</file-ref>
+<file-ref>bdRelayRouteRemove.cpp:1</file-ref>
+<file-ref>bdRelayRouteRemove.h:1</file-ref>
+</group-items></mixed-group>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

@@ -1,0 +1,91 @@
+#include "../../graphics/display/include/display/shaders/psCommon.h"
+#include "../../graphics/display/include/display/shaders/psConstants.h"
+
+
+struct PS_INPUT
+{
+#ifdef BLUR_DX11
+	// [Blur1PCDX11] Preserve the VS register before TEXCOORD0 on native D3D11.
+	float4 m_Position : POSITION;
+#endif
+	float3	m_TexCoord	: TEXCOORD0; //z -> Alpha
+#if defined(REFRACT) || defined(LIGHT)
+	float4	m_ScreenPos : TEXCOORD1;
+#endif		
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+sampler2D	g_tSplashTexture		: register(s0);
+
+#ifdef REFRACT
+
+sampler2D	g_tScreenTexture		: register(s1);
+sampler2D	g_tDistorsionTexture	: register(s2);
+
+float4		g_RefractionParams : register(c0);
+#define g_RefractionIntensity g_RefractionParams.x
+#define g_DistorsionIntensity g_RefractionParams.y
+#endif
+
+#ifdef LIGHT
+float4		g_LightParams : register(c0);
+float3		cameraMatrixX : register(c1);
+float3		cameraMatrixY : register(c2);
+float3		cameraMatrixZ : register(c3);
+
+#define g_AmbientIntensity g_LightParams.x
+#define g_LightIntensity g_LightParams.y
+
+sampler2D	g_tNormalTexture	: register(s1);
+samplerCUBE g_tLightEnvironmentTexture	: register(s2);
+
+#endif
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+#ifndef REFRACT
+	float4 SplashColour = tex2D(g_tSplashTexture, input.m_TexCoord.xy);
+	
+#ifdef LIGHT
+	float3 normal = 2.f *(tex2D(g_tNormalTexture, input.m_TexCoord.xy).xyz - 0.5f);
+	
+	normal.z -= 0.3f;
+	normal.xy += input.m_ScreenPos.xy * 0.1f / input.m_ScreenPos.w;
+	
+	float3 worldNormal;
+	float3x3 cameraMatrix = float3x3(cameraMatrixX, cameraMatrixY, cameraMatrixZ);
+	worldNormal = mul(normal, cameraMatrix);
+	
+	//Read lightcubemap
+	float4 lightCubeSample = texCUBE(g_tLightEnvironmentTexture, normalize(worldNormal.xyz)).rgba;
+	float3 lightCubeValue = lightCubeSample.rgb * (lightCubeSample.a * 8.0h);
+	//lightCubeValue *= lightCubeValue * lightCubeValue;
+	lightCubeValue *= g_LightIntensity;
+	
+	//Blend
+	SplashColour.rgb = SplashColour.rgb * g_AmbientIntensity + SplashColour.rgb * lightCubeValue;
+	
+#endif
+	
+	output.m_Colour.a = SplashColour.a * input.m_TexCoord.z;
+	output.m_Colour.rgb =  SplashColour.rgb * output.m_Colour.a;
+#else
+	float2 screenCoords = input.m_ScreenPos.xy / input.m_ScreenPos.w;
+	
+	float2 distorsion = g_DistorsionIntensity * (tex2D(g_tDistorsionTexture, input.m_TexCoord.xy).rg - float2(0.5f, 0.5f));
+	float3 refractColour = tex2D(g_tScreenTexture, screenCoords.xy + distorsion);
+	
+	float4 SplashColour = tex2D(g_tSplashTexture, input.m_TexCoord.xy);
+	output.m_Colour.a = SplashColour.a * input.m_TexCoord.z;
+	
+	output.m_Colour.rgb = refractColour * output.m_Colour.a * g_RefractionIntensity; 	
+	output.m_Colour.rgb += SplashColour.rgb * output.m_Colour.a * (1.f - g_RefractionIntensity);
+#endif
+		
+	return output;
+}

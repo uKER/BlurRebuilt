@@ -1,0 +1,66 @@
+#include "..\psCommon.h"
+
+float4		g_LightCol0			: register(CCP_LIGHTCOL0);
+float4		g_LightCol1			: register(CCP_LIGHTCOL1);
+float4		g_LightCol2			: register(CCP_LIGHTCOL2);
+
+float4		g_LightPos0			: register(CCP_LIGHTPOS0);
+float4		g_LightPos1			: register(CCP_LIGHTPOS1);
+float4		g_LightPos2			: register(CCP_LIGHTPOS2);
+
+float4x4	g_3dTransform		: register(CCP_TRANSFORM3D);
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float2 TexCoord0			: TEXCOORD0;
+	float2 TexCoord1			: TEXCOORD1;
+	float2 TexCoord2			: TEXCOORD2;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+float3 GetSurfaceTangentNormal( const in float2 surfaceTexCoord )
+{
+	float3 tangentNormal = tex2D(g_Texture1, surfaceTexCoord).xyz * 2.0f - 1.0f;
+	tangentNormal = normalize(tangentNormal);
+
+	float4 temp = mul(float4(tangentNormal.x, tangentNormal.y, tangentNormal.z, 1.f), g_3dTransform);
+	return temp.xyz;
+}
+
+float3 GetDiffuseLight( float3 pos, float4 col, float3 screenPos, float3 tangentNormal )
+{
+	float3 screen_scale = { 0.5f*1.33, 0.5, 0.0f };
+	
+	float3 dist3 = (pos - screenPos) * screen_scale;
+	float dist = (1 - length( dist3 ))*3.0f; // TODO - intensity colour.w
+	float3 dir = normalize( pos - screenPos );	
+	return max(0, dot(dir, tangentNormal)) * col.xyz * dist;
+}
+
+PS_OUTPUT main(PS_INPUT IN) 
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float3 tangentNormal = GetSurfaceTangentNormal( IN.TexCoord1 );
+	float3 screenPos = { IN.TexCoord2.x, IN.TexCoord2.y, 0 };
+	float4 albedoColour = tex2D( g_Texture0, IN.TexCoord0 ) * IN.Colour;
+
+	float3 diffuseLight = 0.2;
+	diffuseLight += GetDiffuseLight( g_LightPos0.xyz, g_LightCol0, screenPos, tangentNormal );
+	diffuseLight += GetDiffuseLight( g_LightPos1.xyz, g_LightCol1, screenPos, tangentNormal );
+	diffuseLight += GetDiffuseLight( g_LightPos2.xyz, g_LightCol2, screenPos, tangentNormal );
+
+	OUT.Colour.xyz = clamp(diffuseLight,0,1) * albedoColour.xyz;
+	OUT.Colour.w = albedoColour.w;
+//	OUT.Colour = albedoColour;
+
+	return OUT;
+}

@@ -1,0 +1,10 @@
+SubDir TOP Code Tools Aftk Aftk Jam_native ;
+
+SupportedTargets WIN32_TOOL ;
+
+AFTK_MAYA = 0 ;
+
+ExportVcproj aftk ;
+
+SubInclude TOP Code Tools Aftk Aftk ;
+

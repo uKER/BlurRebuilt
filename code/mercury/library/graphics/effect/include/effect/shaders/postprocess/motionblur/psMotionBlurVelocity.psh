@@ -1,0 +1,51 @@
+#include "Effect/Shaders/Constants.h"
+#include "../../psCommon.h"
+
+#if defined(NUM_TAPS_5)
+#	define NUM_TAPS 5
+#elif defined(NUM_TAPS_7)
+#	define NUM_TAPS 7
+#elif defined(NUM_TAPS_9)
+#	define NUM_TAPS 9
+#elif defined(NUM_TAPS_11)
+#	define NUM_TAPS 11
+#endif
+
+float4		g_vSettings		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tVelocity		: register(s1);
+
+#define		g_fScale		g_vSettings.x
+#define		g_fBias			g_vSettings.y
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float2	vVelocity	= tex2D(g_tVelocity, input.m_TexCoord).xy;
+			vVelocity	= g_fScale * vVelocity + g_fBias;
+	float2	vStep		= vVelocity / (NUM_TAPS - 1);
+	float2	vTexCoord	= input.m_TexCoord;
+	
+	float3	vColour		= 0.0f;
+	for (int i = 0; i < NUM_TAPS; ++i)
+	{
+		vColour			+= tex2D(g_tColour, vTexCoord).rgb;
+		vTexCoord		+= vStep;
+	}
+
+	output.m_Colour		= float4(vColour.rgb / NUM_TAPS, 1.0f);
+
+	return output;
+}

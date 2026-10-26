@@ -1,0 +1,4 @@
+type exe
+dependencies bdPlatform bdCore bdGraphics bdExampleCommon  
+weight 0
+excludedarchitectures 

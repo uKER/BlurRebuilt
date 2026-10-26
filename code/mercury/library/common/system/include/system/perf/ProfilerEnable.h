@@ -1,0 +1,8 @@
+#ifndef __PROFILER_ENABLE_H__
+#define __PROFILER_ENABLE_H__
+
+#if CFG_DEBUG || CFG_RELEASE || CFG_PROFILE
+#define ENABLE_MERCURY_PROFILER
+#endif
+
+#endif

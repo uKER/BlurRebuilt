@@ -1,0 +1,57 @@
+SubDir TOP Code Tools Attk Attk ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+$(MERCURY)/Common/Core/Include
+$(MERCURY)/Common/System/include
+$(TOP)/code/tools/attk/attk/include
+$(TOP)/code/tools/attk/attk/source
+$(TOP)/libs/vendor/ati_cubemapgen/include
+$(TOP)/libs/vendor/devil/1.6.7-mercury/include
+;
+
+ATTKSRC =
+source/attk/BaseImage.cpp
+source/attk/CubeMap.cpp
+source/attk/FloodFill.cpp
+source/attk/GenerateMipMaps.cpp
+source/attk/Global.cpp
+source/attk/Image.cpp
+##source/attk/Layer.cpp
+source/attk/MipmapImageChain.cpp
+source/attk/MipmapPixelDataChain.cpp
+source/attk/PaletteConversion.cpp
+source/attk/PixelBlend.cpp
+source/attk/PixelConversion.cpp
+source/attk/Utility.cpp
+;
+
+ATTKPLUGINSRC =
+source/attk_plugins/DevILPlugin.cpp
+source/attk_plugins/DevILUtility.cpp
+;
+
+
+ATTKUTSRC = 
+##source/attk/attkut/GenerateNormalMap.cpp
+source/attk/attkut/ImageAdjustment.cpp
+source/attk/attkut/ImageAdjustmentCurve.cpp
+source/attk/attkut/ImageFilter.cpp
+source/attk/attkut/ImageResize.cpp
+source/attk/attkut/ImageRotate.cpp
+source/attk/attkut/GenerateMipMapsAti.cpp
+;
+
+# openIL library is required for ATTK
+if $(WIN64) = 1
+{
+	LINKLIBS += $(TOP)/libs/vendor/devil/1.6.7-mercury/lib/devil_win64_dynamic_2005.lib ;
+}
+else
+{
+	LINKLIBS += $(TOP)/libs/vendor/devil/1.6.7-mercury/lib/devil_win32_dynamic_2005.lib ;
+}
+
+Library attk : $(ATTKSRC) $(ATTKPLUGINSRC) $(ATTKUTSRC) : stdafx.cpp ;
+

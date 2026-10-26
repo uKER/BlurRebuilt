@@ -1,0 +1,43 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test_2005.vcproj", "{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{764D1895-67E2-4D6F-8933-0A2B9531190E} = {764D1895-67E2-4D6F-8933-0A2B9531190E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clusterserv", "clusterserv_2005.vcproj", "{764D1895-67E2-4D6F-8933-0A2B9531190E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AMD64 Release|Win32 = AMD64 Release|Win32
+		Cygwin Release|Win32 = Cygwin Release|Win32
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		YDL Release|Win32 = YDL Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.AMD64 Release|Win32.ActiveCfg = AMD64 Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.AMD64 Release|Win32.Build.0 = AMD64 Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.Cygwin Release|Win32.ActiveCfg = Cygwin Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.Cygwin Release|Win32.Build.0 = Cygwin Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.Debug|Win32.Build.0 = Debug|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.Release|Win32.ActiveCfg = Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.Release|Win32.Build.0 = Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.YDL Release|Win32.ActiveCfg = YDL Release|Win32
+		{8754A1E1-C3D4-4E65-A302-C630C7E5BFB4}.YDL Release|Win32.Build.0 = YDL Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.AMD64 Release|Win32.ActiveCfg = AMD64 Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.AMD64 Release|Win32.Build.0 = AMD64 Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.Cygwin Release|Win32.ActiveCfg = Cygwin Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.Cygwin Release|Win32.Build.0 = Cygwin Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.Debug|Win32.Build.0 = Debug|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.Release|Win32.ActiveCfg = Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.Release|Win32.Build.0 = Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.YDL Release|Win32.ActiveCfg = YDL Release|Win32
+		{764D1895-67E2-4D6F-8933-0A2B9531190E}.YDL Release|Win32.Build.0 = YDL Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

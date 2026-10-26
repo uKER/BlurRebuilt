@@ -1,0 +1,354 @@
+SubDir TOP Code Amax Game GameLogic ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath 
+Amax$(_PLATFORM)
+Amax$(_PLATFORM)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/graphics/deferred/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/effect/include
+$(MERCURY)/graphics/fx/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/Movie/include
+$(MERCURY)/graphics/portal/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/graphics/Ngl/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/network/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/logicalfs/include
+$(MERCURY)/util/lua_shared/include
+$(MERCURY)/util/jpeghelper/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/util/actor_studio_msg_shared/include
+$(MERCURY)/ui/include
+$(MERCURY)/animation/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/advertising/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/gamesys/game_debug/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/gamesys/crowd_system/include
+$(MERCURY)/gamesys/actor_studio_msg_game/include
+$(MERCURY)/ai/air/include
+$(MERCURY)/audio/include
+$(TOP)/code/vendor/lua/Lua-5.1.4/src
+$(TOP)/code/vendor/lua/Lua-Helper/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(MERCURY)/gamesys/GameView/include
+$(MERCURY)/gamesys/Lod/include
+$(MERCURY)/gamesys/SpecialFX/include
+$(MERCURY)/gamesys/SplashCamera/include
+$(TOP)/code/Amax/Game
+$(TOP)/code/Amax/Game/AI
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/demonware/2.0/external/curl-7.19.2/include
+$(TOP)/code/vendor/demonware/2.0/external/openssl-0.9.8i/include
+$(TOP)/code/Amax/Library
+$(TOP)/Libs/Vendor/Bink/1.9r
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" $(TOP)/libs/vendor/openal/1.1/include ;
+}
+
+if $(BUILD) != Profile && $(BUILD) != Master
+{
+	if $(BUILD) != Speed
+	{
+		if $(USERNAME) = sbilton || $(USERNAME) = caspinall || $(USERNAME) = dwood || $(USERNAME) = gayoung || $(USERNAME) = cwright || $(USERNAME) = tstockton || $(USERNAME) = pereid || $(USERNAME) = jbunner || $(USERNAME) = scakebread || $(USERNAME) = gsmillie || $(USERNAME) = wbrown || $(USERNAME) = mtaylor || $(USERNAME) = asimpson || $(USERNAME) = dgill || $(USERNAME) = wbrown
+		{
+			Optim Off ;
+			echo OPTIMISATIONS ARE _OFF_ FOR GameLogic code ;
+		}
+	}
+	
+	# We want it off on speed
+	if $(USERNAME) = sbilton || $(USERNAME) = pkerby || $(USERNAME) = gsmillie || $(USERNAME) = mtaylor || $(USERNAME) = scakebread || $(USERNAME) = cwright || $(USERNAME) = pereid || $(USERNAME) = asimpson
+	{
+		Optim Off ;
+		echo OPTIMISATIONS ARE _OFF_ FOR GameLogic code ;
+	}
+}
+
+SRC = 
+[ Batch
+Profile/GameProfile.cpp
+Profile/GameProfileManager.cpp
+Profile/ProfileBase.cpp
+Profile/WorldTourProfile.cpp
+Profile/MultiplayerProfile.cpp
+Profile/MultiplayerUnlockHistory.cpp
+Profile/MultiplayerLoadouts.cpp
+Profile/MultiplayerChallengeTracker.cpp
+Profile/MultiplayerPreviousSessionStats.cpp
+Profile/MultiplayerProfileStorage.cpp
+: StdAfx.h ]
+
+GameData/GameEffectData.cpp
+GameData/GameData.cpp
+GameData/GameEventData.cpp
+GameData/GameVehicleData.cpp
+GameData/LocData.cpp
+GameData/MultiplayerData.cpp
+GameData/AchievementData.cpp
+GameData/GameXtLoader.cpp
+Layers/BootLayer.cpp # adding this in the correct place breaks batching
+
+[ Batch
+DataGathering.cpp
+GameLoggingManager.cpp
+: StdAfx.h ]
+
+[ Batch
+InGameSpecialFX/InGameSpecialFXManager.cpp
+InGameSpecialFX/InGameSpecialFXTypes/InGameSpecialFXBase.cpp
+InGameSpecialFX/InGameSpecialFXTypes/InGameSpecialFXRearWheel.cpp
+InGameSpecialFX/InGameSpecialFXTypes/InGameSpecialFXVehicle.cpp
+InGameSpecialFX/InGameSpecialFXTypes/InGameSpecialFXVehicleToMatrix.cpp
+InGameSpecialFX/InGameSpecialFXTypes/InGameSpecialFXWorldPos.cpp
+: StdAfx.h ]
+
+[ Batch
+ActorStudioActors/ActorUtils.cpp
+# ActorStudioActors/AdditionalComponents.cpp
+ActorStudioActors/DynamicLightActor.cpp
+ActorStudioActors/DynamicObjectActor.cpp
+ActorStudioActors/DynamicObjectMessages.cpp
+ActorStudioActors/EffectGeneratorActor.cpp
+ActorStudioActors/StartLineInfoActor.cpp
+ActorStudioActors/LogicActor.cpp
+ActorStudioActors/MovementDualSpline.cpp
+ActorStudioActors/PhysicsModifierActor.cpp
+ActorStudioActors/PickupPositionActor.cpp
+ActorStudioActors/FanDemandPositionActor.cpp
+ActorStudioActors/DynamicCameraActor.cpp
+ActorStudioActors/CameraPositionActor.cpp
+ActorStudioActors/CameraTargetActor.cpp
+ActorStudioActors/TVCameraControl.cpp
+ActorStudioActors/ShowRoomCamera.cpp
+ActorStudioActors/MessageSenderActor.cpp
+ActorStudioActors/CutSceneMessages.cpp
+ActorStudioActors/ResourceTypes.cpp
+ActorStudioActors/SpawnerActor.cpp
+ActorStudioActors/SplitLineActor.cpp
+ActorStudioActors/StartPositionActor.cpp
+ActorStudioActors/TriggerRegionActor.cpp
+ActorStudioActors/VehicleProxyActor.cpp
+ActorStudioActors/CutSceneVehicleSplineActor.cpp
+ActorStudioActors/CutSceneVehiclePositionActor.cpp
+ActorStudioActors/CutSceneProxyActor.cpp
+ActorStudioActors/PhysicalObjectActor.cpp
+ActorStudioActors/TrafficActor.cpp
+ActorStudioActors/CycleActor.cpp
+ActorStudioActors/ReplayManagerActor.cpp
+ActorStudioActors/DynamicActorComponents.cpp
+EnvironmentSettingsManager.cpp
+ContentServer/ContentServerManager.cpp
+ContentServer/KeyArchiveManager.cpp
+ContentServer/RecordEventManager.cpp
+ContentServer/LinkCodeManager.cpp
+FriendsChallenges/MessagingManager.cpp
+FriendsChallenges/FriendChallenges.cpp
+GameModes/GameModes.cpp
+GameModes/GameModeBase.cpp
+GameModes/GameModeDebug.cpp
+GameModes/GameModeMultiPlayer.cpp
+GameModes/GameModeNetwork.cpp
+GameModes/GameModeOnline.cpp
+GameModes/GameModeSinglePlayer.cpp
+GameModes/GameModeSplitScreen.cpp
+GameModes/GameModeSystemLink.cpp
+InGameCarInfoManager.cpp
+InGameStartLineInfoManager.cpp
+InGameDialogueManager/InGameDialogueManager.cpp
+InGameDialogueManager/InGameDialogueGroup.cpp
+InGameDialogueManager/InGameDialogueStructures.cpp
+AchievementsManager.cpp
+ScoreboardManager.cpp
+Layers/AmaxWorldLayer.cpp
+Layers/RaceBookLayer.cpp
+Layers/RaceLogicLayer.cpp
+Lua/lua_Amax.cpp
+Lua/lua_FriendDemand.cpp
+Lua/lua_GameData.cpp
+Lua/lua_GameProfile.cpp
+Lua/lua_NetParty.cpp
+Lua/lua_NetRace.cpp
+Lua/lua_NetServices.cpp
+Lua/lua_LSP.cpp
+Lua/LuaVariableHelper.cpp
+MultiplayerUtilities.cpp
+Photomode/PhotoModeManager.cpp
+Pickups/PickupsManager.cpp
+Pickups/ShockManager.cpp
+Pickups/PickupBase.cpp
+Pickups/PickupMineBase.cpp
+Pickups/PickupProjectileBase.cpp
+Pickups/Normal/PickupShield.cpp
+Pickups/Normal/PickupBarge.cpp
+Pickups/Normal/PickupNitrous.cpp
+Pickups/Normal/PickupShock.cpp
+Pickups/Normal/PickupShunt.cpp
+Pickups/Normal/PickupBlindfire.cpp
+Pickups/Reverse/PickupBlindfireReverse.cpp
+Pickups/Reverse/PickupBombReverse.cpp
+Pickups/Reverse/PickupNitrousReverse.cpp
+Pickups/Reverse/PickupShuntReverse.cpp
+Pickups/Double/PickupDoubleShock.cpp
+Pickups/Double/PickupDoubleShunt.cpp
+Pickups/Double/PickupDoubleBomb.cpp
+Pickups/Double/PickupDoubleNitrous.cpp
+Pickups/Double/PickupDoubleShield.cpp
+Pickups/DoubleReverse/PickupDoubleShuntReverse.cpp
+Pickups/Mods/PickupBlindfireShotgun.cpp
+Pickups/Mods/PickupBlindfireShotgunReverse.cpp
+Pickups/Mods/PickupMasterMineBomb.cpp
+Pickups/Misc/PickupMiniBomb.cpp
+Pickups/Upgraded/PickupBomb.cpp
+Profile/MultiplayerStatistics.cpp
+RaceIntroOutro/RaceIntroOutro.cpp
+RaceModes/RaceModeBase.cpp
+RaceModes/RaceModes.cpp
+RaceModes/RaceModeMultiplayer.cpp
+RaceModes/RaceModeMultiplayerDestruction.cpp
+RaceModes/RaceModeMultiplayerElimination.cpp
+RaceModes/RaceModeMultiplayerPoints.cpp
+RaceModes/RaceModeMultiplayerRacing.cpp
+RaceModes/RaceModeStreetRace.cpp
+RaceModes/RaceModeDestruction.cpp
+RaceModes/RaceModeCheckpoint.cpp
+RaceModes/RaceModeFanDemand.cpp
+RaceModes/RaceModeBossBattle.cpp
+RaceModes/RaceModeFriendDemandStreetRace.cpp
+RaceRules/RaceRule_HitDriverXTimesWithPerk.cpp
+RaceRules/RaceRule_FinishInXPosition.cpp
+RaceRules/RaceRule_EarnXP.cpp
+RaceRules/RaceRule_GetFastestLap.cpp
+RaceRules/RaceRule_GetLapTimeOfX.cpp
+RaceRules/RaceRule_BeatDriver.cpp
+RaceRules/RaceRule_DistanceFromDriver.cpp
+RaceRules/RaceRule_HitXMph.cpp
+RaceRules/RaceRule_HitXObjects.cpp
+RaceRules/RaceRule_DriftingInTriggerRegion.cpp
+RaceRules/RaceRule_DriverHasHealth.cpp
+RaceRules/RaceRule_CauseXDamageToDriver.cpp
+RaceRules/RaceRule_CollectXFanPickups.cpp
+RaceRules/RaceRule_PerformActionYTimes.cpp
+RaceRules/RaceRule_DriverLastInRace.cpp
+RaceRules/RaceRule_TeamPosition.cpp
+RaceRules/RaceRule_FireXPerks.cpp
+RaceRules/RaceRule_TimerExpired.cpp
+RaceRules/RaceRule_PerformXTrickShots.cpp
+RaceRules/RaceAction_EliminateLastDriver.cpp
+RaceRules/RaceAction_EliminateHitByPerks.cpp
+RaceRules/RaceAction_ManageGhosts.cpp
+RaceRules/RaceAction_TimeAttackDisplay.cpp
+RaceRules/RaceRuleBase.cpp
+RaceRules/RaceRulesManager.cpp
+RaceRules/Multiplayer/MpRaceActionManager.cpp
+RaceRules/Multiplayer/MpRaceAction_GiftPerk.cpp
+Replays/MemChunk.cpp
+Structures/LevelResult.cpp
+Structures/LevelStateVehicleUpgrades.cpp
+Structures/LevelState.cpp
+Structures/LevelStateVehiclePickupInfo.cpp
+Structures/MpResults.cpp
+Structures/NetEventManager.cpp
+Structures/NetGameVars.cpp
+Structures/ScoringRules.cpp
+Structures/MultiplayerAbilities.cpp
+Structures/MultiplayerChallenge.cpp
+Structures/MultiplayerAwards.cpp
+SplitScreen/SplitScreenScoring.cpp
+Twitter/TwitterManager.cpp
+Facebook/FacebookManager.cpp
+Structures/MiscellaneousChallengeBlackboardData.cpp
+Structures/FavouriteGroups.cpp
+Abilities/MultiplayerAbility.cpp
+Structures/RecentEventsStore.cpp
+SubtitleManager.cpp
+MultiplayerCarChallenges.cpp
+MultiplayerChallengeSystem.cpp
+Structures/LevelStateMultiplayerAbilities.cpp
+Structures/DailyChallengeManager.cpp
+ActorStudioActors/AnimatedCamera.cpp
+ActorStudioActors/UICameraController.cpp
+SocialNetworking/SocialNetworkManager.cpp
+ActorStudioActors/PickupPositionActorDecoy.cpp
+SocialNetworking/FriendsManager.cpp
+SinglePlayer/SP_Data.cpp
+SinglePlayer/SP_Tiers.cpp
+SinglePlayer/SP_Events.cpp
+SinglePlayer/SP_SaveGame.cpp
+SinglePlayer/SP_Rank.cpp
+SinglePlayer/SP_Rewards.cpp
+SinglePlayer/SP_Lua.cpp
+SinglePlayer/SP_Game.cpp
+SinglePlayer/SP_Vehicles.cpp
+SinglePlayer/SP_Mods.cpp
+SinglePlayer/SP_Bosses.cpp
+PlayMode/CustomRace.cpp
+PlayMode/Playlist.cpp
+Pickups/PickupPositionManager.cpp
+ActorStudioActors/UiLocatorActor.cpp
+StickerManager.cpp
+Structures/Sticker.cpp
+Structures/StickerBlackboardData.cpp
+Pickups/Normal/PickupSuperShield.cpp
+SinglePlayer/SP_BossDemands.cpp
+RaceModes/RaceModeFriendDemandDestruction.cpp
+RaceModes/RaceModeFriendDemandCheckpoint.cpp
+RaceModes/RaceModeFriendDemandBossBattle.cpp
+RaceModes/RaceModeFriendDemandFanDemand.cpp
+SocialNetworking/EventOwnerManager.cpp
+VehicleSFX/LightPillarEffect.cpp
+Abilities/LasersightAbility.cpp
+Abilities/DrifterAbility.cpp
+RichPresenceBuilder.cpp
+: StdAfx.h ]
+;
+
+if $(BUILD) != Master
+{
+SRC +=
+[ Batch
+Replays/ReplayBuffer.cpp
+Replays/ReplayDirector.cpp
+Replays/ReplayHeadersAndFooters.cpp
+Replays/ReplaySaveManager.cpp
+Replays/ReplayThreading.cpp
+Replays/ReplayVehicleManager.cpp
+Replays/ReplayUtilities.cpp
+: StdAfx.h ]
+;
+}
+
+
+ImportCP include/ui/shaders/vsConstants.h : TOP Code Mercury Library UI ;
+ImportCP include/ui/shaders/psConstants.h : TOP Code Mercury Library UI ;
+
+Library amax_gamelogic : $(SRC) : StdAfx.cpp ;
+

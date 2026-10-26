@@ -1,0 +1,35 @@
+SubDir TOP Code Tools actor_studio usercmd_lib ;
+
+IncludePath
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/xt2/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/xt_shared/include
+$(TOP)/code/tools/actor_studio/backend_lib/include
+$(TOP)/code/tools/actor_studio/usernode_lib/include
+$(TOP)/code/tools/actor_studio/usercmd_lib/include
+$(TOP)/code/vendor/sigslot/include
+$(TOP)/libs/vendor/boost
+;
+
+usercmdSRC =
+source/usercmd/conversion/ConvertDynamicPhysicalCmd.cpp
+source/usercmd/drop/DropCmd.cpp
+source/usercmd/nightwing/CreateLinkedCoverCmd.cpp
+source/usercmd/poly/PolyAddPointsCmd.cpp
+source/usercmd/poly/PolyInsertPointsCmd.cpp
+source/usercmd/spline/AddPointsCmd.cpp
+source/usercmd/spline/InsertPointsCmd.cpp
+source/usercmd/spline/SmoothTangentsCmd.cpp
+source/usercmd/spline/ReverseSplineCmd.cpp
+source/usercmd/verification/amax/VerifyPhysicalObjects.cpp
+source/usercmd/verification/common/VerifyDynamicPositions.cpp
+source/usercmd/verification/common/VerifyNull.cpp
+source/usercmd/verification/common/VerifyXtValue.cpp
+source/usercmd/Register.cpp
+;
+
+Library usercmd_lib : $(usercmdSRC) : stdafx.cpp ;
+
+ExportVcproj usercmd_lib ;

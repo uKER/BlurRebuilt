@@ -1,0 +1,6 @@
+﻿
+KitServer - This is responsible for managing and handing out kits to work as required
+
+WorkManager - This holds all the jobs and processes them
+
+Job - An item of work that can require one or more kits

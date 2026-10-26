@@ -1,0 +1,4 @@
+#ifndef SCENEGRAPH_MAX_CONTEXTS
+#define SCENEGRAPH_MAX_CONTEXTS 7
+#endif
+

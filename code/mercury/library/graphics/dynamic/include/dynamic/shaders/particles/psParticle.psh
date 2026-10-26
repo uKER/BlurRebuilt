@@ -1,0 +1,85 @@
+#define ALPHA
+#define ALPHA_PREMULTIPLY
+#define ALPHA_AND_ADDITIVE
+
+#include "dynamic\shaders\psCommon.h"
+#include "render\shaders\psFog.h"
+#include "render\shaders\psHDR.h"
+#include "Particle.h"
+
+sampler2D textureMap : register(s0);
+sampler2D normalMap : register(s1);
+
+sampler2D depthMap : register(s2);
+
+sampler2D refractMap : register(s3);
+
+#ifdef PS3
+#pragma texformat textureMap COMPRESSED_RGBA_S3TC_DXT1
+#pragma texformat normalMap COMPRESSED_RGBA_S3TC_DXT1
+#pragma texformat depthMap RGBA8
+#pragma texformat refractMap RGBA8
+#endif
+
+real4 g_vLight0Colour		: register(CCP_DYNAMIC_PARTICLE_LIGHT0_COLOUR);
+float4 g_vDepthScale		: register(CCP_DYNAMIC_PARTICLE_DEPTHSCALE);
+float4 g_vDecalScale		: register(CCP_DYNAMIC_PARTICLE_DECALSCALE);
+float4 g_vProjScale			: register(CCP_DYNAMIC_PARTICLE_PROJSCALE);
+real4 g_vRefractSettings	: register(CCP_DYNAMIC_PARTICLE_REFRACT_SETTINGS);
+
+PS_OUTPUT main(VS_OUTPUT input) 
+{ 
+    real4 diffuse;
+    real4 colour;
+   
+	// diffuse
+	{
+		#ifdef A8
+		diffuse = real4(input.colour.rgb, tex2D(textureMap, input.uv.xy).a * input.colour.a);
+		#else
+		#ifdef POINTSPRITE
+		diffuse = h4tex2D(textureMap, input.psuv.xy) * input.colour;
+		#else
+		diffuse = h4tex2D(textureMap, input.uv.xy) * input.colour;
+		#endif
+		#endif
+		
+		colour = diffuse;
+	}
+	
+	// normal mapping, currently defunct
+	{
+		#ifdef NORMALMAP
+		real3 normal = 2.0h * (h4tex2D(normalMap, input.uv.xy).rgb - 0.5h);
+		real light0 = 0.5h + saturate(dot(normal, normalize(input.light))) * 0.5h;
+		colour.rgb = diffuse.rgb * light0;
+		#endif
+	}
+	
+	// depth sampling/soft particles
+	{
+		#ifdef DEPTH
+		float2 proj = (input.positionUV.xy / input.positionUV.w);
+		proj += g_vProjScale.xy;
+		
+		float depth = SampleDepthBuffer(depthMap, proj, g_vDepthScale);
+
+		#ifdef SOFT
+		float particleDepth = input.positionUV.w;
+		real depthBias = saturate((depth - particleDepth) / input.uv.w);
+		colour.a *= depthBias;
+		#endif
+		#endif
+	}
+		
+	// fog
+	{	
+		#ifdef HEIGHTFOG
+		colour = EvaluateHeightDepthFog(colour, input.worldPositionAndOffset.y, input.worldPositionAndOffset.w);
+		#else
+		colour = EvaluateDepthFog(colour, input.worldPositionAndOffset.w);
+		#endif
+	}
+
+	return GetExposure(colour, input.uv.z);
+}

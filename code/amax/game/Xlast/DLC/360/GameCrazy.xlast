@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-16" standalone="no"?>
+<XboxLiveSubmissionProject Version="2.0.11164.2">
+	<ContentProject clsid="{AED6156D-A870-4FF7-924F-F375495A222A}" Name="Double Fans Unlock" TitleID="41560845" TitleName="Blur" ActivationDate="06/04/2009" PubOfferingID="0000003" PubBitFlags="FFFFFFFF" HasCost="false" IsMarketplace="true" AllowProfileTransfer="true" AllowDeviceTransfer="true" DashIconPath="Z:\blur_release\code\amax\game\Xlast\Images\game_icon.png" TitleIconPath="Z:\blur_release\code\amax\game\Xlast\Images\game_icon.png" ContentType="0x00000002">
+		<LanguageSettings clsid="{F5BA1EE2-D217-447C-93C7-3C7AA6F25DD5}">
+			<Language clsid="{6424EAA3-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Double Fans Unlock" Description="Rise through the ranks quickly by earning double fans in the first three races you play in Online Multiplayer."/>
+			<Language clsid="{6424EAA5-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Doppelte Fans" Description="Steig schnell im Rang auf - du bekommst die doppelte Anzahl von Fans in deinen ersten drei Online-Rennen."/>
+			<Language clsid="{6424EAA6-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Double fans" Description="Prenez rapidement du galon en gagnant 2x plus de fans lors de vos 3 premières courses en ligne."/>
+			<Language clsid="{6424EAA7-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Desbloqueo de duplica los fans" Description="Duplica los fans en tus 3 primeras carreras en multijugador en línea y subirás de rango rápidamente."/>
+			<Language clsid="{6424EAA8-FA00-4B6C-8CFB-BF063FC18845}" DashDisplayName="Sblocca doppi fan" Description="Guadagna velocemente posizioni ottenendo il doppio dei fan nelle prime tre gare disputate nel multigiocatore online."/>
+		</LanguageSettings>
+		<Contents clsid="{0D8B38B9-F5A8-4050-8F8D-81F67E3B2456}">
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack GameCrazy ToC.bin" TargetName="ToC.bin"/>
+			<File clsid="{8A0BC3DD-B402-4080-8E34-C22144FC1ECE}" SourceName="Z:\Amax\working\360\gamedata\xt\DLC Pack GameCrazy.bin" TargetName="DLCPackGameCrazy.bin"/>
+		</Contents>
+		<ContentOffers clsid="{146485F0-DCD7-4AB1-97E1-9B0E64150499}">
+			<ContentOffer clsid="{4AF8FE5B-CCF2-4C23-852F-D91A94AE0E24}" friendlyName="GameCrazyRetailUnlock" title="Double Fans Unlock" sellText="Rise through the ranks quickly by earning double fans in the first three races you play in Online Multiplayer." licenseMask="0x00000001" contentCategory="0x00000002" visibility="1" previewOfferId="0x00000000" offerId="0x00000000" banner="..\..\Images\Blur_GameCrazy_DLC_Offer_Graphic.png" licenseLevel="2" consumable="false"/>
+		</ContentOffers>
+	</ContentProject>
+</XboxLiveSubmissionProject>

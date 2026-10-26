@@ -1,0 +1,31 @@
+#include "..\..\psConstants.h"
+#include "..\..\psCommon.h"
+
+sampler2D	luminanceMap		: register(s0);
+
+float2		g_vTaps[16]		: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+
+struct PS_INPUT
+{
+	float2 uv			: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	float fSum = 0.0f;
+	for(int i = 0; i < 16; i++)
+	{
+		fSum += tex2D(luminanceMap, input.uv + g_vTaps[i]).r;
+	}
+	
+	output.colour = float4(fSum, 0.f, 0.f, 1.f);
+	
+	return output;
+}

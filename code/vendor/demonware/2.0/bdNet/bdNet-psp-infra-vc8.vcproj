@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="bdNet"
+	ProjectGUID="961F15C3-E85C-707E-035A-1819899A7043"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="../lib/psp-infra-sn/debug"
+			IntermediateDirectory="../obj/psp-infra-sn/debug/bdNet"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;.."
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_INFRA"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="../lib/psp-infra-sn/release"
+			IntermediateDirectory="../obj/psp-infra-sn/release/bdNet"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;.."
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_INFRA"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<File RelativePath="bdNet.cpp"></File>
+<File RelativePath="bdNet.h"></File>
+<File RelativePath="bdNetStartParams.cpp"></File>
+<File RelativePath="bdNetStartParams.h"></File>
+<Filter Name = "bdGetHostByName" Filter="">
+<File RelativePath="bdGetHostByName\bdGetHostByName-psp-infra.cpp"></File>
+<File RelativePath="bdGetHostByName\bdGetHostByName.cpp"></File>
+<File RelativePath="bdGetHostByName\bdGetHostByName.h"></File>
+<File RelativePath="bdGetHostByName\bdGetHostByNameConfig.cpp"></File>
+<File RelativePath="bdGetHostByName\bdGetHostByNameConfig.h"></File>
+</Filter>
+<Filter Name = "bdLANDiscovery" Filter="">
+<File RelativePath="bdLANDiscovery\bdGameInfo.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdGameInfo.h"></File>
+<File RelativePath="bdLANDiscovery\bdGameInfoFactory.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdGameInfoFactory.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscovery.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryClient.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryClient.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryListener.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryListener.h"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryServer.cpp"></File>
+<File RelativePath="bdLANDiscovery\bdLANDiscoveryServer.h"></File>
+</Filter>
+<Filter Name = "bdUPnP" Filter="">
+<File RelativePath="bdUPnP\bdUPnP.cpp"></File>
+<File RelativePath="bdUPnP\bdUPnP.h"></File>
+<File RelativePath="bdUPnP\bdUPnPCommon.h"></File>
+<File RelativePath="bdUPnP\bdUPnPConfig.cpp"></File>
+<File RelativePath="bdUPnP\bdUPnPConfig.h"></File>
+<File RelativePath="bdUPnP\bdUPnPDevice.cpp"></File>
+<File RelativePath="bdUPnP\bdUPnPDevice.h"></File>
+<File RelativePath="bdUPnP\bdUPnPListener.cpp"></File>
+<File RelativePath="bdUPnP\bdUPnPListener.h"></File>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

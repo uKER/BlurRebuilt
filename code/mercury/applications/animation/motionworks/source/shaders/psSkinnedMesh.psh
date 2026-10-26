@@ -1,0 +1,91 @@
+#include "psConstants.h"
+#include "psCommon.h"
+
+sampler2D gDiffuseTexture		: register(s0);
+sampler2D gNormalMapTexture		: register(s1);
+float4	  gSkinnedMeshParams	: register(CCP_SKINNEDMESH_SETTINGS);
+float4	  gKeyColour			: register(CCP_SKINNEDMESH_KEYCOLOUR);
+float4	  gMidColour			: register(CCP_SKINNEDMESH_MIDCOLOUR);
+float4	  gFillColour			: register(CCP_SKINNEDMESH_FILLCOLOUR);
+float4	  gFlatColour			: register(CCP_SKINNEDMESH_FLATCOLOUR);
+
+struct PS_INPUT
+{
+	float4 Position			: POSITION;
+	float4 WorldNormal		: TEXCOORD0;
+	float3 WorldTangent		: TEXCOORD1;
+	float3 WorldBinormal	: TEXCOORD2;
+	float4 WorldViewDir		: TEXCOORD3;
+	float2 TexCoord			: TEXCOORD4;
+	float4 Color0			: COLOR0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Color0			: COLOR0;
+};
+
+float Specular(float3 N, float3 V, float3 L, float power)
+{
+	float NdotL = saturate(dot(N, L));
+	float3 H = normalize(L + V);
+	return NdotL * smoothstep(0.2f, 1.f, pow(dot(H, N), power));
+}
+
+float FakeEnvMap(float3 N, float3 V)
+{
+	float light = Specular(N, V, normalize(float3(1.f, 1.f, 0.f)), 32.f);
+	//light += Specular(N, V, normalize(float3(-0.25f, 0.5f, 0.f)), 64.f);
+	//light += Specular(N, V, normalize(float3(1.5f, 0.5f, 0.f)), 100.f);
+	//light += Specular(N, V, normalize(float3(-0.5f, 0.5f, 3.f)), 80.f);
+	return 0.25f * light;
+}
+
+float3 Lighting( float3 N )
+{
+	float3 L = normalize(float3(1.f, 1.f, 0.f));
+	float NdotL = dot( N, L );
+	
+	float3 col0 = gKeyColour.xyz * gKeyColour.a;
+	float3 col1 = gMidColour.xyz * gMidColour.a;
+	float3 col2 = gFillColour.xyz * gFillColour.a;
+	
+	float3 result = col0 * saturate(NdotL)
+				  + col1 * (1 - abs(NdotL))
+				  + col2 * saturate(-NdotL);
+
+	return result;
+}
+
+
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+
+	float3 L = normalize(float3(1.f, 1.f, 0.f));
+	
+	float3 worldGeomNormal = normalize(IN.WorldNormal.xyz);
+	
+	float4 surfaceDiffuse = lerp(tex2D(gDiffuseTexture, IN.TexCoord.xy), float4(gFlatColour.xyz,1.f), gSkinnedMeshParams.y);
+	
+#ifdef ENABLE_NORMAL_MAP
+	
+	float3 bumpMapNormal = normalize((2 * tex2D(gNormalMapTexture, IN.TexCoord.xy) ) - 1);
+	float3 shadingNormal = bumpMapNormal.x * IN.WorldTangent.xyz
+		+ bumpMapNormal.y * IN.WorldBinormal.xyz
+		+ bumpMapNormal.z * worldGeomNormal;
+	float3 worldNormal = normalize(lerp( worldGeomNormal, shadingNormal, gSkinnedMeshParams.z ));
+#else
+	float3 worldNormal = worldGeomNormal;
+#endif
+			
+	float3 surfaceColour = Lighting( worldNormal ) * surfaceDiffuse.xyz;
+	
+	float3 finalColour = 1 - exp( -gSkinnedMeshParams.x * surfaceColour );
+		
+	OUT.Color0.rgb = finalColour;
+	OUT.Color0.a = surfaceDiffuse.a;
+	
+	return OUT;
+}

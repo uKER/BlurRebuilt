@@ -1,0 +1,28 @@
+#include "..\..\psCommon.h"
+#include "psHDR.h"
+
+struct PS_INPUT
+{
+	float2 uv					: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour				: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+
+	output.colour.rgb = GetBloomCombine(input.uv);
+	
+	#ifdef GAMMA
+	output.colour.rgb = output.colour.rgb * output.colour.rgb;
+	#endif
+	
+	output.colour.rgb = pow(output.colour.rgb, g_fGamma);
+	output.colour.a = 1.0f;
+		
+	return output;
+}

@@ -1,0 +1,22 @@
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float4	m_ProjPosition	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+	
+	float	fDepth	= input.m_ProjPosition.z / input.m_ProjPosition.w;
+	output.m_Colour	= float4(fDepth, fDepth * fDepth, 0.0f, 0.0f);
+	
+	return output;
+}

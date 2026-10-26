@@ -1,0 +1,40 @@
+SubDir TOP code mercurygame tools null_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+CFG_CONVERTER = 1 ;
+Define CFG_CONVERTER=1 ;
+
+Define FILEPATH_PRESERVE_CASE ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/CreateFileList.cpp
+source/Main.cpp
+;
+
+LinkLibraries null_converter : core system tools_shared ;
+		
+Application null_converter : $(SRC) : stdafx.cpp ;
+
+Depends $(BIZARRE_ROOT)/tools/common_tools_wip/win32/null_converter/null_converter.exe : $(BIZARRE_ROOT)/tools/common_tools_wip/win32/null_converter/ ;
+MkDir $(BIZARRE_ROOT)/tools/common_tools_wip/win32/null_converter/ ;
+EmbedManifest $(BIZARRE_ROOT)/tools/common_tools_wip/win32/null_converter/null_converter.exe : null_converter.exe ;
+
+ExportVcproj null_converter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+

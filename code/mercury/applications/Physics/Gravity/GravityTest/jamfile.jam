@@ -1,0 +1,91 @@
+SubDir TOP Code Mercury Applications Physics Gravity GravityTest ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Physics/Gravity/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/code/vendor/zlib/current_mercury
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+USE_SOLVER2 = 1 ;
+
+if $(USE_SOLVER2) != 1
+{
+echo define solver 1 ;
+}
+else
+{
+echo define solver 2 ;
+	Define USE_SOLVER_2 ;
+}
+
+SRC =
+Main.cpp
+AABBTreeTest.cpp
+CapsuleSetting.cpp
+CapsuleTest.cpp
+ConstraintGraphTest.cpp
+KDTreeTest.cpp
+OBBSetting.cpp
+OBBTest.cpp
+#OverloadNew.cpp
+RangeSetting.cpp
+SectionPhysics.cpp
+#SectionSkyDome.cpp
+SegmentSetting.cpp
+SphereSetting.cpp
+SphereTest.cpp
+SweepAndPruneTest.cpp
+TestConvexHull.cpp
+TriangleSetting.cpp
+TriangleTest.cpp
+CylinderTest.cpp
+ConvexHullTest.cpp
+SweptSphereTest.cpp
+XenoCollideTest.cpp
+RagdollAnimationTest.cpp
+#FeatherstoneTest.cpp
+FixedConstraintTest.cpp
+#FinitePlaneTest.cpp
+FrameOfReferenceTest.cpp
+GJKTest.cpp
+ConeTest.cpp
+GJKRayCastTest.cpp
+ParticleBasedFluidSystemTest.cpp
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+#echo $(DXSDK_PATH)/include ;
+LINKLIBS += ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+LinkLibraries GravityTest : core system display render gravity misc_shared samples zlib ;
+
+Application GravityTest : $(SRC) : stdafx.cpp ;
+ExportVcproj GravityTest ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Physics Gravity ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Vendor zlib current_mercury  ;

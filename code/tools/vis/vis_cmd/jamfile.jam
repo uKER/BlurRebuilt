@@ -1,0 +1,77 @@
+SubDir TOP Code Tools Vis Vis_Cmd ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL ;
+
+CFG_CONVERTER = 1 ;
+Define CFG_CONVERTER=1 ;
+
+IncludePath
+$(SUBDIR)/../
+$(SUBDIR)/../vis_core/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Util/Tools_Shared/include
+$(TOP)/Code/Vendor/TClap/Current
+$(TOP)/Code/Tools/Aftk/Aftk/Include
+$(TOP)/Code/Tools/ClusterServ_lib/include
+\"$(DXSDK_PATH)/include\"
+$(TOP)/Code/Common
+$(TOP)/Libs/Vendor/CommonC++/current/include
+$(TOP)/Libs/Vendor/Xerces/2.5.0/src
+;
+
+SRC =
+source/vis_cmd/vis_cmd.cpp
+;
+
+DXLIBS = d3d9.lib d3dx9.lib dinput8.lib dxguid.lib dxerr.lib ;
+WIN64LIB = .lib ;
+if $(WIN64) = 1
+{
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x64/$(DXLIBS)" ;
+	WIN64LIB = _64.lib ;
+}
+else
+{
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/$(DXLIBS)" ;
+}
+
+LINKLIBS += secur32.lib netapi32.lib ;
+
+LinkLibraries vis :
+		core system tools_shared aftk aftkutlib attk clusterserv_lib vis_core commonc++ ftm_xml_api file_tag_db
+		farm_library zlib converter_shared fxConv RenderingDataConv pcfx misc_shared texture_export portal
+		$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk
+		$(TOP)/libs/vendor/xerces/2.5.0/lib/xerces-c_2$(WIN64LIB)
+		;
+
+Application vis : $(SRC) : stdafx.cpp ;
+ExportVcproj vis ;
+
+# copy output exe to win32 or win64 tools_WIP folder
+if $(WIN64) = 1 { TGTDIR = win64 ; } else { TGTDIR = win32 ; }
+TGTDIR = $(TOP)/bin/tools_WIP/$(TGTDIR)/vis ;
+MkDir $(TGTDIR) ;
+Depends $(TGTDIR)/vis.exe : $(TGTDIR) ;
+EmbedManifest $(TGTDIR)/vis.exe : vis.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Vis Vis_Core ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools ClusterServ_lib ;
+SubInclude TOP Code Tools File_Tag_Db File_Tag_Db ;
+SubInclude TOP Code Tools File_Tag_Manager Ftm_Xml_Api Ftm_Xml_Api ;
+SubInclude TOP Code Tools xFarm farm_library ;
+SubInclude TOP Code Vendor Zlib Current_Mercury ;
+SubInclude TOP Libs Vendor CommonC++ current ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Tools AftkUt AftkUtLib ;
+SubInclude TOP Code Mercury Library Graphics FX ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;
+SubInclude TOP Code Mercury Library Graphics Portal ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code MercuryGame Tools Converter_Shared Converter_Shared ;

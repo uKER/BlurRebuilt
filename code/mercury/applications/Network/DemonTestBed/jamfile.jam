@@ -1,0 +1,119 @@
+SubDir TOP Code Mercury Applications Network DemonTestBed ;
+
+SupportedTargets WIN32 XBOX_360 PS3 ;
+
+IncludePath 
+UI
+$(TOP)/Code/Mercury/Library/Common/BTL/Include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Graphics/Movie/include
+$(TOP)/Code/Mercury/Library/Network/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/Code/Mercury/Library/UI/include
+$(TOP)/code/mercury/library/util/lua_shared/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/Code/Vendor/zlib/current_mercury
+$(TOP)/Code/Vendor/lua/current/src
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += Iphlpapi.lib ws2_32.lib dbghelp.lib psapi.lib "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+}
+
+if $(PLATFORM) = XENON
+{
+LINKLIBS += xmp.lib xhv.lib ;
+}
+
+
+include netsource.jam ;
+include demonware.jam ;
+
+
+UI_SRC = 
+UI/FileSystem.cpp
+UI/PolyTest.cpp
+UI/SectionUI.cpp
+UI/UiManager.cpp
+UI/OverloadNew.cpp
+UI/Game/GameDataFinder.cpp
+UI/Game/GameVariableStore.cpp
+UI/Game/Gadgets/UIDynamicScene.cpp
+;
+
+SRC =
+Main.cpp
+DemonwareTests.cpp
+;
+
+SRC += $(RACER_NET_SRC) $(UI_SRC) ;
+
+LUASRC = 
+UI/Game/Lua_Scripts/UIEnums.lua
+UI/Game/Lua_Scripts/UIFontSequences.lua
+UI/Game/Lua_Scripts/UIGlobals.lua
+UI/Game/Lua_Scripts/UISetup.lua
+UI/Game/Lua_Scripts/Popups/GUIBank.lua
+UI/Game/Lua_Scripts/Screens/GUIBank.lua
+UI/Game/Lua_Scripts/Screens/Main.lua
+;
+
+XENONLIBS = 
+$(TOP)/libs/vendor/bink/1.8s/binkxenon
+;
+
+PS3LIBS = 
+$(TOP)/libs/vendor/bink/1.8s/binkps3 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libsysutil_np2_stub 
+$(SCE_PS3_ROOT)/target/ppu/lib/libl10n_stub
+;
+
+PCLIBS = 
+$(TOP)/libs/vendor/bink/1.8s/binkw32 
+;
+
+LinkLibraries UITestBed :
+		core 
+		display 
+		liblua 
+		misc_shared 
+		render 
+		movie 
+		samples 
+		system 
+		ui 
+		xtgame 
+		zlib 
+		network 
+		lua_shared
+		$($(PLATFORM)LIBS)
+		;
+		
+LUABundle UITestBed : $(LUASRC) : ./Ui/Game/LUA_Scripts ;
+Application UITestBed : $(SRC) ; #: stdafx.cpp ;
+ExportVcproj UITestBed ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common Xt2 ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Graphics Movie ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Code Mercury Library Network ;
+SubInclude TOP Code Mercury Library Ui ;
+SubInclude TOP Code Vendor zlib current_mercury  ;
+SubInclude TOP Code Vendor lua current src ;
+SubInclude TOP Code Mercury Library Util Lua_Shared ;
+SubInclude TOP Code Mercury Library Util Resource ;
+

@@ -1,0 +1,41 @@
+SubDir TOP Code Mercury Library GameSys Resource_Utils ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/animation/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/textureresource/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+Define USE_SOLVER_2 ;
+
+SRC = 
+source/CycleResourceDef.cpp
+source/GameModel.cpp
+source/GameTexture.cpp
+source/I_ResourceBag.cpp
+source/ResourceBagUtils.cpp
+source/ResourceUtils.cpp
+source/SkeletonResourceDef.cpp
+;
+
+SRC = [ Batch $(SRC) : ResourceUtilsPch.h ] ;
+
+Library resource_utils : $(SRC) $($(PLATFORM)SRC) : ResourceUtilsPch.cpp : ResourceUtilsPch.h ;

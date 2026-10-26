@@ -1,0 +1,75 @@
+SubDir TOP Code Mercury Applications Exports Model_Converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Util/Tools_shared/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(MERCURY)/Graphics/renderingdata/include
+$(MERCURY)/Graphics/shader/include
+$(TOP)/Code/Mercury/Library/Graphics/Texture_Export/include
+$(TOP)/Code/Tools/Aftk/Aftk/include
+$(TOP)/Code/Tools/Attk/Attk/Include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/Code/MercuryGame/Tools/converter_shared/converter_shared/include
+\"$(DXSDK_PATH)/include\"
+$(TOP)/Code/Mercury/Tools/Util/Wrap32_Test/Include
+$(TOP)/Code/Mercury/Library/Graphics/World_render/include
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/ExampleConverter.cpp
+source/Main.cpp
+source/test.cpp
+;
+
+if $(WIN64) != 1
+{
+	LINKLIBS += "$(DXSDK_PATH)/Lib/x86/d3d9.lib" "$(DXSDK_PATH)/Lib/x86/d3dx9.lib" "$(DXSDK_PATH)/Lib/x86/dinput8.lib" "$(DXSDK_PATH)/Lib/x86/dxguid.lib" "$(DXSDK_PATH)/Lib/x86/dxerr.lib" "$(DXSDK_PATH)/Lib/x86/xinput.lib" ;
+}
+else
+{
+	LinkLibraries Model_Converter : wrap32_interface ;
+}
+
+LinkLibraries Model_Converter : 
+	core 
+	system 
+	misc_shared 
+	display 
+	file_tag_db 
+	tools_shared 
+	aftk 
+	attk 
+	RenderingData 
+	world_render
+	converter_shared
+	texture_export 
+	fx 
+$(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+		
+Application Model_Converter : $(SRC) : stdafx.cpp ;
+ExportVcproj Model_Converter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Common misc_shared ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Mercury Library Graphics RenderingData ;
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;
+SubInclude TOP Code Mercury Library Graphics Fx ;
+SubInclude TOP Code Mercury Library Graphics world_render ;
+SubInclude TOP Code Tools Aftk Aftk ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code MercuryGame Tools Converter_shared Converter_shared ;
+SubInclude TOP Code Tools file_tag_db file_tag_db ;
+SubInclude TOP Code Mercury Tools Util Wrap32_test ;

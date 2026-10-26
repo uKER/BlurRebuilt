@@ -1,0 +1,35 @@
+#define ADDITIVE
+
+#include "../psCommon.h"
+#include "../psConstants.h"
+#include "../psHDR.h"
+
+float4x4	g_mLight		: register(CCP_RENDER_SETTINGS);
+float4x4	g_mToWorld		: register(CCP_RENDER_SETTINGS_4);
+float4		g_vDirection	: register(CCP_RENDER_SETTINGS_8);
+float4		g_vColour		: register(CCP_RENDER_SETTINGS_9);
+float4		g_vDepth		: register(CCP_RENDER_SETTINGS_10);
+
+sampler2D	g_tDepth		: register(s0);
+sampler2D	g_tNormal		: register(s1);
+sampler3D	g_tLight		: register(s2);
+
+struct PS_INPUT
+{
+	float4	m_Screen	: TEXCOORD0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	float2	vUV				= (input.m_Screen.xy / input.m_Screen.w) * float2(0.5f, -0.5f) + float2(0.5f, 0.5f);
+	
+	float3	vWorldPosition	= GetWorldPosition(g_tDepth, vUV, g_vDepth, (float4x3) g_mToWorld);
+	float3	vWorldNormal	= normalize(tex2D(g_tNormal, vUV).rgb - 0.5f);
+
+	float4	vLightPosition	= mul(float4(vWorldPosition, 1.0f), g_mLight);
+
+	float	fIntensity		= tex3D(g_tLight, vLightPosition.xyz).r * g_vDirection.w;
+	float	fNDotL			= 1.0f;//saturate(dot(-vWorldNormal.xyz, g_vDirection.xyz));
+
+	return GetExposure(float4(g_vColour.rgb * fIntensity * fNDotL, 1.0f));
+}

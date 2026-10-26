@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.10"
+	Name="bdConnection"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="PSP Debug|Win32"
+			OutputDirectory="../lib/psp-infra-sn/debug"
+			IntermediateDirectory="../obj/psp-infra-sn/debug/bdConnection"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_INFRA"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="PSP Release|Win32"
+			OutputDirectory="../lib/psp-infra-sn/release"
+			IntermediateDirectory="../obj/psp-infra-sn/release/bdConnection"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;..;"
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_INFRA"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<File RelativePath="bdConnection.cpp"></File>
+<File RelativePath="bdConnection.h"></File>
+<File RelativePath="bdConnectionConfig.h"></File>
+<File RelativePath="bdConnectionListener.cpp"></File>
+<File RelativePath="bdConnectionListener.h"></File>
+<File RelativePath="bdConnectionStatistics.cpp"></File>
+<File RelativePath="bdConnectionStatistics.h"></File>
+<File RelativePath="bdConnectionStore.cpp"></File>
+<File RelativePath="bdConnectionStore.h"></File>
+<File RelativePath="bdConnectionStoreConfig.cpp"></File>
+<File RelativePath="bdConnectionStoreConfig.h"></File>
+<File RelativePath="bdLoopbackConnection.cpp"></File>
+<File RelativePath="bdLoopbackConnection.h"></File>
+<File RelativePath="bdUnicastConnection.cpp"></File>
+<File RelativePath="bdUnicastConnection.h"></File>
+<Filter Name = "bdDispatch" Filter="">
+<File RelativePath="bdDispatch\bdDispatcher.cpp"></File>
+<File RelativePath="bdDispatch\bdDispatcher.h"></File>
+<File RelativePath="bdDispatch\bdDispatchInterceptor.cpp"></File>
+<File RelativePath="bdDispatch\bdDispatchInterceptor.h"></File>
+</Filter>
+<Filter Name = "bdMessage" Filter="">
+<File RelativePath="bdMessage\bdMessage.cpp"></File>
+<File RelativePath="bdMessage\bdMessage.h"></File>
+<File RelativePath="bdMessage\bdMessageFlags.h"></File>
+<File RelativePath="bdMessage\bdMessageTypes.h"></File>
+<File RelativePath="bdMessage\bdReceivedMessage.cpp"></File>
+<File RelativePath="bdMessage\bdReceivedMessage.h"></File>
+</Filter>
+<Filter Name = "bdPacket" Filter="">
+<File RelativePath="bdPacket\bdChunk.cpp"></File>
+<File RelativePath="bdPacket\bdChunk.h"></File>
+<File RelativePath="bdPacket\bdCookie.cpp"></File>
+<File RelativePath="bdPacket\bdCookie.h"></File>
+<File RelativePath="bdPacket\bdCookieAckChunk.cpp"></File>
+<File RelativePath="bdPacket\bdCookieAckChunk.h"></File>
+<File RelativePath="bdPacket\bdCookieEchoChunk.cpp"></File>
+<File RelativePath="bdPacket\bdCookieEchoChunk.h"></File>
+<File RelativePath="bdPacket\bdDataChunk.cpp"></File>
+<File RelativePath="bdPacket\bdDataChunk.h"></File>
+<File RelativePath="bdPacket\bdDefaultPacket.h"></File>
+<File RelativePath="bdPacket\bdHeartbeatAckChunk.cpp"></File>
+<File RelativePath="bdPacket\bdHeartbeatAckChunk.h"></File>
+<File RelativePath="bdPacket\bdHeartbeatChunk.cpp"></File>
+<File RelativePath="bdPacket\bdHeartbeatChunk.h"></File>
+<File RelativePath="bdPacket\bdInitAckChunk.cpp"></File>
+<File RelativePath="bdPacket\bdInitAckChunk.h"></File>
+<File RelativePath="bdPacket\bdInitChunk.cpp"></File>
+<File RelativePath="bdPacket\bdInitChunk.h"></File>
+<File RelativePath="bdPacket\bdPacket.cpp"></File>
+<File RelativePath="bdPacket\bdPacket.h"></File>
+<File RelativePath="bdPacket\bdSAckChunk.cpp"></File>
+<File RelativePath="bdPacket\bdSAckChunk.h"></File>
+<File RelativePath="bdPacket\bdShutdownAckChunk.cpp"></File>
+<File RelativePath="bdPacket\bdShutdownAckChunk.h"></File>
+<File RelativePath="bdPacket\bdShutdownChunk.cpp"></File>
+<File RelativePath="bdPacket\bdShutdownChunk.h"></File>
+<File RelativePath="bdPacket\bdShutdownCompleteChunk.cpp"></File>
+<File RelativePath="bdPacket\bdShutdownCompleteChunk.h"></File>
+</Filter>
+<Filter Name = "bdWindow" Filter="">
+<File RelativePath="bdWindow\bdReliableReceiveWindow.cpp"></File>
+<File RelativePath="bdWindow\bdReliableReceiveWindow.h"></File>
+<File RelativePath="bdWindow\bdReliableSendWindow.cpp"></File>
+<File RelativePath="bdWindow\bdReliableSendWindow.h"></File>
+<File RelativePath="bdWindow\bdUnreliableReceiveWindow.cpp"></File>
+<File RelativePath="bdWindow\bdUnreliableReceiveWindow.h"></File>
+<File RelativePath="bdWindow\bdUnreliableSendWindow.cpp"></File>
+<File RelativePath="bdWindow\bdUnreliableSendWindow.h"></File>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

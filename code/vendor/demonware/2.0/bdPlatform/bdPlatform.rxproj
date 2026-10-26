@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdPlatform</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdPlatformConfig-wii.h:1"><path>${project}\bdPlatformConfig\bdPlatformConfig-wii.h</path></file>
+<file file-tag="bdPlatformConfig.h:1"><path>${project}\bdPlatformConfig\bdPlatformConfig.h</path></file>
+<file file-tag="bdSettings.h:1"><path>${project}\bdPlatformConfig\bdSettings.h</path></file>
+<file file-tag="bdPlatformCoreTypes.cpp:1"><path>${project}\bdPlatformCoreTypes\bdPlatformCoreTypes.cpp</path></file>
+<file file-tag="bdPlatformCoreTypes.h:1"><path>${project}\bdPlatformCoreTypes\bdPlatformCoreTypes.h</path></file>
+<file file-tag="bdPlatformError.cpp:1"><path>${project}\bdPlatformError\bdPlatformError.cpp</path></file>
+<file file-tag="bdPlatformError.h:1"><path>${project}\bdPlatformError\bdPlatformError.h</path></file>
+<file file-tag="bdMessageProxy.cpp:1"><path>${project}\bdPlatformLog\bdMessageProxy.cpp</path></file>
+<file file-tag="bdMessageProxy.h:1"><path>${project}\bdPlatformLog\bdMessageProxy.h</path></file>
+<file file-tag="bdPlatformLog.cpp:1"><path>${project}\bdPlatformLog\bdPlatformLog.cpp</path></file>
+<file file-tag="bdPlatformLog.h:1"><path>${project}\bdPlatformLog\bdPlatformLog.h</path></file>
+<file file-tag="bdPlatformMemory.h:1"><path>${project}\bdPlatformMemory\bdPlatformMemory.h</path></file>
+<file file-tag="bdPlatformMemory.inl:1"><path>${project}\bdPlatformMemory\bdPlatformMemory.inl</path></file>
+<file file-tag="bdLinkable.cpp:1"><path>${project}\bdPlatformPatterns\bdLinkable.cpp</path></file>
+<file file-tag="bdLinkable.h:1"><path>${project}\bdPlatformPatterns\bdLinkable.h</path></file>
+<file file-tag="bdPlatformTrulyRandom-ps2.cpp:1"><path>${project}\bdPlatformRandom\bdPlatformTrulyRandom-ps2.cpp</path></file>
+<file file-tag="bdPlatformTrulyRandom.h:1"><path>${project}\bdPlatformRandom\bdPlatformTrulyRandom.h</path></file>
+<file file-tag="bdInAddr-wii.cpp:1"><path>${project}\bdPlatformSocket\bdInAddr-wii.cpp</path></file>
+<file file-tag="bdInAddr.h:1"><path>${project}\bdPlatformSocket\bdInAddr.h</path></file>
+<file file-tag="bdPlatformSocket-wii.cpp:1"><path>${project}\bdPlatformSocket\bdPlatformSocket-wii.cpp</path></file>
+<file file-tag="bdPlatformSocket.cpp:1"><path>${project}\bdPlatformSocket\bdPlatformSocket.cpp</path></file>
+<file file-tag="bdPlatformSocket.h:1"><path>${project}\bdPlatformSocket\bdPlatformSocket.h</path></file>
+<file file-tag="bdPlatformStreamSocket-wii.cpp:1"><path>${project}\bdPlatformSocket\bdPlatformStreamSocket-wii.cpp</path></file>
+<file file-tag="bdPlatformStreamSocket.cpp:1"><path>${project}\bdPlatformSocket\bdPlatformStreamSocket.cpp</path></file>
+<file file-tag="bdPlatformStreamSocket.h:1"><path>${project}\bdPlatformSocket\bdPlatformStreamSocket.h</path></file>
+<file file-tag="bdPlatformString-wii.inl:1"><path>${project}\bdPlatformString\bdPlatformString-wii.inl</path></file>
+<file file-tag="bdPlatformString.cpp:1"><path>${project}\bdPlatformString\bdPlatformString.cpp</path></file>
+<file file-tag="bdPlatformString.h:1"><path>${project}\bdPlatformString\bdPlatformString.h</path></file>
+<file file-tag="bdPlatformString.inl:1"><path>${project}\bdPlatformString\bdPlatformString.inl</path></file>
+<file file-tag="bdPlatformMutex-wii.cpp:1"><path>${project}\bdPlatformThread\bdPlatformMutex-wii.cpp</path></file>
+<file file-tag="bdPlatformMutex.cpp:1"><path>${project}\bdPlatformThread\bdPlatformMutex.cpp</path></file>
+<file file-tag="bdPlatformMutex.h:1"><path>${project}\bdPlatformThread\bdPlatformMutex.h</path></file>
+<file file-tag="bdPlatformSemaphore-wii.cpp:1"><path>${project}\bdPlatformThread\bdPlatformSemaphore-wii.cpp</path></file>
+<file file-tag="bdPlatformSemaphore.h:1"><path>${project}\bdPlatformThread\bdPlatformSemaphore.h</path></file>
+<file file-tag="bdPlatformSignal-wii.cpp:1"><path>${project}\bdPlatformThread\bdPlatformSignal-wii.cpp</path></file>
+<file file-tag="bdPlatformSignal.h:1"><path>${project}\bdPlatformThread\bdPlatformSignal.h</path></file>
+<file file-tag="bdPlatformThread-wii.cpp:1"><path>${project}\bdPlatformThread\bdPlatformThread-wii.cpp</path></file>
+<file file-tag="bdPlatformThread.cpp:1"><path>${project}\bdPlatformThread\bdPlatformThread.cpp</path></file>
+<file file-tag="bdPlatformThread.h:1"><path>${project}\bdPlatformThread\bdPlatformThread.h</path></file>
+<file file-tag="bdPlatformTiming-wii.cpp:1"><path>${project}\bdPlatformTiming\bdPlatformTiming-wii.cpp</path></file>
+<file file-tag="bdPlatformTiming.cpp:1"><path>${project}\bdPlatformTiming\bdPlatformTiming.cpp</path></file>
+<file file-tag="bdPlatformTiming.h:1"><path>${project}\bdPlatformTiming\bdPlatformTiming.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<mixed-group group-tag="bdPlatformConfig:1"><label>bdPlatformConfig</label><group-items>
+<file-ref>bdPlatformConfig-wii.h:1</file-ref>
+<file-ref>bdPlatformConfig.h:1</file-ref>
+<file-ref>bdSettings.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformCoreTypes:1"><label>bdPlatformCoreTypes</label><group-items>
+<file-ref>bdPlatformCoreTypes.cpp:1</file-ref>
+<file-ref>bdPlatformCoreTypes.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformError:1"><label>bdPlatformError</label><group-items>
+<file-ref>bdPlatformError.cpp:1</file-ref>
+<file-ref>bdPlatformError.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformLog:1"><label>bdPlatformLog</label><group-items>
+<file-ref>bdMessageProxy.cpp:1</file-ref>
+<file-ref>bdMessageProxy.h:1</file-ref>
+<file-ref>bdPlatformLog.cpp:1</file-ref>
+<file-ref>bdPlatformLog.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformMemory:1"><label>bdPlatformMemory</label><group-items>
+<file-ref>bdPlatformMemory.h:1</file-ref>
+<file-ref>bdPlatformMemory.inl:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformPatterns:1"><label>bdPlatformPatterns</label><group-items>
+<file-ref>bdLinkable.cpp:1</file-ref>
+<file-ref>bdLinkable.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformRandom:1"><label>bdPlatformRandom</label><group-items>
+<file-ref>bdPlatformTrulyRandom-ps2.cpp:1</file-ref>
+<file-ref>bdPlatformTrulyRandom.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformSocket:1"><label>bdPlatformSocket</label><group-items>
+<file-ref>bdInAddr-wii.cpp:1</file-ref>
+<file-ref>bdInAddr.h:1</file-ref>
+<file-ref>bdPlatformSocket-wii.cpp:1</file-ref>
+<file-ref>bdPlatformSocket.cpp:1</file-ref>
+<file-ref>bdPlatformSocket.h:1</file-ref>
+<file-ref>bdPlatformStreamSocket-wii.cpp:1</file-ref>
+<file-ref>bdPlatformStreamSocket.cpp:1</file-ref>
+<file-ref>bdPlatformStreamSocket.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformString:1"><label>bdPlatformString</label><group-items>
+<file-ref>bdPlatformString-wii.inl:1</file-ref>
+<file-ref>bdPlatformString.cpp:1</file-ref>
+<file-ref>bdPlatformString.h:1</file-ref>
+<file-ref>bdPlatformString.inl:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformThread:1"><label>bdPlatformThread</label><group-items>
+<file-ref>bdPlatformMutex-wii.cpp:1</file-ref>
+<file-ref>bdPlatformMutex.cpp:1</file-ref>
+<file-ref>bdPlatformMutex.h:1</file-ref>
+<file-ref>bdPlatformSemaphore-wii.cpp:1</file-ref>
+<file-ref>bdPlatformSemaphore.h:1</file-ref>
+<file-ref>bdPlatformSignal-wii.cpp:1</file-ref>
+<file-ref>bdPlatformSignal.h:1</file-ref>
+<file-ref>bdPlatformThread-wii.cpp:1</file-ref>
+<file-ref>bdPlatformThread.cpp:1</file-ref>
+<file-ref>bdPlatformThread.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdPlatformTiming:1"><label>bdPlatformTiming</label><group-items>
+<file-ref>bdPlatformTiming-wii.cpp:1</file-ref>
+<file-ref>bdPlatformTiming.cpp:1</file-ref>
+<file-ref>bdPlatformTiming.h:1</file-ref>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

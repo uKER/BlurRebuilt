@@ -1,0 +1,72 @@
+#include "../psCommon.h"
+#include "Effect/Shaders/Constants.h"
+
+
+
+#define PI_2 6.283185307179586476925286766559f
+
+
+
+extern float4		g_vScales		: register(CCP_RENDER_SETTINGS);
+extern float4		g_vSettings		: register(CCP_RENDER_SETTINGS_1);
+extern sampler2D	g_tFrequencies	: register(s0);
+
+#define g_fNOver2i		g_vSettings.x
+#define g_fRcpNOver2i	g_vSettings.y
+#define g_fTheta		g_vSettings.z
+#define g_fRcpSize		g_vSettings.w
+
+
+
+struct PS_INPUT
+{
+	float2	m_TexCoord	: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4	m_Colour	: COLOR0;
+};
+
+
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	// calculate integer position
+#ifdef HORIZONTAL
+	int		n		= floor(input.m_TexCoord.x * g_vScales.x);
+#else
+	int		n		= floor(input.m_TexCoord.y * g_vScales.y);
+#endif
+	int		u		= floor(n * g_fRcpNOver2i);
+	
+	// calculate w (sine and cosine terms)
+	float	fTheta	= g_fTheta * u;
+	float2	w;
+	sincos(fTheta, w.x, w.y);
+
+	// sample frequencies
+#ifdef HORIZONTAL
+	float2	uv0		= input.m_TexCoord.xy + float2((u + 0) * g_fNOver2i * g_vScales.z, 0.0f);
+	float2	uv1		= input.m_TexCoord.xy + float2((u + 1) * g_fNOver2i * g_vScales.z, 0.0f);
+#else
+	float2	uv0		= input.m_TexCoord.xy + float2(0.0f, (u + 0) * g_fNOver2i * g_vScales.w);
+	float2	uv1		= input.m_TexCoord.xy + float2(0.0f, (u + 1) * g_fNOver2i * g_vScales.w);
+#endif
+
+#if !defined(PS_2_0)
+	float4	vFrequencies;
+	vFrequencies.xy = tex2Dlod(g_tFrequencies, float4(uv0, 0.0f, 0.0f)).xy;
+	vFrequencies.zw = tex2Dlod(g_tFrequencies, float4(uv1, 0.0f, 0.0f)).xy;
+#else
+	float4	vFrequencies;
+	vFrequencies.xy = tex2D(g_tFrequencies, uv0).xy;
+	vFrequencies.zw = tex2D(g_tFrequencies, uv1).xy;
+#endif
+
+	output.m_Colour.xy = vFrequencies.xy + w.y * vFrequencies.zw + w.x * vFrequencies.wz * float2(-1.0f, +1.0f); 
+
+	return output;
+}

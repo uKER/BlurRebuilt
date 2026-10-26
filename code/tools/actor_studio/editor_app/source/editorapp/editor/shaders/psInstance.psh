@@ -1,0 +1,20 @@
+#include "Common.h"
+
+sampler2D	g_DiffuseTexture		: register(s0);
+
+PS_OUTPUT main(VS_OUTPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)1;
+	OUT.Colour = IN.Colour0;
+
+#ifdef SOLID
+
+#ifdef LIT
+	OUT.Colour = OUT.Colour*IN.Colour1;
+#endif
+	OUT.Colour = OUT.Colour*tex2D(g_DiffuseTexture, IN.Texcoord0.xy);
+#endif
+
+
+	return OUT;
+}

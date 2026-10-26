@@ -1,0 +1,124 @@
+SubDir TOP Code Mercury Library Graphics RenderingData ;
+
+# enable SPU Bus error checking code
+SUBDIRSPUBERR = 1 ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+$(TOP)/Code/Mercury/Library/Graphics/fx/include
+$(TOP)/Code/Mercury/Library/Graphics/Texture_Export/include
+$(TOP)/Code/Mercury/Library/Graphics/World_Render/include
+# TODO: [Ken] Avoid inclusion of this area
+$(TOP)/code/mercury/library/gamesys/framework/include
+;
+
+Define FX_ALLOW_INCLUDE RENDERINGDATA_ALLOW_INCLUDE ;
+
+if $(USERNAME) = jdenton { Define USER_JDENTON ; }
+
+SRC =
+source/noninterface/renderlist.cpp
+source/noninterface/scene.cpp
+source/noninterface/material.cpp
+source/noninterface/materialsizes.cpp
+source/noninterface/effect.cpp
+source/noninterface/vertexbuffer.cpp
+source/noninterface/renderstates.cpp
+source/noninterface/archive.cpp
+source/noninterface/node.cpp
+source/noninterface/lods.cpp
+;
+
+CONVSRC =
+source/noninterface/build/model.cpp
+source/noninterface/build/renderlistbuild.cpp
+source/noninterface/build/primitivesorting.cpp
+source/noninterface/build/resourceblockbuild.cpp
+source/noninterface/build/scenebuild.cpp
+source/noninterface/build/scenetextures.cpp
+source/noninterface/build/build.cpp
+source/noninterface/build/archive.cpp
+source/noninterface/build/primitive.cpp
+source/noninterface/build/LodMesh.cpp
+source/noninterface/build/LodGradients.cpp
+source/noninterface/build/atg/atgstrip.cpp
+source/noninterface/build/texturepairing.cpp
+;
+
+GAMESRC =
+source/noninterface/target/render.cpp
+source/noninterface/target/context.cpp
+source/noninterface/target/reloadabletextures.cpp
+source/noninterface/target/resources.cpp
+source/noninterface/target/archive.cpp
+source/noninterface/target/streamdata.cpp
+source/noninterface/target/streamdebug.cpp
+source/noninterface/target/streamrequest.cpp
+source/noninterface/target/streammanager.cpp
+#source/noninterface/target/memcopyworker.cpp
+source/noninterface/target/renderingstatistics.cpp
+source/noninterface/target/streamingstatistics.cpp
+source/noninterface/target/material.cpp
+source/noninterface/target/memcopyworker.cpp
+source/noninterface/target/spufetch.cpp
+;
+
+SPUMEMCOPYSRC =
+	<SPU>source/noninterface/target/memcopyworker.cpp
+;
+
+AddSPUModule RenderingData : memcopyworker : $(SPUMEMCOPYSRC) ;
+
+SPUCONTEXTSRC =
+	<SPU_>source/noninterface/node.cpp
+	<SPU_>source/noninterface/material.cpp
+	<SPU_>source/noninterface/materialsizes.cpp
+	<SPU_>source/noninterface/target/context.cpp
+	<SPU_>source/noninterface/target/spufetch.cpp
+;
+
+if $(PLATFORM) = PS3
+{
+	if $(BUILD) = "Debug" || $(BUILD) = "Release"
+	{
+		SrcOptim $(SPUCONTEXTSRC) : -Os ;
+	}
+	SPULibrary renderingdata_spu : $(SPUCONTEXTSRC) ;
+}
+
+SPUSTREAMSRC =
+	<SPU>source/noninterface/target/streamrequest.cpp
+;
+
+LinkLibraries streamrequestworker : core_spu ;
+
+AddSPUModule RenderingData : streamrequestworker : $(SPUSTREAMSRC) ;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+#SrcOptim $(SRC) : Off ;
+
+if $(CFG_CONVERTER) = 1
+{
+
+	RENDERINGDATACONV_SRC = <conv>$(SRC) ;
+	RENDERINGDATACONV_SRC += <convsrc>$(CONVSRC) ;
+	Define CFG_CONVERTER=1 ;
+	Library RenderingDataConv : $(RENDERINGDATACONV_SRC) : <conv>stdafx.cpp ;
+}
+else
+{
+	RENDERINGDATA_SRC = <game>$(SRC) ;
+	RENDERINGDATA_SRC += <gamesrc>$(GAMESRC) ;
+	Library RenderingData : $(RENDERINGDATA_SRC) : <game>stdafx.cpp ;
+}
+

@@ -1,0 +1,93 @@
+SubDir TOP Code Amax Library Network ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+Define USE_SOLVER_2 ;
+
+IncludePath 
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/effect/include
+$(MERCURY)/graphics/render/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/renderingdata/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/shader/include
+$(MERCURY)/graphics/world_render/include
+$(MERCURY)/graphics/Ngl/include
+$(MERCURY)/graphics/textureresource/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/network/include
+$(MERCURY)/util/input/include
+$(MERCURY)/util/lua_shared/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/ui/include
+$(MERCURY)/gamesys/framework/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/gamesys/debugsystems/include
+$(MERCURY)/gamesys/resource_utils/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/animated_model/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/animation/include
+$(TOP)/code/vendor/lua/Lua-5.1.4/src
+$(TOP)/code/vendor/lua/Lua-Helper/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(MERCURY)/gamesys/GameView/include
+$(MERCURY)/gamesys/SpecialFX/include
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(TOP)/code/vendor/demonware/2.0/external/curl-7.19.2/include
+$(TOP)/code/vendor/demonware/2.0/external/openssl-0.9.8i/include
+$(TOP)/Code/Amax/Game
+$(TOP)/Code/Amax/Game/AI
+$(TOP)/code/Amax/Library
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" $(TOP)/libs/vendor/openal/1.1/include ;
+}
+
+SRC = 
+Message/NetMessage.cpp
+Message/NetMessageReliableInBox.cpp
+Message/NetMessageReliableOutBox.cpp
+Router/NetRouterBase.cpp
+Router/NetRouter_$(PLATFORM).cpp
+Core/NetServices.cpp
+Core/NetTimer.cpp
+Core/NetRace.cpp
+Core/NetCreationHelper.cpp
+Core/NetJoinHelper.cpp
+Core/NetParty.cpp
+Core/NetLoadingThread.cpp
+Core/NetLogger.cpp
+Core/NetSessionKeyTracker.cpp
+Core/NetMatchingParameters.cpp
+#Core/NetRichPresence.cpp
+Core/NetScoreboards.cpp
+Core/NetTeamBalancer.cpp
+Player/NetPlayer.cpp
+Player/NetPlayerManager.cpp
+Player/NetPlayerConnection.cpp
+Player/NetPlayerVoice.cpp
+Lan/NetLanDiscovery.cpp
+;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+if $(USERNAME) = dworswick || $(USERNAME) = gayoung || $(USERNAME) = wbrown
+{
+    SrcOptim $(SRC) : Off ;
+}
+
+Library amax_network : $(SRC) : StdAfx.cpp ;

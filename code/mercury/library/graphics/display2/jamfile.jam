@@ -1,0 +1,57 @@
+SubDir TOP Code Mercury Library Graphics Display2 ;
+
+# enable SPU Bus error checking code
+SUBDIRSPUBERR = 1 ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+SRC = 
+source/Display2Logger.cpp
+source/context/Context.cpp
+source/device/BaseDevice.cpp
+source/device/Device.cpp
+source/buffer/Buffer.cpp
+source/memory/Memory.cpp
+source/utils/Utils.cpp
+;
+
+# [Blur2PC][x64] The PC D3D9 device is removed; cmake/dx11.cmake adds the native D3D11 backend.
+
+
+if ( $(PLATFORM) = "PS3" )
+{
+SRC +=
+source/context/GCMContextSPU.cpp
+source/context/GCMContext.cpp
+source/device/GCMDevice.cpp
+source/memory/GCMMemory.cpp
+source/buffer/GCMBufferSPU.cpp
+source/buffer/GCMBuffer.cpp
+source/utils/GCMUtils.cpp
+source/debug/GCMDebug.cpp
+;
+
+SPUSRC =
+<spu>source/context/GCMContextSPU.cpp
+<spu>source/buffer/GCMBufferSPU.cpp
+;
+
+SrcOptim $(SPUSRC) : -Os ;
+SPULibrary display2_spu : $(SPUSRC) ;
+}
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+Library display2 : $(SRC) : StdAfx.cpp ;
+
+ExportVcproj display2 ;

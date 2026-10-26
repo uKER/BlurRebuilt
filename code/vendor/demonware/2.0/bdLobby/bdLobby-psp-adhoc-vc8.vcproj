@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="bdLobby"
+	ProjectGUID="BFC7E56B-0E09-ED8A-AA1A-B074981FAE40"
+	SccLocalPath="">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/debug"
+			IntermediateDirectory="../obj/psp-adhoc-sn/debug/bdLobby"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-g -O0"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;.."
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;_DEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="../lib/psp-adhoc-sn/release"
+			IntermediateDirectory="../obj/psp-adhoc-sn/release/bdLobby"
+			ConfigurationType="4">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalOptions="-O2"
+				AdditionalIncludeDirectories="../external/libtomcrypt/src/headers;.."
+				PreprocessorDefinitions="SN_TARGET_PSP_PRX;NDEBUG;_LIB;BD_PLATFORM_PSP_ADHOC"
+				ProgramDataBaseFileName=""
+				CompileAs="0"/>
+			<Tool
+				Name="VCCustomBuildTool"/>
+			<Tool
+				Name="VCLibrarianTool"/>
+			<Tool
+				Name="VCMIDLTool"/>
+			<Tool
+				Name="VCPostBuildEventTool"/>
+			<Tool
+				Name="VCPreBuildEventTool"/>
+			<Tool
+				Name="VCPreLinkEventTool"/>
+			<Tool
+				Name="VCResourceCompilerTool"/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"/>
+			<Tool
+				Name="VCManagedWrapperGeneratorTool"/>
+			<Tool
+				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+<File RelativePath="bdAuthTicket.cpp"></File>
+<File RelativePath="bdAuthTicket.h"></File>
+<File RelativePath="bdLobbyConnectionListener.cpp"></File>
+<File RelativePath="bdLobbyConnectionListener.h"></File>
+<File RelativePath="bdLobbyErrorCode.h"></File>
+<File RelativePath="bdLobbyErrorCodes.h"></File>
+<File RelativePath="bdLobbyEventHandler.cpp"></File>
+<File RelativePath="bdLobbyEventHandler.h"></File>
+<File RelativePath="bdLobbyService.cpp"></File>
+<File RelativePath="bdLobbyService.h"></File>
+<Filter Name = "bdContentStreaming" Filter="">
+<File RelativePath="bdContentStreaming\bdContentStreaming.cpp"></File>
+<File RelativePath="bdContentStreaming\bdContentStreaming.h"></File>
+<File RelativePath="bdContentStreaming\bdContentStreamingStatsInfo.cpp"></File>
+<File RelativePath="bdContentStreaming\bdContentStreamingStatsInfo.h"></File>
+<File RelativePath="bdContentStreaming\bdFileID.cpp"></File>
+<File RelativePath="bdContentStreaming\bdFileID.h"></File>
+<File RelativePath="bdContentStreaming\bdFileMetaData.cpp"></File>
+<File RelativePath="bdContentStreaming\bdFileMetaData.h"></File>
+<File RelativePath="bdContentStreaming\bdQuotaUsage.cpp"></File>
+<File RelativePath="bdContentStreaming\bdQuotaUsage.h"></File>
+<File RelativePath="bdContentStreaming\bdURL.cpp"></File>
+<File RelativePath="bdContentStreaming\bdURL.h"></File>
+</Filter>
+<Filter Name = "bdContentUnlock" Filter="">
+<File RelativePath="bdContentUnlock\bdContentUnlock.cpp"></File>
+<File RelativePath="bdContentUnlock\bdContentUnlock.h"></File>
+<File RelativePath="bdContentUnlock\bdUnlockContentInfo.cpp"></File>
+<File RelativePath="bdContentUnlock\bdUnlockContentInfo.h"></File>
+</Filter>
+<Filter Name = "bdCounter" Filter="">
+<File RelativePath="bdCounter\bdCounter.cpp"></File>
+<File RelativePath="bdCounter\bdCounter.h"></File>
+<File RelativePath="bdCounter\bdCounterValue.cpp"></File>
+<File RelativePath="bdCounter\bdCounterValue.h"></File>
+</Filter>
+<Filter Name = "bdFacebook" Filter="">
+<File RelativePath="bdFacebook\bdFacebook.cpp"></File>
+<File RelativePath="bdFacebook\bdFacebook.h"></File>
+</Filter>
+<Filter Name = "bdFriends" Filter="">
+<File RelativePath="bdFriends\bdFriendInfo.cpp"></File>
+<File RelativePath="bdFriends\bdFriendInfo.h"></File>
+<File RelativePath="bdFriends\bdFriendProposal.cpp"></File>
+<File RelativePath="bdFriends\bdFriendProposal.h"></File>
+<File RelativePath="bdFriends\bdFriends.cpp"></File>
+<File RelativePath="bdFriends\bdFriends.h"></File>
+<File RelativePath="bdFriends\bdGroupInfo.cpp"></File>
+<File RelativePath="bdFriends\bdGroupInfo.h"></File>
+</Filter>
+<Filter Name = "bdGroup" Filter="">
+<File RelativePath="bdGroup\bdGroup.cpp"></File>
+<File RelativePath="bdGroup\bdGroup.h"></File>
+<File RelativePath="bdGroup\bdGroupCount.cpp"></File>
+<File RelativePath="bdGroup\bdGroupCount.h"></File>
+<File RelativePath="bdGroup\bdGroupID.cpp"></File>
+<File RelativePath="bdGroup\bdGroupID.h"></File>
+</Filter>
+<Filter Name = "bdHTTPWrapper" Filter="">
+<File RelativePath="bdHTTPWrapper\bdHTTPWrapper.h"></File>
+<File RelativePath="bdHTTPWrapper\bdHTTPWrapper.inl"></File>
+</Filter>
+<Filter Name = "bdKeyArchive" Filter="">
+<File RelativePath="bdKeyArchive\bdKeyArchive.cpp"></File>
+<File RelativePath="bdKeyArchive\bdKeyArchive.h"></File>
+<File RelativePath="bdKeyArchive\bdKeyValuePair.cpp"></File>
+<File RelativePath="bdKeyArchive\bdKeyValuePair.h"></File>
+</Filter>
+<Filter Name = "bdLinkCode" Filter="">
+<File RelativePath="bdLinkCode\bdLink.cpp"></File>
+<File RelativePath="bdLinkCode\bdLink.h"></File>
+<File RelativePath="bdLinkCode\bdLinkCode.cpp"></File>
+<File RelativePath="bdLinkCode\bdLinkCode.h"></File>
+</Filter>
+<Filter Name = "bdLobbyCommon" Filter="">
+<File RelativePath="bdLobbyCommon\bdLobbyServicesCommon.h"></File>
+<File RelativePath="bdLobbyCommon\bdTaskResult.cpp"></File>
+<File RelativePath="bdLobbyCommon\bdTaskResult.h"></File>
+</Filter>
+<Filter Name = "bdLSGServices" Filter="">
+<File RelativePath="bdLSGServices\bdBandwidthTest.cpp"></File>
+<File RelativePath="bdLSGServices\bdBandwidthTest.h"></File>
+<File RelativePath="bdLSGServices\bdBandwidthTestResults.cpp"></File>
+<File RelativePath="bdLSGServices\bdBandwidthTestResults.h"></File>
+<File RelativePath="bdLSGServices\bdLSGServices.h"></File>
+</Filter>
+<Filter Name = "bdMatchMaking" Filter="">
+<File RelativePath="bdMatchMaking\bdMatchMaking.cpp"></File>
+<File RelativePath="bdMatchMaking\bdMatchMaking.h"></File>
+<File RelativePath="bdMatchMaking\bdMatchMakingInfo.cpp"></File>
+<File RelativePath="bdMatchMaking\bdMatchMakingInfo.h"></File>
+<File RelativePath="bdMatchMaking\bdPerformanceValue.cpp"></File>
+<File RelativePath="bdMatchMaking\bdPerformanceValue.h"></File>
+<File RelativePath="bdMatchMaking\bdSessionID.cpp"></File>
+<File RelativePath="bdMatchMaking\bdSessionID.h"></File>
+<File RelativePath="bdMatchMaking\bdSessionInvite.cpp"></File>
+<File RelativePath="bdMatchMaking\bdSessionInvite.h"></File>
+<File RelativePath="bdMatchMaking\bdSessionParams.cpp"></File>
+<File RelativePath="bdMatchMaking\bdSessionParams.h"></File>
+</Filter>
+<Filter Name = "bdMessaging" Filter="">
+<File RelativePath="bdMessaging\bdBlockedUser.cpp"></File>
+<File RelativePath="bdMessaging\bdBlockedUser.h"></File>
+<File RelativePath="bdMessaging\bdChannelInfo.cpp"></File>
+<File RelativePath="bdMessaging\bdChannelInfo.h"></File>
+<File RelativePath="bdMessaging\bdChannelMember.cpp"></File>
+<File RelativePath="bdMessaging\bdChannelMember.h"></File>
+<File RelativePath="bdMessaging\bdLobbyMessageType.h"></File>
+<File RelativePath="bdMessaging\bdMailBody.cpp"></File>
+<File RelativePath="bdMessaging\bdMailBody.h"></File>
+<File RelativePath="bdMessaging\bdMailHeader.cpp"></File>
+<File RelativePath="bdMessaging\bdMailHeader.h"></File>
+<File RelativePath="bdMessaging\bdMessaging.cpp"></File>
+<File RelativePath="bdMessaging\bdMessaging.h"></File>
+<File RelativePath="bdMessaging\bdNotification.cpp"></File>
+<File RelativePath="bdMessaging\bdNotification.h"></File>
+</Filter>
+<Filter Name = "bdProfiles" Filter="">
+<File RelativePath="bdProfiles\bdProfileInfo.cpp"></File>
+<File RelativePath="bdProfiles\bdProfileInfo.h"></File>
+<File RelativePath="bdProfiles\bdProfiles.cpp"></File>
+<File RelativePath="bdProfiles\bdProfiles.h"></File>
+</Filter>
+<Filter Name = "bdRemoteTaskManager" Filter="">
+<File RelativePath="bdRemoteTaskManager\bdRemoteTask.cpp"></File>
+<File RelativePath="bdRemoteTaskManager\bdRemoteTask.h"></File>
+<File RelativePath="bdRemoteTaskManager\bdRemoteTaskManager.cpp"></File>
+<File RelativePath="bdRemoteTaskManager\bdRemoteTaskManager.h"></File>
+</Filter>
+<Filter Name = "bdStats" Filter="">
+<File RelativePath="bdStats\bdArbitratedStatsInfo.cpp"></File>
+<File RelativePath="bdStats\bdArbitratedStatsInfo.h"></File>
+<File RelativePath="bdStats\bdSessionNonce.cpp"></File>
+<File RelativePath="bdStats\bdSessionNonce.h"></File>
+<File RelativePath="bdStats\bdStats.cpp"></File>
+<File RelativePath="bdStats\bdStats.h"></File>
+<File RelativePath="bdStats\bdStatsInfo.cpp"></File>
+<File RelativePath="bdStats\bdStatsInfo.h"></File>
+</Filter>
+<Filter Name = "bdStorage" Filter="">
+<File RelativePath="bdStorage\bdFileData.cpp"></File>
+<File RelativePath="bdStorage\bdFileData.h"></File>
+<File RelativePath="bdStorage\bdFileInfo.cpp"></File>
+<File RelativePath="bdStorage\bdFileInfo.h"></File>
+<File RelativePath="bdStorage\bdGetFilesResult.cpp"></File>
+<File RelativePath="bdStorage\bdGetFilesResult.h"></File>
+<File RelativePath="bdStorage\bdStorage.cpp"></File>
+<File RelativePath="bdStorage\bdStorage.h"></File>
+</Filter>
+<Filter Name = "bdTags" Filter="">
+<File RelativePath="bdTags\bdTag.cpp"></File>
+<File RelativePath="bdTags\bdTag.h"></File>
+<File RelativePath="bdTags\bdTagQueryParams.cpp"></File>
+<File RelativePath="bdTags\bdTagQueryParams.h"></File>
+<File RelativePath="bdTags\bdTags.cpp"></File>
+<File RelativePath="bdTags\bdTags.h"></File>
+<File RelativePath="bdTags\bdTagsArray.cpp"></File>
+<File RelativePath="bdTags\bdTagsArray.h"></File>
+</Filter>
+<Filter Name = "bdTeams" Filter="">
+<File RelativePath="bdTeams\bdTeamInfo.cpp"></File>
+<File RelativePath="bdTeams\bdTeamInfo.h"></File>
+<File RelativePath="bdTeams\bdTeamMember.cpp"></File>
+<File RelativePath="bdTeams\bdTeamMember.h"></File>
+<File RelativePath="bdTeams\bdTeamMemberProfile.cpp"></File>
+<File RelativePath="bdTeams\bdTeamMemberProfile.h"></File>
+<File RelativePath="bdTeams\bdTeamProfile.cpp"></File>
+<File RelativePath="bdTeams\bdTeamProfile.h"></File>
+<File RelativePath="bdTeams\bdTeamProposal.cpp"></File>
+<File RelativePath="bdTeams\bdTeamProposal.h"></File>
+<File RelativePath="bdTeams\bdTeams.cpp"></File>
+<File RelativePath="bdTeams\bdTeams.h"></File>
+</Filter>
+<Filter Name = "bdTitleUtilities" Filter="">
+<File RelativePath="bdTitleUtilities\bdTitleStats.cpp"></File>
+<File RelativePath="bdTitleUtilities\bdTitleStats.h"></File>
+<File RelativePath="bdTitleUtilities\bdTitleUtilities.cpp"></File>
+<File RelativePath="bdTitleUtilities\bdTitleUtilities.h"></File>
+<File RelativePath="bdTitleUtilities\bdVerifyString.cpp"></File>
+<File RelativePath="bdTitleUtilities\bdVerifyString.h"></File>
+</Filter>
+<Filter Name = "bdTwitter" Filter="">
+<File RelativePath="bdTwitter\bdTwitter.cpp"></File>
+<File RelativePath="bdTwitter\bdTwitter.h"></File>
+</Filter>
+<Filter Name = "bdVoteRank" Filter="">
+<File RelativePath="bdVoteRank\bdRatingInfo.cpp"></File>
+<File RelativePath="bdVoteRank\bdRatingInfo.h"></File>
+<File RelativePath="bdVoteRank\bdVoteRank.cpp"></File>
+<File RelativePath="bdVoteRank\bdVoteRank.h"></File>
+<File RelativePath="bdVoteRank\bdVoteRankStatsInfo.cpp"></File>
+<File RelativePath="bdVoteRank\bdVoteRankStatsInfo.h"></File>
+</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

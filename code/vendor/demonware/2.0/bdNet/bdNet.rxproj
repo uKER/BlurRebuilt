@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdNet</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdNet.cpp:1"><path>${project}\bdNet.cpp</path></file>
+<file file-tag="bdNet.h:1"><path>${project}\bdNet.h</path></file>
+<file file-tag="bdNetStartParams.cpp:1"><path>${project}\bdNetStartParams.cpp</path></file>
+<file file-tag="bdNetStartParams.h:1"><path>${project}\bdNetStartParams.h</path></file>
+<file file-tag="bdGetHostByName-wii.cpp:1"><path>${project}\bdGetHostByName\bdGetHostByName-wii.cpp</path></file>
+<file file-tag="bdGetHostByName.cpp:1"><path>${project}\bdGetHostByName\bdGetHostByName.cpp</path></file>
+<file file-tag="bdGetHostByName.h:1"><path>${project}\bdGetHostByName\bdGetHostByName.h</path></file>
+<file file-tag="bdGetHostByNameConfig.cpp:1"><path>${project}\bdGetHostByName\bdGetHostByNameConfig.cpp</path></file>
+<file file-tag="bdGetHostByNameConfig.h:1"><path>${project}\bdGetHostByName\bdGetHostByNameConfig.h</path></file>
+<file file-tag="bdGameInfo.cpp:1"><path>${project}\bdLANDiscovery\bdGameInfo.cpp</path></file>
+<file file-tag="bdGameInfo.h:1"><path>${project}\bdLANDiscovery\bdGameInfo.h</path></file>
+<file file-tag="bdGameInfoFactory.cpp:1"><path>${project}\bdLANDiscovery\bdGameInfoFactory.cpp</path></file>
+<file file-tag="bdGameInfoFactory.h:1"><path>${project}\bdLANDiscovery\bdGameInfoFactory.h</path></file>
+<file file-tag="bdLANDiscovery.h:1"><path>${project}\bdLANDiscovery\bdLANDiscovery.h</path></file>
+<file file-tag="bdLANDiscoveryClient.cpp:1"><path>${project}\bdLANDiscovery\bdLANDiscoveryClient.cpp</path></file>
+<file file-tag="bdLANDiscoveryClient.h:1"><path>${project}\bdLANDiscovery\bdLANDiscoveryClient.h</path></file>
+<file file-tag="bdLANDiscoveryListener.cpp:1"><path>${project}\bdLANDiscovery\bdLANDiscoveryListener.cpp</path></file>
+<file file-tag="bdLANDiscoveryListener.h:1"><path>${project}\bdLANDiscovery\bdLANDiscoveryListener.h</path></file>
+<file file-tag="bdLANDiscoveryServer.cpp:1"><path>${project}\bdLANDiscovery\bdLANDiscoveryServer.cpp</path></file>
+<file file-tag="bdLANDiscoveryServer.h:1"><path>${project}\bdLANDiscovery\bdLANDiscoveryServer.h</path></file>
+<file file-tag="bdUPnP.cpp:1"><path>${project}\bdUPnP\bdUPnP.cpp</path></file>
+<file file-tag="bdUPnP.h:1"><path>${project}\bdUPnP\bdUPnP.h</path></file>
+<file file-tag="bdUPnPCommon.h:1"><path>${project}\bdUPnP\bdUPnPCommon.h</path></file>
+<file file-tag="bdUPnPConfig.cpp:1"><path>${project}\bdUPnP\bdUPnPConfig.cpp</path></file>
+<file file-tag="bdUPnPConfig.h:1"><path>${project}\bdUPnP\bdUPnPConfig.h</path></file>
+<file file-tag="bdUPnPDevice.cpp:1"><path>${project}\bdUPnP\bdUPnPDevice.cpp</path></file>
+<file file-tag="bdUPnPDevice.h:1"><path>${project}\bdUPnP\bdUPnPDevice.h</path></file>
+<file file-tag="bdUPnPListener.cpp:1"><path>${project}\bdUPnP\bdUPnPListener.cpp</path></file>
+<file file-tag="bdUPnPListener.h:1"><path>${project}\bdUPnP\bdUPnPListener.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdNet.cpp:1</file-ref>
+<file-ref>bdNet.h:1</file-ref>
+<file-ref>bdNetStartParams.cpp:1</file-ref>
+<file-ref>bdNetStartParams.h:1</file-ref>
+<mixed-group group-tag="bdGetHostByName:1"><label>bdGetHostByName</label><group-items>
+<file-ref>bdGetHostByName-wii.cpp:1</file-ref>
+<file-ref>bdGetHostByName.cpp:1</file-ref>
+<file-ref>bdGetHostByName.h:1</file-ref>
+<file-ref>bdGetHostByNameConfig.cpp:1</file-ref>
+<file-ref>bdGetHostByNameConfig.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdLANDiscovery:1"><label>bdLANDiscovery</label><group-items>
+<file-ref>bdGameInfo.cpp:1</file-ref>
+<file-ref>bdGameInfo.h:1</file-ref>
+<file-ref>bdGameInfoFactory.cpp:1</file-ref>
+<file-ref>bdGameInfoFactory.h:1</file-ref>
+<file-ref>bdLANDiscovery.h:1</file-ref>
+<file-ref>bdLANDiscoveryClient.cpp:1</file-ref>
+<file-ref>bdLANDiscoveryClient.h:1</file-ref>
+<file-ref>bdLANDiscoveryListener.cpp:1</file-ref>
+<file-ref>bdLANDiscoveryListener.h:1</file-ref>
+<file-ref>bdLANDiscoveryServer.cpp:1</file-ref>
+<file-ref>bdLANDiscoveryServer.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdUPnP:1"><label>bdUPnP</label><group-items>
+<file-ref>bdUPnP.cpp:1</file-ref>
+<file-ref>bdUPnP.h:1</file-ref>
+<file-ref>bdUPnPCommon.h:1</file-ref>
+<file-ref>bdUPnPConfig.cpp:1</file-ref>
+<file-ref>bdUPnPConfig.h:1</file-ref>
+<file-ref>bdUPnPDevice.cpp:1</file-ref>
+<file-ref>bdUPnPDevice.h:1</file-ref>
+<file-ref>bdUPnPListener.cpp:1</file-ref>
+<file-ref>bdUPnPListener.h:1</file-ref>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

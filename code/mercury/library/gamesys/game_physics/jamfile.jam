@@ -1,0 +1,28 @@
+SubDir TOP Code Mercury Library GameSys Game_Physics ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(MERCURY)/common/btl/include
+$(MERCURY)/common/misc_shared/include
+$(MERCURY)/physics/gravity/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+Define USE_SOLVER_2 ;
+
+SRC = 
+source/BodyUserData.cpp
+source/World.cpp
+;
+
+Library game_physics : $(SRC) $($(PLATFORM)SRC) : GamePhysicsPch.cpp : GamePhysicsPch.h ;

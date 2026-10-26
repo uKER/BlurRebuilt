@@ -1,0 +1,70 @@
+SupportedTargets WIN32 ;
+
+SubDir TOP Code Mercury Applications minimal_wxwidgets ;
+
+IncludePath 
+$(SUBDIR)/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Btl/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Samples/include
+$(TOP)/Libs/Vendor/wxWidgets/2.8.6/include
+;
+
+
+if $(PLATFORM) = PC
+{
+	IncludePath
+		\"$(DXSDK_PATH)/include\"
+		$(TOP)/libs/vendor/wxwidgets/2.8.6/lib/vc_lib/mswd
+		;
+
+	CcFlags /EHsc ;
+
+	Define _CRT_SECURE_NO_WARNINGS ;
+
+	LINKLIBS += ws2_32.lib
+				dbghelp.lib
+				psapi.lib
+				comctl32.lib
+				rpcrt4.lib
+				"$(DXSDK_PATH)/Lib/x86/d3d9.lib"
+				"$(DXSDK_PATH)/Lib/x86/d3dx9.lib"
+				"$(DXSDK_PATH)/Lib/x86/dinput8.lib"
+				"$(DXSDK_PATH)/Lib/x86/dxguid.lib"
+				"$(DXSDK_PATH)/Lib/x86/dxerr.lib"
+				;
+			    
+	LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG ;
+
+}
+
+Define
+OBJ_SHADERS
+;
+
+SRC =
+minimal_wxwidgets.cpp
+$(TOP)/libs/vendor/wxwidgets/2.8.6/src/mercury/displaywnd.cpp
+;
+
+CPFile source/shaders/psConstants.cp ;
+CPFile source/shaders/vsConstants.cv ;
+
+# .rc file?
+
+LinkLibraries minimal_wxwidgets :	core system display render samples
+							wxcore wxbase wxaui ;
+		
+Application minimal_wxwidgets : $(SRC) : stdafx.cpp ;
+
+ExportVcproj minimal_wxwidgets ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;
+SubInclude TOP Code Mercury Library Samples ;
+SubInclude TOP Libs Vendor wxWidgets 2.8.6 ;

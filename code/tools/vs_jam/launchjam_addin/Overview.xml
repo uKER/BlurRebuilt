@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="../../../../Common/Overview.xsl" type="text/xsl"?>
+<VSSDKSample>
+  <ImagePath>../../../../Common</ImagePath>
+  <Status>
+    <Accessibility>true</Accessibility>
+    <ArchitectureDiagram>true</ArchitectureDiagram>
+    <Comments>true</Comments>
+    <Documentation>true</Documentation>
+    <ErrorHandling>true</ErrorHandling>
+    <FollowSDKCodingStandards>true</FollowSDKCodingStandards>
+    <Localizable>true</Localizable>
+    <Overview>true</Overview>
+    <ScenarioTests>true</ScenarioTests>
+    <Supported>true</Supported>
+    <UnitTests>true</UnitTests>
+    <Style>Reference</Style>
+  </Status>
+  <Overview>
+    <ShortName>C# Reference.MenuAndCommands</ShortName>
+    <LongName>C# MenuAndCommands Reference Sample</LongName>
+    <Phrase>Adding menu items and commands to Visual Studio using C#.</Phrase>
+  </Overview>
+  <Introduction>
+    <Summary>
+      This sample demonstrates how to create menu and command items and visualize them inside Visual
+      Studio’s menus and toolbars.
+    </Summary>
+    <Goal>Adding a menu item / command to Visual Studio and handling it</Goal>
+    <Goal>Placing commands in various places (Solution Explorer toolbar, custom toolbar, Tools menu, editor context menu)</Goal>
+    <Goal>Dynamic text in menu items</Goal>
+    <Goal>Associating a keybinding (keyboard shortcut) to a menu item</Goal>
+    <Image width="400" height="400">MenuAndCommands.jpg</Image>
+  </Introduction>
+  <SampleInfo>
+    <State>
+    </State>
+    <Type>Reference</Type>
+    <Complexity>1</Complexity>
+    <Screenshot>MenuAndCommands.jpg</Screenshot>
+    <Area>IDE</Area>
+    <Language>C#</Language>
+    <Folder>VisualStudioIntegration\Samples\IDE\CSharp\Reference.MenuAndCommands\</Folder>
+    <SampleSolution>MenuAndCommands.sln</SampleSolution>
+    <FolderUnitTest>VisualStudioIntegration\Samples\IDE\CSharp\Reference.MenuAndCommands\TDD\</FolderUnitTest>
+    <UnitTestStartup>MenuAndCommands.UnitTest.sln</UnitTestStartup>
+    <Doc>ms-help://MS.VSCC.v80/MS.VSIPCC.v80/MS.VSSDK.v80/dv_vsintegration/html/47b2374f-59c8-4d50-b4af-9015909fb648.htm</Doc>
+    <Keywords>
+      <Keyword>Menu</Keyword>
+      <Keyword>Commands</Keyword>
+      <Keyword>Shortcuts</Keyword>
+      <Keyword>Keybinding</Keyword>
+      <Keyword>Dynamic text</Keyword>
+    </Keywords>
+  </SampleInfo>
+  <GettingStarted>
+    <Paragraph>
+      The main focus of this sample is the CTC file containing the definition of these elements. The C#
+      code is minimal. The event handler functions that are called when the user executes the commands simply
+      write a message on the Output window and to the debug output. The only exceptions are the callback for
+      the menu items with dynamic properties (text or visibility). In this case, the properties will be
+      changed according to some logic.
+    </Paragraph>
+    <Paragraph>
+      This sample is organized into four main areas:
+    </Paragraph>
+    <Paragraph>
+      	1. How to create simple menu and command items.
+    </Paragraph>
+    <Paragraph>
+        2. How to place them inside other elements provided by other packages (for example, default Visual Studio menus or
+      toolbars) or by this same package.
+    </Paragraph>
+    <Paragraph>
+        3. How to modify the text or the visibility of a command at runtime.
+    </Paragraph>
+    <Paragraph>
+        4. How to associate a keyboard accelerator to a command.
+    </Paragraph>
+    <Paragraph>
+      Inside the CTC file, the command definition section defines a new toolbar, some
+      menu groups, and a few commands. This section contains all the interesting parts about areas 1 and 3.  The button subsection of the command definition section includes the usage of different visibility flags. These
+      flags allow us to tell Visual Studio that we want to programmatically change a specific set of command properties
+      when our package is loaded.
+    </Paragraph>
+    <Paragraph>
+      The second section in the CTC file, the command placement section, is of interest
+      for area 2 listed above. In this section, you can see how to place a command inside a menu group
+      or a menu group inside a menu.
+    </Paragraph>
+    <Paragraph>
+      The last section, the key binding section, allows associations between commands and
+      keyboard accelerators.
+    </Paragraph>
+  </GettingStarted>
+  <AdditionalResources>
+    <Resource>
+      <Title>Visual Studio SDK Website</Title>
+      <URL>http://msdn.microsoft.com/vstudio/extend</URL>
+    </Resource>
+  </AdditionalResources>
+  <UnitTests>
+    <Test>
+	Create an instance
+    </Test>
+    <Test>
+	Make sure the instance implements IVsPackage
+    </Test>
+    <Test>
+        Make sure SetSite completes successfully when passed an
+        IOleServiceProvider (Microsoft.VisualStudio.OLE.Interop.IServiceProvider)
+        that provides a few basic services (SProfferService, SUIHostLocale, SVsResourceManager)
+    </Test>
+    <Test>
+	Make sure DynamicTestCommand returns the right text
+    </Test>
+  </UnitTests>
+  <FunctionalTests>
+    <Test>
+	Verify sample builds in all configurations
+    </Test>
+    <Test>
+      Verify if the sample got registered
+    </Test>
+    <Test>
+      Verify that initial text of TextChanges command is 'C# Text Changes'
+    </Test>
+    <Test>
+      Verify that Sample Graph command appears on standard toolbar
+    </Test>
+    <Test>
+      Verify that clicking Sample Graph command causes proper text written to Output window
+    </Test>
+    <Test>
+      Verify that Zoom command appears on Solution Explorer toolbar
+    </Test>
+    <Test>
+      Verify that clicking Zoom command causes proper text written to Output window
+    </Test>
+    <Test>
+      Verify that 'C# Command Sample' command appears on Tools menu
+    </Test>
+    <Test>
+      Verify that clicking 'C# Command Sample' command causes proper text written to Output window
+    </Test>
+    <Test>
+      Verify that clicking Zoom command in toolbar causes proper text written to Output window
+    </Test>
+    <Test>
+      Verify that 'C# Sample Toolbar' exists
+    </Test>
+    <Test>
+      Verify that clicking 'C# Text Changes (Clicked x times)' command 5 times causes menu text to change
+    </Test>
+    <Test>
+      Verify that clicking 'C# Dynamic Visibility' command causes new command to appear (10 times)
+    </Test>
+    <Test>
+      Verify that CTRL + 1 invokes the 'C# Command Sample' command
+    </Test>
+    <Test>
+      Verify that commands are available from the standard editor context menu
+    </Test>
+    <Test>
+      Verify that commands are high-color icons which demonstrate alpha blending
+    </Test>
+  </FunctionalTests>
+  <ProjectFiles>
+    <File>
+      <Name>DynamicTextCommand.cs</Name>
+      <Description>
+        This file contains a class definition for DynamicTextCommand. This class 
+        derives from OleMenuCommand and defines the logic for setting the text of the 
+        dynamic text command.
+      </Description>
+    </File>
+    <File>
+      <Name>VsPkg.cs</Name>
+      <Description>
+        This file defines the VSPackage for this sample. Visual Studio uses this class to instantiate the package the first time a command is executed.
+      </Description>
+    </File>
+    <File>
+      <Name>CtcComponents\PkgCmd.ctc</Name>
+      <Description>
+        This file defines the actual layout and type of the commands.
+        It is divided in different sections (for example, command definition, command
+        placement, ...), with each defining a specific set of properties.
+      </Description>
+    </File>
+  </ProjectFiles>
+  <History>
+    <Change>
+      <Date>2005-07-17</Date>
+      <Description>Created this sample for the Visual Studio 2005 SDK.</Description>
+    </Change>
+  </History>
+</VSSDKSample>

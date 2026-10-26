@@ -1,0 +1,54 @@
+SubDir TOP Code amax Tools texture_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/Code/tools/attk/attk/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+$(TOP)/Code/Mercury/Library/Graphics/texture_export/include
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/TextureConverter.cpp
+source/Main.cpp
+;
+
+if $(PLATFORM) = WIN64
+{
+LINKLIBS += $(DXSDK_PATH)lib/x64/d3d9.lib $(DXSDK_PATH)lib/x64/d3dx9.lib ;
+}
+else
+{
+LINKLIBS += $(DXSDK_PATH)lib/x86/d3d9.lib $(DXSDK_PATH)lib/x86/d3dx9.lib ;
+}
+
+LinkLibraries texture_converter : core system misc_shared tools_shared display attk texture_export ;
+		
+Application texture_converter : $(SRC) : stdafx.cpp ;
+ExportVcproj texture_converter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;
+
+Depends $(TOP)/bin/tools_WIP/win32/texture_converter/texture_converter.exe : $(TOP)/bin/tools_WIP/win32/texture_converter/ ;
+MkDir $(TOP)/bin/tools_WIP/win32/texture_converter/ ;
+
+#Copy $(TOP)/bin/tools_WIP/win32/texture_converter/texture_converter.exe : texture_converter.exe ;
+
+EmbedManifest $(TOP)/bin/tools_WIP/win32/texture_converter/texture_converter.exe : texture_converter.exe ;

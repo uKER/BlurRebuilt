@@ -1,0 +1,69 @@
+SubDir TOP Code Amax Library Kanzen ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+Define USE_SOLVER_2 ;
+
+IncludePath 
+$(TOP)/code/amax/game
+$(TOP)/code/amax/game
+$(MERCURY)/common/core/include
+$(MERCURY)/common/system/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(MERCURY)/graphics/display/include
+$(MERCURY)/graphics/display2/include
+$(MERCURY)/graphics/camera2/include
+$(MERCURY)/gamesys/actor_system/include
+$(MERCURY)/common/xt2/include
+$(MERCURY)/gamesys/shared_actors/include
+$(MERCURY)/gamesys/game_context/include
+$(MERCURY)/util/resource/include
+$(MERCURY)/gamesys/game_resource/include
+$(MERCURY)/physics/racingphysics/include
+$(MERCURY)/physics/gravity/include
+$(MERCURY)/graphics/dynamic/include
+$(MERCURY)/graphics/scenegraph/include
+$(MERCURY)/graphics/vehicle/include
+$(MERCURY)/ui/include
+$(TOP)/code/vendor/zlib/current_mercury
+$(MERCURY)/util/lua_shared/include
+$(TOP)/code/vendor/lua/Lua-5.1.4/src
+$(TOP)/code/vendor/lua/Lua-Helper/include
+$(MERCURY)/gamesys/SpecialFX/include
+$(MERCURY)/network/include
+$(TOP)/Code/Vendor/demonware/2.0
+$(TOP)/code/vendor/demonware/2.0/external/libtomcrypt/src/headers
+$(MERCURY)/ai/air/include
+$(TOP)/code/Amax/Game/AI
+$(TOP)/code/Amax/Library
+$(TOP)/code/Amax/Game/GameLogic
+$(MERCURY)/Gamesys/Framework/include
+$(MERCURY)/Graphics/Render/include
+$(MERCURY)/Graphics/World_Render/include
+$(MERCURY)/util/Input/include
+$(MERCURY)/gamesys/resource_utils/include
+;
+
+if $(PLATFORM) = PC
+{
+IncludePath \"$(DXSDK_PATH)/include\" 
+$(TOP)/libs/vendor/openal/1.1/include ;
+}
+
+
+SRC = 
+Camera/HollywoodVehicleCamera.cpp
+Camera/ThirdPersonCamera.cpp
+Camera/Utility.cpp
+Util/Graph.cpp
+;
+
+SRC = [ Batch $(SRC) : StdAfx.h ] ;
+
+if $(USERNAME) = sneedham 
+{
+	SrcOptim $(SRC) : Off ;
+}
+Library amax_kanzen : $(SRC) : StdAfx.cpp ;

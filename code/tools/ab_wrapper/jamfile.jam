@@ -1,0 +1,17 @@
+SubDir TOP Code Tools ab_wrapper ;
+
+IncludePath
+$(TOP)/code/tools/ab_wrapper/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/util/tools_shared/include
+;
+
+SRC =
+./source/ab_wrapper.cpp
+;
+
+Library ab_wrapper : $(SRC) : stdafx.cpp ;
+
+ExportVcproj ab_wrapper ;

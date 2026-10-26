@@ -1,0 +1,268 @@
+﻿<Window x:Class="MemoryTracker2.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:MemoryTracker2"
+    Background="{x:Static SystemColors.ControlBrush}"
+    Foreground="{x:Static SystemColors.WindowTextBrush}"         
+    WindowStartupLocation="CenterScreen"
+    Closing="Window_Closing"
+    Icon="memchip.ico"
+        ResizeMode="CanResizeWithGrip"
+    Title="MemAnalyse v2" Height="591.606" Width="1197.502">
+    <Window.Resources>
+        <local:ContextIDToSystemConverter x:Key="contextIdConverter" />
+        <local:CallstackToFunctionConverter x:Key="callstackConverter" />
+        <local:AddressToFunctionConverter x:Key="addressConverter" />
+        <local:ValueToHexConverter x:Key="valueToHexConverter" />
+        
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding SubAllocationCount}"  Value="0" />
+                        <Condition Binding="{Binding AllocationCount}"  Value="0" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="HeaderTemplateSortAsc" >
+            <Grid Height ="12" x:Name="HeaderTemplateSortAscGrid">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width ="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column ="0"  HorizontalAlignment="Center" 
+						   VerticalAlignment ="Center"
+						   x:Name ="HeaderText" 
+						   TextTrimming="CharacterEllipsis" TextWrapping ="Wrap" 
+						   Text="{Binding}" ToolTipService.ToolTip ="{Binding}" />
+                <Path x:Name="arrow"
+				   Grid.Column ="1"
+				    Opacity ="0.7"
+				   Fill ="{Binding ElementName=HeaderText, Path= Foreground}"
+				   VerticalAlignment ="Center"
+				   StrokeThickness = "1"
+				   Data            = "M 5,10 L 15,10 L 10,5 L 5,10">
+                </Path>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplateSortDesc">
+            <Grid Height ="12">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width ="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column ="0"  HorizontalAlignment="Center"
+						   VerticalAlignment ="Center"
+						    x:Name ="HeaderText"
+						   TextTrimming="CharacterEllipsis" TextWrapping ="Wrap"
+						   Text="{Binding }" ToolTipService.ToolTip ="{Binding}"/>
+                <Path x:Name="arrow"
+					  Grid.Column ="1"
+					  VerticalAlignment ="Center"                      
+					  StrokeThickness = "1"
+					  Opacity ="0.7" 
+					   Fill ="{Binding ElementName=HeaderText, Path= Foreground}" 
+					  Data            = "M 5,5 L 10,10 L 15,5 L 5,5">
+                </Path>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderTemplateSortNon">
+            <DockPanel Height ="12">
+                <TextBlock HorizontalAlignment="Center" TextTrimming="CharacterEllipsis"
+						   VerticalAlignment ="Center"
+						   TextWrapping ="Wrap" Text="{Binding }" ToolTipService.ToolTip ="{Binding}" />
+            </DockPanel>
+        </DataTemplate>
+        
+    </Window.Resources>
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem >
+                <WrapPanel>
+                    <Ellipse Name="ConnectStatusIcon" Width="10" Height="10" Fill="Red"/>
+                    <TextBlock Name="ConnectStatusText" Margin="5,0,0,0">Connected to kit</TextBlock>
+                </WrapPanel>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <WrapPanel>
+                    <TextBlock Name="StatusLabel">Ready</TextBlock>
+                    <ProgressBar Name="StatusProgressBar" Height="10" Width="100" Value="0" Visibility="Collapsed" Margin="5,0,0,0"></ProgressBar>
+                </WrapPanel>
+            </StatusBarItem>
+            <StatusBarItem HorizontalContentAlignment="Stretch">
+                <TextBlock Name="StatusCurrentInfo" TextAlignment="Center"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="424.145*" />
+                <RowDefinition Height="100.184*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="86*" />
+                <ColumnDefinition Width="261*" />
+                <ColumnDefinition Width="114*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Column 0 -->
+            <DockPanel Grid.Column="0" Grid.Row="0" Margin="0,0,5,0">
+
+                <Expander Header="Filter" IsExpanded="True" Grid.Column="1" DockPanel.Dock="Top">
+                    <StackPanel>
+                        <ComboBox Name="MemTypeCombo" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0">
+                            <ComboBoxItem>Show All Allocations</ComboBoxItem>
+                            <ComboBoxItem>Show Virtual Allocations</ComboBoxItem>
+                            <ComboBoxItem>Show Physical Allocations</ComboBoxItem>
+                            <ComboBoxItem>Show Only SmallBlock Allocations</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Name="HeapCombo" SelectionChanged="HeapCombo_SelectionChanged" SelectedIndex="0">
+                            <ComboBoxItem>All Heaps</ComboBoxItem>
+                            <ComboBoxItem>Main Heap</ComboBoxItem>
+                        </ComboBox>
+                        <DockPanel>
+                            <CheckBox Name="ShowOnlyTag" Click="ShowPickFromCS_Click">Show Only Tag</CheckBox>
+                            <local:NumberTextBox x:Name="OnlyTag" Margin="10,0,0,0" TextChanged="OnlyTag_TextChanged">0</local:NumberTextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <CheckBox Name="ShowPickFromCS" Click="ShowPickFromCS_Click">Show Pick From CS</CheckBox>
+                            <TextBox Name="PickFromCS" Margin="10,0,0,0" IsReadOnly="True" Text="{Binding Name}" ToolTip="{Binding Name}"></TextBox>
+                        </DockPanel>
+                        <DockPanel Visibility="Collapsed">
+                            <CheckBox>Allocations Greater Than</CheckBox>
+                            <TextBox Margin="10,0,0,0"></TextBox>
+                        </DockPanel>
+                    </StackPanel>
+                </Expander>
+
+                <TreeView Name="ContextTree" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding}" >
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Path=Children}">
+                            <CheckBox IsChecked="{Binding Path=Show}" Click="CheckBox_Click" CheckBox.Content="{Binding Path=ContextTreeString}" MenuItem.Click="MenuItem_Click">
+                                <CheckBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Select Children" Command="local:MyCommands.SelectChildren" CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Clear Children" Command="local:MyCommands.ClearChildren" CommandParameter="{Binding}"/>
+                                    </ContextMenu>
+                                </CheckBox.ContextMenu>
+                            </CheckBox>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </DockPanel>
+
+            <ListBox Grid.Column="0" Grid.Row="1" Margin="0,0,5,0"></ListBox>
+
+            <!-- Column 1 -->
+            <DockPanel Grid.Column="1" Margin="0,0,5,0">
+                <DockPanel DockPanel.Dock="Top">
+                    <Label>Current Tag:</Label>
+                    <Label Name="CurrentTagLabel" Content="{Binding TagValue}"></Label>
+                </DockPanel>
+                <ListView Name="AllocListView" ItemsSource="{Binding}" SelectionMode="Extended"
+                          SelectionChanged="AllocListView_SelectionChanged"
+                          local:ListViewSorter.IsListviewSortable="True"
+                          VirtualizingStackPanel.IsVirtualizing="True"
+                          >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Size" Width="75" DisplayMemberBinding="{Binding AllocationSize}" />
+                            <GridViewColumn Header="Waste" DisplayMemberBinding="{Binding AllocationWaste}"/>
+                            <GridViewColumn Header="Tag"  DisplayMemberBinding="{Binding Tag}"/>
+                            <GridViewColumn Header="Type"  DisplayMemberBinding="{Binding Type}"/>
+                            <GridViewColumn Header="System"  DisplayMemberBinding="{Binding ContextID,Converter={StaticResource contextIdConverter}}"/>
+                            <GridViewColumn Header="Function Name" DisplayMemberBinding="{Binding TopFunctionName}"/>
+                            <GridViewColumn Header="Address" Width="75" DisplayMemberBinding="{Binding AllocAddressString}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+            <Grid Grid.Column="1" Grid.Row="1" Margin="0,10,5,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"  FlowDirection="RightToLeft">
+                    <TextBlock>Physical Memory</TextBlock>
+                    <TextBlock>Virtual Memory</TextBlock>
+                    <TextBlock>Total Memory</TextBlock>
+                    <TextBlock>Wasted Memory</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <WrapPanel><TextBlock Margin="0,0,10,0">:</TextBlock><TextBlock Name="PhysicalMemoryInfo" /></WrapPanel>
+                    <WrapPanel><TextBlock Margin="0,0,10,0">:</TextBlock><TextBlock Name="VirtualMemoryInfo" /></WrapPanel>
+                    <WrapPanel><TextBlock Margin="0,0,10,0">:</TextBlock><TextBlock Name="TotalMemoryInfo" /></WrapPanel>
+                    <WrapPanel><TextBlock Margin="0,0,10,0">:</TextBlock><TextBlock Name="WastedMemoryInfo" /></WrapPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <WrapPanel>
+                        <TextBlock>Allocation Count : </TextBlock>
+                        <TextBlock Text="{Binding ElementName=AllocListView, Path=Items.Count}" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Column 2 -->
+            <DockPanel Grid.Column="2" Grid.Row="0" DataContext="AllocListView">
+                <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch">
+                    <Label>Callstack:</Label>
+                    <Button Name="CopyToClipboard" DockPanel.Dock="Right" Click="CopyToClipboard_Click">Copy To Clipboard</Button>
+                    <Label DockPanel.Dock="Right"></Label>
+                </DockPanel>
+                <Grid DockPanel.Dock="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                        <Label Width="52">Symbol:</Label>
+                        <TextBox Text="{Binding ElementName=CallstackList, Path=SelectedItem.Name}" IsReadOnly="True"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Label Width="52">File:</Label>
+                        <TextBox Text="{Binding ElementName=CallstackList, Path=SelectedItem.Filename}" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Column="0" Grid.Row="2">
+                        <Label Width="52">Line:</Label>
+                        <TextBox Text="{Binding ElementName=CallstackList, Path=SelectedItem.Line}" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Grid.Row="2">
+                        <Label Width="54">Address:</Label>
+                        <TextBox Text="{Binding ElementName=CallstackList, Path=SelectedItem.Address, Converter={StaticResource valueToHexConverter}}" IsReadOnly="True"></TextBox>
+                    </DockPanel>
+                </Grid>
+                <ListBox Name="CallstackList" ListBoxItem.MouseDoubleClick="CallstackList_MouseDoubleClick"
+                         ItemsSource="{Binding ElementName=AllocListView, Path=SelectedItem.CallStackNRI}"
+                         IsSynchronizedWithCurrentItem="True" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+
+            <Grid Grid.Column="2" Grid.Row="1">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Click="GetAllocations_Click">Get Allocations</Button>
+                    <Button>Get Leak Info</Button>
+                    <Button Click="IncrementTag_Click">Increment Tag</Button>
+                    <Button Click="Button_Click">Load From File...</Button>
+
+                </StackPanel>
+            </Grid>
+
+            <GridSplitter Grid.Column="0" Grid.RowSpan="2" Width="5"/>
+            <GridSplitter Grid.Column="1" Grid.RowSpan="2" Width="5"/>
+        </Grid>
+    </DockPanel>
+</Window>

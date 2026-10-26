@@ -1,0 +1,34 @@
+SubDir TOP Code Mercury Library GameSys GameView ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/Render/Include
+$(TOP)/code/mercury/library/GameSys/GameView/Include
+$(TOP)/code/mercury/library/graphics/fx/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/CubeMapView.cpp
+./source/OffscreenView.cpp
+./source/ReflectionView.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library gameview : $(SRC) $($(PLATFORM)SRC) : GameViewPch.cpp : GameViewPch.h ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;

@@ -1,0 +1,72 @@
+#include "..\psCommon.h"
+#include "psUiLightCommon.h"
+
+sampler2D	g_Texture0			: register(s0); // font texture
+#ifdef _TEX_
+sampler2D	g_Texture1			: register(s1); // mult 1
+#endif
+#ifdef _TEX2_ADDITIVE_
+sampler2D	g_Texture2			: register(s2); // add
+#endif
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+	float4 MyWorldPosition		: TEXCOORD3;
+	float2 TexCoord0			: TEXCOORD0;
+#ifdef _TEX_
+	float2 TexCoord1			: TEXCOORD1;
+#endif
+#ifdef _TEX2_ADDITIVE_
+	float2 TexCoord2			: TEXCOORD2;
+#endif
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 ); // RGBA planes
+#ifdef _TEX_
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 ); // Multiply texture
+#endif
+#ifdef _TEX2_ADDITIVE_
+	float4 tex2 = tex2D( g_Texture2, IN.TexCoord2 ); // Additive texture
+#endif
+	
+	float4	tmp;
+	
+	tmp.rgb = 1.0f;
+	tmp.a	= (tex0.r + tex0.g + tex0.b) / 3;
+	
+#ifdef _INVERT_
+	tmp.a = 1.0f - tmp.a;
+#endif
+	
+#ifdef _TEX_
+#ifdef _NO_ALPHA_
+	tex1.a = 1.0f;
+#endif // _NO_ALPHA_
+	OUT.Colour = tmp * tex1 * IN.Colour;
+#else // _TEX_
+	OUT.Colour = tmp * IN.Colour;
+#endif // _TEX_
+
+#ifdef _TEX2_ADDITIVE_
+	OUT.Colour.rgb += tex2.rgb;
+#endif
+
+	OUT.Colour = CombineFog( OUT.Colour, LightColour( IN.MyWorldPosition ) );
+
+#ifdef _NOT_ONE_
+	if ( OUT.Colour.a >= IN.Colour.a )
+		OUT.Colour.a = 0.0f;
+#endif
+	
+	return OUT;
+}

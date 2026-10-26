@@ -1,0 +1,438 @@
+xt
+	field __id "C6F00213"
+	field __name "Events.Fire"
+	field __pack "2E661B2B"
+	field __type "Particle_Event"
+	block duration
+		field value "8"
+		field variation "0"
+	end
+	array emitters
+		block 
+			block Rotation
+				block x
+					field value "0"
+					field variation "180"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+					field value "0"
+					field variation "45"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+			end
+			block colour1
+				field a "1.000"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			block colour2
+				field a "1.000"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			field distribution "Sphere"
+			block distributionSize
+				field x "1.5"
+				field z "1.5"
+			end
+			field effect "EA7BF38E"
+			field emit "PerSecond"
+			block force
+			end
+			block life
+				field value "0.75"
+				field variation "0.25"
+			end
+			field repeating "1"
+			block size
+				field value "0.4"
+				field variation "0.2"
+			end
+			field space "Local"
+			array spawn
+				block 
+					block amount
+						field disable "0"
+						field value "600"
+					end
+					block cone
+					end
+					block direction
+					end
+					block duration
+					end
+					block position
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "2"
+				field variation "0.5"
+			end
+			block speedInherited
+			end
+		end
+		block 
+			block Rotation
+				block x
+					field value "0"
+					field variation "360"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+					field value "0"
+					field variation "60"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+				field a "0.107"
+				field b "0.630"
+				field g "0.630"
+				field r "0.633"
+			end
+			block colour1
+				field a "1.000"
+				field b "0.483"
+				field g "0.503"
+				field r "0.503"
+			end
+			block colour2
+				field a "1.000"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			field colourMode "SingleColour"
+			field distribution "Sphere"
+			block distributionSize
+				field x "2"
+				field y "0"
+				field z "2"
+			end
+			field effect "6D540D5C"
+			field emit "PerSecond"
+			block force
+				field value "0.05"
+				field variation "0.04"
+			end
+			block life
+				field value "5"
+				field variation "1"
+			end
+			field repeating "1"
+			block size
+				field value "1.2"
+				field variation "0.25"
+			end
+			field space "World"
+			array spawn
+				block 
+					block amount
+						field disable "0"
+						field value "15"
+					end
+					block cone
+						field outer "25"
+					end
+					block direction
+					end
+					block duration
+					end
+					block position
+						field y ".75"
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "2"
+				field variation "0.35"
+			end
+			block speedInherited
+			end
+			field type "Normal"
+		end
+		block 
+			block Rotation
+				block x
+					field variation "180"
+				end
+				block y
+					field variation "180"
+				end
+				block z
+					field variation "180"
+				end
+			end
+			block Spin
+				block x
+					field variation "30"
+				end
+				block y
+					field variation "30"
+				end
+				block z
+					field variation "30"
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+			end
+			block colour1
+			end
+			block colour2
+			end
+			block distributionSize
+			end
+			field effect "1B6730B4"
+			block force
+			end
+			block life
+				field value "2"
+				field variation ".25"
+			end
+			field repeating "1"
+			block size
+				field value ".25"
+			end
+			field space "World"
+			array spawn
+				block 
+					block amount
+						field disable "0"
+						field value "10"
+						field variation "0"
+					end
+					block cone
+						field inner "90"
+						field outer "15"
+					end
+					block direction
+						field x "0"
+						field y "5"
+						field z "0"
+					end
+					block duration
+						field value "1"
+					end
+					block position
+						field x "0"
+						field y "0"
+					end
+					block rotation
+						field x "1"
+						field y "1"
+					end
+				end
+			end
+			block speed
+				field value "10"
+				field variation "2"
+			end
+			block speedInherited
+			end
+			field type "Normal"
+		end
+		block 
+			block Rotation
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+				field a "1.000"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			block colour1
+				field a "1.000"
+				field b "1.000"
+				field g "1.000"
+				field r "1.000"
+			end
+			block colour2
+				field a "1.000"
+				field b "0.000"
+				field g "0.000"
+				field r "0.000"
+			end
+			field colourMode "SingleColour"
+			field distribution "Sphere"
+			block distributionSize
+				field x "1"
+				field z "1"
+			end
+			field effect "EB42F1F1"
+			block force
+			end
+			block life
+				field value ".75"
+				field variation ".1"
+			end
+			field repeating "1"
+			block size
+				field value ".1"
+			end
+			field space "World"
+			array spawn
+				block 
+					block amount
+						field disable "0"
+						field value "300"
+						field variation "10"
+					end
+					block cone
+						field outer "100"
+					end
+					block direction
+						field x "0"
+						field y "1"
+					end
+					block duration
+						field value "0"
+						field variation "0"
+					end
+					block position
+					end
+					field time "0"
+				end
+			end
+			block speed
+				field value "5"
+				field variation "1"
+			end
+			block speedInherited
+			end
+			field type "Normal"
+		end
+		block 
+			block Rotation
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block boundingBox
+				block max
+				end
+				block min
+				end
+			end
+			block colour
+				field a "0.1"
+				field b "0.597"
+				field g "0.793"
+				field r "1.000"
+			end
+			block colour2
+			end
+			block distributionSize
+			end
+			field effect "DE96FAEE"
+			block force
+			end
+			block life
+				field value "3"
+			end
+			field repeating "1"
+			block size
+				field value "3.5"
+			end
+			array spawn
+				block 
+					block amount
+						field disable "0"
+						field value "1"
+					end
+					block cone
+					end
+					block direction
+					end
+					block duration
+					end
+					block position
+						field y ".8"
+					end
+				end
+			end
+			block speed
+				field value "0"
+			end
+			block speedInherited
+			end
+			field type "Persistent"
+		end
+	end
+	field name "bullettest"
+	field repeating "1"
+end

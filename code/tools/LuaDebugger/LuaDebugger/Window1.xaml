@@ -1,0 +1,112 @@
+﻿<Window x:Class="LuaDebugger.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:l='clr-namespace:LuaDebugger' 
+    Title="Window1" Height="568" Width="895">
+    <Window.Resources>
+        
+        <ContextMenu x:Key="ProjectContextMenu" MenuItem.Click="ProjectContextMenu_Click">Set Code Path</ContextMenu>
+
+        <HierarchicalDataTemplate x:Key="NodeType" ItemsSource="{Binding Path=Children}">
+            <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+        </HierarchicalDataTemplate>
+
+        <HierarchicalDataTemplate x:Key="RootType" ItemsSource="{Binding Path=Children}" ItemTemplate="{StaticResource NodeType}" >
+            <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Path}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" ContextMenu="{StaticResource ProjectContextMenu}"/>
+        </HierarchicalDataTemplate>
+
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Name="OpenProject" Header="Open File" Click="OpenProject_Click"/>
+                <MenuItem Name="SaveProject" Header="Save File" Click="SaveProject_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <DockPanel>
+                <ToolBarTray DockPanel.Dock="Top">
+                    <ToolBar>
+                        <Button Click="Button_Connect">
+                            Connect
+                        </Button>
+                        <Button Name="Continue" Click="Continue_Click" ToolTip="Continue">
+                            <Image Source="Images\Continue.png" />
+                        </Button>
+                        <Button Name="BreakAll" ToolTip="Break All" Click="BreakAll_Click">
+                            <Image Source="Images\BreakAll.png" />
+                        </Button>
+                        <Button Name="StepInto" ToolTip="Step Into" Click="StepInto_Click">
+                            <Image Source="Images\StepInto.png" />
+                        </Button>
+                        <Button Name="StepOver" Click="StepOver_Click" ToolTip="Step Over">
+                            <Image Source="Images\StepOver.png" />
+                        </Button>
+                        <Button Name="StepOut" Click="StepOut_Click" ToolTip="Step Out">
+                            <Image Source="Images\StepOut.png" />
+                        </Button>
+                        <Button>Toggle Breakpoint</Button>
+                    </ToolBar>
+                </ToolBarTray>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="300*"/>
+                        <RowDefinition Height="100*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*" />
+                        <ColumnDefinition Width="500*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="300*"/>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+                        <TreeView Name="FileTree" Grid.Row="0" ItemsSource="{Binding}" ItemTemplate="{StaticResource RootType}" />
+                        <DockPanel Grid.Row="1">
+                            <TextBlock DockPanel.Dock="Top" Text="Outliner" Background="DarkBlue" Foreground="White"/>
+                            <ToolBarPanel >
+                                <ListView Name="Outliner"></ListView>
+                            </ToolBarPanel>
+                        </DockPanel>
+                        <GridSplitter Grid.Row="0" Grid.ColumnSpan="2" ResizeDirection="Rows" Height="6" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+                    </Grid>
+                    <TabControl Name="FileTab" Grid.Column="1" Grid.Row="0" Margin="0,0,0,6">
+                    </TabControl>
+                    <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel DockPanel.Dock="Bottom" Grid.Column="0" Grid.Row="1" Margin="0,0,6,0">
+                            <TextBlock DockPanel.Dock="Top" Background="DarkBlue" Foreground="White">Locals</TextBlock>
+                            <l:UserTreeListView x:Name="Locals" Width="Auto" Height="Auto" />
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" Grid.Column="1" Grid.Row="1">
+                            <TextBlock DockPanel.Dock="Top" Background="DarkBlue" Foreground="White">Callstack</TextBlock>
+                            <ListView Name="Callstack" ItemsSource="{Binding}" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Function" Width="100" DisplayMemberBinding="{Binding Function}" />
+                                        <GridViewColumn Header="File" Width="200" DisplayMemberBinding="{Binding Filename}"/>
+                                        <GridViewColumn Header="Line"  DisplayMemberBinding="{Binding Line}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                        <DockPanel DockPanel.Dock="Bottom" Grid.Column="2" Grid.Row="1">
+                            <TextBlock DockPanel.Dock="Top" Background="DarkBlue" Foreground="White">Breakpoints</TextBlock>
+                            <ListBox Name="Breakpoints">
+                            </ListBox>
+                        </DockPanel>
+                        <GridSplitter Grid.Column="0" ResizeDirection="Columns" Width="6" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                        <GridSplitter Grid.Column="1" ResizeDirection="Columns" Width="6" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <GridSplitter Grid.Row="0" Grid.ColumnSpan="2" ResizeDirection="Rows" Height="6" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"/>
+                    <GridSplitter Grid.Column="0" Grid.Row="0"  ResizeDirection="Columns" Width="6" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                </Grid>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+</Window>

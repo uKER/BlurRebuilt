@@ -1,0 +1,40 @@
+#include "..\psCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR;
+	float2 TexCoord0			: TEXCOORD0;
+	float2 TexCoord1			: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+float3 GetSurfaceTangentNormal( sampler2D mySampler, const in float2 surfaceTexCoord )
+{
+	float3 tangentNormal = tex2D(mySampler, surfaceTexCoord).xyz * 2.0f - 1.0f;
+	tangentNormal.x *=  1.0f;
+	tangentNormal.y *= -1.0f;
+	tangentNormal = normalize(tangentNormal);
+	return tangentNormal;
+}
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float3 tangentNormal0 = GetSurfaceTangentNormal( g_Texture1, IN.TexCoord1 );
+
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 - (tangentNormal0.xy/128.0f*16) );
+	
+	float4 albedoColour = tex0 * IN.Colour;
+
+	OUT.Colour = albedoColour;
+	
+	return OUT;
+}

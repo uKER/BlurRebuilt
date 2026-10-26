@@ -1,0 +1,120 @@
+xt
+	field __id "52BB27D7"
+	field __name "Events.ImpactBrick"
+	field __pack "2E661B2B"
+	field __type "Particle_Event"
+	array emitters
+		block 
+			block Rotation
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block colour
+			end
+			block distributionSize
+			end
+			field effect "EB42F1F1"
+			block life
+				field value "1"
+			end
+			block size
+				field value "0.019"
+				field variation "0.005"
+			end
+			array spawn
+				block 
+					block amount
+						field value "1"
+					end
+					block cone
+						field outer "120"
+					end
+					block duration
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "4"
+				field variation "1"
+			end
+			block speedInherited
+			end
+			field type "Burst"
+		end
+		block 
+			block Rotation
+				block x
+					field value "0"
+					field variation "360"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block Spin
+				block x
+					field value "0"
+					field variation "56"
+				end
+				block y
+				end
+				block z
+				end
+			end
+			block colour
+				field a "0.537"
+				field b "0.163"
+				field g "0.270"
+				field r "0.307"
+			end
+			block distributionSize
+			end
+			field effect "1B6730B4"
+			block life
+				field value "2"
+			end
+			block size
+				field value "0.05"
+				field variation "0.02"
+			end
+			array spawn
+				block 
+					block amount
+						field value "4"
+						field variation "1"
+					end
+					block cone
+						field outer "120"
+					end
+					block duration
+					end
+					block rotation
+					end
+				end
+			end
+			block speed
+				field value "2"
+				field variation "2"
+			end
+			block speedInherited
+			end
+			field type "Burst"
+		end
+	end
+	field name "bullettest45"
+end

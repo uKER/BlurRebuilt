@@ -1,0 +1,385 @@
+SubDir TOP Code Mercury Library Graphics Render ;
+
+IncludePath
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/btl/include
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Common/Xt2/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Display2/include
+$(TOP)/Code/Mercury/Library/Graphics/Fx/include
+$(TOP)/Code/Mercury/Library/Graphics/Render/include
+$(TOP)/Code/Mercury/Library/Common/misc_shared/include
+;
+
+if $(PLATFORM) = PC
+{
+	IncludePath \"$(DXSDK_PATH)/include\" ;
+}
+
+Define OBJ_SHADERS ;
+
+SRC = source/debug/DebugRender.cpp
+[ Batch
+source/debug/DebugRendered.cpp
+source/debug/DeferredDebugRender.cpp
+source/debug/ImmediateDebugRender.cpp
+source/debug/PrimitiveDebugRender.cpp
+source/debug/Charts/BarChartInterface.cpp
+source/debug/Charts/Chart1DInterface.cpp
+source/debug/Charts/ChartDefault1DInterface.cpp
+source/debug/Charts/ChartHistory1DInterface.cpp
+source/debug/Charts/ChartInterface.cpp
+source/debug/Charts/ChartRenderer.cpp
+source/debug/Charts/ClusteredBarChart.cpp
+source/debug/Charts/LineChart.cpp
+source/debug/Charts/StackedBarChart.cpp
+source/debug/Charts/StackedBarChartHistory.cpp
+source/deferred/DropShadows.cpp
+source/deferred/DynamicLights.cpp
+source/effects/perlin/Perlin.cpp
+source/effects/ocean/Ocean.cpp
+source/font/Font.cpp
+source/geometry/InfiniteGrid.cpp
+source/geometry/InfinitePlane.cpp
+source/light/Light.cpp
+source/mesh/Mesh.cpp
+source/mesh/MeshBuilder.cpp
+source/mesh/MeshLoader.cpp
+source/mesh/MeshSaver.cpp
+source/mesh/MeshShaders.cpp
+source/occlusion/Occlusion.cpp
+source/occlusion/OcclusionTests.cpp
+source/occlusion/Query.cpp
+source/photo/AccumulateStrip.cpp
+source/postprocess/Interface.cpp
+source/postprocess/Manager.cpp
+source/postprocess/bloom/Bloom.cpp
+source/postprocess/bloom/BloomFeedback.cpp
+source/postprocess/bloom/BloomFeedbackGhost.cpp
+source/postprocess/bloom/BloomGhost.cpp
+source/postprocess/bloom/BloomInterface.cpp
+source/postprocess/bloom/BloomSun.cpp
+source/postprocess/blur/Box.cpp
+source/postprocess/blur/Gaussian.cpp
+source/postprocess/blur/Motion.cpp
+source/postprocess/colour/Greyscale.cpp
+source/postprocess/colour/LookupTable.cpp
+source/postprocess/colour/Sepia.cpp
+source/postprocess/colour/Task.cpp
+source/postprocess/colour/Tint.cpp
+source/postprocess/hdr/HDR.cpp
+source/postprocess/hdr/HDRInterface.cpp
+source/postprocess/misc/EdgeAntiAliasing.cpp
+source/postprocess/misc/ShowDepth.cpp
+source/postprocess/misc/Static.cpp
+source/postprocess/misc/SunRays.cpp
+source/postprocess/scale/GaussianScale.cpp
+source/primitive/PrimitiveRender.cpp
+source/reducedrender/Manager.cpp
+source/reducedrender/MSAA.cpp
+source/render/CubeTextureRender.cpp
+source/render/CubeTextureSaver.cpp
+source/render/DepthRender.cpp
+source/render/GridRender.cpp
+source/render/NewMathsRender.cpp
+source/render/RenderSettings.cpp
+source/render/TextureRender.cpp
+source/shadow/ShadowMap.cpp
+source/shadow/ShadowMapStandard.cpp
+source/shadow/ShadowMapVariance.cpp
+source/sky/SkyDome.cpp
+source/state/Fog.cpp
+source/state/RenderState.cpp
+source/stats/StatsGame.cpp
+source/stats/StatsPerf.cpp
+source/texture/BoxBlur.cpp
+source/texture/Depth.cpp
+source/texture/Downsample.cpp
+source/texture/GaussianBlur.cpp
+source/texture/RenderUtils.cpp
+source/texture/TextureUtils.cpp
+source/utils/Curve.cpp
+source/utils/DebugLog.cpp
+source/utils/Globals.cpp
+source/utils/Helper.cpp
+source/view/View.cpp
+source/view/ViewManager.cpp
+source/view/ViewRender.cpp
+: StdAfx.h ]
+source/postprocess/PostProcessEnvSettings.cpp
+;
+
+SRC = [ AutoGrist $(SRC) ] ;
+
+SPUSRC =
+$(TOP)/Code/mercury/library/common/core/source/maths/hvec/Trigonometry.cpp
+source/postprocess/colour/Task.cpp
+;
+
+AddSPUModule render : ColourLookupTableModule : $(SPUSRC) ;
+
+SHADERSRC =
+include/render/shaders/debug/vsDebug2D.vsh
+include/render/shaders/debug/psDebug.psh
+include/render/shaders/deferred/vsDropShadows.vsh
+include/render/shaders/deferred/vsDynamicLights.vsh
+include/render/shaders/deferred/vsDynamicVolumeSpotlight.vsh
+include/render/shaders/deferred/vsProjectBlobShadows.vsh
+include/render/shaders/deferred/vsScreenBlobShadows.vsh
+include/render/shaders/deferred/vsCollisionMeshBlobShadows.vsh
+include/render/shaders/font/vsFont.vsh
+include/render/shaders/font/psFont.psh
+include/render/shaders/photo/psPhoto.psh
+include/render/shaders/postprocess/blur/psMotionBlur.psh
+include/render/shaders/postprocess/colour/psGreyscale.psh
+include/render/shaders/postprocess/colour/psLookupTable.psh
+include/render/shaders/postprocess/colour/psSepia.psh
+include/render/shaders/postprocess/colour/psTint.psh
+include/render/shaders/postprocess/hdr/psDepthCentreTap.psh
+include/render/shaders/postprocess/hdr/psHDRU32.psh
+include/render/shaders/postprocess/hdr/psLuminanceAdapted.psh
+include/render/shaders/postprocess/hdr/psLuminanceClear.psh
+include/render/shaders/postprocess/hdr/psLuminanceFinal.psh
+include/render/shaders/postprocess/hdr/psLuminanceResolve.psh
+include/render/shaders/postprocess/hdr/psLuminanceWeightDisplay.psh
+include/render/shaders/postprocess/misc/psShowDepth.psh
+include/render/shaders/postprocess/misc/psStatic.psh
+include/render/shaders/reducedrender/psComposite.psh
+include/render/shaders/reducedrender/psDownsampleDepth4.psh
+include/render/shaders/reducedrender/psDownsampleDepth16.psh
+include/render/shaders/render/psDepthRender.psh
+include/render/shaders/render/vsDepthRender.vsh
+include/render/shaders/shadow/psShadowMapStandardDepth.psh
+include/render/shaders/shadow/psShadowMapVarianceDepth.psh
+include/render/shaders/shadow/vsShadowMapStandardDepth.vsh
+include/render/shaders/shadow/vsShadowMapVarianceDepth.vsh
+include/render/shaders/sky/vsSkyDome.vsh
+include/render/shaders/texture/psGradientToNormal.psh
+include/render/shaders/texture/psNormalMap.psh
+include/render/shaders/texture/psTexture2DColour.psh
+include/render/shaders/texture/psTexture3DColour.psh
+include/render/shaders/texture/psTextureCubeColour.psh
+include/render/shaders/texture/psTexture2DDepth.psh
+include/render/shaders/texture/psWorldNormal.psh
+include/render/shaders/primitive/vsPrimitive2D.vsh
+include/render/shaders/primitive/psPrimitive.psh
+include/render/shaders/primitive/vsPrimitiveTex2D.vsh
+include/render/shaders/primitive/psPrimitiveTex.psh
+;
+
+if $(PLATFORM) != PS3
+{
+SHADERSRC += [ Shader include/render/shaders/effects/perlin/psPerlin.psh :
+						"-DSAMPLES_1"
+						"<2>-DSAMPLES_2"
+						"<4>-DSAMPLES_4" ] ;
+SHADERSRC += [ Shader include/render/shaders/effects/perlin/vsPerlin.vsh ] ;
+}
+
+SHADERSRC += [ Shaders include/render/shaders/texture/psBoxBlur.psh
+						include/render/shaders/texture/psGaussBlur.psh :
+						"<5>-DTAPS_5"
+						"<7>-DTAPS_7"
+						"<9>-DTAPS_9"
+						"<11>-DTAPS_11"
+						"<13>-DTAPS_13" ] ;
+SHADERSRC += [ Shaders include/render/shaders/texture/psBilinearBoxBlur.psh
+						include/render/shaders/texture/psSimpleBoxBlur.psh
+						include/render/shaders/texture/psBilinearGaussBlur.psh
+						include/render/shaders/texture/psSimpleGaussBlur.psh :
+						"<X5>-DHORIZONTAL -DTAPS_5"
+						"<Y5>-DVERTICAL -DTAPS_5"
+						"<X7>-DHORIZONTAL -DTAPS_7"
+						"<Y7>-DVERTICAL -DTAPS_7"
+						"<X9>-DHORIZONTAL -DTAPS_9"
+						"<Y9>-DVERTICAL -DTAPS_9"
+						"<X11>-DHORIZONTAL -DTAPS_11"
+						"<Y11>-DVERTICAL -DTAPS_11"
+						"<X13>-DHORIZONTAL -DTAPS_13"
+						"<Y13>-DVERTICAL -DTAPS_13" ] ;
+SHADERSRC += [ Shaders include/render/shaders/texture/psDownsample.psh :
+						"<1Tap>-DTAPS_1"
+						"<4Tap>-DTAPS_4"
+						"<16Tap>-DTAPS_16" ] ;
+SHADERSRC += [ Shader include/render/shaders/debug/vsDebug3D.vsh :
+						" "
+						"<Lit>-DLIT" ] ;
+SHADERSRC += [ Shader include/render/shaders/deferred/psDropShadows.psh :
+						"<1>-DONE"
+						"<2>-DTWO"
+						"<3>-DTHREE"
+						"<4>-DFOUR"
+						"<5>-DFIVE"
+						"<6>-DSIX"
+						"<7>-DSEVEN"
+						"<8>-DEIGHT"
+						"<1HDR>-DONE -DHDR"
+						"<2HDR>-DTWO -DHDR"
+						"<3HDR>-DTHREE -DHDR"
+						"<4HDR>-DFOUR -DHDR"
+						"<5HDR>-DFIVE -DHDR"
+						"<6HDR>-DSIX -DHDR"
+						"<7HDR>-DSEVEN -DHDR"
+						"<8HDR>-DEIGHT -DHDR" ] ;
+SHADERSRC += [ Shader include/render/shaders/deferred/psDynamicLights.psh :
+						"<1>-DONE"
+						"<2>-DTWO"
+						"<3>-DTHREE"
+						"<4>-DFOUR"
+						"<5>-DFIVE"
+						"<6>-DSIX"
+						"<7>-DSEVEN"
+						"<8>-DEIGHT"
+						"<1HDR>-DONE -DHDR"
+						"<2HDR>-DTWO -DHDR"
+						"<3HDR>-DTHREE -DHDR"
+						"<4HDR>-DFOUR -DHDR"
+						"<5HDR>-DFIVE -DHDR"
+						"<6HDR>-DSIX -DHDR"
+						"<7HDR>-DSEVEN -DHDR"
+						"<8HDR>-DEIGHT -DHDR"
+						"<1HDRU32>-DONE -DHDRU32"
+						"<2HDRU32>-DTWO -DHDRU32"
+						"<3HDRU32>-DTHREE -DHDRU32"
+						"<4HDRU32>-DFOUR -DHDRU32"
+						"<5HDRU32>-DFIVE -DHDRU32"
+						"<6HDRU32>-DSIX -DHDRU32"
+						"<7HDRU32>-DSEVEN -DHDRU32"
+						"<8HDRU32>-DEIGHT -DHDRU32" ] ;
+SHADERSRC += [ Shader include/render/shaders/deferred/psDynamicVolumeSpotlight.psh :
+						"<>"
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shader include/render/shaders/primitive/vsPrimitive3D.vsh :
+						" "
+						"<Lit>-DLIT" ] ;
+SHADERSRC += [ Shader include/render/shaders/sky/psSkyDome.psh :
+						" "
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shader include/render/shaders/effects/ocean/psOcean.psh :
+						"<Old>"
+						"<OldHDR>-DHDR"
+						"<OldHDRU32>-DHDRU32" ] ;
+SHADERSRC += [ Shader include/render/shaders/effects/ocean/vsOcean.vsh : "<Old>" ] ;
+SHADERSRC += [ Shaders include/render/shaders/mesh/vsMesh.vsh
+						include/render/shaders/mesh/psMesh.psh :
+						"<0>-DDUMMY"
+						"<1>-DUSE_ALBEDO"
+						"<2>-DUSE_ALBEDO -DUSE_DETAIL"
+						"<3>-DUSE_STANDARDSHADOWMAP"
+						"<4>-DUSE_VARIANCESHADOWMAP" ] ;
+SHADERSRC += [ Shader include/render/shaders/postprocess/misc/psEdgeAntiAliasing.psh :
+						"<Depth>"
+						"<DepthNormal>" ] ;
+SHADERSRC += [ Shaders include/render/shaders/postprocess/generic/psWeightedFilter4.psh
+						include/render/shaders/postprocess/generic/psWeightedFilter5.psh
+						include/render/shaders/postprocess/generic/psWeightedFilter8.psh
+						include/render/shaders/postprocess/generic/psWeightedFilter9.psh
+						include/render/shaders/postprocess/generic/psWeightedFilter13.psh
+						include/render/shaders/postprocess/generic/psWeightedFilter15.psh
+						include/render/shaders/postprocess/generic/psWeightedFilter16.psh
+						include/render/shaders/postprocess/misc/psSunRays.psh
+						include/render/shaders/postprocess/hdr/psBloomCombine.psh
+						include/render/shaders/postprocess/hdr/psBloomCombineSun.psh
+						include/render/shaders/postprocess/hdr/psBloomCombineFeedback.psh
+						include/render/shaders/postprocess/hdr/psBloomDisplay.psh
+						include/render/shaders/postprocess/hdr/psBloomGhost.psh :
+						"<>"
+						"<Gamma>-DGAMMA" ] ;
+SHADERSRC += [ Shader include/render/shaders/postprocess/hdr/psToneMap.psh :
+						"<>"
+						"<Gamma>-DGAMMA"
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32" ] ;			
+SHADERSRC += [ Shader include/render/shaders/postprocess/hdr/psBrightPass.psh :
+						"<>"
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32"
+						"<Gamma>-DGAMMA"
+						"<GammaHDR>-DHDR -DGAMMA"
+						"<GammaHDRU32>-DHDRU32 -DGAMMA"
+						"<Lookup> -DLOOKUP"
+						"<LookupHDR>-DHDR -DLOOKUP"
+						"<LookupHDRU32>-DHDRU32 -DLOOKUP"
+						"<LookupGamma>-DGAMMA -DLOOKUP"
+						"<LookupGammaHDR>-DHDR -DGAMMA -DLOOKUP"
+						"<LookupGammaHDRU32>-DHDRU32 -DGAMMA -DLOOKUP"
+						"<ReducedAlphaLookupGamma>-DREDUCED_ALPHA -DGAMMA -DLOOKUP"
+						"<ReducedAlphaLookupGammaHDR>-DREDUCED_ALPHA -DHDR -DGAMMA -DLOOKUP"
+						"<ReducedAlphaLookupGammaHDRU32>-DREDUCED_ALPHA -DHDRU32 -DGAMMA -DLOOKUP"
+						] ;
+SHADERSRC += [ Shader include/render/shaders/postprocess/hdr/psLuminanceDisplay.psh :
+						"<>"
+						"<Exp>-DEXP" ] ;
+SHADERSRC += [ Shader include/render/shaders/postprocess/hdr/psLuminanceInitial.psh :
+						" "
+						"<HDR>-DHDR"
+						"<HDRU32>-DHDRU32"
+						"<HDRU32Alpha>-DHDRU32 -DWRITE_ALPHA" ] ;
+
+SHADERSRC += [ Shader include/render/shaders/deferred/psProjectBlobShadows.psh ] ;
+
+SHADERSRC += [ Shader include/render/shaders/deferred/psScreenBlobShadows.psh :
+						" "
+						"<HDR>-DHDR" ] ;
+# [Blur2PC] retail PC per-channel screen blob shaders (psScreenBlobShadowR/G/B/A in Blur.exe 1.2)
+SHADERSRC += [ Shader include/render/shaders/deferred/psScreenBlobShadows.psh :
+						"<R>-DBLOB_CHANNEL_R"
+						"<G>-DBLOB_CHANNEL_G"
+						"<B>-DBLOB_CHANNEL_B"
+						"<A>-DBLOB_CHANNEL_A" ] ;
+SHADERSRC += [ Shader include/render/shaders/deferred/psCollisionMeshBlobShadows.psh :
+						" "
+						"<HDR>-DHDR" ] ;
+
+if $(PLATFORM) = PS3
+{
+	FXCFLAGS on [ OBJfromSRC psBrightPass.psh ] = "-po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=5" ;
+	FXCFLAGS on [ OBJfromSRC <HDR>psBrightPass.psh ] = "-DHDR -po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=5" ;
+	FXCFLAGS on [ OBJfromSRC <HDRU32>psBrightPass.psh ] = "-DHDRU32 -po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=5" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psBrightPass.psh ] = "-DGAMMA -po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=22" ;
+	FXCFLAGS on [ OBJfromSRC <GammaHDR>psBrightPass.psh ] = "-DHDR -DGAMMA -po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=22" ;
+	FXCFLAGS on [ OBJfromSRC <GammaHDRU32>psBrightPass.psh ] = "-DHDRU32 -DGAMMA -po OutColorPrec=fp16 -O1 -po randomSched=10 -po randomSeed=22" ;
+	FXCFLAGS on [ OBJfromSRC <Lookup>psBrightPass.psh ] = "-DLOOKUP -po OutColorPrec=fp16 -O1 -po randomSched=12 -po randomSeed=82" ;
+	FXCFLAGS on [ OBJfromSRC <LookupHDR>psBrightPass.psh ] = "-DHDR -DLOOKUP -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <LookupHDRU32>psBrightPass.psh ] = "-DHDRU32 -DLOOKUP -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <LookupGamma>psBrightPass.psh ] = "-DGAMMA -DLOOKUP -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <LookupGammaHDR>psBrightPass.psh ] = "-DHDR -DGAMMA -DLOOKUP -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <LookupGammaHDRU32>psBrightPass.psh ] = "-DHDRU32 -DGAMMA -DLOOKUP -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter4.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter5.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter8.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter9.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter13.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter15.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psWeightedFilter16.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psSunRays.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psBloomCombineSun.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psBloomCombineFeedback.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psBloomDisplay.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC psBloomGhost.psh ] = "-O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter4.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter5.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter8.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter9.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter13.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter15.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psWeightedFilter16.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psSunRays.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psBloomCombineSun.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psBloomCombineFeedback.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psBloomDisplay.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+	FXCFLAGS on [ OBJfromSRC <Gamma>psBloomGhost.psh ] = "-DGAMMA -O3 -po OutColorPrec=fp16" ;
+}
+
+CPFile include/render/shaders/psConstants.cp ;
+CPFile include/render/shaders/vsConstants.cv ;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+Library render : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : stdafx.cpp ;
+
+SubInclude TOP Code Mercury Library Common System ;

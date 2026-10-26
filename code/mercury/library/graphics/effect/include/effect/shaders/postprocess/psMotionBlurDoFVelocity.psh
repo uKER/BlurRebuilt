@@ -1,0 +1,90 @@
+#include "Effect/Shaders/Constants.h"
+#include "../psCommon.h"
+
+#if defined(NUM_TAPS_5)
+#	define NUM_TAPS 5
+#elif defined(NUM_TAPS_7)
+#	define NUM_TAPS 7
+#elif defined(NUM_TAPS_9)
+#	define NUM_TAPS 9
+#elif defined(NUM_TAPS_11)
+#	define NUM_TAPS 11
+#endif
+
+float4		g_vDepthScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_0);
+float4		g_vStepScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_1);
+float4		g_vPixelScale	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_2);
+float4		g_vSettings1	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_3);
+float4		g_vSettings2	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_4);
+float4		g_vFilter[6]	: register(CCP_RENDER_POSTPROCESS_PARAMETERS_5);
+
+sampler2D	g_tColour		: register(s0);
+sampler2D	g_tDepth		: register(s1);
+sampler2D	g_tVelocity		: register(s2);
+
+#define		g_fAperture		g_vSettings1.x
+#define		g_fPlaneInFocus	g_vSettings1.y
+#define		g_fScale		g_vSettings1.z
+#define		g_fBias			g_vSettings1.w
+#define		g_fMaxCoC		g_vSettings2.x
+#define		g_fEdgeFactor	g_vSettings2.y
+#define		g_fBlurScale	g_vSettings2.z
+#define		g_fFocalLength	g_vSettings2.w
+
+struct PS_OUTPUT
+{
+	float4	m_Colour		: COLOR0;
+};
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+// Get blur size in pixels:
+float GetBlurSize(float fDepth)
+{
+	float	fNumerator		= g_fAperture * g_fFocalLength * (g_fPlaneInFocus - fDepth);
+	float	fDenominator	= (g_fPlaneInFocus * (fDepth - g_fFocalLength));	
+	float	fCoC			= abs(fNumerator / fDenominator);
+	float	fBlur			= min(fCoC * g_fBlurScale, g_fMaxCoC);
+	return	fBlur;
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{ 
+    PS_OUTPUT output = (PS_OUTPUT) 0;
+
+#ifndef PS_2_0
+
+	float4	vStep			= (tex2D(g_tVelocity, input.m_TexCoord).xyxy * g_fScale + g_fBias) * g_vStepScale;
+	float3	vCentre			= tex2D(g_tColour, input.m_TexCoord).rgb;
+	float	fDepth			= SampleDepthBuffer(g_tDepth, input.m_TexCoord, g_vDepthScale);
+	float	fMotionLength	= saturate(length(vStep.xy) * 0.1f);
+	float	fEdgeFactor		= g_fEdgeFactor * (1.0f - fMotionLength);
+
+	// Get blur size in pixels:
+	float	fDoFBlurSize	= GetBlurSize(fDepth);
+	// Scale up to UV coordinates:
+	float4	vDoFBlurScale	= g_vPixelScale.zwzw * fDoFBlurSize;
+	
+	float4	vMotionUV		= input.m_TexCoord.xyxy + vStep;
+	float3	vColour			= vCentre;
+	for (int i = 0; i < (NUM_TAPS - 1) / 2; ++i)
+	{			
+		float4	vUV			= vMotionUV.xyzw + g_vFilter[i] * vDoFBlurScale.xyzw;
+
+		float3	vTap0		= tex2D(g_tColour, vUV.xy).rgb;
+		float3	vTap1		= tex2D(g_tColour, vUV.zw).rgb;
+	
+		vColour				+= vTap0;
+		vColour				+= vTap1;
+		vMotionUV			+= vStep;
+	}
+
+	output.m_Colour = float4(vColour / NUM_TAPS, 1.0f);
+
+#endif
+
+	return output;
+}

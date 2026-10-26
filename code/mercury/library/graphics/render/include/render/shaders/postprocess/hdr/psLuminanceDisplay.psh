@@ -1,0 +1,29 @@
+#include "..\..\psCommon.h"
+
+sampler2D	luminanceMap		: register(s0);
+
+struct PS_INPUT
+{
+	float2 uv				: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 colour					: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT)0;
+	
+	float luminance = tex2D(luminanceMap, input.uv).r;
+	
+	#ifdef EXP
+	float expluminance = exp(luminance);
+	output.colour = float4(expluminance, expluminance, expluminance, 1.f);
+	#else
+	output.colour = float4(luminance, luminance, luminance, 1.f);
+	#endif
+	
+	return output;
+}

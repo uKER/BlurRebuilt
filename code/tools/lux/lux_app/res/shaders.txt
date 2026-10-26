@@ -1,0 +1,2 @@
+IDR_LIGHTMAP_SHADER		RCDATA "../Scene_Renderer/Shaders/Lightmap.fx"
+IDR_TOLIGHTMAP_SHADER	RCDATA "../Scene_Renderer/Shaders/RenderToLightmap.fx"

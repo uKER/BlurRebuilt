@@ -1,0 +1,37 @@
+SubDir TOP Code tools maya_plugins CameraSync ;
+SupportedTargets WIN32_TOOL ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+$(TOP)/Code/Mercury/Library/Graphics/Camera2/include
+$(TOP)/libs/vendor/maya/2008/include
+;
+
+LINKLIBS += ws2_32.lib
+	$(TOP)/libs/vendor/maya/2008/lib/foundation.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMaya.lib
+;
+
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DLL /DEBUG /export:initializePlugin /export:uninitializePlugin ;
+
+SRC =
+CamSync.cpp
+Follow.cpp
+Main.cpp
+MayaCameraCopy.cpp
+Xenon.cpp
+;
+
+LinkLibraries CameraSync :
+		core system camera2tool
+		;
+		
+DLL CameraSync : $(SRC) : stdafx.cpp ;
+ExportVcproj CameraSync ;
+
+EmbedManifestDLL $(BIZARRE_ROOT)/tools/art_tools/maya/packages/biz_CameraSystem/plugins/2008/camerasync.mll : CameraSync.exe ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Camera2 ;

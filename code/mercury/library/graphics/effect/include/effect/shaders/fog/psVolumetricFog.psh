@@ -1,0 +1,42 @@
+#define ALPHA
+
+#include "../psCommon.h"
+#include "../../../../../render/include/render/shaders/psHDR.h"
+
+float4x4	g_mToWorld		: register(CCP_RENDER_SETTINGS);
+float4		g_vViewPosition	: register(CCP_RENDER_SETTINGS_4);
+float4		g_vFogSettings	: register(CCP_RENDER_SETTINGS_5);
+float4		g_vFogColour	: register(CCP_RENDER_SETTINGS_6);
+float4		g_vDepthScale	: register(CCP_RENDER_SETTINGS_7);
+sampler2D	g_tDepth		: register(s0);
+
+#define		g_fHeightDensityAtViewer	g_vFogSettings.x
+#define		g_fHeightFalloff			g_vFogSettings.y
+#define		g_fGlobalDensity			g_vFogSettings.z
+
+struct PS_INPUT
+{
+	float2	m_TexCoord		: TEXCOORD0;
+};
+
+float GetVolumetricFog(float3 vViewVector)
+{
+	float fFogInt = length(vViewVector) * g_fHeightDensityAtViewer;
+	if (abs(vViewVector.y) > 0.01f)
+	{
+		float t = g_fHeightFalloff * vViewVector.y;
+		fFogInt *= (1.0f - exp(-t)) / t;
+	}
+	return saturate(exp(-g_fGlobalDensity * fFogInt));
+}
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	// get world position
+	float3 vWorldPosition = GetWorldPosition(g_tDepth, input.m_TexCoord, g_vDepthScale, (float4x3) g_mToWorld);
+	
+	// compute fog amount
+	float fFogAmount = GetVolumetricFog(vWorldPosition.xyz - g_vViewPosition.xyz);
+
+	return GetExposure(float4(g_vFogColour.rgb, 1.0f - fFogAmount));
+}

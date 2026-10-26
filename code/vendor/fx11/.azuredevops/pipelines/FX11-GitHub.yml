@@ -1,0 +1,73 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+#
+# http://go.microsoft.com/fwlink/?LinkId=271568
+
+# Builds the library for Windows Desktop.
+
+schedules:
+  - cron: "15 5 * * *"
+    displayName: 'Nightly build'
+    branches:
+      include:
+        - main
+
+# GitHub Actions handles MSBuild for CI/PR
+trigger: none
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - '.azuredevops/pipelines/FX11-GitHub.yml'
+
+resources:
+  repositories:
+    - repository: self
+      type: git
+      ref: refs/heads/main
+
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+variables:
+  Codeql.Enabled: false
+
+pool:
+  vmImage: windows-2022
+
+jobs:
+  - job: DESKTOP_BUILD
+    displayName: 'Windows Desktop'
+    timeoutInMinutes: 60
+    strategy:
+      maxParallel: 4
+      matrix:
+        Release_x64:
+          BuildPlatform: x64
+          BuildConfiguration: Release
+          SpectreMitigation: false
+        Debug_x64:
+          BuildPlatform: x64
+          BuildConfiguration: Debug
+          SpectreMitigation: false
+        Release_x86:
+          BuildPlatform: Win32
+          BuildConfiguration: Release
+          SpectreMitigation: false
+        Debug_x86:
+          BuildPlatform: Win32
+          BuildConfiguration: Debug
+          SpectreMitigation: false
+        # windows-2022 image is missing v142 spectre-mitigated libraries
+    steps:
+      - checkout: self
+        clean: true
+        fetchTags: false
+      - task: VSBuild@1
+        displayName: Build solution Effects11_2019_Win10.sln
+        inputs:
+          solution: Effects11_2019_Win10.sln
+          msbuildArgs: /p:PreferredToolArchitecture=x64 /p:SpectreMitigation=$(SpectreMitigation)
+          platform: '$(BuildPlatform)'
+          configuration: '$(BuildConfiguration)'

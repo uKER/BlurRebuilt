@@ -1,0 +1,68 @@
+#include "deferred/shaders/psCommon.h"
+#include "deferred/shaders/psConstants.h"
+
+float4x4	g_mLight		: register(CCP_RENDER_SETTINGS);
+float4		g_vPosition		: register(CCP_RENDER_SETTINGS_4);
+real4		g_vDirection	: register(CCP_RENDER_SETTINGS_5);
+real4		g_vColour		: register(CCP_RENDER_SETTINGS_6);
+real4		g_vFalloff		: register(CCP_RENDER_SETTINGS_7);
+
+sampler2D	g_tNormalDepth	: register(s0);
+
+#if defined(PROJECTED)
+sampler2D	g_tProjected	: register(s1);
+#elif defined(VOLUME)
+sampler3D	g_tVolume		: register(s1);
+#endif
+
+#if defined(PS3)
+#pragma texformat g_tNormalDepth RGBA8
+#pragma texformat g_tProjected COMPRESSED_RGBA_S3TC_DXT1
+#pragma texformat g_tVolume RGBA8
+#endif
+
+struct PS_INPUT
+{
+	float4	m_Screen	: TEXCOORD0;
+	float3	m_View		: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	real4	m_Colour	: COLOR0;
+};
+
+PS_OUTPUT main(PS_INPUT input)
+{
+	PS_OUTPUT output = (PS_OUTPUT) 0;
+
+	float	fRcpW			= 1.0f / input.m_Screen.w;
+	float2	vUV				= input.m_Screen.xy * fRcpW;
+	float3	vInterpolated	= input.m_View.xyz * fRcpW;
+	
+	float3	vViewPosition;
+	real3	vViewNormal;
+	GetViewPositionAndNormal(g_tNormalDepth, vUV, vInterpolated, vViewPosition, vViewNormal);
+
+	real3	vViewVector		= vViewPosition.xyz - g_vPosition.xyz;
+	float	fViewDistance	= length(vViewVector);
+	real3	vViewDirection	= vViewVector / fViewDistance;
+
+	real	fNDotL			= saturate(dot(vViewNormal.xyz, -vViewDirection.xyz) * 0.75h + 0.25h);
+
+#if defined(PROJECTED)
+	float3	vLightPosition	= mul(float4(vViewPosition, 1.0f), g_mLight).xyz;
+	real3	vFalloff		= h4tex2D(g_tProjected, vLightPosition.xy / vLightPosition.z).rgb * saturate(1.0h - fViewDistance * fViewDistance * g_vFalloff.x);
+#elif defined(VOLUME)
+	float3	vLightPosition	= mul(float4(vViewPosition, 1.0f), g_mLight).xyz;
+	real3	vFalloff		= h4tex3D(g_tVolume, vLightPosition).rgb;
+#else
+	real	fDDotL			= saturate(dot(vViewDirection.xyz, g_vDirection.xyz));
+	real	vFalloff		= saturate(1.0h - fViewDistance * fViewDistance * g_vFalloff.x) * saturate((fDDotL - g_vFalloff.y) / (1.0h - g_vFalloff.y));
+#endif
+
+	output.m_Colour.rgb		= g_vColour.rgb * (vFalloff * fNDotL);
+	output.m_Colour.a		= 1.0h;
+
+	return output;
+}

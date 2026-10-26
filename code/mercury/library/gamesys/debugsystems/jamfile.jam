@@ -1,0 +1,58 @@
+SubDir TOP Code Mercury Library GameSys DebugSystems ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/gamesys/framework/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/Render/Include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/util/resource/include
+$(TOP)/code/mercury/library/util/logicalfs/include
+$(TOP)/code/mercury/library/graphics/TextureResource/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+Define
+OBJ_SHADERS
+;
+
+SRC = 
+./source/DebugHUDPerf.cpp
+./source/DebugHUDSubscriber.cpp
+./source/DebugHUDMenu.cpp
+./source/DebugHUDMemory.cpp
+./source/DebugHUDResource.cpp
+./source/DebugHUDTextureViewer.cpp
+./source/Frame.cpp
+./source/FileDialog.cpp
+./source/FileMonitor.cpp
+./source/InputView.cpp
+./source/ProfilerView.cpp
+;
+
+SRC = [ Batch $(SRC) : DebugSystemsPch.h ] ;
+
+SHADERSRC =
+include/debugsystems/shaders/psTextureViewer.psh
+include/debugsystems/shaders/vsTextureViewer.vsh
+;
+
+Includes [ FGristFiles $(SRC) ] ;
+
+ImportCP render/shaders/vsConstants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP render/shaders/psConstants.h : TOP Code Mercury Library Graphics Render ;
+ImportCP psConstants.h : TOP Code Mercury Library Graphics Display ;
+
+Library debugsystems : $(SRC) $($(PLATFORM)SRC) $(SHADERSRC) : DebugSystemsPch.cpp : DebugSystemsPch.h ;
+
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Graphics Render ;

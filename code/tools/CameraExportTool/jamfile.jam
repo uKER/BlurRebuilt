@@ -1,0 +1,31 @@
+SubDir TOP Code tools CameraExportTool ;
+
+SupportedTargets WIN32_TOOL  ;
+
+IncludePath 
+../aftk/aftk/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/common/misc_shared/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+;
+
+LINKLIBS += ws2_32.lib
+	$(TOP)/libs/vendor/maya/2008/lib/foundation.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMaya.lib
+	$(TOP)/libs/vendor/maya/2008/lib/OpenMayaUI.lib
+;
+
+SRC =
+Main.cpp
+;
+
+LinkLibraries CameraExportTool : camera2tool core system aftk $(TOP)/libs/vendor/xsiftk/5.11/lib/xsiftk ;
+
+Application CameraExportTool : $(SRC) ;
+ExportVcproj CameraExportTool ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library graphics camera2 ;
+SubInclude TOP Code tools aftk aftk ;

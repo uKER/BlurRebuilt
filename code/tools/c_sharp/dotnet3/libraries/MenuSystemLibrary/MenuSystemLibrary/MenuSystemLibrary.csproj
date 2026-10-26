@@ -1,0 +1,399 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{94F7FFD8-20F6-4F90-B2BE-28F5235D661F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MenuSystemLibrary</RootNamespace>
+    <AssemblyName>MenuSystemLibrary</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_XDEVKIT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug remote|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug remote\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.XDevkit, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Interop.XDevkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="container_base.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_base.Designer.cs">
+      <DependentUpon>container_base.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_basic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_basic.Designer.cs">
+      <DependentUpon>container_basic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_bitmap.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_bitmap.Designer.cs">
+      <DependentUpon>container_bitmap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_bool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_bool.Designer.cs">
+      <DependentUpon>container_bool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_custom_list.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_custom_list.Designer.cs">
+      <DependentUpon>container_custom_list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_folder_browser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_folder_browser.Designer.cs">
+      <DependentUpon>container_folder_browser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_get_default_360_console.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_get_default_360_console.Designer.cs">
+      <DependentUpon>container_get_default_360_console.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_label.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_label.Designer.cs">
+      <DependentUpon>container_label.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_mergeconfilct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_mergeconfilct.Designer.cs">
+      <DependentUpon>container_mergeconfilct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_radio_button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_radio_button.Designer.cs">
+      <DependentUpon>container_radio_button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_colour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_colour.Designer.cs">
+      <DependentUpon>container_colour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_action_button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_action_button.Designer.cs">
+      <DependentUpon>container_action_button.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_filename.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_filename.Designer.cs">
+      <DependentUpon>container_filename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_number.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_number.Designer.cs">
+      <DependentUpon>container_number.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_dropdown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_dropdown.Designer.cs">
+      <DependentUpon>container_dropdown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_progressbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_progressbar.Designer.cs">
+      <DependentUpon>container_progressbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_root.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_root.Designer.cs">
+      <DependentUpon>container_root.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_string.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_string.Designer.cs">
+      <DependentUpon>container_string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_text.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_text.Designer.cs">
+      <DependentUpon>container_text.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_tree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_tree.Designer.cs">
+      <DependentUpon>container_tree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_enum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_enum.Designer.cs">
+      <DependentUpon>container_enum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_unknown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_unknown.Designer.cs">
+      <DependentUpon>container_unknown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="container_webpage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="container_webpage.Designer.cs">
+      <DependentUpon>container_webpage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="enums.cs" />
+    <Compile Include="layout_cursor.cs">
+    </Compile>
+    <Compile Include="menu_system_library.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="menu_system_library.Designer.cs">
+      <DependentUpon>menu_system_library.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modal_bad_string.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modal_bad_string.Designer.cs">
+      <DependentUpon>modal_bad_string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modal_edit_text.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modal_edit_text.Designer.cs">
+      <DependentUpon>modal_edit_text.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panel_derived.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="panel_derived.Designer.cs">
+      <DependentUpon>panel_derived.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="container_base.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_base.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_basic.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_basic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_bitmap.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_bitmap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_bool.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_bool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_custom_list.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_custom_list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_folder_browser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_folder_browser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_get_default_360_console.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_get_default_360_console.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_label.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_label.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_mergeconfilct.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_mergeconfilct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_radio_button.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_radio_button.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_colour.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_colour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_action_button.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_action_button.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_enum.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_enum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_filename.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_filename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_number.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_number.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_dropdown.resx">
+      <DependentUpon>container_dropdown.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_progressbar.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_progressbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_root.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_root.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_string.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_text.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_text.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_tree.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_tree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_unknown.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_unknown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="container_webpage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>container_webpage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menu_system_library.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>menu_system_library.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modal_bad_string.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>modal_bad_string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modal_edit_text.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>modal_edit_text.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panel_derived.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>panel_derived.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bitmap_default.bmp" />
+    <Content Include="Resources\Add.bmp" />
+    <Content Include="Resources\Remove.bmp" />
+    <None Include="Resources\ExecuterToolButton.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XmlHelper\XmlHelper.csproj">
+      <Project>{CBB0BEF4-E95E-4C32-A99C-69E44CBDE823}</Project>
+      <Name>XmlHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

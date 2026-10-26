@@ -1,0 +1,209 @@
+#include "..\\psConstants.h"
+#include "..\\psCommon.h"
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+float4		g_PixelSize			: register(CCP_DISPLAY_PIXEL_SIZE);
+
+#define		g_fPixelWidth		g_PixelSize.x
+#define		g_fPixelHeight		g_PixelSize.y
+#define		g_fImageWidth		g_PixelSize.z
+#define		g_fImageHeight		g_PixelSize.w
+#define		g_fPixelSize		g_PixelSize.xy
+#define		g_fImageSize		g_PixelSize.zw
+
+
+struct PS_INPUT
+{
+	float2 Texcoord0			: TEXCOORD0;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour0			: COLOR0;
+	#if defined(USE_DEPTH)
+	float Depth0			: DEPTH0;
+	#endif
+};
+
+#ifdef USE_TEXTURE_2XAA
+float4 SampleFrom2xAABuffer(float2 pixelCoord)
+{
+	pixelCoord.x = floor( pixelCoord.x );
+	pixelCoord = pixelCoord - float2( 0.25f, 0.25f ); // try to fix any rounding errors
+	float2 texCoord0 = pixelCoord * g_fPixelSize;
+	float2 texCoord1 = texCoord0 + float2(g_fPixelWidth * 0.5f, 0.0f);
+	
+	float4 sample0 = tex2D(g_Texture0, texCoord0);
+	float4 sample1 = tex2D(g_Texture0, texCoord1);
+	return (sample0 + sample1) * 0.5f;
+}
+#endif
+
+#ifdef USE_DEPTH
+float SampleDepth(float2 texCoord)
+{
+	float3 depthColor = round(tex2Dlod(g_Texture1, float4(texCoord.x, texCoord.y, 0.0f, 0.0f)).rgb * 255.0f);		
+	float depth = dot(depthColor, float3(65536.0f, 256.0f, 1.0f)) * (1.0f / 16777215.0f);
+	return depth;
+}
+
+float SampleDepthFrom2xAABuffer(float2 pixelCoord)
+{
+	pixelCoord.x = floor( pixelCoord.x );
+	pixelCoord = pixelCoord - float2( 0.25f, 0.25f ); // try to fix any rounding errors
+	float2 texCoord0 = pixelCoord * g_fPixelSize;
+	float2 texCoord1 = texCoord0 + float2(g_fPixelWidth * 0.5f, 0.0f);
+	
+	float depth0 = SampleDepth(texCoord0);
+	float depth1 = SampleDepth(texCoord1);
+	return max(depth0, depth1);
+}
+#endif
+
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+#ifdef USE_DEPTH
+	#if defined(XB2)
+	{
+		float2 TexCoord		= IN.Texcoord0.xy;
+		float4 Depth0123	= 0.0f;
+		float4 Depth4___	= 0.0f;
+		asm
+		{
+			tfetch2D Depth0123.x___, TexCoord, g_Texture1, OffsetX = -1.0, OffsetY = +0.0
+			tfetch2D Depth0123._x__, TexCoord, g_Texture1, OffsetX = +0.0, OffsetY = +1.0
+			tfetch2D Depth0123.__x_, TexCoord, g_Texture1, OffsetX = +1.0, OffsetY = +0.0
+			tfetch2D Depth0123.___x, TexCoord, g_Texture1, OffsetX = +0.0, OffsetY = -1.0
+			tfetch2D Depth4___.x___, TexCoord, g_Texture1
+		};
+		OUT.Depth0 = min(Depth0123.x, min(Depth0123.y, min(Depth0123.z, min(Depth0123.w, Depth4___.x))));
+	}
+	#elif defined(PS3)
+	{
+		float2 uv = IN.Texcoord0.xy;
+		float2 fImagePos = uv * g_fImageSize;
+
+		float iPixelXPosA = floor(fImagePos.x);
+		float iPixelXPosB = iPixelXPosA + 1.0f;
+		
+		float depth0 = SampleDepthFrom2xAABuffer(float2(iPixelXPosA, fImagePos.y));
+		float depth1 = SampleDepthFrom2xAABuffer(float2(iPixelXPosB, fImagePos.y));
+		OUT.Depth0 = min(depth0, depth1);
+	}
+	#else
+	{
+		float3 depthColor = tex2D(g_Texture1, IN.Texcoord0).rgb;
+		depthColor *= 255.0f;
+		depthColor = round(depthColor);
+		float depth = dot(depthColor, float3(65536.0f, 256.0f, 1.0f));
+		depth *= 1.0f/16777215.0f;
+		OUT.Depth0 = depth;
+	}
+	#endif
+	
+#if !defined(PS3)
+	OUT.Colour0 = tex2D(g_Texture0, IN.Texcoord0);
+#else
+	OUT.Colour0 =  float4(0.0f, 0.0f, 0.0f, 0.0f);	// Write constant colour for PS3 as colour writes are off anyway.
+#endif
+#endif
+
+#ifdef USE_TEXTURE_2XAA
+	#if defined(XB2)
+	{
+		float2 TexCoord = IN.Texcoord0.xy;
+		float4 sample0, sample1;
+		asm
+		{
+			tfetch2D sample0.xyzw, TexCoord, g_Texture0, OffsetX = +0.0, OffsetY = +0.0
+			tfetch2D sample1.xyzw, TexCoord, g_Texture0, OffsetX = +0.0, OffsetY = +1.0
+		};
+		OUT.Colour0 = 0.5f * (sample0 + sample1);
+	}
+	#elif defined(PS3)
+	{
+		// with bilinear upsample (not really "bi"linear as we only do x direction but never mind)
+		float2 uv = IN.Texcoord0.xy;
+		float2 fImagePos = uv * g_fImageSize;
+
+		float iPixelXPosA = floor(fImagePos.x);
+		float iPixelXPosB = iPixelXPosA + 1.0f;
+
+		float blendX = frac(fImagePos.x);
+		
+		float4 colourA = SampleFrom2xAABuffer( float2(iPixelXPosA, fImagePos.y) );
+		float4 colourB = SampleFrom2xAABuffer( float2(iPixelXPosB, fImagePos.y) );
+		
+		OUT.Colour0 = lerp(colourA, colourB, blendX);
+	}
+	#endif
+#endif
+
+#ifdef USE_TEXTURE_2X2
+	#if defined(XB2)
+	{
+		float2 TexCoord = IN.Texcoord0.xy;
+		float4 sample0, sample1, sample2, sample3, sample4;
+		asm
+		{
+			tfetch2D sample0.xyzw, TexCoord, g_Texture0, OffsetX = -1.0, OffsetY = +0.0
+			tfetch2D sample1.xyzw, TexCoord, g_Texture0, OffsetX = +0.0, OffsetY = +1.0
+			tfetch2D sample2.xyzw, TexCoord, g_Texture0, OffsetX = +1.0, OffsetY = +0.0
+			tfetch2D sample3.xyzw, TexCoord, g_Texture0, OffsetX = +0.0, OffsetY = -1.0
+			tfetch2D sample4.xyzw, TexCoord, g_Texture0
+		};
+		OUT.Colour0 = (sample0 + sample1 + sample2 + sample3 + sample4) / 5.0f;
+	}
+	#else
+	{
+		float4 sample0 = tex2D(g_Texture0, IN.Texcoord0.xy);
+		float4 sample1 = tex2D(g_Texture0, IN.Texcoord0.xy - float2(g_fPixelWidth, 0.0f));
+		float4 sample2 = tex2D(g_Texture0, IN.Texcoord0.xy + float2(g_fPixelWidth, 0.0f));
+		float4 sample3 = tex2D(g_Texture0, IN.Texcoord0.xy + float2(0.0f, g_fPixelHeight));
+		float4 sample4 = tex2D(g_Texture0, IN.Texcoord0.xy - float2(0.0f, g_fPixelHeight));
+		
+		OUT.Colour0 = (sample0 + sample1 + sample2 + sample3 + sample4) / 5.0f;
+	}
+	#endif
+#endif
+
+#if defined(PLATFORM_PS3)
+	#if defined(USE_QUINCUNX)
+		{
+			float2 du = float2(0.0001f, 0.0f);
+			OUT.Colour0 = f4tex2D(g_Texture0, IN.Texcoord0 + du);
+		}
+	#elif defined(USE_QUINCUNX_ALT)
+		{
+			float2 du = float2(-0.0001f, -0.001f);
+			OUT.Colour0 = f4tex2D(g_Texture0, IN.Texcoord0 + du);
+		}
+	#elif defined(USE_QUINCUNX_SHIFTED)
+		{
+			float2 d0 = float2(0.0001f, 0.0f);
+			float4 color0 = f4tex2D(g_Texture0, IN.Texcoord0 + d0);
+			float2 d1 = float2(-0.0001f, -0.001f);
+			float4 color1 = f4tex2D(g_Texture1, IN.Texcoord0 + d1);
+			OUT.Colour0 = lerp(color0, color1, 0.5f);
+		}
+	#elif defined(USE_DEFAULT)
+		{
+			OUT.Colour0 = f4tex2D(g_Texture0, IN.Texcoord0);
+		}
+	#elif defined(USE_FAST)
+		{
+			float2 du = float2(0.0001f, 0.0f);
+			OUT.Colour0 = f4tex2D(g_Texture0, IN.Texcoord0 + du);
+			/*
+			float2 offset = float2(0.0f, g_fPixelHeight * 0.25);
+			OUT.Colour0 = f4tex2D(g_Texture0, IN.Texcoord0 + offset);*/
+		}
+	#endif
+#endif
+
+	return OUT;
+}

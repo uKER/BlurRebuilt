@@ -1,0 +1,138 @@
+[Horizontal]
+type Effect_Light
+{
+	bool receive;
+	bool emit;
+	f32 radius;
+	f32 intensity;
+	f32 priority;
+};
+
+type Effect_Colour
+{
+	control ColourSwatch;
+
+	[Hide] f32 r;
+	[Hide] f32 g;
+	[Hide] f32 b;
+
+	[Range(0, 1)] f32 a;
+};
+
+type Effect_ColourTime
+{
+	control ColourSwatch;
+
+	[Hide] f32 r;
+	[Hide] f32 g;
+	[Hide] f32 b;
+
+	[Range(0, 1)] f32 time;
+};
+
+[Horizontal]
+type Effect_HermiteKeyFrame
+{
+	f32 value;
+	f32 inTangent;
+	f32 outTangent;
+	[Range(0.0f, 1.f)] f32 time;
+};
+
+[Horizontal]
+type Effect_U32MinMax
+{
+	u32 min;
+	u32 max;
+};
+
+[Horizontal]
+type Effect_F32MinMax
+{
+	f32 min;
+	f32 max;
+};
+
+type Effect_F32Vec3MinMax
+{
+	Effect_F32Vec3 min;
+	Effect_F32Vec3 max;
+};
+
+
+[Horizontal]
+type Effect_U32Dim2
+{
+	u32 width;
+	u32 height;
+};
+
+[Horizontal]
+type Effect_U32Dim3
+{
+	u32 width;
+	u32 height;
+	u32 depth;
+};
+
+[Horizontal]
+type Effect_F32Dim2
+{
+	f32 width;
+	f32 height;
+};
+
+[Horizontal]
+type Effect_F32Dim3
+{
+	f32 width;
+	f32 height;
+	f32 depth;
+};
+
+[Horizontal]
+type Effect_F32Vec2
+{
+	f32 x;
+	f32 y;
+};
+
+[Horizontal]
+type Effect_F32Vec3
+{
+	f32 x;
+	f32 y;
+	f32 z;
+};
+
+type Effect_F32Vec3Variation
+{
+	Effect_F32Variation x;
+	Effect_F32Variation y;
+	Effect_F32Variation z;
+};
+
+[Horizontal]
+type Effect_F32Variation
+{
+	f32 value;
+	f32 variation;
+};
+
+[Horizontal]
+type Effect_U32Variation
+{
+	u32 value;
+	u32 variation;
+};
+
+enum Effect_Atlas
+{
+	Default1x1,
+	Square2x2,
+	Square4x4,
+	Strip1x2,
+	Strip1x4
+};
+
+

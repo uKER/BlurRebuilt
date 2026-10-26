@@ -1,0 +1,44 @@
+# To be included in any Mercury/MercuryGame application that needs shaders
+
+CPFile $(TOP)/code/mercury/library/graphics/shader/include/shader/psConstants.cp ;
+CPFile $(TOP)/code/mercury/library/graphics/shader/include/shader/vsConstants.cv ;
+
+SetGameFolder $(BIZARRE_ROOT)/MercuryGame ;
+
+rule ExpandWithLighting
+{
+	return
+	[ Expand
+		" "
+		"<_LB>-D BASIS_LIGHTING "
+		"<_LC>-D RGB_LIGHTING "
+		"<_LS>-D SUNSKY_LIGHTING "
+		:
+		[ Combinations $(<) ]
+	] ;
+}
+
+# Default shader
+
+Effects
+$(TOP)/code/mercury/library/graphics/shader/source/Default.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;
+
+Effects
+$(TOP)/code/mercury/library/graphics/shader/source/Default_Skin.fx
+:
+[ ExpandWithLighting
+	"<_NB>-D NO_BUMPMAP "
+	"<_NE>-D NO_EMISSIVE "
+	"<_NL>-D NO_LIGHTMAP "
+	"<_NS>-D NO_SPECULARMAP "
+	"<_NV>-D NO_VTXCOL "
+]
+;

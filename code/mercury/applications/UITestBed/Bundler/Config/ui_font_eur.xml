@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+
+<RDF Version="XPR2">
+
+<Texture
+	Name	=	"E_Impact"
+	Source	=	".\textures\fonts\E_Impact.tga"
+	Compressor =	"X360"
+	Format	=	"DXT5"
+	Levels	=	"1"
+/>
+
+<Texture
+	Name	=	"E_Impact_Outline"
+	Source	=	".\textures\fonts\E_Impact_Outline.tga"
+	Compressor = 	"X360"
+	Format	=	"A8R8G8B8"
+	Levels	=	"1"
+/>
+
+<Texture
+	Name	=	"E_MicroGramma"
+	Source	=	".\textures\fonts\E_CourierNewBold.tga"
+	Compressor = 	"X360"
+	Format	=	"A8R8G8B8"
+	Levels	=	"1"
+/>
+
+</RDF>

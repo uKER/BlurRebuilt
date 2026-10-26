@@ -1,0 +1,6 @@
+SubDir TOP Code Mercury Library Physics ;
+
+#SubInclude TOP Code Mercury Library physics impact ;
+#SubInclude TOP Code Mercury Library physics pgr_physics ;
+#SubInclude TOP Code Mercury Library physics RacingPhysics ;
+SubInclude TOP Code Mercury Library physics gravity ;

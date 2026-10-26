@@ -1,0 +1,23 @@
+<Include>
+
+  <Registry Root="HKLM" Key="Microsoft\VisualStudio\8.0\Packages\{746d5114-b030-4d64-9a6d-e2abe1e78e56}" Value="Microsoft.Samples.VisualStudio.MenuCommands.MenuCommandsPackage, vs_jam, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string">
+    <Registry Name="InprocServer32" Value="[SystemFolder]mscoree.dll" Type="string" />
+    <Registry Name="Class" Value="Microsoft.Samples.VisualStudio.MenuCommands.MenuCommandsPackage" Type="string" />
+    <Registry Name="Assembly" Value="vs_jam, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" />
+  </Registry>
+
+  <Registry Root="HKLM" Key="Microsoft\VisualStudio\8.0\Menus">
+    <Registry Name="{746d5114-b030-4d64-9a6d-e2abe1e78e56}" Value=", 1000, 1" Type="string" />
+  </Registry>
+  
+  <Registry Root="HKLM" Key="Microsoft\VisualStudio\9.0\Packages\{746d5114-b030-4d64-9a6d-e2abe1e78e56}" Value="Microsoft.Samples.VisualStudio.MenuCommands.MenuCommandsPackage, vs_jam, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string">
+    <Registry Name="InprocServer32" Value="[SystemFolder]mscoree.dll" Type="string" />
+    <Registry Name="Class" Value="Microsoft.Samples.VisualStudio.MenuCommands.MenuCommandsPackage" Type="string" />
+    <Registry Name="Assembly" Value="vs_jam, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" Type="string" />
+  </Registry>
+
+  <Registry Root="HKLM" Key="Microsoft\VisualStudio\9.0\Menus">
+    <Registry Name="{746d5114-b030-4d64-9a6d-e2abe1e78e56}" Value=", 1000, 1" Type="string" />
+  </Registry>
+  
+</Include>

@@ -1,0 +1,35 @@
+#include "..\psCommon.h"
+
+// TODO - maybe pass value01 down in a register instead of using the colour alpha??
+
+sampler2D	g_Texture0			: register(s0);
+sampler2D	g_Texture1			: register(s1);
+
+struct PS_INPUT
+{
+	float4 Colour				: COLOR0;
+	float2 TexCoord0			: TEXCOORD0;
+	float2 TexCoord1			: TEXCOORD1;
+};
+
+struct PS_OUTPUT
+{
+	float4 Colour				: COLOR;
+};
+
+PS_OUTPUT main(PS_INPUT IN)
+{
+	PS_OUTPUT OUT = (PS_OUTPUT)0;
+	
+	float4 tex0 = tex2D( g_Texture0, IN.TexCoord0 );
+	float4 tex1 = tex2D( g_Texture1, IN.TexCoord1 );
+	
+	float i = ( tex1.r + tex1.g + tex1.b ) / 3.0f;
+	
+	if ( i <= IN.Colour.a )
+		OUT.Colour = tex0 * float4( IN.Colour.rgb, 1.0f );
+	else
+		OUT.Colour = float4( 0.0f, 0.0f, 0.0f, 0.0f );
+	
+	return OUT;
+}

@@ -1,0 +1,48 @@
+SubDir TOP Code Mercury Library GameSys TestSections ;
+
+SUBDIRHDRS = 
+$(SUBDIR)/include
+$(TOP)/code/mercury/library/common/core/include
+$(TOP)/code/mercury/library/common/system/include
+$(TOP)/code/mercury/library/graphics/display/include
+$(TOP)/code/mercury/library/graphics/display2/include
+$(TOP)/code/mercury/library/graphics/camera2/include
+$(TOP)/code/mercury/library/graphics/Render/Include
+$(TOP)/code/mercury/library/graphics/TextureResource/include
+$(TOP)/code/mercury/library/util/input/include
+$(TOP)/code/mercury/library/gamesys/framework/Include
+$(TOP)/code/mercury/library/gamesys/debugsystems/include
+$(TOP)/code/mercury/library/util/resource/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS +=
+\"$(DXSDK_PATH)/include\"
+;
+}
+
+SRC = 
+./source/TestSection.cpp
+./source/TestSectionLauncher.cpp
+./source/TestSectionManager.cpp
+./source/TestSectionSPU.cpp
+#./source/TestSectionMaths.cpp
+./source/TestSectionLayer.cpp
+;
+
+if $(PLATFORM) = PS3
+{	
+	SRC +=
+		./source/TestSectionSPUJob.cpp
+	;
+	
+	SPUSRC =
+		<SPU>./source/TestSectionSPUJob.cpp
+	;
+	
+	SrcOptim $(SPUSRC) : -O0 ;
+	AddSPUModule testsections : sputest : $(SPUSRC) ;
+}
+
+Library testsections : $(SRC) $($(PLATFORM)SRC) : stdafx.cpp ;

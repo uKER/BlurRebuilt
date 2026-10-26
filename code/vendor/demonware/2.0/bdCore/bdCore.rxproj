@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.radixlive.com/public/schemas/radix/1.0/Project.xsd">
+	<project uuid="{C1831BAF-C6C2-4825-A7F9-234F51AC11C9}">
+		<version>1</version>
+		<display-name>bdCore</display-name>
+		<aliases>
+			<alias uuid="{C7041DD1-9E80-4343-9A85-B512EFB67837}">UUID_ProjectFilesGroup</alias>
+			<alias uuid="{B97971CD-429D-412B-AA96-1C450A21E53D}">CATID_PromotedFiles</alias>
+			<alias uuid="{101B1F51-64F4-4F61-8325-B79F0341E732}">Templates</alias>
+			<alias uuid="{4C245B36-11F1-4f8d-B335-9D0D3796FC1F}">PLATFORM_RevolutionSettings</alias>
+			<alias uuid="{69AC1A2A-F39A-4f4c-838A-E63496F95758}">UUID_TargetCommon</alias>
+			<alias uuid="{b6fbe68c-b39d-11da-a3c8-00c04f28d986}">UUID_BuildAllLinkerCommon</alias>
+			<alias uuid="{121E6F7E-B39E-11DA-9B03-00C04F28D986}">Dictionary</alias>
+      <alias uuid="{69FD0C97-A3F4-11DA-882E-00C04F28D986}">Dictionary2</alias>
+      <alias uuid="{B364993C-3B1D-47EB-8A85-792F1F216AD7}">Dictionary3</alias>
+		</aliases>
+		<settings>
+			<setting entry="toolChain" uuid-alias="PLATFORM_RevolutionSettings">
+				<simple>library.static</simple>
+			</setting>
+			<setting entry="dynamicTargetsPicklist" uuid-alias="UUID_TargetCommon">
+				<simple>{B2968A78-4023-4093-A4CE-A21147F39630}</simple>
+			</setting>
+      <!-- C++ specific settings -->
+      <setting entry="forceC99Extensions" uuid-alias="BuildFslCompilerCommon40">
+        <simple>false</simple>
+      </setting>
+      <setting entry="booleans" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <setting entry="wchar_t" uuid-alias="BuildFslCompilerCommon40">
+        <simple>true</simple>
+      </setting>
+      <!-- End of C++ specific settings -->
+			<setting entry="systemIncludes" uuid-alias="Dictionary">
+				<array>
+					<simple>@{auto}</simple>
+					<simple>${Project}/..</simple>
+					<simple>${Workspace}</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/../RevoEX/include</simple>
+					<simple>${REVOLUTION_SDK_ROOT}/include</simple>
+					<simple>${Workspace}/external/libtomcrypt/src/headers</simple>
+					<!-- INCLUDES GO HERE -->
+				</array>
+			</setting>
+			<setting entry="libraryFiles" uuid-alias="UUID_BuildAllLinkerCommon">
+				<array>
+					<simple>@{auto}</simple>
+
+				</array>
+			</setting>
+      <setting entry="booleans" uuid-alias="Dictionary2">
+        <simple>true</simple>
+      </setting>
+		</settings>
+		<files>
+<file file-tag="bdCore.cpp:1"><path>${project}\bdCore.cpp</path></file>
+<file file-tag="bdCore.h:1"><path>${project}\bdCore.h</path></file>
+<file file-tag="bdArray.h:1"><path>${project}\bdContainers\bdArray.h</path></file>
+<file file-tag="bdArray.inl:1"><path>${project}\bdContainers\bdArray.inl</path></file>
+<file file-tag="bdBitBuffer.cpp:1"><path>${project}\bdContainers\bdBitBuffer.cpp</path></file>
+<file file-tag="bdBitBuffer.h:1"><path>${project}\bdContainers\bdBitBuffer.h</path></file>
+<file file-tag="bdBitBuffer.inl:1"><path>${project}\bdContainers\bdBitBuffer.inl</path></file>
+<file file-tag="bdBitBufferTypes.h:1"><path>${project}\bdContainers\bdBitBufferTypes.h</path></file>
+<file file-tag="bdByteBuffer.cpp:1"><path>${project}\bdContainers\bdByteBuffer.cpp</path></file>
+<file file-tag="bdByteBuffer.h:1"><path>${project}\bdContainers\bdByteBuffer.h</path></file>
+<file file-tag="bdByteBuffer.inl:1"><path>${project}\bdContainers\bdByteBuffer.inl</path></file>
+<file file-tag="bdCircularBuffer.h:1"><path>${project}\bdContainers\bdCircularBuffer.h</path></file>
+<file file-tag="bdCircularBuffer.inl:1"><path>${project}\bdContainers\bdCircularBuffer.inl</path></file>
+<file file-tag="bdFastArray.h:1"><path>${project}\bdContainers\bdFastArray.h</path></file>
+<file file-tag="bdFastArray.inl:1"><path>${project}\bdContainers\bdFastArray.inl</path></file>
+<file file-tag="bdHashMap.cpp:1"><path>${project}\bdContainers\bdHashMap.cpp</path></file>
+<file file-tag="bdHashMap.h:1"><path>${project}\bdContainers\bdHashMap.h</path></file>
+<file file-tag="bdHashMap.inl:1"><path>${project}\bdContainers\bdHashMap.inl</path></file>
+<file file-tag="bdLinkedList.h:1"><path>${project}\bdContainers\bdLinkedList.h</path></file>
+<file file-tag="bdLinkedList.inl:1"><path>${project}\bdContainers\bdLinkedList.inl</path></file>
+<file file-tag="bdNonce.h:1"><path>${project}\bdContainers\bdNonce.h</path></file>
+<file file-tag="bdNonce.inl:1"><path>${project}\bdContainers\bdNonce.inl</path></file>
+<file file-tag="bdPriorityHeap.h:1"><path>${project}\bdContainers\bdPriorityHeap.h</path></file>
+<file file-tag="bdPriorityHeap.inl:1"><path>${project}\bdContainers\bdPriorityHeap.inl</path></file>
+<file file-tag="bdPriorityQueue.h:1"><path>${project}\bdContainers\bdPriorityQueue.h</path></file>
+<file file-tag="bdPriorityQueue.inl:1"><path>${project}\bdContainers\bdPriorityQueue.inl</path></file>
+<file file-tag="bdQueue.h:1"><path>${project}\bdContainers\bdQueue.h</path></file>
+<file file-tag="bdQueue.inl:1"><path>${project}\bdContainers\bdQueue.inl</path></file>
+<file file-tag="bdRedBlackTree.h:1"><path>${project}\bdContainers\bdRedBlackTree.h</path></file>
+<file file-tag="bdRedBlackTree.inl:1"><path>${project}\bdContainers\bdRedBlackTree.inl</path></file>
+<file file-tag="bdSequenceNumber.cpp:1"><path>${project}\bdContainers\bdSequenceNumber.cpp</path></file>
+<file file-tag="bdSequenceNumber.h:1"><path>${project}\bdContainers\bdSequenceNumber.h</path></file>
+<file file-tag="bdSequenceNumberStore.cpp:1"><path>${project}\bdContainers\bdSequenceNumberStore.cpp</path></file>
+<file file-tag="bdSequenceNumberStore.h:1"><path>${project}\bdContainers\bdSequenceNumberStore.h</path></file>
+<file file-tag="bdSet.h:1"><path>${project}\bdContainers\bdSet.h</path></file>
+<file file-tag="bdSet.inl:1"><path>${project}\bdContainers\bdSet.inl</path></file>
+<file file-tag="bdSingleton.cpp:1"><path>${project}\bdContainers\bdSingleton.cpp</path></file>
+<file file-tag="bdSingleton.h:1"><path>${project}\bdContainers\bdSingleton.h</path></file>
+<file file-tag="bdSingleton.inl:1"><path>${project}\bdContainers\bdSingleton.inl</path></file>
+<file file-tag="bdCryptoConfig.h:1"><path>${project}\bdCrypto\bdCryptoConfig.h</path></file>
+<file file-tag="bdCryptoUtils.cpp:1"><path>${project}\bdCrypto\bdCryptoUtils.cpp</path></file>
+<file file-tag="bdCryptoUtils.h:1"><path>${project}\bdCrypto\bdCryptoUtils.h</path></file>
+<file file-tag="bdCypher.cpp:1"><path>${project}\bdCrypto\bdCypher.cpp</path></file>
+<file file-tag="bdCypher.h:1"><path>${project}\bdCrypto\bdCypher.h</path></file>
+<file file-tag="bdCypher3Des.cpp:1"><path>${project}\bdCrypto\bdCypher3Des.cpp</path></file>
+<file file-tag="bdCypher3Des.h:1"><path>${project}\bdCrypto\bdCypher3Des.h</path></file>
+<file file-tag="bdECCKey.cpp:1"><path>${project}\bdCrypto\bdECCKey.cpp</path></file>
+<file file-tag="bdECCKey.h:1"><path>${project}\bdCrypto\bdECCKey.h</path></file>
+<file file-tag="bdHash.cpp:1"><path>${project}\bdCrypto\bdHash.cpp</path></file>
+<file file-tag="bdHash.h:1"><path>${project}\bdCrypto\bdHash.h</path></file>
+<file file-tag="bdHashTiger192.cpp:1"><path>${project}\bdCrypto\bdHashTiger192.cpp</path></file>
+<file file-tag="bdHashTiger192.h:1"><path>${project}\bdCrypto\bdHashTiger192.h</path></file>
+<file file-tag="bdHMac.cpp:1"><path>${project}\bdCrypto\bdHMac.cpp</path></file>
+<file file-tag="bdHMac.h:1"><path>${project}\bdCrypto\bdHMac.h</path></file>
+<file file-tag="bdHMacSHA1.cpp:1"><path>${project}\bdCrypto\bdHMacSHA1.cpp</path></file>
+<file file-tag="bdHMacSHA1.h:1"><path>${project}\bdCrypto\bdHMacSHA1.h</path></file>
+<file file-tag="bdRSAKey.cpp:1"><path>${project}\bdCrypto\bdRSAKey.cpp</path></file>
+<file file-tag="bdRSAKey.h:1"><path>${project}\bdCrypto\bdRSAKey.h</path></file>
+<file file-tag="bdAlignedOffsetMemory.cpp:1"><path>${project}\bdMemory\bdAlignedOffsetMemory.cpp</path></file>
+<file file-tag="bdAlignedOffsetMemory.h:1"><path>${project}\bdMemory\bdAlignedOffsetMemory.h</path></file>
+<file file-tag="bdDefaultMemory.h:1"><path>${project}\bdMemory\bdDefaultMemory.h</path></file>
+<file file-tag="bdMallocMemory-wii.cpp:1"><path>${project}\bdMemory\bdMallocMemory-wii.cpp</path></file>
+<file file-tag="bdMallocMemory-wii.h:1"><path>${project}\bdMemory\bdMallocMemory-wii.h</path></file>
+<file file-tag="bdMallocMemory.h:1"><path>${project}\bdMemory\bdMallocMemory.h</path></file>
+<file file-tag="bdMemory-wii.cpp:1"><path>${project}\bdMemory\bdMemory-wii.cpp</path></file>
+<file file-tag="bdMemory-wii.h:1"><path>${project}\bdMemory\bdMemory-wii.h</path></file>
+<file file-tag="bdMemory-wii.inl:1"><path>${project}\bdMemory\bdMemory-wii.inl</path></file>
+<file file-tag="bdMemory.cpp:1"><path>${project}\bdMemory\bdMemory.cpp</path></file>
+<file file-tag="bdMemory.h:1"><path>${project}\bdMemory\bdMemory.h</path></file>
+<file file-tag="bdMemory.inl:1"><path>${project}\bdMemory\bdMemory.inl</path></file>
+<file file-tag="bdReferencable.cpp:1"><path>${project}\bdReference\bdReferencable.cpp</path></file>
+<file file-tag="bdReferencable.h:1"><path>${project}\bdReference\bdReferencable.h</path></file>
+<file file-tag="bdReferencable.inl:1"><path>${project}\bdReference\bdReferencable.inl</path></file>
+<file file-tag="bdReference.h:1"><path>${project}\bdReference\bdReference.h</path></file>
+<file file-tag="bdReference.inl:1"><path>${project}\bdReference\bdReference.inl</path></file>
+<file file-tag="bdAddr.cpp:1"><path>${project}\bdSocket\bdAddr.cpp</path></file>
+<file file-tag="bdAddr.h:1"><path>${project}\bdSocket\bdAddr.h</path></file>
+<file file-tag="bdCommonAddr.cpp:1"><path>${project}\bdSocket\bdCommonAddr.cpp</path></file>
+<file file-tag="bdCommonAddr.h:1"><path>${project}\bdSocket\bdCommonAddr.h</path></file>
+<file file-tag="bdCommonAddrInfo.cpp:1"><path>${project}\bdSocket\bdCommonAddrInfo.cpp</path></file>
+<file file-tag="bdCommonAddrInfo.h:1"><path>${project}\bdSocket\bdCommonAddrInfo.h</path></file>
+<file file-tag="bdDefaultSocket.h:1"><path>${project}\bdSocket\bdDefaultSocket.h</path></file>
+<file file-tag="bdEndpoint.cpp:1"><path>${project}\bdSocket\bdEndpoint.cpp</path></file>
+<file file-tag="bdEndpoint.h:1"><path>${project}\bdSocket\bdEndpoint.h</path></file>
+<file file-tag="bdInetAddr.cpp:1"><path>${project}\bdSocket\bdInetAddr.cpp</path></file>
+<file file-tag="bdInetAddr.h:1"><path>${project}\bdSocket\bdInetAddr.h</path></file>
+<file file-tag="bdMACAddr.cpp:1"><path>${project}\bdSocket\bdMACAddr.cpp</path></file>
+<file file-tag="bdMACAddr.h:1"><path>${project}\bdSocket\bdMACAddr.h</path></file>
+<file file-tag="bdPort.h:1"><path>${project}\bdSocket\bdPort.h</path></file>
+<file file-tag="bdReceiveThread.cpp:1"><path>${project}\bdSocket\bdReceiveThread.cpp</path></file>
+<file file-tag="bdReceiveThread.h:1"><path>${project}\bdSocket\bdReceiveThread.h</path></file>
+<file file-tag="bdSecurityID.cpp:1"><path>${project}\bdSocket\bdSecurityID.cpp</path></file>
+<file file-tag="bdSecurityID.h:1"><path>${project}\bdSocket\bdSecurityID.h</path></file>
+<file file-tag="bdSecurityInfo.cpp:1"><path>${project}\bdSocket\bdSecurityInfo.cpp</path></file>
+<file file-tag="bdSecurityInfo.h:1"><path>${project}\bdSocket\bdSecurityInfo.h</path></file>
+<file file-tag="bdSecurityKey.cpp:1"><path>${project}\bdSocket\bdSecurityKey.cpp</path></file>
+<file file-tag="bdSecurityKey.h:1"><path>${project}\bdSocket\bdSecurityKey.h</path></file>
+<file file-tag="bdSendThread.cpp:1"><path>${project}\bdSocket\bdSendThread.cpp</path></file>
+<file file-tag="bdSendThread.h:1"><path>${project}\bdSocket\bdSendThread.h</path></file>
+<file file-tag="bdSocket.cpp:1"><path>${project}\bdSocket\bdSocket.cpp</path></file>
+<file file-tag="bdSocket.h:1"><path>${project}\bdSocket\bdSocket.h</path></file>
+<file file-tag="bdSocketConfig.h:1"><path>${project}\bdSocket\bdSocketConfig.h</path></file>
+<file file-tag="bdStreamSocket.cpp:1"><path>${project}\bdSocket\bdStreamSocket.cpp</path></file>
+<file file-tag="bdStreamSocket.h:1"><path>${project}\bdSocket\bdStreamSocket.h</path></file>
+<file file-tag="bdTestSocket.cpp:1"><path>${project}\bdSocket\bdTestSocket.cpp</path></file>
+<file file-tag="bdTestSocket.h:1"><path>${project}\bdSocket\bdTestSocket.h</path></file>
+<file file-tag="bdThreadedSocket.cpp:1"><path>${project}\bdSocket\bdThreadedSocket.cpp</path></file>
+<file file-tag="bdThreadedSocket.h:1"><path>${project}\bdSocket\bdThreadedSocket.h</path></file>
+<file file-tag="bdThreadedStreamSocket.cpp:1"><path>${project}\bdSocket\bdThreadedStreamSocket.cpp</path></file>
+<file file-tag="bdThreadedStreamSocket.h:1"><path>${project}\bdSocket\bdThreadedStreamSocket.h</path></file>
+<file file-tag="bdString.cpp:1"><path>${project}\bdString\bdString.cpp</path></file>
+<file file-tag="bdString.h:1"><path>${project}\bdString\bdString.h</path></file>
+<file file-tag="bdMutex.cpp:1"><path>${project}\bdThread\bdMutex.cpp</path></file>
+<file file-tag="bdMutex.h:1"><path>${project}\bdThread\bdMutex.h</path></file>
+<file file-tag="bdRunnable.cpp:1"><path>${project}\bdThread\bdRunnable.cpp</path></file>
+<file file-tag="bdRunnable.h:1"><path>${project}\bdThread\bdRunnable.h</path></file>
+<file file-tag="bdSemaphore.cpp:1"><path>${project}\bdThread\bdSemaphore.cpp</path></file>
+<file file-tag="bdSemaphore.h:1"><path>${project}\bdThread\bdSemaphore.h</path></file>
+<file file-tag="bdSignal.cpp:1"><path>${project}\bdThread\bdSignal.cpp</path></file>
+<file file-tag="bdSignal.h:1"><path>${project}\bdThread\bdSignal.h</path></file>
+<file file-tag="bdThread.cpp:1"><path>${project}\bdThread\bdThread.cpp</path></file>
+<file file-tag="bdThread.h:1"><path>${project}\bdThread\bdThread.h</path></file>
+<file file-tag="bdStopwatch.cpp:1"><path>${project}\bdTiming\bdStopwatch.cpp</path></file>
+<file file-tag="bdStopwatch.h:1"><path>${project}\bdTiming\bdStopwatch.h</path></file>
+<file file-tag="bdBase64.cpp:1"><path>${project}\bdUtilities\bdBase64.cpp</path></file>
+<file file-tag="bdBase64.h:1"><path>${project}\bdUtilities\bdBase64.h</path></file>
+<file file-tag="bdBitOperations.cpp:1"><path>${project}\bdUtilities\bdBitOperations.cpp</path></file>
+<file file-tag="bdBitOperations.h:1"><path>${project}\bdUtilities\bdBitOperations.h</path></file>
+<file file-tag="bdBytePacker.cpp:1"><path>${project}\bdUtilities\bdBytePacker.cpp</path></file>
+<file file-tag="bdBytePacker.h:1"><path>${project}\bdUtilities\bdBytePacker.h</path></file>
+<file file-tag="bdComparisonFunctors.h:1"><path>${project}\bdUtilities\bdComparisonFunctors.h</path></file>
+<file file-tag="bdFactory.h:1"><path>${project}\bdUtilities\bdFactory.h</path></file>
+<file file-tag="bdFactory.inl:1"><path>${project}\bdUtilities\bdFactory.inl</path></file>
+<file file-tag="bdRandom.cpp:1"><path>${project}\bdUtilities\bdRandom.cpp</path></file>
+<file file-tag="bdRandom.h:1"><path>${project}\bdUtilities\bdRandom.h</path></file>
+<file file-tag="bdSort.h:1"><path>${project}\bdUtilities\bdSort.h</path></file>
+<file file-tag="bdSort.inl:1"><path>${project}\bdUtilities\bdSort.inl</path></file>
+<file file-tag="bdStringEscape.cpp:1"><path>${project}\bdUtilities\bdStringEscape.cpp</path></file>
+<file file-tag="bdStringEscape.h:1"><path>${project}\bdUtilities\bdStringEscape.h</path></file>
+<file file-tag="bdTrulyRandom.cpp:1"><path>${project}\bdUtilities\bdTrulyRandom.cpp</path></file>
+<file file-tag="bdTrulyRandom.h:1"><path>${project}\bdUtilities\bdTrulyRandom.h</path></file>
+			<file file-tag="mw.Nintendo-4.x.rxtpo:1">
+				<path>${ProductInstallRoot}/Nintendo Revolution/Templates/Settings/mw.Nintendo-4.x.rxtpo</path>
+			</file>
+			<file file-tag="eppc.RVL.lcf:1">
+				<path>${REVOLUTION_SDK_ROOT}/include/revolution/eppc.RVL.lcf</path>
+			</file>
+		</files>
+		<group-roots>
+			<group-root category-alias="UUID_ProjectFilesGroup" depth="0" root-group-tag="UUID_ProjectFilesGroup:1">
+				<group-items>
+					<file-ref>eppc.RVL.lcf:1</file-ref>
+<file-ref>bdCore.cpp:1</file-ref>
+<file-ref>bdCore.h:1</file-ref>
+<mixed-group group-tag="bdContainers:1"><label>bdContainers</label><group-items>
+<file-ref>bdArray.h:1</file-ref>
+<file-ref>bdArray.inl:1</file-ref>
+<file-ref>bdBitBuffer.cpp:1</file-ref>
+<file-ref>bdBitBuffer.h:1</file-ref>
+<file-ref>bdBitBuffer.inl:1</file-ref>
+<file-ref>bdBitBufferTypes.h:1</file-ref>
+<file-ref>bdByteBuffer.cpp:1</file-ref>
+<file-ref>bdByteBuffer.h:1</file-ref>
+<file-ref>bdByteBuffer.inl:1</file-ref>
+<file-ref>bdCircularBuffer.h:1</file-ref>
+<file-ref>bdCircularBuffer.inl:1</file-ref>
+<file-ref>bdFastArray.h:1</file-ref>
+<file-ref>bdFastArray.inl:1</file-ref>
+<file-ref>bdHashMap.cpp:1</file-ref>
+<file-ref>bdHashMap.h:1</file-ref>
+<file-ref>bdHashMap.inl:1</file-ref>
+<file-ref>bdLinkedList.h:1</file-ref>
+<file-ref>bdLinkedList.inl:1</file-ref>
+<file-ref>bdNonce.h:1</file-ref>
+<file-ref>bdNonce.inl:1</file-ref>
+<file-ref>bdPriorityHeap.h:1</file-ref>
+<file-ref>bdPriorityHeap.inl:1</file-ref>
+<file-ref>bdPriorityQueue.h:1</file-ref>
+<file-ref>bdPriorityQueue.inl:1</file-ref>
+<file-ref>bdQueue.h:1</file-ref>
+<file-ref>bdQueue.inl:1</file-ref>
+<file-ref>bdRedBlackTree.h:1</file-ref>
+<file-ref>bdRedBlackTree.inl:1</file-ref>
+<file-ref>bdSequenceNumber.cpp:1</file-ref>
+<file-ref>bdSequenceNumber.h:1</file-ref>
+<file-ref>bdSequenceNumberStore.cpp:1</file-ref>
+<file-ref>bdSequenceNumberStore.h:1</file-ref>
+<file-ref>bdSet.h:1</file-ref>
+<file-ref>bdSet.inl:1</file-ref>
+<file-ref>bdSingleton.cpp:1</file-ref>
+<file-ref>bdSingleton.h:1</file-ref>
+<file-ref>bdSingleton.inl:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdCrypto:1"><label>bdCrypto</label><group-items>
+<file-ref>bdCryptoConfig.h:1</file-ref>
+<file-ref>bdCryptoUtils.cpp:1</file-ref>
+<file-ref>bdCryptoUtils.h:1</file-ref>
+<file-ref>bdCypher.cpp:1</file-ref>
+<file-ref>bdCypher.h:1</file-ref>
+<file-ref>bdCypher3Des.cpp:1</file-ref>
+<file-ref>bdCypher3Des.h:1</file-ref>
+<file-ref>bdECCKey.cpp:1</file-ref>
+<file-ref>bdECCKey.h:1</file-ref>
+<file-ref>bdHash.cpp:1</file-ref>
+<file-ref>bdHash.h:1</file-ref>
+<file-ref>bdHashTiger192.cpp:1</file-ref>
+<file-ref>bdHashTiger192.h:1</file-ref>
+<file-ref>bdHMac.cpp:1</file-ref>
+<file-ref>bdHMac.h:1</file-ref>
+<file-ref>bdHMacSHA1.cpp:1</file-ref>
+<file-ref>bdHMacSHA1.h:1</file-ref>
+<file-ref>bdRSAKey.cpp:1</file-ref>
+<file-ref>bdRSAKey.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdMemory:1"><label>bdMemory</label><group-items>
+<file-ref>bdAlignedOffsetMemory.cpp:1</file-ref>
+<file-ref>bdAlignedOffsetMemory.h:1</file-ref>
+<file-ref>bdDefaultMemory.h:1</file-ref>
+<file-ref>bdMallocMemory-wii.cpp:1</file-ref>
+<file-ref>bdMallocMemory-wii.h:1</file-ref>
+<file-ref>bdMallocMemory.h:1</file-ref>
+<file-ref>bdMemory-wii.cpp:1</file-ref>
+<file-ref>bdMemory-wii.h:1</file-ref>
+<file-ref>bdMemory-wii.inl:1</file-ref>
+<file-ref>bdMemory.cpp:1</file-ref>
+<file-ref>bdMemory.h:1</file-ref>
+<file-ref>bdMemory.inl:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdReference:1"><label>bdReference</label><group-items>
+<file-ref>bdReferencable.cpp:1</file-ref>
+<file-ref>bdReferencable.h:1</file-ref>
+<file-ref>bdReferencable.inl:1</file-ref>
+<file-ref>bdReference.h:1</file-ref>
+<file-ref>bdReference.inl:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdSocket:1"><label>bdSocket</label><group-items>
+<file-ref>bdAddr.cpp:1</file-ref>
+<file-ref>bdAddr.h:1</file-ref>
+<file-ref>bdCommonAddr.cpp:1</file-ref>
+<file-ref>bdCommonAddr.h:1</file-ref>
+<file-ref>bdCommonAddrInfo.cpp:1</file-ref>
+<file-ref>bdCommonAddrInfo.h:1</file-ref>
+<file-ref>bdDefaultSocket.h:1</file-ref>
+<file-ref>bdEndpoint.cpp:1</file-ref>
+<file-ref>bdEndpoint.h:1</file-ref>
+<file-ref>bdInetAddr.cpp:1</file-ref>
+<file-ref>bdInetAddr.h:1</file-ref>
+<file-ref>bdMACAddr.cpp:1</file-ref>
+<file-ref>bdMACAddr.h:1</file-ref>
+<file-ref>bdPort.h:1</file-ref>
+<file-ref>bdReceiveThread.cpp:1</file-ref>
+<file-ref>bdReceiveThread.h:1</file-ref>
+<file-ref>bdSecurityID.cpp:1</file-ref>
+<file-ref>bdSecurityID.h:1</file-ref>
+<file-ref>bdSecurityInfo.cpp:1</file-ref>
+<file-ref>bdSecurityInfo.h:1</file-ref>
+<file-ref>bdSecurityKey.cpp:1</file-ref>
+<file-ref>bdSecurityKey.h:1</file-ref>
+<file-ref>bdSendThread.cpp:1</file-ref>
+<file-ref>bdSendThread.h:1</file-ref>
+<file-ref>bdSocket.cpp:1</file-ref>
+<file-ref>bdSocket.h:1</file-ref>
+<file-ref>bdSocketConfig.h:1</file-ref>
+<file-ref>bdStreamSocket.cpp:1</file-ref>
+<file-ref>bdStreamSocket.h:1</file-ref>
+<file-ref>bdTestSocket.cpp:1</file-ref>
+<file-ref>bdTestSocket.h:1</file-ref>
+<file-ref>bdThreadedSocket.cpp:1</file-ref>
+<file-ref>bdThreadedSocket.h:1</file-ref>
+<file-ref>bdThreadedStreamSocket.cpp:1</file-ref>
+<file-ref>bdThreadedStreamSocket.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdString:1"><label>bdString</label><group-items>
+<file-ref>bdString.cpp:1</file-ref>
+<file-ref>bdString.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdThread:1"><label>bdThread</label><group-items>
+<file-ref>bdMutex.cpp:1</file-ref>
+<file-ref>bdMutex.h:1</file-ref>
+<file-ref>bdRunnable.cpp:1</file-ref>
+<file-ref>bdRunnable.h:1</file-ref>
+<file-ref>bdSemaphore.cpp:1</file-ref>
+<file-ref>bdSemaphore.h:1</file-ref>
+<file-ref>bdSignal.cpp:1</file-ref>
+<file-ref>bdSignal.h:1</file-ref>
+<file-ref>bdThread.cpp:1</file-ref>
+<file-ref>bdThread.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdTiming:1"><label>bdTiming</label><group-items>
+<file-ref>bdStopwatch.cpp:1</file-ref>
+<file-ref>bdStopwatch.h:1</file-ref>
+</group-items></mixed-group>
+<mixed-group group-tag="bdUtilities:1"><label>bdUtilities</label><group-items>
+<file-ref>bdBase64.cpp:1</file-ref>
+<file-ref>bdBase64.h:1</file-ref>
+<file-ref>bdBitOperations.cpp:1</file-ref>
+<file-ref>bdBitOperations.h:1</file-ref>
+<file-ref>bdBytePacker.cpp:1</file-ref>
+<file-ref>bdBytePacker.h:1</file-ref>
+<file-ref>bdComparisonFunctors.h:1</file-ref>
+<file-ref>bdFactory.h:1</file-ref>
+<file-ref>bdFactory.inl:1</file-ref>
+<file-ref>bdRandom.cpp:1</file-ref>
+<file-ref>bdRandom.h:1</file-ref>
+<file-ref>bdSort.h:1</file-ref>
+<file-ref>bdSort.inl:1</file-ref>
+<file-ref>bdStringEscape.cpp:1</file-ref>
+<file-ref>bdStringEscape.h:1</file-ref>
+<file-ref>bdTrulyRandom.cpp:1</file-ref>
+<file-ref>bdTrulyRandom.h:1</file-ref>
+</group-items></mixed-group>
+				</group-items>
+			</group-root>
+			<group-root category-alias="CATID_PromotedFiles" depth="1" instance-alias="Templates" root-group-tag="CATID_PromotedFiles:1">
+				<file-refs>
+					<file-ref>mw.Nintendo-4.x.rxtpo:1</file-ref>
+				</file-refs>
+			</group-root>
+		</group-roots>
+    <targets>
+      <target>
+        <name>Debug</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}</simple>
+          </setting>
+        </settings>
+      </target>
+      <target>
+        <name>Release</name>
+        <settings>
+          <setting entry="intermediateOutput" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/obj/wii-radix/${TargetName}/${ProjectName}/</simple>
+          </setting>
+          <setting entry="finalOutputDir" uuid-alias="Dictionary3">
+		  <simple>${Workspace}/lib/wii-radix/${TargetName}/</simple>
+          </setting>
+        </settings>
+      </target>
+    </targets>
+		<extensions/>
+		<cached-files/>
+	</project>
+</project-file>
+

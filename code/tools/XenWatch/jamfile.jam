@@ -1,0 +1,35 @@
+SubDir TOP Code tools XenWatch ;
+
+SupportedTargets WIN32  ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += ws2_32.lib ;
+LINKFLAGS += /SUBSYSTEM:WINDOWS /MACHINE:X86 /DEBUG /OPT:REF ;
+}
+
+SRC =
+Audio.cpp
+CaptureClient.cpp
+Config.cpp
+DiskWriter.cpp
+Main.cpp
+Xenon.cpp
+XenWatch.rc
+;
+
+LinkLibraries XenWatch :
+		core system
+		;
+		
+Application XenWatch : $(SRC) ;
+ExportVcproj XenWatch ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

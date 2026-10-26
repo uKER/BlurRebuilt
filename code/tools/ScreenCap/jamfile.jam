@@ -1,0 +1,32 @@
+SubDir TOP Code tools ScreenCap ;
+
+SupportedTargets WIN32  ;
+
+IncludePath 
+$(TOP)/Code/Mercury/Library/Common/Core/include
+$(TOP)/Code/Mercury/Library/Common/System/include
+;
+
+if $(PLATFORM) = PC
+{
+SUBDIRHDRS += \"$(DXSDK_PATH)/include\" ;
+LINKLIBS += ws2_32.lib ;
+LINKFLAGS += /DEBUG ;
+}
+
+SRC =
+Main.cpp
+../XenWatch/CaptureClient.cpp
+../XenWatch/DiskWriter.cpp
+../XenWatch/Xenon.cpp
+;
+
+LinkLibraries ScreenCap :
+		core system
+		;
+		
+Application ScreenCap : $(SRC) ;
+ExportVcproj ScreenCap ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common System ;

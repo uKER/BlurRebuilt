@@ -1,0 +1,305 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+	Version="10.0"
+	VendorName="SlickEdit"
+	WorkingDir="."
+	BuildSystem="vsbuild">
+	<Config
+		Name="Debug"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/debug/libbdplatform.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -g -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<Config
+		Name="Release"
+		Type="gnuc"
+		DebugCallbackName="gdb"
+		Version="1"
+		OutputFile="../lib/unix/release/libbdplatform.a"
+		CompilerConfigName="Latest Version"
+		Defines="">
+		<Menu>
+			<Target
+				Name="Compile"
+				MenuCaption="&amp;Compile"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				OutputExts="*.o"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='g++ -c %xup -pipe -x c++ %defd -Wall -o "%bd%n%oe" %i "%f"'/>
+			</Target>
+			<Target
+				Name="Link"
+				MenuCaption="&amp;Link"
+				ShowOnMenu="Never"
+				Dialog="_gnuc_options_form Link"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveCurrent"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='ar -rs %xup "%o" %f'/>
+			</Target>
+			<Target
+				Name="Build"
+				MenuCaption="&amp;Build"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw"
+				ClearProcessBuffer="1">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t build'/>
+			</Target>
+			<Target
+				Name="Rebuild"
+				MenuCaption="&amp;Rebuild"
+				Dialog="_gnuc_options_form Compile"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%(VSLICKBIN1)vsbuild" "%w" "%r" -t rebuild'/>
+			</Target>
+			<Target
+				Name="Debug"
+				MenuCaption="&amp;Debug"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveNone"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o" "%o"'/>
+			</Target>
+			<Target
+				Name="Execute"
+				MenuCaption="E&amp;xecute"
+				Dialog="_gnuc_options_form Run/Debug"
+				BuildFirst="1"
+				CaptureOutputWith="ProcessBuffer"
+				Deletable="0"
+				SaveOption="SaveWorkspaceFiles"
+				RunFromDir="%rw">
+				<Exec CmdLine='"%o"'/>
+			</Target>
+			<Target
+				Name="dash"
+				MenuCaption="-"
+				Deletable="0">
+				<Exec/>
+			</Target>
+			<Target
+				Name="GNU C Options"
+				MenuCaption="GNU C &amp;Options..."
+				ShowOnMenu="HideIfNoCmdLine"
+				Deletable="0"
+				SaveOption="SaveNone">
+				<Exec
+					CmdLine="gnucoptions"
+					Type="Slick-C"/>
+			</Target>
+		</Menu>
+<Includes>
+	<Include Dir="../"/>
+	<Include Dir=".."/>
+	<Include Dir="../external/libtomcrypt/src/headers/"/>
+</Includes>
+<Libs PreObjects="0">
+	<lib File="-Wl,--start-group"/>
+	<Lib File="..lib/unix/release/libtomcrypt.a"/>
+	<lib File="-Wl,--end-group"/>
+</Libs>
+<Dependencies Name="Release">
+</Dependencies>
+	</Config>
+	<CustomFolders>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl">
+		</Folder>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.inc;*.sh;*.cpy;*.if">
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"/>
+		<Folder
+			Name="Bitmaps"
+			Filters="*.bmp"/>
+		<Folder
+			Name="Other Files"
+			Filters="">
+		</Folder>
+	</CustomFolders>
+	<Files AutoFolders="PackageView">
+<Folder Name = "bdPlatformConfig">
+<F N="bdPlatformConfig/bdPlatformConfig-unix.h"/>
+<F N="bdPlatformConfig/bdPlatformConfig.h"/>
+<F N="bdPlatformConfig/bdSettings.h"/>
+</Folder>
+<Folder Name = "bdPlatformCoreTypes">
+<F N="bdPlatformCoreTypes/bdPlatformCoreTypes.cpp"/>
+<F N="bdPlatformCoreTypes/bdPlatformCoreTypes.h"/>
+</Folder>
+<Folder Name = "bdPlatformError">
+<F N="bdPlatformError/bdPlatformError.cpp"/>
+<F N="bdPlatformError/bdPlatformError.h"/>
+</Folder>
+<Folder Name = "bdPlatformLog">
+<F N="bdPlatformLog/bdMessageProxy.cpp"/>
+<F N="bdPlatformLog/bdMessageProxy.h"/>
+<F N="bdPlatformLog/bdPlatformLog.cpp"/>
+<F N="bdPlatformLog/bdPlatformLog.h"/>
+</Folder>
+<Folder Name = "bdPlatformMemory">
+<F N="bdPlatformMemory/bdPlatformMemory.h"/>
+<F N="bdPlatformMemory/bdPlatformMemory.inl"/>
+</Folder>
+<Folder Name = "bdPlatformPatterns">
+<F N="bdPlatformPatterns/bdLinkable.cpp"/>
+<F N="bdPlatformPatterns/bdLinkable.h"/>
+</Folder>
+<Folder Name = "bdPlatformRandom">
+<F N="bdPlatformRandom/bdPlatformTrulyRandom-unix.cpp"/>
+<F N="bdPlatformRandom/bdPlatformTrulyRandom.h"/>
+</Folder>
+<Folder Name = "bdPlatformSocket">
+<F N="bdPlatformSocket/bdInAddr.cpp"/>
+<F N="bdPlatformSocket/bdInAddr.h"/>
+<F N="bdPlatformSocket/bdPlatformSocket-unix.cpp"/>
+<F N="bdPlatformSocket/bdPlatformSocket.cpp"/>
+<F N="bdPlatformSocket/bdPlatformSocket.h"/>
+<F N="bdPlatformSocket/bdPlatformStreamSocket-unix.cpp"/>
+<F N="bdPlatformSocket/bdPlatformStreamSocket.cpp"/>
+<F N="bdPlatformSocket/bdPlatformStreamSocket.h"/>
+</Folder>
+<Folder Name = "bdPlatformString">
+<F N="bdPlatformString/bdPlatformString-unix.inl"/>
+<F N="bdPlatformString/bdPlatformString.cpp"/>
+<F N="bdPlatformString/bdPlatformString.h"/>
+<F N="bdPlatformString/bdPlatformString.inl"/>
+</Folder>
+<Folder Name = "bdPlatformThread">
+<F N="bdPlatformThread/bdPlatformMutex-unix.cpp"/>
+<F N="bdPlatformThread/bdPlatformMutex.cpp"/>
+<F N="bdPlatformThread/bdPlatformMutex.h"/>
+<F N="bdPlatformThread/bdPlatformSemaphore-unix.cpp"/>
+<F N="bdPlatformThread/bdPlatformSemaphore.h"/>
+<F N="bdPlatformThread/bdPlatformSignal-unix.cpp"/>
+<F N="bdPlatformThread/bdPlatformSignal.h"/>
+<F N="bdPlatformThread/bdPlatformThread-unix.cpp"/>
+<F N="bdPlatformThread/bdPlatformThread.cpp"/>
+<F N="bdPlatformThread/bdPlatformThread.h"/>
+</Folder>
+<Folder Name = "bdPlatformTiming">
+<F N="bdPlatformTiming/bdPlatformTiming-unix.cpp"/>
+<F N="bdPlatformTiming/bdPlatformTiming.cpp"/>
+<F N="bdPlatformTiming/bdPlatformTiming.h"/>
+</Folder>
+	</Files>
+</Project>

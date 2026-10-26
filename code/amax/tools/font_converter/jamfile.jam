@@ -1,0 +1,49 @@
+SubDir TOP Code amax Tools font_converter ;
+
+SupportedTargets WIN32_TOOL WIN64_TOOL  ;
+
+MERCURY = $(TOP)/Code/Mercury/Library ;
+
+IncludePath
+./include
+$(MERCURY)/Common/Core/include
+$(MERCURY)/Common/System/include
+$(MERCURY)/Library/Common/Misc_Shared/include
+$(TOP)/Code/Mercury/Library/Util/Tools_shared/include
+$(TOP)/Code/Vendor/tclap/current
+$(TOP)/Code/tools/attk/attk/include
+$(TOP)/Code/Mercury/Library/Graphics/Display/include
+$(TOP)/Code/Mercury/Library/Graphics/Ngl/include
+$(TOP)/Code/Mercury/Library/Graphics/texture_export/include
+;
+
+SRC =
+source/Application.cpp
+source/Options.cpp
+source/FontConverter.cpp
+source/Font.cpp
+source/Main.cpp
+source/BSPPageNode.cpp
+;
+
+if $(PLATFORM) = WIN64
+{
+LINKLIBS += $(DXSDK_PATH)lib/x64/d3d9.lib $(DXSDK_PATH)lib/x64/d3dx9.lib ;
+}
+else
+{
+LINKLIBS += $(DXSDK_PATH)lib/x86/d3d9.lib $(DXSDK_PATH)lib/x86/d3dx9.lib ;
+}
+
+LinkLibraries font_converter : core system misc_shared tools_shared display attk texture_export ;
+		
+Application font_converter : $(SRC) : stdafx.cpp ;
+ExportVcproj font_converter ;
+
+SubInclude TOP Code Mercury Library Common Core ;
+SubInclude TOP Code Mercury Library Common Misc_Shared ;
+SubInclude TOP Code Mercury Library Common System ;
+SubInclude TOP Code Mercury Library Graphics Display ;
+SubInclude TOP Code Mercury Library Util Tools_Shared ;
+SubInclude TOP Code Tools Attk Attk ;
+SubInclude TOP Code Mercury Library Graphics Texture_Export ;

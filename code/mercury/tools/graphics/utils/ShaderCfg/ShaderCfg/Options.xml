@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+******************************************************
+*** Process Options
+******************************************************
+-->
+
+<ConfigFile value ="ShaderCfg.xml" />
+<RegistryFile value ="ShaderReg.xml" />
+
+<Config name = "360">
+	<DefineFormat value =" /D $(DEFINE_NAME)" />
+	<DefineValueFormat value =" /D $(DEFINE_NAME)=$(DEFINE_VALUE)" />
+
+	<BatchFileIn value ="Data\360\BatchTemplate.bat" />
+	<BatchFileOut value ="Data\360\BatchOut.bat" />
+
+	<BinaryFileOut value ="Data\360\ShaderRegistry.xeb" />
+
+	<EndianSwapped value = "true" />
+</Config>
+
+<Config name = "PC">
+	<DefineFormat value =" /D $(DEFINE_NAME)" />
+	<DefineValueFormat value =" /D $(DEFINE_NAME)=$(DEFINE_VALUE)" />
+
+	<BatchFileIn value ="Data\PC\BatchTemplate.bat" />
+	<BatchFileOut value ="Data\PC\BatchOut.bat" />
+
+	<BinaryFileOut value ="Data\PC\ShaderRegistry.pcb" />
+
+	<EndianSwapped value = "false" />
+</Config>
+
+<Config name = "PS3">
+	<DefineFormat value =" -D$(DEFINE_NAME)" />
+	<DefineValueFormat value =" -D$(DEFINE_NAME)=$(DEFINE_VALUE)" />
+
+	<BatchFileIn value ="Data\PS3\BatchTemplate.bat" />
+	<BatchFileOut value ="Data\PS3\BatchOut.bat" />
+
+	<BinaryFileOut value ="Data\PS3\ShaderRegistry.p3b" />
+
+	<EndianSwapped value = "true" />
+</Config>
