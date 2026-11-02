@@ -47,9 +47,9 @@ The game is now a native 64-bit application.
 
 ## Online multiplayer support
 
-Online multiplayer is supported via AMAX emu.
-To set it up, unpack the AMAX emu client zip file into a folder called `amax_client_files`.
-The rest of the setup is the same as the one described on [AMAX emu's instruction page](https://amax-emu.com/how_to_play).
+Online multiplayer is supported via Amax Emu.
+To set it up, unpack the Amax Emu client zip file into a folder called `amax_client_files`.
+The rest of the setup is the same as described on [Amax Emu's instruction page](https://amax-emu.com/how_to_play).
 
 ## Requirements
 
@@ -84,31 +84,12 @@ These Windows environment variables are available if you want to adjust things:
 
 The intro videos don't play. The game goes straight to the title screen. That's expected.
 
-## Online play
-
-AMAX sign-in, online profile loading and online menu entry are verified in this build.
-Multiplayer racing has not yet been verified.
-
-Extract the official `amax_client_files.zip` into a folder named `amax_client_files` beside the game
-executable (or in the game's working folder). Preserve the archive's directory structure. The game
-searches that folder for the official client DLL, currently `amax_auth.asi`; the client is not bundled
-or pinned to a downloaded version. Multiplayer -> Online is hidden until the folder and client are
-present. Local split-screen and LAN remain available.
-
-Choose Multiplayer -> Online and enter your AMAX username and password in the game's login dialog.
-The password is masked, and the details are saved in the selected local game profile when you log in.
-The existing profile format stores these fields without encryption; there is no separate credentials
-text file. Account creation remains with AMAX. `AmaxClientHost.exe` runs the official 32-bit client
-alongside the 64-bit game and closes with the online session.
-
-Local split-screen works as expected.
-
 ## Changelog
 
 <table>
   <tr>
     <td><strong>v1.5 (2026/10/24)</strong></td>
-    <td>More ultra widescreen fixes<br>Support for AMAX online multiplayer</td>
+    <td>More ultra widescreen fixes<br>Support for online multiplayer via Amax Emu</td>
   </tr>
   <tr>
     <td><strong>v1.4 (2026/10/23)</strong></td>
