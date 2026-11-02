@@ -877,6 +877,7 @@ const S32 C_ScreenControlManager::Add( )
 
 		_UI_MESSAGE_DEBUG( LegalFinished );
 		_UI_MESSAGE_DEBUG( CreditsFinished );
+        _UI_MESSAGE_DEBUG( TextTab ); // [Blur2PC]
 
 		// if this asserts here then someone has changed E_UiMsg - you need to add some _UI_MESSAGE_DEBUG calls above
 		assert( uNumMessagesRegistered == ( E_UiMsg_Count - ( E_UiMsg_Start + 1 ) ) );

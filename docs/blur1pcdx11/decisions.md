@@ -40,6 +40,11 @@ Proposed (needs confirmation; tools are authored in Blur1PC): let `tools/build.s
 
 T248 reflection blur range (2026-10-18, accepted: user confirmed the result and asked to commit): narrows the T238 remaining-range fix for planar reflections. The blurred reflection keeps retail A8R8G8B8 under HDR output; the sharp reflection, scene, bloom, racification and light accumulation stay FP16. Measured: without light flares the blurred reflection never exceeded 1.0, so the cap removes only flare overdrive. An 8-bit bloom chain and a racification saturate were tried and withdrawn.
 
+T259 AMAX companion (2026-10-23, accepted scope from prior session): the user proposed loading the official 32-bit DLL in a companion process with named-pipe IPC and explicitly said "Go!". Preserve the official client authentication/session and stream transport together; the controlled probe returns 700 with those sockets and 713 with the native WinHTTP replacement. Retain real DW authentication and the server's results. Do not modify the DLL or emulate unknown session checks. The x86 helper belongs to this x64 compatibility phase, and the game builds it as a dependency. No commit or push was requested.
+
+T259 scope correction (2026-10-23, accepted by explicit user clarification): all work for this AMAX integration, including its supporting profile-download and disconnect-handling fixes, stays in BlurRebuilt. The user stated that none of this goes into Blur1PC. This overrides the generic lower-phase ownership/merge rule for this task. Withdraw the mistaken base T260/T262 edits and documentation, restore the base executable, and continue the verified fixes here under T259. No commit, push or propagation has been requested.
+
+
 T263 popup coverage (2026-10-23, accepted by explicit user instructions): make the confirmation-dimming layer aspect-agnostic through 4:3, exactly viewport-sized without excess coverage, and implement only in BlurRebuilt. The destination overrides the generic lowest-phase ownership/propagation rule for this task. Preserve the existing popup layout and fade behavior; size the authored centered filter during initialization. User approved the delivered result and requested commit on 2026-10-23; keep the commit in BlurRebuilt only.
 
 
@@ -48,7 +53,13 @@ T264 menu vignette coverage (2026-10-23, continued explicit user scope): extend 
 
 T264 commit and propagation (2026-10-23, accepted by explicit user instruction): user approved the delivered result and said "Commit and propagate." This supersedes the earlier BlurRebuilt-only propagation restriction for these overlay fixes. Reuse the exact source already committed and merged under T265 (f1f2ba55); commit T264 verification/approval notes only in BlurRebuilt, whose phase docs have no higher descendant. No push requested.
 
+
+T261 optional client and account entry (2026-10-23, explicit user request): retain the T259 BlurRebuilt-only boundary. Discover the official DLL under an extracted `amax_client_files` directory at runtime; hide Online until present. Use the shipped account dialog and existing local-profile credential fields, eliminating the separate credential text file. Restore the missing retail native text-box mechanism and bounded read/store bindings rather than substitute another form or registration provider. Save locally before authentication; keep AMAX's real authentication, profile download and errors. No commit, push or lower-phase propagation requested.
+
+
 T269 audio compatibility proposal (2026-10-25, proposed; not accepted): external v1.5 audio repeats at the exact T255 High ring period. Corrected native 128-sample tests reproduce this with delayed polling and avoid it with retail's 32-block ring. Preserve accepted base D32 until user direction changes. Proposed next step is an A/B using the existing retail-size override, then consider an independent compatibility/latency option or measured underrun recovery in the owning phase. No default, engine, quality or released executable has changed. See phase analysis T269 for limitations and evidence.
 
 
 T269 direction (2026-10-25, accepted by explicit user approval and commit/propagate instruction): use owning base T270 high-resolution writer waits, preserving D32 latency counts. The earlier compatibility-setting proposal was not accepted or implemented; it is superseded by this tested scheduling correction. User reports the result seems fine, with slightly higher perceived latency accepted. No measured latency equality is claimed.
+
+T271 - AMAX release packaging (2026-11-02, accepted by explicit user instruction): after being told the AMAX build/packaging changes and host source/script were uncommitted/untracked and must be committed and pushed before v1.6, the user said "Do it." Commit and push the complete T259/T261 dependency set to uKER/BlurRebuilt master. Preserve the remote README edits by merging rebuilt/master, retain the accepted BlurRebuilt-only integration boundary, and leave creating/tagging/publishing v1.6 to the user. This supersedes earlier AMAX notes saying commit/push was not yet requested.

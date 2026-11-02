@@ -3074,6 +3074,7 @@ add_library(ui STATIC
     ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UIStaticScene.cpp
     ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UIStaticShape.cpp
     ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UIStaticText.cpp
+    ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UITextbox.cpp
     ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UITable.cpp
     ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UINodeList.cpp
     ${BLUR_TOP}/Code/Mercury/Library/UI/source/ui/Game/Gadgets/UIVariableSpinner.cpp

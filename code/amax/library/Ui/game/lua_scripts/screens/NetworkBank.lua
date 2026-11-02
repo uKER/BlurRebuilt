@@ -140,7 +140,11 @@ function net_StartServiceConnection( go_online, callback, spawn )
 		UIGlobals.server_connection.online_mode = true
 	end
 
-	if spawn == true then
+    -- [Blur2PC] Retail PC account flow, backed by the local profile save.
+    if UIEnums.CurrentPlatform == UIEnums.Platform.PC and
+       UIGlobals.server_connection.online_mode == true and UIGlobals.NetAccountActive ~= true then
+        UIScreen.SetNextScreen( "Account\\NetLogin.lua", UIEnums.Context.Subscreen2 )
+    elseif spawn == true then
 		PopupSpawn( UIEnums.CustomPopups.NetConnectionTask )
 	else
 		SetupCustomPopup( UIEnums.CustomPopups.NetConnectionTask )

@@ -52,3 +52,18 @@ endif()
 # player's exe on this branch, so optimise it like Release; CMake's default is /O1.
 set(CMAKE_C_FLAGS_MINSIZEREL "/O2 /Ob2 /DNDEBUG")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "/O2 /Ob2 /DNDEBUG")
+
+# [Blur2PC] T259: official AMAX is x86. Build its fixed-base compatibility host
+# with the generator's x86 tools while the game itself remains x64.
+if(BLUR_X64)
+    set(AMAX_HOST_OUTPUT "${CMAKE_BINARY_DIR}/amax_client_host/$<CONFIG>")
+    add_custom_command(OUTPUT "${AMAX_HOST_OUTPUT}/AmaxClientHost.exe"
+        COMMAND cmd /c "${BLUR_TOP}/tools/amax_client_bridge/build_host.cmd"
+            "${CMAKE_GENERATOR_INSTANCE}" "${BLUR_TOP}" "${AMAX_HOST_OUTPUT}"
+        DEPENDS "${BLUR_TOP}/tools/amax_client_bridge/build_host.cmd"
+            "${BLUR_TOP}/code/amax/library/Network/AMAX/ClientHost.cpp"
+            "${BLUR_TOP}/code/amax/library/Network/AMAX/BridgeProtocol.h"
+        VERBATIM)
+    add_custom_target(amax_client_host DEPENDS "${AMAX_HOST_OUTPUT}/AmaxClientHost.exe")
+    add_dependencies(Amax amax_client_host)
+endif()

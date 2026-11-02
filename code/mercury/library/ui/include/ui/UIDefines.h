@@ -160,6 +160,7 @@ enum E_UIButtonType
 	E_UIButtonType_Legal,				///< @a
 	E_UIButtonType_Table,				///< @a
 
+	E_UIButtonType_TextBox, // [Blur2PC] retail PC gadget 0x24
 	E_UIButtonType_EndMarker			///< Use this for the start of the user list
 };
 

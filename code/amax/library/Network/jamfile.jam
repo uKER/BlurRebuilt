@@ -83,6 +83,12 @@ Player/NetPlayerVoice.cpp
 Lan/NetLanDiscovery.cpp
 ;
 
+# [Blur2PC] PC companion bridge; its x86 host is a separate executable.
+if $(PLATFORM) = PC
+{
+SRC += Router/AmaxClientBridge.cpp ;
+}
+
 SRC = [ Batch $(SRC) : StdAfx.h ] ;
 
 if $(USERNAME) = dworswick || $(USERNAME) = gayoung || $(USERNAME) = wbrown

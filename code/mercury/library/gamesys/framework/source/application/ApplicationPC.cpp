@@ -1,4 +1,5 @@
 #include "FrameworkPch.h"
+#include <input/KeyboardPC.h> // [Blur2PC] retail PC text entry
 #include <camera2/Feed.h>	// [Blur2PC] render interpolation offset
 // [Blur2PC] render interpolation hooks (world_render ModelInstance.cpp)
 void Blur2PCFrameLimitWait();	// [Blur2PC] Timer.cpp
@@ -1017,6 +1018,7 @@ LRESULT C_Application::MyWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
 
 			case WM_CHAR:
 			{
+                Input::C_KeyboardPC::PushTextCharacter((WCHAR)wParam); // [Blur2PC]
 				#if DEBUG_OUTPUT_WINDOWS_MESSAGES
 				LOGINFO(g_Log, "WindowsMessage : WM_CHAR\n");
 				#endif

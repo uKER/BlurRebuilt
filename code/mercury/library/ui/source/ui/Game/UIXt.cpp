@@ -16,6 +16,7 @@
 #include "ui/Game/Gadgets/UIStaticGraphic.h"
 #include "ui/Game/Gadgets/UIStaticLetter.h"
 #include "ui/Game/Gadgets/UIStaticText.h"
+#include "ui/Game/Gadgets/UITextbox.h" // [Blur2PC] retail PC account input
 #include "ui/Game/Gadgets/UIStaticScene.h"
 #include "ui/Game/Gadgets/UIStaticShape.h"
 #include "ui/Game/Gadgets/UIPath.h"
@@ -139,6 +140,7 @@ XT_LIBRARY( UI )
 	XT_REGISTER_TYPE( UI::UIRenderState::E_AlterFlags )
 	XT_REGISTER_TYPE( UI::UIStaticLetter )
 	XT_REGISTER_TYPE( UI::UIStaticText )
+    XT_REGISTER_TYPE( UI::UITextBox ) // [Blur2PC] deserialize the retail account fields
 	XT_REGISTER_TYPE( UI::UIStaticGraphic )
 	XT_REGISTER_TYPE( UI::UIStaticScene )
 	XT_REGISTER_TYPE( UI::UIStaticShape )

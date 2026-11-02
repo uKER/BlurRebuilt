@@ -66,6 +66,7 @@ LUASRC =
 ../Library/Ui/Game/Lua_Scripts/Screens/Multiplayer/MpLan.lua
 ../Library/Ui/Game/Lua_Scripts/Screens/Multiplayer/MpLobby.lua
 ../Library/Ui/Game/Lua_Scripts/Screens/Multiplayer/MpMain.lua
+../Library/Ui/Game/Lua_Scripts/Screens/Account/NetLogin.lua
 ../Library/Ui/Game/Lua_Scripts/Screens/Multiplayer/MpOnline.lua
 ../Library/Ui/Game/Lua_Scripts/Screens/Multiplayer/MpRacePreview.lua
 ../Library/Ui/Game/Lua_Scripts/Screens/Multiplayer/MpShowLeaderboard.lua

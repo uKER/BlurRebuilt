@@ -104,6 +104,21 @@ class bdPlatformStreamSocket
 		/// \param socketAddr[out] contains the retrieved address
 		static bdBool BD_CALL getSocketAddr(const bdInt handle,
 											bdInAddr& socketAddr);
+
+		// [Blur2PC] Optional nonblocking transport supplied by the owning application.
+		// create/close retain the native socket handle; callbacks own only its stream.
+		struct ExternalTransport
+		{
+			bdUInt16 port;
+			bdBool (*owns)(bdInt);
+			bdSocketStatusCode (*connect)(bdInt);
+			bdInt (*send)(bdInt, const void*, bdUInt);
+			bdInt (*receive)(bdInt, void*, bdUInt);
+			void (*close)(bdInt);
+			bdBool (*writable)(bdInt);
+			bdBool (*failed)(bdInt);
+		};
+		static void setExternalTransport(const ExternalTransport *transport);
 #endif
 
 	private:

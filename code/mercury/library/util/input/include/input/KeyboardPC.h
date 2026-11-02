@@ -28,6 +28,11 @@ public:
 
 	//! Inherited from C_Device
 	void Update();
+    // [Blur2PC] Unicode characters from WM_CHAR, transferred once per input update.
+    static void UpdateTextCharacters(); // [Blur2PC] called once by the device manager
+    static void PushTextCharacter(WCHAR character);
+    static U32 ReadTextCharacters(WCHAR* output, U32 capacity, U32& generation);
+
 
 private:
 	bool m_Acquired;

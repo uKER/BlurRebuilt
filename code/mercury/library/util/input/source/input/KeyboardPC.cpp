@@ -7,6 +7,48 @@
 
 namespace Input
 {
+// [Blur2PC] The window message thread produces text; UI consumes a per-update
+// snapshot. Keystrokes are events, never inferred from rendered-frame counts.
+namespace {
+    struct TextInput {
+        CRITICAL_SECTION lock;
+        WCHAR pending[256], current[256];
+        U32 pendingCount, currentCount, generation;
+        TextInput() : pendingCount(0), currentCount(0), generation(0) { InitializeCriticalSection(&lock); }
+    } textInput;
+}
+// [Blur2PC] One snapshot per device-manager update, not once for each local player.
+void C_KeyboardPC::UpdateTextCharacters() {
+    // [Blur2PC] Discard unconsumed text each input update (e.g. while a popup owns input).
+    EnterCriticalSection(&textInput.lock);
+    SecureZeroMemory(textInput.current,sizeof(textInput.current));
+    textInput.currentCount=textInput.pendingCount;
+    memcpy(textInput.current,textInput.pending,textInput.pendingCount*sizeof(WCHAR));
+    SecureZeroMemory(textInput.pending,sizeof(textInput.pending));
+    textInput.pendingCount=0;
+    ++textInput.generation;
+    LeaveCriticalSection(&textInput.lock);
+
+}
+void C_KeyboardPC::PushTextCharacter(WCHAR character) {
+    EnterCriticalSection(&textInput.lock);
+    if(textInput.pendingCount < 256)textInput.pending[textInput.pendingCount++]=character;
+    LeaveCriticalSection(&textInput.lock);
+}
+U32 C_KeyboardPC::ReadTextCharacters(WCHAR* output,U32 capacity,U32& generation) {
+    EnterCriticalSection(&textInput.lock);
+    U32 count=0;
+    if(generation!=textInput.generation) {
+        generation=textInput.generation;
+        count=capacity<textInput.currentCount?capacity:textInput.currentCount;
+        memcpy(output,textInput.current,count*sizeof(WCHAR));
+        SecureZeroMemory(textInput.current,sizeof(textInput.current));
+        textInput.currentCount=0;
+    }
+    LeaveCriticalSection(&textInput.lock);
+    return count;
+}
+
 
 const U32 ConvertToDirectInputKey( const C_KeyboardPC::E_Button button )
 {
@@ -383,6 +425,7 @@ C_KeyboardPC::~C_KeyboardPC()
 
 void C_KeyboardPC::Update()
 {
+
     HRESULT hr;
 	U8 deviceState[256];
 

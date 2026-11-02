@@ -39,6 +39,7 @@ namespace RacerNet
 			ePCAuthStateNotActive = 0,
 			ePCAuthStateStartingNetwork,
 			ePCAuthStateDnsChecks,
+			ePCAuthStateClientAuthentication, // [Blur2PC] official x86 AMAX companion.
 			ePCAuthStateAuthenticating,
 			ePCAuthStateConnectingToLobby,
 			ePCAuthStateEvaluatingBandwidth,

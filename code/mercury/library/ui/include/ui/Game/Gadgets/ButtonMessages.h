@@ -103,6 +103,7 @@ enum E_UiMsg
 	E_UiMsg_CreditsFinished,
 	E_UiMsg_LegalFinished,
 
+    E_UiMsg_TextTab, // [Blur2PC] PC account dialog keyboard traversal
 	E_UiMsg_Count
 };
 

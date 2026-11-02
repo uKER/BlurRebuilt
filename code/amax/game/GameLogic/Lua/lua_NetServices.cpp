@@ -2,6 +2,8 @@
 #include <GameLogic/Layers/RaceBookLayer.h>	// [Blur2PC]
 
 #include <ui/Game/UILUA.h>
+#include <ui/Game/Gadgets/UITextbox.h> // [Blur2PC] recovered retail PC account input
+#include <Network/Router/AmaxClientBridge.h>
 
 #include <Game/Game.h>
 #include <GameLogic\profile\GameProfileManager.h>
@@ -99,6 +101,67 @@ namespace Game
 		return 1;
 	}
 
+    // [Blur2PC] T261: extracted official AMAX DLL is optional and discovered at runtime.
+    static S32 IsAmaxClientAvailable(lua_State* state)
+    {
+        lua_pushboolean(state, AmaxClientBridge::IsAvailable());
+        return 1;
+    }
+
+    static UI::UITextBox* AccountTextBox(lua_State* state, int argument)
+    {
+        if (!lua_isnumber(state, argument)) return NULL;
+        UI::C_GadgetBase* gadget=UI::gButtons.Find((U32)lua_tonumber(state,argument));
+        return gadget && gadget->GetType()==UI::E_UIButtonType_TextBox ? static_cast<UI::UITextBox*>(gadget) : NULL;
+    }
+
+    // Recovered ReadOnlineAccountDetails (retail 0x00c1ae50), existing profile layout.
+    static S32 ReadOnlineAccountDetails(lua_State* state)
+    {
+        UI::UITextBox* user=AccountTextBox(state,1);
+        UI::UITextBox* pass=AccountTextBox(state,2);
+        C_GameProfile* profile=C_GameProfileManager::Instance().GetPrimaryProfile();
+        bool present=false;
+        if (user && pass && profile)
+        {
+            user->SetLimit(31); pass->SetLimit(31);
+            WCHAR value[100]={};
+            MultiByteToWideChar(CP_ACP,0,profile->mOptions.mOnlineLoginName,-1,value,100);
+            user->SetText(value);
+            SecureZeroMemory(value,sizeof(value));
+            MultiByteToWideChar(CP_ACP,0,profile->mOptions.mOnlineLoginPassword,-1,value,100);
+            pass->SetText(value);
+            SecureZeroMemory(value,sizeof(value));
+            present=profile->mOptions.mOnlineLoginName[0] && profile->mOptions.mOnlineLoginPassword[0];
+        }
+        lua_pushboolean(state,present); return 1;
+    }
+
+    // Recovered StoreOnlineAccountDetails (retail 0x00c1cba0). Bound the two
+    // 32-byte transfers and reject unrepresentable input instead of truncating it.
+    static S32 StoreOnlineAccountDetails(lua_State* state)
+    {
+        UI::UITextBox* user=AccountTextBox(state,1);
+        UI::UITextBox* pass=AccountTextBox(state,2);
+        C_GameProfile* profile=C_GameProfileManager::Instance().GetPrimaryProfile();
+        bool stored=false;
+        if (user && pass && profile && user->GetText()[0] && pass->GetText()[0])
+        {
+            char name[32]={}, password[32]={}; BOOL nameLoss=FALSE, passwordLoss=FALSE;
+            int n=WideCharToMultiByte(CP_ACP,WC_NO_BEST_FIT_CHARS,user->GetText(),-1,name,sizeof(name),NULL,&nameLoss);
+            int p=WideCharToMultiByte(CP_ACP,WC_NO_BEST_FIT_CHARS,pass->GetText(),-1,password,sizeof(password),NULL,&passwordLoss);
+            if (n && p && !nameLoss && !passwordLoss)
+            {
+                strcpy_s(profile->mOptions.mOnlineLoginName,name);
+                SecureZeroMemory(profile->mOptions.mOnlineLoginPassword,sizeof(profile->mOptions.mOnlineLoginPassword));
+                strcpy_s(profile->mOptions.mOnlineLoginPassword,password);
+                stored=true;
+            }
+            SecureZeroMemory(password,sizeof(password)); SecureZeroMemory(name,sizeof(name));
+        }
+        lua_pushboolean(state,stored); return 1;
+    }
+
 	static S32 OnlineConnectionPossible(lua_State* pState)
 	{
 		bool possible = false;
@@ -117,10 +180,8 @@ namespace Game
 		// for pc has the user already created a demonware account, and we have username + password stored somewhere.
 		if (-1 != primaryUserIndex && numProfiles > 0)
 		{
-			char* userName = Game::C_GameProfileManager::Instance().GetDemonwareUserName();
-			char* password = Game::C_GameProfileManager::Instance().GetDemonwarePassword();
-			if (userName != NULL && password != NULL)
-				possible = true;
+            // [Blur2PC] Login is collected by the retail dialog after entry.
+            possible = AmaxClientBridge::IsAvailable();
 		}
 #endif
 
@@ -561,10 +622,8 @@ namespace Game
 				
 				if (online)
 				{
-					char* userName = Game::C_GameProfileManager::Instance().GetDemonwareUserName();
-					char* password = Game::C_GameProfileManager::Instance().GetDemonwarePassword();
-					if (userName == NULL || password == NULL)
-						ret = 2;
+                    // [Blur2PC] Missing credentials open NetLogin; only the client gates entry.
+                    if (!AmaxClientBridge::IsAvailable()) ret = 4;
 				}
 #else
 				// unknown platform type.
@@ -1024,8 +1083,11 @@ namespace Game
 	
 	/**********************************************************************************************************************************************************************/
 	/**********************************************************************************************************************************************************************/
-	static const luaL_reg net_services_lib[] = 
-	{
+	static const luaL_reg net_services_lib[] =
+    {
+        { "IsAmaxClientAvailable", IsAmaxClientAvailable }, // [Blur2PC]
+        { "ReadOnlineAccountDetails", ReadOnlineAccountDetails },
+        { "StoreOnlineAccountDetails", StoreOnlineAccountDetails },
 		{"StopScoreboardRequests",							StopScoreboardRequests},						// stop any active scoreboard reads / writes.
 		{"FlushEnumertedSessions",							FlushEnumertedSessions},						// releses the memory taken by the online session enumeration.
 		{"SesionDeletionInProgress",						SesionDeletionInProgress},						// is an online network session in the process of being deleted.

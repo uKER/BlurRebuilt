@@ -89,6 +89,7 @@ SRC =
 ./source/ui/Game/Gadgets/UIStaticScene.cpp
 ./source/ui/Game/Gadgets/UIStaticShape.cpp
 ./source/ui/Game/Gadgets/UIStaticText.cpp
+./source/ui/Game/Gadgets/UITextbox.cpp
 ./source/ui/Game/Gadgets/UITable.cpp
 ./source/ui/Game/Gadgets/UINodeList.cpp
 ./source/ui/Game/Gadgets/UIVariableSpinner.cpp

@@ -42,7 +42,15 @@
 
 #else // xbox/xenon
 
+#endif // defined BD_PLATFORM_WIN32
 
+#if defined BD_PLATFORM_WIN32
+// [Blur2PC] Application-owned stream transport; native socket identity stays intact.
+static const bdPlatformStreamSocket::ExternalTransport *s_externalTransport = BD_NULL;
+void bdPlatformStreamSocket::setExternalTransport(const ExternalTransport *transport)
+{
+    s_externalTransport = transport;
+}
 #endif // defined BD_PLATFORM_WIN32
 
 bdInt BD_CALL bdPlatformStreamSocket::create(const bdBool blocking)
@@ -94,6 +102,12 @@ bdSocketStatusCode BD_CALL bdPlatformStreamSocket::connect(const bdInt handle,
 														   const bdInAddr addr,
 														   const bdUInt16 port)
 {
+#if defined BD_PLATFORM_WIN32
+	// [Blur2PC]
+    if (s_externalTransport && port == s_externalTransport->port && handle != BD_INVALID_SOCKET_HANDLE)
+        return s_externalTransport->connect(handle);
+#endif
+
 	struct sockaddr_in remoteAddr;
 	// Fill in address for binding locally
 	bdMemset(&remoteAddr, 0, sizeof(remoteAddr));
@@ -170,6 +184,15 @@ bdInt BD_CALL bdPlatformStreamSocket::send(const bdInt handle,
 										   const void *data,
 										   const bdUInt length)
 {
+#if defined BD_PLATFORM_WIN32
+	// [Blur2PC]
+    if (s_externalTransport && s_externalTransport->owns(handle)) {
+        const bdInt sent = s_externalTransport->send(handle, data, length);
+        if (sent > 0) m_totalBytesSent += sent;
+        return sent;
+    }
+#endif
+
 	if(handle == BD_INVALID_SOCKET_HANDLE)
 	{
 		return BD_NET_INVALID_HANDLE;
@@ -248,6 +271,15 @@ bdInt BD_CALL bdPlatformStreamSocket::receive(const bdInt handle,
 											  void *data,
 											  const bdUInt size)
 {
+#if defined BD_PLATFORM_WIN32
+	// [Blur2PC]
+    if (s_externalTransport && s_externalTransport->owns(handle)) {
+        const bdInt received = s_externalTransport->receive(handle, data, size);
+        if (received > 0) m_totalBytesRecvd += received;
+        return received;
+    }
+#endif
+
 	if(handle == BD_INVALID_SOCKET_HANDLE)
 	{
 		return BD_NET_INVALID_HANDLE;
@@ -336,6 +368,12 @@ bdInt BD_CALL bdPlatformStreamSocket::receive(const bdInt handle,
 
 bdBool BD_CALL bdPlatformStreamSocket::close(const bdInt handle)
 {
+#if defined BD_PLATFORM_WIN32
+	// [Blur2PC]
+    if (s_externalTransport && s_externalTransport->owns(handle))
+        s_externalTransport->close(handle);
+#endif
+
 	bdBool ok = true;
 	if (handle != BD_INVALID_SOCKET_HANDLE)
 	{
@@ -365,6 +403,12 @@ void BD_CALL bdPlatformStreamSocket::unregisterThread()
 
 bdBool BD_CALL bdPlatformStreamSocket::checkSocketException(const bdInt handle)
 {
+#if defined BD_PLATFORM_WIN32
+	// [Blur2PC]
+    if (s_externalTransport && s_externalTransport->owns(handle))
+        return s_externalTransport->failed(handle);
+#endif
+
 	const timeval zero = {0,0};
 	fd_set fdset;
 	FD_ZERO(&fdset);
@@ -387,6 +431,12 @@ bdBool BD_CALL bdPlatformStreamSocket::checkSocketException(const bdInt handle)
 
 bdBool BD_CALL bdPlatformStreamSocket::isWritable(const bdInt handle)
 {
+#if defined BD_PLATFORM_WIN32
+	// [Blur2PC]
+    if (s_externalTransport && s_externalTransport->owns(handle))
+        return s_externalTransport->writable(handle);
+#endif
+
 	const timeval zero = {0, 0};
 	fd_set fdset;
 	FD_ZERO(&fdset);

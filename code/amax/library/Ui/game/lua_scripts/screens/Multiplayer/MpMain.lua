@@ -91,7 +91,9 @@ function Init()
 end
 
 function PostInit()
-	local init_selection = UIEnums.RwMpBranch.Online
+	-- [Blur2PC] T261: Online exists only with an extracted AMAX client.
+    local online_available = NetServices.IsAmaxClientAvailable()
+    local init_selection = online_available and UIEnums.RwMpBranch.Online or UIEnums.RwMpBranch.Splitscreen
 
 	-- Help text bottom bar	
 	GUI.help_text_id, GUI.bottom_help_id = SetupBottomHelpBar()
@@ -134,6 +136,8 @@ function PostInit()
 		UIEnums.RwMpBranch.Lan,
 	}
 	
+    if online_available == false then table.remove(order, 1) end
+
 	-- Build carousel
 	for _,i in ipairs( order ) do
 		local addApp = true

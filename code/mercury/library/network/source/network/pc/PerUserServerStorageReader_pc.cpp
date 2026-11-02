@@ -121,7 +121,11 @@ namespace NetPlay
 		else
 		{	
 			if (BD_NO_ERROR == m_AsyncTask->getErrorCode())
+			{
+				// [Blur2PC] Retail PC Continue (0x00d6e470) returns the file size before cleanup.
+				downloadedSize = m_FileData.m_fileSize;
 				ret = eReadSuccessful;
+			}
 			else if (BD_NO_FILE == m_AsyncTask->getErrorCode())
 				ret = eReadFileDoesNotExist;
 		}

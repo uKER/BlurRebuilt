@@ -8,8 +8,10 @@
 #include "../Misc/NetDebug.h"
 #include "../Misc/NetDefines.h"
 #include "NetRouter_pc.h"
+#include "AmaxClientBridge.h" // [Blur2PC]
 #include "NetAccountCreationListener.h"
 #include <bdNet/bdNet.h>
+#include <bdPlatform/bdPlatformSocket/bdPlatformStreamSocket.h>	// [Blur2PC]
 #include <bdCore/bdCore.h>
 #include <bdLobby/bdLobbyErrorCode.h>
 #include <bdLobby/bdLobbyService.h>
@@ -27,13 +29,18 @@ Debug::Bool g_DisconnectDemonwareLobby("Network.Demonware.Lobby.ForceDisconnect"
 #define USE_DEMONWARE_CONTENT_SERVER
 
 #if defined ( USE_DEMONWARE_CONTENT_SERVER )
-	#define DW_TITLE_ID						(0x149F) 	
-	#define DW_AUTH_ADDRESS					"sbox200-auth.mmp3.demonware.net" 
+	// [Blur2PC] DemonWare's Blur servers are gone; online play uses the AMAX community
+	// servers, which emulate retail Blur 1.2's service. Retail's title ID is 0x149B
+	// (was 0x149F here). The official client in AmaxClientHost owns authentication
+	// and stream transport; it ignores these resolved stream destination addresses.
+	#define DW_TITLE_ID						(0x149B)
+	#define DW_AUTH_ADDRESS					"master.amax-emu.com"
 	#define DW_AUTH_PORT					(3074)
-	#define DW_LSG_ADDRESS_DEV				"amax-pc-dev.lsg.mmp3.demonware.net"
-	#define DW_LSG_ADDRESS_CERT				"amax-pc-dev.lsg.mmp3.demonware.net"
-	#define DW_LSG_ADDRESS_LIVE				"amax-pc-dev.lsg.mmp3.demonware.net"
+	#define DW_LSG_ADDRESS_DEV				"master.amax-emu.com"
+	#define DW_LSG_ADDRESS_CERT				"master.amax-emu.com"
+	#define DW_LSG_ADDRESS_LIVE				"master.amax-emu.com"
 	#define DW_LSG_PORT						(3074)
+	#define AMAX_STUN_ADDRESS				"stun.amax-emu.com"
 	//#define DW_STREAMING_SERVICE_ADDRESS	"amax.contentserver.mmp3.demonware.ne"	// not used since its the same address as the lsg
 	#define DW_STREAMING_SERVICE_PORT		(3075)
 #else
@@ -198,6 +205,7 @@ namespace RacerNet
 			lobbyService->disconnect();
 
 		net->stop();
+		AmaxClientBridge::Stop(); // [Blur2PC] owns only this connection's x86 companion.
 
 		LOGINFO(g_Log, "C_NetRouterPC - Connection terminated");
 
@@ -244,6 +252,16 @@ namespace RacerNet
 
 			case ePCAuthStateDnsChecks:
 				ContinueDnsLookup();
+				break;
+
+			case ePCAuthStateClientAuthentication: // [Blur2PC] asynchronous official-client login.
+				if (AmaxClientBridge::GetStatus() == AmaxClientBridge::Ready)
+					StartAuthentication();
+				else if (AmaxClientBridge::GetStatus() == AmaxClientBridge::Failed)
+				{
+					LOGWARN(g_Log, "AMAX: %s", AmaxClientBridge::Error());
+					m_PcAuthState = ePCAuthStateError;
+				}
 				break;
 			
 			case ePCAuthStateAuthenticating:
@@ -353,6 +371,14 @@ namespace RacerNet
 		bdNetImpl *const net = bdNet::getInstance();
 		bdNetStartParams params;
 		params.m_onlineGame = m_OnlineMode;
+
+#if defined ( USE_DEMONWARE_CONTENT_SERVER )
+		// [Blur2PC] AMAX: NAT traversal through its STUN server, and the auth and
+		// lobby connections (both on DW_AUTH_PORT) through its WebSocket tunnel.
+		BIZ_ASSERT(DW_LSG_PORT == DW_AUTH_PORT);
+		params.m_natTravHosts.clear();
+		params.m_natTravHosts.pushBack(AMAX_STUN_ADDRESS);
+#endif
 
 		// build the list of local IP addresses..
 		// GetAdaptersInfo treats first argument as a chunk of memory.
@@ -575,6 +601,20 @@ namespace RacerNet
 	{
 		BIZ_ASSERT(m_pAuthService == NULL);
 
+		// [Blur2PC] The official client owns both its authentication session and
+		// WebSocket traffic. A separate native tunnel fails server authentication.
+		if (AmaxClientBridge::GetStatus() != AmaxClientBridge::Ready)
+		{
+			if (!AmaxClientBridge::Start(m_UserName, m_Password))
+			{
+				LOGWARN(g_Log, "AMAX: %s", AmaxClientBridge::Error());
+				m_PcAuthState = ePCAuthStateError;
+			}
+			else
+				m_PcAuthState = ePCAuthStateClientAuthentication;
+			return;
+		}
+
 		const bdAddr authAddr(m_AuthAddr, DW_AUTH_PORT);
 		m_pAuthService = new bdAuthService(DW_TITLE_ID, authAddr);
 		if (NULL == m_pAuthService)
@@ -674,7 +714,7 @@ namespace RacerNet
 			{
 				if (NULL == m_pAccountCreationListener)
 				{
-					LOGWARN(g_Log, "C_NetRouterPC::ContinueAuthentication() - failed to authenticate user.");
+					LOGWARN(g_Log, "C_NetRouterPC::ContinueAuthentication() - failed to authenticate user, error %d.", m_pAuthService->getErrorCode());	// [Blur2PC] error code
 					switch (m_pAuthService->getErrorCode())
 					{
 					case BD_AUTH_BAD_ACCOUNT:

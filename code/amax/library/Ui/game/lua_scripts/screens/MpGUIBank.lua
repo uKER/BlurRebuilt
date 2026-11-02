@@ -7,6 +7,12 @@ function ServiceConnectionLost()
 		return
 	end
 	
+	-- [Blur2PC] Retail PC keeps ordinary service loss on the current screen,
+	-- allowing an active profile upload to finish or time out there.
+	if Amax.GetGameMode() == UIEnums.GameMode.Online and UIGlobals.UserKickBackMode == UIEnums.UserKickBackMode.None then
+		return
+	end
+
 	-- disable the logic while we are loading
 	if UIGlobals.IsLoading == true then
 		print( "ERROR - ServiceConnectionLost while on the loading screen" )
@@ -16,7 +22,8 @@ function ServiceConnectionLost()
 	print( "Connection to service lost!" )
 	Amax.KickedOutOfGame();
 
-	ReturnToStartScreen( UIEnums.UserKickBackMode.ServiceConnectionLost )
+	-- [Blur2PC] Retail retains the existing platform-disconnection reason.
+	ReturnToStartScreen( UIGlobals.UserKickBackMode )
 end
 
 function XLSPConnectionLost()

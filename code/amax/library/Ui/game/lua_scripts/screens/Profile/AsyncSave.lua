@@ -23,7 +23,9 @@ function Init( )
 	
 	AddSCUI_Elements()
 	
-	GUI.is_multiplayer = Amax.IsGameModeOnline()
+	-- [Blur2PC] Account details must save before a server connection exists.
+    GUI.is_multiplayer = Amax.IsGameModeOnline() and UIGlobals.FileParams.LocalOnly ~= true
+    GUI.finished_callback = UIGlobals.FileParams.FinishedCallback
 	
 	local sx, sy, sz = UIButtons.GetSize( SCUI.name_to_id[ "box" ] )
 	GUI.default_box_height = sy
@@ -323,7 +325,10 @@ function EndLoop( time )
 end
 
 function End()
-	--
+    -- [Blur2PC] Notify the login screen after the save screen has closed.
+    if IsFunction(GUI.finished_callback) then
+        GUI.finished_callback(GUI.finishedSuccess)
+    end
 end
 
 function AsyncSave_FinishedSaving()

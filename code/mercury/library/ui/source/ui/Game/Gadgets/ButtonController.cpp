@@ -10,6 +10,7 @@
 #include "ui/Game/Gadgets/UIStaticGraphic.h"
 #include "ui/Game/Gadgets/UIStaticLetter.h"
 #include "ui/Game/Gadgets/UIStaticText.h"
+#include "ui/Game/Gadgets/UITextbox.h" // [Blur2PC]
 #include "ui/Game/Gadgets/UIStaticScene.h"
 #include "ui/Game/Gadgets/UIStaticShape.h"
 #include "ui/Game/Gadgets/UIPath.h"
@@ -91,6 +92,7 @@ XT_TYPE( UI::E_UiMsg, "UIMessage" )
 
 	XT_OPTION( UI::E_UiMsg_MenuNext,				"MenuNext" )
 	XT_OPTION( UI::E_UiMsg_MenuBack,				"MenuBack" )
+    XT_OPTION( UI::E_UiMsg_TextTab, "Tab" ) // [Blur2PC]
 
 	XT_OPTION( UI::E_UiMsg_CtrlEnd,					"CtrlEnd" )
 
@@ -161,6 +163,7 @@ void C_ButtonController::InitCreator( const U32 maxButtonTypes, const bool creat
 			Register<UIStaticGraphic>();
 			Register<UIStaticLetter>();
 			Register<UIStaticText>();
+            Register<UITextBox>(); // [Blur2PC] retail PC account input
 			Register<UIStaticScene>();
 			Register<UIStaticShape>();
 			Register<UIPath>();

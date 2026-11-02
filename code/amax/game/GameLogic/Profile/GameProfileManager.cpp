@@ -63,32 +63,26 @@ void C_GameProfileManager::BuildNetworkSharedProfileData( const S32 sIndex, Race
 	}
 }
 
+// [Blur2PC] T261: retail account fields (StoreOnlineAccountDetails, 0x00c1cba0).
+// Credentials belong to the selected game's save, never an external text file.
 char* C_GameProfileManager::GetDemonwareUserName(void)
 {
 #if defined (PLATFORM_PC)
-
-#if !defined ( CFG_GOLD )
-	if (!stricmp(Debug::GetBuildUser(), "dworswick"))
-		return "dworswick";
+    C_GameProfile* profile = GetPrimaryProfile();
+    if (profile && profile->mOptions.mOnlineLoginName[0])
+        return profile->mOptions.mOnlineLoginName;
 #endif
-
-#endif // platform pc
-
-	return NULL;
+    return NULL;
 }
 
 char* C_GameProfileManager::GetDemonwarePassword(void)
 {
 #if defined (PLATFORM_PC)
-
-#if !defined ( CFG_GOLD )
-	if (!stricmp(Debug::GetBuildUser(), "dworswick"))
-		return "bizarre";
+    C_GameProfile* profile = GetPrimaryProfile();
+    if (profile && profile->mOptions.mOnlineLoginPassword[0])
+        return profile->mOptions.mOnlineLoginPassword;
 #endif
-
-#endif // platform pc
-
-	return NULL;
+    return NULL;
 }
 
 }; // namespace Game

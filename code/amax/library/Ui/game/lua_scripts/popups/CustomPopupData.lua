@@ -3014,7 +3014,11 @@ CustomPopup =
 													print( "net connection success" )
 													if UIGlobals.server_connection.callback ~= nil then
 														UIGlobals.server_connection.callback( true )
-													end
+                                                    end
+                                                    -- [Blur2PC] Recovered retail PC login completion.
+                                                    if UIGlobals.NetAccountActive == true then
+                                                        EndScreen(UIEnums.Context.Subscreen2)
+                                                    end
 												end
 												
 											elseif result == UIEnums.Network.Router.eConnectionResultAgeError then
@@ -3104,6 +3108,10 @@ CustomPopup =
 													if UIGlobals.server_connection.callback ~= nil then
 														UIGlobals.server_connection.callback( true )
 													end
+                                                    -- [Blur2PC] Recovered retail PC login completion.
+                                                    if UIGlobals.NetAccountActive == true then
+                                                        EndScreen(UIEnums.Context.Subscreen2)
+                                                    end
 												end
 											end
 										end
@@ -3151,7 +3159,7 @@ CustomPopup =
 
 			next_CB			=	function()
 									-- callback for failed	
-									if UIGlobals.server_connection.callback ~= nil then
+									if UIGlobals.NetAccountActive ~= true and UIGlobals.server_connection.callback ~= nil then
 										UIGlobals.server_connection.callback( false )
 									end
 								end,

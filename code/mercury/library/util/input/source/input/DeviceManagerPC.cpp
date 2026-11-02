@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include <input\DeviceManagerPC.h>
+#include <input/KeyboardPC.h> // [Blur2PC]
 
 namespace Input
 {
@@ -32,6 +33,7 @@ C_DeviceManagerPC::~C_DeviceManagerPC()
 
 void C_DeviceManagerPC::PlatformUpdate()
 {
+    C_KeyboardPC::UpdateTextCharacters(); // [Blur2PC] shared WM_CHAR stream
 }
 
 C_DeviceManager* CreateDeviceManager( const C_DeviceManagerCreateParam& param )
