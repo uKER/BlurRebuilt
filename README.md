@@ -89,7 +89,7 @@ The intro videos don't play. The game goes straight to the title screen. That's 
 <table>
   <tr>
   </tr>
-   <td><strong>v1.6 (2026/11/02)</strong>/td>
+   <td><strong>v1.6 (2026/11/02)</strong></td>
    <td>Fixed an audio timing issue that could cause stuttering or repeating sound on some systems</td>
    <td>Fixed build process to include previously missing Amax Emu client</td>
   </tr>
