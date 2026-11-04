@@ -90,7 +90,7 @@ The intro videos don't play. The game goes straight to the title screen. That's 
   <tr>
   </tr>
    <td><strong>v1.6 (2026/11/02)</strong></td>
-   <td>Fixed an audio timing issue that could cause stuttering or repeating sound on some systems<br>Fixed build process to include previously missing Amax Emu client</td>
+   <td>Fixed an audio timing issue that could cause stuttering or repeating sound on some systems<br>Fixed release process to include previously missing Amax Emu client</td>
   </tr>
   <tr>
     <td><strong>v1.5 (2026/10/24)</strong></td>
