@@ -39,7 +39,7 @@ We now feature dynamic switching of the on-screen glyphs as input is detected.
 
 ### Ultra widescreen support
 
-The menus have been fixed for ultra widescreen displays (tested on 32:9).
+The menus and race intro/outro have been fixed for ultra widescreen displays (tested on 32:9).
 
 ### 64-bit
 
