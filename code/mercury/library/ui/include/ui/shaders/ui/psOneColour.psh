@@ -4,6 +4,10 @@ sampler2D	g_Texture0			: register(s0);
 struct PS_INPUT
 {
 	float4 Colour				: COLOR0;
+#if defined(BLUR_DX11)
+	// [Blur2PC] Match vsMultiTexture's native register before TEXCOORD0 (T276).
+	float4 MyWorldPosition		: TEXCOORD3;
+#endif
 	float2 TexCoord0			: TEXCOORD0;
 	//float4 MyWorldPosition		: TEXCOORD1;
 };
