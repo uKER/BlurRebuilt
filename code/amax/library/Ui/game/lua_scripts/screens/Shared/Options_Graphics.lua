@@ -3,7 +3,7 @@
 -- SDR_* sliders) comes from the retail UI data. Differences from retail:
 --   * no mouse handling: retail also selects rows with the mouse (getMouseButton, UIButtons.GetParent,
 --     UIButtons.SetCurrentItemByID), which this source's UI does not have;
---   * the revert callback reads the screen through the Main context (retail: CarouselApp).
+--   * Rebuilt adds a saved render FPS limit and explicit display-mode labels (T274).
 -- See docs/analysis.md "Graphics options (PC)".
 
 GUI =
@@ -18,6 +18,7 @@ GUI =
 		UIGlobals.OptionsTable.aa				= UIButtons.GetSelection( GUI.AAId )
 		UIGlobals.OptionsTable.vsync			= UIButtons.GetSelection( GUI.VSyncId )
 		UIGlobals.OptionsTable.graphics_quality	= UIButtons.GetSelection( GUI.GraphicsQualityId )
+		UIGlobals.OptionsTable.max_fps = UIButtons.GetSelection( GUI.FrameLimitId )
 	end,
 
 	CanExit = function( _GUI )
@@ -37,14 +38,16 @@ function Init()
 	GUI.FullScreenId		= SCUI.name_to_id.SDR_FullScreen
 	GUI.AAId				= SCUI.name_to_id.SDR_AA
 	GUI.VSyncId				= SCUI.name_to_id.SDR_VSync
+	-- [Blur2PC] T274: retain the owning screen for popup callbacks in either UI context.
+	UIGlobals.GraphicsOptionsGUI = GUI
 
 	-- graphical detail 1-4
 	for i = 1, 4 do
 		UIButtons.AddItem( GUI.GraphicsQualityId, i, i, false )
 	end
 
-	UIButtons.AddItem( GUI.FullScreenId, 0, UIText.CMN_OFF, false )
-	UIButtons.AddItem( GUI.FullScreenId, 1, UIText.CMN_ON, false )
+	UIButtons.AddItem( GUI.FullScreenId, 0, "GAME_OPTION_WINDOWED", true )
+	UIButtons.AddItem( GUI.FullScreenId, 1, "GAME_OPTION_FULLSCREEN", true )
 
 	UIButtons.AddItem( GUI.VSyncId, 0, UIText.CMN_OFF, false )
 	UIButtons.AddItem( GUI.VSyncId, 1, UIText.CMN_ON, false )
@@ -66,6 +69,9 @@ function Init()
 	UIButtons.SetSelection( GUI.VSyncId,			UIGlobals.OptionsTable.vsync )
 	UIButtons.SetSelection( GUI.AAId,				UIGlobals.OptionsTable.aa )
 
+	GUI.HelpTextId, GUI.HelpNodeId = SetupBottomHelpBar( nil )
+	UIButtons.SetActive( GUI.HelpNodeId, false )
+
 	GUI.PrevPreset = UIButtons.GetSelectionIndex( GUI.GraphicsQualityId )
 
 	if UIGlobals.SaveGraphicOptions == true then
@@ -78,8 +84,44 @@ function Init()
 end
 
 function PostInit()
+	-- Reuse the retail slider/node template, with a distinct list value.
 	UIButtons.NodeListScan( GUI.MessageListId )
+	for i = 0, 6 do
+		UIButtons.SetNodeSortKey( GUI.MessageListId, i, i * 2 )
+	end
+	GUI.FrameLimitNode = UIButtons.CloneXtGadgetByName( "Shared\\Options_Graphics.lua", "Nde_VSync" )
+	GUI.FrameLimitId = UIButtons.FindChildByName( GUI.FrameLimitNode, "SDR_VSync" )
+	UIButtons.SetActive( GUI.FrameLimitNode, true, true )
+	UIButtons.AddListItem( GUI.MessageListId, GUI.FrameLimitNode, 7 )
+	UIButtons.SetNodeSortKey( GUI.MessageListId, 7, 9, true )
+	UIButtons.NodeListSort( GUI.MessageListId )
+	Amax.ChangeText( GUI.FrameLimitId, "GAME_OPTION_MAX_FPS" )
+	Amax.ChangeText( GUI.FullScreenId, "GAME_OPTION_DISPLAY_MODE" )
+	-- Fit the extra row above the existing bottom help bar at every UI resolution.
+	local sx, sy, sz = UIButtons.GetScale( GUI.MessageListId )
+	local x, y, z = UIButtons.GetPosition( GUI.MessageListId )
+	UIButtons.ChangeScale( GUI.MessageListId, sx * 0.8, sy * 0.8, sz )
+	UIButtons.ChangePosition( GUI.MessageListId, x, y + 2, z )
 
+	local frame_limits = { 0, 30, 60, 90, 120, 144 }
+	local current_limit = UIGlobals.OptionsTable.max_fps or 0
+	local found = false
+	for _, limit in ipairs( frame_limits ) do
+		if limit == 0 then
+			UIButtons.AddItem( GUI.FrameLimitId, limit, "GAME_OPTION_FPS_UNLIMITED", true )
+		else
+			-- AddItem copies the stored text into the slider's own list.
+			UIButtons.StoreString( 0, tostring( limit ) )
+			UIButtons.AddItem( GUI.FrameLimitId, limit, 0, true )
+		end
+		found = found or current_limit == limit
+	end
+	if not found then
+		UIButtons.StoreString( 0, tostring( current_limit ) )
+		UIButtons.AddItem( GUI.FrameLimitId, current_limit, 0, true )
+	end
+
+	UIButtons.SetSelection( GUI.FrameLimitId, current_limit )
 	local s = GetScreenOtions().selection
 	if IsNumber( s ) == true then
 		UIButtons.SetSelectionByIndex( GUI.MessageListId, s )
@@ -154,12 +196,21 @@ function UpdateInfoLine()
 		else
 			SetupInfoLine( UIText.INFO_B_BACK )
 		end
+		local help = nil
+		if selected == 7 then
+			help = "GAME_OPTION_FPS_HELP"
+		elseif UIButtons.GetSelectionIndex( GUI.MessageListId ) == 4 then
+			help = "GAME_OPTION_VSYNC_HELP"
+		end
+		UIButtons.SetActive( GUI.HelpNodeId, help ~= nil )
+		if help then UIButtons.ChangeText( GUI.HelpTextId, help ) end
 	end
 end
 
 -- The settings in force when the screen opened (or last confirmed)
 function OptionsGraphics_BackupSettings()
 	UIGlobals.RevertOptionsTable = {}
+	UIGlobals.RevertOptionsTable.max_fps = UIGlobals.OptionsTable.max_fps
 	UIGlobals.RevertOptionsTable.graphics_quality	= UIGlobals.OptionsTable.graphics_quality
 	UIGlobals.RevertOptionsTable.resolution			= UIGlobals.OptionsTable.resolution
 	UIGlobals.RevertOptionsTable.fullscreen			= UIGlobals.OptionsTable.fullscreen
@@ -169,7 +220,9 @@ end
 
 -- Puts the backed-up settings back on the sliders, in the options table and on the display
 function OptionsGraphics_RevertSettings()
-	local _GUI = ContextTable[ UIEnums.Context.Main ].GUI
+	local _GUI = UIGlobals.GraphicsOptionsGUI
+	UIButtons.SetSelection( _GUI.FrameLimitId, UIGlobals.RevertOptionsTable.max_fps )
+	UIGlobals.OptionsTable.max_fps = UIGlobals.RevertOptionsTable.max_fps
 
 	UIButtons.SetSelection( _GUI.GraphicsQualityId,	UIGlobals.RevertOptionsTable.graphics_quality )
 	UIButtons.SetSelection( _GUI.ResolutionId,		UIGlobals.RevertOptionsTable.resolution )

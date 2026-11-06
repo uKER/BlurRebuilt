@@ -2895,6 +2895,7 @@ add_library(input STATIC
     ${BLUR_TOP}/Code/Mercury/Library/Util/Input/source/input/KeyboardPC.cpp
     ${BLUR_TOP}/Code/Mercury/Library/Util/Input/source/input/MousePC.cpp
     ${BLUR_TOP}/Code/Mercury/Library/Util/Input/source/input/Pad360.cpp
+    ${BLUR_TOP}/Code/Mercury/Library/Util/Input/source/input/InputFusionBackend.cpp
 )
 target_include_directories(input PRIVATE
     ${BLUR_TOP}/Code/Mercury/Library/Util/Input
