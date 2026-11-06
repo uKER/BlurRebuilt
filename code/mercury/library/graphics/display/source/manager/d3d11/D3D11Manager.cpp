@@ -17,17 +17,38 @@ bool C_D3D11Manager::Initialise()
         IDXGIOutput* output = nullptr;
         if (SUCCEEDED(adapter->EnumOutputs(0,&output)))
         {
+            // [Blur2PC] T276: resolution selection must not silently switch a 60 Hz TV to
+            // the first enumerated mode (often 24 Hz). Preserve its current refresh when
+            // that resolution supports it; otherwise leave refresh selection to the driver.
+            DXGI_OUTPUT_DESC outputDesc = {};
+            DEVMODEW desktop = {}; desktop.dmSize = sizeof(desktop);
+            const bool haveDesktop = SUCCEEDED(output->GetDesc(&outputDesc)) &&
+                EnumDisplaySettingsW(outputDesc.DeviceName, ENUM_CURRENT_SETTINGS, &desktop);
             UINT count = 0;
             output->GetDisplayModeList(DXGI_FORMAT_B8G8R8A8_UNORM,0,&count,nullptr);
             std::vector<DXGI_MODE_DESC> modes(count);
             if (count && SUCCEEDED(output->GetDisplayModeList(DXGI_FORMAT_B8G8R8A8_UNORM,0,&count,modes.data())))
                 for (const auto& native : modes)
                 {
-                    if (native.Width < 640 || native.Height < 480 || FindVideoMode(native.Width,native.Height,E_Format_A8R8G8B8)>=0) continue;
-                    C_VideoMode mode = {};
-                    mode.m_Width=native.Width;mode.m_Height=native.Height;mode.m_Format=E_Format_A8R8G8B8;
-                    mode.m_RefreshRate=native.RefreshRate.Denominator ? native.RefreshRate.Numerator/native.RefreshRate.Denominator : 0;
-                    mode.m_WideScreen=false;mode.m_HiDef=false;m_VideoModeList.PushBack(mode);
+                    if (native.Width < 640 || native.Height < 480) continue;
+                    S32 index = FindVideoMode(native.Width,native.Height,E_Format_A8R8G8B8);
+                    if(index < 0)
+                    {
+                        C_VideoMode mode = {};
+                        mode.m_Width=native.Width;mode.m_Height=native.Height;mode.m_Format=E_Format_A8R8G8B8;
+                        mode.m_RefreshRate=0; // driver default until the current refresh is found
+                        mode.m_WideScreen=false;mode.m_HiDef=false;m_VideoModeList.PushBack(mode);
+                        index = m_VideoModeList.Size() - 1;
+                    }
+                    if(haveDesktop && native.RefreshRate.Denominator)
+                    {
+                        // Win32 exposes integer Hz; round fractional rates rather than
+                        // truncating 59.94 to 59 when matching the current display mode.
+                        const U32 refresh = static_cast<U32>((static_cast<UINT64>(native.RefreshRate.Numerator) +
+                            native.RefreshRate.Denominator / 2) / native.RefreshRate.Denominator);
+                        if(refresh == desktop.dmDisplayFrequency)
+                            m_VideoModeList[index].m_RefreshRate = desktop.dmDisplayFrequency;
+                    }
                 }
             output->Release();
         }

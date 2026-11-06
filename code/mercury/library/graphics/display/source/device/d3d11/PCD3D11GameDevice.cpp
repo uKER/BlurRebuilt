@@ -7,7 +7,8 @@
 #include "Display/Utils/Screenshot.h"
 #include <d3d11sdklayers.h>
 #include <d3d11_4.h>
-#include <dxgi1_5.h>
+#include <dxgi1_6.h>
+#include <stdio.h>
 #include <vector>
 #include <string>
 #include "Display/Device/D3D11/D3D11HDROutput.h"
@@ -20,6 +21,95 @@ namespace Display { namespace D3D11 {
 namespace
 {
 ID3D11Device* g_ExceptionDevice = nullptr;
+// [Blur2PC] T272: choose the render adapter explicitly on hybrid laptops.
+// Keep system selection available for controlled comparisons.
+IDXGIAdapter1* HighPerformanceAdapter()
+{
+    char preference[16] = {};
+    GetEnvironmentVariableA("BLUR_DX11_GPU", preference, sizeof(preference));
+    if (_stricmp(preference, "system") == 0) return nullptr;
+    IDXGIFactory6* factory = nullptr;
+    IDXGIAdapter1* adapter = nullptr;
+    if (SUCCEEDED(CreateDXGIFactory1(__uuidof(IDXGIFactory6), reinterpret_cast<void**>(&factory))))
+    {
+        for (UINT index = 0; SUCCEEDED(factory->EnumAdapterByGpuPreference(index,
+            DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, __uuidof(IDXGIAdapter1),
+            reinterpret_cast<void**>(&adapter))); ++index)
+        {
+            DXGI_ADAPTER_DESC1 description = {};
+            adapter->GetDesc1(&description);
+            if (!(description.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)) break;
+            adapter->Release(); adapter = nullptr;
+        }
+        factory->Release();
+    }
+    return adapter;
+}
+
+// [Blur2PC] T276: keep output/presentation evidence beside the existing adapter log.
+void AppendRendererStartupLine(const char* line, int length)
+{
+    wchar_t path[MAX_PATH];
+    const DWORD pathLength = GetModuleFileNameW(nullptr, path, MAX_PATH);
+    if (!pathLength || pathLength >= MAX_PATH || length <= 0) return;
+    wchar_t* slash = wcsrchr(path, L'\\');
+    if (!slash) return;
+    slash[1] = 0;
+    if (wcscat_s(path, L"renderer-startup.log") != 0) return;
+    HANDLE file = CreateFileW(path, FILE_APPEND_DATA, FILE_SHARE_READ | FILE_SHARE_WRITE,
+        nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+    if (file != INVALID_HANDLE_VALUE)
+    {
+        DWORD written = 0;
+        WriteFile(file, line, static_cast<DWORD>(length), &written, nullptr);
+        CloseHandle(file);
+    }
+}
+
+void RecordRenderAdapter(ID3D11Device* device, D3D_FEATURE_LEVEL feature, bool software)
+{
+    IDXGIDevice* dxgiDevice = nullptr;
+    IDXGIAdapter* adapter = nullptr;
+    DXGI_ADAPTER_DESC description = {};
+    if (SUCCEEDED(device->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgiDevice))))
+    {
+        if (SUCCEEDED(dxgiDevice->GetAdapter(&adapter)))
+        {
+            adapter->GetDesc(&description);
+            adapter->Release();
+        }
+        dxgiDevice->Release();
+    }
+    char name[512] = {};
+    WideCharToMultiByte(CP_UTF8, 0, description.Description, -1, name, sizeof(name), nullptr, nullptr);
+    char line[768];
+    const int length = sprintf_s(line, "pid=%lu gpu=%s vendor=%04x luid=%08lx_%08lx software=%u feature=%x\r\n",
+        GetCurrentProcessId(), name, description.VendorId, description.AdapterLuid.HighPart,
+        description.AdapterLuid.LowPart, software ? 1 : 0, static_cast<unsigned>(feature));
+    AppendRendererStartupLine(line, length);
+}
+
+// [Blur2PC] T276: distinguish a display-mode problem from a render cap or GPU load.
+void RecordPresentationMode(IDXGISwapChain* chain, UINT syncInterval, UINT requestedRefresh)
+{
+    IDXGIOutput* output = nullptr;
+    DXGI_OUTPUT_DESC outputDesc = {};
+    DEVMODEW mode = {}; mode.dmSize = sizeof(mode);
+    if (SUCCEEDED(chain->GetContainingOutput(&output)))
+    {
+        if (SUCCEEDED(output->GetDesc(&outputDesc)))
+            EnumDisplaySettingsW(outputDesc.DeviceName, ENUM_CURRENT_SETTINGS, &mode);
+        output->Release();
+    }
+    DXGI_SWAP_CHAIN_DESC chainDesc = {}; chain->GetDesc(&chainDesc);
+    char outputName[128] = {};
+    WideCharToMultiByte(CP_UTF8, 0, outputDesc.DeviceName, -1, outputName, sizeof(outputName), nullptr, nullptr);
+    char line[512];
+    const int length = sprintf_s(line, "pid=%lu output=%s display=%lux%lu@%lu requested_hz=%u vsync_interval=%u buffers=%u swap_effect=%u\r\n",
+        GetCurrentProcessId(), outputName, mode.dmPelsWidth, mode.dmPelsHeight, mode.dmDisplayFrequency,
+        requestedRefresh, syncInterval, chainDesc.BufferCount, static_cast<unsigned>(chainDesc.SwapEffect));
+    AppendRendererStartupLine(line, length);
+}
 // [Blur2PC][HDR] Existing debug-variable UI/persistence supplies live calibration.
 Debug::Bool g_HDROutputEnable("Graphics.Render.HDR.Display.Enable", true, Debug::Persist());
 Debug::Float g_HDROutputPeak("Graphics.Render.HDR.Display.PeakNits", 0.0f, Debug::Persist());
@@ -233,8 +323,10 @@ bool C_PCD3D11GameDevice::CreateD3D11()
     char warpSetting[2] = {};
     const bool forceWarp = GetEnvironmentVariableA("BLUR_DX11_WARP", warpSetting, sizeof(warpSetting)) &&
         warpSetting[0] == '1';
-    D3D_DRIVER_TYPE driver=(m_DeviceParams.m_UseREF || forceWarp) ? D3D_DRIVER_TYPE_WARP : D3D_DRIVER_TYPE_HARDWARE;
-    HRESULT hr=D3D11CreateDeviceAndSwapChain(nullptr,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,
+    IDXGIAdapter1* renderAdapter = (m_DeviceParams.m_UseREF || forceWarp) ? nullptr : HighPerformanceAdapter();
+    D3D_DRIVER_TYPE driver=(m_DeviceParams.m_UseREF || forceWarp) ? D3D_DRIVER_TYPE_WARP :
+        (renderAdapter ? D3D_DRIVER_TYPE_UNKNOWN : D3D_DRIVER_TYPE_HARDWARE);
+    HRESULT hr=D3D11CreateDeviceAndSwapChain(renderAdapter,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,
         &m_d3dPresentParams,&m_pSwapChain,&m_pd3dDevice,&selected,&context);
     if (FAILED(hr) && !g_legacySwapChain)
     {
@@ -242,21 +334,26 @@ bool C_PCD3D11GameDevice::CreateD3D11()
         g_legacySwapChain = true;
         m_HDROutput->FallBack(); // [Blur2PC][HDR] Preserve SDR on older DXGI implementations.
         SetPresentParamsD3D11();
-        hr=D3D11CreateDeviceAndSwapChain(nullptr,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,
+        hr=D3D11CreateDeviceAndSwapChain(renderAdapter,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,
             &m_d3dPresentParams,&m_pSwapChain,&m_pd3dDevice,&selected,&context);
     }
     if (hr == DXGI_ERROR_SDK_COMPONENT_MISSING)
     {
         flags &= ~D3D11_CREATE_DEVICE_DEBUG;
-        hr=D3D11CreateDeviceAndSwapChain(nullptr,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,
+        hr=D3D11CreateDeviceAndSwapChain(renderAdapter,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,
             &m_d3dPresentParams,&m_pSwapChain,&m_pd3dDevice,&selected,&context);
     }
     if(hr==E_INVALIDARG)
-        hr=D3D11CreateDeviceAndSwapChain(nullptr,driver,nullptr,flags,features+1,3,D3D11_SDK_VERSION,
+        hr=D3D11CreateDeviceAndSwapChain(renderAdapter,driver,nullptr,flags,features+1,3,D3D11_SDK_VERSION,
             &m_d3dPresentParams,&m_pSwapChain,&m_pd3dDevice,&selected,&context);
-    if(FAILED(hr) && driver==D3D_DRIVER_TYPE_HARDWARE)
+    if(FAILED(hr) && driver!=D3D_DRIVER_TYPE_WARP)
+    {
+        if (renderAdapter) { renderAdapter->Release(); renderAdapter = nullptr; }
+        driver = D3D_DRIVER_TYPE_WARP;
         hr=D3D11CreateDeviceAndSwapChain(nullptr,D3D_DRIVER_TYPE_WARP,nullptr,flags,features+1,3,D3D11_SDK_VERSION,
             &m_d3dPresentParams,&m_pSwapChain,&m_pd3dDevice,&selected,&context);
+    }
+    if (renderAdapter) renderAdapter->Release();
     // [Blur1PCDX11] The engine uploads textures and buffers from its loading thread while the
     // main thread renders; D3D9 serialised that internally and D3D11 needs the same guarantee.
     if (m_pd3dDevice)
@@ -277,6 +374,7 @@ bool C_PCD3D11GameDevice::CreateD3D11()
     }
     if(context)context->Release();
     if(FAILED(hr)) {LOGERROR(g_Log,"D3D11CreateDeviceAndSwapChain failed 0x%08x\n",hr);return false;}
+    RecordRenderAdapter(m_pd3dDevice, selected, driver == D3D_DRIVER_TYPE_WARP);
     Blur2PCAutomation::LogF("DX11 device created debug=%u warp=%u feature=%x", (flags & D3D11_CREATE_DEVICE_DEBUG) != 0,
         driver == D3D_DRIVER_TYPE_WARP, static_cast<unsigned>(selected));
     g_ExceptionDevice = m_pd3dDevice;
@@ -768,6 +866,15 @@ bool C_PCD3D11GameDevice::Present()
     const E_PresentInterval interval=m_DeviceParams.m_PresentInterval;
     const UINT syncInterval=interval==E_PresentInterval_Immediate ? 0 :
         interval==E_PresentInterval_Two ? 2 : interval==E_PresentInterval_Three ? 3 : 1;
+    // [Blur2PC] T276: log once at startup and after V-Sync/display-parameter changes.
+    static UINT previousSync = UINT(-1), previousRefresh = UINT(-1), previousWidth = 0, previousHeight = 0;
+    if (previousSync != syncInterval || previousRefresh != m_DeviceParams.m_RefreshRate ||
+        previousWidth != m_DeviceParams.m_Width || previousHeight != m_DeviceParams.m_Height)
+    {
+        RecordPresentationMode(m_pSwapChain, syncInterval, m_DeviceParams.m_RefreshRate);
+        previousSync = syncInterval; previousRefresh = m_DeviceParams.m_RefreshRate;
+        previousWidth = m_DeviceParams.m_Width; previousHeight = m_DeviceParams.m_Height;
+    }
     UINT presentFlags=0;
     if(syncInterval==0 && (m_d3dPresentParams.Flags & DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING))
     {
@@ -776,6 +883,16 @@ bool C_PCD3D11GameDevice::Present()
         if(!fullscreen)presentFlags=DXGI_PRESENT_ALLOW_TEARING;
     }
     HRESULT hr=m_pSwapChain->Present(syncInterval,presentFlags);
+    // [Blur2PC] T276: minimized/occluded presentations cannot establish visible V-Sync pacing.
+    static HRESULT previousPresentResult = E_PENDING;
+    if (hr != previousPresentResult)
+    {
+        char line[160];
+        const int length = sprintf_s(line, "pid=%lu present_result=%08x vsync_interval=%u\r\n",
+            GetCurrentProcessId(), static_cast<unsigned>(hr), syncInterval);
+        AppendRendererStartupLine(line, length);
+        previousPresentResult = hr;
+    }
     if (FAILED(hr))
     {
         static unsigned presentFailures = 0;
