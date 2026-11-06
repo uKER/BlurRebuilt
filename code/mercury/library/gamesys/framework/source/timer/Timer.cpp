@@ -1,5 +1,7 @@
 #include "FrameworkPch.h"
 #include "Framework/Timer/Timer.h"
+#include <framework/timer/RenderFrameLimit.h> // [Blur2PC] T274
+#include <cstdlib>
 
 #if defined(PLATFORM_PC)
 #include <mmsystem.h>	// [Blur2PC] timeBeginPeriod for the frame limiter
@@ -11,24 +13,58 @@
 // C_Application::IdleLoop). BLUR2PC_FRAMELIMIT=<fps> sets it at startup.
 Debug::Int g_debugBlur2PCFrameLimit("Framework.Timer.FrameLimit", 0, Debug::Range(0, 1000));
 
+// [Blur2PC] T274: keep settings available in Master, independently of debug-variable persistence.
+namespace
+{
+bool s_frameLimitLoaded = false;
+bool ParseRenderFrameLimit(const char* text, int& result)
+{
+    if (!text || !*text) return false;
+    char* end = NULL;
+    const long value = std::strtol(text, &end, 10);
+    if (end == text || *end || value < 0 || value > 1000) return false;
+    result = static_cast<int>(value);
+    return true;
+}
+}
+
+namespace Framework
+{
+void LoadRenderFrameLimit(const char* savedValue)
+{
+    int limit = 0;
+    ParseRenderFrameLimit(savedValue, limit);
+    // Preserve the existing developer/automation override. Menu changes remain live afterwards.
+    ParseRenderFrameLimit(std::getenv("BLUR2PC_FRAMELIMIT"), limit);
+    g_debugBlur2PCFrameLimit = limit;
+    s_frameLimitLoaded = true;
+}
+
+int GetRenderFrameLimit()
+{
+    if (!s_frameLimitLoaded) LoadRenderFrameLimit(NULL);
+    return static_cast<S32>(g_debugBlur2PCFrameLimit);
+}
+
+void SetRenderFrameLimit(int framesPerSecond)
+{
+    if (!s_frameLimitLoaded) LoadRenderFrameLimit(NULL);
+    g_debugBlur2PCFrameLimit = framesPerSecond >= 0 && framesPerSecond <= 1000 ? framesPerSecond : 0;
+}
+}
+
 // [Blur2PC] waits until 1/limit s have passed since the previous call; called once per rendered frame
 void Blur2PCFrameLimitWait()
 {
-	static bool s_envRead = false;
-	if (!s_envRead)
-	{
-		s_envRead = true;
-		if (const char* e = getenv("BLUR2PC_FRAMELIMIT"))
-			g_debugBlur2PCFrameLimit = atoi(e);
-	}
+	const int frameLimit = Framework::GetRenderFrameLimit(); // [Blur2PC] T274: read the live player value.
 	static Time::C_Time s_prev = 0;
-	if (g_debugBlur2PCFrameLimit > 0 && s_prev)
+	if (frameLimit > 0 && s_prev)
 	{
 #if defined(PLATFORM_PC)
 		static bool s_timerPeriodSet = false;
 		if (!s_timerPeriodSet) { timeBeginPeriod(1); s_timerPeriodSet = true; }
 #endif
-		const F32 target = 1.0f / (F32)(S32)g_debugBlur2PCFrameLimit;
+		const F32 target = 1.0f / (F32)frameLimit;
 		for (;;)
 		{
 			const F32 elapsed = (F32)(Time::GetPerformanceCounter() - s_prev) / (F32)Time::GetPerformanceFrequency();
