@@ -10,6 +10,10 @@ sampler2D	g_tShadow		: register(s0);
 
 struct PS_INPUT
 {
+#if defined(BLUR_DX11)
+	// [Blur2PC] Match the position register preceding TEXCOORD0 in the vertex shader (T276).
+	float4 m_Position : SV_Position;
+#endif
 	float3	m_ShadowTexCoords	: TEXCOORD0;
 };
 
