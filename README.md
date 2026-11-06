@@ -2,6 +2,20 @@
 
 This is the 2010 game **Blur**, by Bizarre Creations, brought up to date for modern PCs.
 
+> **Contribution preview:** this branch is published for review. Its exact
+> filtered source tree still needs full build/runtime/CI validation and a clean
+> Windows installer test. The accepted local player build included additional
+> local-only changes excluded here. No binary release from this branch is being
+> advertised. See [scope, tests and remaining work](docs/blur1pcdx11/contribution-verification.md).
+
+## Controller and display improvements
+
+The optional InputFusion backend adds DualSense controls and rumble without
+DS4Windows. DPI-aware windows, high-performance GPU selection, refresh-rate
+preservation and a saved Maximum FPS menu option improve current PC setups.
+See [integration notes](docs/blur1pcdx11/additions.md) for setup, comparison
+switches and verification limits.
+
 ## What's new
 
 The original game was a 32-bit executable using DirectX 9, and had numerous issues when framerate was allowed
@@ -60,9 +74,28 @@ The rest of the setup is the same as described on [Amax Emu's instruction page](
 
 ## Installation
 
-1. Copy `BlurRebuilt.exe`, `AmaxClientHost.exe` and the `fx11` folder into your Blur install folder. That's
+When a validated release is published, download and run its `BlurRebuilt-<version>-Setup.exe`. Confirm your
+existing Blur folder, then install. Setup installs the game executable, effects,
+InputFusion controller support and notices together, and installs the bundled
+Microsoft x64 C++ runtime if needed. It requires no downloads during installation.
+Open **Blur Rebuilt** from the Start menu afterwards. Your original Blur.exe and
+saves are preserved. Files replaced by setup are backed up and restored when
+the installed additions are uninstalled.
+
+The ZIP remains available for a manual installation:
+
+1. Copy `BlurRebuilt.exe`, `AmaxClientHost.exe`, `BlurInputFusion.dll`, the `InputFusion-Licenses` folder
+   and the complete `fx11` folder into your Blur install folder. That's
    the one containing `Blur.exe`, usually `C:\Program Files (x86)\Activision\Blur(TM)`.
 2. Run `BlurRebuilt.exe`.
+
+The x64 Visual C++ runtime listed above is required by both the game and the
+bundled controller backend. Install a current version; it must be at least as
+recent as the tools used to build the binaries. SDL and Detours are included
+inside the backend DLL, so they need no separate installation. If the backend
+cannot load, the game uses Windows XInput; direct DualSense support is then
+unavailable. No DS4Windows, ViGEm, Steam or NVIDIA App installation is required
+for this integration. Connect the controller by USB or pair it in Windows.
 
 Your original `Blur.exe` isn't affected, and you can keep using it.
 
