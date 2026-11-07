@@ -1,8 +1,8 @@
 # [Blur2PC][x64] Builds the player release (the engine's Master configuration,
 # CMake MinSizeRel) and publishes it as a GitHub release. The zip holds what
 # package.bat produces locally: BlurRebuilt.exe, AmaxClientHost.exe, README.md
-# and the fx11 effects the game loads (effects.index, effects.samplers and the
-# .fxo files).
+# the fx11 effects (effects.index, effects.samplers and .fxo files), and the
+# pinned InputFusion DLL with its accompanying notices.
 #
 # Start it by pushing a tag (git push rebuilt v1.0), or from the Actions tab
 # with a tag name, which creates the tag on the selected commit.
@@ -104,6 +104,9 @@ jobs:
           cmd /c "tools\demonware_cmake\build_openssl_x64.cmd _work\vendor_x64\openssl-0.9.8i _work\vendor_x64\openssl-x64"
           if ($LASTEXITCODE -ne 0) { throw "build_openssl_x64.cmd exited $LASTEXITCODE" }
 
+      - name: Prepare pinned controller backend
+        run: ./tools/inputfusion/setup.ps1
+
       # The commands in tools/build.sh, configured for x64.
       - name: Generate build files
         run: |
@@ -165,7 +168,12 @@ jobs:
           New-Item -ItemType Directory -Force "$stage/fx11" | Out-Null
           Copy-Item _work/build/vs/MinSizeRel/Amax.exe "$stage/BlurRebuilt.exe"
           Copy-Item _work/build/vs/amax_client_host/MinSizeRel/AmaxClientHost.exe $stage
+          Copy-Item _work/build/vs/MinSizeRel/BlurInputFusion.dll $stage
+          Copy-Item _work/build/vs/MinSizeRel/InputFusion-Licenses $stage -Recurse
           Copy-Item README.md $stage
+          New-Item -ItemType Directory -Force "$stage/docs/blur1pcdx11" | Out-Null
+          Copy-Item docs/blur1pcdx11/additions.md "$stage/docs/blur1pcdx11/additions.md"
+          Copy-Item docs/blur1pcdx11/contribution-verification.md "$stage/docs/blur1pcdx11/contribution-verification.md"
           $root = (Resolve-Path $effects).Path
           Get-ChildItem $effects -Recurse -File | Where-Object { $_.Name -in 'effects.index', 'effects.samplers' -or $_.Extension -eq '.fxo' } | ForEach-Object {
             $target = Join-Path "$stage/fx11" $_.FullName.Substring($root.Length + 1)
@@ -184,12 +192,28 @@ jobs:
           name: BlurRebuilt-${{ env.TAG }}
           path: ${{ env.BLUR_ZIP }}
 
+      - name: Build offline installer
+        run: |
+          ./tools/installer/build.ps1 -Stage _work/package -Version $env:TAG -OutputDirectory _work
+          if ($LASTEXITCODE -ne 0) { throw 'Offline installer build failed' }
+          $setup = "_work/BlurRebuilt-$env:TAG-Setup.exe"
+          if (-not (Test-Path -LiteralPath $setup)) { throw 'Offline installer missing' }
+          "BLUR_SETUP=$setup" >> $env:GITHUB_ENV
+
+      - name: Keep the installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: BlurRebuilt-${{ env.TAG }}-Setup
+          path: |
+            ${{ env.BLUR_SETUP }}
+            ${{ env.BLUR_SETUP }}.json
+
       - name: Publish release
         if: github.event_name == 'push' || inputs.publish
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create $env:TAG $env:BLUR_ZIP --target $env:GITHUB_SHA --title "Blur Rebuilt $env:TAG" --generate-notes
+          gh release create $env:TAG $env:BLUR_SETUP $env:BLUR_ZIP --target $env:GITHUB_SHA --title "Blur Rebuilt $env:TAG" --generate-notes
           if ($LASTEXITCODE -ne 0) { throw "gh release create exited $LASTEXITCODE" }
 
       - name: Keep the build log

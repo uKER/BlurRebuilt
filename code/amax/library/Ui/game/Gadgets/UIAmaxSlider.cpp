@@ -29,6 +29,16 @@ XT_END_TYPE
 namespace UI
 {
 
+// [Blur2PC] T274: own the label name using the same lifetime as UIStaticText captions.
+void UIAmaxSlider::ChangeText( const char* variableName )
+{
+	m_Text.Invalidate();
+	m_TextID.id = 0;
+	if( m_VariableName )
+		m_XtAllocator.Delete( const_cast<char*>( m_VariableName.string ) );
+	m_VariableName = XtSz8( CopyCreateString( variableName ) );
+}
+
 void UIAmaxSlider::Setup( lua_State* pState )
 {
 	m_pLeftArrow = NULL;

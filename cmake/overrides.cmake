@@ -28,6 +28,13 @@ target_compile_definitions(JpegHelper PRIVATE XMD_H)
 # per-target addition, so it belongs here.
 target_sources(Amax PRIVATE ${BLUR_TOP}/code/vendor/crash-handler/crash_handler.cpp)
 
+# [Blur2PC] T272: fullscreen must not be bitmap-scaled by Windows after a
+# resolution/monitor change. Embed the DPI contract in the actual player exe.
+target_sources(Amax PRIVATE ${BLUR_TOP}/code/mercury/library/gamesys/framework/source/application/BlurDpi.manifest)
+
+# [Blur2PC] T272: optional, pinned controller backend and its runtime packaging.
+include(${BLUR_TOP}/cmake/inputfusion.cmake)
+
 # [Blur2PC] T256: embed the existing source Xbox atlas for dynamic PC prompts.
 # A resource keeps the normal single-exe delivery and does not alter retail data.
 file(WRITE ${CMAKE_BINARY_DIR}/amax_glyphs.rc
@@ -58,7 +65,9 @@ set(CMAKE_CXX_FLAGS_MINSIZEREL "/O2 /Ob2 /DNDEBUG")
 if(BLUR_X64)
     set(AMAX_HOST_OUTPUT "${CMAKE_BINARY_DIR}/amax_client_host/$<CONFIG>")
     add_custom_command(OUTPUT "${AMAX_HOST_OUTPUT}/AmaxClientHost.exe"
-        COMMAND cmd /c "${BLUR_TOP}/tools/amax_client_bridge/build_host.cmd"
+        # [Blur2PC] T272: CALL keeps cmd /c from stripping the script-path
+        # quotes when the source folder and following arguments contain spaces.
+        COMMAND cmd /c call "${BLUR_TOP}/tools/amax_client_bridge/build_host.cmd"
             "${CMAKE_GENERATOR_INSTANCE}" "${BLUR_TOP}" "${AMAX_HOST_OUTPUT}"
         DEPENDS "${BLUR_TOP}/tools/amax_client_bridge/build_host.cmd"
             "${BLUR_TOP}/code/amax/library/Network/AMAX/ClientHost.cpp"

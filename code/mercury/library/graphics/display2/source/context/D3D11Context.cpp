@@ -6,6 +6,7 @@
 #include <d3d11sdklayers.h>
 #include <map>
 #include <mutex>
+#include <atomic> // [Blur2PC] T276: resource destruction can run under the driver's lock.
 #include <vector>
 #include <system/debug/Blur2PCAutomation.h>
 
@@ -52,6 +53,44 @@ using S_StagingKey = std::pair<const ID3D11Resource*, UINT>;
 std::map<S_StagingKey, S_StagingLock> g_stagingLocks;
 std::mutex g_stagingMutex;
 
+// [Blur2PC] T276: D3D9 lock state dies with its texture. Native staging locks
+// must do the same, or a later resource reusing that address inherits the lock.
+// Collect under g_stagingMutex, outside the driver's destruction callback.
+void ReleaseTextureLocks(ID3D11Resource* resource)
+{
+	auto it = g_stagingLocks.lower_bound(S_StagingKey(resource, 0));
+	while (it != g_stagingLocks.end() && it->first.first == resource)
+	{
+		const S_StagingLock& held = it->second;
+		held.context->Unmap(held.staging, 0);
+		held.staging->Release();
+		it = g_stagingLocks.erase(it);
+	}
+}
+
+// [Blur2PC] A driver can release private data while holding its context lock.
+// Queue retirement without taking g_stagingMutex or re-entering the context.
+struct S_RetiredTexture { ID3D11Resource* resource; S_RetiredTexture* next; };
+std::atomic<S_RetiredTexture*> g_retiredTextures(nullptr);
+void RetireTextureLocks(ID3D11Resource* resource)
+{
+	S_RetiredTexture* item = new S_RetiredTexture{resource, nullptr};
+	item->next = g_retiredTextures.load(std::memory_order_relaxed);
+	while (!g_retiredTextures.compare_exchange_weak(item->next, item,
+		std::memory_order_release, std::memory_order_relaxed)) {}
+}
+void CollectRetiredTextureLocks()
+{
+	S_RetiredTexture* item = g_retiredTextures.exchange(nullptr, std::memory_order_acquire);
+	while (item)
+	{
+		S_RetiredTexture* next = item->next;
+		ReleaseTextureLocks(item->resource);
+		delete item;
+		item = next;
+	}
+}
+
 void TraceLockFailure(const char* reason, ID3D11Resource* resource, UINT subresource, HRESULT result)
 {
 	static unsigned count = 0;
@@ -93,13 +132,25 @@ const GUID kStagingMirrorGuid =
 class C_StagingMirrors final : public IUnknown
 {
 public:
+	// [Blur2PC] Buffers retain themselves while locked; textures use a separate
+	// staging resource and need their outstanding locks retired on destruction.
+	void TrackTextureLifetime(ID3D11Resource* resource)
+	{
+		D3D11_RESOURCE_DIMENSION dimension;
+		resource->GetType(&dimension);
+		m_Texture = dimension == D3D11_RESOURCE_DIMENSION_BUFFER ? nullptr : resource;
+	}
 	std::map<UINT, ID3D11Resource*> m_Staging; // owned references, by subresource
 	// A DYNAMIC buffer cannot be read back. D3D9 keeps its contents across a lock
 	// without DISCARD/NOOVERWRITE; this is that contents for such locks.
 	std::vector<U8> m_Shadow;
 	bool m_ShadowStale = false;
 
-	~C_StagingMirrors() { for (auto& entry : m_Staging) entry.second->Release(); }
+	~C_StagingMirrors()
+	{
+		if (m_Texture) RetireTextureLocks(m_Texture); // [Blur2PC] T276: final texture lifetime.
+		for (auto& entry : m_Staging) entry.second->Release();
+	}
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID iid, void** object) override
 	{
 		if (!object) return E_POINTER;
@@ -118,6 +169,7 @@ public:
 	}
 
 private:
+	ID3D11Resource* m_Texture = nullptr; // observed owner, never a retained reference
 	LONG m_References = 1;
 };
 
@@ -135,6 +187,7 @@ C_StagingMirrors* StagingMirrors(ID3D11Resource* resource, bool create)
 	if (!create) return nullptr;
 	C_StagingMirrors* mirrors = new C_StagingMirrors;
 	const HRESULT hr = resource->SetPrivateDataInterface(kStagingMirrorGuid, mirrors);
+	if (SUCCEEDED(hr)) mirrors->TrackTextureLifetime(resource); // [Blur2PC] Only an attached owner retires locks.
 	mirrors->Release();
 	return SUCCEEDED(hr) ? mirrors : nullptr;
 }
@@ -169,6 +222,7 @@ bool LockResource(ID3D11Resource* resource, UINT subresource, bool write,
 {
 	if (!resource) { TraceLockFailure("null resource",resource,subresource,E_POINTER); return false; }
 	std::lock_guard<std::mutex> lock(g_stagingMutex);
+	CollectRetiredTextureLocks(); // [Blur2PC] Before a reused address can acquire another lock.
 	const S_StagingKey key(resource, subresource);
 	const auto locked = g_stagingLocks.find(key);
 	if (locked != g_stagingLocks.end())
@@ -355,6 +409,9 @@ bool LockResource(ID3D11Resource* resource, UINT subresource, bool write,
 		hr = TryMapStaging(context, staging, mapped, mode);
 		if (SUCCEEDED(hr))
 		{
+			// [Blur2PC] Render-target textures can be locked too, even without a
+			// persistent mirror. Their lock state still follows the texture owner.
+			if (dimension != D3D11_RESOURCE_DIMENSION_BUFFER) StagingMirrors(resource, true);
 			if (mirrored && !reused)
 			{
 				if (C_StagingMirrors* mirrors = StagingMirrors(resource, true))
@@ -422,6 +479,7 @@ bool LockResource(ID3D11Resource* resource, UINT subresource, bool write,
 void UnlockStagingResource(ID3D11Resource* resource, UINT subresource)
 {
 	std::lock_guard<std::mutex> guard(g_stagingMutex);
+	CollectRetiredTextureLocks(); // [Blur2PC] Never release staging from the driver callback.
 	auto it = g_stagingLocks.find(S_StagingKey(resource, subresource));
 	if (it == g_stagingLocks.end()) return;
 	if (--it->second.nested > 0) return;

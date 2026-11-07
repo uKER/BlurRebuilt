@@ -33,6 +33,7 @@ PCSRC =
 ./source/input/KeyboardPC.cpp
 ./source/input/MousePC.cpp
 ./source/input/Pad360.cpp
+./source/input/InputFusionBackend.cpp
 ;
 
 if $(USERNAME) = gsmillie
