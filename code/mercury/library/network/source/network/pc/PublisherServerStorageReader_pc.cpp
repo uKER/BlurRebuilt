@@ -51,8 +51,14 @@ namespace NetPlay
 		// copy data for later.
 		m_pDownloadBuffer = pDownloadBuffer;
 		m_DownloadBufferSize = downloadBufferSize;
+		// [Blur2PC] Retail PC Start (0x00d6dd30) points the result at the game buffer before the request;
+		// without it bdFileData::deserialize copies nothing and the buffer stays uninitialised.
+		m_FileData.m_fileData = pDownloadBuffer;
+		m_FileData.m_fileSize = downloadBufferSize;
 
-		m_AsyncTask = storageService->getFile(fileName, &m_FileData);
+		// [Blur2PC] Retail PC Start requests title files with bdStorage::getPublisherFile (0x00cf7a10,
+		// storage operation 7). getFile is a per-user lookup; the server answers it with no result.
+		m_AsyncTask = storageService->getPublisherFile(fileName, &m_FileData);
 		if (NetPlay::DemonwareRemoteTask::IsBusy(m_AsyncTask))
 		{
 			m_Reading = true;
@@ -79,7 +85,11 @@ namespace NetPlay
 
 		ePerUserStorageReaderState ret = eReadFailed;		
 		if (BD_NO_ERROR == m_AsyncTask->getErrorCode())
+		{
+			// [Blur2PC] Retail PC Continue (0x00d6dc10) returns the downloaded size before cleanup.
+			downloadedSize = m_FileData.m_fileSize;
 			ret = eReadSuccessful;
+		}
 		else if (BD_NO_FILE == m_AsyncTask->getErrorCode())
 			ret = eReadFileDoesNotExist;
 

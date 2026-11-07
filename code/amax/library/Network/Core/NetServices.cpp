@@ -1491,17 +1491,21 @@ namespace RacerNet
 		}
 	}
 
+#if !defined(PLATFORM_PC) // [Blur2PC] only the console title storage loads swap; see TitleStorageLoad
 	static void SwapEndian(U32 &val)
 	{
 		val = (val<<24) | ((val<<8) & 0x00ff0000) |
 			((val>>8) & 0x0000ff00) | (val>>24);
 	}
+#endif
 
 	bool C_NetServices::TitleStorageLoad( U8 currFileDownload, U32 numBytesDownloaded )
 	{
 		U32 decompressedSize(0);
 		memcpy(&decompressedSize, m_pTSBuffer, sizeof(U32));
+#if !defined(PLATFORM_PC)
 		SwapEndian( decompressedSize );
+#endif // [Blur2PC] Retail PC TitleStorageLoad (0x00b2e0c0) reads the size header little-endian, unswapped.
 
 		if( TITLE_STORAGE_BUFFER_SIZE * 2 < decompressedSize )
 		{

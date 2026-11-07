@@ -1122,3 +1122,9 @@ Verified: documented standard x64 tools/build.sh variant regenerated source list
 Blocked: none for release packaging. Online racing/non-ASCII locales remain unverified as recorded in T259/T261.
 Publication: pushed 344925828d8bb6b6e214a0f9cca9aad344d0257f to rebuilt/master and confirmed the remote ref, release copy command, CMake host dependency, host sources and build script through the GitHub API. The default Git credential lacked workflow scope; the already-authenticated GitHub CLI credential had it, and the retry succeeded without changing stored credentials.
 Next: the user can create v1.6 from published master. No lower-phase merge, tag or GitHub release is part of T271.
+
+## 2026-11-07 - session Claude AMAX TMS - T272 title storage in the Master release
+Did: reproduced the user's "Unable to download content" with the installed v1.6 exe (popup 187, TitleFailed). Recovered retail publisher reader Start/Continue, getPublisherFile and TitleStorageLoad; fixed PublisherServerStorageReader_pc.cpp (buffer wiring, getPublisherFile, byte count) and NetServices.cpp (no PC size swap). Temporary diagnostics added and removed. Release delivered to _work/run.
+Verified: Release and MinSizeRel errsum 0; Release with title storage enabled loads BlurTU1_bin.ts/BlurTU1_loc.ts and reaches MpOnline; fixed Master reaches MpOnline with no failure popup. Window still shows only the 3D layer, so the logs are the evidence: _work/t272/{amax.log,automation.log,run_master_fix.log}.
+Blocked: none. Fixed Master copied over the install's BlurRebuilt.exe (original kept at _work/t272/BlurRebuilt_v16_original.exe); user confirmed Online works; committed on request.
+Next: none for T272; an online race remains unverified.
