@@ -5,6 +5,7 @@
 #include <system/debug/Blur2PCAutomation.h>
 #include "Display/Render/Render.h"
 #include "Display/Utils/Screenshot.h"
+#include "Display/Manager/D3D11/D3D11Manager.h"
 #include <d3d11sdklayers.h>
 #include <d3d11_4.h>
 #include <dxgi1_6.h>
@@ -21,31 +22,6 @@ namespace Display { namespace D3D11 {
 namespace
 {
 ID3D11Device* g_ExceptionDevice = nullptr;
-// [Blur2PC] T272: choose the render adapter explicitly on hybrid laptops.
-// Keep system selection available for controlled comparisons.
-IDXGIAdapter1* HighPerformanceAdapter()
-{
-    char preference[16] = {};
-    GetEnvironmentVariableA("BLUR_DX11_GPU", preference, sizeof(preference));
-    if (_stricmp(preference, "system") == 0) return nullptr;
-    IDXGIFactory6* factory = nullptr;
-    IDXGIAdapter1* adapter = nullptr;
-    if (SUCCEEDED(CreateDXGIFactory1(__uuidof(IDXGIFactory6), reinterpret_cast<void**>(&factory))))
-    {
-        for (UINT index = 0; SUCCEEDED(factory->EnumAdapterByGpuPreference(index,
-            DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, __uuidof(IDXGIAdapter1),
-            reinterpret_cast<void**>(&adapter))); ++index)
-        {
-            DXGI_ADAPTER_DESC1 description = {};
-            adapter->GetDesc1(&description);
-            if (!(description.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)) break;
-            adapter->Release(); adapter = nullptr;
-        }
-        factory->Release();
-    }
-    return adapter;
-}
-
 // [Blur2PC] T276: keep output/presentation evidence beside the existing adapter log.
 void AppendRendererStartupLine(const char* line, int length)
 {
@@ -210,6 +186,8 @@ struct S_FullscreenMode
     WNDPROC m_WindowProc;
     char m_Device[CCHDEVICENAME];
     DEVMODEA m_Mode;
+    DEVMODEA m_DesktopMode; // [Blur2PC] Preserve temporary desktop settings too.
+    bool m_HaveDesktopMode;
     bool m_Wanted;
     bool m_Applied;
 };
@@ -217,7 +195,13 @@ S_FullscreenMode g_FullscreenMode = {};
 void RestoreDesktopMode()
 {
     if (!g_FullscreenMode.m_Applied) return;
-    ChangeDisplaySettingsExA(g_FullscreenMode.m_Device, nullptr, nullptr, 0, nullptr);
+    const LONG result = ChangeDisplaySettingsExA(g_FullscreenMode.m_Device,
+        g_FullscreenMode.m_HaveDesktopMode ? &g_FullscreenMode.m_DesktopMode : nullptr, nullptr, 0, nullptr);
+    if (result != DISP_CHANGE_SUCCESSFUL)
+    {
+        Blur2PCAutomation::LogF("DX11 desktop restore failed %d", (int)result);
+        return;
+    }
     g_FullscreenMode.m_Applied = false;
 }
 void ApplyFullscreenMode()
@@ -226,6 +210,12 @@ void ApplyFullscreenMode()
     const LONG result = ChangeDisplaySettingsExA(g_FullscreenMode.m_Device, &g_FullscreenMode.m_Mode, nullptr,
         CDS_FULLSCREEN, nullptr);
     g_FullscreenMode.m_Applied = result == DISP_CHANGE_SUCCESSFUL;
+    // [Blur2PC] Preserve the current physical window when Windows rejects the requested mode.
+    if (!g_FullscreenMode.m_Applied)
+    {
+        Blur2PCAutomation::LogF("DX11 rejected fullscreen mode result %d", (int)result);
+        return;
+    }
     MONITORINFO info = {sizeof(info)};
     GetMonitorInfoA(MonitorFromWindow(g_FullscreenMode.m_Window, MONITOR_DEFAULTTONEAREST), &info);
     SetWindowPos(g_FullscreenMode.m_Window, HWND_TOP, info.rcMonitor.left, info.rcMonitor.top,
@@ -255,12 +245,18 @@ void SetFullscreenMode(HWND window, bool fullscreen, U32 width, U32 height, U32 
             reinterpret_cast<LONG_PTR>(FullscreenWindowProc)));
     }
     if (!fullscreen) { g_FullscreenMode.m_Wanted = false; RestoreDesktopMode(); return; }
+    // [Blur2PC] Release the old mode before requesting a replacement that can fail.
+    RestoreDesktopMode();
     if (!g_FullscreenMode.m_Applied)
     {
         MONITORINFOEXA info = {};
         info.cbSize = sizeof(info);
         GetMonitorInfoA(MonitorFromWindow(window, MONITOR_DEFAULTTONEAREST), &info);
         memcpy(g_FullscreenMode.m_Device, info.szDevice, sizeof(g_FullscreenMode.m_Device));
+        g_FullscreenMode.m_DesktopMode = {};
+        g_FullscreenMode.m_DesktopMode.dmSize = sizeof(DEVMODEA);
+        g_FullscreenMode.m_HaveDesktopMode = EnumDisplaySettingsA(info.szDevice,
+            ENUM_CURRENT_SETTINGS, &g_FullscreenMode.m_DesktopMode) != FALSE;
     }
     DEVMODEA& mode = g_FullscreenMode.m_Mode;
     ZeroMemory(&mode, sizeof(mode));
@@ -323,7 +319,7 @@ bool C_PCD3D11GameDevice::CreateD3D11()
     char warpSetting[2] = {};
     const bool forceWarp = GetEnvironmentVariableA("BLUR_DX11_WARP", warpSetting, sizeof(warpSetting)) &&
         warpSetting[0] == '1';
-    IDXGIAdapter1* renderAdapter = (m_DeviceParams.m_UseREF || forceWarp) ? nullptr : HighPerformanceAdapter();
+    IDXGIAdapter1* renderAdapter = (m_DeviceParams.m_UseREF || forceWarp) ? nullptr : C_D3D11Manager::SelectRenderAdapter();
     D3D_DRIVER_TYPE driver=(m_DeviceParams.m_UseREF || forceWarp) ? D3D_DRIVER_TYPE_WARP :
         (renderAdapter ? D3D_DRIVER_TYPE_UNKNOWN : D3D_DRIVER_TYPE_HARDWARE);
     HRESULT hr=D3D11CreateDeviceAndSwapChain(renderAdapter,driver,nullptr,flags,features,4,D3D11_SDK_VERSION,

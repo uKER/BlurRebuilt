@@ -173,6 +173,7 @@ jobs:
           Copy-Item README.md $stage
           New-Item -ItemType Directory -Force "$stage/docs/blur1pcdx11" | Out-Null
           Copy-Item docs/blur1pcdx11/additions.md "$stage/docs/blur1pcdx11/additions.md"
+          Copy-Item docs/blur1pcdx11/contribution-verification.md "$stage/docs/blur1pcdx11/contribution-verification.md"
           $root = (Resolve-Path $effects).Path
           Get-ChildItem $effects -Recurse -File | Where-Object { $_.Name -in 'effects.index', 'effects.samplers' -or $_.Extension -eq '.fxo' } | ForEach-Object {
             $target = Join-Path "$stage/fx11" $_.FullName.Substring($root.Length + 1)

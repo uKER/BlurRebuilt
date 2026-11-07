@@ -95,6 +95,10 @@ function PostInit()
 	UIButtons.AddListItem( GUI.MessageListId, GUI.FrameLimitNode, 7 )
 	UIButtons.SetNodeSortKey( GUI.MessageListId, 7, 9, true )
 	UIButtons.NodeListSort( GUI.MessageListId )
+	-- [Blur2PC] Eight fixed rows fit the scaled retail panel. The inherited
+	-- twelve-item centred visibility window otherwise drops Quality or Apply.
+	UIButtons.SetXtVar( GUI.MessageListId, "items_visible", 0 )
+	UIButtons.SetXtVar( GUI.MessageListId, "move_speed", 0 )
 	Amax.ChangeText( GUI.FrameLimitId, "GAME_OPTION_MAX_FPS" )
 	Amax.ChangeText( GUI.FullScreenId, "GAME_OPTION_DISPLAY_MODE" )
 	-- Fit the extra row above the existing bottom help bar at every UI resolution.

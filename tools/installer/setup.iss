@@ -52,6 +52,8 @@ Name: "{autodesktop}\Blur Rebuilt"; Filename: "{app}\BlurRebuilt.exe"; WorkingDi
 var PayloadFiles: TArrayOfString;
 function OpenFileExclusive(Name: String; Access, Share, Security, Disposition, Attributes: Cardinal; Template: THandle): THandle;
   external 'CreateFileW@kernel32.dll stdcall';
+function ReplaceBackupList(Source, Destination: String; Flags: Cardinal): Boolean;
+  external 'MoveFileExW@kernel32.dll stdcall';
 function CloseFileHandle(Handle: THandle): Integer;
   external 'CloseHandle@kernel32.dll stdcall';
 
@@ -98,7 +100,8 @@ var Handle: THandle;
 begin
   Result := False;
   if not FileExists(Name) then Exit;
-  Handle := OpenFileExclusive(Name, $C0000000, 0, 0, 3, $80, 0);
+  { [Blur2PC] A preserved read-only retail executable needs no write access. }
+  Handle := OpenFileExclusive(Name, $80000000, 0, 0, 3, $80, 0);
   Result := Handle = THandle(-1);
   if not Result then CloseFileHandle(Handle);
 end;
@@ -140,12 +143,41 @@ end;
 function BackupPayload(): String;
 var I, J, N, RecordIndex, OriginalCount: Integer; Name, Original, Added, BackupRoot, ListFile: String;
   Managed, RecordIds: TArrayOfString;
+  Entry: TFindRec;
 begin
   Result := '';
   BackupRoot := GameRoot() + '_BlurRebuiltSetup\backup\';
   ListFile := BackupRoot + 'managed-files.txt';
-  if FileExists(ListFile) then LoadStringsFromFile(ListFile, Managed);
+  { [Blur2PC] Numbered originals are meaningful only with their intact mapping. }
+  if FileExists(ListFile) then begin
+    if not LoadStringsFromFile(ListFile, Managed) or (GetArrayLength(Managed) = 0) then begin
+      Result := 'The installation backup list is damaged. Restore it before updating.'; Exit;
+    end;
+  end else if DirExists(BackupRoot) then begin
+    Result := 'The installation backup list is missing. Restore it before updating.'; Exit;
+  end;
   OriginalCount := GetArrayLength(Managed);
+  for I := 0 to OriginalCount-1 do begin
+    if not SafeRelative(Managed[I]) then begin Result := 'Invalid backup path.'; Exit; end;
+    for J := 0 to I-1 do
+      if CompareText(Managed[J], Managed[I]) = 0 then begin Result := 'Duplicate backup path.'; Exit; end;
+  end;
+  for J := 0 to 1 do begin
+    if J = 0 then Name := 'original' else Name := 'added';
+    if FindFirst(BackupRoot + Name + '\*', Entry) then begin
+      try
+        repeat
+          if (Entry.Attributes and FILE_ATTRIBUTE_DIRECTORY) = 0 then begin
+            RecordIndex := StrToIntDef(Entry.Name, -1);
+            if (RecordIndex < 0) or (RecordIndex >= OriginalCount) or
+              (IntToStr(RecordIndex) <> Entry.Name) then begin
+              Result := 'The installation backup mapping is inconsistent. Restore it before updating.'; Exit;
+            end;
+          end;
+        until not FindNext(Entry);
+      finally FindClose(Entry); end;
+    end;
+  end;
   SetArrayLength(RecordIds, GetArrayLength(PayloadFiles));
   for I := 0 to GetArrayLength(PayloadFiles)-1 do begin
     Name := PayloadFiles[I];
@@ -158,7 +190,8 @@ begin
     RecordIds[I] := IntToStr(RecordIndex);
   end;
   { Commit the name-to-record mapping before creating any numbered snapshot. }
-  if not ForceDirectories(BackupRoot) or not SaveStringsToFile(ListFile, Managed, False) then begin
+  if not ForceDirectories(BackupRoot) or not SaveStringsToFile(ListFile + '.tmp', Managed, False) or
+    not ReplaceBackupList(ListFile + '.tmp', ListFile, $9) then begin
     Result := 'Could not save the installation backup list.'; Exit;
   end;
   for I := 0 to GetArrayLength(PayloadFiles)-1 do begin

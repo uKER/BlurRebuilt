@@ -2,8 +2,58 @@
 #include "stdafx.h"
 #include "Display/Manager/D3D11/D3D11Manager.h"
 #include <d3d11.h>
+#include <dxgi1_6.h>
+#include <cstring>
 #include <vector>
 namespace Display { namespace D3D11 {
+// [Blur2PC] T272: choose the render adapter explicitly on hybrid laptops.
+// Keep system selection available for controlled comparisons.
+IDXGIAdapter1* C_D3D11Manager::SelectRenderAdapter()
+{
+    char preference[16] = {};
+    GetEnvironmentVariableA("BLUR_DX11_GPU", preference, sizeof(preference));
+    if (_stricmp(preference, "system") == 0) return nullptr;
+    IDXGIFactory6* factory = nullptr;
+    IDXGIAdapter1* adapter = nullptr;
+    if (SUCCEEDED(CreateDXGIFactory1(__uuidof(IDXGIFactory6), reinterpret_cast<void**>(&factory))))
+    {
+        for (UINT index = 0; SUCCEEDED(factory->EnumAdapterByGpuPreference(index,
+            DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, __uuidof(IDXGIAdapter1),
+            reinterpret_cast<void**>(&adapter))); ++index)
+        {
+            DXGI_ADAPTER_DESC1 description = {};
+            adapter->GetDesc1(&description);
+            if (!(description.Flags & DXGI_ADAPTER_FLAG_SOFTWARE)) break;
+            adapter->Release(); adapter = nullptr;
+        }
+        factory->Release();
+    }
+    return adapter;
+}
+
+
+// [Blur2PC] Display ownership can differ from rendering ownership on hybrid laptops.
+static IDXGIOutput* MonitorOutput(IDXGIFactory1* factory, HMONITOR target)
+{
+    const POINT origin = {};
+    MONITORINFOEXW monitor = {}; monitor.cbSize = sizeof(monitor);
+    if (!GetMonitorInfoW(target ? target : MonitorFromPoint(origin, MONITOR_DEFAULTTOPRIMARY), &monitor)) return nullptr;
+    IDXGIAdapter1* adapter = nullptr;
+    for (UINT a = 0; SUCCEEDED(factory->EnumAdapters1(a, &adapter)); ++a)
+    {
+        IDXGIOutput* output = nullptr;
+        for (UINT o = 0; SUCCEEDED(adapter->EnumOutputs(o, &output)); ++o)
+        {
+            DXGI_OUTPUT_DESC desc = {};
+            const bool match = SUCCEEDED(output->GetDesc(&desc)) &&
+                _wcsicmp(desc.DeviceName, monitor.szDevice) == 0;
+            if (match) { adapter->Release(); return output; }
+            output->Release();
+        }
+        adapter->Release();
+    }
+    return nullptr;
+}
 C_D3D11Manager::C_D3D11Manager() {}
 C_D3D11Manager::~C_D3D11Manager() { Shutdown(); }
 bool C_D3D11Manager::IsInitialised() { return m_Factory != nullptr; }
@@ -11,11 +61,11 @@ bool C_D3D11Manager::Initialise()
 {
     if (m_Factory) return true;
     if (FAILED(CreateDXGIFactory1(__uuidof(IDXGIFactory1), reinterpret_cast<void**>(&m_Factory)))) return false;
-    IDXGIAdapter1* adapter = nullptr;
-    if (SUCCEEDED(m_Factory->EnumAdapters1(0,&adapter)))
+    IDXGIAdapter1* adapter = SelectRenderAdapter();
+    if (adapter || SUCCEEDED(m_Factory->EnumAdapters1(0,&adapter)))
     {
-        IDXGIOutput* output = nullptr;
-        if (SUCCEEDED(adapter->EnumOutputs(0,&output)))
+        IDXGIOutput* output = MonitorOutput(m_Factory, m_Monitor);
+        if (output)
         {
             // [Blur2PC] T276: resolution selection must not silently switch a 60 Hz TV to
             // the first enumerated mode (often 24 Hz). Preserve its current refresh when
@@ -69,6 +119,15 @@ bool C_D3D11Manager::Initialise()
     }
     return true;
 }
+bool C_D3D11Manager::SetWindow(HWND window)
+{
+    HMONITOR monitor = MonitorFromWindow(window, MONITOR_DEFAULTTONEAREST);
+    if (monitor == m_Monitor) return false;
+    Shutdown();
+    m_Monitor = monitor;
+    Initialise();
+    return true;
+}
 void C_D3D11Manager::Shutdown()
 { m_MultisampleList.Destroy();m_VideoModeList.Destroy();if(m_Factory){m_Factory->Release();m_Factory=nullptr;} }
 S32 C_D3D11Manager::GetMultisampleCount() const {return m_MultisampleList.Size();}
@@ -83,7 +142,9 @@ bool C_D3D11Manager::GetVideoMode(C_VideoMode* mode) {return GetDesktopVideoMode
 bool C_D3D11Manager::GetDesktopVideoMode(C_VideoMode* mode)
 {
     if(!mode)return false;DEVMODEA native={};native.dmSize=sizeof(native);
-    if(!EnumDisplaySettingsA(nullptr,ENUM_CURRENT_SETTINGS,&native))return false;
+    MONITORINFOEXA monitor = {}; monitor.cbSize = sizeof(monitor);
+    const char* device = m_Monitor && GetMonitorInfoA(m_Monitor, &monitor) ? monitor.szDevice : nullptr;
+    if(!EnumDisplaySettingsA(device,ENUM_CURRENT_SETTINGS,&native))return false;
     mode->m_Width=native.dmPelsWidth;mode->m_Height=native.dmPelsHeight;
     mode->m_Format=E_Format_A8R8G8B8;mode->m_RefreshRate=native.dmDisplayFrequency;
     mode->m_WideScreen=false;mode->m_HiDef=false;return true;

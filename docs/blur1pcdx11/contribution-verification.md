@@ -164,3 +164,9 @@ package; see [the dependency notice](../../code/vendor/inputfusion/notices/NOTIC
 - [Microsoft C++ runtime requirements](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist)
 - [D3D11 optional debug layer](https://learn.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-devices-layers)
 - [DXGI adapter preference requirements](https://learn.microsoft.com/en-us/windows/win32/api/dxgi1_6/nf-dxgi1_6-idxgifactory6-enumadapterbygpupreference)
+
+## Graphics, display, and setup follow-up
+
+The graphics menu keeps all eight rows visible. The settings file persists the FPS cap and replaces the previous file after a complete write. Display mode enumeration follows the monitor that owns the game window. Fullscreen records the prior desktop mode and leaves the window size in place if Windows rejects a mode. Save creation writes data on the first attempt, and photo enumeration respects its existing capacity. Setup checks backup mappings before replacing files and supports read-only retail executables.
+
+The local x64 Release build reported zero errors. It passed three Graphics menu entries and returns, restored a saved 90 FPS cap after relaunch, reloaded a first save after recreating the save directory, and returned 200 entries for 201 photo files. The installer fixture passed install, update, uninstall, and invalid backup mapping checks. This filtered contribution still needs its own full build and runtime checks, including clean Windows setup and mixed-monitor changes. Intermittent blank Options and the separate race colour corruption remain open.
