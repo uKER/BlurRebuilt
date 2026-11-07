@@ -89,6 +89,10 @@ The intro videos don't play. The game goes straight to the title screen. That's 
 <table>
   <tr>
   </tr>
+   <td><strong>v1.7 (2026/11/02)</strong></td>
+   <td>Fixed error downloading data when trying to play online</td>
+  </tr>
+  </tr>
    <td><strong>v1.6 (2026/11/02)</strong></td>
    <td>Fixed an audio timing issue that could cause stuttering or repeating sound on some systems<br>Fixed release process to include previously missing Amax Emu client</td>
   </tr>
