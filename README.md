@@ -39,7 +39,7 @@ We now feature dynamic switching of the on-screen glyphs as input is detected.
 
 ### Ultra widescreen support
 
-The menus have been fixed for ultra widescreen displays (tested on 32:9).
+The menus and race intro/outro have been fixed for ultra widescreen displays (tested on 32:9).
 
 ### 64-bit
 
@@ -87,6 +87,15 @@ The intro videos don't play. The game goes straight to the title screen. That's 
 ## Changelog
 
 <table>
+  <tr>
+  </tr>
+   <td><strong>v1.7 (2026/11/07)</strong></td>
+   <td>Fixed error downloading data when trying to play online</td>
+  </tr>
+  </tr>
+   <td><strong>v1.6 (2026/11/02)</strong></td>
+   <td>Fixed an audio timing issue that could cause stuttering or repeating sound on some systems<br>Fixed release process to include previously missing Amax Emu client</td>
+  </tr>
   <tr>
     <td><strong>v1.5 (2026/10/24)</strong></td>
     <td>More ultra widescreen fixes<br>Support for online multiplayer via Amax Emu</td>
