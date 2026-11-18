@@ -2000,6 +2000,8 @@ static int ChangeText( lua_State* pState )
 	{
 		if ( lua_type( pState, 2 ) == LUA_TNUMBER )
 			((UI::UIAmaxSlider*)pObject)->ChangeText( lua_tonumber( pState, 2 ) );
+		else // [Blur2PC] T274: use the slider's existing data-finder caption path.
+			((UI::UIAmaxSlider*)pObject)->ChangeText( lua_tostring( pState, 2 ) );
 	}
 	else
 	if ( type == UI::E_UIGameButtonType_Toggle )

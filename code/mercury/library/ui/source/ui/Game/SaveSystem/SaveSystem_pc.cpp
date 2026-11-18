@@ -84,6 +84,9 @@ void C_AsyncLoadThread::ThreadMain()
 				if ( s.Length() >= MAX_SAVE_FILENAME_SIZE )
 					continue;
 
+				// [Blur2PC] The directory can contain more photos than the UI's fixed array.
+				if ( C_SaveSystem::Instance().m_sEnumerationCount >= MAX_SAVE_ENUMERATIONS )
+					break;
 				// found one
 				strcpy_s( C_SaveSystem::Instance().m_EnumeratedFileInfo[ C_SaveSystem::Instance().m_sEnumerationCount++ ].m_FileName, MAX_SAVE_FILENAME_SIZE, s.Chars() );
 			}
@@ -190,9 +193,11 @@ void C_AsyncSaveThread::ThreadMain()
 	// Create the directory if it doesnt exist.
 	if ( !Sys::C_FileSystem::Instance().FileExists( savePath ) )
 	{
-		Sys::C_FileSystem::Instance().CreateDirectory( savePath );
+		// [Blur2PC] Creating the directory must be followed by the first write.
+		if ( !Sys::C_FileSystem::Instance().CreateDirectory( savePath ) )
+			m_eErrorCode = E_UiGameProfile_Error_CannotWriteFile;
 	}
-	else
+	if ( m_eErrorCode == E_UiGameProfile_Error_Okay )
 	{
 		for ( S32 i = 0; i < pSaveInfoInterface->m_FileInfo.Size(); i++ )
 		{

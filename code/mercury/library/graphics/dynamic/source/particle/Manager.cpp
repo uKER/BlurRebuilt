@@ -3,6 +3,7 @@
 #include "Dynamic/Particle/Manager.h"
 
 #include "Dynamic/Particle/Emitter.h"
+#include "Dynamic/Particle/Particle.h" // [Blur2PC] T276: runtime trail-record layout.
 #include "Dynamic/Particle/Event.h"
 #include "Dynamic/Particle/EventInstance.h"
 #include "Dynamic/Particle/Force.h"
@@ -148,7 +149,8 @@ C_ParticleManager::C_ParticleManager(C_Renderer* pRenderer) : I_DynamicEffectMan
 	m_ParticleBlockManager96.SetBlockSize(32);
 	m_ParticleBlockManager112.SetBlockSize(32);
 
-	m_ParticleTrailBlockManager.SetElementSize(8);
+	// [Blur2PC] T276: C_Particle_E contains a native pointer; its x64 records must not overlap.
+	m_ParticleTrailBlockManager.SetElementSize(sizeof(C_Particle_E));
 	m_ParticleBlockManager16.SetElementSize(16);
 	m_ParticleBlockManager32.SetElementSize(32);
 	m_ParticleBlockManager48.SetElementSize(48);

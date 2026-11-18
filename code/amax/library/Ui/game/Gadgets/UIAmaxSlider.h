@@ -25,6 +25,9 @@ public:
 
 	F32	GetItemMaxSizeX();
 	void UpdateArrows();
+	// [Blur2PC] T274: keep numeric captions and support data-finder labels on cloned selectors.
+	using UISlider::ChangeText;
+	void ChangeText( const char* variableName );
 
 private:
 	const F32			RenderAnalogue();

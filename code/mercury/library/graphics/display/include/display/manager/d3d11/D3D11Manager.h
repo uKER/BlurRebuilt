@@ -23,7 +23,9 @@ public:
     ~C_D3D11Manager();
     bool IsInitialised();
     bool Initialise();
+    static IDXGIAdapter1* SelectRenderAdapter(); // [Blur2PC] Shared renderer and capability policy.
     void Shutdown();
+    bool SetWindow(HWND window); // [Blur2PC] Enumerate the actual presentation monitor.
     S32 GetMultisampleCount() const;
     const C_Multisample& GetMultisample(S32 index) const;
     S32 GetVideoModeCount() const;
@@ -34,6 +36,7 @@ public:
     bool GetDesktopVideoMode(C_VideoMode* mode);
     IDXGIFactory1* GetFactory() const { return m_Factory; }
 private:
+    HMONITOR m_Monitor = nullptr;
     IDXGIFactory1* m_Factory = nullptr;
     Ut::Vector<C_Multisample> m_MultisampleList;
     Ut::Vector<C_VideoMode> m_VideoModeList;

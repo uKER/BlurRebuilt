@@ -1,0 +1,15 @@
+InputFusion 0.4.1, unmodified x64 XInput release library
+Bundled as BlurInputFusion.dll; loaded explicitly by Rebuilt's input backend.
+
+Upstream: https://github.com/xan105/InputFusion
+Source: https://github.com/xan105/InputFusion/tree/e3e6e7f97f8e7b3927a09a4649c2ec3bef9ef956
+Release: https://github.com/xan105/InputFusion/releases/tag/0.4.1
+DLL SHA256: 242e16a3a5904eb9068bd442c6a466fd983dbbe7851022704985dce3fb6ec408
+
+InputFusion is licensed under LGPL-3.0; see LGPL-3.0.txt and GPL-3.0.txt.
+Its vendored SDL and Detours notices are included from the same source commit.
+The exact source tree includes the library and its vendored dependencies.
+No InputFusion code was modified for this integration.
+
+The library remains a separate runtime DLL and can be replaced independently
+of Amax.exe. BLUR_INPUT_BACKEND=system uses Windows XInput instead.

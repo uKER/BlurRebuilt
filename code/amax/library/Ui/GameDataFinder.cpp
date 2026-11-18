@@ -413,6 +413,22 @@ const WCHAR* C_GameDataFinder::GetVariableText( const char* pVariableName )
 		// ("1920x1080"), multisample names ("4x"; "0x" shows as Off) and the confirm-settings countdown
 		pVariableName += 7;
 
+		// [Blur2PC] T274: Rebuilt additions; retail has no localization entries for these.
+		if ( !strcmp( pVariableName, "MAX_FPS" ) )
+			m_VariableText = L"Maximum FPS";
+		else if ( !strcmp( pVariableName, "DISPLAY_MODE" ) )
+			m_VariableText = L"Display mode";
+		else if ( !strcmp( pVariableName, "WINDOWED" ) )
+			m_VariableText = L"Windowed";
+		else if ( !strcmp( pVariableName, "FULLSCREEN" ) )
+			m_VariableText = L"Fullscreen";
+		else if ( !strcmp( pVariableName, "FPS_UNLIMITED" ) )
+			m_VariableText = L"Unlimited";
+		else if ( !strcmp( pVariableName, "FPS_HELP" ) )
+			m_VariableText = L"Limits rendered frames per second. V-Sync can limit FPS further.";
+		else if ( !strcmp( pVariableName, "VSYNC_HELP" ) )
+			m_VariableText = L"Synchronizes frames with the display to reduce tearing. May limit FPS.";
+		else
 		if ( !strncmp( pVariableName, "RESOLUTION", 10 ) )
 		{
 			pVariableName += 10;
@@ -2930,8 +2946,8 @@ const WCHAR* C_GameDataFinder::GetVariableText( const char* pVariableName )
 		}
 		else if ( !strncmp( pVariableName, "DESC", 4 ) )
 		{
-			//PK 101, I�ve beaten your challenge in 2 attempts. I re-challenge you to get 2,459 Fans (369 more than you) and a Gold Medal (same as you), whilst still using the Focus RS on Medium difficulty.
-			//%s, I�ve beaten your challenge in %d attempts. I re-challenge you to get %s and a %d, whilst still using the %s on %s difficulty.
+			//PK 101, Iï¿½ve beaten your challenge in 2 attempts. I re-challenge you to get 2,459 Fans (369 more than you) and a Gold Medal (same as you), whilst still using the Focus RS on Medium difficulty.
+			//%s, Iï¿½ve beaten your challenge in %d attempts. I re-challenge you to get %s and a %d, whilst still using the %s on %s difficulty.
 
 			static C_TextStringID id( "FDE_RECHALLENGE" );
 
