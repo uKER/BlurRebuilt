@@ -90,7 +90,7 @@ The intro videos don't play. The game goes straight to the title screen. That's 
   <tr>
   </tr>
    <td><strong>v1.8 (2026/11/19)</strong></td>
-   <td>Fixed after-race crashes</td>
+   <td>Fixed after-race crashes<br>Fixed color corruption on AMD GPUs</td>
   </tr>
   </tr>
    <td><strong>v1.7 (2026/11/07)</strong></td>
