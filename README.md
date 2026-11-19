@@ -89,6 +89,10 @@ The intro videos don't play. The game goes straight to the title screen. That's 
 <table>
   <tr>
   </tr>
+   <td><strong>v1.8 (2026/11/19)</strong></td>
+   <td>Fixed after-race crashes</td>
+  </tr>
+  </tr>
    <td><strong>v1.7 (2026/11/07)</strong></td>
    <td>Fixed error downloading data when trying to play online</td>
   </tr>
