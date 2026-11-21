@@ -116,6 +116,17 @@ bool RouteSort( const AmaxRoute* pLhv, const AmaxRoute* pRhv )
 	return NameAlphaSort( C_TextStringID( pLhv->loc_string.id ).String(), C_TextStringID( pRhv->loc_string.id ).String() );
 }
 
+// [Blur2PC] lua_rawseti takes an int, so vehicle IDs >= 2^31 became negative keys, while x64's 64-bit
+// lua_pushinteger gives the same IDs to Lua (car.id, GetGarageCarByID) as positive numbers. Garage
+// lookups by car.id then missed those cars, showing locked "Rank51" entries that broke the screen.
+// Key vehicle tables with the same lua_pushinteger value. Expects the value on top of the table.
+static void RawSetVehicleKey( lua_State* pState, U32 vehicleId )
+{
+	lua_pushinteger( pState, vehicleId );
+	lua_insert( pState, -2 );
+	lua_rawset( pState, -3 );
+}
+
 static S32 GetPlaylist( lua_State* pState )
 {
 	lua_newtable(pState);
@@ -1589,7 +1600,7 @@ static S32 GetSplitscreenVehicles( lua_State* pState )
 		if ( pVehicle && pGameMode->IsCarClassValid(validClass, pVehicle->carClass ) )
 		{
 			lua_pushboolean( pState, true );
-			lua_rawseti( pState, -2, pVehicle->ID );
+			RawSetVehicleKey( pState, pVehicle->ID );
 		}
 	}
 
@@ -1671,7 +1682,7 @@ static S32 GetGarage( lua_State* pState )
 			continue;
 
 		lua_newtable( pState );
-		lua_rawseti( pState, -2, pVehicleAM->ID );
+		RawSetVehicleKey( pState, pVehicleAM->ID );
 	}
 		
 	lua_rawset( pState, -3 );
@@ -1692,7 +1703,7 @@ static S32 GetGarage( lua_State* pState )
 			if(!pVehicleAM->m_ParentVehicle || (pSave &&  SP_IsVehicleUnlocked(pSave, pVehicleAM->m_ParentVehicle->ID)))
 			{
 				lua_pushnumber( pState, i + 1 );
-				lua_rawseti( pState, -2, pVehicleAM->ID );
+				RawSetVehicleKey( pState, pVehicleAM->ID );
 			}
 		}
 	}
@@ -1730,7 +1741,7 @@ static S32 GetGarage( lua_State* pState )
 			if(!pVehicleAM->m_ParentVehicle || (pSave &&  SP_IsVehicleUnlocked(pSave, pVehicleAM->m_ParentVehicle->ID)))
 			{
 				lua_pushboolean( pState, true );
-				lua_rawseti( pState, -2, pVehicleAM->ID );
+				RawSetVehicleKey( pState, pVehicleAM->ID );
 			}
 		}
 	}
@@ -1749,7 +1760,7 @@ static S32 GetGarage( lua_State* pState )
 				continue;
 
 			lua_pushboolean( pState, true );
-			lua_rawseti( pState, -2, pVehicleAM->ID );
+			RawSetVehicleKey( pState, pVehicleAM->ID );
 		}
 	}
 
@@ -1762,7 +1773,7 @@ static S32 GetGarage( lua_State* pState )
 		if( pVehicleAM )
 		{
 			lua_pushboolean( pState, true );
-			lua_rawseti( pState, -2, pVehicleAM->ID );
+			RawSetVehicleKey( pState, pVehicleAM->ID );
 		}
 	}
 
@@ -1770,7 +1781,7 @@ static S32 GetGarage( lua_State* pState )
 	for( Btl::Set<U32>::Iterator it = pGameProfile->mTempVehicleUnlocks.Begin(); it != pGameProfile->mTempVehicleUnlocks.End(); it++ )
 	{
 		lua_pushboolean( pState, true );
-		lua_rawseti( pState, -2, *it );
+		RawSetVehicleKey( pState, *it );
 	}
 	
 	lua_rawset( pState, -3 );
@@ -1783,7 +1794,7 @@ static S32 GetGarage( lua_State* pState )
 	for(int i = 0; i < C_MultiplayerData::Instance().m_InvalidTeamVehicleIds.Size(); i++)
 	{
 		lua_pushboolean( pState, true );
-		lua_rawseti( pState, -2, C_MultiplayerData::Instance().m_InvalidTeamVehicleIds[i]);
+		RawSetVehicleKey( pState, C_MultiplayerData::Instance().m_InvalidTeamVehicleIds[i] );
 	}
 
 	lua_rawset( pState, -3 );
@@ -3385,7 +3396,7 @@ static S32 GetNewCarsMap( lua_State* pState )
 		}
 
 		lua_pushboolean( pState, isNew );
-		lua_rawseti( pState, -2, it->GetKey() );
+		RawSetVehicleKey( pState, it->GetKey() );
 	}
 
 	return 1;
