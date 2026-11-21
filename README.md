@@ -89,6 +89,10 @@ The intro videos don't play. The game goes straight to the title screen. That's 
 <table>
   <tr>
   </tr>
+   <td><strong>v1.9 (2026/11/23)</strong></td>
+   <td>Fixed LAN functionality</td>
+  </tr>
+  </tr>
    <td><strong>v1.8 (2026/11/19)</strong></td>
    <td>Fixed after-race crashes<br>Fixed color corruption on AMD GPUs</td>
   </tr>
