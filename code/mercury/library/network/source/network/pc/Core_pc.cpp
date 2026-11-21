@@ -68,39 +68,26 @@ namespace NetPlay
 				adapterInfo = reinterpret_cast<PIP_ADAPTER_INFO>(heapOutBuf);
 			}
 
-			//Get info for the adapters
-			if (GetAdaptersInfo(adapterInfo, &outBufLen) != ERROR_SUCCESS)
+			// [Blur2PC] Retail tests all adapter IPv4 lists for a non-zero address
+			// and publishes the result to both the LAN menu and cable checks.
+			bool hasLocalAddress = false;
+			if (GetAdaptersInfo(adapterInfo, &outBufLen) == ERROR_SUCCESS)
 			{
-				// no network adapters ?
-				if (heapOutBuf)
-					delete [] heapOutBuf;
-				Shutdown();
-			}
-			else
-			{
-				S32 index = 0;
-				while(adapterInfo)
+				for (; adapterInfo && !hasLocalAddress; adapterInfo = adapterInfo->Next)
 				{
-					PIP_ADDR_STRING ipStr = &adapterInfo->IpAddressList;
-					while(ipStr)
+					for (PIP_ADDR_STRING ip = &adapterInfo->IpAddressList; ip; ip = ip->Next)
 					{
-						if(strcmp(ipStr->IpAddress.String, "0.0.0.0") != 0)
+						if (strcmp(ip->IpAddress.String, "0.0.0.0") != 0)
 						{
-							m_NetCableConnected = true;
-							//params.m_localAddresses.pushBack(bdInetAddr(ipStr->IpAddress.String));
+							hasLocalAddress = true;
+							break;
 						}
-						else
-						{
-							// invalid address..
-						}
-
-						ipStr = ipStr->Next;
 					}
-
-					adapterInfo = adapterInfo->Next;
-					index++;
 				}
 			}
+
+			m_ValidLocalAddress = hasLocalAddress;
+			m_NetCableConnected = hasLocalAddress;
 
 			if (heapOutBuf)
 				delete [] heapOutBuf;

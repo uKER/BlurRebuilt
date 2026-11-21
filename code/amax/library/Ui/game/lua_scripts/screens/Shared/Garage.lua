@@ -641,9 +641,7 @@ function PostInit()
 	end
 	
 	if found == false then
-		if GUI.is_multiplayer_lobby == true then
-			Multiplayer.SetGarageCarByID( Garage_GetSelectedCar().id )	-- need a default - background car is different
-		else
+		if GUI.is_multiplayer_lobby ~= true then
 			if GUI.is_multiplayer == false then
 				-- find the first car we've got unlocked - TODO - do we need something other than this?
 				local found = false
@@ -748,6 +746,10 @@ function PostInit()
 	UIButtons.TimeLineActive( "Hide_Carousel", true )
 	
 	local car = Garage_GetSelectedCar()
+	-- [Blur2PC] The fallback selection needs the class established above.
+	if not found and GUI.is_multiplayer_lobby then
+		Multiplayer.SetGarageCarByID( car.id )
+	end
 	GUI.viewing_id = car.id
 	GUI.wait_load_timer = GUI.wait_load_time
 	GUI.wait_respray_timer = GUI.wait_load_time
