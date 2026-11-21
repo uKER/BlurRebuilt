@@ -13,6 +13,7 @@ namespace WorldRender
 }
 #include <system/debug/Blur2PCAutomation.h>	// [Blur2PC]
 #include "Framework/Application/ApplicationPC.h"
+#include <framework/timer/RenderFrameLimit.h> // [Blur2PC] T274
 #include "Framework/Application/TimingColours.h"	// [Blur2PC] mini perf monitor timings
 #include "Framework/Layer/Layer.h"
 
@@ -130,6 +131,14 @@ HRESULT C_Application::PlatformInitialise(const C_ApplicationParams& params)
 	if(MyCreateWindow(params) != S_OK)
 		return S_FALSE;
 
+	// [Blur2PC] The saved window can be on an output owned by another adapter.
+	if (m_pDisplayManager->SetWindow(m_Window.m_hWnd))
+	{
+		Display::g_Resolutions.ClearResolutions();
+		SetupDisplayResolutions(10000, 10000, Display::E_Format_A8R8G8B8, Display::E_Multisample_None, Display::E_Format_Tiled);
+		m_ResolutionIndex = Display::g_Resolutions.FindResolution(m_Window.m_W, m_Window.m_H);
+		if (m_ResolutionIndex < 0) m_ResolutionIndex = 0;
+	}
 	InitMouse();
 
 	return S_OK;
@@ -1159,11 +1168,19 @@ public:
 			for(int i=0; i<attributes.Elements(); i++)
 				m_Attributes.Add(attributes.GetKeyByIndex(i), attributes.GetValueByIndex(i));
 		}
+		// [Blur2PC] T274: named, versioned extension; retain the retail attribute order above.
+		else if(name == "rebuilt_graphics_settings")
+		{
+			const char* version = attributes.GetValueByName("version");
+			const char* limit = attributes.GetValueByName("max_fps");
+			if(version && !strcmp(version, "1") && limit) m_FrameLimit = limit;
+		}
 		return true;
 	}
 
 	bool					m_Found;
 	Sys::C_XmlAttributeList	m_Attributes;
+	Util::C_String m_FrameLimit; // [Blur2PC] T274: empty in older settings files.
 };
 
 // retail LoadSettings (0x0084b570)
@@ -1212,6 +1229,7 @@ bool C_Application::LoadSettings()
 		}
 	}
 
+	Framework::LoadRenderFrameLimit(settings.m_FrameLimit.Chars()); // [Blur2PC] T274
 	// retail reads the attributes by position: width, height, x, y, multisample, windowed, vsync, graphical_detail
 	if(settings.m_Found && settings.m_Attributes.Elements() >= 8)
 	{
@@ -1305,21 +1323,32 @@ void C_Application::SaveSettings()
 	Util::C_String xml;
 	xml.Printf(
 		"<application_settings version=\"1\"/>\r\n"
-		"<shared_graphical_settings width=\"%i\" height=\"%i\" x=\"%i\" y=\"%i\" multisample=\"%i\" windowed=\"%i\" vsync=\"%i\" graphical_detail=\"%i\"/>\r\n",
+		"<shared_graphical_settings width=\"%i\" height=\"%i\" x=\"%i\" y=\"%i\" multisample=\"%i\" windowed=\"%i\" vsync=\"%i\" graphical_detail=\"%i\"/>\r\n"
+		"<rebuilt_graphics_settings version=\"1\" max_fps=\"%i\"/>\r\n", // [Blur2PC] T274
 		m_Window.m_W, m_Window.m_H, m_Window.m_X, m_Window.m_Y, m_MultisampleIndex,
 		m_Windowed ? 1 : 0,
 		m_DisplayDeviceParams.m_PresentInterval == Display::E_PresentInterval_One ? 1 : 0,
-		m_GraphicalDetail);
+		m_GraphicalDetail, Framework::GetRenderFrameLimit());
 
-	HANDLE hFile = CreateFileA(m_SettingsFileName.Chars(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	// [Blur2PC] Publish only a complete settings document, retaining the last good file on failure.
+	Util::C_String temporaryName;
+	temporaryName.Printf("%s.%lu.tmp", m_SettingsFileName.Chars(), GetCurrentProcessId());
+	HANDLE hFile = CreateFileA(temporaryName.Chars(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 	if(hFile == INVALID_HANDLE_VALUE)
 	{
 		LOGWARN(g_Log, "Failed to write %s\n", m_SettingsFileName.Chars());
 		return;
 	}
 	DWORD written = 0;
-	WriteFile(hFile, xml.Chars(), (DWORD)xml.Length(), &written, NULL);
+	const bool complete = WriteFile(hFile, xml.Chars(), (DWORD)xml.Length(), &written, NULL) &&
+		written == (DWORD)xml.Length() && FlushFileBuffers(hFile);
 	CloseHandle(hFile);
+	if (!complete || !MoveFileExA(temporaryName.Chars(), m_SettingsFileName.Chars(),
+		MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH))
+	{
+		LOGWARN(g_Log, "Could not replace graphics settings %s\n", m_SettingsFileName.Chars());
+		DeleteFileA(temporaryName.Chars());
+	}
 }
 
 // retail 0x00849750 (called on the window object, whose second size pair is 640x480)

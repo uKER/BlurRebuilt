@@ -14,6 +14,7 @@
 #include <GameLogic/Profile/GameProfileManager.h>
 
 #include <GameApp.h>
+#include <framework/timer/RenderFrameLimit.h> // [Blur2PC] T274: graphics preferences are not profile data.
 #include <GameLogic\Layers\RaceBookLayer.h>
 
 #include <Game\GameUtil/ScopedSuspendResume.h>
@@ -477,6 +478,7 @@ void ProfileOptions::SendToLua( lua_State* pState )
 		Lua::AddDataMember(pState,"fullscreen", (U8)(windowed ? 0 : 1) );
 		Lua::AddDataMember(pState,"vsync", (U8)(vsync ? 1 : 0) );
 		Lua::AddDataMember(pState,"graphics_quality", (S32)C_GameApp::GetInstance()->GetGraphicalDetail() );
+		Lua::AddDataMember(pState,"max_fps", (S32)Framework::GetRenderFrameLimit() ); // [Blur2PC] T274
 	}
 #endif
 
@@ -529,15 +531,22 @@ void ProfileOptions::GetFromLua( lua_State* pState )
 		U8 fullscreen		= windowed ? 0 : 1;
 		U8 aa				= (U8)multisampleIndex;
 		U8 vsyncByte		= vsync ? 1 : 0;
+		const S32 previousFrameLimit = Framework::GetRenderFrameLimit(); // [Blur2PC] T274
+		S32 frameLimit = previousFrameLimit;
 
 		Lua::GetDataMember(pState,"graphics_quality", graphicsQuality, true );
 		Lua::GetDataMember(pState,"resolution", resolution, true );
 		Lua::GetDataMember(pState,"fullscreen", fullscreen, true );
 		Lua::GetDataMember(pState,"aa", aa, true );
 		Lua::GetDataMember(pState,"vsync", vsyncByte, true );
+		Lua::GetDataMember(pState,"max_fps", frameLimit, true ); // [Blur2PC] T274
+		Framework::SetRenderFrameLimit(frameLimit);
 
 		C_GameApp::GetInstance()->SetGraphicalDetail(graphicsQuality);
 		C_GameApp::GetInstance()->ApplyGraphicsOptions(resolution, aa, fullscreen == 0, vsyncByte == 1);
+		// [Blur2PC] T274: FPS-only changes do not reset the display, so save them explicitly.
+		if(Framework::GetRenderFrameLimit() != previousFrameLimit)
+			C_GameApp::GetInstance()->SaveSettings();
 	}
 #endif
 

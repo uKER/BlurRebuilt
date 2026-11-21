@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include <input\Pad360.h>
+#include <input/InputFusionBackend.h> // [Blur2PC] T272: explicit InputFusion dependency.
 
 namespace Input
 {
@@ -32,7 +33,7 @@ void C_Pad360::Update()
 
 	ZeroMemory(&xInputState, sizeof(XINPUT_STATE));
 
-	U32 status = XInputGetState(m_UserIndex, &xInputState);
+	U32 status = ReadPadState(m_UserIndex, &xInputState);
 
 	if(status == ERROR_SUCCESS)
 	{
@@ -101,7 +102,7 @@ void C_Pad360::UpdateRumble()
 		xInputVibration.wRightMotorSpeed = 0;
 	}
 
-	XInputSetState(m_UserIndex, &xInputVibration);	// what do we do if this fails?
+	WritePadRumble(m_UserIndex, &xInputVibration); // [Blur2PC] T272: preserve the existing rumble path.
 }
 
 void C_Pad360::DumpDeviceState()
