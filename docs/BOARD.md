@@ -72,3 +72,5 @@ Claim a task before working on it. One task per agent. Keep rows short; details 
 | T268 | UI | Full-width exit fades and race-finish covers | session Codex race-intro coverage | verified; propagating approved fix | Found in BlurRebuilt / Belongs to Blur1PC; five Lua files; exit32, finish32 and failed16 verified; user authorized commit/propagation | none |
 
 | T270 | M1 | Correct the small-ring writer wait while preserving D32 latency | session Codex audio-writer | done (user approved; 02eb10f7 committed, merged and delivered through all phases) | Found in external v1.5 report / Belongs to Blur1PC; engine_pc.{cpp,h}; docs and _work/t270 | Reporter retest remains; no implementation or propagation blocker |
+
+| T274 | LAN | Restore retail PC adapter detection and initialise the LAN lobby fallback car after class selection | Codex LAN | implemented; verification in T275 | Found in BlurRebuilt #13 / Belongs to Blur1PC; Core_pc.cpp, Garage.lua, phase board/analysis/ledger | Verify with retail data, propagate |

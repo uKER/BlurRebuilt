@@ -843,3 +843,7 @@ Verified: all four standard Release builds report errsum0; canonical _work/run/A
 Verification caveat: Brighton x64 fixture hits an AtomicActiveCache<C_Emitter>::Update breakpoint twice with the patch and identically in a private build of the same worktree with only the audio patch removed. This fixture failure predates T270; the successful Observatory check does not resolve it. Baseline binaries are private, patched source restored, standard patched output rebuilt and canonical delivery hash-checked.
 Blocked: none for commit/propagation. Reporter-specific OS/device trigger and reporter retest remain unknown; this scheduling correction is not a guarantee against arbitrary stalls. User accepted the result while perceiving slightly higher latency.
 Next: reporter retest this delivered change; investigate the separate x64 Brighton particle-cache failure under its owning task if requested. No further audio changes inferred from that failure.
+
+## 2026-11-21 — Codex LAN — T274
+
+Reproduced the false LAN gate in the delivered base game with retail data. Restored retail adapter detection and deferred the lobby default until the active class is established. Ghidra and the base regression run are recorded in analysis. Next: verify the rebuilt binaries and submit the release PR under T275.
