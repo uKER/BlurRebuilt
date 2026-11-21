@@ -1128,3 +1128,7 @@ Did: reproduced the user's "Unable to download content" with the installed v1.6 
 Verified: Release and MinSizeRel errsum 0; Release with title storage enabled loads BlurTU1_bin.ts/BlurTU1_loc.ts and reaches MpOnline; fixed Master reaches MpOnline with no failure popup. Window still shows only the 3D layer, so the logs are the evidence: _work/t272/{amax.log,automation.log,run_master_fix.log}.
 Blocked: none. Fixed Master copied over the install's BlurRebuilt.exe (original kept at _work/t272/BlurRebuilt_v16_original.exe); user confirmed Online works; committed on request.
 Next: none for T272; an online race remains unverified.
+
+## 2026-11-21 — Codex LAN — T275
+
+Merged T274 from base and integrated Scannou's x64 vehicle-key fix. Base Release LAN check changed from false to true on the same host and retail data. x64 Release and Master built with zero errors. Delivered base and x64 Release EXE/PDB with matching hashes. The x64 game completed LAN search, hosted a custom lobby and entered and exited the missing-car garage case (automation exit 0). Screenshot: _work/t275/garage/garage.png. Next: review the issue 13 PR and verify joining/racing from a second PC.
