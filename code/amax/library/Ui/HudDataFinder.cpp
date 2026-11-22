@@ -101,6 +101,8 @@ bool C_HudDataFinder::SpeedInKmh()
 			}
 			fclose( pFile );
 		}
+
+		C_TextStringID::SetSpeedInKmh( s_sSpeedInKmh == 1 );
 	}
 
 	return s_sSpeedInKmh == 1;
@@ -109,6 +111,7 @@ bool C_HudDataFinder::SpeedInKmh()
 void C_HudDataFinder::SetSpeedInKmh( const bool kmh )
 {
 	s_sSpeedInKmh = kmh ? 1 : 0;
+	C_TextStringID::SetSpeedInKmh( kmh );
 
 	char path[ MAX_PATH ];
 	GetBlurRebuiltIniPath( path );

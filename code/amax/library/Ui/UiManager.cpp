@@ -1253,6 +1253,9 @@ C_UiManager::C_UiManager( const U32 sInitParam ) :
 	C_UIDataFinder::Instance().AddGameDataFinder( &C_LobbyDataFinder::Instance() );
 	C_UIDataFinder::Instance().AddGameDataFinder( &C_LanDataFinder::Instance() );
 	C_UIDataFinder::Instance().AddGameDataFinder( &C_MatchingDataFinder::Instance() );
+#if defined ( PLATFORM_PC )
+	C_HudDataFinder::SpeedInKmh();	// [Blur2PC] read the km/h option before any HUD text is looked up
+#endif
 
 	// initialise UI camera
 	C_UICamera::Instance().Init();
