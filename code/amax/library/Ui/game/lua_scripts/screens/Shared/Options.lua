@@ -110,6 +110,12 @@ function Init()
 		num = num + 2
 	end
 	
+	if UIEnums.CurrentPlatform == UIEnums.Platform.PC then
+		-- [Blur2PC] Not retail: speed units (10) switch between MPH and KM/H when selected; the text is GAME_ variable text
+		GUI.SpeedUnitsId = Mp_SetupMenuItemHelpText( GUI.MenuId, 10,	"GAME_SPEED_UNITS",		"GAME_SPEED_UNITS_HELP",				"lap",					"common_icons" )
+		num = num + 1
+	end
+
 	-- Remove save location on Ps3
 	if UIEnums.CurrentPlatform == UIEnums.Platform.Xenon and CanSave( Profile.GetPrimaryPad(), true ) == true then
 		Mp_SetupMenuItemHelpText( GUI.MenuId, 4,	UIText.CMN_OPT_SAVE_LOCATION,	UIText.CMN_HLP_OPT_SAVE_LOCATION,	"load_save",			"common_icons" )
@@ -252,6 +258,10 @@ function MessageUpdate( message, arg1, arg2, arg3, arg4 )
 			GoScreen("Shared\\TwitterAuthenticate.lua", UIEnums.Context.Blurb )
 		elseif selected == 9 then
 			GoScreen("Shared\\Options_LinkYourAccount.lua")
+		elseif selected == 10 then
+			-- [Blur2PC] speed units
+			Amax.ToggleSpeedUnits()
+			UIButtons.ChangeText( UIButtons.FindChildByName( GUI.SpeedUnitsId, "text" ), "GAME_SPEED_UNITS" )
 		else
 			print("whaatisit?",selected)
 		end
