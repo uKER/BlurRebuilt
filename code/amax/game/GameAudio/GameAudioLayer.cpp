@@ -97,6 +97,9 @@ const int MESSAGE_QUEUE_SIZE = 512 * 1024;
 const F32 fLog10          = 2.302585093f;
 
 namespace Audio { void SetDebugLevels( const ::DebugLevel::Level core, const ::DebugLevel::Level sys ); }
+#if defined ( PLATFORM_PC )
+namespace Audio { void SetOutputForRace( bool bInRace ); }	// [Blur2PC] engine_pc.cpp
+#endif
 
 #ifndef CFG_GOLD
 static Render::Font::C_FontRenderer*	g_pAudioFontRenderer = 0;
@@ -1021,6 +1024,10 @@ bool C_GameAudioLayer::MessageHandler(const  Messaging::C_MessageBase* pMessage)
 
 			m_bInRace = true;
 
+		#if defined ( PLATFORM_PC )
+			Audio::SetOutputForRace(true);	// [Blur2PC] low-latency sound ring for the race
+		#endif
+
 			Audio::InterfaceController::Get().BroadcastMessage(Audio::eBeginLevel, 0xffffffff);
 
 			if(gbDebugPrintGameState)
@@ -1040,6 +1047,10 @@ bool C_GameAudioLayer::MessageHandler(const  Messaging::C_MessageBase* pMessage)
 			m_AudioLevelTransitionState = (S32)E_GameflowMessage_StopInGameAudio;
 
 			m_bInRace = false;
+
+		#if defined ( PLATFORM_PC )
+			Audio::SetOutputForRace(false);	// [Blur2PC] longer sound ring for the menus
+		#endif
 
 			// special flag to fix the problem that we can get this message and actor updates can happen after this point.
 			// if this flag is set then entity instance creation will be disabled
