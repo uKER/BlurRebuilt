@@ -73,6 +73,10 @@ namespace Audio
 			//! 0x00544060: stops the writer thread, the buffer and the device. Always returns true.
 			bool Shutdown();
 
+			//! [Blur2PC] Not retail: switches between the menu and race buffer lengths (see CreateBuffer),
+			//! restarting the output as SetOutputSampleRate does when the choice changes.
+			void SetRaceBuffering(bool bInRace);
+
 		protected:
 			//! 0x00547710: creates the device, its buffer and the writer thread.
 			bool StartDevice(U32 uDeviceIndex);
@@ -133,5 +137,11 @@ namespace Audio
 
 			static Engine*			s_pInstance;		// 0x0113f7e4
 		};
+
+		// [Blur2PC] Not retail: puts the calling audio thread in Windows' "Pro Audio" scheduling class (MMCSS),
+		// so the system keeps it on time under load without a longer buffer. Returns the handle for
+		// LeaveProAudioThreadClass; NULL when MMCSS is unavailable (the thread keeps its own priority).
+		HANDLE JoinProAudioThreadClass();
+		void LeaveProAudioThreadClass(HANDLE hTask);
 	}
 }

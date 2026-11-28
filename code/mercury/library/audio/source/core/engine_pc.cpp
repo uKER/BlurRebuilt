@@ -79,6 +79,9 @@ static Debug::Int	g_PCEngineAudioSleep("Audio.PC.Engine.AudioSleep", 5, Debug::R
 // 0x01028d18: the first write re-checks the write position against the buffer
 static bool g_bPCEngineResyncWritePos = true;
 
+// [Blur2PC] Not retail: which buffer length the output uses (see CreateBuffer); the game starts in the menus
+static bool s_bRaceBuffering = false;
+
 // 0x01028cb8: DirectSound speaker configuration -> output channels
 static const U32 s_aSpeakerConfigChannels[12][2] =
 {
@@ -301,6 +304,23 @@ void Audio::Core::Engine::SetOutputSampleRate(U32 uSampleRate)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+//	[Blur2PC] SetRaceBuffering, not retail
+////////////////////////////////////////////////////////////////////////////////
+void Audio::Core::Engine::SetRaceBuffering(bool bInRace)
+{
+	if (bInRace == s_bRaceBuffering)
+		return;
+	s_bRaceBuffering = bInRace;
+
+	// not started yet: CreateBuffer picks the length when it does
+	if (!m_pDS)
+		return;
+
+	if (Shutdown())
+		StartDevice(m_uDeviceIndex);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 //	ChangeFormat (0x00547870)
 ////////////////////////////////////////////////////////////////////////////////
 void Audio::Core::Engine::ChangeFormat(void*)
@@ -378,6 +398,17 @@ HRESULT Audio::Core::Engine::CreateBuffer(IDirectSound8* pDS, IDirectSoundBuffer
 	// 4 at 48 kHz crackled. Rates between take the next quality's count.
 	if (!g_PCEngineNumberOfBuffersOverride)
 		g_PCEngineNumberOfBuffers = (m_uSampleRate <= 24000) ? 3 : (m_uSampleRate <= 36000) ? 4 : 5;
+
+	// [Blur2PC] Not retail: the small ring above leaves gaps in the menu music on some systems (issue #8), where a
+	// little more latency does not matter. Menus use 64 ms, the length of retail's ring at the low quality
+	// (rounded up to whole blocks); races keep the ring above. The game switches with Audio::SetOutputForRace.
+	if (!g_PCEngineNumberOfBuffersOverride && !s_bRaceBuffering)
+	{
+		const U32 uMenuBufferMs = 64;
+		const int blocks = (int)((uMenuBufferMs * m_uSampleRate + 256 * 1000 - 1) / (256 * 1000));
+		if (blocks > g_PCEngineNumberOfBuffers)
+			g_PCEngineNumberOfBuffers = blocks;
+	}
 
 	memset(&m_BufferDesc, 0, sizeof(m_BufferDesc));
 	m_BufferDesc.dwSize = sizeof(DSBUFFERDESC);
@@ -707,11 +738,42 @@ void Audio::Core::Engine::RenderFrameS32(S32* psOut)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+//	[Blur2PC] Pro Audio thread class (MMCSS), not retail; avrt.dll is loaded at run time
+////////////////////////////////////////////////////////////////////////////////
+typedef HANDLE (WINAPI* AvSetMmThreadCharacteristicsAFn)(LPCSTR, LPDWORD);
+typedef BOOL (WINAPI* AvRevertMmThreadCharacteristicsFn)(HANDLE);
+
+static HMODULE GetAvrt()
+{
+	static HMODULE s_hAvrt = LoadLibraryA("avrt.dll");
+	return s_hAvrt;
+}
+
+HANDLE Audio::Core::JoinProAudioThreadClass()
+{
+	HMODULE hAvrt = GetAvrt();
+	AvSetMmThreadCharacteristicsAFn pJoin = hAvrt ? (AvSetMmThreadCharacteristicsAFn)GetProcAddress(hAvrt, "AvSetMmThreadCharacteristicsA") : NULL;
+	DWORD dwTaskIndex = 0;
+	return pJoin ? pJoin("Pro Audio", &dwTaskIndex) : NULL;
+}
+
+void Audio::Core::LeaveProAudioThreadClass(HANDLE hTask)
+{
+	HMODULE hAvrt = GetAvrt();
+	AvRevertMmThreadCharacteristicsFn pLeave = hAvrt ? (AvRevertMmThreadCharacteristicsFn)GetProcAddress(hAvrt, "AvRevertMmThreadCharacteristics") : NULL;
+	if (hTask && pLeave)
+		pLeave(hTask);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 //	ThreadProc (0x00547630)
 ////////////////////////////////////////////////////////////////////////////////
 DWORD WINAPI Audio::Core::Engine::ThreadProc(LPVOID)
 {
 	Engine& engine = Instance();
+
+	// [Blur2PC] Not retail: keep the writer on time under load (see JoinProAudioThreadClass)
+	HANDLE hProAudio = JoinProAudioThreadClass();
 
 	const U32 uChannels = engine.m_uChannels;
 	const U32 uBytesPerSample = engine.m_uBitsPerSample >> 3;
@@ -737,6 +799,8 @@ DWORD WINAPI Audio::Core::Engine::ThreadProc(LPVOID)
 	}
 	while (WaitForSingleObject(engine.m_hThreadStop, 0) != WAIT_OBJECT_0 && !Audio::g_bQuitAllTasks);
 
+	LeaveProAudioThreadClass(hProAudio);	// [Blur2PC]
+
 	SetEvent(engine.m_hThreadDone);
 
 	BizAlignedFree(pBuffer);
@@ -753,6 +817,12 @@ namespace Audio
 	void ShutdownOutputEngine()
 	{
 		Audio::Core::Engine::Instance().Shutdown();
+	}
+
+	// [Blur2PC] Not retail: races use the low-latency ring, menus a longer one (Engine::SetRaceBuffering)
+	void SetOutputForRace(bool bInRace)
+	{
+		Audio::Core::Engine::Instance().SetRaceBuffering(bInRace);
 	}
 }
 

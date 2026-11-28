@@ -58,6 +58,11 @@ Audio::Core::WaveStreamLoadingThread::WaveStreamLoadingThread(U32 u32StackSize, 
 
 void Audio::Core::WaveStreamLoadingThread::Execute(void* pVoid)
 {
+#if defined(PLATFORM_PC)
+	// [Blur2PC] Not retail: the streamer reads and decodes music ahead of the time-critical mixer; at normal priority
+	// the game's own threads can hold it back long enough for the music to stutter (heard in the menus)
+	SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_HIGHEST);
+#endif
 	extern MT::Event AudioStreamingEvent;
 	AudioStreamingEvent.Wait();
 	while (1)
