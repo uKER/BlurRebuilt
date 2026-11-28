@@ -133,5 +133,11 @@ namespace Audio
 
 			static Engine*			s_pInstance;		// 0x0113f7e4
 		};
+
+		// [Blur2PC] Not retail: puts the calling audio thread in Windows' "Pro Audio" scheduling class (MMCSS),
+		// so the system keeps it on time under load without a longer buffer. Returns the handle for
+		// LeaveProAudioThreadClass; NULL when MMCSS is unavailable (the thread keeps its own priority).
+		HANDLE JoinProAudioThreadClass();
+		void LeaveProAudioThreadClass(HANDLE hTask);
 	}
 }

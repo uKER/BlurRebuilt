@@ -707,11 +707,42 @@ void Audio::Core::Engine::RenderFrameS32(S32* psOut)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+//	[Blur2PC] Pro Audio thread class (MMCSS), not retail; avrt.dll is loaded at run time
+////////////////////////////////////////////////////////////////////////////////
+typedef HANDLE (WINAPI* AvSetMmThreadCharacteristicsAFn)(LPCSTR, LPDWORD);
+typedef BOOL (WINAPI* AvRevertMmThreadCharacteristicsFn)(HANDLE);
+
+static HMODULE GetAvrt()
+{
+	static HMODULE s_hAvrt = LoadLibraryA("avrt.dll");
+	return s_hAvrt;
+}
+
+HANDLE Audio::Core::JoinProAudioThreadClass()
+{
+	HMODULE hAvrt = GetAvrt();
+	AvSetMmThreadCharacteristicsAFn pJoin = hAvrt ? (AvSetMmThreadCharacteristicsAFn)GetProcAddress(hAvrt, "AvSetMmThreadCharacteristicsA") : NULL;
+	DWORD dwTaskIndex = 0;
+	return pJoin ? pJoin("Pro Audio", &dwTaskIndex) : NULL;
+}
+
+void Audio::Core::LeaveProAudioThreadClass(HANDLE hTask)
+{
+	HMODULE hAvrt = GetAvrt();
+	AvRevertMmThreadCharacteristicsFn pLeave = hAvrt ? (AvRevertMmThreadCharacteristicsFn)GetProcAddress(hAvrt, "AvRevertMmThreadCharacteristics") : NULL;
+	if (hTask && pLeave)
+		pLeave(hTask);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 //	ThreadProc (0x00547630)
 ////////////////////////////////////////////////////////////////////////////////
 DWORD WINAPI Audio::Core::Engine::ThreadProc(LPVOID)
 {
 	Engine& engine = Instance();
+
+	// [Blur2PC] Not retail: keep the writer on time under load (see JoinProAudioThreadClass)
+	HANDLE hProAudio = JoinProAudioThreadClass();
 
 	const U32 uChannels = engine.m_uChannels;
 	const U32 uBytesPerSample = engine.m_uBitsPerSample >> 3;
@@ -736,6 +767,8 @@ DWORD WINAPI Audio::Core::Engine::ThreadProc(LPVOID)
 		engine.WriteToBuffer(pBuffer, uChannels * uBytesPerSample * uFrameLength);
 	}
 	while (WaitForSingleObject(engine.m_hThreadStop, 0) != WAIT_OBJECT_0 && !Audio::g_bQuitAllTasks);
+
+	LeaveProAudioThreadClass(hProAudio);	// [Blur2PC]
 
 	SetEvent(engine.m_hThreadDone);
 

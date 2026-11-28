@@ -1474,6 +1474,8 @@ void Audio::Core::Renderer::Execute(void*)
 	// [Blur2PC] T144: retail PC's renderer thread (0x00560000) raises its own priority to time-critical and
 	// leaves the process priority class alone
 	SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
+	// [Blur2PC] Not retail: the mixer feeds the output writer's small ring, so keep it on time under load too
+	JoinProAudioThreadClass();
 #endif
 
 	for (;;)
