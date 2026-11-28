@@ -1,5 +1,8 @@
 #include "Stdafx.h"
 #include <Game/GameActors/VehicleLogic/VehicleLogicActor.h>	// [Blur2PC]
+#if defined ( PLATFORM_PC )
+#include <shlobj.h>	// [Blur2PC] SHGetFolderPathA (BlurRebuilt.ini)
+#endif
 
 #include "HudDataFinder.h"
 #include "UiHelpers.h"
@@ -57,6 +60,88 @@ void C_HudDataFinder::Init()
 	for ( S32 i = 0; i < m_LocalPlayerPosition.Size(); i++ )
 		m_LocalPlayerPosition[ i ] = -1;
 }
+
+#if defined ( PLATFORM_PC )
+// [Blur2PC] Not retail: the Options menu can show speeds in km/h instead of mph. The choice is kept as
+// "speed_units=kmh" or "speed_units=mph" in BlurRebuilt.ini in the profile save folder (%APPDATA%\Bizarre
+// Creations\Blur\, or BLUR2PC_SAVE_ROOT as in SaveSystem_pc.cpp), which retail ignores. Default: mph.
+static S32 s_sSpeedInKmh = -1;	// -1 until the file has been read
+
+static void GetBlurRebuiltIniPath( char (&path)[ MAX_PATH ] )
+{
+	if ( const char* pOverride = getenv( "BLUR2PC_SAVE_ROOT" ) )
+	{
+		sprintf_s( path, "%s\\BlurRebuilt.ini", pOverride );
+	}
+	else
+	{
+		char appData[ MAX_PATH ] = { 0 };
+		SHGetFolderPathA( NULL, CSIDL_APPDATA | CSIDL_FLAG_CREATE, NULL, 0, appData );
+		sprintf_s( path, "%s\\Bizarre Creations\\Blur\\BlurRebuilt.ini", appData );
+	}
+}
+
+bool C_HudDataFinder::SpeedInKmh()
+{
+	if ( s_sSpeedInKmh < 0 )
+	{
+		s_sSpeedInKmh = 0;
+
+		char path[ MAX_PATH ];
+		GetBlurRebuiltIniPath( path );
+
+		FILE* pFile = NULL;
+		if ( fopen_s( &pFile, path, "r" ) == 0 && pFile )
+		{
+			char line[ 128 ];
+			while ( fgets( line, sizeof( line ), pFile ) )
+			{
+				if ( _strnicmp( line, "speed_units=kmh", 15 ) == 0 )
+					s_sSpeedInKmh = 1;
+			}
+			fclose( pFile );
+		}
+
+		C_TextStringID::SetSpeedInKmh( s_sSpeedInKmh == 1 );
+	}
+
+	return s_sSpeedInKmh == 1;
+}
+
+void C_HudDataFinder::SetSpeedInKmh( const bool kmh )
+{
+	s_sSpeedInKmh = kmh ? 1 : 0;
+	C_TextStringID::SetSpeedInKmh( kmh );
+
+	char path[ MAX_PATH ];
+	GetBlurRebuiltIniPath( path );
+
+	FILE* pFile = NULL;
+	if ( fopen_s( &pFile, path, "w" ) == 0 && pFile )
+	{
+		fprintf( pFile, "speed_units=%s\n", kmh ? "kmh" : "mph" );
+		fclose( pFile );
+	}
+}
+
+// The mph text with its "MPH" unit replaced by "KM/H"; unchanged when it has no such unit.
+const WCHAR* C_HudDataFinder::KmhFormat( const WCHAR* pMphFormat )
+{
+	static WCHAR s_Format[ 64 ];
+
+	const WCHAR* pMph = wcsstr( pMphFormat, L"MPH" );
+	if ( !pMph )
+		pMph = wcsstr( pMphFormat, L"mph" );
+
+	if ( !pMph || wcslen( pMphFormat ) + 2 >= lengthof( s_Format ) )
+		return pMphFormat;
+
+	wcsncpy_s( s_Format, pMphFormat, (size_t)( pMph - pMphFormat ) );
+	wcscat_s( s_Format, L"KM/H" );
+	wcscat_s( s_Format, pMph + 3 );
+	return s_Format;
+}
+#endif
 
 const WCHAR* C_HudDataFinder::GetVariableText( const char* pVariableName )
 {
@@ -351,6 +436,15 @@ const WCHAR* C_HudDataFinder::GetVariableText( const char* pVariableName )
 		static C_TextStringID id( "HUD_SPEED_MPH" );
 
 		U32 speed = (U32)Maths::Abs<F32>( pLogicActor->GetPositionInfo().mSpeedInMph );
+	#if defined ( PLATFORM_PC )
+		// [Blur2PC] km/h option
+		if ( SpeedInKmh() )
+		{
+			speed = (U32)( Maths::Abs<F32>( pLogicActor->GetPositionInfo().mSpeedInMph ) * 1.609344f );
+			m_VariableText.Format( KmhFormat( id.String() ), speed );
+		}
+		else
+	#endif
 		m_VariableText.Format( id.String(), speed );
 	}
 	else if ( !strcmp( pVariableName, "MP_PLACE" ) )

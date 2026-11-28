@@ -28,6 +28,13 @@ public:
 	void									SetBonusString( const Util::C_String& string )					{ m_BonusString = string; }
 	void									SetScoreString( const Util::C_String& string )					{ m_ScoreString = string; }
 
+#if defined ( PLATFORM_PC )
+	// [Blur2PC] Not retail: speeds in km/h instead of mph (Options menu); see HudDataFinder.cpp.
+	static bool								SpeedInKmh();
+	static void								SetSpeedInKmh( const bool kmh );
+	static const WCHAR*						KmhFormat( const WCHAR* pMphFormat );
+#endif
+
 	bool									DistanceFromDriverFailing()										{ return m_bDistanceFromDriverFailing; }
 	S32										NumActiveRules()												{ return m_sNumActiveRules; }
 

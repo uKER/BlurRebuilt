@@ -2767,6 +2767,15 @@ static S32 NumRulesActive( lua_State* pState )
 	return 1;
 }
 
+#ifdef PLATFORM_PC
+// [Blur2PC] Not retail: switches the speed display between mph and km/h (Options.lua)
+static S32 ToggleSpeedUnits( lua_State* pState )
+{
+	UI::C_HudDataFinder::SetSpeedInKmh( !UI::C_HudDataFinder::SpeedInKmh() );
+	return 0;
+}
+#endif
+
 // IsSinglePlayerRaceTimed
 static S32 IsSinglePlayerRaceTimed( lua_State* pState )
 {
@@ -7230,6 +7239,7 @@ static const luaL_reg amax_lib[] =
 	{"GraphicResolutionCount",		GraphicResolutionCount},
 	{"GraphicAACount",				GraphicAACount},
 	{"GetScreenResolution",			GetScreenResolution},
+	{"ToggleSpeedUnits",			ToggleSpeedUnits},	// [Blur2PC] not retail: mph / km/h
 #endif
 	{"UpdateAudioOptions",			UpdateAudioOptions},
 	{"GetControllerConfigs",		GetControllerConfigs},

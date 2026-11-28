@@ -1,6 +1,7 @@
 #include "Stdafx.h"
 
 #include "GameDataFinder.h"
+#include "HudDataFinder.h"	// [Blur2PC] km/h option
 
 #include <ui/Graphics/Localisation/Loc.h>
 #include <ui/Graphics/SimpleTimer.h>
@@ -123,6 +124,20 @@ bool C_GameDataFinder::MessageHandler(const Messaging::C_MessageBase* pMessage)
 const WCHAR* C_GameDataFinder::GetVariableText( const char* pVariableName )
 {
 	m_VariableText.Clear();
+
+#if defined ( PLATFORM_PC )
+	// [Blur2PC] Not retail (English only): the Options menu's speed units entry (Options.lua).
+	if ( !strcmp( pVariableName, "SPEED_UNITS" ) )
+	{
+		m_VariableText.Format( C_HudDataFinder::SpeedInKmh() ? L"Speed units: KM/H" : L"Speed units: MPH" );
+		return m_VariableText;
+	}
+	if ( !strcmp( pVariableName, "SPEED_UNITS_HELP" ) )
+	{
+		m_VariableText.Format( L"Speed shown on the race map. Select to switch between MPH and KM/H." );
+		return m_VariableText;
+	}
+#endif
 
 	if ( !strncmp( pVariableName, "NUM_", 4 ) )
 	{
@@ -535,6 +550,12 @@ const WCHAR* C_GameDataFinder::GetVariableText( const char* pVariableName )
 
 			static C_TextStringID s_MphText( "IDS_CMN_MPH" );
 
+		#if defined ( PLATFORM_PC )
+			// [Blur2PC] km/h option
+			if ( C_HudDataFinder::SpeedInKmh() )
+				m_VariableText.Format( L"%d %s", (U16)( speed * 1.609344f ), C_HudDataFinder::KmhFormat( s_MphText.String() ) );
+			else
+		#endif
 			m_VariableText.Format( L"%d %s", (U16)speed, s_MphText.String() );
 		}
 		else

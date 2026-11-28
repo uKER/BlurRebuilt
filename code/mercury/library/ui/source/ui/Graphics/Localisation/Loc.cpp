@@ -7,6 +7,7 @@
 
 #ifdef PLATFORM_PS3
 #include <wchar.h>
+#include <wctype.h>	// [Blur2PC] towupper (km/h option)
 #endif
 
 #ifdef CFG_ALLOW_OPTIMIZE_OFF_UI
@@ -24,6 +25,37 @@ namespace UI
 
 // Singleton object which contains all the sorcery strings
 C_TextStringID::C_Loc C_TextStringID::m_Loc;
+
+// [Blur2PC] Not retail: the km/h option (C_HudDataFinder::SetSpeedInKmh) converts the speed numbers, but labels
+// such as the race map's are separate "MPH" texts. While the option is on, a text that is only that unit (any
+// case, surrounding spaces allowed) is given as "KM/H" ("km/h" when written in lower case).
+static bool s_bSpeedInKmh = false;
+
+void C_TextStringID::SetSpeedInKmh( const bool kmh )
+{
+	s_bSpeedInKmh = kmh;
+}
+
+static const WCHAR* SpeedUnitText( const WCHAR* pText )
+{
+	if ( !s_bSpeedInKmh || !pText )
+		return pText;
+
+	const WCHAR* p = pText;
+	while ( *p == L' ' )
+		p++;
+
+	if ( towupper( p[ 0 ] ) != L'M' || towupper( p[ 1 ] ) != L'P' || towupper( p[ 2 ] ) != L'H' )
+		return pText;
+
+	const WCHAR* pEnd = p + 3;
+	while ( *pEnd == L' ' )
+		pEnd++;
+	if ( *pEnd )
+		return pText;
+
+	return ( p[ 0 ] == L'm' ) ? L"km/h" : L"KM/H";
+}
 
 #if 1
 void C_TextStringID::C_Loc::Load(const Sys::C_FilePath& filename, const char* lang, Sys::I_FileSystem* fs, const S32 handle )
@@ -339,7 +371,7 @@ const WCHAR* C_TextStringID::C_Loc::FindText(XtU32 id)
 
 		const wchar_t* p = lh.FindText(id, true);
 		if( p )
-			return p;
+			return SpeedUnitText( p );	// [Blur2PC] km/h option
 	}
 
 	for( Btl::List<C_LocHackItem *>::Iterator it(m_LocList.Begin()); it != m_LocList.End(); ++it )
@@ -348,7 +380,7 @@ const WCHAR* C_TextStringID::C_Loc::FindText(XtU32 id)
 
 		const wchar_t* p = lh.FindText(id,true);
 		if( p )
-			return p;
+			return SpeedUnitText( p );	// [Blur2PC] km/h option
 	}
 
 	return L"";

@@ -119,6 +119,9 @@ public:
 
 	const char* Name( );
 
+	// [Blur2PC] Not retail: with the km/h option on, a text that is only the "MPH" unit reads "KM/H"; see Loc.cpp.
+	static void SetSpeedInKmh( const bool kmh );
+
 private:
 	class C_Loc
 	{
