@@ -1093,3 +1093,11 @@ Verification (queued/minimized, private copy of the user's save, _work/t272): th
 ## T275 LAN lobby vehicle keys on x64
 
 Lua 5.1 lua_rawseti takes an int. The multiplayer garage exposed vehicle IDs with lua_pushinteger, giving the same unsigned 32-bit ID a positive Lua key on x64. Scannou's vehicle-key patch uses that representation for all nine vehicle map writes. Tested in the delivered x64 Release on retail data: 37 rank entries above INT_MAX, zero negative keys. LAN search completed and a custom lobby reported IsHost() true. With the incoming saved-car getter returning a missing ID in a disposable profile, car select stored 2898947402 as the fallback, then Escape returned to the lobby.
+
+## T127 black refraction rings without anti-aliasing
+
+Found in / Belongs to: Blur1PCDX11 (D3D11 only; retail D3D9 is not affected).
+
+Reproduced by Scannou with Anti-aliasing Off at any graphics quality (2560x1440, fullscreen and windowed); with anti-aliasing on the rings are fine, which is why the earlier 8x investigation could not reproduce it. A trace of every refraction setup (aa-off and aa-on runs) shows the cause: without anti-aliasing the display window's colour render texture is a single resource that is both the bound render target and the `g_tColourBuffer` texture (`ViewDependentFXUpdate` sets `Render::GetGlobalColourBuffer()`, the window's colour texture). `MeshEffectRefract` (shunt rings, other power-up refraction) and `Puddle` sample it while drawing into it. D3D9 allowed that; D3D11 unbinds a shader resource that is bound as a render target, so slot t1 was empty and the refraction sampled black. With anti-aliasing the window draws into a multisampled surface and resolves into its separate texture before the refract pass (`RenderWindowMask`), so t1 holds the resolved colour.
+
+Fix: without anti-aliasing `CreateWindows` gives the window's colour render texture a separate single-sample target surface and keeps the texture as its resolve surface; `C_RenderTexture2D::Resolve` copies a single-sample surface (`CopySubresourceRegion`) where it resolves a multisampled one. Refraction then reads the colour as of the same resolve point as with anti-aliasing. Cost: one extra window-sized target and one copy per resolve without anti-aliasing.

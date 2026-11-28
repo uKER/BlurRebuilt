@@ -886,7 +886,9 @@ void C_RenderTexture2D::Resolve(U32 level) const
 {
     if(m_Flags&E_Usage_ReadWrite)
     {m_SurfaceIndex=(m_SurfaceIndex+1)&1;m_TextureIndex=(m_TextureIndex+1)&1;}
-    if(m_Multisample==E_Multisample_None || !m_Surfaces[0].Size() || !m_ResolveSurfaces[0].Size())return;
+    // [Blur2PC] a render texture has resolve surfaces when multisampled, or for a display window without
+    // anti-aliasing (CreateWindows); others draw straight into their texture and need no resolve
+    if(!m_Surfaces[0].Size() || !m_ResolveSurfaces[0].Size())return;
     ID3D11Texture2D* source=m_Surfaces[0][0].m_pd3dSurface;
     ID3D11Texture2D* dest=m_ResolveSurfaces[0][0].m_pd3dSurface;
     if(!source || !dest || source==dest)return;
@@ -895,7 +897,12 @@ void C_RenderTexture2D::Resolve(U32 level) const
     D3D11_TEXTURE2D_DESC desc={};source->GetDesc(&desc);
     // [Blur1PCDX11] Colour targets use typeless storage (per-sampler sRGB views); a resolve needs a typed
     // format, and D3D9's StretchRect resolve works on the linear values.
-    if(context){context->ResolveSubresource(dest,level,source,0,GetLinearFormat(desc.Format));Display2::D3D11ResourceWritten(dest,context);context->Release();} // [Blur1PCDX11] mirror
+    if(context)
+    {
+        if(desc.SampleDesc.Count>1)context->ResolveSubresource(dest,level,source,0,GetLinearFormat(desc.Format));
+        else context->CopySubresourceRegion(dest,level,0,0,0,source,0,nullptr);	// [Blur2PC] single sample: a copy
+        Display2::D3D11ResourceWritten(dest,context);context->Release(); // [Blur1PCDX11] mirror
+    }
     device->Release();
 }
 
@@ -918,6 +925,23 @@ bool C_PCD3D11GameDevice::CreateWindows()
         if (m_HDROutput && m_HDROutput->FloatSwapChain()) window->m_ColourFormat = E_Format_A16B16G16R16F;
         if(!CreateRenderTexture2D(window->m_Width,window->m_Height,1,E_Usage_Colour,
             window->m_ColourFormat,window->m_Multisample,nullptr,&window->m_ColourRenderTexture))return false;
+        // [Blur2PC] Not retail (D3D11 only): without anti-aliasing a window draws into a target of its own and its
+        // resolve copies it into the texture, as the multisampled window resolves into its texture. Retail D3D9 drew
+        // into the texture itself, and the refraction pass (MeshEffectRefract: shunt rings, water) samples that
+        // texture as g_tColourBuffer while it is the bound target; D3D9 allows that, D3D11 unbinds the read, so
+        // refraction sampled nothing and drew black. Rings with anti-aliasing on were always fine.
+        if(window->m_Multisample==E_Multisample_None)
+        {
+            C_RenderTexture2D& colour=window->m_ColourRenderTexture;
+            Display2::C_Surface& surface=colour.m_Surfaces[0][0];
+            ID3D11Texture2D* texture=surface.m_pd3dSurface;	// the surface's reference becomes the resolve surface's
+            surface.m_pd3dSurface=nullptr;surface.m_Subresource=0;
+            if(!CreateColourSurface(window->m_Width,window->m_Height,colour.m_Flags,window->m_ColourFormat,
+                E_Multisample_None,nullptr,&surface))
+            {surface.m_pd3dSurface=texture;return false;}
+            colour.m_ResolveSurfaces[0].Resize(1);
+            colour.m_ResolveSurfaces[0][0].m_pd3dSurface=texture;
+        }
         if(!CreateDepthStencilSurface(window->m_Width,window->m_Height,E_Usage_DepthStencil,
             window->m_DepthStencilFormat,window->m_Multisample,nullptr,&window->m_DepthStencilSurface))return false;
         if(!CreateRenderTexture2D(window->m_Width,window->m_Height,1,E_Usage_Colour,
